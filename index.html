@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Idan Signals — פלטפורמת איתותים</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Idan Signals">
+<meta name="theme-color" content="#0b1220">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<style>
+:root{
+  --bg:#0b1220; --card:#131c2e; --card2:#1a2438; --line:#243049;
+  --text:#e6edf7; --muted:#93a2ba; --buy:#26a69a; --buy2:#0f7a6e;
+  --sell:#ef5350; --sell2:#a33; --amber:#f5b545; --blue:#3b82f6; --violet:#8b7cf6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#0b1220,#0d1526);color:var(--text);
+  font-family:'Segoe UI',Arial,'Helvetica Neue',sans-serif;font-size:15px;line-height:1.5}
+a{color:var(--blue)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 60px}
+header{position:sticky;top:0;z-index:20;background:rgba(11,18,32,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 0}
+.hrow{max-width:1180px;margin:0 auto;padding:0 16px;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.brand h1{font-size:20px;margin:0;font-weight:700;letter-spacing:.3px}
+.brand .sub{color:var(--muted);font-size:12.5px}
+.controls{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ctl{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--muted)}
+.ctl input[type=number]{width:90px;background:var(--card2);border:1px solid var(--line);
+  color:var(--text);border-radius:8px;padding:6px 8px;font-size:14px}
+.ctl input[type=range]{width:130px;accent-color:var(--blue)}
+.updated{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+#refreshBtn{cursor:pointer;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+#refreshBtn:hover{filter:brightness(1.12)} #refreshBtn:active{transform:scale(.97)}
+#nextscan{font-size:10.5px;color:#6b7a90;max-width:230px}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:18px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:center}
+.kpi .n{font-size:24px;font-weight:700}
+.kpi .l{font-size:11.5px;color:var(--muted);margin-top:2px}
+.kpi.buy .n{color:var(--buy)} .kpi.sell .n{color:var(--sell)} .kpi.watch .n{color:var(--amber)}
+h2.sec{font-size:17px;margin:26px 0 12px;display:flex;align-items:center;gap:8px}
+h2.sec .tag{font-size:12px;color:var(--muted);font-weight:400}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;
+  border-top:3px solid var(--line)}
+.card.long{border-top-color:var(--buy)} .card.short{border-top-color:var(--sell)}
+.card.gold{border-top-color:#e6c34a;background:linear-gradient(180deg,#1d1707,#131c2e);max-width:560px}
+.execrow{display:flex;gap:6px;margin-top:10px}
+.execbtn{flex:1;cursor:pointer;background:var(--buy);color:#04231f;border:none;border-radius:9px;padding:9px 10px;font-size:13.5px;font-weight:800}
+.execbtn:hover{filter:brightness(1.08)} .execbtn:active{transform:scale(.98)}
+.execbtn.skip{background:var(--card2);color:var(--muted);flex:0 0 92px;font-weight:600}
+.execbtn.done{flex:1;background:var(--card2);color:var(--text)}
+.execbtn.cp{flex:0 0 46px;background:var(--card2);color:var(--blue);border:1px solid #274063;font-size:16px}
+.budgetwrap{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin:0 0 16px}
+.budgetwrap .bhead{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:9px;flex-wrap:wrap;gap:6px;color:var(--muted)}
+.budgetwrap .bhead b{color:var(--text)}
+.btrack{height:12px;background:var(--card2);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.bfill{height:100%;background:linear-gradient(90deg,var(--blue),var(--violet));border-radius:99px;transition:width .4s}
+.bfill.full{background:linear-gradient(90deg,var(--sell2),var(--sell))}
+.dcahead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:2px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 15px}
+.dcahead input[type=number]{width:100px;background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 9px;font-size:15px;font-weight:700}
+.dcahead .dl{font-size:12.5px;color:var(--muted)}
+.waterrow .bt{background:rgba(59,130,246,.14);color:#7fb2ff;border:1px solid #274063;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px}
+.ofbox{margin-top:9px;background:linear-gradient(180deg,rgba(139,124,246,.08),rgba(139,124,246,.02));border:1px solid #33305a;border-radius:10px;padding:9px 11px}
+.ofttl{font-size:11.5px;font-weight:700;color:#b9aef5;margin-bottom:6px;letter-spacing:.2px}
+.ofrow{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);padding:2px 0}
+.ofrow b{color:var(--text);font-weight:700}
+.ofbar{height:9px;border-radius:99px;overflow:hidden;margin:5px 0 3px;background:linear-gradient(90deg,var(--sell2),var(--sell))}
+.offill{height:100%;background:linear-gradient(90deg,var(--buy2),var(--buy));border-radius:0 99px 99px 0}
+.ofnote{font-size:10.5px;color:#7c8aa3;margin-top:4px}
+.tvwrap{padding:10px 12px 12px;border-top:1px solid var(--line)}
+.tvttl{font-size:11.5px;color:var(--muted);margin-bottom:8px}
+.tvchips{display:flex;flex-wrap:wrap;gap:6px}
+.tvchip{font-size:11.5px;font-weight:700;color:#9fb4d6;background:var(--card2);border:1px solid var(--line);border-radius:7px;padding:3px 8px;text-decoration:none;transition:all .12s}
+.tvchip:hover{border-color:var(--blue);color:#cfe0ff;transform:translateY(-1px)}
+.tvchip.act{color:#7fd1c4;border-color:#2a6f64;background:rgba(38,166,154,.10)}
+.scorebadge{font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px}
+@media(max-width:720px){
+  .hrow{gap:8px}.controls{gap:10px}.kpis{grid-template-columns:repeat(2,1fr)}
+  .cards{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}
+  .bigcmd{font-size:22px}.card.gold{max-width:100%}
+  .budgetwrap .bhead{font-size:12px}.dcahead{gap:8px}
+  th,td{padding:6px 6px;font-size:12px}
+}
+.noteinp{width:100%;margin-top:8px;background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 9px;font-size:12px;font-family:inherit}
+.bigcmd{font-size:25px;font-weight:900;letter-spacing:1.5px;text-align:center;border-radius:10px;padding:8px;margin-bottom:10px;line-height:1.1}
+.bigcmd.buy{background:var(--buy);color:#04231f} .bigcmd.sell{background:var(--sell);color:#fff}
+.bigcmd small{font-size:13px;font-weight:600;opacity:.85;letter-spacing:0}
+.perfbar{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}
+.perfbar .pf{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 6px;text-align:center}
+.perfbar .pn{font-size:18px;font-weight:800}.perfbar .pl{font-size:10.5px;color:var(--muted);margin-top:1px}
+@media(max-width:720px){.perfbar{grid-template-columns:repeat(3,1fr)}}
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:99;background:var(--card);border:1px solid var(--line);border-right:4px solid var(--blue);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.5);transition:opacity .6s;max-width:90%}
+#bellBtn{cursor:pointer;background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:12px}
+#bellBtn.on{background:var(--buy);color:#04231f;border-color:var(--buy)}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.tk{font-size:19px;font-weight:800}
+.co{font-size:12px;color:var(--muted);margin-top:1px}
+.badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.b-buynow{background:rgba(38,166,154,.18);color:var(--buy);border:1px solid var(--buy2)}
+.b-sellnow{background:rgba(239,83,80,.18);color:var(--sell);border:1px solid var(--sell2)}
+.b-watchb{background:rgba(245,181,69,.14);color:var(--amber);border:1px solid #7a5b1f}
+.b-watchs{background:rgba(245,181,69,.10);color:var(--amber);border:1px solid #7a5b1f}
+.chip{font-size:10.5px;color:var(--muted);background:var(--card2);border:1px solid var(--line);
+  padding:2px 7px;border-radius:6px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}
+.cell{background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:7px 6px;text-align:center}
+.cell .cl{font-size:10.5px;color:var(--muted)} .cell .cv{font-size:14.5px;font-weight:700;margin-top:1px}
+.cell.stop .cv{color:var(--sell)} .cell.t1 .cv,.cell.t2 .cv{color:var(--buy)}
+.size{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;
+  background:linear-gradient(90deg,rgba(59,130,246,.12),rgba(59,130,246,.04));
+  border:1px solid #274063;border-radius:10px;padding:9px 11px}
+.size .qty{font-size:22px;font-weight:800;color:#fff}
+.size .qty small{font-size:11px;color:var(--muted);font-weight:500}
+.size .meta{font-size:12px;color:var(--muted);text-align:left}
+.size .meta b{color:var(--text)}
+.act{font-size:12px;color:var(--muted);margin-top:9px;border-top:1px dashed var(--line);padding-top:8px}
+.act b{color:var(--text)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.q{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px}
+.q-good{background:rgba(38,166,154,.15);color:var(--buy)}
+.q-mid{background:rgba(245,181,69,.15);color:var(--amber)}
+.q-bad{background:rgba(239,83,80,.15);color:var(--sell)}
+.q-warn{background:rgba(148,162,186,.12);color:var(--muted)}
+.mini{font-size:11px;color:var(--muted)}
+.up{color:var(--buy)} .down{color:var(--sell)} .range{color:var(--muted)}
+details.sector{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;overflow:hidden}
+details.sector>summary{cursor:pointer;padding:11px 14px;font-weight:700;display:flex;
+  justify-content:space-between;align-items:center;list-style:none}
+details.sector>summary::-webkit-details-marker{display:none}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 10px;text-align:right;border-top:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:11.5px}
+tbody tr:hover{background:var(--card2)}
+.prem{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+.pc .pt{font-weight:700} .pc .pp{font-size:12px;color:var(--muted)}
+.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--amber);
+  border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--muted);margin-top:14px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:4px 0 14px}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:9px;height:9px;border-radius:3px;display:inline-block}
+@media(max-width:720px){.kpis{grid-template-columns:repeat(3,1fr)}.hrow{gap:10px}}
+</style></head>
+<body>
+<header><div class="hrow">
+  <div class="brand"><div style="font-size:24px">⚡</div>
+    <div><h1>Idan Signals</h1><div class="sub">פלטפורמת איתותים · סווינג + דיי-טרייד · שיטת פסגות</div></div>
+  </div>
+  <div class="controls">
+    <div class="ctl">ארנק ($)<input id="wallet" type="number" min="100" step="50"></div>
+    <div class="ctl">סיכון לעסקה: <b id="riskv" style="color:#e6edf7"></b>
+      <input id="risk" type="range" min="1" max="8" step="0.5"></div>
+    <div class="ctl">מפתח מניות (Finnhub)<input id="fhkey" type="text" placeholder="מפתח..." style="width:120px;background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 8px;font-size:11px"><span id="keystatus" style="font-size:10px"></span></div>
+    <div class="updated">
+      <div style="display:flex;gap:6px"><button id="refreshBtn">🔄 רענן</button><button id="bellBtn">🔔 התראות</button></div>
+      <div>עודכן: <span id="stamp"></span> · שעון ישראל</div>
+      <div id="nextscan"></div>
+    </div>
+  </div>
+</div></header>
+<div class="wrap">
+  <div class="kpis" id="kpis"></div>
+  <div id="budgetbar"></div>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--buy)"></i> קנייה / לונג</span>
+    <span><i class="dot" style="background:var(--sell)"></i> מכירה / שורט</span>
+    <span><i class="dot" style="background:var(--amber)"></i> מעקב — מתקרב לפריצה</span>
+    <span>S = סווינג · D = דיי-טרייד</span>
+    <span>R:R = יחס סיכוי/סיכון</span>
+  </div>
+
+  <h2 class="sec">🥇 זהב XAU/USD <span class="tag">— 5 דקות · מינוף 1:100 · 🟢 מחיר חי בזמן אמת (מתעדכן כל 45 שנ') · EMA9/21 + EMA50 + VWAP + ATR</span></h2>
+  <div id="goldbox"></div>
+
+  <h2 class="sec">⚡ איתותי דיי-טרייד <span class="tag">— תוך-יומי (טווח פתיחה + VWAP). הזהב למעלה; מניות מתעדכנות בסריקות בזמן המסחר.</span></h2>
+  <div class="cards" id="day"></div>
+  <div id="day-empty" class="note" style="display:none">אין כרגע איתותי דיי-טרייד למניות. איתותי זהב מופיעים בכרטיס הזהב למעלה 🥇.</div>
+
+  <h2 class="sec">📅 איתותי סווינג — פעילים <span class="tag">— פריצת שיא / שבירת שפל על גרף יומי</span></h2>
+  <div class="cards" id="active"></div>
+  <div id="active-empty" class="note" style="display:none">אין כרגע איתות סווינג פעיל. ראה "מתקרבים לפריצה" — המועמדים הקרובים ביותר.</div>
+
+  <h2 class="sec">✅ עסקאות שביצעתי — במעקב <span id="trackcount" class="tag"></span> <span class="tag">— לחץ "✓ ביצעתי" על איתות והוא יעבור לכאן עם מעקב חי (P/L, סטופ, יעד)</span></h2>
+  <div id="tracking"></div>
+
+  <h2 class="sec">📅 סווינג — מתקרבים לפריצה <span class="tag">— מגמה + RSI תומכים, המחיר קרוב לטריגר</span></h2>
+  <div class="cards" id="watch"></div>
+
+  <h2 class="sec">📋 כל היוניברס לפי סקטור <span class="tag">— ~1000 מניות, לפחות ~80 לכל קטגוריה. לחץ על כל מניה לגרף TradingView. הסורק בוחר את המובילות לאיתותים.</span></h2>
+  <div id="sectors"></div>
+
+  <h2 class="sec">💧 מים — צבירה חודשית (DCA) <span class="tag">— השקעה לטווח ארוך. קובעים סכום חודשי, קונים פעם בחודש ומחזיקים. לא נסחר יומי/סווינג.</span></h2>
+  <div class="dcahead">
+    <span class="dl">💵 סכום חודשי לצבירת מים ($)</span>
+    <input id="watermo" type="number" min="0" step="10" value="60">
+    <span class="dl" id="watersum"></span>
+  </div>
+  <div id="water"></div>
+  <div class="note" style="border-left-color:var(--blue)">💧 <b>איך זה עובד:</b> סל המים מיועד להחזקה ארוכת-טווח — לא לטריידינג. פעם בחודש קונים את הכמות שמופיעה ומחזיקים. החלוקה שווה בין השמות. שברי מניות (Fractional) נתמכים ב-IBKR, כך שאפשר לקנות בדיוק את הסכום. הכסף הזה נפרד מתקציב הטריידינג של ה-$1000.</div>
+
+  <h2 class="sec">💎 צבירה לטווח ארוך <span class="tag">— שמות יקרים (&gt;$20): לא לסחור, רק לקנות בכניסה טובה. תזמון בסריקה השבועית.</span></h2>
+  <div class="prem" id="premium"></div>
+
+  <div class="note" id="disclaimer"></div>
+</div>
+<script>
+const DATA = {"generated": "2026-07-24 07:16", "day_generated": null, "gold": {"instrument": "XAU/USD", "mode": "gold5m", "signal": "WATCH_SELL", "price": 4082.2, "rsi": 29.4, "atr": 4.06, "vwap": 4129.1, "ema9": 4087.8, "ema21": 4091.0, "ema50": 4097.0, "regime": "bear", "plan": {"direction": "SHORT", "entry": 4082.2, "stop": 4088.3, "t1": 4073.1, "t2": 4063.9, "rr_t1": 1.5, "rr_t2": 3.0, "sizing": {"units_oz": 3, "lots": 0.03, "notional": 12246.6, "margin_required": 122.47, "risk_per_oz": 6.1, "risk_dollars": 18.3, "risk_pct_of_wallet": 1.83, "leverage": 100, "capped": false}}, "orderflow": {"vp": {"vpoc": 4125.0, "vah": 4157.3, "val": 4116.9, "hvn": [4133.1, 4125.0, 4121.0]}, "cvd": {"cvd": 752.7, "buy_pct": 52.6, "sell_pct": 47.4, "pressure": "buyers"}, "rvol": {"rvol": 1.42, "spike": false}, "price_loc": "below_va"}}, "finnhub_key": "", "wallet": 1000, "risk_pct": 0.04, "signals": [{"ticker": "NIO", "company": "NIO", "sector": "EV", "signal": "SELL_NOW", "price": 4.67, "rsi": 36.9, "trend": "down", "resistance": 5.21, "support": 4.72, "dist_res": 11.6, "dist_sup": -1.1, "exchange": "NYSE", "mode": "swing", "direction": "SHORT", "entry": 4.67, "stop": 5.21, "t1": 3.736, "t2": 4.23, "rr_t1": 1.73, "rr_t2": 0.81}, {"ticker": "KSS", "company": "Kohl's", "sector": "Consumer", "signal": "WATCH_BUY", "price": 19.08, "rsi": 63.9, "trend": "up", "resistance": 19.62, "support": 15.71, "dist_res": 2.8, "dist_sup": 17.7, "exchange": "NYSE", "mode": "swing", "direction": "LONG", "entry": 19.62, "stop": 15.71, "t1": 23.544, "t2": 23.53, "rr_t1": 1.0, "rr_t2": 1.0}, {"ticker": "OGN", "company": "Organon", "sector": "Healthcare", "signal": "WATCH_BUY", "price": 13.52, "rsi": 63.2, "trend": "up", "resistance": 13.6, "support": 13.46, "dist_res": 0.6, "dist_sup": 0.4, "exchange": "NYSE", "mode": "swing", "direction": "LONG", "entry": 13.6, "stop": 13.46, "t1": 16.32, "t2": 13.74, "rr_t1": 19.43, "rr_t2": 1.0}, {"ticker": "HBAN", "company": "Huntington Bancshares", "sector": "Financials", "signal": "WATCH_BUY", "price": 18.27, "rsi": 60.3, "trend": "up", "resistance": 18.58, "support": 17.29, "dist_res": 1.7, "dist_sup": 5.4, "exchange": "NASDAQ", "mode": "swing", "direction": "LONG", "entry": 18.58, "stop": 17.29, "t1": 22.296, "t2": 19.87, "rr_t1": 2.88, "rr_t2": 1.0}, {"ticker": "AEO", "company": "American Eagle", "sector": "Consumer", "signal": "WATCH_BUY", "price": 17.82, "rsi": 56.5, "trend": "up", "resistance": 17.93, "support": 15.74, "dist_res": 0.6, "dist_sup": 11.7, "exchange": "NYSE", "mode": "swing", "direction": "LONG", "entry": 17.93, "stop": 15.74, "t1": 21.516, "t2": 20.12, "rr_t1": 1.64, "rr_t2": 1.0}, {"ticker": "F", "company": "Ford Motor", "sector": "Consumer", "signal": "WATCH_BUY", "price": 14.42, "rsi": 56.1, "trend": "up", "resistance": 14.48, "support": 13.22, "dist_res": 0.4, "dist_sup": 8.3, "exchange": "NYSE", "mode": "swing", "direction": "LONG", "entry": 14.48, "stop": 13.22, "t1": 17.376, "t2": 15.74, "rr_t1": 2.3, "rr_t2": 1.0}, {"ticker": "LCID", "company": "Lucid Group", "sector": "EV", "signal": "WATCH_BUY", "price": 6.78, "rsi": 56.0, "trend": "up", "resistance": 6.96, "support": 2.37, "dist_res": 2.7, "dist_sup": 65.0, "exchange": "NASDAQ", "mode": "swing", "direction": "LONG", "entry": 6.96, "stop": 2.37, "t1": 8.352, "t2": 11.55, "rr_t1": 0.3, "rr_t2": 1.0}, {"ticker": "VTRS", "company": "Viatris", "sector": "Healthcare", "signal": "WATCH_BUY", "price": 17.01, "rsi": 55.9, "trend": "up", "resistance": 17.17, "support": 15.95, "dist_res": 0.9, "dist_sup": 6.2, "exchange": "NASDAQ", "mode": "swing", "direction": "LONG", "entry": 17.17, "stop": 15.95, "t1": 20.604, "t2": 18.39, "rr_t1": 2.81, "rr_t2": 1.0}, {"ticker": "KVUE", "company": "Kenvue", "sector": "Consumer", "signal": "WATCH_BUY", "price": 19.13, "rsi": 55.9, "trend": "up", "resistance": 19.36, "support": 18.58, "dist_res": 1.2, "dist_sup": 2.9, "exchange": "NYSE", "mode": "swing", "direction": "LONG", "entry": 19.36, "stop": 18.58, "t1": 23.232, "t2": 20.14, "rr_t1": 4.96, "rr_t2": 1.0}, {"ticker": "WEN", "company": "Wendy's", "sector": "Consumer", "signal": "WATCH_SELL", "price": 7.4, "rsi": 47.5, "trend": "down", "resistance": 8.03, "support": 7.35, "dist_res": 8.5, "dist_sup": 0.7, "exchange": "NASDAQ", "mode": "swing", "direction": "SHORT", "entry": 7.35, "stop": 8.03, "t1": 5.88, "t2": 6.67, "rr_t1": 2.16, "rr_t2": 1.0}, {"ticker": "INFY", "company": "Infosys", "sector": "Technology", "signal": "WATCH_SELL", "price": 10.93, "rsi": 44.6, "trend": "down", "resistance": 11.46, "support": 10.63, "dist_res": 4.8, "dist_sup": 2.7, "exchange": "NYSE", "mode": "swing", "direction": "SHORT", "entry": 10.63, "stop": 11.46, "t1": 8.504, "t2": 9.8, "rr_t1": 2.56, "rr_t2": 1.0}, {"ticker": "XPEV", "company": "XPeng", "sector": "EV", "signal": "WATCH_SELL", "price": 12.85, "rsi": 41.0, "trend": "down", "resistance": 14.46, "support": 12.78, "dist_res": 12.5, "dist_sup": 0.5, "exchange": "NYSE", "mode": "swing", "direction": "SHORT", "entry": 12.78, "stop": 14.46, "t1": 10.224, "t2": 11.1, "rr_t1": 1.52, "rr_t2": 1.0}, {"ticker": "SNAP", "company": "Snap", "sector": "Technology", "signal": "WATCH_SELL", "price": 4.47, "rsi": 37.5, "trend": "down", "resistance": 4.88, "support": 4.43, "dist_res": 9.2, "dist_sup": 0.9, "exchange": "NYSE", "mode": "swing", "direction": "SHORT", "entry": 4.43, "stop": 4.88, "t1": 3.544, "t2": 3.98, "rr_t1": 1.97, "rr_t2": 1.0}, {"ticker": "SRPT", "company": "Sarepta Therapeutics", "sector": "Healthcare", "signal": "WATCH_SELL", "price": 15.82, "rsi": 36.0, "trend": "down", "resistance": 20.88, "support": 15.79, "dist_res": 32.0, "dist_sup": 0.2, "exchange": "NASDAQ", "mode": "swing", "direction": "SHORT", "entry": 15.79, "stop": 20.88, "t1": 12.632, "t2": 10.7, "rr_t1": 0.62, "rr_t2": 1.0}], "universe": [{"ticker": "NIO", "company": "NIO", "sector": "EV", "signal": "SELL_NOW", "price": 4.67, "rsi": 36.9, "trend": "down", "resistance": 5.21, "support": 4.72, "dist_res": 11.6, "dist_sup": -1.1, "exchange": "NYSE"}, {"ticker": "KSS", "company": "Kohl's", "sector": "Consumer", "signal": "WATCH_BUY", "price": 19.08, "rsi": 63.9, "trend": "up", "resistance": 19.62, "support": 15.71, "dist_res": 2.8, "dist_sup": 17.7, "exchange": "NYSE"}, {"ticker": "OGN", "company": "Organon", "sector": "Healthcare", "signal": "WATCH_BUY", "price": 13.52, "rsi": 63.2, "trend": "up", "resistance": 13.6, "support": 13.46, "dist_res": 0.6, "dist_sup": 0.4, "exchange": "NYSE"}, {"ticker": "HBAN", "company": "Huntington Bancshares", "sector": "Financials", "signal": "WATCH_BUY", "price": 18.27, "rsi": 60.3, "trend": "up", "resistance": 18.58, "support": 17.29, "dist_res": 1.7, "dist_sup": 5.4, "exchange": "NASDAQ"}, {"ticker": "AEO", "company": "American Eagle", "sector": "Consumer", "signal": "WATCH_BUY", "price": 17.82, "rsi": 56.5, "trend": "up", "resistance": 17.93, "support": 15.74, "dist_res": 0.6, "dist_sup": 11.7, "exchange": "NYSE"}, {"ticker": "F", "company": "Ford Motor", "sector": "Consumer", "signal": "WATCH_BUY", "price": 14.42, "rsi": 56.1, "trend": "up", "resistance": 14.48, "support": 13.22, "dist_res": 0.4, "dist_sup": 8.3, "exchange": "NYSE"}, {"ticker": "LCID", "company": "Lucid Group", "sector": "EV", "signal": "WATCH_BUY", "price": 6.78, "rsi": 56.0, "trend": "up", "resistance": 6.96, "support": 2.37, "dist_res": 2.7, "dist_sup": 65.0, "exchange": "NASDAQ"}, {"ticker": "VTRS", "company": "Viatris", "sector": "Healthcare", "signal": "WATCH_BUY", "price": 17.01, "rsi": 55.9, "trend": "up", "resistance": 17.17, "support": 15.95, "dist_res": 0.9, "dist_sup": 6.2, "exchange": "NASDAQ"}, {"ticker": "KVUE", "company": "Kenvue", "sector": "Consumer", "signal": "WATCH_BUY", "price": 19.13, "rsi": 55.9, "trend": "up", "resistance": 19.36, "support": 18.58, "dist_res": 1.2, "dist_sup": 2.9, "exchange": "NYSE"}, {"ticker": "WEN", "company": "Wendy's", "sector": "Consumer", "signal": "WATCH_SELL", "price": 7.4, "rsi": 47.5, "trend": "down", "resistance": 8.03, "support": 7.35, "dist_res": 8.5, "dist_sup": 0.7, "exchange": "NASDAQ"}, {"ticker": "INFY", "company": "Infosys", "sector": "Technology", "signal": "WATCH_SELL", "price": 10.93, "rsi": 44.6, "trend": "down", "resistance": 11.46, "support": 10.63, "dist_res": 4.8, "dist_sup": 2.7, "exchange": "NYSE"}, {"ticker": "XPEV", "company": "XPeng", "sector": "EV", "signal": "WATCH_SELL", "price": 12.85, "rsi": 41.0, "trend": "down", "resistance": 14.46, "support": 12.78, "dist_res": 12.5, "dist_sup": 0.5, "exchange": "NYSE"}, {"ticker": "SNAP", "company": "Snap", "sector": "Technology", "signal": "WATCH_SELL", "price": 4.47, "rsi": 37.5, "trend": "down", "resistance": 4.88, "support": 4.43, "dist_res": 9.2, "dist_sup": 0.9, "exchange": "NYSE"}, {"ticker": "SRPT", "company": "Sarepta Therapeutics", "sector": "Healthcare", "signal": "WATCH_SELL", "price": 15.82, "rsi": 36.0, "trend": "down", "resistance": 20.88, "support": 15.79, "dist_res": 32.0, "dist_sup": 0.2, "exchange": "NASDAQ"}, {"ticker": "GT", "company": "Goodyear Tire", "sector": "Consumer", "signal": "NONE", "price": 7.45, "rsi": 66.7, "trend": "up", "resistance": 7.19, "support": 6.37, "dist_res": -3.5, "dist_sup": 14.5, "exchange": "NASDAQ"}, {"ticker": "NU", "company": "Nu Holdings (Nubank)", "sector": "Financials", "signal": "NONE", "price": 14.51, "rsi": 66.0, "trend": "up", "resistance": 14.28, "support": 13.33, "dist_res": -1.6, "dist_sup": 8.1, "exchange": "NYSE"}, {"ticker": "UAA", "company": "Under Armour", "sector": "Consumer", "signal": "NONE", "price": 7.26, "rsi": 65.0, "trend": "up", "resistance": 7.5, "support": 6.5, "dist_res": 3.3, "dist_sup": 10.5, "exchange": "NYSE"}, {"ticker": "RIG", "company": "Transocean", "sector": "Energy", "signal": "NONE", "price": 3.73, "rsi": 64.0, "trend": "up", "resistance": 3.72, "support": 3.52, "dist_res": -0.3, "dist_sup": 5.6, "exchange": "NYSE"}, {"ticker": "AMRX", "company": "Amneal Pharmaceuticals", "sector": "Healthcare", "signal": "NONE", "price": 17.75, "rsi": 62.7, "trend": "up", "resistance": 18.39, "support": 16.58, "dist_res": 3.6, "dist_sup": 6.6, "exchange": "NASDAQ"}, {"ticker": "CAG", "company": "Conagra Brands", "sector": "Consumer", "signal": "NONE", "price": 14.83, "rsi": 61.3, "trend": "up", "resistance": 14.55, "support": 13.33, "dist_res": -1.9, "dist_sup": 10.1, "exchange": "NYSE"}, {"ticker": "TALO", "company": "Talos Energy", "sector": "Energy", "signal": "NONE", "price": 15.27, "rsi": 59.8, "trend": "up", "resistance": 14.17, "support": 12.84, "dist_res": -7.2, "dist_sup": 15.9, "exchange": "NYSE"}, {"ticker": "PTEN", "company": "Patterson-UTI Energy", "sector": "Energy", "signal": "NONE", "price": 10.72, "rsi": 59.5, "trend": "down", "resistance": 9.82, "support": 10.96, "dist_res": -8.4, "dist_sup": -2.2, "exchange": "NASDAQ"}, {"ticker": "KOS", "company": "Kosmos Energy", "sector": "Energy", "signal": "NONE", "price": 2.65, "rsi": 58.7, "trend": "up", "resistance": 2.605, "support": 2.13, "dist_res": -1.7, "dist_sup": 19.6, "exchange": "NYSE"}, {"ticker": "ITUB", "company": "Itau Unibanco", "sector": "Financials", "signal": "NONE", "price": 8.48, "rsi": 58.7, "trend": "up", "resistance": 8.22, "support": 8.16, "dist_res": -3.1, "dist_sup": 3.8, "exchange": "NYSE"}, {"ticker": "NEO", "company": "NeoGenomics", "sector": "Healthcare", "signal": "NONE", "price": 14.01, "rsi": 56.1, "trend": "up", "resistance": 15.04, "support": 13.8, "dist_res": 7.4, "dist_sup": 1.5, "exchange": "NASDAQ"}, {"ticker": "AUR", "company": "Aurora Innovation", "sector": "AI", "signal": "NONE", "price": 6.61, "rsi": 55.4, "trend": "down", "resistance": 6.58, "support": 5.73, "dist_res": -0.5, "dist_sup": 13.3, "exchange": "NASDAQ"}, {"ticker": "SAN", "company": "Banco Santander", "sector": "Financials", "signal": "NONE", "price": 13.74, "rsi": 55.4, "trend": "up", "resistance": 14.39, "support": 13.41, "dist_res": 4.7, "dist_sup": 2.4, "exchange": "NYSE"}, {"ticker": "TNDM", "company": "Tandem Diabetes", "sector": "Healthcare", "signal": "NONE", "price": 16.91, "rsi": 54.1, "trend": "up", "resistance": 16.5, "support": 14.57, "dist_res": -2.4, "dist_sup": 13.8, "exchange": "NASDAQ"}, {"ticker": "SBS", "company": "Sabesp (water utility ADR)", "sector": "Water", "signal": "NONE", "price": 5.83, "rsi": 53.3, "trend": "up", "resistance": 6.09, "support": 5.21, "dist_res": 4.5, "dist_sup": 10.6, "exchange": "NYSE"}, {"ticker": "CRON", "company": "Cronos Group", "sector": "Cannabis", "signal": "NONE", "price": 2.78, "rsi": 52.8, "trend": "up", "resistance": 2.94, "support": 2.72, "dist_res": 5.8, "dist_sup": 2.2, "exchange": "NASDAQ"}, {"ticker": "TDOC", "company": "Teladoc Health", "sector": "Healthcare", "signal": "NONE", "price": 8.92, "rsi": 52.1, "trend": "up", "resistance": 9.89, "support": 8.92, "dist_res": 10.9, "dist_sup": 0.0, "exchange": "NYSE"}, {"ticker": "FLG", "company": "Flagstar Financial", "sector": "Financials", "signal": "NONE", "price": 14.88, "rsi": 51.9, "trend": "up", "resistance": 15.44, "support": 14.32, "dist_res": 3.8, "dist_sup": 3.8, "exchange": "NYSE"}, {"ticker": "ARRY", "company": "Array Technologies", "sector": "Industrials", "signal": "NONE", "price": 10.43, "rsi": 51.8, "trend": "up", "resistance": 11.69, "support": 9.34, "dist_res": 12.1, "dist_sup": 10.5, "exchange": "NASDAQ"}, {"ticker": "RIVN", "company": "Rivian Automotive", "sector": "EV", "signal": "NONE", "price": 17.18, "rsi": 51.2, "trend": "up", "resistance": 20.2, "support": 16.49, "dist_res": 17.6, "dist_sup": 4.0, "exchange": "NASDAQ"}, {"ticker": "CLOV", "company": "Clover Health", "sector": "Healthcare", "signal": "NONE", "price": 4.67, "rsi": 50.3, "trend": "up", "resistance": 5.59, "support": 4.32, "dist_res": 19.7, "dist_sup": 7.5, "exchange": "NASDAQ"}, {"ticker": "BBD", "company": "Banco Bradesco", "sector": "Financials", "signal": "NONE", "price": 5.3, "rsi": 48.5, "trend": "down", "resistance": 5.5101, "support": 4.8, "dist_res": 4.0, "dist_sup": 9.4, "exchange": "NYSE"}, {"ticker": "NXE", "company": "NexGen Energy", "sector": "Energy", "signal": "NONE", "price": 9.44, "rsi": 47.5, "trend": "down", "resistance": 9.81, "support": 8.58, "dist_res": 3.9, "dist_sup": 9.1, "exchange": "NYSE"}, {"ticker": "TRLV", "company": "Trulieve Cannabis", "sector": "Cannabis", "signal": "NONE", "price": 8.67, "rsi": 46.2, "trend": "down", "resistance": 9.31, "support": 8.11, "dist_res": 7.4, "dist_sup": 6.5, "exchange": "NYSE"}, {"ticker": "LYFT", "company": "Lyft", "sector": "Industrials", "signal": "NONE", "price": 14.66, "rsi": 45.6, "trend": "up", "resistance": 16.52, "support": 13.77, "dist_res": 12.7, "dist_sup": 6.1, "exchange": "NASDAQ"}, {"ticker": "SOFI", "company": "SoFi Technologies", "sector": "Financials", "signal": "NONE", "price": 17.07, "rsi": 45.5, "trend": "down", "resistance": 19.74, "support": 16.47, "dist_res": 15.6, "dist_sup": 3.5, "exchange": "NASDAQ"}, {"ticker": "VFF", "company": "Village Farms", "sector": "Cannabis", "signal": "NONE", "price": 1.99, "rsi": 45.2, "trend": "down", "resistance": 2.11, "support": 1.8999, "dist_res": 6.0, "dist_sup": 4.5, "exchange": "NASDAQ"}, {"ticker": "SPCE", "company": "Virgin Galactic", "sector": "Space", "signal": "NONE", "price": 2.67, "rsi": 45.2, "trend": "down", "resistance": 2.9, "support": 2.37, "dist_res": 8.6, "dist_sup": 11.2, "exchange": "NYSE"}, {"ticker": "INDI", "company": "indie Semiconductor", "sector": "Semiconductors", "signal": "NONE", "price": 3.79, "rsi": 44.0, "trend": "down", "resistance": 4.85, "support": 3.62, "dist_res": 28.0, "dist_sup": 4.5, "exchange": "NASDAQ"}, {"ticker": "SOUN", "company": "SoundHound AI", "sector": "AI", "signal": "NONE", "price": 6.46, "rsi": 43.8, "trend": "down", "resistance": 7.09, "support": 5.975, "dist_res": 9.8, "dist_sup": 7.5, "exchange": "NASDAQ"}, {"ticker": "JBLU", "company": "JetBlue Airways", "sector": "Industrials", "signal": "NONE", "price": 5.16, "rsi": 42.8, "trend": "down", "resistance": 6.27, "support": 5.26, "dist_res": 21.5, "dist_sup": -1.9, "exchange": "NASDAQ"}, {"ticker": "STLA", "company": "Stellantis", "sector": "Consumer", "signal": "NONE", "price": 5.8, "rsi": 42.8, "trend": "down", "resistance": 6.04, "support": 5.25, "dist_res": 4.1, "dist_sup": 9.5, "exchange": "NYSE"}, {"ticker": "HIMX", "company": "Himax Technologies", "sector": "Semiconductors", "signal": "NONE", "price": 13.62, "rsi": 42.3, "trend": "down", "resistance": 16.07, "support": 12.085, "dist_res": 18.0, "dist_sup": 11.3, "exchange": "NASDAQ"}, {"ticker": "PONY", "company": "Pony AI", "sector": "AI", "signal": "NONE", "price": 6.83, "rsi": 41.8, "trend": "down", "resistance": 7.28, "support": 6.46, "dist_res": 6.6, "dist_sup": 5.4, "exchange": "NASDAQ"}, {"ticker": "BB", "company": "BlackBerry", "sector": "Technology", "signal": "NONE", "price": 8.95, "rsi": 40.9, "trend": "down", "resistance": 13.59, "support": 10.66, "dist_res": 51.8, "dist_sup": -19.1, "exchange": "NYSE"}, {"ticker": "PATH", "company": "UiPath", "sector": "Technology", "signal": "NONE", "price": 10.7, "rsi": 39.9, "trend": "down", "resistance": 12.32, "support": 10.92, "dist_res": 15.1, "dist_sup": -2.1, "exchange": "NYSE"}, {"ticker": "LUMN", "company": "Lumen Technologies", "sector": "Technology", "signal": "NONE", "price": 6.7, "rsi": 39.8, "trend": "down", "resistance": 6.855, "support": 6.16, "dist_res": 2.3, "dist_sup": 8.1, "exchange": "NYSE"}, {"ticker": "ULCC", "company": "Frontier Group", "sector": "Industrials", "signal": "NONE", "price": 5.95, "rsi": 39.4, "trend": "down", "resistance": 8.13, "support": 5.31, "dist_res": 36.6, "dist_sup": 10.8, "exchange": "NASDAQ"}, {"ticker": "RXRX", "company": "Recursion Pharma", "sector": "AI", "signal": "NONE", "price": 2.98, "rsi": 39.3, "trend": "down", "resistance": 4.09, "support": 3.07, "dist_res": 37.2, "dist_sup": -3.0, "exchange": "NASDAQ"}, {"ticker": "FLNC", "company": "Fluence Energy", "sector": "Energy", "signal": "NONE", "price": 14.66, "rsi": 38.6, "trend": "down", "resistance": 20.96, "support": 13.23, "dist_res": 43.0, "dist_sup": 9.8, "exchange": "NASDAQ"}, {"ticker": "AAL", "company": "American Airlines", "sector": "Industrials", "signal": "NONE", "price": 14.79, "rsi": 38.5, "trend": "down", "resistance": 18.79, "support": 16.11, "dist_res": 27.0, "dist_sup": -8.9, "exchange": "NASDAQ"}, {"ticker": "ACB", "company": "Aurora Cannabis", "sector": "Cannabis", "signal": "NONE", "price": 2.66, "rsi": 38.4, "trend": "down", "resistance": 2.74, "support": 2.73, "dist_res": 3.0, "dist_sup": -2.6, "exchange": "NASDAQ"}, {"ticker": "LI", "company": "Li Auto", "sector": "EV", "signal": "NONE", "price": 12.12, "rsi": 37.9, "trend": "down", "resistance": 13.16, "support": 11.65, "dist_res": 8.6, "dist_sup": 3.9, "exchange": "NASDAQ"}, {"ticker": "CGC", "company": "Canopy Growth", "sector": "Cannabis", "signal": "NONE", "price": 0.9102, "rsi": 37.7, "trend": "down", "resistance": 1.06, "support": 0.945, "dist_res": 16.5, "dist_sup": -3.8, "exchange": "NASDAQ"}, {"ticker": "NVTS", "company": "Navitas Semiconductor", "sector": "Semiconductors", "signal": "NONE", "price": 12.67, "rsi": 37.2, "trend": "down", "resistance": 24.66, "support": 10.74, "dist_res": 94.6, "dist_sup": 15.2, "exchange": "NASDAQ"}, {"ticker": "RDW", "company": "Redwire", "sector": "Space", "signal": "NONE", "price": 8.99, "rsi": 37.0, "trend": "down", "resistance": 12.82, "support": 8.06, "dist_res": 42.6, "dist_sup": 10.3, "exchange": "NYSE"}, {"ticker": "PLUG", "company": "Plug Power", "sector": "Energy", "signal": "NONE", "price": 2.23, "rsi": 36.4, "trend": "down", "resistance": 2.82, "support": 3.21, "dist_res": 26.5, "dist_sup": -43.9, "exchange": "NASDAQ"}, {"ticker": "ENVX", "company": "Enovix", "sector": "EV", "signal": "NONE", "price": 4.68, "rsi": 36.3, "trend": "down", "resistance": 6.35, "support": 4.86, "dist_res": 35.7, "dist_sup": -3.8, "exchange": "NASDAQ"}, {"ticker": "GRAB", "company": "Grab Holdings", "sector": "Technology", "signal": "NONE", "price": 3.35, "rsi": 35.4, "trend": "down", "resistance": 4.06, "support": 3.66, "dist_res": 21.2, "dist_sup": -9.3, "exchange": "NASDAQ"}, {"ticker": "QS", "company": "QuantumScape", "sector": "EV", "signal": "NONE", "price": 5.87, "rsi": 35.3, "trend": "down", "resistance": 7.87, "support": 5.64, "dist_res": 34.1, "dist_sup": 3.9, "exchange": "NASDAQ"}, {"ticker": "NOK", "company": "Nokia", "sector": "Technology", "signal": "NONE", "price": 10.28, "rsi": 34.8, "trend": "down", "resistance": 13.13, "support": 9.83, "dist_res": 27.7, "dist_sup": 4.4, "exchange": "NYSE"}, {"ticker": "NVAX", "company": "Novavax", "sector": "Healthcare", "signal": "NONE", "price": 7.91, "rsi": 34.4, "trend": "down", "resistance": 9.69, "support": 8.88, "dist_res": 22.5, "dist_sup": -12.3, "exchange": "NASDAQ"}, {"ticker": "YSS", "company": "York Space Systems", "sector": "Space", "signal": "NONE", "price": 17.72, "rsi": 34.1, "trend": "down", "resistance": 21.95, "support": 23.4, "dist_res": 23.9, "dist_sup": -32.1, "exchange": "NYSE"}, {"ticker": "SATL", "company": "Satellogic", "sector": "Space", "signal": "NONE", "price": 3.755, "rsi": 33.2, "trend": "down", "resistance": 6.13, "support": 3.465, "dist_res": 63.2, "dist_sup": 7.7, "exchange": "NASDAQ"}, {"ticker": "RUN", "company": "Sunrun", "sector": "Energy", "signal": "NONE", "price": 10.95, "rsi": 33.1, "trend": "down", "resistance": 13.35, "support": 11.25, "dist_res": 21.9, "dist_sup": -2.7, "exchange": "NASDAQ"}, {"ticker": "SNDL", "company": "SNDL", "sector": "Cannabis", "signal": "NONE", "price": 1.27, "rsi": 32.7, "trend": "down", "resistance": 1.335, "support": 1.33, "dist_res": 5.1, "dist_sup": -4.7, "exchange": "NASDAQ"}, {"ticker": "SHLS", "company": "Shoals Technologies", "sector": "Industrials", "signal": "NONE", "price": 5.82, "rsi": 32.6, "trend": "down", "resistance": 6.64, "support": 6.07, "dist_res": 14.1, "dist_sup": -4.3, "exchange": "NASDAQ"}, {"ticker": "NTLA", "company": "Intellia Therapeutics", "sector": "Healthcare", "signal": "NONE", "price": 11.13, "rsi": 32.2, "trend": "down", "resistance": 18.48, "support": 11.81, "dist_res": 66.0, "dist_sup": -6.1, "exchange": "NASDAQ"}, {"ticker": "AI", "company": "C3.ai", "sector": "AI", "signal": "NONE", "price": 8.19, "rsi": 31.6, "trend": "down", "resistance": 9.63, "support": 8.64, "dist_res": 17.6, "dist_sup": -5.5, "exchange": "NYSE"}, {"ticker": "LUNR", "company": "Intuitive Machines", "sector": "Space", "signal": "NONE", "price": 14.09, "rsi": 30.7, "trend": "down", "resistance": 22.5, "support": 12.7, "dist_res": 59.7, "dist_sup": 9.9, "exchange": "NASDAQ"}, {"ticker": "TLRY", "company": "Tilray Brands", "sector": "Cannabis", "signal": "NONE", "price": 4.16, "rsi": 30.6, "trend": "down", "resistance": 4.585, "support": 4.2, "dist_res": 10.2, "dist_sup": -1.0, "exchange": "NASDAQ"}, {"ticker": "BBAI", "company": "BigBear.ai", "sector": "AI", "signal": "NONE", "price": 2.88, "rsi": 30.4, "trend": "down", "resistance": 3.78, "support": 3.33, "dist_res": 31.2, "dist_sup": -15.6, "exchange": "NYSE"}, {"ticker": "ERIC", "company": "Ericsson", "sector": "Technology", "signal": "NONE", "price": 9.49, "rsi": 30.0, "trend": "down", "resistance": 11.83, "support": 10.71, "dist_res": 24.7, "dist_sup": -12.9, "exchange": "NASDAQ"}], "water": [{"ticker": "SBS", "company": "Sabesp (water utility ADR)", "price": 5.81, "exchange": "NYSE"}, {"ticker": "AWK", "company": "American Water Works", "price": 133.83, "exchange": ""}, {"ticker": "XYL", "company": "Xylem", "price": 116.14, "exchange": ""}, {"ticker": "VLTO", "company": "Veralto", "price": 91.15, "exchange": ""}, {"ticker": "ECL", "company": "Ecolab", "price": 266.88, "exchange": ""}, {"ticker": "WTRG", "company": "Essential Utilities", "price": 39.4, "exchange": ""}], "universe_all": {"Technology": ["MSFT", "AAPL", "GOOGL", "META", "AMZN", "ORCL", "CRM", "ADBE", "NOW", "INTU", "IBM", "CSCO", "ACN", "SHOP", "UBER", "PLTR", "SNOW", "NET", "CRWD", "PANW", "ZS", "DDOG", "FTNT", "DELL", "HPQ", "HPE", "WDAY", "TEAM", "TWLO", "OKTA", "MDB", "ABNB", "SPOT", "PINS", "SNAP", "RBLX", "U", "PATH", "AI", "HUBS", "ZM", "DBX", "FSLY", "AKAM", "NOK", "ERIC", "BB", "GRAB", "SE", "MELI", "WIX", "MNDY", "S", "ESTC", "CFLT", "ANET", "ROKU", "TTD", "APP", "LUMN", "INFY", "GTLB", "ASAN", "BILL", "PCTY", "PAYC", "TYL", "PEGA", "NICE", "CYBR", "TENB", "QLYS", "RPD", "VRNS", "GEN", "DOCU", "ZI", "FROG", "BOX", "SMAR", "FIVN", "RNG", "DT", "APPN", "DUOL", "TOST", "NCNO", "WK", "BRZE", "AMPL", "YELP", "FI", "FIS", "GPN", "JKHY", "WEX", "BR", "SSNC", "FICO", "IOT", "MSTR", "CVLT", "PRGS", "QTWO", "GDDY", "XRX", "PSTG", "NTNX", "GWRE", "PCOR"], "Healthcare": ["LLY", "JNJ", "UNH", "MRK", "ABBV", "PFE", "TMO", "ABT", "DHR", "AMGN", "ISRG", "GILD", "VRTX", "BMY", "CVS", "MDT", "ELV", "CI", "REGN", "BSX", "HCA", "ZTS", "BDX", "SYK", "HUM", "CNC", "MCK", "BIIB", "MRNA", "DXCM", "IDXX", "IQV", "RMD", "GEHC", "EW", "WST", "ILMN", "BAX", "HOLX", "ALGN", "VTRS", "OGN", "TDOC", "NVAX", "SRPT", "NTLA", "CRSP", "BEAM", "EXAS", "TEVA", "VEEV", "HIMS", "OSCR", "DVA", "CLOV", "TNDM", "NEO", "AMRX", "DGX", "LH", "COR", "CAH", "UHS", "MOH", "PODD", "MASI", "PEN", "INSP", "TMDX", "BRKR", "MTD", "WAT", "A", "RVTY", "TFX", "CRL", "ICLR", "MEDP", "HALO", "ALNY", "BMRN", "IONS", "EXEL", "INCY", "ARWR", "VKTX", "MDGL", "ELAN", "PBH", "NBIX", "ACAD", "ITCI", "CYTK", "RARE", "FOLD", "KRYS", "INSM", "AXSM", "CPRX", "HRMY", "SUPN", "AMPH", "PCRX", "GKOS"], "Financials": ["JPM", "BAC", "WFC", "C", "GS", "MS", "V", "MA", "AXP", "SCHW", "BLK", "SPGI", "BX", "USB", "PNC", "TFC", "COF", "BK", "CME", "ICE", "MCO", "AON", "MMC", "PGR", "TRV", "ALL", "AIG", "MET", "PRU", "AFL", "CB", "COIN", "HOOD", "SOFI", "PYPL", "AFRM", "NU", "ALLY", "DFS", "SYF", "FITB", "RF", "KEY", "CFG", "MTB", "NTRS", "STT", "TROW", "NDAQ", "CBOE", "LPLA", "RJF", "SAN", "ITUB", "BBD", "FLG", "HBAN", "ZION", "CMA", "WAL", "EWBC", "SNV", "WBS", "VLY", "CADE", "FHN", "PNFP", "FNB", "WTFC", "OZK", "APO", "KKR", "ARES", "CG", "OWL", "BAM", "JEF", "MSCI", "MKTX", "IBKR", "FCNCA", "UPST", "LC", "BEN", "IVZ", "AMP", "WT", "VRTS", "SF", "HLI", "EVR", "PJT", "MC", "FDS", "VIRT", "WU", "EEFT", "ARCC", "MAIN", "FUTU"], "Energy": ["XOM", "CVX", "COP", "SLB", "EOG", "MPC", "PSX", "VLO", "OXY", "WMB", "KMI", "OKE", "HAL", "BKR", "DVN", "FANG", "HES", "LNG", "ET", "EPD", "MPLX", "TRGP", "CTRA", "APA", "EQT", "AR", "RRC", "OVV", "NOV", "FTI", "RIG", "PTEN", "HP", "LBRT", "FSLR", "ENPH", "SEDG", "RUN", "PLUG", "BE", "CCJ", "UEC", "NXE", "KOS", "TALO", "FLNC", "DINO", "PBF", "DK", "VNOM", "MGY", "SM", "CHRD", "PR", "CIVI", "MTDR", "CNX", "BTU", "ARCH", "HCC", "AMR", "CEIX", "NRG", "VST", "CEG", "TLN", "CVI", "CRGY", "MUR", "NFG", "WFRD", "CLB", "HLX", "OII", "GLNG", "NEXT", "FLNG", "GPOR", "CRK", "NEE", "DUK", "SO"], "Industrials": ["CAT", "DE", "BA", "HON", "GE", "RTX", "LMT", "UNP", "UPS", "FDX", "NOC", "GD", "ETN", "EMR", "ITW", "MMM", "PH", "ROP", "CSX", "NSC", "WM", "RSG", "CARR", "OTIS", "PCAR", "CMI", "GNRC", "IR", "DOV", "ROK", "AME", "FTV", "XYL", "TT", "JCI", "LHX", "TDG", "HWM", "AXON", "URI", "FAST", "GWW", "PWR", "VRSK", "DAL", "UAL", "AAL", "LUV", "ULCC", "JBLU", "LYFT", "WAB", "ODFL", "SHLS", "ARRY", "EME", "FIX", "BLDR", "BLD", "MAS", "LII", "WSO", "AGCO", "TEX", "OSK", "ALSN", "GATX", "CHRW", "EXPD", "JBHT", "KNX", "SAIA", "XPO", "SNA", "SWK", "HUBB", "NVT", "SAIC", "BAH", "CACI", "KBR", "ACM", "J", "FLR", "GXO", "RXO", "ARCB", "MATX", "WERN", "LSTR", "MIDD"], "Consumer": ["WMT", "COST", "HD", "MCD", "NKE", "SBUX", "TGT", "LOW", "TJX", "BKNG", "CMG", "PG", "KO", "PEP", "PM", "MO", "MDLZ", "CL", "KMB", "GIS", "KHC", "HSY", "STZ", "KDP", "MNST", "SYY", "KR", "DG", "DLTR", "ROST", "ORLY", "AZO", "YUM", "DPZ", "MAR", "HLT", "RCL", "CCL", "NCLH", "LULU", "DECK", "F", "GM", "STLA", "EBAY", "ETSY", "CVNA", "DKNG", "KVUE", "KSS", "AEO", "WEN", "GT", "UAA", "CAG", "BJ", "DKS", "BBY", "ULTA", "TSCO", "FIVE", "BURL", "ANF", "URBN", "RL", "TPR", "CROX", "SKX", "ONON", "ELF", "CELH", "CCEP", "MKC", "HRL", "TSN", "HAS", "WYNN", "LVS", "MGM", "CZR", "W", "CHWY", "RH", "KMX", "GPC", "LAD", "PENN", "SFM", "CASY", "DRI", "TXRH"], "Space": ["RKLB", "LUNR", "RDW", "ASTS", "PL", "BKSY", "SPCE", "SATL", "GSAT", "IRDM", "VSAT", "LHX", "LMT", "NOC", "BA", "RTX", "GD", "HII", "LDOS", "KTOS", "AXON", "HEI", "TDG", "TXT", "CW", "MRCY", "AVAV", "ACHR", "JOBY", "EH", "SPIR", "YSS", "VOYG", "TDY", "HXL", "DCO", "ATRO", "TGI", "WWD", "CAE", "BWXT", "LOAR", "RCAT", "ONDS", "SIDU", "KULR", "MNTS", "REKR", "OUST", "FTAI", "ESLT", "OSIS", "CDRE", "DRS", "VVX", "PSN", "GILT", "CMTL", "AIRI", "UAVS", "UMAC", "DPRO", "TATT", "POWW", "BYRN", "NPK", "CVU", "SPR", "SAIC", "BAH", "CACI", "HWM", "ISSC", "KITT", "VLN", "DDD", "SSYS", "PRLB"], "AI": ["NVDA", "MSFT", "GOOGL", "META", "AMZN", "AVGO", "AMD", "PLTR", "SMCI", "ORCL", "CRM", "NOW", "SNOW", "CRWD", "PANW", "DDOG", "NET", "MDB", "AI", "PATH", "SOUN", "BBAI", "AUR", "PONY", "RXRX", "TEM", "VRT", "DELL", "ANET", "MRVL", "TSM", "ARM", "MU", "CRWV", "NBIS", "IONQ", "RGTI", "QBTS", "APP", "U", "GEV", "SNPS", "CDNS", "ANSS", "ADSK", "KEYS", "ESTC", "GTLB", "VERI", "INOD", "SERV", "LAZR", "INVZ", "MVIS", "WRD", "QUBT", "ARQQ", "LAES", "POET", "CRDO", "ALAB", "CIEN", "COHR", "LITE", "GLW", "APLD", "IREN", "CORZ", "NTNX", "PSTG", "STX", "WDC", "NNDM", "CFLT", "BIDU", "LMND", "CRNC", "MITK", "AITX", "PDYN", "CXAI", "GFAI", "CGNT"], "Semiconductors": ["NVDA", "AVGO", "AMD", "TSM", "ASML", "QCOM", "TXN", "MU", "AMAT", "LRCX", "KLAC", "ADI", "MRVL", "NXPI", "MCHP", "INTC", "ARM", "SMCI", "ON", "MPWR", "STM", "GFS", "SWKS", "QRVO", "TER", "ENTG", "LSCC", "WOLF", "ALGM", "POWI", "SLAB", "CRUS", "AMKR", "UMC", "HIMX", "NVTS", "INDI", "RMBS", "KLIC", "COHU", "VECO", "ONTO", "ACLS", "FORM", "SITM", "DIOD", "MTSI", "SYNA", "SNPS", "CDNS", "NVMI", "CAMT", "ACMR", "AEHR", "ICHR", "UCTT", "PLAB", "ASX", "SMTC", "MXL", "VSH", "OLED", "AXT", "AMBA", "TSEM", "MX", "PXLW", "VIAV", "NVEC", "MEI", "SGH", "IPGP", "MRAM", "QUIK", "AOSL", "CEVA", "KOPN", "LASR", "ALAB", "CRDO"], "EV": ["TSLA", "RIVN", "LCID", "NIO", "XPEV", "LI", "F", "GM", "STLA", "TM", "HMC", "QS", "ENVX", "CHPT", "EVGO", "BLNK", "ALB", "SQM", "LAC", "MP", "PLL", "PSNY", "NKLA", "APTV", "BWA", "MGA", "LEA", "GNTX", "PII", "LYFT", "UBER", "SES", "MVST", "AMBP", "MOD", "VC", "DAN", "AXL", "ALV", "ADNT", "SMP", "DORM", "THRM", "FREY", "SLDP", "AMPX", "SLI", "SGML", "LAAC", "WBX", "TPIC", "BEEM", "REE", "LICY", "HYLN", "NIU", "XOS", "GP", "LEV", "CENN", "ABAT", "NVX", "EOSE", "AMPS", "ZK", "ARBE", "AEVA", "NXU", "GTX", "ULBI", "PATK", "FOXF", "MPAA", "CTOS", "STRT", "STEM", "FLNC", "DRVN", "LOT", "PEV"], "Cannabis": ["TLRY", "CGC", "CRON", "ACB", "SNDL", "VFF", "TRLV", "OGI", "GRWG", "SMG", "IIPR", "JAZZ", "MO", "PM", "BTI", "STZ", "TAP", "SAM", "HITI", "GTBIF", "CURLF", "TCNNF", "CRLBF", "VRNOF", "AYRWF", "GLASF", "MAPS", "PLNHF", "MRMD", "JUSHF", "SHWZ", "HYFM", "GNLN", "CGRW", "AGFY", "FLGC", "ITHUF", "GRAMF", "CANB", "TSNDF", "CCHWF", "ACRDF", "CLVR", "VEXTF", "SPRWF", "RWBYF", "LFLY", "CWBHF", "MNMD", "CMPS", "ATAI", "CYBN"], "Water": ["AWK", "WTRG", "AWR", "CWT", "SJW", "MSEX", "YORW", "XYL", "PNR", "ECL", "VLTO", "ROP", "IEX", "AOS", "FELE", "MWA", "BMI", "WTS", "FLS", "ITT", "DOV", "GGG", "VMI", "ERII", "TTI", "GWRS", "PCYO", "CWCO", "WTTR", "PRMB", "SBS", "ARTNA", "LNN", "CDZI", "HDSN", "NWPX", "CECO", "FTEK", "VEOEY", "WMS", "HWKN", "ECVT", "TNC", "NPO", "ARIS", "GRC", "BWMN", "ITRI", "PLPC", "PCT", "CWEN", "ORA"]}, "premium": [{"ticker": "NVDA", "company": "NVIDIA", "sector": "Semiconductors/AI", "ref_price": 210.45}, {"ticker": "MSFT", "company": "Microsoft", "sector": "Technology", "ref_price": 385.5}, {"ticker": "ORCL", "company": "Oracle", "sector": "Technology", "ref_price": 126.1}, {"ticker": "PLTR", "company": "Palantir", "sector": "AI", "ref_price": 124.8}, {"ticker": "CRWD", "company": "CrowdStrike", "sector": "Technology", "ref_price": 189.0}, {"ticker": "LLY", "company": "Eli Lilly", "sector": "Healthcare", "ref_price": 1161.86}, {"ticker": "JNJ", "company": "Johnson & Johnson", "sector": "Healthcare", "ref_price": 255.98}, {"ticker": "UNH", "company": "UnitedHealth", "sector": "Healthcare", "ref_price": 429.58}, {"ticker": "MRK", "company": "Merck", "sector": "Healthcare", "ref_price": 127.47}, {"ticker": "ABBV", "company": "AbbVie", "sector": "Healthcare", "ref_price": 253.6}, {"ticker": "V", "company": "Visa", "sector": "Financials", "ref_price": 353.16}, {"ticker": "MA", "company": "Mastercard", "sector": "Financials", "ref_price": 533.24}, {"ticker": "JPM", "company": "JPMorgan Chase", "sector": "Financials", "ref_price": 349.59}, {"ticker": "BAC", "company": "Bank of America", "sector": "Financials", "ref_price": 61.62}, {"ticker": "GS", "company": "Goldman Sachs", "sector": "Financials", "ref_price": 1097.98}, {"ticker": "XOM", "company": "ExxonMobil", "sector": "Energy", "ref_price": 156.58}, {"ticker": "CVX", "company": "Chevron", "sector": "Energy", "ref_price": 194.89}, {"ticker": "COP", "company": "ConocoPhillips", "sector": "Energy", "ref_price": 119.51}, {"ticker": "SLB", "company": "SLB (Schlumberger)", "sector": "Energy", "ref_price": 47.85}, {"ticker": "CCJ", "company": "Cameco", "sector": "Energy", "ref_price": 90.4}, {"ticker": "CAT", "company": "Caterpillar", "sector": "Industrials", "ref_price": 892.06}, {"ticker": "DE", "company": "Deere", "sector": "Industrials", "ref_price": 607.33}, {"ticker": "LMT", "company": "Lockheed Martin", "sector": "Industrials", "ref_price": 519.97}, {"ticker": "BA", "company": "Boeing", "sector": "Industrials", "ref_price": 207.91}, {"ticker": "RTX", "company": "RTX", "sector": "Industrials", "ref_price": 206.0}, {"ticker": "MCD", "company": "McDonald's", "sector": "Consumer", "ref_price": 263.0}, {"ticker": "TGT", "company": "Target", "sector": "Consumer", "ref_price": 137.92}, {"ticker": "SBUX", "company": "Starbucks", "sector": "Consumer", "ref_price": 103.41}, {"ticker": "KO", "company": "Coca-Cola", "sector": "Consumer", "ref_price": 82.29}, {"ticker": "NKE", "company": "Nike", "sector": "Consumer", "ref_price": 42.06}, {"ticker": "RKLB", "company": "Rocket Lab", "sector": "Space", "ref_price": 69.2}, {"ticker": "ASTS", "company": "AST SpaceMobile", "sector": "Space", "ref_price": 62.1}, {"ticker": "PL", "company": "Planet Labs", "sector": "Space", "ref_price": 22.63}, {"ticker": "IRDM", "company": "Iridium", "sector": "Space", "ref_price": 46.23}, {"ticker": "KTOS", "company": "Kratos Defense", "sector": "Space", "ref_price": 48.04}, {"ticker": "CRWV", "company": "CoreWeave", "sector": "AI", "ref_price": 84.71}, {"ticker": "NBIS", "company": "Nebius Group", "sector": "AI", "ref_price": 227.0}, {"ticker": "SNOW", "company": "Snowflake", "sector": "AI", "ref_price": 269.98}, {"ticker": "TSM", "company": "Taiwan Semiconductor", "sector": "Semiconductors", "ref_price": 422.29}, {"ticker": "AVGO", "company": "Broadcom", "sector": "Semiconductors", "ref_price": 398.0}, {"ticker": "AMD", "company": "AMD", "sector": "Semiconductors", "ref_price": 555.6}, {"ticker": "MU", "company": "Micron", "sector": "Semiconductors", "ref_price": 989.49}, {"ticker": "TSLA", "company": "Tesla", "sector": "EV", "ref_price": 351.0}, {"ticker": "ALB", "company": "Albemarle", "sector": "EV", "ref_price": 121.7}, {"ticker": "SQM", "company": "SQM (lithium)", "sector": "EV", "ref_price": 70.26}, {"ticker": "IIPR", "company": "Innovative Industrial Prop", "sector": "Cannabis", "ref_price": 62.31}, {"ticker": "SMG", "company": "Scotts Miracle-Gro", "sector": "Cannabis", "ref_price": 68.7}, {"ticker": "JAZZ", "company": "Jazz Pharmaceuticals", "sector": "Cannabis", "ref_price": 250.41}, {"ticker": "AWK", "company": "American Water Works", "sector": "Water", "ref_price": 133.83}, {"ticker": "XYL", "company": "Xylem", "sector": "Water", "ref_price": 116.14}, {"ticker": "VLTO", "company": "Veralto", "sector": "Water", "ref_price": 91.15}, {"ticker": "ECL", "company": "Ecolab", "sector": "Water", "ref_price": 266.88}, {"ticker": "WTRG", "company": "Essential Utilities", "sector": "Water", "ref_price": 39.4}]};
+const $=s=>document.querySelector(s);
+let liveStock={}, stockTimer=null, sigById={}, liveGoldPrice=null;
+let execMem=null;
+function execState(){if(execMem)return execMem;try{execMem=JSON.parse(localStorage.getItem('idan_exec')||'{}');}catch(e){execMem={};}return execMem;}
+function saveExec(m){execMem=m;try{localStorage.setItem('idan_exec',JSON.stringify(m));}catch(e){}}
+function sigId(s){return (s.ticker||s.instrument||'?')+'_'+(s.direction||'')+'_'+(s.entry||'');}
+function pend(list){const m=execState();return list.filter(s=>!m[sigId(s)]);}
+function markExec(id){
+  const s=sigById[id]; if(!s)return;
+  const wallet=+($('#wallet').value)||1000, riskPct=(+$('#risk').value||4)/100;
+  let qty=0;
+  if(s.kind=='gold'){const z=sizeGold(s.entry,s.stop,wallet,0.02);qty=z?z.units:0;}
+  else{const free=Math.max(0,wallet-deployedCost());const z=sizePosition(s.entry,s.stop,wallet,riskPct,free);qty=z?z.shares:0;}
+  const m=execState();
+  m[id]={status:'executed',ts:Date.now(),peak:s.entry,sig:{ticker:s.ticker,instrument:s.instrument,kind:s.kind||'stock',direction:s.direction,entry:s.entry,stop:s.stop,t1:s.t1,t2:s.t2,sector:s.sector,qty:qty,riskDist:Math.abs(s.entry-s.stop)}};
+  saveExec(m); renderAll();
+}
+function dismissSig(id){const m=execState();m[id]={status:'dismissed',ts:Date.now()};saveExec(m);renderAll();}
+function unExec(id){const m=execState();delete m[id];saveExec(m);renderAll();}
+function renderAll(){render();renderTracking();}
+let seenSig=null;
+function seenSet(){if(seenSig)return seenSig;try{seenSig=new Set(JSON.parse(localStorage.getItem('idan_seen')||'[]'));}catch(e){seenSig=new Set();}return seenSig;}
+function beep(f){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;const a=new A();const o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=f||660;g.gain.value=0.12;o.start();o.stop(a.currentTime+0.18);}catch(e){}}
+function toast(msg,color){try{const t=document.createElement('div');t.className='toast';if(color)t.style.borderRightColor=color;t.innerHTML=msg;document.body.appendChild(t);setTimeout(function(){t.style.opacity='0';},4200);setTimeout(function(){t.remove();},5000);}catch(e){}}
+function notify(msg){try{if(window.Notification&&Notification.permission==='granted')new Notification('Idan Signals',{body:msg.replace(/<[^>]+>/g,'')});}catch(e){}}
+function alertMsg(msg,color,freq){beep(freq);toast(msg,color);notify(msg);}
+function checkNewSignals(){
+  const ss=seenSet(); let firstTime=true; try{firstTime=!localStorage.getItem('idan_seeded');}catch(e){firstTime=ss.size===0;}
+  const neu=[]; DATA.signals.filter(s=>s.signal=='BUY_NOW'||s.signal=='SELL_NOW').forEach(s=>{const id=sigId(s);if(!ss.has(id)){ss.add(id);if(!firstTime)neu.push(s);}});
+  try{localStorage.setItem('idan_seen',JSON.stringify([...ss]));localStorage.setItem('idan_seeded','1');}catch(e){}
+  neu.forEach(s=>alertMsg('🔔 איתות חדש: '+(s.direction=='LONG'?'קנייה':'מכירה')+' <b>'+s.ticker+'</b> @ $'+fmt(s.entry),s.direction=='LONG'?'var(--buy)':'var(--sell)',s.direction=='LONG'?720:440));
+}
+function autoManage(){
+  const m=execState(); let changed=false;
+  Object.keys(m).forEach(function(id){const e=m[id];if(e.status!=='executed'||!e.sig)return;const s=e.sig,long=s.direction=='LONG',lp=livePx(s);if(lp==null)return;
+    const R=s.riskDist||Math.abs(s.entry-s.stop)||0;
+    if(R>0){e.peak=(e.peak==null)?s.entry:(long?Math.max(e.peak,lp):Math.min(e.peak,lp));
+      if(long&&e.peak>=s.entry+R){const ns=Math.round((e.peak-R)*100)/100;if(ns>s.stop){s.stop=ns;e.trailing=true;changed=true;}}
+      if(!long&&e.peak<=s.entry-R){const ns=Math.round((e.peak+R)*100)/100;if(ns<s.stop){s.stop=ns;e.trailing=true;changed=true;}}}
+    const finalT=long?Math.max(s.t1,s.t2):Math.min(s.t1,s.t2), firstT=long?Math.min(s.t1,s.t2):Math.max(s.t1,s.t2);
+    const hitStop=long?lp<=s.stop:lp>=s.stop, hitFinal=long?lp>=finalT:lp<=finalT, hitFirst=long?lp>=firstT:lp<=firstT;
+    if(hitStop){doClose(e,lp,'stop');changed=true;alertMsg('⛔ סטופ '+(s.ticker||s.instrument)+' — נסגר, P/L $'+fmt(e.closePnl),'var(--sell)',320);}
+    else if(hitFinal){doClose(e,lp,'target');changed=true;alertMsg('🎯 יעד סופי '+(s.ticker||s.instrument)+' — נסגר, P/L $'+fmt(e.closePnl),'var(--buy)',820);}
+    else if(hitFirst&&!e.halfClosed){const pnl=doPartial(e,lp);changed=true;alertMsg('🎯 יעד 1 '+(s.ticker||s.instrument)+' — נסגר חצי, P/L $'+fmt(pnl)+' · סטופ→כניסה','var(--buy)',760);}
+  });
+  if(changed){saveExec(m);renderAll();}
+}
+function equityCurve(){
+  const closed=Object.values(execState()).filter(v=>v.status=='closed').sort((a,b)=>(a.closeTs||0)-(b.closeTs||0));
+  if(closed.length<2)return '';
+  let cum=0; const pts=[0]; closed.forEach(v=>{cum+=((v.closePnl||0)+(v.partialPnl||0));pts.push(cum);});
+  const w=520,h=88,pad=8,mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),rng=(mx-mn)||1;
+  const xs=i=>pad+i*(w-2*pad)/(pts.length-1), ys=v=>h-pad-((v-mn)/rng)*(h-2*pad);
+  const d=pts.map((v,i)=>(i?'L':'M')+xs(i).toFixed(1)+' '+ys(v).toFixed(1)).join(' '), last=pts[pts.length-1], z=ys(0);
+  return '<div class="card" style="max-width:'+w+'px;margin-top:10px"><div class="mini" style="margin-bottom:5px">📈 עקומת הון · רווח מצטבר '+(last>=0?'+':'')+'$'+fmt(last)+'</div><svg width="100%" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none"><line x1="0" y1="'+z.toFixed(1)+'" x2="'+w+'" y2="'+z.toFixed(1)+'" stroke="#33415a" stroke-dasharray="3 3"/><path d="'+d+'" fill="none" stroke="'+(last>=0?'var(--buy)':'var(--sell)')+'" stroke-width="2"/></svg></div>';
+}
+function livePx(s){return (s.kind=='gold')?liveGoldPrice:(liveStock[s.ticker]?liveStock[s.ticker].c:null);}
+function perfStats(){
+  const all=Object.values(execState()), closed=all.filter(v=>v.status=='closed'), open=all.filter(v=>v.status=='executed');
+  const partials=all.reduce((a,v)=>a+(v.partialPnl||0),0), closeSum=closed.reduce((a,v)=>a+(v.closePnl||0),0);
+  const wins=closed.filter(v=>((v.closePnl||0)+(v.partialPnl||0))>0).length;
+  let unreal=0; open.forEach(v=>{const s=v.sig,long=s.direction=='LONG',cur=livePx(s)||s.entry;unreal+=long?s.qty*(cur-s.entry):s.qty*(s.entry-cur);});
+  return {nClosed:closed.length,winRate:closed.length?100*wins/closed.length:0,totPnl:partials+closeSum,nOpen:open.length,unreal:unreal};
+}
+function doPartial(e,lp){const s=e.sig,long=s.direction=='LONG',half=Math.floor(s.qty/2);if(half<1)return null;const pnl=long?half*(lp-s.entry):half*(s.entry-lp);e.partialPnl=(e.partialPnl||0)+pnl;e.partialTs=Date.now();s.qty=s.qty-half;s.stop=long?Math.max(s.entry,s.stop):Math.min(s.entry,s.stop);e.halfClosed=true;return pnl;}
+function doClose(e,lp,reason){const s=e.sig,long=s.direction=='LONG';e.status='closed';e.closePx=lp;e.closePnl=long?s.qty*(lp-s.entry):s.qty*(s.entry-lp);e.closeTs=Date.now();e.closeReason=reason;}
+function closeTrade(id){const m=execState(),e=m[id];if(!e||!e.sig)return;doClose(e,livePx(e.sig)||e.sig.entry,'manual');saveExec(m);renderAll();}
+function partialClose(id){const m=execState(),e=m[id];if(!e||e.status!='executed')return;const cur=livePx(e.sig)||e.sig.entry;const pnl=doPartial(e,cur);if(pnl===null){toast('כמות קטנה מדי לפיצול — סגור עסקה שלמה','var(--amber)');return;}saveExec(m);renderAll();alertMsg('✂️ נסגר חצי '+(e.sig.ticker||e.sig.instrument)+' @ $'+fmt(cur)+' · P/L $'+fmt(pnl)+' · סטופ→כניסה','var(--buy)',780);}
+function setNote(id,v){const m=execState();if(m[id]){m[id].note=v;saveExec(m);}}
+function deleteTrade(id){const m=execState();delete m[id];saveExec(m);renderAll();}
+function clearHistory(){const m=execState();Object.keys(m).forEach(k=>{if(m[k].status!='executed')delete m[k];});saveExec(m);renderAll();}
+function trackCard(e){
+  const id=e[0], s=e[1].sig, isGold=s.kind=='gold', long=s.direction=='LONG';
+  const cur=livePx(s)||s.entry;
+  const pnlPct=long?((cur-s.entry)/s.entry*100):((s.entry-cur)/s.entry*100), pnl=long?s.qty*(cur-s.entry):s.qty*(s.entry-cur);
+  let st='במעקב',stc='q-warn';
+  if(long){if(cur<=s.stop){st='נגע בסטופ ⛔';stc='q-bad';}else if(cur>=s.t1){st='הגיע ליעד 1 🎯';stc='q-good';}}
+  else{if(cur>=s.stop){st='נגע בסטופ ⛔';stc='q-bad';}else if(cur<=s.t1){st='הגיע ליעד 1 🎯';stc='q-good';}}
+  const half=e[1].halfClosed?(' · <span style="color:var(--buy)">חצי מומש ($'+fmt(e[1].partialPnl||0)+')</span>'):'';
+  const note=(e[1].note||'').replace(/"/g,'&quot;');
+  return '<div class="card '+(long?'long':'short')+'">'
+   +'<div class="ch"><div><div class="tk">'+(s.ticker||s.instrument)+' <span class="q '+stc+'">'+st+'</span></div>'
+   +'<div class="co">'+(long?'לונג':'שורט')+' · '+(s.qty||0)+' '+(isGold?'אונקיות':'מניות')+' · נכנס ב-$'+fmt(s.entry)+half+'</div></div>'
+   +'<div style="text-align:left"><div class="tk" style="color:'+(pnlPct>=0?'var(--buy)':'var(--sell)')+'">'+(pnlPct>=0?'+':'')+pnlPct.toFixed(1)+'%</div>'
+   +'<div class="mini">'+(livePx(s)?('חי $'+fmt(cur)):'—')+' · P/L $'+fmt(pnl)+'</div></div></div>'
+   +'<div class="mini">'+(e[1].trailing?'🔒 ':'')+'סטופ $'+fmt(s.stop)+' · יעד1 $'+fmt(s.t1)+' · יעד2 $'+fmt(s.t2)+'</div>'
+   +'<input class="noteinp" placeholder="הערה לעסקה (למה נכנסת, מחשבות)..." value="'+note+'" onchange="setNote(\''+id+'\',this.value)">'
+   +'<div class="execrow">'+(e[1].halfClosed?'':'<button class="execbtn" style="background:#2a6f64;color:#e6edf7;flex:0 0 auto;padding:9px 12px" onclick="partialClose(\''+id+'\')">✂️ חצי</button>')+'<button class="execbtn done" onclick="closeTrade(\''+id+'\')">✓ סגרתי</button><button class="execbtn skip" onclick="deleteTrade(\''+id+'\')">מחק</button></div></div>';
+}
+function renderTracking(){
+  const m=execState(), box=$('#tracking'); if(!box)return;
+  const open=Object.entries(m).filter(e=>e[1].status=='executed');
+  const closed=Object.entries(m).filter(e=>e[1].status=='closed').sort((a,b)=>(b[1].closeTs||0)-(a[1].closeTs||0));
+  const cnt=$('#trackcount'); if(cnt)cnt.textContent=open.length?('('+open.length+')'):'';
+  const st=perfStats(); let html='';
+  if(st.nClosed||open.length){
+    html+='<div class="perfbar">'
+     +'<div class="pf"><div class="pn">'+st.nClosed+'</div><div class="pl">עסקאות סגורות</div></div>'
+     +'<div class="pf"><div class="pn" style="color:'+(st.winRate>=50?'var(--buy)':(st.nClosed?'var(--sell)':'var(--text)'))+'">'+st.winRate.toFixed(0)+'%</div><div class="pl">Win-rate</div></div>'
+     +'<div class="pf"><div class="pn" style="color:'+(st.totPnl>=0?'var(--buy)':'var(--sell)')+'">'+(st.totPnl>=0?'+':'')+'$'+fmt(st.totPnl)+'</div><div class="pl">רווח ממומש</div></div>'
+     +'<div class="pf"><div class="pn">'+st.nOpen+'</div><div class="pl">פתוחות</div></div>'
+     +'<div class="pf"><div class="pn" style="color:'+(st.unreal>=0?'var(--buy)':'var(--sell)')+'">'+(st.unreal>=0?'+':'')+'$'+fmt(st.unreal)+'</div><div class="pl">לא ממומש</div></div>'
+     +'</div>';
+  }
+  if(!open.length){html+='<div class="mini" style="color:var(--muted);padding:4px 2px">אין עסקאות פתוחות. לחיצה על "✓ ביצעתי" באיתות תעביר אותו לכאן.</div>';}
+  else{html+='<div class="cards">'+open.map(trackCard).join('')+'</div>';}
+  html+=equityCurve();
+  if(closed.length){
+    html+='<details class="sector" style="margin-top:10px"><summary><span>היסטוריה — '+closed.length+' סגורות</span><span class="mini" style="cursor:pointer;color:var(--sell)" onclick="event.preventDefault();event.stopPropagation();clearHistory()">נקה היסטוריה</span></summary><table><thead><tr><th>מניה</th><th>כיוון</th><th>P/L</th></tr></thead><tbody>'
+     +closed.map(function(e){const s=e[1].sig,pnl=(e[1].closePnl||0)+(e[1].partialPnl||0);return '<tr><td><b>'+(s.ticker||s.instrument)+'</b></td><td>'+(s.direction=='LONG'?'לונג':'שורט')+'</td><td style="color:'+(pnl>=0?'var(--buy)':'var(--sell)')+'">'+(pnl>=0?'+':'')+'$'+fmt(pnl)+'</td></tr>';}).join('')
+     +'</tbody></table></details>';
+  }
+  box.innerHTML=html;
+}
+const fmt=(n,d=2)=>n==null?'—':Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct=n=>n==null?'—':(n>0?'+':'')+n.toFixed(1)+'%';
+
+function sizePosition(entry,stop,wallet,riskPct,capCash){
+  const rps=Math.abs(entry-stop);
+  if(!(rps>0)||!(entry>0))return null;
+  const riskD=wallet*riskPct;
+  const cash=(capCash!=null&&capCash>=0)?capCash:wallet;   // free budget cap (portfolio managed inside $wallet)
+  let shares=Math.floor(Math.min(riskD/rps, cash/entry));
+  if(shares<1)shares=(entry<=cash)?1:0;   // budget-full or can't afford one share -> 0 -> null
+  if(shares<=0)return null;
+  return {shares,cost:shares*entry,riskD:shares*rps,riskPct:100*shares*rps/wallet,rps};
+}
+// total cash already committed to open (executed) trades — gold counts only its margin (notional/leverage)
+function deployedCost(){
+  return Object.values(execState()).filter(v=>v.status=='executed').reduce(function(a,v){
+    const s=v.sig||{}, n=(s.qty||0)*(s.entry||0);
+    return a+(s.kind=='gold'?n/100:n);
+  },0);
+}
+function copyOrder(txt){try{navigator.clipboard.writeText(txt);toast('📋 הפקודה הועתקה — הדבק בברוקר (Ctrl+V)','var(--buy)');}catch(e){toast('העתקה נכשלה — סמן ידנית','var(--amber)');}}
+function quality(rr,entry,stop){
+  const stopPct=Math.abs(entry-stop)/entry*100;
+  let tags=[];
+  if(rr>=1.5)tags.push(['R:R טוב '+rr.toFixed(1),'q-good']);
+  else if(rr>=1)tags.push(['R:R בינוני '+rr.toFixed(1),'q-mid']);
+  else tags.push(['R:R נמוך '+rr.toFixed(1)+' — שקול לדלג','q-bad']);
+  if(stopPct<1.5)tags.push(['סטופ צמוד ⚠','q-warn']);
+  if(stopPct>25)tags.push(['סטופ רחוק ⚠','q-warn']);
+  return tags;
+}
+const badgeOf={BUY_NOW:['קנייה עכשיו','b-buynow'],SELL_NOW:['מכירה עכשיו','b-sellnow'],
+  WATCH_BUY:['מעקב קנייה','b-watchb'],WATCH_SELL:['מעקב מכירה','b-watchs']};
+const trendHe=t=>t=='up'?'<span class="up">▲ עולה</span>':t=='down'?'<span class="down">▼ יורד</span>':'<span class="range">→ דשדוש</span>';
+
+// Signal quality score: confluence of trend + RSI + R:R + order-flow + distance-to-entry
+function scoreSignal(s){
+  const long=s.direction=='LONG'; let sc=42;
+  if(s.trend==(long?'up':'down'))sc+=18; else if(s.trend&&s.trend!='range')sc-=10;
+  const r=s.rsi;
+  if(r!=null){ if(long){ if(r>=50&&r<=68)sc+=14; else if(r>68)sc-=6; else sc-=4; }
+               else { if(r<=50&&r>=32)sc+=14; else if(r<32)sc-=6; else sc-=4; } }
+  const rr=s.rr_t1||0; if(rr>=2)sc+=22; else if(rr>=1.5)sc+=14; else if(rr>=1)sc+=6; else sc-=8;
+  const of=s.orderflow;
+  if(of&&of.vp){
+    const fav=long?(of.price_loc=='above_va'||of.price_loc=='above_vpoc'):(of.price_loc=='below_va'||of.price_loc=='below_vpoc');
+    if(fav)sc+=12;
+    if(of.cvd){ if((long&&of.cvd.pressure=='buyers')||(!long&&of.cvd.pressure=='sellers'))sc+=8; else if(of.cvd.pressure!='balanced')sc-=6; }
+    if(of.rvol&&of.rvol.spike)sc+=6;
+  }
+  const lp=liveStock[s.ticker];
+  if(lp&&lp.c&&s.entry){ const d=Math.abs((s.entry-lp.c)/lp.c*100); if(d<=1)sc+=8; else if(d<=3)sc+=3; else if(d>8)sc-=6; }
+  return Math.max(0,Math.min(100,Math.round(sc)));
+}
+function scoreBadge(sc){
+  const lbl=sc>=75?'איתות חזק':sc>=55?'סביר':'חלש', cls=sc>=75?'q-good':sc>=55?'q-mid':'q-bad';
+  return '<span class="q '+cls+' scorebadge">★ ציון '+sc+' · '+lbl+'</span>';
+}
+function byScore(a,b){return scoreSignal(b)-scoreSignal(a);}
+
+// Bookmap-style order-flow panel: volume profile (VPOC/value area), CVD pressure, RVOL
+function ofPanel(of,opts){
+  if(!of||!of.vp)return '';
+  opts=opts||{}; const vp=of.vp, cv=of.cvd||{}, rv=of.rvol||{};
+  const d=(vp.vpoc!=null&&vp.vpoc<50)?2:1;
+  const locHe={above_va:'<span class="up">מעל אזור הערך — חוזק ▲</span>',below_va:'<span class="down">מתחת לאזור הערך — חולשה ▼</span>',above_vpoc:'מעל VPOC (עוגן)',below_vpoc:'מתחת ל-VPOC (עוגן)'}[of.price_loc]||'—';
+  const press=cv.pressure=='buyers'?'<span class="up">קונים בשליטה ▲</span>':cv.pressure=='sellers'?'<span class="down">מוכרים בשליטה ▼</span>':'מאוזן';
+  const buyPct=(cv.buy_pct!=null)?cv.buy_pct:50;
+  return '<div class="ofbox"><div class="ofttl">📊 זרימת הזמנות (Order Flow · בסגנון Bookmap)</div>'
+    +'<div class="ofrow"><span>VPOC · עוגן נפח</span><b>$'+fmt(vp.vpoc,d)+'</b></div>'
+    +'<div class="ofrow"><span>אזור ערך (70% מהנפח)</span><b><span dir="ltr" style="unicode-bidi:isolate">$'+fmt(vp.val,d)+' – $'+fmt(vp.vah,d)+'</span></b></div>'
+    +'<div class="ofrow"><span>מיקום מחיר</span><b>'+locHe+'</b></div>'
+    +'<div class="ofbar"><div class="offill" style="width:'+Math.max(0,Math.min(100,buyPct))+'%"></div></div>'
+    +'<div class="ofrow"><span>לחץ קונים/מוכרים (CVD)</span><b>'+press+' · '+buyPct+'%</b></div>'
+    +(rv.rvol!=null?('<div class="ofrow"><span>נפח יחסי (RVOL)</span><b>'+rv.rvol+'× '+(rv.spike?'🔥 נפח חריג':'')+'</b></div>'):'')
+    +(opts.note?('<div class="ofnote">'+opts.note+'</div>'):'')
+    +'</div>';
+}
+
+function card(s,wallet,riskPct){
+  const long=s.direction=='LONG';
+  const free=Math.max(0, wallet-deployedCost());
+  const sz=sizePosition(s.entry,s.stop,wallet,riskPct,free);
+  const budgetNote=(!sz&&free<s.entry)?`<div class="tags"><span class="q q-bad">💰 אין תקציב פנוי בתיק ($${fmt(free)}) — סגור עסקה או הגדל ארנק</span></div>`:'';
+  const order=`${s.ticker} ${long?'BUY':'SELL'} ${sz?sz.shares:0} @ ${fmt(s.entry)} | SL ${fmt(s.stop)} | TP1 ${fmt(s.t1)} | TP2 ${fmt(s.t2)}`;
+  const lp=liveStock[s.ticker];
+  const curPx=lp?lp.c:s.price;
+  const liveTag=lp?'🟢 ':'';
+  const dEntry=(s.entry&&curPx)?((s.entry-curPx)/curPx*100):null;
+  const dTxt=(dEntry!=null)?(' · מרחק לכניסה '+(dEntry>0?'+':'')+dEntry.toFixed(1)+'%'):'';
+  const rr=s.rr_t1||0;
+  const qtags=quality(rr,s.entry,s.stop).map(t=>`<span class="q ${t[1]}">${t[0]}</span>`).join('');
+  const b=badgeOf[s.signal]||['',''];
+  const dirHe=long?'קנייה (לונג)':'מכירה (שורט)';
+  const actionBuy=`קנה <b>${sz?sz.shares:'—'}</b> מניות של <b>${s.ticker}</b> ב-~$${fmt(s.entry)} (לימיט) · סטופ-לוס $${fmt(s.stop)} · מכור חצי ב-$${fmt(s.t1)} (יעד 1) · השאר ליעד 2 $${fmt(s.t2)} והזז סטופ למעלה`;
+  const actionSell=`מכור/שורט <b>${sz?sz.shares:'—'}</b> מניות של <b>${s.ticker}</b> ב-~$${fmt(s.entry)} · סטופ $${fmt(s.stop)} · כסה חצי ב-$${fmt(s.t1)} · השאר ל-$${fmt(s.t2)}`;
+  return `<div class="card ${long?'long':'short'}">
+   <div class="bigcmd ${long?'buy':'sell'}">${long?'BUY':'SELL'} · ${long?'קנייה':'מכירה'}${s.signal.indexOf('WATCH')>=0?' <small>· מעקב</small>':''}</div>
+   <div class="ch"><div><div class="tk">${s.ticker} <span class="badge ${b[1]}">${b[0]}</span></div>
+     <div class="co">${s.company||''}</div></div>
+     <div style="text-align:left;display:flex;flex-direction:column;gap:4px;align-items:flex-end">
+       <span class="chip">${s.sector||''}</span>${s.exchange?'<span class="chip" style="color:#7fd1c4;border-color:#2a6f64">'+s.exchange+'</span>':''}<span class="chip">${s.mode=='day'?'D · דיי':'S · סווינג'}</span></div></div>
+   <div class="grid4">
+     <div class="cell"><div class="cl">כניסה</div><div class="cv">$${fmt(s.entry)}</div></div>
+     <div class="cell stop"><div class="cl">סטופ-לוס</div><div class="cv">$${fmt(s.stop)}</div></div>
+     <div class="cell t1"><div class="cl">יעד 1</div><div class="cv">$${fmt(s.t1)}</div></div>
+     <div class="cell t2"><div class="cl">יעד 2</div><div class="cv">$${fmt(s.t2)}</div></div>
+   </div>
+   <div class="size"><div class="qty">${sz?sz.shares:'—'} <small>מניות</small></div>
+     <div class="meta">עלות: <b>$${sz?fmt(sz.cost):'—'}</b> · סיכון: <b>$${sz?fmt(sz.riskD):'—'}</b> (${sz?sz.riskPct.toFixed(1):'—'}%)<br>
+       ${liveTag}מחיר $${fmt(curPx)}${dTxt} · RSI ${fmt(s.rsi,0)} · ${trendHe(s.trend)}</div></div>
+   <div class="act">📋 <b>מה להזין בברוקר:</b> ${long?actionBuy:actionSell}</div>
+   <div class="tags">${scoreBadge(scoreSignal(s))}${qtags}</div>
+   ${budgetNote}
+   ${ofPanel(s.orderflow)}
+   <div class="execrow"><button class="execbtn" onclick="markExec('${sigId(s)}')">✓ ביצעתי</button><button class="execbtn cp" title="העתק פקודה" onclick="copyOrder('${order.replace(/'/g,"\\'")}')">📋</button><button class="execbtn skip" onclick="dismissSig('${sigId(s)}')">✕ דלג</button></div>
+  </div>`;
+}
+
+function sizeGold(entry,stop,wallet,riskPct,lev){
+  lev=lev||100; const dist=Math.abs(entry-stop); if(!(dist>0))return null;
+  let units=(wallet*riskPct)/dist;
+  const maxU=(wallet*0.5*lev)/entry; units=Math.min(units,maxU);
+  units=Math.round(units); if(units<1)units=1;
+  const notional=units*entry;
+  return {units,lots:+(units/100).toFixed(2),notional,margin:notional/lev,riskD:units*dist,riskPct:100*units*dist/wallet};
+}
+// ===== LIVE gold: fetch price in the browser and recompute the signal (mirrors signals_engine.analyze_gold) =====
+function emaArr(v,n){let out=[],k=2/(n+1),e=null;for(let i=0;i<v.length;i++){e=(e==null)?v[i]:v[i]*k+e*(1-k);out.push(e);}return out;}
+function rsiArr(c,n){n=n||14;let out=c.map(()=>null);if(c.length<n+1)return out;let g=0,l=0;for(let i=1;i<=n;i++){let d=c[i]-c[i-1];g+=Math.max(d,0);l+=Math.max(-d,0);}let ag=g/n,al=l/n;out[n]=al==0?100:100-100/(1+ag/al);for(let i=n+1;i<c.length;i++){let d=c[i]-c[i-1];ag=(ag*(n-1)+Math.max(d,0))/n;al=(al*(n-1)+Math.max(-d,0))/n;out[i]=al==0?100:100-100/(1+ag/al);}return out;}
+function atrClose(c,n){n=n||14;let out=c.map(()=>null);if(c.length<n+1)return out;let tr=[0];for(let i=1;i<c.length;i++)tr.push(Math.abs(c[i]-c[i-1]));let a=0;for(let i=1;i<=n;i++)a+=tr[i];a/=n;out[n]=a;for(let i=n+1;i<c.length;i++){a=(a*(n-1)+tr[i])/n;out[i]=a;}return out;}
+function vwapArr(c,vol){let pv=0,vv=0,out=[];for(let i=0;i<c.length;i++){let v=vol[i]||0;pv+=c[i]*v;vv+=v;out.push(vv?pv/vv:c[i]);}return out;}
+function analyzeGoldLive(closes,vols){
+  const n=closes.length; if(n<55)return null;
+  const e9=emaArr(closes,9),e21=emaArr(closes,21),e50=emaArr(closes,50),rsi=rsiArr(closes,14),av=atrClose(closes,14),vw=vwapArr(closes,vols);
+  const t=n-1,price=closes[t],a=av[t]||0,r=rsi[t]||50,vwap=vw[t];
+  const bull=e9[t]>e21[t]&&price>e50[t], bear=e9[t]<e21[t]&&price<e50[t];
+  const cu=i=>e9[i]>e21[i]&&e9[i-1]<=e21[i-1], cd=i=>e9[i]<e21[i]&&e9[i-1]>=e21[i-1];
+  const rup=cu(t)||cu(t-1), rdn=cd(t)||cd(t-1);
+  const longSig=bull&&rup&&r>50&&price>vwap, shortSig=bear&&rdn&&r<50&&price<vwap;
+  let signal='NONE',dir=null;
+  if(longSig){signal='BUY_NOW';dir='long';} else if(shortSig){signal='SELL_NOW';dir='short';}
+  else if(bull&&r>50&&price>vwap){signal='WATCH_BUY';dir='long';}
+  else if(bear&&r<50&&price<vwap){signal='WATCH_SELL';dir='short';}
+  let plan=null;
+  if(dir&&a>0){const risk=Math.max(2.7*a, 3.0); let entry=price,stop,t1,t2;   // 2.7x close-ATR ~ 1.5x true-range ATR; floor $3/oz so stops aren't absurdly tight
+    if(dir=='long'){stop=+(entry-risk).toFixed(1);t1=+(entry+1.5*risk).toFixed(1);t2=+(entry+3*risk).toFixed(1);}
+    else{stop=+(entry+risk).toFixed(1);t1=+(entry-1.5*risk).toFixed(1);t2=+(entry-3*risk).toFixed(1);}
+    plan={direction:dir.toUpperCase(),entry:+entry.toFixed(1),stop,t1,t2,rr_t1:1.5,rr_t2:3.0};}
+  return {instrument:'XAU/USD',signal,price:+price.toFixed(1),rsi:+r.toFixed(1),atr:+a.toFixed(2),vwap:+vwap.toFixed(1),ema9:+e9[t].toFixed(1),ema21:+e21[t].toFixed(1),ema50:+e50[t].toFixed(1),regime:bull?'bull':bear?'bear':'mixed',plan:plan};
+}
+function goldCardHTML(g,wallet,fresh){
+  const b=badgeOf[g.signal]||['ניטרלי','b-watchs'];
+  const reg={bull:'📈 מגמת עליה',bear:'📉 מגמת ירידה',mixed:'→ דשדוש'}[g.regime]||g.regime;
+  const readout=`RSI ${g.rsi} · ATR $${g.atr} · VWAP $${fmt(g.vwap,1)} · EMA 9/21/50: $${fmt(g.ema9,1)} / $${fmt(g.ema21,1)} / $${fmt(g.ema50,1)}`;
+  if(!g.plan){return `<div class="card gold"><div class="ch"><div><div class="tk">🥇 XAU/USD <span class="badge ${b[1]}">${b[0]}</span></div><div class="co">זהב · 5 דקות · ${reg}</div></div><div style="text-align:left"><div class="tk">$${fmt(g.price,1)}</div><div class="mini">${fresh}</div></div></div><div class="mini">${readout}</div>${ofPanel(g.orderflow,{note:'פרופיל נפח ו-CVD מנתוני החוזה בסריקה; מיקום המחיר חי.'})}<div class="act">אין כרגע איתות זהב פעיל — ממתין להצטלבות EMA9/21 בכיוון המגמה.</div></div>`;}
+  const p=g.plan,long=p.direction=='LONG',sz=sizeGold(p.entry,p.stop,wallet,0.02);
+  const act=`${long?'קנה (Buy)':'מכור (Sell/Short)'} <b>${sz.units} אונקיות</b> (=${sz.lots} לוט) XAU/USD ב-~$${fmt(p.entry,1)} · סטופ $${fmt(p.stop,1)} · יעד 1 $${fmt(p.t1,1)} (סגור חצי) · יעד 2 $${fmt(p.t2,1)}`;
+  const gorder=`XAU/USD ${long?'BUY':'SELL'} ${sz.units}oz (${sz.lots} lot) @ ${fmt(p.entry,1)} | SL ${fmt(p.stop,1)} | TP1 ${fmt(p.t1,1)} | TP2 ${fmt(p.t2,1)}`;
+  return `<div class="card gold">
+   <div class="bigcmd ${long?'buy':'sell'}">${long?'BUY':'SELL'} · ${long?'קנייה':'מכירה'} · זהב</div>
+   <div class="ch"><div><div class="tk">🥇 XAU/USD <span class="badge ${b[1]}">${b[0]}</span></div>
+     <div class="co">זהב · 5 דקות · ${reg} · $${fmt(g.price,1)}</div></div>
+     <div style="text-align:left;display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span class="chip">מינוף 1:100</span><span class="chip">${fresh}</span></div></div>
+   <div class="grid4">
+     <div class="cell"><div class="cl">כניסה</div><div class="cv">$${fmt(p.entry,1)}</div></div>
+     <div class="cell stop"><div class="cl">סטופ</div><div class="cv">$${fmt(p.stop,1)}</div></div>
+     <div class="cell t1"><div class="cl">יעד 1</div><div class="cv">$${fmt(p.t1,1)}</div></div>
+     <div class="cell t2"><div class="cl">יעד 2</div><div class="cv">$${fmt(p.t2,1)}</div></div>
+   </div>
+   <div class="size"><div class="qty">${sz.units}<small> אונקיות · ${sz.lots} לוט</small></div>
+     <div class="meta">נושיונל: <b>$${fmt(sz.notional,0)}</b> · מרג'ין נדרש: <b>$${fmt(sz.margin,0)}</b><br>סיכון: <b>$${fmt(sz.riskD,1)}</b> (${sz.riskPct.toFixed(1)}% מהארנק)</div></div>
+   <div class="act">📋 <b>מה להזין בברוקר (CFD · דמו):</b> ${act}</div>
+   <div class="mini" style="margin-top:6px">${readout}</div>
+   ${ofPanel(g.orderflow,{note:'פרופיל נפח ו-CVD מנתוני החוזה בסריקה; מיקום המחיר מחושב חי מול הרמות.'})}
+   <div class="tags"><span class="q q-bad">⚠ מינוף 1:100 = סיכון קיצוני</span><span class="q q-warn">סטופ תמיד · דמו 1–2 שבועות</span><span class="q ${p.rr_t1>=1.5?'q-good':'q-mid'}">R:R ${p.rr_t1}</span></div>
+   <div class="execrow"><button class="execbtn" onclick="markExec('${sigId({ticker:g.instrument,direction:p.direction,entry:p.entry})}')">✓ ביצעתי (זהב)</button><button class="execbtn cp" title="העתק פקודה למטא-טריידר" onclick="copyOrder('${gorder.replace(/'/g,"\\'")}')">📋 העתק</button></div>
+  </div>`;
+}
+let goldTimer=null;
+async function loadGold(wallet){
+  const box=$('#goldbox'); const now=()=>new Date().toLocaleTimeString('he-IL');
+  try{
+    const [cg,xau]=await Promise.all([
+      fetch('https://api.coingecko.com/api/v3/coins/pax-gold/market_chart?vs_currency=usd&days=1',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),
+      fetch('https://api.gold-api.com/price/XAU',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)
+    ]);
+    if(!cg)throw 0;
+    const closes=(cg.prices||[]).map(x=>x[1]), vols=(cg.total_volumes||[]).map(x=>x[1]);
+    const g=analyzeGoldLive(closes,vols); if(!g)throw 0;
+    let src='PAXG≈XAU';
+    const spot=(xau&&xau.price>0)?Math.round(xau.price*10)/10:null;
+    if(spot){
+      src='XAU spot';
+      if(g.plan){const risk=Math.abs(g.plan.entry-g.plan.stop),long=g.plan.direction=='LONG';
+        g.plan.entry=spot;
+        g.plan.stop=Math.round((long?spot-risk:spot+risk)*10)/10;
+        g.plan.t1=Math.round((long?spot+1.5*risk:spot-1.5*risk)*10)/10;
+        g.plan.t2=Math.round((long?spot+3*risk:spot-3*risk)*10)/10;}
+      g.price=spot;
+    }
+    if(g.plan){g.kind='gold';g.ticker=g.instrument;g.direction=g.plan.direction;g.entry=g.plan.entry;g.stop=g.plan.stop;g.t1=g.plan.t1;g.t2=g.plan.t2;sigById[sigId(g)]=g;}
+    if(DATA.gold&&DATA.gold.orderflow&&DATA.gold.orderflow.vp){
+      const of=JSON.parse(JSON.stringify(DATA.gold.orderflow)),vp=of.vp,pr=g.price;
+      of.price_loc = pr>vp.vah?'above_va':pr<vp.val?'below_va':pr>vp.vpoc?'above_vpoc':'below_vpoc';
+      g.orderflow=of;
+    }
+    liveGoldPrice=g.price;
+    box.innerHTML=goldCardHTML(g,wallet,'🟢 חי · '+src+' · '+now());
+    renderTracking(); autoManage();
+  }catch(e){
+    try{
+      const xr=await fetch('https://api.gold-api.com/price/XAU',{cache:'no-store'}); const xj=await xr.json(); const live=Math.round(xj.price*10)/10;
+      liveGoldPrice=live;
+      box.innerHTML=goldCardHTML(Object.assign({},DATA.gold||{},{price:live}),wallet,'🟡 מחיר XAU חי · איתות מהסריקה · '+now());
+      renderTracking(); autoManage();
+    }catch(e2){
+      box.innerHTML = DATA.gold ? goldCardHTML(DATA.gold,wallet,'⚪ מחיר חי לא זמין — נתוני סריקה') : '<div class="note">אין נתוני זהב כרגע.</div>';
+    }
+  }
+}
+function renderGold(wallet){
+  const g=DATA.gold, box=$('#goldbox');
+  if(!g){box.innerHTML='<div class="note">אין עדיין סריקת זהב — היא תרוץ בשעות המסחר בזהב.</div>';return;}
+  const b=badgeOf[g.signal]||['ניטרלי','b-watchs'];
+  const reg={bull:'📈 מגמת עליה',bear:'📉 מגמת ירידה',mixed:'→ דשדוש'}[g.regime]||g.regime;
+  const readout=`RSI ${g.rsi} · ATR $${g.atr} · VWAP $${fmt(g.vwap,1)} · EMA 9/21/50: $${fmt(g.ema9,1)} / $${fmt(g.ema21,1)} / $${fmt(g.ema50,1)}`;
+  if(!g.plan){
+    box.innerHTML=`<div class="card gold"><div class="ch"><div><div class="tk">🥇 XAU/USD <span class="badge ${b[1]}">${b[0]}</span></div><div class="co">זהב · 5 דקות · ${reg}</div></div><div class="tk">$${fmt(g.price,1)}</div></div><div class="mini">${readout}</div><div class="act">אין כרגע איתות זהב פעיל — המערכת ממתינה להצטלבות EMA9/21 בכיוון המגמה.</div></div>`;return;
+  }
+  const p=g.plan,long=p.direction=='LONG',sz=sizeGold(p.entry,p.stop,wallet,0.02);
+  const act=`${long?'קנה (Buy)':'מכור (Sell/Short)'} <b>${sz.units} אונקיות</b> (=${sz.lots} לוט) XAU/USD ב-~$${fmt(p.entry,1)} · סטופ $${fmt(p.stop,1)} · יעד 1 $${fmt(p.t1,1)} (סגור חצי) · יעד 2 $${fmt(p.t2,1)}`;
+  box.innerHTML=`<div class="card gold">
+   <div class="ch"><div><div class="tk">🥇 XAU/USD <span class="badge ${b[1]}">${b[0]}</span></div>
+     <div class="co">זהב · 5 דקות · ${reg} · $${fmt(g.price,1)}</div></div>
+     <div style="text-align:left;display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span class="chip">מינוף 1:100</span><span class="chip">סיכון 2% קבוע</span></div></div>
+   <div class="grid4">
+     <div class="cell"><div class="cl">כניסה</div><div class="cv">$${fmt(p.entry,1)}</div></div>
+     <div class="cell stop"><div class="cl">סטופ</div><div class="cv">$${fmt(p.stop,1)}</div></div>
+     <div class="cell t1"><div class="cl">יעד 1</div><div class="cv">$${fmt(p.t1,1)}</div></div>
+     <div class="cell t2"><div class="cl">יעד 2</div><div class="cv">$${fmt(p.t2,1)}</div></div>
+   </div>
+   <div class="size"><div class="qty">${sz.units}<small> אונקיות · ${sz.lots} לוט</small></div>
+     <div class="meta">נושיונל: <b>$${fmt(sz.notional,0)}</b> · מרג'ין נדרש: <b>$${fmt(sz.margin,0)}</b><br>סיכון: <b>$${fmt(sz.riskD,1)}</b> (${sz.riskPct.toFixed(1)}% מהארנק)</div></div>
+   <div class="act">📋 <b>מה להזין בברוקר (CFD · דמו):</b> ${act}</div>
+   <div class="mini" style="margin-top:6px">${readout}</div>
+   <div class="tags"><span class="q q-bad">⚠ מינוף 1:100 = סיכון קיצוני</span><span class="q q-warn">סטופ תמיד · דמו 1–2 שבועות</span><span class="q ${p.rr_t1>=1.5?'q-good':'q-mid'}">R:R ${p.rr_t1}</span></div>
+   <div class="execrow"><button class="execbtn" onclick="markExec('${sigId({ticker:g.instrument,direction:p.direction,entry:p.entry})}')">✓ ביצעתי (זהב)</button></div>
+  </div>`;
+}
+function fhKey(){try{return (localStorage.getItem('idan_fh')||DATA.finnhub_key||'').trim();}catch(e){return (DATA.finnhub_key||'').trim();}}
+async function loadStocks(){
+  const key=fhKey(), ks=$('#keystatus');
+  if(!key){if(ks)ks.textContent='';return;}
+  const tickers=[...new Set([...DATA.signals.map(s=>s.ticker), ...(DATA.water||[]).map(w=>w.ticker)])].slice(0,50);
+  if(!tickers.length){if(ks)ks.textContent='';return;}
+  let ok=0,bad=0;
+  await Promise.all(tickers.map(async tk=>{
+    try{const r=await fetch('https://finnhub.io/api/v1/quote?symbol='+encodeURIComponent(tk)+'&token='+encodeURIComponent(key),{cache:'no-store'});
+      const j=await r.json();
+      if(j&&typeof j.c==='number'&&j.c>0){liveStock[tk]={c:j.c,dp:j.dp};ok++;}else bad++;
+    }catch(e){bad++;}
+  }));
+  if(ks)ks.textContent = ok?('🟢 מניות חי ('+ok+')'):(bad?'🔑 מפתח לא תקין?':'');
+  const wallet=+($('#wallet').value)||1000, riskPct=(+$('#risk').value||4)/100, S=DATA.signals;
+  $('#day').innerHTML=pend(S.filter(s=>s.mode=='day'&&s.sector!='Water')).sort(byScore).map(s=>card(s,wallet,riskPct)).join('');
+  $('#active').innerHTML=pend(S.filter(s=>s.mode!='day'&&s.sector!='Water'&&(s.signal=='BUY_NOW'||s.signal=='SELL_NOW'))).sort(byScore).map(s=>card(s,wallet,riskPct)).join('');
+  $('#watch').innerHTML=pend(S.filter(s=>s.mode!='day'&&s.sector!='Water'&&(s.signal=='WATCH_BUY'||s.signal=='WATCH_SELL'))).sort(byScore).map(s=>card(s,wallet,riskPct)).join('');
+  renderWater(); renderTracking(); autoManage();
+}
+function renderBudget(wallet){
+  const box=$('#budgetbar'); if(!box)return;
+  const used=deployedCost(), free=Math.max(0,wallet-used), pctUsed=Math.min(100,wallet>0?100*used/wallet:0);
+  const nOpen=Object.values(execState()).filter(v=>v.status=='executed').length;
+  const full=free<1;
+  box.innerHTML='<div class="budgetwrap">'
+    +'<div class="bhead"><span>💰 <b>תקציב התיק</b> · הכל מנוהל בתוך $'+fmt(wallet,0)+'</span>'
+    +'<span>בשימוש <b style="color:'+(full?'var(--sell)':'var(--amber)')+'">$'+fmt(used,0)+'</b> ('+nOpen+' עסקאות) · פנוי <b style="color:var(--buy)">$'+fmt(free,0)+'</b></span></div>'
+    +'<div class="btrack"><div class="bfill'+(full?' full':'')+'" style="width:'+pctUsed.toFixed(0)+'%"></div></div>'
+    +(full?'<div class="mini" style="color:var(--sell);margin-top:6px">התיק מלא — איתותים חדשים יראו 0 מניות עד שתסגור עסקה. סגירת עסקה משחררת תקציב אוטומטית.</div>':'')
+    +'</div>';
+}
+function renderWater(){
+  const box=$('#water'); if(!box)return;
+  const list=DATA.water||[];
+  if(!list.length){box.innerHTML='<div class="mini" style="color:var(--muted);padding:4px 2px">אין מניות מים מוגדרות כרגע.</div>';return;}
+  const mo=Math.max(0,+($('#watermo')&&$('#watermo').value)||0);
+  const per=list.length?mo/list.length:0;
+  const rows=list.slice().sort((a,b)=>((a.price||1e9)-(b.price||1e9))).map(function(w){
+    const lp=liveStock[w.ticker]&&liveStock[w.ticker].c, px=lp||w.price||0;
+    const shares=px>0?per/px:0, whole=Math.floor(shares);
+    const disp=(shares>=1)
+      ? '<b>'+whole+'</b> מניות'+((shares-whole>=0.05)?' <span class="mini">(מדויק '+shares.toFixed(2)+')</span>':'')
+      : '<span class="bt">שבר '+shares.toFixed(3)+'</span>';
+    return '<tr class="waterrow"><td><b>'+w.ticker+'</b> '+(w.exchange?'<span class="chip" style="color:#7fd1c4">'+w.exchange+'</span>':'')+' <span class="mini">'+(w.company||'')+'</span></td>'
+      +'<td>'+(lp?'🟢 ':'')+'$'+fmt(px)+'</td><td>$'+fmt(per)+'</td><td>'+disp+'</td></tr>';
+  }).join('');
+  box.innerHTML='<details class="sector" open><summary><span>💧 סל המים · '+list.length+' שמות · $'+fmt(mo,0)+' לחודש</span><span class="mini">↕</span></summary>'
+    +'<table><thead><tr><th>מניה</th><th>מחיר</th><th>הקצאה החודש</th><th>לקנות פעם בחודש</th></tr></thead><tbody>'+rows+'</tbody></table></details>';
+  const sum=$('#watersum'); if(sum)sum.textContent='חלוקה שווה · ≈ $'+fmt(per,1)+' לכל שם';
+}
+function render(){
+  const wallet=+$('#wallet').value||1000;
+  const riskPct=(+$('#risk').value||4)/100;
+  $('#riskv').textContent=(riskPct*100).toFixed(1)+'% ($'+Math.round(wallet*riskPct)+')';
+  renderBudget(wallet);
+  renderWater();
+  loadGold(wallet);
+  if(!goldTimer)goldTimer=setInterval(()=>loadGold(+($('#wallet').value)||1000),45000);
+  const S=DATA.signals;
+  S.forEach(s=>{if(!s.kind)s.kind='stock';sigById[sigId(s)]=s;});
+  const day=pend(S.filter(s=>s.mode=='day'&&s.sector!='Water')).sort(byScore);
+  const active=pend(S.filter(s=>s.mode!='day'&&s.sector!='Water'&&(s.signal=='BUY_NOW'||s.signal=='SELL_NOW'))).sort(byScore);
+  const watch=pend(S.filter(s=>s.mode!='day'&&s.sector!='Water'&&(s.signal=='WATCH_BUY'||s.signal=='WATCH_SELL'))).sort(byScore);
+  // kpis
+  const nb=active.filter(s=>s.direction=='LONG').length, ns=active.filter(s=>s.direction=='SHORT').length;
+  const wb=watch.filter(s=>s.direction=='LONG').length, ws=watch.filter(s=>s.direction=='SHORT').length;
+  const uniTotal=Object.values(DATA.universe_all||{}).reduce((a,l)=>a+l.length,0)||DATA.universe.length;
+  $('#kpis').innerHTML=[
+    ['buy',nb,'קנייה פעילה'],['sell',ns,'מכירה פעילה'],['watch',wb,'מעקב קנייה'],
+    ['watch',ws,'מעקב מכירה'],['',uniTotal,'מניות ביוניברס'],
+    ['',' $'+Math.round(wallet*riskPct),'סיכון לעסקה']
+  ].map(k=>`<div class="kpi ${k[0]}"><div class="n">${k[1]}</div><div class="l">${k[2]}</div></div>`).join('');
+  $('#day').innerHTML=day.map(s=>card(s,wallet,riskPct)).join('');
+  $('#day-empty').style.display=day.length?'none':'block';
+  $('#active').innerHTML=active.map(s=>card(s,wallet,riskPct)).join('');
+  $('#active-empty').style.display=active.length?'none':'block';
+  $('#watch').innerHTML=watch.map(s=>card(s,wallet,riskPct)).join('');
+  // sectors
+  const bySec={};
+  DATA.universe.forEach(u=>{(bySec[u.sector]=bySec[u.sector]||[]).push(u)});
+  const order=["Technology","Healthcare","Financials","Energy","Industrials","Consumer","Space","AI","Semiconductors","EV","Cannabis","Water"];
+  const heSec={Technology:'טכנולוגיה',Healthcare:'בריאות',Financials:'פיננסים',Energy:'אנרגיה',Industrials:'תעשייה',Consumer:'צריכה',Space:'חלל',AI:'AI',Semiconductors:'שבבים',EV:'רכב חשמלי',Cannabis:'קנאביס',Water:'מים'};
+  const uniAll=DATA.universe_all||{};
+  $('#sectors').innerHTML=order.map(o=>{
+    const cand=(bySec[o]||[]).slice().sort((a,b)=>(a.dist_res??99)-(b.dist_res??99));
+    const candSet=new Set(cand.map(u=>u.ticker));
+    const all=uniAll[o]||cand.map(u=>u.ticker);
+    const rows=cand.map(u=>`<tr>
+      <td><b>${u.ticker}</b> ${u.exchange?'<span class="chip" style="color:#7fd1c4">'+u.exchange+'</span>':''} <span class="mini">${u.company||''}</span></td>
+      <td>$${fmt(u.price)}</td><td>${trendHe(u.trend)}</td><td>${fmt(u.rsi,0)}</td>
+      <td class="mini">התנגדות $${fmt(u.resistance)} (${u.dist_res==null?'—':pct(u.dist_res)})</td>
+      <td class="mini">תמיכה $${fmt(u.support)} (${u.dist_sup==null?'—':'-'+u.dist_sup+'%'})</td></tr>`).join('');
+    const candTable = cand.length
+      ? `<table><thead><tr><th>מניה (מועמדת סרוקה)</th><th>מחיר</th><th>מגמה</th><th>RSI</th><th>התנגדות (לפריצה)</th><th>תמיכה</th></tr></thead><tbody>${rows}</tbody></table>`
+      : `<div class="mini" style="padding:10px 12px">אין כרגע מועמדים סרוקים — כל המניות בקטגוריה למטה לצפייה ולגרפים.</div>`;
+    const chips=all.map(tk=>`<a class="tvchip${candSet.has(tk)?' act':''}" href="https://www.tradingview.com/chart/?symbol=${encodeURIComponent(tk)}" target="_blank" rel="noopener" title="פתח גרף ${tk} ב-TradingView">${tk}</a>`).join('');
+    return `<details class="sector"><summary><span>${heSec[o]||o} <span class="mini">(${all.length} מניות)</span></span><span class="mini">↕</span></summary>
+      ${candTable}
+      <div class="tvwrap"><div class="tvttl">📈 כל ${all.length} המניות בקטגוריה — לחץ על מניה לפתיחת הגרף ב-TradingView (ירוק = מועמדת סרוקה כרגע)</div><div class="tvchips">${chips}</div></div>
+    </details>`;
+  }).join('');
+  // premium
+  $('#premium').innerHTML=DATA.premium.map(p=>`<div class="pc"><div class="pt">${p.ticker}</div>
+    <div class="pp">${p.company}</div><div class="pp">$${fmt(p.ref_price)} · ${p.sector}</div></div>`).join('');
+}
+$('#wallet').value=DATA.wallet; $('#risk').value=DATA.risk_pct*100;
+$('#stamp').textContent=DATA.generated+(DATA.day_generated?'  ·  דיי: '+DATA.day_generated:'');
+$('#nextscan').textContent='סריקות אוטומטיות: מניות 16:05 · 21:30 · 22:30 · זהב שעתי בשעות המסחר (שעון ישראל)';
+$('#refreshBtn').addEventListener('click',function(){this.textContent='⏳ טוען...';location.reload();});
+$('#disclaimer').innerHTML='⚡ <b>מסחר זהב מהיר:</b> לחיצה על 📋 <b>העתק</b> מעתיקה את הפקודה המלאה (כיוון · כמות · סטופ · יעדים) — הדבק ישירות בחלון ההזמנה של מטא-טריידר או IBKR (Ctrl+V). <b>למה לא נפתח לבד?</b> קובץ HTML לא יכול לפתוח הזמנה ישירות בפלטפורמת מסחר מטעמי אבטחה — ההעתקה בלחיצה היא הדרך המהירה והבטוחה. (אם תרצה, אני יכול להכין הזמנות מוכנות ב-IBKR בסריקות האוטומטיות — תגיד לי.)<br>🟢 <b>זהב = חי בזמן אמת:</b> כרטיס הזהב מושך מחיר חי בדפדפן שלך ומחשב מחדש את האיתות כל 45 שניות. עובד הכי טוב מהקובץ בשולחן העבודה (Idan Signals.html).<br>📊 <b>מניות = לפי סווינג:</b> מתעדכנות בסריקות האוטומטיות (3×/יום), כי איתות סווינג משתנה רק בסגירת נר יומי. 🔄 רענן טוען את הסריקה האחרונה.<br>💰 <b>ניהול תיק:</b> כל האיתותים מנוהלים בתוך הארנק שהגדרת — פס התקציב למעלה מראה כמה תפוס וכמה פנוי, וכל איתות חדש מחושב לפי מה שנשאר. 💧 <b>מים</b> = צבירה חודשית נפרדת לטווח ארוך.<br><br>⚠️ <b>הבהרה:</b> אינדיקטור מסמן נקודות טכניות — הוא לא מבטיח רווח. אמת כל איתות מול הגרף החי של הברוקר לפני ביצוע. אתה מבצע ידנית. סטופ-לוס תמיד.';
+$('#wallet').addEventListener('input',renderAll); $('#risk').addEventListener('input',renderAll);
+{const wm=$('#watermo'); if(wm)wm.addEventListener('input',renderWater);}
+try{const sk=localStorage.getItem('idan_fh');$('#fhkey').value=sk||DATA.finnhub_key||'';}catch(e){$('#fhkey').value=DATA.finnhub_key||'';}
+$('#fhkey').addEventListener('change',function(){try{localStorage.setItem('idan_fh',this.value.trim());}catch(e){}loadStocks();});
+$('#bellBtn').addEventListener('click',function(){try{if(window.Notification&&Notification.permission!=='granted')Notification.requestPermission();}catch(e){}beep(700);toast('🔔 התראות + צליל מופעלים ✓','var(--buy)');this.classList.add('on');this.textContent='🔔 פעיל';});
+renderAll();
+loadStocks(); if(!stockTimer)stockTimer=setInterval(loadStocks,60000);
+checkNewSignals();
+</script>
+</body></html>
