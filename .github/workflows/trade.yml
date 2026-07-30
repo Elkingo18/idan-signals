@@ -3,9 +3,10 @@ name: Idan Signals — auto paper trading
 on:
   schedule:
     # ---- times are UTC. Israel = UTC+3 (summer) / +2 (winter). US market = 13:30-20:00 UTC ----
-    - cron: '*/30 6-20 * * 1-5'    # every 30 min, Europe open -> US close (gold rides all day)
-    - cron: '5 21 * * 1-5'         # after the US close: settle the day, build the day-card
-    - cron: '0 1-5 * * 1-5'        # hourly overnight (Asia Globex) for gold
+    # off-peak minutes on purpose: GitHub DROPS schedules on busy marks like :00/:30
+    - cron: '13,43 6-20 * * 1-5'   # every 30 min, Europe open -> US close (gold rides all day)
+    - cron: '11 21 * * 1-5'        # after the US close: settle the day, build the day-card
+    - cron: '17 1-5 * * 1-5'       # hourly overnight (Asia Globex) for gold
   workflow_dispatch:                # "Run workflow" button — use this to test
 
 permissions:
