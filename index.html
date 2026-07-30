@@ -3,73 +3,66 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#05060f">
+<meta name="theme-color" content="#f6f2e9">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Idan Trader">
-<title>⚡ Idan Trader — פלטפורמת המסחר</title>
+<title>Idan Trader — חדר המסחר</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 <style>
 :root{
-  --bg:#05060f; --bg2:#0a0d1e; --panel:rgba(18,22,45,.72); --panel2:rgba(26,31,58,.6);
-  --line:rgba(120,140,255,.16); --txt:#e8ecff; --dim:#8b93bd;
-  --green:#22e6a1; --red:#ff4d6d; --gold:#ffc857; --cyan:#4dd8ff; --violet:#a06bff;
-  --glow:0 0 24px rgba(77,216,255,.28);
+  --bg:#f6f2e9; --bg2:#efe9db; --panel:#ffffff; --panel2:#f7f4ec;
+  --line:#e5dfd0; --txt:#232a3b; --dim:#7c8296;
+  --green:#0f9d63; --red:#d6405a; --gold:#a9760c; --cyan:#0e7fa8; --violet:#7454c9;
+  --glow:0 6px 18px rgba(35,42,59,.08);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);
   font-family:"Segoe UI",-apple-system,"Rubik",system-ui,sans-serif;overflow-x:hidden}
-#stars{position:fixed;inset:0;z-index:0;opacity:.8}
-.aurora{position:fixed;inset:-30% -10% auto -10%;height:70vh;z-index:0;pointer-events:none;
-  background:radial-gradient(50% 60% at 30% 0%,rgba(160,107,255,.20),transparent 70%),
-             radial-gradient(45% 55% at 75% 10%,rgba(77,216,255,.16),transparent 70%);
-  filter:blur(20px)}
 #app{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:10px 12px 96px}
 
 /* ---------- HUD ---------- */
-.hud{position:sticky;top:0;z-index:30;backdrop-filter:blur(14px);
-  background:linear-gradient(180deg,rgba(5,6,15,.94),rgba(5,6,15,.72));
+.hud{position:sticky;top:0;z-index:30;
+  background:rgba(255,255,255,.96);
   border:1px solid var(--line);border-radius:18px;padding:10px 12px;margin-bottom:12px;
-  box-shadow:0 8px 30px rgba(0,0,0,.5)}
+  box-shadow:0 4px 18px rgba(35,42,59,.07)}
 .hudTop{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .avatar{width:46px;height:46px;flex:0 0 46px;border-radius:14px;display:grid;place-items:center;
-  font-size:24px;background:linear-gradient(135deg,#1b2350,#2b1d55);
-  border:1px solid rgba(160,107,255,.5);box-shadow:0 0 18px rgba(160,107,255,.35)}
+  font-size:24px;background:#f1ecdf;border:1px solid var(--line)}
 .lvlName{font-weight:700;font-size:15px;line-height:1.15}
 .lvlSub{font-size:11px;color:var(--dim)}
 .eq{margin-inline-start:auto;text-align:left;direction:ltr}
 .eqBig{font-size:26px;font-weight:800;letter-spacing:-.5px;line-height:1}
 .eqSub{font-size:12px;color:var(--dim)}
-.xpWrap{margin-top:9px;height:9px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;position:relative}
-.xpBar{height:100%;border-radius:99px;background:linear-gradient(90deg,#4dd8ff,#a06bff,#ffc857);
-  box-shadow:0 0 14px rgba(160,107,255,.7);transition:width .9s cubic-bezier(.2,.9,.2,1)}
+.xpWrap{margin-top:9px;height:9px;border-radius:99px;background:#ece6d7;overflow:hidden;position:relative}
+.xpBar{height:100%;border-radius:99px;background:linear-gradient(90deg,#0e7fa8,#7454c9,#a9760c);
+  transition:width .9s cubic-bezier(.2,.9,.2,1)}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
 .chip{font-size:11.5px;padding:4px 9px;border-radius:99px;background:var(--panel2);
   border:1px solid var(--line);white-space:nowrap}
 .chip b{font-weight:700}
 .live{display:inline-block;width:7px;height:7px;border-radius:99px;background:var(--green);
-  box-shadow:0 0 8px var(--green);animation:pulse 1.6s infinite;margin-inline-end:5px}
-.live.off{background:#5a627f;box-shadow:none;animation:none}
+  box-shadow:0 0 6px rgba(15,157,99,.55);animation:pulse 1.6s infinite;margin-inline-end:5px}
+.live.off{background:#b9b2a0;box-shadow:none;animation:none}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
 /* ---------- nav ---------- */
 nav{position:fixed;bottom:0;right:0;left:0;z-index:40;display:flex;justify-content:center;
   padding:8px 8px calc(8px + env(safe-area-inset-bottom));
-  background:linear-gradient(0deg,rgba(5,6,15,.98),rgba(5,6,15,.6))}
-.navIn{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);
-  border-radius:18px;padding:5px;overflow-x:auto;max-width:100%;backdrop-filter:blur(12px)}
+  background:linear-gradient(0deg,rgba(246,242,233,.98),rgba(246,242,233,.55))}
+.navIn{display:flex;gap:4px;background:#fff;border:1px solid var(--line);
+  border-radius:18px;padding:5px;overflow-x:auto;max-width:100%;box-shadow:0 4px 16px rgba(35,42,59,.08)}
 .navIn::-webkit-scrollbar{display:none}
 .tab{border:0;background:transparent;color:var(--dim);font:inherit;font-size:10.5px;
   padding:7px 8px;border-radius:13px;cursor:pointer;display:grid;justify-items:center;gap:2px;
   min-width:50px;transition:.18s}
 .tab i{font-size:19px;font-style:normal;line-height:1}
-.tab.on{background:linear-gradient(135deg,rgba(77,216,255,.20),rgba(160,107,255,.20));
-  color:#fff;box-shadow:var(--glow)}
+.tab.on{background:#232a3b;color:#fff}
 .tab .dot{position:absolute;transform:translate(14px,-16px);width:7px;height:7px;border-radius:99px;background:var(--red)}
 
 /* ---------- cards ---------- */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px;
-  margin-bottom:12px;backdrop-filter:blur(10px)}
+  margin-bottom:12px;box-shadow:0 2px 10px rgba(35,42,59,.05)}
 .card h3{margin:0 0 10px;font-size:14px;letter-spacing:.2px;display:flex;align-items:center;gap:7px}
 .card h3 small{margin-inline-start:auto;font-weight:400;font-size:11px;color:var(--dim)}
 .grid{display:grid;gap:10px}
@@ -82,11 +75,11 @@ nav{position:fixed;bottom:0;right:0;left:0;z-index:40;display:flex;justify-conte
 .pos{color:var(--green)} .neg{color:var(--red)} .neu{color:var(--dim)}
 
 /* ---------- boss ---------- */
-.boss{background:linear-gradient(135deg,rgba(255,77,109,.13),rgba(160,107,255,.10));
-  border:1px solid rgba(255,77,109,.32)}
-.hp{height:15px;border-radius:99px;background:rgba(0,0,0,.45);overflow:hidden;border:1px solid rgba(255,255,255,.1)}
-.hpIn{height:100%;background:linear-gradient(90deg,#ff4d6d,#ffc857,#22e6a1);
-  transition:width 1.1s cubic-bezier(.2,.9,.2,1);box-shadow:0 0 14px rgba(255,200,87,.6)}
+.boss{background:linear-gradient(135deg,rgba(214,64,90,.07),rgba(116,84,201,.05));
+  border:1px solid rgba(214,64,90,.28)}
+.hp{height:15px;border-radius:99px;background:#ece6d7;overflow:hidden;border:1px solid var(--line)}
+.hpIn{height:100%;background:linear-gradient(90deg,#d6405a,#a9760c,#0f9d63);
+  transition:width 1.1s cubic-bezier(.2,.9,.2,1)}
 
 /* ---------- calendar ---------- */
 .calHead{display:flex;align-items:center;gap:8px;margin-bottom:10px}
@@ -96,16 +89,16 @@ nav{position:fixed;bottom:0;right:0;left:0;z-index:40;display:flex;justify-conte
 .dow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin-bottom:5px}
 .dow span{text-align:center;font-size:10.5px;color:var(--dim)}
 .cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
-.day{aspect-ratio:1;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);
+.day{aspect-ratio:1;border-radius:12px;border:1px solid var(--line);background:#fbf9f4;
   display:grid;place-content:center;gap:1px;cursor:pointer;position:relative;transition:.16s;padding:2px;overflow:hidden;min-width:0}
 .day:active{transform:scale(.93)}
 .day .n{font-size:12px;font-weight:700;opacity:.85}
 .day .p{font-size:9px;font-weight:700;direction:ltr;white-space:nowrap;max-width:100%;overflow:hidden}
-.day.green{background:linear-gradient(160deg,rgba(34,230,161,.30),rgba(34,230,161,.10));
-  border-color:rgba(34,230,161,.55);box-shadow:0 0 14px rgba(34,230,161,.20)}
-.day.red{background:linear-gradient(160deg,rgba(255,77,109,.30),rgba(255,77,109,.10));
-  border-color:rgba(255,77,109,.55);box-shadow:0 0 14px rgba(255,77,109,.18)}
-.day.flat{background:rgba(139,147,189,.14);border-color:rgba(139,147,189,.35)}
+.day.green{background:linear-gradient(160deg,rgba(15,157,99,.20),rgba(15,157,99,.06));
+  border-color:rgba(15,157,99,.5)}
+.day.red{background:linear-gradient(160deg,rgba(214,64,90,.18),rgba(214,64,90,.05));
+  border-color:rgba(214,64,90,.5)}
+.day.flat{background:rgba(124,130,150,.10);border-color:rgba(124,130,150,.28)}
 .day.future{opacity:.28;cursor:default}
 .day.today{outline:2px solid var(--cyan);outline-offset:1px}
 .day .fire{position:absolute;top:1px;left:3px;font-size:9px}
@@ -121,43 +114,43 @@ nav{position:fixed;bottom:0;right:0;left:0;z-index:40;display:flex;justify-conte
 .ring{width:40px;height:40px;flex:0 0 40px;border-radius:99px;display:grid;place-items:center;
   font-size:12px;font-weight:800;position:relative}
 .badgeK{font-size:9.5px;padding:2px 7px;border-radius:99px;border:1px solid var(--line);
-  background:rgba(255,255,255,.05);margin-inline-end:4px;display:inline-block}
-.prog{height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:6px;position:relative}
+  background:#f1ecdf;margin-inline-end:4px;display:inline-block}
+.prog{height:6px;border-radius:99px;background:#ece6d7;overflow:hidden;margin-top:6px;position:relative}
 .progIn{height:100%;background:linear-gradient(90deg,var(--red),var(--gold),var(--green))}
-.tick{position:absolute;top:-3px;width:2px;height:12px;background:#fff;opacity:.55}
+.tick{position:absolute;top:-3px;width:2px;height:12px;background:#232a3b;opacity:.4}
 
 /* ---------- badges ---------- */
 .badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:9px}
 .bg{border-radius:14px;padding:11px 7px;text-align:center;border:1px solid var(--line);
   background:var(--panel2);font-size:10.5px;line-height:1.35}
 .bg .ic{font-size:24px;display:block;margin-bottom:4px}
-.bg.locked{filter:grayscale(1);opacity:.32}
-.bg.got{border-color:rgba(255,200,87,.5);box-shadow:0 0 16px rgba(255,200,87,.18);
-  background:linear-gradient(160deg,rgba(255,200,87,.14),transparent)}
+.bg.locked{filter:grayscale(1);opacity:.38}
+.bg.got{border-color:rgba(169,118,12,.45);
+  background:linear-gradient(160deg,rgba(169,118,12,.10),transparent)}
 
 /* ---------- quests ---------- */
 .q{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:12px;
   background:var(--panel2);border:1px solid var(--line);margin-bottom:7px;font-size:12.5px}
 .q .box{width:19px;height:19px;border-radius:6px;border:1.5px solid var(--line);display:grid;place-items:center;font-size:12px}
-.q.done .box{background:var(--green);border-color:var(--green);color:#03251a}
+.q.done .box{background:var(--green);border-color:var(--green);color:#fff}
 .q.done{opacity:.62}
 .q .xp{margin-inline-start:auto;font-size:10.5px;color:var(--gold)}
 
-/* ---------- modal ---------- */
-.mask{position:fixed;inset:0;z-index:60;background:rgba(3,4,10,.78);backdrop-filter:blur(7px);
-  display:none;align-items:flex-end;justify-content:center}
+/* ---------- modal — opens CENTERED (Idan's request) ---------- */
+.mask{position:fixed;inset:0;z-index:60;background:rgba(35,42,59,.45);backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;padding:18px}
 .mask.on{display:flex}
-.sheet{width:100%;max-width:600px;max-height:88vh;overflow:auto;background:#0b0f22;
-  border:1px solid var(--line);border-radius:22px 22px 0 0;padding:16px 16px 26px;
-  animation:up .28s cubic-bezier(.2,.9,.2,1)}
-@keyframes up{from{transform:translateY(30px);opacity:.4}}
+.sheet{width:100%;max-width:600px;max-height:82vh;overflow:auto;background:#fff;
+  border:1px solid var(--line);border-radius:22px;padding:16px 16px 22px;
+  box-shadow:0 18px 60px rgba(35,42,59,.25);animation:up .24s cubic-bezier(.2,.9,.2,1)}
+@keyframes up{from{transform:translateY(14px) scale(.98);opacity:.4}}
 .sheet h4{margin:0 0 4px;font-size:17px}
 .xBtn{position:absolute;top:10px;left:12px;background:var(--panel2);border:1px solid var(--line);
   color:var(--txt);border-radius:10px;width:32px;height:32px;font-size:16px;cursor:pointer}
-.warn{background:rgba(255,200,87,.09);border:1px solid rgba(255,200,87,.34);border-radius:14px;
+.warn{background:rgba(169,118,12,.07);border:1px solid rgba(169,118,12,.3);border-radius:14px;
   padding:11px;font-size:12.5px;line-height:1.65}
-.bad{background:rgba(255,77,109,.09);border-color:rgba(255,77,109,.34)}
-.ok{background:rgba(34,230,161,.09);border-color:rgba(34,230,161,.34)}
+.bad{background:rgba(214,64,90,.06);border-color:rgba(214,64,90,.3)}
+.ok{background:rgba(15,157,99,.06);border-color:rgba(15,157,99,.3)}
 .hidden{display:none!important}
 canvas.spark{width:100%;height:74px;display:block}
 a{color:var(--cyan)}
@@ -166,27 +159,33 @@ a{color:var(--cyan)}
   section[data-v]{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
   section[data-v] .card{margin-bottom:0}
   section[data-v="cal"]{grid-template-columns:1.4fr 1fr}
-  nav{bottom:auto;top:0;left:0;right:0;background:linear-gradient(180deg,rgba(5,6,15,.95),rgba(5,6,15,0));padding:10px 0}
+  nav{bottom:auto;top:0;left:0;right:0;background:linear-gradient(180deg,rgba(246,242,233,.96),rgba(246,242,233,0));padding:10px 0}
   .hud{position:static;margin-top:0}
-  .navIn{box-shadow:0 8px 30px rgba(0,0,0,.5)}
+  .navIn{box-shadow:0 6px 22px rgba(35,42,59,.10)}
   .tab{min-width:74px;font-size:11.5px}
 }
 .mini{font-size:11px;color:var(--dim);line-height:1.6}
 .tglRow{display:flex;align-items:center;gap:9px;font-size:12.5px;padding:7px 0}
-.sw{width:40px;height:22px;border-radius:99px;background:rgba(255,255,255,.12);position:relative;cursor:pointer;flex:0 0 40px}
+.sw{width:40px;height:22px;border-radius:99px;background:#d9d2c0;position:relative;cursor:pointer;flex:0 0 40px}
 .sw b{position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:99px;background:#fff;transition:.2s}
 .sw.on{background:var(--green)} .sw.on b{right:20px}
 .lvlup{position:fixed;inset:0;z-index:80;display:none;place-items:center;pointer-events:none}
 .lvlup.on{display:grid}
 .lvlup div{font-size:34px;font-weight:900;text-align:center;
-  background:linear-gradient(90deg,#4dd8ff,#ffc857,#a06bff);-webkit-background-clip:text;
+  background:linear-gradient(90deg,#0e7fa8,#a9760c,#7454c9);-webkit-background-clip:text;
   -webkit-text-fill-color:transparent;animation:pop 2.4s ease forwards}
 @keyframes pop{0%{transform:scale(.5);opacity:0}18%{transform:scale(1.1);opacity:1}80%{opacity:1}100%{opacity:0;transform:scale(1)}}
+#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:90;background:#232a3b;
+  color:#fff;padding:10px 18px;border-radius:99px;font-size:13px;opacity:0;pointer-events:none;
+  transition:opacity .25s;box-shadow:0 8px 24px rgba(35,42,59,.3);white-space:nowrap}
+#toast.on{opacity:1}
+.wlHead{margin:12px 0 6px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px}
+.wlHead .cnt{font-weight:400;font-size:11px;color:var(--dim)}
 </style>
 </head>
 <body>
-<canvas id="stars"></canvas><div class="aurora"></div>
 <div class="lvlup" id="lvlup"><div></div></div>
+<div id="toast"></div>
 
 <div id="app">
   <!-- HUD -->
@@ -293,16 +292,32 @@ a{color:var(--cyan)}
   <!-- ============ SIGNALS ============ -->
   <section data-v="sig" class="hidden">
     <div class="card"><h3>📡 איתותים חיים <small id="sigWhen"></small></h3>
-      <div class="mini" style="margin-bottom:9px">האיתותים מגיעים מהמנוע שרץ לבד. <b>👁 במעקב</b> = הסוכן רואה תבנית מתהווה אבל עדיין אין טריגר כניסה — <b>לא נפתחת עסקה</b> עד שכל התנאים מתקיימים. זה מגן עליך מכניסות חלשות.</div>
+      <div class="mini" style="margin-bottom:9px">👁 במעקב = עוד אין כניסה. 📋 מעתיק פקודה מוכנה להדבקה. ההסבר המלא — במסך המדריך.</div>
       <div id="sigList"></div>
     </div>
+    <div class="card"><h3>🏦 אינטראקטיב ברוקרס — דמו</h3>
+      <div class="mini">כשיש איתות כניסה או מכירה פעיל, הדוח היומי (17:00) יוצר <b>טיוטת פקודה מוכנה</b> בחשבון הדמו — נשאר רק אישור אחד באפליקציה של אינטראקטיב. בנוסף, כפתור 📋 שליד כל איתות מעתיק את הפקודה המלאה (כניסה, סטופ, יעדים, כמות) להדבקה ידנית. תקרה קבועה: 350$ לפוזיציה, דמו בלבד.</div>
+    </div>
     <div class="card"><h3>🚫 מה נחסם ולמה</h3><div id="rejList" class="mini"></div></div>
+  </section>
+
+  <!-- ============ WATCHLISTS ============ -->
+  <section data-v="lists" class="hidden">
+    <div class="card"><h3>📋 הרשימות שלי <small>מתעדכן לבד כל סריקה</small></h3>
+      <div class="mini" style="margin-bottom:4px">כל מניה זזה לבד בין הרשימות לפי השלב שלה: מעקב ← לקראת פריצה ← איתות ← פוזיציה ← נסגרה.</div>
+      <div class="wlHead">🎯 איתות עכשיו <span class="cnt" id="cWlSig"></span></div><div id="wlSignal"></div>
+      <div class="wlHead">👁 לקראת פריצה <span class="cnt" id="cWlWatch"></span></div><div id="wlWatch"></div>
+      <div class="wlHead">💼 בפוזיציה <span class="cnt" id="cWlPos"></span></div><div id="wlPos"></div>
+      <div class="wlHead">✅ נסגרו לאחרונה</div><div id="wlClosed"></div>
+    </div>
+    <div class="card"><h3>🔍 מעקב יומי <small>20 הנזילות לדיי-טרייד</small></h3><div id="wlDay"></div></div>
+    <div class="card"><h3>🎓 הרשימות של עידו <small>מהשיעור · לצפייה, לא למסחר אוטומטי</small></h3><div id="wlIdo"></div></div>
   </section>
 
   <!-- ============ POSITIONS ============ -->
   <section data-v="pos" class="hidden">
     <div class="card"><h3>💼 פוזיציות פתוחות <small id="posCount"></small></h3>
-      <div class="mini" style="margin-bottom:9px">הפוזיציות כאן = הארנק האוטומטי (המראה של UHTA). בטריידינגויו עצמו יופיעו רק עסקאות שתפתח שם ידנית — לחשבון הנייר של TV אין דרך לקבל פקודות מבחוץ.</div>
+      <div class="mini" style="margin-bottom:9px">הארנק האוטומטי (מראה UHTA). היציאות מנוהלות לבד: חצי ביעד 1 ← סטופ לביטחון ← השאר ליעד 2.</div>
       <div id="posList"></div></div>
     <div class="card"><h3>📕 עסקאות שנסגרו</h3><div id="closedList"></div></div>
   </section>
@@ -312,8 +327,10 @@ a{color:var(--cyan)}
     <div class="card"><h3>📒 יומן המסחר <small id="jrnCount"></small>
       </h3>
       <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-        <button class="xBtn" style="position:static;width:auto;padding:8px 13px" onclick="jrnCSV()">⬇️ הורד CSV (לעידו טמין)</button>
-        <span class="mini" style="align-self:center">כל עסקה עם התמונה המלאה של רגע הכניסה. לחיצה על שורה פותחת גרף.</span>
+        <button class="xBtn" style="position:static;width:auto;padding:8px 13px" onclick="jrnCSV()">⬇️ CSV</button>
+        <button class="xBtn" style="position:static;width:auto;padding:8px 13px" onclick="mailReport()">📧 שלח דוח במייל</button>
+        <button class="xBtn" style="position:static;width:auto;padding:8px 13px" onclick="copyReport()">📄 העתק דוח</button>
+        <span class="mini" style="align-self:center">לחיצה על שורה פותחת גרף.</span>
       </div>
       <div id="jrnList"></div>
     </div>
@@ -322,12 +339,46 @@ a{color:var(--cyan)}
   <!-- ============ MARKET / UNIVERSE ============ -->
   <section data-v="mkt" class="hidden">
     <div class="card"><h3>🌐 היוניברס שלי <small id="uniCount"></small></h3>
-      <div class="mini" style="margin-bottom:10px">כל המניות שהסוכנים שלך מנטרים. לחיצה על כל שורה פותחת את הגרף ב-TradingView. 🟢 = איתות פעיל · 👁 = קרוב לאיתות · ⚪ = שקט.</div>
+      <div class="mini" style="margin-bottom:10px">🟢 איתות · 👁 קרוב · ⚪ שקט. לחיצה = גרף.</div>
       <div id="uniList"></div>
     </div>
     <div class="card"><h3>💎 פרימיום — מעקב ארוך-טווח <small>לא נסחר אוטומטית</small></h3>
-      <div class="mini" style="margin-bottom:10px">מניות מעל $20 לשלב הצבירה (מ-$5,000). לחיצה פותחת גרף.</div>
       <div id="premList"></div>
+    </div>
+  </section>
+
+  <!-- ============ GUIDE ============ -->
+  <section data-v="guide" class="hidden">
+    <div class="card"><h3>❓ מה כל מסך עושה</h3><div class="mini" style="line-height:1.9">
+      <b>🎮 מצב</b> — התמונה הכללית: הבוס היומי, עקומת ההון, הסוכנים, מפסק החירום והשומר.<br>
+      <b>📅 לוח שנה</b> — כל יום ירוק/אדום לפי הרווח שמומש בו. לחיצה על יום פותחת את כל מה שקרה בו.<br>
+      <b>📡 איתותים</b> — מה המנוע רואה עכשיו. 📋 מעתיק פקודה מוכנה, 📈 פותח גרף.<br>
+      <b>📋 רשימות</b> — המסלול של כל מניה: מעקב ← לקראת פריצה ← איתות ← פוזיציה ← נסגרה. הכל זז לבד.<br>
+      <b>💼 פוזיציות</b> — מה פתוח עכשיו, איפה הסטופ והיעדים, וכמה זה עושה.<br>
+      <b>📒 יומן</b> — כל עסקה שנסגרה עם התמונה המלאה. אפשר להוריד, להעתיק או לשלוח במייל.<br>
+      <b>🌐 השוק שלי</b> — כל היוניברס לפי סקטורים + רשימת הפרימיום.<br>
+      <b>🏆 הישגים / 📊 נתונים</b> — הדרגות, התגים, והסטטיסטיקה האמיתית אחרי עמלות.<br>
+      <b>⚠️ אמת</b> — מה באמת אוטומטי, מה לא, ומה הביקורת מצאה. לקרוא לפני שמפקידים שקל.</div>
+    </div>
+    <div class="card"><h3>📖 מילון קצר</h3><div class="mini" style="line-height:1.9">
+      <b>R</b> — יחידת הסיכון של העסקה. סיכנת 20$? אז ‎+2R = רווח 40$.<br>
+      <b>סטופ</b> — המחיר שבו יוצאים אוטומטית כדי לא להפסיד יותר מהמתוכנן.<br>
+      <b>T1 / T2</b> — יעד ראשון (חצי נמכר, הסטופ עולה לביטחון) ויעד שני (השאר).<br>
+      <b>heat</b> — כמה מההון בסיכון בכל הפוזיציות יחד. התקרה: 14%.<br>
+      <b>RVOL</b> — ווליום ביחס לממוצע. ‎×2 = נפח כפול מהרגיל.<br>
+      <b>VWAP</b> — המחיר הממוצע המשוקלל של היום. מעליו = הקונים שולטים.<br>
+      <b>👁 במעקב</b> — תבנית מתהווה, עדיין אין טריגר. לא נפתחת עסקה עד שהכל מתקיים.</div>
+    </div>
+    <div class="card"><h3>🏦 איך עובד החיבור לאינטראקטיב</h3><div class="mini" style="line-height:1.9">
+      1. המנוע מוצא איתות כניסה או מכירה.<br>
+      2. הדוח היומי יוצר <b>טיוטת פקודה מוכנה</b> בחשבון הדמו — עם כמות, סטופ ויעדים, מוגבלת ל-350$.<br>
+      3. נשאר לך אישור אחד באפליקציה — וזהו.<br>
+      4. במקביל, אותו איתות בדיוק נסחר אוטומטית בארנק הפנימי — אז גם אם לא אישרת, המערכת ממשיכה לבד והמסך משקף הכל.<br>
+      <b>למה צריך אישור?</b> ביצוע ישיר בחשבון ברוקר בלי אישור בעלים — אסור ולא בטוח. האישור היחיד הזה הוא ההגנה שלך.</div>
+    </div>
+    <div class="card"><h3>🛑 מפסק החירום</h3><div class="mini" style="line-height:1.9">
+      הכפתור האדום במסך המצב פותח את דף העצירה — לחיצה על כפתור ההרצה שם עוצרת את המערכת תוך דקה.
+      אפשר לבחור: רק להפסיק פתיחות חדשות, או גם לסגור את כל הפוזיציות מיד. כפתור ▶️ מחזיר הכל לחיים.</div>
     </div>
   </section>
 
@@ -381,7 +432,7 @@ function tvUrl(tk,kind){
 function openTV(tk,kind){ window.open(tvUrl(tk,kind),"_blank"); beep(760,.05); }
 
 const TABS=[["home","🎮","מצב"],["cal","📅","לוח שנה"],["sig","📡","איתותים"],
-            ["pos","💼","פוזיציות"],["jrn","📒","יומן"],["mkt","🌐","השוק שלי"],["ach","🏆","הישגים"],["stats","📊","נתונים"],["truth","⚠️","אמת"]];
+            ["lists","📋","רשימות"],["pos","💼","פוזיציות"],["jrn","📒","יומן"],["mkt","🌐","השוק שלי"],["ach","🏆","הישגים"],["stats","📊","נתונים"],["guide","❓","מדריך"],["truth","⚠️","אמת"]];
 $("#nav").innerHTML=TABS.map(([k,i,t],x)=>
   `<button class="tab${x?"":" on"}" data-t="${k}"><i>${i}</i>${t}</button>`).join("");
 $$(".tab").forEach(b=>b.onclick=()=>{
@@ -389,17 +440,6 @@ $$(".tab").forEach(b=>b.onclick=()=>{
   $$("section").forEach(s=>s.classList.toggle("hidden", s.dataset.v!==b.dataset.t));
   window.scrollTo({top:0,behavior:"smooth"}); beep(660,.04);
 });
-
-/* ---------- starfield ---------- */
-(function(){const c=$("#stars"),x=c.getContext("2d");let st=[],w,h;
- function rs(){w=c.width=innerWidth;h=c.height=innerHeight;
-   st=[...Array(Math.min(150,Math.round(w*h/9000)))].map(()=>({
-     x:Math.random()*w,y:Math.random()*h,z:Math.random()*.9+.1,s:Math.random()*1.3+.2}));}
- rs();addEventListener("resize",rs);
- (function loop(){x.clearRect(0,0,w,h);
-   st.forEach(p=>{if(ANIM){p.y+=p.z*.16;if(p.y>h)p.y=0;}
-     x.globalAlpha=.25+p.z*.65;x.fillStyle=p.z>.75?"#bcd4ff":"#7f8ab8";
-     x.fillRect(p.x,p.y,p.s,p.s);});requestAnimationFrame(loop);})();})();
 
 /* ---------- sound ---------- */
 let AC=null;
@@ -487,7 +527,7 @@ function renderRest(){
   renderQuests(g.quests||[]); renderGov(); renderLog();
   CAL=S.calendar||{}; drawCal(); renderStreaks();
   renderSignals(); renderPositions(); renderBadges(g.badges||[]);
-  renderAgents(); renderMarket(); renderJournal();
+  renderAgents(); renderMarket(); renderLists(); renderJournal();
   renderStats(); renderTruth(); renderPeriods(per,w);
   const lastLv=+(localStorage.getItem("idan_lv")||0);
   if((g.level||1)>lastLv&&lastLv>0){levelUp(g);} localStorage.setItem("idan_lv",g.level||1);
@@ -519,16 +559,16 @@ function renderCurve(){
   const v=d.map(p=>+p[1]),mn=Math.min(...v),mx=Math.max(...v),pad=14,rng=(mx-mn)||1;
   const X=i=>pad+i*(W-pad*2)/(d.length-1), Y=q=>H-pad-((q-mn)/rng)*(H-pad*2);
   const st=+(S.wallet||{}).start||1000;
-  x.strokeStyle="rgba(139,147,189,.35)";x.setLineDash([5,5]);x.beginPath();
+  x.strokeStyle="rgba(124,130,150,.4)";x.setLineDash([5,5]);x.beginPath();
   x.moveTo(pad,Y(st));x.lineTo(W-pad,Y(st));x.stroke();x.setLineDash([]);
   const grd=x.createLinearGradient(0,0,0,H);
-  grd.addColorStop(0,v[v.length-1]>=st?"rgba(34,230,161,.42)":"rgba(255,77,109,.42)");
-  grd.addColorStop(1,"rgba(0,0,0,0)");
+  grd.addColorStop(0,v[v.length-1]>=st?"rgba(15,157,99,.22)":"rgba(214,64,90,.22)");
+  grd.addColorStop(1,"rgba(255,255,255,0)");
   x.beginPath();x.moveTo(X(0),Y(v[0]));v.forEach((q,i)=>x.lineTo(X(i),Y(q)));
   x.lineTo(X(v.length-1),H);x.lineTo(X(0),H);x.closePath();x.fillStyle=grd;x.fill();
   x.beginPath();x.moveTo(X(0),Y(v[0]));v.forEach((q,i)=>x.lineTo(X(i),Y(q)));
-  x.lineWidth=3;x.strokeStyle=v[v.length-1]>=st?"#22e6a1":"#ff4d6d";x.stroke();
-  x.beginPath();x.arc(X(v.length-1),Y(v[v.length-1]),6,0,7);x.fillStyle="#fff";x.fill();
+  x.lineWidth=3;x.strokeStyle=v[v.length-1]>=st?"#0f9d63":"#d6405a";x.stroke();
+  x.beginPath();x.arc(X(v.length-1),Y(v[v.length-1]),6,0,7);x.fillStyle="#232a3b";x.fill();
   $("#curveSub").textContent=`${d.length} ימים · ${fmt(mn)} – ${fmt(mx)}`;
 }
 
@@ -681,9 +721,9 @@ function renderStreaks(){
 
 /* ---------- signals ---------- */
 function ringHTML(sc){
-  const col=sc>=70?"#22e6a1":sc>=50?"#ffc857":"#ff4d6d";
-  return `<div class="ring" style="background:conic-gradient(${col} ${sc*3.6}deg,rgba(255,255,255,.07) 0);
-    color:${col}"><span style="background:#0b0f22;width:31px;height:31px;border-radius:99px;
+  const col=sc>=70?"#0f9d63":sc>=50?"#a9760c":"#d6405a";
+  return `<div class="ring" style="background:conic-gradient(${col} ${sc*3.6}deg,#e9e3d4 0);
+    color:${col}"><span style="background:#fff;width:31px;height:31px;border-radius:99px;
     display:grid;place-items:center">${sc}</span></div>`;
 }
 function renderSignals(){
@@ -710,6 +750,7 @@ function renderSignals(){
         ${x.rejects&&x.rejects.length?`<div class="mini" style="color:var(--gold)">⛔ ${x.rejects.join(", ")}</div>`:""}
       </div>
       <button class="xBtn" style="position:static;width:auto;padding:0 9px" onclick="openTV('${x.ticker}','${x.kind}')">📈</button>
+      <button class="xBtn" style="position:static;width:auto;padding:0 9px" title="העתק פקודה" onclick='copyOrder(${JSON.stringify(x).replace(/'/g,"&#39;")})'>📋</button>
       <button class="xBtn" style="position:static;width:auto;padding:0 9px" onclick='sigInfo(${JSON.stringify(x).replace(/'/g,"&#39;")})'>ⓘ</button>
     </div>`;}).join(""):`<div class="mini">אין איתותים כרגע. זה נורמלי — המערכת מחכה למצב שמקיים את כל התנאים, ולא מתפשרת.</div>`;
   const rj=S.rejected||[];
@@ -746,8 +787,8 @@ function renderPositions(){
   const p=S.positions||[];
   $("#posCount").textContent=p.length?`${p.length} · ריווח פתוח ${sgn((S.wallet||{}).open_pnl||0)}`:"";
   $("#posList").innerHTML=p.length?p.map(o=>{
-    const sgn=o.side==="short"?-1:1;
-    const pl=(o.last-o.entry)*o.qty_left*sgn,
+    const dirn=o.side==="short"?-1:1;
+    const pl=(o.last-o.entry)*o.qty_left*dirn,
           lo=Math.min(o.stop,o.entry,o.t2,o.last), hi=Math.max(o.stop,o.entry,o.t2,o.last);
     const at=Math.max(0,Math.min(100,100*(o.last-lo)/((hi-lo)||1)));
     const tk=q=>`<div class="tick" style="right:${Math.max(0,Math.min(100,100*(q-lo)/((hi-lo)||1)))}%"></div>`;
@@ -844,6 +885,74 @@ function renderMarket(){
       <span style="color:var(--cyan)">📈</span></div>`).join("");
 }
 
+/* ---------- watchlists (everything moves by itself between stages) ---------- */
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");
+  clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),1900);}
+function orderTxt(x){
+  const side=(x.state==="SELL_NOW"||x.side==="short")?"SELL":"BUY";
+  const qty=x.kind==="gold"?((x.ounces||x.shares||"")+" oz"):((x.shares||"")+" sh");
+  return `${side} ${x.ticker} ${qty} @ ${x.entry} | SL ${x.stop} | TP1 ${x.t1} | TP2 ${x.t2}`;}
+function copyOrder(x){
+  navigator.clipboard.writeText(orderTxt(x)).then(()=>toast("📋 הפקודה הועתקה — הדבק באינטראקטיב"))
+    .catch(()=>toast(orderTxt(x))); beep(820,.06);}
+function wlRow(tk,mid,val,click){
+  return `<div class="row" style="cursor:pointer;padding:7px 10px" onclick="${click}">
+    <span class="tk" style="min-width:56px">${tk}</span>
+    <div class="mid" dir="ltr">${mid}</div>
+    <div class="val" style="font-size:11.5px">${val||""}</div></div>`;}
+function wlMet(x){return `${x.px!=null?"$"+x.px:"—"}${x.trend!=null?` · ${x.trend>0?"+":""}${x.trend}% MA50`:""}${x.rsi?` · RSI ${x.rsi}`:""}${x.rvol?` · ×${x.rvol}`:""}`;}
+function renderLists(){
+  const u=S.universe_view||[], sg=S.signals||{};
+  const allS=[...(sg.swing||[]),...(sg.gold||[]),...(sg.day||[])];
+  const act=allS.filter(x=>x.state==="BUY_NOW"||x.state==="SELL_NOW");
+  const watchS=new Set(allS.filter(x=>(x.state||"").startsWith("WATCH")).map(x=>x.ticker));
+  const watch=u.filter(x=>x.state==="watch"||watchS.has(x.t));
+  const dayf=u.filter(x=>x.df&&x.sec!=="premium");
+  const pos=S.positions||[], closed=(S.closed||[]).slice(0,8);
+  $("#cWlSig").textContent=act.length?act.length:""; $("#cWlWatch").textContent=watch.length?watch.length:"";
+  $("#cWlPos").textContent=pos.length?pos.length:"";
+  $("#wlSignal").innerHTML=act.length?act.map(x=>wlRow(x.ticker,
+    `${x.entry} · SL ${x.stop} · T1 ${x.t1} · T2 ${x.t2}`,
+    x.state==="SELL_NOW"?`<span class="neg">מכירה ▼</span>`:`<span class="pos">קנייה ▲</span>`,
+    `openTV('${x.ticker}','${x.kind}')`)).join(""):`<div class="mini">אין איתות פעיל כרגע — המערכת מחכה לתנאים מלאים.</div>`;
+  $("#wlWatch").innerHTML=watch.length?watch.map(x=>wlRow(x.t,wlMet(x),"👁",`openTV('${x.t}')`)).join(""):`<div class="mini">אין מניות על סף פריצה כרגע.</div>`;
+  $("#wlPos").innerHTML=pos.length?pos.map(o=>wlRow(o.ticker,
+    `${o.entry} → ${o.last} · SL ${o.stop}`,
+    `<span class="${cls((o.last-o.entry)*(o.side==="short"?-1:1))}">${o.half_done?"אחרי יעד 1":"פתוחה"}</span>`,
+    `openTV('${o.ticker}','${o.kind}')`)).join(""):`<div class="mini">אין פוזיציות פתוחות.</div>`;
+  $("#wlClosed").innerHTML=closed.length?closed.map(t=>wlRow(t.ticker,
+    `${t.day} · ${t.entry} → ${t.exit}`,
+    `<span class="${cls(t.pnl)}">${sgn(t.pnl)}</span>`,
+    `openTV('${t.ticker}','${t.kind}')`)).join(""):`<div class="mini">עוד לא נסגרו עסקאות.</div>`;
+  $("#wlDay").innerHTML=dayf.length?dayf.map(x=>{
+    const dot=x.state==="signal"?"🟢":x.state==="watch"?"👁":"⚪";
+    return wlRow(x.t,wlMet(x),dot,`openTV('${x.t}','day')`);}).join(""):`<div class="mini">הרשימה תופיע אחרי הסריקה הבאה.</div>`;
+  const iv=S.ido_view||[], byList={};
+  iv.forEach(x=>{(byList[x.list]=byList[x.list]||[]).push(x)});
+  $("#wlIdo").innerHTML=Object.keys(byList).length?Object.entries(byList).map(([name,arr])=>{
+    const byG={}; arr.forEach(x=>{(byG[x.grp]=byG[x.grp]||[]).push(x)});
+    return `<div class="wlHead">${name==="מעניינות"?"⭐":"🚀"} ${name} <span class="cnt">${arr.length}</span></div>`+
+      Object.keys(byG).sort().map(g=>`<div class="mini" style="margin:4px 0" dir="ltr">${g}</div>`+
+        byG[g].map(x=>wlRow(x.t,wlMet(x),x.near?"👁 קרוב לפריצה":"",`openTV('${x.t}')`)).join("")).join("");
+  }).join(""):`<div class="mini">הרשימות של עידו יופיעו אחרי הסריקה הבאה של המנוע.</div>`;
+}
+/* ---------- report share ---------- */
+function reportText(){
+  const w=S.wallet||{},p=S.periods||{},s=S.stats||{};
+  const pos=(S.positions||[]).map(o=>` • ${o.ticker} ${o.side==="short"?"שורט":"לונג"} · כניסה ${o.entry} · עכשיו ${o.last} · סטופ ${o.stop}`).join("\n")||" • אין";
+  const last=(S.closed||[]).slice(0,6).map(t=>` • ${t.day} ${t.ticker} ${t.entry}→${t.exit} ${t.pnl>0?"+":""}${t.pnl}$ (${t.r>0?"+":""}${t.r}R)`).join("\n")||" • אין";
+  return `דוח מסחר — Idan Trader (${S.updated_israel||""})\n`+
+    `ארנק ${w.name||"UHTA"}: ${fmt(w.equity)} (${(w.return_pct>0?"+":"")+(w.return_pct||0).toFixed(2)}% מתחילת הדרך)\n`+
+    `היום: ${sgn(p.day||0)} · שבוע: ${sgn(p.week||0)} · חודש: ${sgn(p.month||0)}\n`+
+    `סטטיסטיקה: ${s.trades||0} עסקאות · ${s.win_rate||0}% הצלחה · PF ${s.pf??"—"} · תוחלת ${sgn(s.expectancy||0)}\n\n`+
+    `פוזיציות פתוחות:\n${pos}\n\nעסקאות אחרונות:\n${last}\n\n`+
+    `נוצר אוטומטית · https://elkingo18.github.io/idan-signals/`;}
+function mailReport(){
+  location.href="mailto:?subject="+encodeURIComponent("דוח מסחר — Idan Trader")+
+    "&body="+encodeURIComponent(reportText()); beep(700,.05);}
+function copyReport(){
+  navigator.clipboard.writeText(reportText()).then(()=>toast("📄 הדוח הועתק")).catch(()=>{});beep(700,.05);}
+
 /* ---------- badges / levels ---------- */
 function renderBadges(b){
   const got=b.filter(x=>x.earned).length;
@@ -928,9 +1037,9 @@ SOUND=!!localStorage.getItem("idan_snd"); ANIM=localStorage.getItem("idan_anim")
 $("#swSound").classList.toggle("on",SOUND); $("#swAnim").classList.toggle("on",ANIM);
 
 /* ---------- demo state so the screen is never empty ---------- */
-const DEMO={version:"3.0",updated_israel:"—",market:{open:false},risk_pct:.04,
+const DEMO={version:"4.0",updated_israel:"—",market:{open:false},risk_pct:.04,
  wallet:{start:1000,cash:1000,equity:1000,realized_pnl:0,open_pnl:0,peak_equity:1000,max_dd_pct:0,return_pct:0},
- positions:[],closed:[],signals:{swing:[],day:[],gold:[]},calendar:{},equity_curve:[],
+ positions:[],closed:[],signals:{swing:[],day:[],gold:[]},calendar:{},equity_curve:[],ido_view:[],universe_view:[],
  periods:{day:0,week:0,month:0,quarter:0,half:0,year:0,all:0},
  stats:{trades:0,win_rate:0,pf:null,avg_r:0,expectancy:0,best:0,worst:0},
  halts:{daily_stop_hit:false,weekly_stop_hit:false,day_pnl:0,week_pnl:0,daily_limit:-60,weekly_limit:-120},
