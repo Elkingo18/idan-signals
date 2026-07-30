@@ -305,6 +305,18 @@ a{color:var(--cyan)}
     <div class="card"><h3>📕 עסקאות שנסגרו</h3><div id="closedList"></div></div>
   </section>
 
+  <!-- ============ JOURNAL ============ -->
+  <section data-v="jrn" class="hidden">
+    <div class="card"><h3>📒 יומן המסחר <small id="jrnCount"></small>
+      </h3>
+      <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <button class="xBtn" style="position:static;width:auto;padding:8px 13px" onclick="jrnCSV()">⬇️ הורד CSV (לעידו טמין)</button>
+        <span class="mini" style="align-self:center">כל עסקה עם התמונה המלאה של רגע הכניסה. לחיצה על שורה פותחת גרף.</span>
+      </div>
+      <div id="jrnList"></div>
+    </div>
+  </section>
+
   <!-- ============ MARKET / UNIVERSE ============ -->
   <section data-v="mkt" class="hidden">
     <div class="card"><h3>🌐 היוניברס שלי <small id="uniCount"></small></h3>
@@ -367,7 +379,7 @@ function tvUrl(tk,kind){
 function openTV(tk,kind){ window.open(tvUrl(tk,kind),"_blank"); beep(760,.05); }
 
 const TABS=[["home","🎮","מצב"],["cal","📅","לוח שנה"],["sig","📡","איתותים"],
-            ["pos","💼","פוזיציות"],["mkt","🌐","השוק שלי"],["ach","🏆","הישגים"],["stats","📊","נתונים"],["truth","⚠️","אמת"]];
+            ["pos","💼","פוזיציות"],["jrn","📒","יומן"],["mkt","🌐","השוק שלי"],["ach","🏆","הישגים"],["stats","📊","נתונים"],["truth","⚠️","אמת"]];
 $("#nav").innerHTML=TABS.map(([k,i,t],x)=>
   `<button class="tab${x?"":" on"}" data-t="${k}"><i>${i}</i>${t}</button>`).join("");
 $$(".tab").forEach(b=>b.onclick=()=>{
@@ -422,7 +434,7 @@ async function load(){
            if(r.ok){ j=await r.json(); break; } }catch(_){}
     }
     if(!j) throw 0;
-    S=j; render(); localStorage.setItem("idan_cache",JSON.stringify(S));
+    S=j; clearBanner(); render(); localStorage.setItem("idan_cache",JSON.stringify(S));
   }catch(e){
     const c=localStorage.getItem("idan_cache");
     if(c){S=JSON.parse(c);render();banner("מציג נתונים מהזיכרון המקומי — לא הצלחתי להתחבר לקובץ המצב.");}
@@ -430,9 +442,12 @@ async function load(){
   }
 }
 function banner(t){
-  const d=document.createElement("div");d.className="card warn";d.style.margin="0 0 12px";
-  d.innerHTML="ℹ️ "+t;$("#app").insertBefore(d,$(".hud").nextSibling);
+  let d=document.getElementById("warnbar");
+  if(!d){d=document.createElement("div");d.id="warnbar";d.className="card warn";
+    d.style.margin="0 0 12px";$("#app").insertBefore(d,$(".hud").nextSibling);}
+  d.innerHTML="ℹ️ "+t;
 }
+function clearBanner(){const d=document.getElementById("warnbar");if(d)d.remove();}
 
 /* ---------- render ---------- */
 function render(){
@@ -441,11 +456,18 @@ function render(){
   $("#lvlName").textContent=`דרגה ${g.level||1} · ${(g.level_name||"").replace(/^\S+\s/,"")}`;
   $("#lvlSub").textContent=`${g.xp||0} XP${g.xp_next_level?` · עוד ${Math.max(0,(g.xp_next_level||0)-(g.xp_this_level||0))} לדרגה הבאה`:""}`;
   $("#eqBig").textContent=fmt(w.equity); $("#eqBig").className="eqBig "+cls((w.equity||0)-(w.start||1000));
-  $("#eqSub").innerHTML=`מתוך ${fmt(w.start)} · <span class="${cls(w.return_pct)}">${(w.return_pct>0?"+":"")+(w.return_pct||0).toFixed(2)}%</span>`;
+  $("#eqSub").innerHTML=`ארנק <b>${w.name||"UHTA"}</b> · מתוך ${fmt(w.start)} · <span class="${cls(w.return_pct)}">${(w.return_pct>0?"+":"")+(w.return_pct||0).toFixed(2)}%</span>`;
   const pct=g.xp_next_level?Math.min(100,100*(g.xp_this_level||0)/g.xp_next_level):100;
   setTimeout(()=>$("#xpBar").style.width=pct+"%",80);
 
+  renderChips();
+  renderRest();
+}
+function renderChips(){
+  const w=S.wallet||{}, g=S.game||{}, per=S.periods||{};
   const mk=S.market||{}, h=S.halts||{};
+  const ago=(()=>{const t=new Date(S.updated_utc||0),m=Math.round((Date.now()-t)/60000);
+    return (!S.updated_utc||isNaN(m))?(S.updated_israel||"—"):(m<1?"עכשיו":m<180?`לפני ${m} דק'`:S.updated_israel);})();
   $("#chips").innerHTML=[
     `<span class="chip"><span class="live${mk.open?"":" off"}"></span>${mk.open?"השוק פתוח":"השוק סגור"}</span>`,
     `<span class="chip">🔥 רצף <b>${g.streak||0}</b></span>`,
@@ -454,14 +476,16 @@ function render(){
     `<span class="chip">⚖️ ${S.risk_pcts?`זהב <b>${(S.risk_pcts.gold*100).toFixed(0)}%</b> · מניות <b>${(S.risk_pcts.stocks*100).toFixed(0)}%</b>`:`סיכון <b>${((S.risk_pct||0)*100).toFixed(0)}%</b>`}</span>`,
     `<span class="chip">⏭️ סריקה ~<b>${nextScan()}</b></span>`,
     h.daily_stop_hit?`<span class="chip" style="border-color:var(--red)">🛑 עצירת הפסד יומית</span>`:"",
-    `<span class="chip">🕒 ${S.updated_israel||"—"}</span>`
+    `<span class="chip">🕒 עודכן ${ago}</span>`
   ].join("");
-
+}
+function renderRest(){
+  const w=S.wallet||{}, g=S.game||{}, per=S.periods||{};
   renderBoss(g.boss||{}); renderCurve(); renderLadder(w);
   renderQuests(g.quests||[]); renderGov(); renderLog();
   CAL=S.calendar||{}; drawCal(); renderStreaks();
   renderSignals(); renderPositions(); renderBadges(g.badges||[]);
-  renderAgents(); renderMarket();
+  renderAgents(); renderMarket(); renderJournal();
   renderStats(); renderTruth(); renderPeriods(per,w);
   const lastLv=+(localStorage.getItem("idan_lv")||0);
   if((g.level||1)>lastLv&&lastLv>0){levelUp(g);} localStorage.setItem("idan_lv",g.level||1);
@@ -528,8 +552,9 @@ function renderAgents(){
     if(k==="day")   st=o.active?`פעיל עכשיו · ${o.signals??0} איתותים`:"מחוץ לשעות השוק — ישן 😴";
     if(k==="gold")  st=o.scanned?`✅ סרק · ${o.bars} נרות · $${o.last_price??"—"} · ${o.signals??0} איתותים · ${o.today_trades??0}/8 עסקאות היום`:"⚠️ אין נתוני זהב בסריקה האחרונה";
     if(k==="guard") st=`${o.open??0} פוזיציות · heat ${fmt(o.heat||0)}${o.halt?" · 🛑 מסחר מושהה":""}`;
-    return `<div class="row" style="cursor:pointer" onclick="agentInfo('${k}')">
-      <div style="font-size:24px">${o.icon}</div>
+    const hw=o.health&&o.health.status==="warn";
+    return `<div class="row" style="cursor:pointer${hw?";border-color:rgba(255,200,87,.55)":""}" onclick="agentInfo('${k}')">
+      <div style="font-size:24px">${o.icon}${hw?"🩹":""}</div>
       <div class="mid" style="color:var(--txt)"><b>${o.name}</b><br>
         <span style="color:var(--dim);font-size:11px">${o.domain||""}</span><br>
         <span style="font-size:11px;color:var(--cyan)">${st}</span></div>
@@ -544,6 +569,7 @@ function agentInfo(k){
   const o=(S.agents||{})[k]; if(!o)return;
   let extra="";
   if(k==="gold"&&!o.scanned) extra=`<div class="warn bad" style="margin-top:10px">⚠️ בסריקה האחרונה לא הגיעו נתוני זהב (יכול לקרות כשיאהו חוסם רגעית או כשהחוזה סגור). המנוע ינסה שוב בסריקה הבאה — זה לא תקוע.</div>`;
+  if(o.health&&o.health.status==="warn") extra+=`<div class="warn bad" style="margin-top:10px">🩹 <b>אזהרת בריאות:</b> ${o.health.n} העסקאות האחרונות של הסוכן בתוחלת שלילית (${fmt(o.health.exp)} לעסקה, PF ${o.health.pf??"—"}). המערכת ממשיכה לסחור אותו (בחרת התראה בלבד) — אבל שקול להשהות אותו במפסק או להקטין סיכון ב-config.</div>`;
   if(k==="gold"&&o.scanned) extra=`<div class="warn ok" style="margin-top:10px">✅ הסוכן חי: ${o.bars} נרות של 5 דקות נטענו, מחיר אחרון $${o.last_price}. אם אין איתות — זה כי אף אחת מ-4 התבניות לא התקיימה, לא כי הוא לא סרק.</div>`;
   openSheet(`<h4>${o.icon} ${o.name}</h4>
     <div class="mini" style="margin-bottom:10px">${o.domain||""}</div>
@@ -744,6 +770,48 @@ function renderPositions(){
   ).join(""):`<div class="mini">עוד לא נסגרו עסקאות.</div>`;
 }
 
+/* ---------- journal ---------- */
+function renderJournal(){
+  const c=S.closed||[];
+  $("#jrnCount").textContent=c.length?`${c.length} עסקאות`:"";
+  if(!c.length){$("#jrnList").innerHTML=`<div class="mini">עוד לא נסגרו עסקאות — היומן יתמלא אוטומטית עם כל סגירה.</div>`;return;}
+  const byDay={};
+  c.forEach(t=>{(byDay[t.day]=byDay[t.day]||[]).push(t)});
+  const days=Object.keys(byDay).sort().reverse();
+  $("#jrnList").innerHTML=days.map(d=>{
+    const arr=byDay[d], sum=arr.reduce((a,t)=>a+t.pnl,0), sr=arr.reduce((a,t)=>a+(t.r||0),0);
+    const cal=(S.calendar||{})[d]||{};
+    return `<div style="display:flex;align-items:center;gap:10px;margin:14px 0 6px">
+      <b style="font-size:13px">${d}</b>
+      <span class="badgeK ${cls(sum)}" style="border-color:currentColor">${sgn(sum)} · ${(sr>0?"+":"")+sr.toFixed(2)}R</span>
+      <span class="mini">${arr.length} עסקאות · משמעת ${cal.discipline??100}%</span></div>`+
+    arr.map(t=>{
+      const sn=t.snap||{};
+      const why={stop:"סטופ 🛑",T1_half:"חצי ביעד 1 🎯",T2:"יעד 2 🏁",emergency_close:"מפסק חירום 🛑"}[t.reason]||t.reason;
+      const hm=(t.closed||"").slice(11,16);
+      return `<div class="row" style="cursor:pointer;flex-wrap:wrap" onclick="openTV('${t.ticker}','${t.kind}')">
+        <span class="tk">${t.ticker}</span>
+        <span class="badgeK">${t.kind==="gold"?"🪙":t.kind==="day"?"⚡":"📈"}${t.side==="short"?" שורט ▼":""}</span>
+        ${t.pattern?`<span class="badgeK" style="border-color:var(--violet);color:#c9b3ff">${t.pattern}</span>`:""}
+        <div class="mid" dir="ltr">${hm?hm+" · ":""}${t.entry} → ${t.exit} · ${t.qty}${t.kind==="gold"?"oz":"sh"} · ${why}
+          <br>סטופ ${t.stop??"—"} · T1 ${t.t1??"—"}${sn.score?` · ציון ${sn.score}`:""}${sn.rsi?` · RSI ${sn.rsi}`:""}${sn.rvol?` · vol ×${sn.rvol}`:""}${sn.stop_pct?` · סטופ ${sn.stop_pct}%`:""}${sn.regime_ok===false?" · שוק שלילי ⚠️":""}${t.held_days?` · ${t.held_days} ימים`:""}${t.fees?` · עמלות ${fmt(t.fees)}`:""}
+        </div>
+        <div class="val ${cls(t.pnl)}">${sgn(t.pnl)}<div class="mini" dir="ltr">${(t.r>0?"+":"")+t.r}R</div></div>
+      </div>`;
+    }).join("");
+  }).join("");
+}
+function jrnCSV(){
+  const c=S.closed||[]; if(!c.length){beep(220,.1);return;}
+  const H=["date","time","ticker","strategy","side","pattern","qty","entry","stop","t1","exit","reason","pnl","r","held_days","fees","score","rsi","rvol","stop_pct","followed_rules"];
+  const rows=c.map(t=>{const s=t.snap||{};return [t.day,(t.closed||"").slice(11,16),t.ticker,t.kind,t.side||"long",
+    (t.pattern||"").replace(/,/g," "),t.qty,t.entry,t.stop??"",t.t1??"",t.exit,t.reason,t.pnl,t.r,
+    t.held_days??"",t.fees??"",s.score??"",s.rsi??"",s.rvol??"",s.stop_pct??"",t.followed_rules?1:0].join(",")});
+  const blob=new Blob(["\ufeff"+H.join(",")+"\n"+rows.join("\n")],{type:"text/csv;charset=utf-8"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="idan-trading-journal.csv";a.click();beep(880,.08);
+}
+
 /* ---------- market / universe ---------- */
 const SEC_HE={tech:"💻 טכנולוגיה",health:"🧬 בריאות",fintech:"🏦 פינטק",energy:"🛢️ אנרגיה",
   cleanenergy:"☀️ אנרגיה נקייה",travel:"✈️ תעופה ונסיעות",consumer:"🛒 צריכה",space:"🚀 חלל",
@@ -869,7 +937,8 @@ const DEMO={version:"3.0",updated_israel:"—",market:{open:false},risk_pct:.04,
   badges:[["🎬 העסקה הראשונה"],["🥇 הניצחון הראשון"],["🔥 3 ימים ירוקים ברצף"],["🚀 עסקה של 2R+"],
    ["💵 $1,100"],["👑 $2,000"]].map(n=>({id:n[0],name:n[0],earned:false}))},log:[]};
 
-load(); setInterval(load, 180000);
+load(); setInterval(load, 60000);
+setInterval(()=>{ if(S) try{renderChips()}catch(e){} }, 30000);
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)load()});
 </script>
 </body>
