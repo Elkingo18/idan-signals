@@ -186,6 +186,8 @@ a{color:var(--cyan)}
 <body>
 <div class="lvlup" id="lvlup"><div></div></div>
 <div id="toast"></div>
+<button id="refreshBtn" title="רענון נתונים עכשיו" onclick="manualRefresh()"
+  style="position:fixed;bottom:96px;left:14px;z-index:45;width:46px;height:46px;border-radius:99px;border:1px solid var(--line);background:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(35,42,59,.14)">🔄</button>
 
 <div id="app">
   <!-- HUD -->
@@ -214,6 +216,11 @@ a{color:var(--cyan)}
         <span id="bossDone" class="pos">$0</span><span id="bossTarget" class="neu">$0</span>
       </div>
       <div class="mini" id="bossTxt" style="margin-top:6px"></div>
+    </div>
+
+    <div class="card" style="border-color:rgba(169,118,12,.4)">
+      <h3>🪙 זהב — תמצית חיה <small>לחיצה למסך המלא</small></h3>
+      <div id="goldHome" style="cursor:pointer" onclick="goTab('gold')"></div>
     </div>
 
     <div class="card">
@@ -257,6 +264,15 @@ a{color:var(--cyan)}
     <div class="card"><h3>⚔️ משימות היום</h3><div id="quests"></div></div>
     <div class="card"><h3>🛡️ שומר הסיכון — מה מוגן עליך עכשיו</h3><div id="gov"></div></div>
     <div class="card"><h3>📜 יומן המערכת</h3><div id="log" class="mini"></div></div>
+  </section>
+
+  <!-- ============ GOLD (התחום שהכי מעניין את עידן — טאב מלא) ============ -->
+  <section data-v="gold" class="hidden">
+    <div class="card" style="border-color:rgba(169,118,12,.45)"><h3>🪙 חדר הזהב <small id="goldWhen"></small></h3><div id="goldTop"></div></div>
+    <div class="card"><h3>📈 הרווח המצטבר מזהב</h3><canvas class="spark" id="goldSpark"></canvas>
+      <div class="grid g4" style="margin-top:10px" id="goldStats"></div></div>
+    <div class="card"><h3>📒 עסקאות הזהב האחרונות</h3><div id="goldTrades"></div></div>
+    <div class="card"><h3>📰 חדשות זהב</h3><div id="goldNews"></div></div>
   </section>
 
   <!-- ============ CALENDAR ============ -->
@@ -310,13 +326,9 @@ a{color:var(--cyan)}
         <button class="xBtn" id="starsBtn" style="position:static;width:auto;padding:8px 13px" onclick="openStars()">⭐ פתח את המסומנות</button>
         <span class="mini">סמן ☆ ליד מניה — ואז כפתור אחד פותח את כולן באינטראקטיב. לחיצה על שם קטגוריה פותחת את כל הקטגוריה.</span>
       </div>
-      <div class="mini" style="margin-bottom:4px">כל מניה זזה לבד בין הרשימות לפי השלב שלה: מעקב ← לקראת פריצה ← איתות ← פוזיציה ← נסגרה.</div>
-      <div class="wlHead">🎯 איתות עכשיו <span class="cnt" id="cWlSig"></span></div><div id="wlSignal"></div>
-      <div class="wlHead">👁 לקראת פריצה <span class="cnt" id="cWlWatch"></span></div><div id="wlWatch"></div>
-      <div class="wlHead">💼 בפוזיציה <span class="cnt" id="cWlPos"></span></div><div id="wlPos"></div>
-      <div class="wlHead">✅ נסגרו לאחרונה</div><div id="wlClosed"></div>
+      <div class="mini" style="margin-bottom:4px">לחיצה על כותרת קטגוריה פותחת או סוגרת אותה. כל מניה זזה לבד בין הרשימות לפי השלב שלה.</div>
+      <div id="wlSections"></div>
     </div>
-    <div class="card"><h3>🔍 מעקב יומי <small>20 הנזילות לדיי-טרייד</small></h3><div id="wlDay"></div></div>
     <div class="card"><h3>🌐 היוניברס לפי קטגוריות <small id="uniCount"></small></h3>
       <div class="mini" style="margin-bottom:10px">🟢 איתות · 👁 קרוב · ⚪ שקט. לחיצה על מניה פותחת אותה באינטראקטיב, לחיצה על קטגוריה פותחת את כולה.</div>
       <div id="uniList"></div>
@@ -352,7 +364,8 @@ a{color:var(--cyan)}
   <!-- ============ GUIDE ============ -->
   <section data-v="guide" class="hidden">
     <div class="card"><h3>❓ מה כל מסך עושה</h3><div class="mini" style="line-height:1.9">
-      <b>🎮 מצב</b> — התמונה הכללית: הבוס היומי, עקומת ההון, תוצאות הסוכנים, החדשות, מפסק החירום והשומר.<br>
+      <b>🎮 מצב</b> — התמונה הכללית: הבוס היומי, תמצית הזהב, עקומת ההון, תוצאות הסוכנים, החדשות, מפסק החירום והשומר.<br>
+      <b>🪙 זהב</b> — חדר הזהב המלא: מחיר חי, התבנית שהסוכן רואה עכשיו, הפוזיציה, הרווח המצטבר, כל העסקאות וחדשות הזהב.<br>
       <b>📅 לוח שנה</b> — כל יום ירוק/אדום לפי הרווח שמומש בו. לחיצה על יום פותחת את כל מה שקרה בו.<br>
       <b>📡 איתותים</b> — מה המנוע רואה עכשיו. ירוק = קנייה, אדום = מכירה. ⓘ פותח את סיפור החברה, החדשות והמספרים; 📋 מעתיק פקודה מוכנה; 🏦 פותח באינטראקטיב.<br>
       <b>📋 הרשימות שלי</b> — הכל במקום אחד: שלבי המסלול של כל מניה, המעקב היומי, היוניברס לפי קטגוריות, הפרימיום והרשימות של עידו. ☆ מסמן מניה לפתיחה מרוכזת, ולחיצה על שם קטגוריה פותחת את כולה באינטראקטיב.<br>
@@ -368,10 +381,17 @@ a{color:var(--cyan)}
       הגודל מוגבל בשלוש תקרות: תקציב הסיכון, 35% מההון לפוזיציה אחת, והמזומן הפנוי —
       ולכן הסיכון בפועל לרוב נמוך מהמקסימום. בזהב: סטופ 1.5×ATR ויעדים ‎1.5R/‎3R לשני הכיוונים.</div>
     </div>
-    <div class="card"><h3>📰 סוכן החדשות</h3><div class="mini" style="line-height:1.9">
-      בכל סריקה הוא מביא כותרות מיאהו פייננס על כל מניה עם איתות או פוזיציה, ועל השוק והזהב,
-      ומתייג אותן (דוחות, המלצות, רגולציה וכו'). הכותרות מוצמדות לאיתות במסך האיתותים, לפוזיציות ולמסך הבית.
-      חשוב ביושר: הסוכן מיידע אותך — הוא לא פותח עסקאות לבד, כדי שהמערכת תישאר צפויה ובדוקה.</div>
+    <div class="card"><h3>📰 סוכן החדשות — איך הוא בודק ומסכם</h3><div class="mini" style="line-height:1.9">
+      בכל סריקה הוא אוסף עד 5 כותרות לכל מניה עם איתות או פוזיציה, ועוד על השוק והזהב.
+      אחר כך הוא מקבץ כותרות שמדברות על אותו סיפור, בודק <b>בכמה מקורות שונים</b> זה דווח
+      (2 ומעלה = תג "מאומת"; מקור יחיד = להתייחס בזהירות), מזהה אם הכותרות חיוביות 🟢 או שליליות 🔴,
+      ומנסח סיכום קצר בעברית. הכותרת המקורית נשארת קטנה מתחת, למי שרוצה להעמיק.<br>
+      <b>ביושר:</b> הסיכום נבנה מניתוח מילות מפתח והצלבת מקורות — לא מהבנה מלאה של הכתבה (אין AI במנוע, כדי שהכל ירוץ חינם ולתמיד).
+      והסוכן מיידע בלבד — הוא לא פותח עסקאות.</div>
+    </div>
+    <div class="card"><h3>🔄 רענון וכוכבים</h3><div class="mini" style="line-height:1.9">
+      הכפתור העגול בצד המסך מרענן את הנתונים מיד (הם גם מתרעננים לבד כל דקה, והמנוע סורק כל כמה דקות אוטומטית).<br>
+      ☆ ליד מניה מסמן אותה לפתיחה מרוכזת; לחיצה על כותרת קטגוריה פותחת או סוגרת אותה, וכפתור "פתח הכל" פותח את כל הקטגוריה באינטראקטיב.</div>
     </div>
     <div class="card"><h3>📖 מילון קצר</h3><div class="mini" style="line-height:1.9">
       <b>R</b> — יחידת הסיכון של העסקה. סיכנת 20$? אז ‎+2R = רווח 40$.<br>
@@ -439,8 +459,8 @@ let S=null, CAL={}, curMonth=new Date(), SOUND=false, ANIM=true;
 const REPO="https://github.com/Elkingo18/idan-signals";
 
 /* ---------- אינטראקטיב ברוקרס בלבד (בקשת עידן 30.7) ---------- */
-const IB_HOME="https://portal.interactivebrokers.com/portal";
-let IB_QUOTE="https://portal.interactivebrokers.com/portal/#/quote/{SYM}"; /* קישור ישיר; אם לא מחובר — מסך ההתחברות של אינטראקטיב שומר את היעד ונוחת על המניה אחרי ההתחברות */
+const IB_HOME="https://www.interactivebrokers.co.uk/portal/#/dashboard"; /* הדומיין שבו עידן מחובר בפועל */
+let IB_QUOTE="https://www.interactivebrokers.co.uk/portal/#/quote/{SYM}"; /* קישור ישיר; אם לא מחובר — מסך ההתחברות של אינטראקטיב שומר את היעד ונוחת על המניה אחרי ההתחברות */
 function ibSym(tk,kind){ return (kind==="gold"||tk==="XAUUSD")?"XAUUSD":tk; }
 function openTV(tk,kind){ /* השם נשמר לתאימות — פותח אינטראקטיב */
   const s=ibSym(tk,kind);
@@ -478,20 +498,33 @@ function toggleStar(tk){
 }
 function starBtn(tk){ return `<span style="cursor:pointer;font-size:14px;flex:0 0 auto" title="סמן לפתיחה מרוכזת" onclick="event.stopPropagation();toggleStar('${tk}')">${STARS.has(tk)?"⭐":"☆"}</span>`; }
 
+/* ---------- אקורדיון: איתותים פתוחים כברירת מחדל, כל השאר מקופל (בקשת עידן 30.7) ---------- */
+let OPEN=new Set(["wl_sig"]);
+function accTog(id){ OPEN.has(id)?OPEN.delete(id):OPEN.add(id); try{renderLists();renderMarket();}catch(e){} beep(600,.04); }
+function accWrap(id,title,count,inner,extra){
+  const open=OPEN.has(id);
+  return `<div class="wlHead" style="cursor:pointer;user-select:none" onclick="accTog('${id}')">
+      <span style="font-size:10px;color:var(--dim)">${open?"▼":"◀"}</span> ${title}
+      ${count!=null?`<span class="cnt">${count}</span>`:""}${extra||""}</div>
+    ${open?`<div>${inner}</div>`:""}`;
+}
+
 /* ---------- פרופילי חברות בעברית ---------- */
 let COMP={};
 (async()=>{ for(const u of ["data/companies.json","https://elkingo18.github.io/idan-signals/data/companies.json","https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/companies.json"]){
   try{ const r=await fetch(u,{cache:"no-store"}); if(r.ok){ COMP=await r.json(); return; } }catch(e){} } })();
 
-const TABS=[["home","🎮","מצב"],["cal","📅","לוח שנה"],["sig","📡","איתותים"],
+const TABS=[["home","🎮","מצב"],["gold","🪙","זהב"],["cal","📅","לוח שנה"],["sig","📡","איתותים"],
             ["lists","📋","הרשימות שלי"],["pos","💼","פוזיציות"],["jrn","📒","יומן"],["ach","🏆","הישגים"],["stats","📊","נתונים"],["guide","❓","מדריך"],["truth","⚠️","אמת"]];
 $("#nav").innerHTML=TABS.map(([k,i,t],x)=>
   `<button class="tab${x?"":" on"}" data-t="${k}"><i>${i}</i>${t}</button>`).join("");
 $$(".tab").forEach(b=>b.onclick=()=>{
   $$(".tab").forEach(x=>x.classList.remove("on")); b.classList.add("on");
   $$("section").forEach(s=>s.classList.toggle("hidden", s.dataset.v!==b.dataset.t));
+  if(b.dataset.t==="gold"&&S) try{renderGold()}catch(e){}
   window.scrollTo({top:0,behavior:"smooth"}); beep(660,.04);
 });
+function goTab(k){ const b=$$(".tab").find(x=>x.dataset.t===k); if(b) b.click(); }
 
 /* ---------- sound ---------- */
 let AC=null;
@@ -579,7 +612,7 @@ function renderRest(){
   renderQuests(g.quests||[]); renderGov(); renderLog();
   CAL=S.calendar||{}; drawCal(); renderStreaks();
   renderSignals(); renderPositions(); renderBadges(g.badges||[]);
-  renderAgents(); renderNews(); renderMarket(); renderLists(); renderJournal();
+  renderAgents(); renderNews(); renderGold(); renderMarket(); renderLists(); renderJournal();
   renderStats(); renderTruth(); renderPeriods(per,w);
   const lastLv=+(localStorage.getItem("idan_lv")||0);
   if((g.level||1)>lastLv&&lastLv>0){levelUp(g);} localStorage.setItem("idan_lv",g.level||1);
@@ -710,6 +743,79 @@ function killInfo(){
        onclick="window.open(REPO+'/actions/workflows/stop.yml','_blank')">🛑 סגור הכל ועצור</button>
    </div>`);
   beep(300,.12,"square",.06);
+}
+function drawSpark(id,d,base){
+  const c=document.getElementById(id); if(!c||!c.clientWidth)return;
+  const x=c.getContext("2d");
+  const W=c.width=c.clientWidth*2,H=c.height=148;
+  x.clearRect(0,0,W,H);
+  if(!d||d.length<2){x.fillStyle="#7c8296";x.font="22px sans-serif";x.textAlign="center";
+    x.fillText("עוד אין מספיק עסקאות זהב",W/2,H/2);return;}
+  const v=d.map(p=>+p[1]),mn=Math.min(...v,base),mx=Math.max(...v,base),pad=14,rng=(mx-mn)||1;
+  const X=i=>pad+i*(W-pad*2)/(d.length-1), Y=q=>H-pad-((q-mn)/rng)*(H-pad*2);
+  x.strokeStyle="rgba(124,130,150,.4)";x.setLineDash([5,5]);x.beginPath();
+  x.moveTo(pad,Y(base));x.lineTo(W-pad,Y(base));x.stroke();x.setLineDash([]);
+  x.beginPath();x.moveTo(X(0),Y(v[0]));v.forEach((q,i)=>x.lineTo(X(i),Y(q)));
+  x.lineWidth=3;x.strokeStyle=v[v.length-1]>=base?"#0f9d63":"#d6405a";x.stroke();
+  x.beginPath();x.arc(X(v.length-1),Y(v[v.length-1]),6,0,7);x.fillStyle="#232a3b";x.fill();
+}
+function renderGold(){
+  const o=(S.agents||{}).gold||{}, td=o.today||{};
+  const gp=(S.positions||[]).filter(p=>p.kind==="gold");
+  const gt=(S.closed||[]).filter(t=>t.kind==="gold");
+  const wins=gt.filter(t=>t.pnl>0).length, tot=gt.reduce((s,t)=>s+t.pnl,0);
+  const gsigs=((S.signals||{}).gold)||[];
+  const gw=$("#goldWhen"); if(gw) gw.textContent=S.updated_israel||"";
+  const posH=gp.length?gp.map(p=>{
+    const pl=(p.last-p.entry)*p.qty_left*(p.side==="short"?-1:1);
+    return `<div class="row"><span class="badgeK" style="border-color:${p.side==="short"?"var(--red)":"var(--green)"};color:${p.side==="short"?"var(--red)":"var(--green)"}">${p.side==="short"?"🔴 שורט ▼":"🟢 לונג ▲"}</span>
+      <div class="mid" dir="ltr">${p.qty_left} oz · ${p.entry} → ${p.last} · SL ${p.stop} · T1 ${p.t1}</div>
+      <div class="val ${cls(pl)}">${sgn(pl)}</div></div>`;}).join("")
+    :`<div class="mini">אין פוזיציית זהב פתוחה כרגע.</div>`;
+  const sigH=gsigs.length?gsigs.map(x=>`<div class="mini" style="padding:3px 0">${(x.side==="short")?"🔴":"🟢"} ${x.pattern||"—"} · <span dir="ltr">כניסה ${x.entry} · SL ${x.stop} · T1 ${x.t1}</span> · ציון ${x.score}${(x.state||"").startsWith("WATCH")?" · במעקב":""}</div>`).join("")
+    :`<div class="mini">אין תבנית פעילה ברגע זה — הסוכן ממתין לאחת מ-4 התבניות.</div>`;
+  const gtop=$("#goldTop");
+  if(gtop) gtop.innerHTML=`
+    <div class="grid g4" style="margin-bottom:10px">
+      <div class="stat"><div class="v" dir="ltr">$${o.last_price??"—"}</div><div class="k">מחיר אחרון</div></div>
+      <div class="stat"><div class="v">${o.today_trades??0}/8</div><div class="k">עסקאות היום</div></div>
+      <div class="stat"><div class="v ${cls(td.pnl)}">${sgn(td.pnl||0)}</div><div class="k">רווח/הפסד היום</div></div>
+      <div class="stat"><div class="v">${o.scanned?"✅ חי":"⚠️ אין דאטה"}</div><div class="k">${o.bars||0} נרות · 5 דק'</div></div>
+    </div>
+    <b style="font-size:12.5px">פוזיציה פתוחה:</b>${posH}
+    <b style="font-size:12.5px;display:block;margin-top:9px">מה סוכן הזהב רואה עכשיו:</b>${sigH}
+    <button class="xBtn" style="position:static;width:auto;padding:9px 14px;margin-top:10px;border-color:var(--gold);color:var(--gold);font-weight:700" onclick="openIB('XAUUSD','gold')">🏦 פתח זהב באינטראקטיב</button>`;
+  const byDay={}; gt.slice().reverse().forEach(t=>{byDay[t.day]=(byDay[t.day]||0)+t.pnl});
+  const days=Object.keys(byDay).sort(); let acc=0; const pts=days.map(d=>[d,+(acc+=byDay[d]).toFixed(2)]);
+  drawSpark("goldSpark",pts,0);
+  const gpos=gt.filter(t=>t.pnl>0).reduce((s,t)=>s+t.pnl,0), gneg=Math.abs(gt.filter(t=>t.pnl<=0).reduce((s,t)=>s+t.pnl,0));
+  const gs=$("#goldStats");
+  if(gs) gs.innerHTML=[["עסקאות",gt.length],["אחוז הצלחה",gt.length?Math.round(100*wins/gt.length)+"%":"—"],
+    ["מקדם רווח",gneg>0?(gpos/gneg).toFixed(2):"—"],["סה\"כ מזהב",`<span class="${cls(tot)}">${sgn(tot)}</span>`]]
+    .map(([k,v])=>`<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join("");
+  const gtr=$("#goldTrades");
+  if(gtr) gtr.innerHTML=gt.slice(0,10).map(t=>{
+    const why={stop:"סטופ 🛑",T1_half:"חצי ביעד 1 🎯",T2:"יעד 2 🏁",emergency_close:"מפסק חירום"}[t.reason]||t.reason;
+    return `<div class="row"><span class="badgeK" style="border-color:${t.side==="short"?"var(--red)":"var(--green)"};color:${t.side==="short"?"var(--red)":"var(--green)"}">${t.side==="short"?"שורט":"לונג"}</span>
+      ${t.pattern?`<span class="badgeK" style="border-color:var(--violet);color:#7454c9">${t.pattern}</span>`:""}
+      <div class="mid" dir="ltr">${t.day} ${(t.closed||"").slice(11,16)} · ${t.entry} → ${t.exit} · ${t.qty} oz · ${why}</div>
+      <div class="val ${cls(t.pnl)}">${sgn(t.pnl)}<div class="mini" dir="ltr">${(t.r>0?"+":"")+t.r}R</div></div></div>`;
+  }).join("")||`<div class="mini">עוד אין עסקאות זהב סגורות.</div>`;
+  const gn=((S.news||{}).market||[]).filter(n=>n.about==="זהב");
+  const gnd=$("#goldNews");
+  if(gnd) gnd.innerHTML=gn.length?newsHTML(gn):`<div class="mini">אין כותרות זהב מהסריקה האחרונה.</div>`;
+  const gh=$("#goldHome");
+  if(gh) gh.innerHTML=`<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:13px">
+    <span dir="ltr"><b>$${o.last_price??"—"}</b></span>
+    <span>היום: <b>${o.today_trades??0}/8</b> · <b class="${cls(td.pnl)}">${sgn(td.pnl||0)}</b></span>
+    <span>פוזיציה: <b>${gp.length?(gp[0].side==="short"?"שורט ▼":"לונג ▲"):"אין"}</b></span>
+    <span>סה"כ מזהב: <b class="${cls(tot)}">${sgn(tot)}</b></span>
+    <span style="margin-inline-start:auto;color:var(--cyan)">למסך המלא ›</span></div>`;
+}
+async function manualRefresh(){
+  const b=$("#refreshBtn");
+  if(b){b.style.transform="rotate(360deg)";b.style.transition="transform .6s";setTimeout(()=>{b.style.transform="";b.style.transition="";},700);}
+  await load(); toast("🔄 הנתונים רועננו"); beep(760,.05);
 }
 function renderNews(){
   const nz=S.news||{}, mkt=nz.market||[], tks=nz.tickers||{};
@@ -863,9 +969,20 @@ function renderSignals(){
   }).join(""):"שום איתות לא נחסם בסריקה האחרונה.";
 }
 function newsHTML(list){
-  return (list||[]).map(n=>`<div style="padding:5px 0;border-bottom:1px solid var(--line)">
+  return (list||[]).map(n=>{
+    if(n.summary){ /* מבנה 4.2: סיכום בעברית + הצלבת מקורות, הכותרת המקורית קטנה */
+      const dcol=n.dir==="pos"?"var(--green)":n.dir==="neg"?"var(--red)":"var(--dim)";
+      const dic=n.dir==="pos"?"🟢":n.dir==="neg"?"🔴":"⚪";
+      return `<div style="padding:7px 0;border-bottom:1px solid var(--line)">
+        <div style="font-size:12.5px;line-height:1.6">${dic} <b style="color:${dcol}">${n.summary}</b>
+          ${n.sources>1?`<span class="badgeK" style="border-color:var(--green);color:var(--green)">מאומת ×${n.sources}</span>`:""}
+          ${n.about?`<span class="badgeK">${n.about}</span>`:""}</div>
+        <div class="mini" style="margin-top:2px"><a href="${n.url||"#"}" target="_blank" style="color:var(--dim)" dir="ltr">${(n.title||"").slice(0,90)}${(n.title||"").length>90?"…":""}</a>${n.src?` · ${n.src}`:""}${n.time?` · ${n.time}`:""}</div></div>`;
+    }
+    return `<div style="padding:5px 0;border-bottom:1px solid var(--line)">
     <a href="${n.url||"#"}" target="_blank" style="text-decoration:none"><b dir="ltr" style="font-size:11.5px">${n.title}</b></a>
-    <div class="mini">${n.tag?`<span class="badgeK" style="border-color:var(--gold);color:var(--gold)">${n.tag}</span> `:""}${n.src||""}${n.time?` · ${n.time}`:""}</div></div>`).join("");
+    <div class="mini">${n.tag?`<span class="badgeK" style="border-color:var(--gold);color:var(--gold)">${n.tag}</span> `:""}${n.src||""}${n.time?` · ${n.time}`:""}</div></div>`;
+  }).join("");
 }
 function sigInfo(x){
   const sh=x.side==="short", col=sh?"var(--red)":"var(--green)";
@@ -991,23 +1108,22 @@ function renderMarket(){
   trad.forEach(x=>{(bySec[x.sec]=bySec[x.sec]||[]).push(x)});
   $("#uniList").innerHTML=Object.entries(bySec).map(([sec,arr])=>{
     arr.sort((a,b)=>(b.state==="signal")-(a.state==="signal")||(b.state==="watch")-(a.state==="watch"));
-    return `<div style="margin:12px 0 6px;font-size:12.5px;font-weight:700;color:var(--dim);display:flex;align-items:center;gap:8px">
-      <span style="cursor:pointer" title="פתח את כל הקטגוריה באינטראקטיב" onclick="openSector('${sec}')">${SEC_HE[sec]||sec} · ${arr.length}</span>
-      <button class="xBtn" style="position:static;width:auto;padding:2px 9px;font-size:10.5px" onclick="openSector('${sec}')">🏦 פתח הכל</button></div>`+
-      arr.map(x=>{
+    const inner=arr.map(x=>{
         const dot=x.state==="signal"?"🟢":x.state==="watch"?"👁":x.state==="no_data"?"⚫":"⚪";
         return `<div class="row" style="cursor:pointer;padding:7px 10px" onclick="openTV('${x.t}')">
           ${starBtn(x.t)}<span>${dot}</span><span class="tk" style="min-width:52px">${x.t}</span>
           <div class="mid" dir="ltr">${x.px?("$"+x.px):"אין דאטה"}${x.trend!=null?` · ${x.trend>0?"+":""}${x.trend}% מעל MA50`:""}${x.rsi?` · RSI ${x.rsi}`:""}${x.rvol?` · vol ×${x.rvol}`:""}</div>
           <span style="color:var(--cyan)">🏦</span></div>`;
       }).join("");
+    const extra=`<button class="xBtn" style="position:static;width:auto;padding:2px 9px;font-size:10.5px" onclick="event.stopPropagation();openSector('${sec}')">🏦 פתח הכל</button>`;
+    return accWrap("sec_"+sec, SEC_HE[sec]||sec, arr.length, inner, extra);
   }).join("");
-  $("#premList").innerHTML=prem.map(x=>
+  $("#premList").innerHTML=accWrap("prem","💎 הצג את רשימת הפרימיום",prem.length,
+    prem.map(x=>
     `<div class="row" style="cursor:pointer;padding:6px 10px" onclick="openTV('${x.t}')">
       ${starBtn(x.t)}<span class="tk" style="min-width:52px">${x.t}</span>
       <div class="mid" dir="ltr">${x.px?("$"+x.px):"—"}${x.trend!=null?` · ${x.trend>0?"+":""}${x.trend}%`:""}</div>
-      <span style="color:var(--cyan)">🏦</span></div>`).join("");
-  const sb=$("#starsBtn"); if(sb) sb.textContent="⭐ פתח את המסומנות ("+STARS.size+")";
+      <span style="color:var(--cyan)">🏦</span></div>`).join(""));
 }
 
 /* ---------- watchlists (everything moves by itself between stages) ---------- */
@@ -1034,32 +1150,37 @@ function renderLists(){
   const watch=u.filter(x=>x.state==="watch"||watchS.has(x.t));
   const dayf=u.filter(x=>x.df&&x.sec!=="premium");
   const pos=S.positions||[], closed=(S.closed||[]).slice(0,8);
-  $("#cWlSig").textContent=act.length?act.length:""; $("#cWlWatch").textContent=watch.length?watch.length:"";
-  $("#cWlPos").textContent=pos.length?pos.length:"";
-  $("#wlSignal").innerHTML=act.length?act.map(x=>wlRow(x.ticker,
+  const sigIn=act.length?act.map(x=>wlRow(x.ticker,
     `${x.entry} · SL ${x.stop} · T1 ${x.t1} · T2 ${x.t2}`,
     x.state==="SELL_NOW"?`<span class="neg">מכירה ▼</span>`:`<span class="pos">קנייה ▲</span>`,
     `openTV('${x.ticker}','${x.kind}')`)).join(""):`<div class="mini">אין איתות פעיל כרגע — המערכת מחכה לתנאים מלאים.</div>`;
-  $("#wlWatch").innerHTML=watch.length?watch.map(x=>wlRow(x.t,wlMet(x),"👁",`openTV('${x.t}')`)).join(""):`<div class="mini">אין מניות על סף פריצה כרגע.</div>`;
-  $("#wlPos").innerHTML=pos.length?pos.map(o=>wlRow(o.ticker,
+  const watchIn=watch.length?watch.map(x=>wlRow(x.t,wlMet(x),"👁",`openTV('${x.t}')`)).join(""):`<div class="mini">אין מניות על סף פריצה כרגע.</div>`;
+  const posIn=pos.length?pos.map(o=>wlRow(o.ticker,
     `${o.entry} → ${o.last} · SL ${o.stop}`,
     `<span class="${cls((o.last-o.entry)*(o.side==="short"?-1:1))}">${o.half_done?"אחרי יעד 1":"פתוחה"}</span>`,
     `openTV('${o.ticker}','${o.kind}')`)).join(""):`<div class="mini">אין פוזיציות פתוחות.</div>`;
-  $("#wlClosed").innerHTML=closed.length?closed.map(t=>wlRow(t.ticker,
+  const closedIn=closed.length?closed.map(t=>wlRow(t.ticker,
     `${t.day} · ${t.entry} → ${t.exit}`,
     `<span class="${cls(t.pnl)}">${sgn(t.pnl)}</span>`,
     `openTV('${t.ticker}','${t.kind}')`)).join(""):`<div class="mini">עוד לא נסגרו עסקאות.</div>`;
-  $("#wlDay").innerHTML=dayf.length?dayf.map(x=>{
+  const dayIn=dayf.length?dayf.map(x=>{
     const dot=x.state==="signal"?"🟢":x.state==="watch"?"👁":"⚪";
     return wlRow(x.t,wlMet(x),dot,`openTV('${x.t}','day')`);}).join(""):`<div class="mini">הרשימה תופיע אחרי הסריקה הבאה.</div>`;
+  $("#wlSections").innerHTML=
+    accWrap("wl_sig","🎯 איתות עכשיו",act.length,sigIn)+
+    accWrap("wl_watch","👁 לקראת פריצה",watch.length,watchIn)+
+    accWrap("wl_pos","💼 בפוזיציה",pos.length,posIn)+
+    accWrap("wl_closed","✅ נסגרו לאחרונה",closed.length,closedIn)+
+    accWrap("wl_day","🔍 מעקב יומי (דיי-טרייד)",dayf.length,dayIn);
   const iv=S.ido_view||[], byList={};
   iv.forEach(x=>{(byList[x.list]=byList[x.list]||[]).push(x)});
-  $("#wlIdo").innerHTML=Object.keys(byList).length?Object.entries(byList).map(([name,arr])=>{
+  $("#wlIdo").innerHTML=Object.keys(byList).length?Object.entries(byList).map(([name,arr],li)=>{
     const byG={}; arr.forEach(x=>{(byG[x.grp]=byG[x.grp]||[]).push(x)});
-    return `<div class="wlHead">${name==="מעניינות"?"⭐":"🚀"} ${name} <span class="cnt">${arr.length}</span></div>`+
-      Object.keys(byG).sort().map(g=>`<div class="mini" style="margin:4px 0" dir="ltr">${g}</div>`+
+    const inner=Object.keys(byG).sort().map(g=>`<div class="mini" style="margin:4px 0" dir="ltr">${g}</div>`+
         byG[g].map(x=>wlRow(x.t,wlMet(x),x.near?"👁 קרוב לפריצה":"",`openTV('${x.t}')`)).join("")).join("");
+    return accWrap("ido_"+li,(name==="מעניינות"?"⭐":"🚀")+" "+name,arr.length,inner);
   }).join(""):`<div class="mini">הרשימות של עידו יופיעו אחרי הסריקה הבאה של המנוע.</div>`;
+  const sb=$("#starsBtn"); if(sb) sb.textContent="⭐ פתח את המסומנות ("+STARS.size+")";
 }
 /* ---------- report share ---------- */
 function reportText(){
@@ -1196,7 +1317,7 @@ SOUND=!!localStorage.getItem("idan_snd"); ANIM=localStorage.getItem("idan_anim")
 $("#swSound").classList.toggle("on",SOUND); $("#swAnim").classList.toggle("on",ANIM);
 
 /* ---------- demo state so the screen is never empty ---------- */
-const DEMO={version:"4.1",updated_israel:"—",market:{open:false},risk_pct:.04,
+const DEMO={version:"4.2",updated_israel:"—",market:{open:false},risk_pct:.04,
  wallet:{start:1000,cash:1000,equity:1000,realized_pnl:0,open_pnl:0,peak_equity:1000,max_dd_pct:0,return_pct:0},
  positions:[],closed:[],signals:{swing:[],day:[],gold:[]},calendar:{},equity_curve:[],ido_view:[],universe_view:[],
  periods:{day:0,week:0,month:0,quarter:0,half:0,year:0,all:0},
