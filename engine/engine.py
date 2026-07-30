@@ -158,9 +158,11 @@ def fetch_daily(tickers, period="8mo"):
                          progress=False, threads=True)
     except Exception as e:
         print("fetch_daily failed:", e); return out
+    import pandas as pd
     for tk in tickers:
         try:
-            sub = df[tk] if len(tickers) > 1 else df
+            # single-ticker downloads may still return MultiIndex columns — handle both
+            sub = df[tk] if isinstance(df.columns, pd.MultiIndex) else df
             sub = sub.dropna()
             bars = []
             for ts, r in sub.iterrows():
@@ -184,9 +186,10 @@ def fetch_intraday(tickers, interval="5m", period="5d"):
                          progress=False, threads=True, prepost=False)
     except Exception as e:
         print("fetch_intraday failed:", e); return out
+    import pandas as pd
     for tk in tickers:
         try:
-            sub = df[tk] if len(tickers) > 1 else df
+            sub = df[tk] if isinstance(df.columns, pd.MultiIndex) else df
             sub = sub.dropna()
             bars = []
             for ts, r in sub.iterrows():
@@ -782,8 +785,11 @@ def main():
     prices = {t: b[-1]["c"] for t, b in daily.items()}
 
     gold_bars = []
-    gb = fetch_intraday([CFG["gold"]["yf_symbol"]], "5m", "5d")
-    gold_bars = gb.get(CFG["gold"]["yf_symbol"], [])
+    gold_src = None
+    for sym in [CFG["gold"]["yf_symbol"], "XAUUSD=X", "MGC=F"]:   # futures -> spot -> micro
+        gb = fetch_intraday([sym], "5m", "5d")
+        if gb.get(sym) and len(gb[sym]) >= 70:
+            gold_bars = gb[sym]; gold_src = sym; break
     if gold_bars: prices[CFG["gold"]["symbol"]] = gold_bars[-1]["c"]
 
     # ---------- emergency close-all ----------
@@ -897,7 +903,7 @@ def main():
                   "paper_only": True,
                   "desc": "פריצת טווח פתיחה עם VWAP וזרימה. ניסיוני — נייר בלבד, לא מבוצע אוטומטית."},
         "gold":  {"icon": "🪙", "name": "סוכן הזהב", "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-                  "bars": len(gold_bars), "scanned": bool(gold_bars),
+                  "bars": len(gold_bars), "scanned": bool(gold_bars), "source": gold_src,
                   "last_price": (round(gold_bars[-1]["c"], 2) if gold_bars else None),
                   "signals": len(sigs["gold"]),
                   "today_trades": st.get("gold_today", {}).get("count", 0)
