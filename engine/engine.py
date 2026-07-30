@@ -503,6 +503,9 @@ def open_position(st, sig, now, costs, risk_dollars):
                         else round(abs(fill-sig["stop"])*q, 2),
            "fees": round(fee, 2), "half_done": False, "be_moved": False,
            "score": sig.get("score"), "pattern": sig.get("pattern"),
+           "snap": {"rsi": sig.get("rsi"), "rvol": sig.get("rvol"),
+                    "score": sig.get("score"), "stop_pct": sig.get("stop_pct"),
+                    "regime_ok": sig.get("regime_ok"), "notional": sig.get("notional")},
            "last": fill, "margin": round(cash_out, 2)
            if sig["kind"] == "gold" else 0.0}
     st["positions"].append(pos)
@@ -532,7 +535,9 @@ def _exit_qty(st, pos, qty, px, now, costs, reason):
     st["wallet"]["realized_pnl"] = round(st["wallet"]["realized_pnl"]+pnl, 2)
     r_unit = abs(pos["entry"]-pos["orig_stop"])*pos["qty"]
     rec = {"ticker": pos["ticker"], "kind": pos["kind"], "side": pos.get("side","long"),
-           "pattern": pos.get("pattern"), "qty": qty,
+           "pattern": pos.get("pattern"), "snap": pos.get("snap"),
+           "stop": pos.get("orig_stop"), "t1": pos.get("t1"), "t2": pos.get("t2"),
+           "fees": round(pos.get("fees", 0.0), 2), "qty": qty,
            "entry": pos["entry"], "exit": round(fill, 4), "pnl": round(pnl, 2),
            "r": round(pnl/r_unit, 2) if r_unit else 0.0, "reason": reason,
            "opened": pos["opened"], "closed": now.isoformat(),
@@ -716,6 +721,25 @@ def period_summary(cal, start_equity):
             "two_year": total(730), "all": round(sum(v["pnl"] for v in cal.values()), 2),
             "all_pct": round(100*sum(v["pnl"] for v in cal.values())/start_equity, 2)}
 
+def compute_health(st):
+    """Rolling last-20 per strategy. ALERT ONLY — never disables (Idan's choice)."""
+    hcfg = CFG.get("health", {})
+    win = hcfg.get("window", 20); mn = hcfg.get("min_trades", 8)
+    out = {}
+    for kind in ("swing", "gold", "day"):
+        tr = [t for t in st["closed"] if t["kind"] == kind][:win]
+        if len(tr) >= mn:
+            exp = sum(t["pnl"] for t in tr)/len(tr)
+            gp = sum(t["pnl"] for t in tr if t["pnl"] > 0)
+            gl = abs(sum(t["pnl"] for t in tr if t["pnl"] <= 0))
+            out[kind] = {"n": len(tr), "exp": round(exp, 2),
+                         "pf": (round(gp/gl, 2) if gl > 0 else None),
+                         "avg_r": round(sum(t.get("r", 0) for t in tr)/len(tr), 2),
+                         "status": "warn" if exp < 0 else "ok"}
+        else:
+            out[kind] = {"n": len(tr), "status": "na"}
+    st["health"] = out
+
 def check_halts(st):
     g = CFG["governor"]; cal = st["calendar"]
     now_il = datetime.now(IL); today = now_il.strftime("%Y-%m-%d")
@@ -759,6 +783,7 @@ def main():
     ctrl = load_json(CTRL_F, {"halt": False, "close_all": False}) or {}
     st["control"] = {"halt": bool(ctrl.get("halt")), "close_all": bool(ctrl.get("close_all"))}
     st["risk_pct"] = CFG["risk_pct"]
+    st["wallet"]["name"] = CFG.get("wallet_name", "UHTA")
     st["risk_pcts"] = {"stocks": CFG.get("risk_pct_stocks", CFG["risk_pct"]),
                        "gold":   CFG.get("risk_pct_gold",   CFG["risk_pct"])}
     costs = CFG["costs"]; g = CFG["governor"]
@@ -881,6 +906,7 @@ def main():
                    key=lambda x: -x["score"])
     st["rejected"] = []
     for c in cands:
+        c["regime_ok"] = regime_ok
         rd = risk_gold if c["kind"] == "gold" else risk_stocks
         ok, why = governor_check(st, c, g, rd)
         if not ok:
@@ -893,10 +919,12 @@ def main():
 
     # ---------- agents report (who works on what, live) ----------
     open_heat = sum(p["risk_open"] for p in st["positions"])
+    hlt = st.get("health", {})
     st["agents"] = {
         "swing": {"icon": "📈", "name": "סוכן הסווינג", "domain": f"{len(tradable)} מניות ≤$20 · גרף יומי",
                   "with_data": sum(1 for u in uview if u.get("state") not in (None, "no_data") and u.get("sec") != "premium"),
                   "signals": len(sigs["swing"]),
+                  "health": hlt.get("swing", {}),
                   "desc": "פריצות מעל שיא משמעותי עם ווליום, מגמה ו-RSI. סטופ = ההדוק מבין השפל ל-1.6×ATR. יעדים 2R/3.5R."},
         "day":   {"icon": "⚡", "name": "סוכן הדיי-טרייד 🧪", "domain": f"{len(UNI.get('day_focus', []))} מניות · 5 דק' · חלון 17:05-18:00",
                   "active": market_open_now(now_et), "signals": len(sigs["day"]),
@@ -908,6 +936,7 @@ def main():
                   "signals": len(sigs["gold"]),
                   "today_trades": st.get("gold_today", {}).get("count", 0)
                                   if st.get("gold_today", {}).get("date") == now_il.strftime("%Y-%m-%d") else 0,
+                  "health": hlt.get("gold", {}),
                   "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R."},
         "guard": {"icon": "🛡️", "name": "שומר הסיכון", "domain": "כל עסקה עוברת דרכו",
                   "open": len(st["positions"]), "heat": round(open_heat, 2),
@@ -917,7 +946,7 @@ def main():
 
     # ---------- 4) finalise ----------
     mark_to_market(st)
-    rebuild_calendar_and_game(st); check_halts(st)
+    rebuild_calendar_and_game(st); check_halts(st); compute_health(st)
     today = now_il.strftime("%Y-%m-%d")
     ec = [p for p in st["equity_curve"] if p[0] != today]
     ec.append([today, st["wallet"]["equity"]])

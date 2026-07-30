@@ -338,6 +338,12 @@ ck("gold agent reports scan status", "bars" in st5["agents"]["gold"] and "scanne
    st5["agents"]["gold"].get("bars"))
 ck("daily boss in live state", st5["game"]["boss"].get("day") is not None)
 ck("control state exposed", "halt" in st5.get("control",{}))
+ck("health block computed", all(k in st5.get("health",{}) for k in ("swing","gold","day")),
+   {k:v.get("status") for k,v in st5.get("health",{}).items()})
+ck("wallet named UHTA", st5["wallet"].get("name")=="UHTA")
+cj=[t for t in st5["closed"] if t.get("snap")]
+ck("journal snapshot saved on closed trades", len(cj)==len(st5["closed"]) or not st5["closed"],
+   f'{len(cj)}/{len(st5["closed"])}')
 worst = min([t["r"] for t in st5["closed"]], default=0)
 ck("no single trade worse than -1.6R", worst > -1.7, f"{worst}R")
 print(f"\n   sim result: equity=${st5['wallet']['equity']}  trades={len(st5['closed'])}  "
