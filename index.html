@@ -209,7 +209,7 @@ a{color:var(--cyan)}
   <!-- ============ HOME ============ -->
   <section data-v="home">
     <div class="card boss">
-      <h3>👹 בוס החודש <small id="bossMonth"></small></h3>
+      <h3>👹 בוס היום <small id="bossMonth"></small></h3>
       <div class="hp"><div class="hpIn" id="bossHp" style="width:0%"></div></div>
       <div style="display:flex;justify-content:space-between;margin-top:7px;font-size:12px" dir="ltr">
         <span id="bossDone" class="pos">$0</span><span id="bossTarget" class="neu">$0</span>
@@ -238,6 +238,19 @@ a{color:var(--cyan)}
       <h3>🎯 סולם הצמיחה → $5,000 <small>ב-$5,000 מתחיל מסלול ארוך-טווח</small></h3>
       <div class="hp" style="height:12px"><div class="hpIn" id="ladder" style="width:0%"></div></div>
       <div class="legend" id="ladderMarks"></div>
+    </div>
+
+    <div class="card"><h3>🤖 הסוכנים שלי — מי עובד על מה עכשיו <small>לחיצה לפרטים</small></h3><div id="agents"></div></div>
+
+    <div class="card" style="border-color:rgba(255,77,109,.4)">
+      <h3>🛑 מפסק חירום</h3>
+      <div id="killStatus" style="margin-bottom:9px"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="xBtn" style="position:static;width:auto;padding:9px 14px;border-color:var(--red);color:var(--red);font-weight:700"
+          onclick="killInfo()">🛑 עצירת חירום…</button>
+        <button class="xBtn" style="position:static;width:auto;padding:9px 14px;border-color:var(--green);color:var(--green)"
+          onclick="window.open(REPO+'/actions/workflows/resume.yml','_blank')">▶️ חידוש מסחר</button>
+      </div>
     </div>
 
     <div class="card"><h3>⚔️ משימות היום</h3><div id="quests"></div></div>
@@ -292,6 +305,18 @@ a{color:var(--cyan)}
     <div class="card"><h3>📕 עסקאות שנסגרו</h3><div id="closedList"></div></div>
   </section>
 
+  <!-- ============ MARKET / UNIVERSE ============ -->
+  <section data-v="mkt" class="hidden">
+    <div class="card"><h3>🌐 היוניברס שלי <small id="uniCount"></small></h3>
+      <div class="mini" style="margin-bottom:10px">כל המניות שהסוכנים שלך מנטרים. לחיצה על כל שורה פותחת את הגרף ב-TradingView. 🟢 = איתות פעיל · 👁 = קרוב לאיתות · ⚪ = שקט.</div>
+      <div id="uniList"></div>
+    </div>
+    <div class="card"><h3>💎 פרימיום — מעקב ארוך-טווח <small>לא נסחר אוטומטית</small></h3>
+      <div class="mini" style="margin-bottom:10px">מניות מעל $20 לשלב הצבירה (מ-$5,000). לחיצה פותחת גרף.</div>
+      <div id="premList"></div>
+    </div>
+  </section>
+
   <!-- ============ ACHIEVEMENTS ============ -->
   <section data-v="ach" class="hidden">
     <div class="card"><h3>🏆 הישגים <small id="achCount"></small></h3><div class="badges" id="badges"></div></div>
@@ -333,9 +358,16 @@ const fmt=(n,d=2)=>(n<0?"-":"")+"$"+Math.abs(+n||0).toFixed(d);
 const sgn=n=>(+n>0?"+":"")+fmt(n);
 const cls=n=>+n>0.005?"pos":(+n<-0.005?"neg":"neu");
 let S=null, CAL={}, curMonth=new Date(), SOUND=false, ANIM=true;
+const REPO="https://github.com/Elkingo18/idan-signals";
+const EX={/* מיפוי בורסות ל-TradingView */ NVDA:"NASDAQ",MSFT:"NASDAQ",SOFI:"NASDAQ",SNAP:"NYSE"};
+function tvUrl(tk,kind){
+  if(kind==="gold"||tk==="XAUUSD") return "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD&interval=5";
+  return "https://www.tradingview.com/chart/?symbol="+encodeURIComponent(tk)+(kind==="day"?"&interval=5":"&interval=D");
+}
+function openTV(tk,kind){ window.open(tvUrl(tk,kind),"_blank"); beep(760,.05); }
 
 const TABS=[["home","🎮","מצב"],["cal","📅","לוח שנה"],["sig","📡","איתותים"],
-            ["pos","💼","פוזיציות"],["ach","🏆","הישגים"],["stats","📊","נתונים"],["truth","⚠️","אמת"]];
+            ["pos","💼","פוזיציות"],["mkt","🌐","השוק שלי"],["ach","🏆","הישגים"],["stats","📊","נתונים"],["truth","⚠️","אמת"]];
 $("#nav").innerHTML=TABS.map(([k,i,t],x)=>
   `<button class="tab${x?"":" on"}" data-t="${k}"><i>${i}</i>${t}</button>`).join("");
 $$(".tab").forEach(b=>b.onclick=()=>{
@@ -429,6 +461,7 @@ function render(){
   renderQuests(g.quests||[]); renderGov(); renderLog();
   CAL=S.calendar||{}; drawCal(); renderStreaks();
   renderSignals(); renderPositions(); renderBadges(g.badges||[]);
+  renderAgents(); renderMarket();
   renderStats(); renderTruth(); renderPeriods(per,w);
   const lastLv=+(localStorage.getItem("idan_lv")||0);
   if((g.level||1)>lastLv&&lastLv>0){levelUp(g);} localStorage.setItem("idan_lv",g.level||1);
@@ -441,13 +474,15 @@ function renderPeriods(p,w){
 }
 
 function renderBoss(b){
-  $("#bossMonth").textContent=b.month||"";
+  $("#bossMonth").textContent=(b.day||"")+(b.base?` · פתיחת היום ${fmt(b.base)}`:"");
   setTimeout(()=>$("#bossHp").style.width=(b.pct||0)+"%",120);
   $("#bossDone").textContent=sgn(b.done||0); $("#bossDone").className=cls(b.done);
-  $("#bossTarget").textContent="יעד "+fmt(b.target||0);
-  $("#bossTxt").innerHTML=b.beaten
-    ?"🎉 <b>הפלת את הבוס!</b> עברת את יעד החודש (8% מההון בתחילת החודש)."
-    :`נותרו ${fmt(Math.max(0,(b.target||0)-(b.done||0)))} להפלת הבוס. היעד = 8% מההון בתחילת החודש — יעד שאפתני אבל לא דמיוני.`;
+  $("#bossTarget").textContent=`בוס ${fmt(b.target||0)} · 🐲 אגדי ${fmt(b.legend||0)}`;
+  $("#bossTxt").innerHTML=b.legendary
+    ?"🐲🔥 <b>יום אגדי!</b> +20% ביום אחד. צלם מסך ותשלח לעידו טמין."
+    :b.beaten
+    ?`🎉 <b>הפלת את בוס היום (+8%)!</b> הדרקון האגדי מחכה ב-${fmt(b.legend)} — אבל זכור: להפסיק ביום כזה זה גם ניצחון.`
+    :`הבוס = <b>+8%</b> מההון של פתיחת היום, 🐲 אגדי = <b>+20%</b>. בכנות: אלה ימים נדירים — רוב הימים הטובים הם +1-4%, וזה בסדר גמור. הבוס הוא שאיפה, לא תחזית.`;
 }
 
 function renderCurve(){
@@ -479,6 +514,56 @@ function renderLadder(w){
     `<span style="opacity:${eq>=m?1:.4}">${eq>=m?"✅":"⚪"} $${m.toLocaleString()}</span>`).join("");
 }
 
+const AG_DET={
+ swing:"סורק כל 30 דקות את כל המניות הסחירות. מחפש פריצה מעל השיא המשמעותי האחרון עם ווליום גבוה, מגמה עולה ו-RSI חזק. כשהוא מוצא — שומר הסיכון בודק, ואם עובר: קנייה אוטומטית בארנק, חצי נמכר ב-2R, סטופ עולה לביטחון, והשאר רץ ל-3.5R.",
+ day:"עובד רק בשעות השוק האמריקאי, על 20 המניות הנזילות ביותר. מחפש פריצת טווח-פתיחה בחלון 17:05-18:00 עם אישור VWAP וזרימה. 🧪 מפסיד היסטורית (PF 0.93) — לכן נייר בלבד עד שיוכיח את עצמו.",
+ gold:"עובד כמעט 24 שעות. 4 תבניות לשני הכיוונים — קנייה ומכירה. מקסימום פוזיציה אחת בו-זמנית ועד 8 עסקאות ביום, רק כשהתבנית באמת שם. סטופ 1.5×ATR, חצי ב-1.5R, השאר ל-3R.",
+ guard:"הסוכן שאף עסקה לא עוקפת: תקרת 3 פוזיציות, חשיפה כוללת 12.5%, פוזיציה אחת לסקטור, עצירת הפסד יומית 6% ושבועית 12%, מינימום R:R 1.5, ומפסק החירום."};
+function renderAgents(){
+  const a=S.agents||{};
+  const rows=[["swing",a.swing],["day",a.day],["gold",a.gold],["guard",a.guard]].filter(x=>x[1]);
+  $("#agents").innerHTML=rows.length?rows.map(([k,o])=>{
+    let st="";
+    if(k==="swing") st=`${o.with_data??"—"} מניות נסרקו · ${o.signals??0} איתותים`;
+    if(k==="day")   st=o.active?`פעיל עכשיו · ${o.signals??0} איתותים`:"מחוץ לשעות השוק — ישן 😴";
+    if(k==="gold")  st=o.scanned?`✅ סרק · ${o.bars} נרות · $${o.last_price??"—"} · ${o.signals??0} איתותים · ${o.today_trades??0}/8 עסקאות היום`:"⚠️ אין נתוני זהב בסריקה האחרונה";
+    if(k==="guard") st=`${o.open??0} פוזיציות · heat ${fmt(o.heat||0)}${o.halt?" · 🛑 מסחר מושהה":""}`;
+    return `<div class="row" style="cursor:pointer" onclick="agentInfo('${k}')">
+      <div style="font-size:24px">${o.icon}</div>
+      <div class="mid" style="color:var(--txt)"><b>${o.name}</b><br>
+        <span style="color:var(--dim);font-size:11px">${o.domain||""}</span><br>
+        <span style="font-size:11px;color:var(--cyan)">${st}</span></div>
+      <div class="val" style="font-size:18px">›</div></div>`;
+  }).join(""):`<div class="mini">דוח הסוכנים יופיע אחרי הסריקה הבאה של המנוע (הגרסה החדשה).</div>`;
+  const halt=(S.control||{}).halt;
+  $("#killStatus").innerHTML=halt
+    ?`<div class="warn bad">🛑 <b>המסחר מושהה.</b> המנוע ממשיך לנהל פוזיציות קיימות (סטופים/יעדים) אבל לא פותח חדשות. לחץ "חידוש מסחר" כדי להפעיל מחדש.</div>`
+    :`<div class="mini">המסחר פעיל ✅. לחיצה על הכפתור האדום פותחת את דף העצירה — שם לוחצים "Run workflow" והמערכת נעצרת תוך דקה, כולל אפשרות לסגור את כל הפוזיציות מיד.</div>`;
+}
+function agentInfo(k){
+  const o=(S.agents||{})[k]; if(!o)return;
+  let extra="";
+  if(k==="gold"&&!o.scanned) extra=`<div class="warn bad" style="margin-top:10px">⚠️ בסריקה האחרונה לא הגיעו נתוני זהב (יכול לקרות כשיאהו חוסם רגעית או כשהחוזה סגור). המנוע ינסה שוב בסריקה הבאה — זה לא תקוע.</div>`;
+  if(k==="gold"&&o.scanned) extra=`<div class="warn ok" style="margin-top:10px">✅ הסוכן חי: ${o.bars} נרות של 5 דקות נטענו, מחיר אחרון $${o.last_price}. אם אין איתות — זה כי אף אחת מ-4 התבניות לא התקיימה, לא כי הוא לא סרק.</div>`;
+  openSheet(`<h4>${o.icon} ${o.name}</h4>
+    <div class="mini" style="margin-bottom:10px">${o.domain||""}</div>
+    <div class="warn">${AG_DET[k]||o.desc||""}</div>${extra}
+    ${k==="gold"?`<button class="xBtn" style="position:static;width:auto;padding:9px 14px;margin-top:11px" onclick="openTV('XAUUSD','gold')">📈 פתח גרף זהב ב-TradingView</button>`:""}`);
+}
+function killInfo(){
+  openSheet(`<h4>🛑 עצירת חירום</h4>
+   <div class="warn bad">שתי אפשרויות — שתיהן נפתחות בגיטהאב, ושם לוחצים על <b>Run workflow</b>:<br><br>
+   <b>1. עצור פתיחות</b> — משאיר פוזיציות קיימות עם הסטופים שלהן, רק מפסיק לפתוח חדשות (close_all = false).<br>
+   <b>2. סגור הכל ועצור</b> — מחסל את כל הפוזיציות במחיר השוק תוך דקה (close_all = true).<br><br>
+   החידוש: כפתור ▶️ במסך הבית.</div>
+   <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+     <button class="xBtn" style="position:static;width:auto;padding:10px 14px;border-color:var(--gold);color:var(--gold);font-weight:700"
+       onclick="window.open(REPO+'/actions/workflows/stop.yml','_blank')">⏸️ עצור פתיחות</button>
+     <button class="xBtn" style="position:static;width:auto;padding:10px 14px;border-color:var(--red);color:var(--red);font-weight:700"
+       onclick="window.open(REPO+'/actions/workflows/stop.yml','_blank')">🛑 סגור הכל ועצור</button>
+   </div>`);
+  beep(300,.12,"square",.06);
+}
 function renderQuests(q){
   $("#quests").innerHTML=q.length?q.map(o=>
     `<div class="q ${o.done?"done":""}"><div class="box">${o.done?"✓":""}</div>
@@ -595,6 +680,7 @@ function renderSignals(){
         <div class="mid" dir="ltr">${x.shares?`${x.kind==="gold"?x.ounces+" oz":x.shares+" sh"} ≈ ${fmt(x.notional||0)}`:""}${x.risk_dollars?` · risk ${fmt(x.risk_dollars)}`:""}${x.rvol?` · RVOL ${x.rvol}`:""}${x.rsi?` · RSI ${x.rsi}`:""}</div>
         ${x.rejects&&x.rejects.length?`<div class="mini" style="color:var(--gold)">⛔ ${x.rejects.join(", ")}</div>`:""}
       </div>
+      <button class="xBtn" style="position:static;width:auto;padding:0 9px" onclick="openTV('${x.ticker}','${x.kind}')">📈</button>
       <button class="xBtn" style="position:static;width:auto;padding:0 9px" onclick='sigInfo(${JSON.stringify(x).replace(/'/g,"&#39;")})'>ⓘ</button>
     </div>`;}).join(""):`<div class="mini">אין איתותים כרגע. זה נורמלי — המערכת מחכה למצב שמקיים את כל התנאים, ולא מתפשרת.</div>`;
   const rj=S.rejected||[];
@@ -604,7 +690,8 @@ function renderSignals(){
       already_open:"כבר פתוחה",cooldown_after_loss:"תקופת קירור אחרי הפסד",
       daily_loss_limit:"עצירת הפסד יומית",weekly_loss_limit:"עצירת הפסד שבועית",
       shorts_disabled:"שורט חסום",max_gold:"כבר יש פוזיציית זהב פתוחה",
-      gold_daily_cap:"הושלמה מכסת 8 עסקאות זהב היום"};
+      gold_daily_cap:"הושלמה מכסת 8 עסקאות זהב היום",
+      emergency_halt:"🛑 מפסק חירום פעיל"};
     return `<div style="padding:4px 0">• <b dir="ltr">${r.ticker}</b> — ${T[r.why]||(r.why.startsWith("sector_cap")?"כבר יש פוזיציה בסקטור הזה":r.why)}</div>`;
   }).join(""):"שום איתות לא נחסם בסריקה האחרונה.";
 }
@@ -643,6 +730,7 @@ function renderPositions(){
         ${o.pattern?`<span class="badgeK" style="border-color:var(--violet);color:#c9b3ff">${o.pattern}</span>`:""}
         ${o.be_moved?'<span class="badgeK" style="border-color:var(--green);color:var(--green)">סטופ בביטחון</span>':""}
         <span class="val ${cls(pl)}" style="margin-inline-start:auto">${sgn(pl)}</span>
+        <button class="xBtn" style="position:static;width:auto;padding:2px 9px" onclick="openTV('${o.ticker}','${o.kind}')">📈 TV</button>
       </div>
       <div class="mid" dir="ltr" style="margin-top:4px">
         ${o.qty_left}${o.kind==="gold"?" oz":" sh"} · כניסה ${o.entry} · עכשיו ${o.last} · סטופ ${o.stop} · T1 ${o.t1} · T2 ${o.t2}</div>
@@ -654,6 +742,35 @@ function renderPositions(){
       <div class="mid" dir="ltr">${t.day} · ${t.entry} → ${t.exit} · ${t.reason}</div>
       <div class="val ${cls(t.pnl)}">${sgn(t.pnl)}<div class="mini" dir="ltr">${(t.r>0?"+":"")+t.r}R</div></div></div>`
   ).join(""):`<div class="mini">עוד לא נסגרו עסקאות.</div>`;
+}
+
+/* ---------- market / universe ---------- */
+const SEC_HE={tech:"💻 טכנולוגיה",health:"🧬 בריאות",fintech:"🏦 פינטק",energy:"🛢️ אנרגיה",
+  cleanenergy:"☀️ אנרגיה נקייה",travel:"✈️ תעופה ונסיעות",consumer:"🛒 צריכה",space:"🚀 חלל",
+  ai:"🤖 בינה מלאכותית",semis:"🔌 שבבים",ev:"🔋 רכב חשמלי",utilities:"💧 תשתיות",other:"📦 אחר"};
+function renderMarket(){
+  const u=(S.universe_view||[]);
+  const trad=u.filter(x=>x.sec!=="premium"), prem=u.filter(x=>x.sec==="premium");
+  $("#uniCount").textContent=trad.length?`${trad.length} מניות · ${trad.filter(x=>x.state==="signal").length} איתותים · ${trad.filter(x=>x.state==="watch").length} במעקב`:"";
+  if(!trad.length){$("#uniList").innerHTML=`<div class="mini">רשימת היוניברס תופיע אחרי הסריקה הבאה של המנוע.</div>`;$("#premList").innerHTML="";return;}
+  const bySec={};
+  trad.forEach(x=>{(bySec[x.sec]=bySec[x.sec]||[]).push(x)});
+  $("#uniList").innerHTML=Object.entries(bySec).map(([sec,arr])=>{
+    arr.sort((a,b)=>(b.state==="signal")-(a.state==="signal")||(b.state==="watch")-(a.state==="watch"));
+    return `<div style="margin:12px 0 6px;font-size:12.5px;font-weight:700;color:var(--dim)">${SEC_HE[sec]||sec} · ${arr.length}</div>`+
+      arr.map(x=>{
+        const dot=x.state==="signal"?"🟢":x.state==="watch"?"👁":x.state==="no_data"?"⚫":"⚪";
+        return `<div class="row" style="cursor:pointer;padding:7px 10px" onclick="openTV('${x.t}')">
+          <span>${dot}</span><span class="tk" style="min-width:52px">${x.t}</span>
+          <div class="mid" dir="ltr">${x.px?("$"+x.px):"אין דאטה"}${x.trend!=null?` · ${x.trend>0?"+":""}${x.trend}% מעל MA50`:""}${x.rsi?` · RSI ${x.rsi}`:""}${x.rvol?` · vol ×${x.rvol}`:""}</div>
+          <span style="color:var(--cyan)">📈</span></div>`;
+      }).join("");
+  }).join("");
+  $("#premList").innerHTML=prem.map(x=>
+    `<div class="row" style="cursor:pointer;padding:6px 10px" onclick="openTV('${x.t}')">
+      <span class="tk" style="min-width:52px">${x.t}</span>
+      <div class="mid" dir="ltr">${x.px?("$"+x.px):"—"}${x.trend!=null?` · ${x.trend>0?"+":""}${x.trend}%`:""}</div>
+      <span style="color:var(--cyan)">📈</span></div>`).join("");
 }
 
 /* ---------- badges / levels ---------- */
