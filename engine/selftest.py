@@ -343,6 +343,9 @@ ck("game block complete", all(k in st5["game"] for k in ("xp","level","level_nam
 ck("periods block complete", "periods" in st5)
 ck("universe_view present with sectors", len(st5.get("universe_view",[]))>10,
    len(st5.get("universe_view",[])))
+ck("ido lists view present (lecturer watchlists)", len(st5.get("ido_view",[]))>10,
+   len(st5.get("ido_view",[])))
+ck("day-focus flag on universe rows", any(u.get("df") for u in st5.get("universe_view",[])))
 ck("agents report present (swing/day/gold/guard)",
    all(k in st5.get("agents",{}) for k in ("swing","day","gold","guard")))
 ck("gold agent reports scan status", "bars" in st5["agents"]["gold"] and "scanned" in st5["agents"]["gold"],

@@ -810,9 +810,16 @@ def main():
     excl = set(UNI.get("low_liquidity_excluded", []))
     tradable = [t for t in tradable if t not in excl]
     premium = UNI.get("premium_watch_only", [])
+    ido_cfg = UNI.get("ido_lists", [])
+    ido_all = []
+    for _lst in ido_cfg:
+        for _grp in _lst.get("groups", {}).values():
+            for _t in _grp:
+                if _t not in ido_all: ido_all.append(_t)
+    ido_extra = [t for t in ido_all if t not in tradable and t not in premium]
 
     # ---------- data ----------
-    daily = fetch_daily(tradable + premium + ["SPY"], "8mo")
+    daily = fetch_daily(tradable + premium + ido_extra + ["SPY"], "8mo")
     spy = daily.get("SPY")
     regime_ok = True
     if spy:
@@ -860,7 +867,8 @@ def main():
         for tk in tradable:
             bars = daily.get(tk)
             if not bars:
-                uview.append({"t": tk, "sec": sector_of(tk), "state": "no_data"})
+                uview.append({"t": tk, "sec": sector_of(tk), "state": "no_data",
+                              "df": 1 if tk in UNI.get("day_focus", []) else 0})
                 continue
             try:
                 s = swing_signal(tk, bars, scfg, risk_stocks, st["wallet"]["cash"],
@@ -874,6 +882,7 @@ def main():
                           "trend": (None if not ma_ else round((c_[-1]/ma_-1)*100, 1)),
                           "rsi": (None if rsi_ is None else round(rsi_)),
                           "rvol": round(v_[-1]/(sma(v_, 20) or 1), 1),
+                          "df": 1 if tk in UNI.get("day_focus", []) else 0,
                           "state": ("signal" if (s and s["state"] == "BUY_NOW")
                                     else "watch" if s else "none")})
             if s:
@@ -888,6 +897,28 @@ def main():
         else:
             uview.append({"t": tk, "sec": "premium", "state": "no_data"})
     st["universe_view"] = uview
+
+    # ---------- Ido's lists (lecturer watchlists — display only, never traded) ----------
+    iview = []
+    for _lst in ido_cfg:
+        for _grp_name, _tks in _lst.get("groups", {}).items():
+            for tk in _tks:
+                bars = daily.get(tk)
+                row = {"t": tk, "list": _lst.get("name", ""), "grp": _grp_name}
+                if bars:
+                    c_ = [b["c"] for b in bars]; v_ = [b["v"] for b in bars]
+                    h_ = [b["h"] for b in bars]
+                    ma_ = sma(c_, 50); rsi_ = wilder_rsi(c_, 14)
+                    hh = max(h_[-20:]) if len(h_) >= 20 else max(h_)
+                    row.update({"px": round(c_[-1], 2),
+                                "trend": (None if not ma_ else round((c_[-1]/ma_-1)*100, 1)),
+                                "rsi": (None if rsi_ is None else round(rsi_)),
+                                "rvol": round(v_[-1]/(sma(v_, 20) or 1), 1),
+                                "near": bool(hh and (hh - c_[-1])/hh <= 0.03)})
+                else:
+                    row["px"] = None
+                iview.append(row)
+    st["ido_view"] = iview
 
     dcfg = CFG["day"]
     if dcfg["enabled"] and market_open_now(now_et):
@@ -966,6 +997,7 @@ def main():
     ec = [p for p in st["equity_curve"] if p[0] != today]
     ec.append([today, st["wallet"]["equity"]])
     st["equity_curve"] = ec[-400:]
+    st["version"] = "4.0"
     st["updated_utc"] = now_utc.isoformat()
     st["updated_israel"] = now_il.strftime("%Y-%m-%d %H:%M")
     st["market"] = {"open": market_open_now(now_et), "et": now_et.strftime("%H:%M"),
