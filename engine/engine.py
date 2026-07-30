@@ -452,9 +452,9 @@ def governor_check(st, sig, g, risk_dollars):
     if (sig.get("rr1") or 0) < g["min_rr_t1"]:           return False, "rr_below_min"
     if sig.get("shares", 0) <= 0:                        return False, "size_zero"
     open_pos = st["positions"]
-    if len(open_pos) >= g["max_open_positions"]:         return False, "max_positions"
     if any(p["ticker"] == sig["ticker"] for p in open_pos): return False, "already_open"
     if sig["kind"] == "gold":
+        # gold has its OWN budget (Idan 30.7): it never competes with stocks for slots
         if sum(1 for p in open_pos if p["kind"] == "gold") >= g["max_gold_positions"]:
             return False, "max_gold"
         if datetime.now(ET).hour == CFG.get("gold", {}).get("maintenance_hour_et", 17):
@@ -464,8 +464,11 @@ def governor_check(st, sig, g, risk_dollars):
         if gt.get("date") == today and gt.get("count", 0) >= CFG.get("gold", {}).get("max_trades_per_day", 8):
             return False, "gold_daily_cap"
     else:
+        # stock slots: gold positions do NOT count toward this cap
+        if sum(1 for p in open_pos if p["kind"] != "gold") >= g["max_open_positions"]:
+            return False, "max_positions"
         sec = sector_of(sig["ticker"])
-        if sum(1 for p in open_pos if p.get("sector") == sec) >= g["max_positions_per_sector"]:
+        if sum(1 for p in open_pos if p["kind"] != "gold" and p.get("sector") == sec) >= g["max_positions_per_sector"]:
             return False, f"sector_cap:{sec}"
     heat = sum(p["risk_open"] for p in open_pos)
     if (heat + risk_dollars) > st["wallet"]["equity"]*g["max_total_open_heat_pct"]:
@@ -719,7 +722,7 @@ def rebuild_calendar_and_game(st):
         {"t": "לא לשבור אף כלל היום", "done": tc.get("discipline", 100) == 100, "xp": 15},
         {"t": "לסיים את היום ירוק",   "done": tc.get("status") == "green",     "xp": 20},
         {"t": "להסתכל על לוח-השנה",   "done": True,                            "xp": 5},
-        {"t": "לא יותר מ-4 פוזיציות פתוחות", "done": len(st["positions"]) <= 4, "xp": 10},
+        {"t": "לא יותר מ-5 פוזיציות פתוחות", "done": len(st["positions"]) <= 5, "xp": 10},
     ]
 
 def period_summary(cal, start_equity):
@@ -953,7 +956,7 @@ def main():
         "guard": {"icon": "🛡️", "name": "שומר הסיכון", "domain": "כל עסקה עוברת דרכו",
                   "open": len(st["positions"]), "heat": round(open_heat, 2),
                   "halt": st["control"]["halt"],
-                  "desc": "תקרות: 3 פוזיציות, heat 12.5%, סקטור אחד, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית."},
+                  "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית."},
     }
 
     # ---------- 4) finalise ----------

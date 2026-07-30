@@ -159,7 +159,7 @@ now = datetime.now(E.IL)
 E.open_position(st, base, now, E.CFG["costs"], 40)
 ck("position opened", len(st["positions"])==1)
 ok,why = E.governor_check(st, {**base,"ticker":"NU"}, gov, 40)
-ck("same-sector second trade blocked", not ok, why)
+ck("2nd trade in same sector ALLOWED (cap raised to 2)", ok, why)
 ok,why = E.governor_check(st, {**base,"ticker":"SNAP"}, gov, 40)
 ck("different sector allowed", ok, why)
 # REALITY CHECK: at 4% risk with a 10% stop, one position is ~40% of a $1000
@@ -168,15 +168,23 @@ E.open_position(st, {**base,"ticker":"SNAP"}, now, E.CFG["costs"], 40)
 ck("3rd full-size position refused for lack of cash (not a bug — a $1000 reality)",
    E.open_position(st, {**base,"ticker":"RIVN"}, now, E.CFG["costs"], 40) is None,
    f'cash ${st["wallet"]["cash"]:.2f}')
-for tk in ["RIVN"]:
-    E.open_position(st, {**base,"ticker":tk,"shares":15}, now, E.CFG["costs"], 40)
-ck("3 positions open (= max)", len(st["positions"])==3, len(st["positions"]))
-ok,why = E.governor_check(st, {**base,"ticker":"PLUG"}, gov, 40)
-ck("4th position blocked", not ok, why)
-ck("config is self-consistent: maxpos * risk <= heat cap",
-   gov["max_open_positions"]*E.CFG["risk_pct"] <= gov["max_total_open_heat_pct"]+1e-9)
+E.open_position(st, {**base,"ticker":"NU","shares":8}, now, E.CFG["costs"], 8)
+ok,why = E.governor_check(st, {**base,"ticker":"ITUB","shares":5}, gov, 5)
+ck("3rd fintech blocked (sector cap 2)", (not ok) and why.startswith("sector_cap"), why)
+E.open_position(st, {**base,"ticker":"RIVN","shares":8}, now, E.CFG["costs"], 8)
+ck("4 stock positions open (= new max)", len(st["positions"])==4, len(st["positions"]))
+ok,why = E.governor_check(st, {**base,"ticker":"PLUG","shares":5}, gov, 5)
+ck("5th stock blocked (max 4)", not ok, why)
+gold_long = {"kind":"gold","ticker":"XAUUSD","side":"long","state":"BUY_NOW","pattern":"חציית ממוצעים ↑",
+             "entry":4000.0,"stop":3986.0,"t1":4021.0,"t2":4042.0,"rr1":1.5,"shares":0.5,
+             "score":70,"margin":100.0}
+ok,why = E.governor_check(st, gold_long, gov, 7)
+ck("🥇 gold NOT counted in stock caps — passes with 4 stocks open", ok, why)
+ck("config is self-consistent: 4 stocks x 2% + gold 4% <= heat cap",
+   gov["max_open_positions"]*E.CFG["risk_pct_stocks"] + gov["max_gold_positions"]*E.CFG["risk_pct_gold"]
+   <= gov["max_total_open_heat_pct"]+1e-9)
 heat = sum(p["risk_open"] for p in st["positions"])
-ck("total open heat <= 12.5% of equity", heat <= st["wallet"]["equity"]*0.125+0.01, f"${heat:.2f}")
+ck("total open heat <= 14% of equity", heat <= st["wallet"]["equity"]*gov["max_total_open_heat_pct"]+0.01, f"${heat:.2f}")
 
 print("\n== ledger: T1 half-off -> breakeven -> trail -> exit ==")
 st2 = E.fresh_state()
@@ -314,9 +322,12 @@ st5 = E.load_json(E.STATE_F)
 ck("state file written", st5 is not None)
 ck("no unhandled error", "last_error" not in st5 or not st5.get("last_error"))
 ck("equity is a sane number", 300 < st5["wallet"]["equity"] < 3000, f'${st5["wallet"]["equity"]}')
-ck("never more than max_open_positions", len(st5["positions"])<=E.CFG["governor"]["max_open_positions"], len(st5["positions"]))
+n_stk = sum(1 for p in st5["positions"] if p["kind"] != "gold")
+n_gld = sum(1 for p in st5["positions"] if p["kind"] == "gold")
+ck("stock positions <= max (gold excluded)", n_stk<=E.CFG["governor"]["max_open_positions"], n_stk)
+ck("gold positions <= max_gold", n_gld<=E.CFG["governor"]["max_gold_positions"], n_gld)
 heat = sum(p["risk_open"] for p in st5["positions"])
-ck("open heat within cap", heat <= st5["wallet"]["equity"]*0.126+0.5, f"${heat:.2f}")
+ck("open heat within cap", heat <= st5["wallet"]["equity"]*(E.CFG["governor"]["max_total_open_heat_pct"]+0.001)+0.5, f"${heat:.2f}")
 ck("cash never negative", st5["wallet"]["cash"] >= -0.01, st5["wallet"]["cash"])
 ck("signals produced", sum(len(v) for v in st5["signals"].values())>0,
    {k:len(v) for k,v in st5["signals"].items()})
