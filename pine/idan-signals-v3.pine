@@ -1,5 +1,6 @@
-// Idan Signals v3.3 — 2026-07-30
-// v3.4 ALL-ENGLISH, no format.* namespace (compat with every Pine build). Hebrew inside Pine code breaks on paste (RTL reordering) — v3.2 lesson.
+// Idan Signals v3.5 — 2026-07-30
+// v3.5: explicit BUY/SELL text on every signal shape + live status table (top-right corner).
+// ALL-ENGLISH, no format.* namespace (compat with every Pine build). Hebrew inside Pine code breaks on paste (RTL reordering) — v3.2 lesson.
 // Logic identical to the engine: swing breakout (ATR-tight stop, R-multiple targets),
 // day ORB (paper only), gold 4 patterns BOTH directions. No line wraps anywhere.
 //@version=5
@@ -148,9 +149,27 @@ plot(useSwing and not na(sup) ? sup : na, "Support", style=plot.style_stepline, 
 
 anySig = swingOk or dayOk or goldBuy or goldSell
 plotshape(swingOk, "Swing BUY", shape.labelup, location.belowbar, color.new(color.teal, 0), text="BUY", textcolor=color.white, size=size.small)
-plotshape(dayOk, "Day BUY", shape.triangleup, location.belowbar, color.new(color.blue, 0), size=size.tiny)
-plotshape(goldBuy, "Gold BUY", shape.diamond, location.belowbar, color.new(color.yellow, 0), size=size.tiny)
-plotshape(goldSell, "Gold SELL", shape.diamond, location.abovebar, color.new(color.orange, 0), size=size.tiny)
+plotshape(dayOk, "Day BUY", shape.triangleup, location.belowbar, color.new(color.blue, 0), text="BUY", textcolor=color.new(color.aqua, 0), size=size.small)
+plotshape(goldBuy, "Gold BUY", shape.diamond, location.belowbar, color.new(color.yellow, 0), text="BUY", textcolor=color.new(color.yellow, 0), size=size.small)
+plotshape(goldSell, "Gold SELL", shape.diamond, location.abovebar, color.new(color.orange, 0), text="SELL", textcolor=color.new(color.orange, 0), size=size.small)
+
+// ---------------------------------------------------------------- live status table (top-right)
+var table panel = table.new(position.top_right, 2, 4, bgcolor=color.new(color.black, 25), frame_color=color.new(color.gray, 55), frame_width=1, border_color=color.new(color.gray, 80), border_width=1)
+if barstate.islast
+    swTxt = not useSwing ? "OFF" : swingOk ? "BUY" : "WAIT"
+    dyTxt = not useDay ? "OFF" : dayOk ? "BUY" : "WAIT"
+    gdTxt = not useGold ? "OFF" : goldBuy ? "BUY" : goldSell ? "SELL" : "WAIT"
+    swCol = swingOk ? color.lime : color.silver
+    dyCol = dayOk ? color.lime : color.silver
+    gdCol = goldBuy ? color.lime : goldSell ? color.orange : color.silver
+    table.cell(panel, 0, 0, "IDAN v3.5", text_color=color.aqua, text_size=size.small)
+    table.cell(panel, 1, 0, syminfo.ticker, text_color=color.silver, text_size=size.small)
+    table.cell(panel, 0, 1, "SWING", text_color=color.silver, text_size=size.small)
+    table.cell(panel, 1, 1, swTxt, text_color=swCol, text_size=size.small)
+    table.cell(panel, 0, 2, "DAY", text_color=color.silver, text_size=size.small)
+    table.cell(panel, 1, 2, dyTxt, text_color=dyCol, text_size=size.small)
+    table.cell(panel, 0, 3, "GOLD", text_color=color.silver, text_size=size.small)
+    table.cell(panel, 1, 3, gdTxt, text_color=gdCol, text_size=size.small)
 
 if swingOk
     label.new(bar_index, low, "BUY " + str.tostring(close, "#.##") + "\nSL " + str.tostring(sStop, "#.##") + " (" + str.tostring(sStopPct, "#.#") + "%)" + "\nT1 " + str.tostring(sT1, "#.##") + "  T2 " + str.tostring(sT2, "#.##") + "\nQty " + str.tostring(sQty), style=label.style_label_up, color=color.new(color.teal, 20), textcolor=color.white, size=size.small)
