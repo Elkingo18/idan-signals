@@ -214,6 +214,82 @@ def split_sessions(bars, rth_only=True):
     return [days[k] for k in keys], keys
 
 # ----------------------------------------------------------------------------
+# news agent (free Yahoo headlines; DISPLAY/ALERT ONLY — never changes trading)
+# ----------------------------------------------------------------------------
+NEWS_TAGS = [
+    ("earnings", "דוחות"), ("results", "דוחות"), ("guidance", "תחזית"),
+    ("upgrade", "העלאת המלצה"), ("downgrade", "הורדת המלצה"),
+    ("price target", "יעד מחיר"), ("fda", "רגולציה"), ("approval", "אישור רגולטורי"),
+    ("merger", "מיזוג"), ("acquisition", "רכישה"), ("acquire", "רכישה"),
+    ("lawsuit", "תביעה"), ("dividend", "דיבידנד"), ("split", "פיצול"),
+    ("bankruptcy", "חדלות פירעון"), ("contract", "חוזה"),
+    ("partnership", "שיתוף פעולה"), ("delisting", "מחיקה ממסחר"),
+]
+
+def _news_tag(title):
+    t = (title or "").lower()
+    for k, he in NEWS_TAGS:
+        if k in t: return he
+    return None
+
+def _one_ticker_news(sym, limit=3):
+    """Top headlines for one symbol. Handles both old and new yfinance shapes."""
+    import yfinance as yf
+    items = []
+    try:
+        raw = yf.Ticker(sym).news or []
+    except Exception:
+        return items
+    for it in raw[:limit*3]:
+        try:
+            c = it.get("content") if isinstance(it, dict) else None
+            if isinstance(c, dict):
+                title = c.get("title")
+                url = ((c.get("canonicalUrl") or {}).get("url")) or ((c.get("clickThroughUrl") or {}).get("url"))
+                src = ((c.get("provider") or {}).get("displayName"))
+                ts = c.get("pubDate") or c.get("displayTime")
+            else:
+                title = it.get("title")
+                url = it.get("link")
+                src = it.get("publisher")
+                ts = it.get("providerPublishTime")
+            if not title: continue
+            if isinstance(ts, (int, float)):
+                ts = datetime.fromtimestamp(ts, UTC).astimezone(IL).strftime("%d.%m %H:%M")
+            elif isinstance(ts, str):
+                ts = ts[:16].replace("T", " ")
+            items.append({"title": str(title)[:170], "url": url, "src": src,
+                          "time": ts, "tag": _news_tag(title)})
+            if len(items) >= limit: break
+        except Exception:
+            continue
+    return items
+
+def collect_news(sig_tickers, pos_tickers):
+    """News for: open positions + active signals + the broad market + gold.
+    The other agents 'read' it on screen; it never changes an order (honesty rule)."""
+    out = {"tickers": {}, "market": [],
+           "updated": datetime.now(IL).strftime("%Y-%m-%d %H:%M")}
+    targets = []
+    for t in list(pos_tickers) + list(sig_tickers):
+        if t and t != "XAUUSD" and t not in targets: targets.append(t)
+    for t in targets[:14]:                     # bounded so a run never hangs
+        n = _one_ticker_news(t, 3)
+        if n: out["tickers"][t] = n
+    mkt = []
+    for sym in ("SPY", "QQQ", "GC=F"):
+        for n in _one_ticker_news(sym, 3):
+            n2 = dict(n); n2["about"] = "זהב" if sym == "GC=F" else "שוק"
+            mkt.append(n2)
+    seen = set(); ded = []
+    for n in mkt:
+        k = (n.get("title") or "")[:60]
+        if k in seen: continue
+        seen.add(k); ded.append(n)
+    out["market"] = ded[:8]
+    return out
+
+# ----------------------------------------------------------------------------
 # sizing
 # ----------------------------------------------------------------------------
 def size_stock(entry, stop, cash, risk_dollars, equity=None, max_notional_frac=None):
@@ -946,6 +1022,17 @@ def main():
     for k in sigs: sigs[k].sort(key=lambda x: -x["score"])
     st["signals"] = sigs
 
+    # ---------- news agent (display only — never changes trading) ----------
+    try:
+        sig_tk = [x["ticker"] for v in sigs.values() for x in v]
+        pos_tk = [p["ticker"] for p in st["positions"]]
+        st["news"] = collect_news(sig_tk, pos_tk)
+    except Exception:
+        st["news"] = st.get("news") or {"tickers": {}, "market": [], "updated": None}
+    for v in sigs.values():
+        for x in v:
+            x["news"] = (st["news"].get("tickers", {}).get(x["ticker"]) or [])[:3]
+
     # ---------- 3) execute, strongest first ----------
     cands = sorted(sigs["swing"] + sigs["gold"] +
                    ([] if dcfg.get("paper_only") is False else sigs["day"]),
@@ -989,6 +1076,20 @@ def main():
                   "halt": st["control"]["halt"],
                   "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית."},
     }
+    # RESULTS per agent (Idan 30.7: show what they DID, not what they do)
+    td = now_il.strftime("%Y-%m-%d")
+    for kind in ("swing", "day", "gold"):
+        tr = [t for t in st["closed"] if t["kind"] == kind and t["day"] == td]
+        st["agents"][kind]["today"] = {"trades": len(tr),
+                                       "pnl": round(sum(t["pnl"] for t in tr), 2)}
+        st["agents"][kind]["open_now"] = sum(1 for p in st["positions"] if p["kind"] == kind)
+    st["agents"]["guard"]["today"] = {"blocked": len(st.get("rejected", []))}
+    nz = st.get("news", {}) or {}
+    st["agents"]["news"] = {
+        "icon": "📰", "name": "סוכן החדשות",
+        "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
+        "items": sum(len(v) for v in nz.get("tickers", {}).values()) + len(nz.get("market", [])),
+        "covered": len(nz.get("tickers", {})), "updated": nz.get("updated")}
 
     # ---------- 4) finalise ----------
     mark_to_market(st)
@@ -997,7 +1098,7 @@ def main():
     ec = [p for p in st["equity_curve"] if p[0] != today]
     ec.append([today, st["wallet"]["equity"]])
     st["equity_curve"] = ec[-400:]
-    st["version"] = "4.0"
+    st["version"] = "4.1"
     st["updated_utc"] = now_utc.isoformat()
     st["updated_israel"] = now_il.strftime("%Y-%m-%d %H:%M")
     st["market"] = {"open": market_open_now(now_et), "et": now_et.strftime("%H:%M"),

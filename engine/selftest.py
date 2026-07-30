@@ -305,6 +305,9 @@ def fake_daily(tks, period="8mo"): return {t:STORE[t] for t in tks if t in STORE
 def fake_intra(tks, interval="5m", period="5d"):
     return {t: mk_intra(n=110, start=(4000 if "GC" in t else 10), up=True) for t in tks}
 E.fetch_daily, E.fetch_intraday = fake_daily, fake_intra
+E._one_ticker_news = lambda sym, limit=3: [
+    {"title": f"Test headline about {sym} earnings", "url": "https://example.com",
+     "src": "TestWire", "time": "30.07 12:00", "tag": "דוחות"}][:limit]
 UNIV_ORDER = [t for t in UNIV]
 for i in range(14):
     forced = UNIV_ORDER[i % len(UNIV_ORDER)]
@@ -355,6 +358,15 @@ ck("control state exposed", "halt" in st5.get("control",{}))
 ck("health block computed", all(k in st5.get("health",{}) for k in ("swing","gold","day")),
    {k:v.get("status") for k,v in st5.get("health",{}).items()})
 ck("wallet named UHTA", st5["wallet"].get("name")=="UHTA")
+ck("news block present with market items", "news" in st5 and len(st5["news"].get("market",[]))>0,
+   len(st5.get("news",{}).get("market",[])))
+ck("news agent reports item count", st5["agents"].get("news",{}).get("items",0)>0,
+   st5["agents"].get("news",{}).get("items"))
+ck("agents carry TODAY results (not just descriptions)",
+   all("today" in st5["agents"][k] for k in ("swing","day","gold","guard")))
+ck("signals carry attached news", all("news" in x for v in st5["signals"].values() for x in v)
+   or not any(len(v) for v in st5["signals"].values()))
+ck("version bumped to 4.1", st5.get("version")=="4.1", st5.get("version"))
 cj=[t for t in st5["closed"] if t.get("snap")]
 ck("journal snapshot saved on closed trades", len(cj)==len(st5["closed"]) or not st5["closed"],
    f'{len(cj)}/{len(st5["closed"])}')
