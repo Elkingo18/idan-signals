@@ -1,55 +1,46 @@
-// © Idan Signals v3.0 — 2026-07-30
-// ============================================================================
-// מה השתנה מגרסה 2 (אחרי הביקורת של יולי 2026):
-//  1. autoAlerts כבר לא דולק כברירת מחדל. אסור לשלוח פקודות אוטומטיות
-//     מאסטרטגיה שלא אומתה. צריך להדליק ידנית ובמודע.
-//  2. הדיי-טרייד קיבל את שלושת הפילטרים שהיו רק בפייתון ולא כאן:
-//     חלון שעות כניסה, אנטי-רדיפה מול VWAP, ומינימום ברים מהפתיחה.
-//  3. הסטופ בסווינג = ההדוק מבין השפל המשמעותי ל-1.6×ATR (לא שפל גולמי
-//     שנמצא 20% מתחת למחיר — זה הרס את יחס הסיכון/סיכוי).
-//  4. היעדים הם כפולות של הסיכון (T1=2R, T2=3.5R) ולא "+20%" שרירותי.
-//  5. שער R:R מינימלי: איתות עם פחות מ-1.5 לא נצבע ולא שולח התראה.
-//  6. ה-VWAP מתאפס בכל סשן (היה מצטבר על כמה ימים = איתות לא משוחזר).
-// ============================================================================
+// Idan Signals v3.3 — 2026-07-30
+// ALL-ENGLISH build. Hebrew inside Pine code breaks on paste (RTL reordering) — v3.2 lesson.
+// Logic identical to the engine: swing breakout (ATR-tight stop, R-multiple targets),
+// day ORB (paper only), gold 4 patterns BOTH directions. No line wraps anywhere.
 //@version=5
 indicator("Idan Signals v3", overlay=true, max_labels_count=300)
 
 // ---------------------------------------------------------------- inputs
-grpS = "סווינג (יומי)"
-useSwing  = input.bool(true,  "הפעל סווינג",              group=grpS)
-pivLen    = input.int(3,      "אורך פיבוט",     minval=1, group=grpS)
-maLen     = input.int(50,     "ממוצע מגמה",     minval=5, group=grpS)
-rsiLen    = input.int(14,     "RSI",            minval=2, group=grpS)
-volLen    = input.int(20,     "ממוצע ווליום",   minval=2, group=grpS)
-volMult   = input.float(1.3,  "מכפיל ווליום",   step=0.1, group=grpS)
-atrLen    = input.int(14,     "ATR",            minval=2, group=grpS)
-atrMult   = input.float(1.6,  "מכפיל ATR לסטופ",step=0.1, group=grpS)
-rrT1      = input.float(2.0,  "יעד 1 (R)",      step=0.5, group=grpS)
-rrT2      = input.float(3.5,  "יעד 2 (R)",      step=0.5, group=grpS)
-minRR     = input.float(1.5,  "מינימום R:R",    step=0.1, group=grpS)
-maxStopP  = input.float(12.0, "סטופ מקס' %",    step=0.5, group=grpS)
+grpS = "SWING (Daily)"
+useSwing  = input.bool(true,  "Enable swing", group=grpS)
+pivLen    = input.int(3,      "Pivot length", minval=1, group=grpS)
+maLen     = input.int(50,     "Trend MA", minval=5, group=grpS)
+rsiLen    = input.int(14,     "RSI", minval=2, group=grpS)
+volLen    = input.int(20,     "Volume MA", minval=2, group=grpS)
+volMult   = input.float(1.3,  "Volume mult", step=0.1, group=grpS)
+atrLen    = input.int(14,     "ATR", minval=2, group=grpS)
+atrMult   = input.float(1.6,  "ATR stop mult", step=0.1, group=grpS)
+rrT1      = input.float(2.0,  "Target 1 (R)", step=0.5, group=grpS)
+rrT2      = input.float(3.5,  "Target 2 (R)", step=0.5, group=grpS)
+minRR     = input.float(1.5,  "Min R:R", step=0.1, group=grpS)
+maxStopP  = input.float(12.0, "Max stop %", step=0.5, group=grpS)
 
-grpD = "דיי-טרייד ORB (🧪 ניסיוני — נייר בלבד)"
-useDay    = input.bool(false, "הפעל דיי-טרייד",           group=grpD)
-orbMin    = input.int(15,     "דקות טווח פתיחה",          group=grpD)
-minBarsOR = input.int(6,      "מינימום ברים מהפתיחה",     group=grpD)
-maxExtVW  = input.float(1.5,  "מקס' מרחק מ-VWAP %", step=0.1, group=grpD)
-entryFrom = input.session("1005-1100", "חלון כניסה (שעון ניו-יורק)", group=grpD)
-dayRR1    = input.float(2.0,  "יעד 1 דיי (R)",  step=0.5, group=grpD)
+grpD = "DAY ORB (experimental - PAPER ONLY)"
+useDay    = input.bool(false, "Enable day-trade", group=grpD)
+orbMin    = input.int(15,     "Opening range minutes", group=grpD)
+minBarsOR = input.int(6,      "Min bars after open", group=grpD)
+maxExtVW  = input.float(1.5,  "Max distance from VWAP %", step=0.1, group=grpD)
+entryFrom = input.session("1005-1100", "Entry window (NY time)", group=grpD)
+dayRR1    = input.float(2.0,  "Day target 1 (R)", step=0.5, group=grpD)
 
-grpG = "זהב (5 דקות)"
-useGold   = input.bool(false, "הפעל זהב (הפעל רק בגרף זהב 5 דק')", group=grpG)
-eFast     = input.int(9,  "EMA מהיר", group=grpG)
-eMid      = input.int(21, "EMA בינוני", group=grpG)
-eSlow     = input.int(50, "EMA איטי",  group=grpG)
-gAtrMult  = input.float(1.5, "מכפיל ATR לסטופ זהב", step=0.1, group=grpG)
+grpG = "GOLD (5m chart only)"
+useGold   = input.bool(false, "Enable gold (turn on ONLY on XAUUSD 5m)", group=grpG)
+eFast     = input.int(9,  "EMA fast", group=grpG)
+eMid      = input.int(21, "EMA mid", group=grpG)
+eSlow     = input.int(50, "EMA slow", group=grpG)
+gAtrMult  = input.float(1.5, "Gold ATR stop mult", step=0.1, group=grpG)
 
-grpA = "התראות ואוטומציה"
-sendAlerts = input.bool(true,  "שלח התראות (פוש/מייל)", group=grpA)
-autoAlerts = input.bool(false, "⚠️ שלח JSON לוובהוק לביצוע אוטומטי — כבוי בכוונה", group=grpA)
-wallet     = input.float(1000, "הון ($)",  group=grpA)
-riskPct    = input.float(4.0,  "סיכון לעסקה %", step=0.5, group=grpA)
-maxNotP    = input.float(35.0, "מקס' % מההון לפוזיציה אחת", step=5, group=grpA)
+grpA = "Alerts"
+sendAlerts = input.bool(true,  "Send alerts (push/email)", group=grpA)
+autoAlerts = input.bool(false, "!! JSON webhook for auto-execution - OFF on purpose", group=grpA)
+wallet     = input.float(1000, "Wallet ($) - UHTA", group=grpA)
+riskPct    = input.float(4.0,  "Risk per trade %", step=0.5, group=grpA)
+maxNotP    = input.float(35.0, "Max % of wallet per position", step=5, group=grpA)
 
 // ---------------------------------------------------------------- shared
 rsi  = ta.rsi(close, rsiLen)
@@ -58,7 +49,6 @@ ma   = ta.sma(close, maLen)
 volOk  = volume > ta.sma(volume, volLen) * volMult
 volOkG = volume > ta.sma(volume, 20) * 1.3
 newSession = ta.change(time("D")) != 0
-// VWAP שמתאפס בכל סשן
 var float cumPV = 0.0
 var float cumV  = 0.0
 if newSession
@@ -76,7 +66,7 @@ f_size(entry, stop) =>
 
 // ---------------------------------------------------------------- SWING
 ph = ta.pivothigh(high, pivLen, pivLen)
-pl = ta.pivotlow (low,  pivLen, pivLen)
+pl = ta.pivotlow(low, pivLen, pivLen)
 var float res = na
 var float sup = na
 if not na(ph)
@@ -87,7 +77,6 @@ if not na(pl)
 trendUp   = close > ma
 brokeUp   = not na(res) and close > res and close[1] <= res
 swingRaw  = useSwing and brokeUp and volOk and rsi > 50 and trendUp
-
 sStopRaw  = not na(sup) ? math.max(sup, close - atrMult * atrV) : close - atrMult * atrV
 sStop     = sStopRaw >= close * 0.995 ? close - math.max(atrV, close * 0.015) : sStopRaw
 sRisk     = close - sStop
@@ -101,7 +90,6 @@ sQty      = f_size(close, sStop)
 
 // ---------------------------------------------------------------- DAY (ORB)
 isIntra   = timeframe.isintraday
-sessOpen  = time("0930-1600")
 barsIn    = ta.barssince(newSession)
 inORB     = isIntra and barsIn * timeframe.multiplier < orbMin
 var float orH = na
@@ -111,7 +99,7 @@ if newSession
     orL := low
 else if inORB
     orH := math.max(nz(orH, high), high)
-    orL := math.min(nz(orL, low),  low)
+    orL := math.min(nz(orL, low), low)
 
 inWindow  = not na(time(timeframe.period, entryFrom, "America/New_York"))
 extVWpct  = math.abs(close - vwapS) / vwapS * 100
@@ -123,7 +111,7 @@ dT1       = close + dayRR1 * dRisk
 dT2       = close + 3.0 * dRisk
 dQty      = dRisk > 0 ? f_size(close, dStop) : 0
 
-// ---------------------------------------------------------------- GOLD
+// ---------------------------------------------------------------- GOLD (both directions)
 e9  = ta.ema(close, eFast)
 e21 = ta.ema(close, eMid)
 e50 = ta.ema(close, eSlow)
@@ -133,12 +121,10 @@ recentUp = crossUp or crossUp[1] or crossUp[2]
 recentDn = crossDn or crossDn[1] or crossDn[2]
 gBull    = e9 > e21 and close > e50
 gBear    = e9 < e21 and close < e50
-// 4 תבניות לונג: חצייה / פולבק לגל / החזרת VWAP / פריצת טווח
-gPullL   = gBull and ta.lowest(low, 3)  <= e21 and close > e9 and rsi >= 45 and rsi <= 70
+gPullL   = gBull and ta.lowest(low, 3) <= e21 and close > e9 and rsi >= 45 and rsi <= 70
 gVwapL   = gBull and close > vwapS and close[1] <= vwapS[1]
 gBreakL  = gBull and close > ta.highest(high[1], 12) and volOkG and rsi > 52
-goldOk   = useGold and close > vwapS and rsi > 50 and (recentUp or gPullL or gVwapL or gBreakL)
-// מראה: שורט
+goldBuy  = useGold and close > vwapS and rsi > 50 and (recentUp or gPullL or gVwapL or gBreakL)
 gPullS   = gBear and ta.highest(high, 3) >= e21 and close < e9 and rsi >= 30 and rsi <= 55
 gVwapS_  = gBear and close < vwapS and close[1] >= vwapS[1]
 gBreakS  = gBear and close < ta.lowest(low[1], 12) and volOkG and rsi < 48
@@ -152,44 +138,41 @@ gT1S     = close - 1.5 * gRisk
 gT2S     = close - 3.0 * gRisk
 
 // ---------------------------------------------------------------- plots
-plot(useSwing ? ma : na, "MA מגמה", color=color.new(color.orange, 40), linewidth=1)
-plot(isIntra ? vwapS : na, "VWAP סשן", color=color.new(color.aqua, 30), linewidth=1)
-plot(useGold ? e9  : na, "EMA9",  color=color.new(color.lime, 40))
+plot(useSwing ? ma : na, "Trend MA", color=color.new(color.orange, 40), linewidth=1)
+plot(isIntra ? vwapS : na, "Session VWAP", color=color.new(color.aqua, 30), linewidth=1)
+plot(useGold ? e9 : na, "EMA9", color=color.new(color.lime, 40))
 plot(useGold ? e21 : na, "EMA21", color=color.new(color.yellow, 40))
 plot(useGold ? e50 : na, "EMA50", color=color.new(color.red, 55))
-plot(useSwing and not na(res) ? res : na, "התנגדות", style=plot.style_stepline, color=color.new(color.red, 55))
-plot(useSwing and not na(sup) ? sup : na, "תמיכה",   style=plot.style_stepline, color=color.new(color.green, 55))
+plot(useSwing and not na(res) ? res : na, "Resistance", style=plot.style_stepline, color=color.new(color.red, 55))
+plot(useSwing and not na(sup) ? sup : na, "Support", style=plot.style_stepline, color=color.new(color.green, 55))
 
-anySig = swingOk or dayOk or goldOk or goldSell
-plotshape(swingOk, "כניסה סווינג", shape.labelup, location.belowbar, color.new(color.teal, 0), text="BUY", textcolor=color.white, size=size.small)
-plotshape(dayOk,   "כניסה דיי",    shape.triangleup, location.belowbar, color.new(color.blue, 0), size=size.tiny)
-plotshape(goldOk,  "כניסה זהב",    shape.diamond, location.belowbar, color.new(color.yellow, 0), size=size.tiny)
-plotshape(goldSell, "מכירת זהב",   shape.diamond, location.abovebar, color.new(color.orange, 0), size=size.tiny)
+anySig = swingOk or dayOk or goldBuy or goldSell
+plotshape(swingOk, "Swing BUY", shape.labelup, location.belowbar, color.new(color.teal, 0), text="BUY", textcolor=color.white, size=size.small)
+plotshape(dayOk, "Day BUY", shape.triangleup, location.belowbar, color.new(color.blue, 0), size=size.tiny)
+plotshape(goldBuy, "Gold BUY", shape.diamond, location.belowbar, color.new(color.yellow, 0), size=size.tiny)
+plotshape(goldSell, "Gold SELL", shape.diamond, location.abovebar, color.new(color.orange, 0), size=size.tiny)
 
 if swingOk
-    label.new(bar_index, low, "כניסה " + str.tostring(close, format.mint) + "\nסטופ " + str.tostring(sStop, format.mint) + " (" + str.tostring(sStopPct, "#.#") + "%)" + "\nT1 " + str.tostring(sT1, format.mint) + "  T2 " + str.tostring(sT2, format.mint) + "\n" + str.tostring(sQty) + " יח'", style=label.style_label_up, color=color.new(color.teal, 20), textcolor=color.white, size=size.small)
+    label.new(bar_index, low, "BUY " + str.tostring(close, format.mint) + "\nSL " + str.tostring(sStop, format.mint) + " (" + str.tostring(sStopPct, "#.#") + "%)" + "\nT1 " + str.tostring(sT1, format.mint) + "  T2 " + str.tostring(sT2, format.mint) + "\nQty " + str.tostring(sQty), style=label.style_label_up, color=color.new(color.teal, 20), textcolor=color.white, size=size.small)
 
 // ---------------------------------------------------------------- alerts
-// טקסט קריא לפוש בטלפון
-f_msg(kind, entry, stop, t1, t2, qty) =>
-    kind + " " + syminfo.ticker + " @ " + str.tostring(entry, format.mint) + " | סטופ " + str.tostring(stop, format.mint) + " | T1 " + str.tostring(t1, format.mint) + " | T2 " + str.tostring(t2, format.mint) + " | " + str.tostring(qty) + " יח' | R:R " + str.tostring(rrT1, "#.#")
+f_msg(act, entry, stop, t1, t2, qty) =>
+    act + " " + syminfo.ticker + " @ " + str.tostring(entry, format.mint) + " | SL " + str.tostring(stop, format.mint) + " | T1 " + str.tostring(t1, format.mint) + " | T2 " + str.tostring(t2, format.mint) + " | Qty " + str.tostring(qty)
 
-// JSON לוובהוק — רק אם הדלקת במפורש
 f_json(kind, entry, stop, t1, t2, qty) =>
     '{"strategy":"idan_v3","kind":"' + kind + '","action":"buy","symbol":"' + syminfo.ticker + '","entry":' + str.tostring(entry) + ',"stop":' + str.tostring(stop) + ',"t1":' + str.tostring(t1) + ',"t2":' + str.tostring(t2) + ',"qty":' + str.tostring(qty) + ',"tf":"' + timeframe.period + '"}'
 
 if sendAlerts and swingOk
-    alert(autoAlerts ? f_json("swing", close, sStop, sT1, sT2, sQty) : "📈 סווינג — " + f_msg("קנייה", close, sStop, sT1, sT2, sQty), alert.freq_once_per_bar_close)
+    alert(autoAlerts ? f_json("swing", close, sStop, sT1, sT2, sQty) : "📈 SWING " + f_msg("BUY", close, sStop, sT1, sT2, sQty), alert.freq_once_per_bar_close)
 if sendAlerts and dayOk
-    alert(autoAlerts ? f_json("day", close, dStop, dT1, dT2, dQty) : "⚡ דיי 🧪 נייר — " + f_msg("קנייה", close, dStop, dT1, dT2, dQty), alert.freq_once_per_bar_close)
-if sendAlerts and goldOk
-    alert(autoAlerts ? f_json("gold", close, gStop, gT1, gT2, 0) : "🪙 זהב — " + f_msg("קנייה", close, gStop, gT1, gT2, 0), alert.freq_once_per_bar_close)
+    alert(autoAlerts ? f_json("day", close, dStop, dT1, dT2, dQty) : "⚡ DAY (paper) " + f_msg("BUY", close, dStop, dT1, dT2, dQty), alert.freq_once_per_bar_close)
+if sendAlerts and goldBuy
+    alert(autoAlerts ? f_json("gold", close, gStop, gT1, gT2, 0) : "🪙 GOLD " + f_msg("BUY", close, gStop, gT1, gT2, 0), alert.freq_once_per_bar_close)
 if sendAlerts and goldSell
-    alert("🪙 זהב — " + f_msg("מכירה (שורט)", close, gStopS, gT1S, gT2S, 0), alert.freq_once_per_bar_close)
+    alert("🪙 GOLD " + f_msg("SELL", close, gStopS, gT1S, gT2S, 0), alert.freq_once_per_bar_close)
 
-// alertcondition = מה שמופיע ברשימה כשיוצרים התראה ידנית ב-TradingView
-alertcondition(swingOk, "Idan • כניסת סווינג", "📈 איתות סווינג ב-{{ticker}} במחיר {{close}}")
-alertcondition(dayOk,   "Idan • כניסת דיי (נייר)", "⚡ איתות דיי ב-{{ticker}} במחיר {{close}}")
-alertcondition(goldOk,  "Idan • זהב קנייה", "🪙 קניית זהב ב-{{ticker}} במחיר {{close}}")
-alertcondition(goldSell, "Idan • זהב מכירה", "🪙 מכירת זהב (שורט) ב-{{ticker}} במחיר {{close}}")
-alertcondition(anySig,  "Idan • כל איתות", "⚡ Idan Signals: איתות ב-{{ticker}} במחיר {{close}}")
+alertcondition(swingOk, "Idan - Swing BUY", "📈 Swing BUY {{ticker}} @ {{close}}")
+alertcondition(dayOk, "Idan - Day BUY (paper)", "⚡ Day BUY {{ticker}} @ {{close}}")
+alertcondition(goldBuy, "Idan - Gold BUY", "🪙 Gold BUY {{ticker}} @ {{close}}")
+alertcondition(goldSell, "Idan - Gold SELL", "🪙 Gold SELL {{ticker}} @ {{close}}")
+alertcondition(anySig, "Idan - ANY signal", "⚡ Idan Signals: {{ticker}} @ {{close}}")
