@@ -115,8 +115,7 @@ else if inORB
 
 inWindow  = not na(time(timeframe.period, entryFrom, "America/New_York"))
 extVWpct  = math.abs(close - vwapS) / vwapS * 100
-dayRaw    = useDay and isIntra and not inORB and not na(orH) and close > orH and close[1] <= orH
-            and close > vwapS and volOk and rsi > 50
+dayRaw    = useDay and isIntra and not inORB and not na(orH) and close > orH and close[1] <= orH and close > vwapS and volOk and rsi > 50
 dayOk     = dayRaw and barsIn >= minBarsOR and extVWpct <= maxExtVW and inWindow
 dStop     = orL
 dRisk     = close - nz(dStop, close)
@@ -162,54 +161,31 @@ plot(useSwing and not na(res) ? res : na, "התנגדות", style=plot.style_ste
 plot(useSwing and not na(sup) ? sup : na, "תמיכה",   style=plot.style_stepline, color=color.new(color.green, 55))
 
 anySig = swingOk or dayOk or goldOk or goldSell
-plotshape(swingOk, "כניסה סווינג", shape.labelup, location.belowbar,
-          color.new(color.teal, 0), text="BUY", textcolor=color.white, size=size.small)
-plotshape(dayOk,   "כניסה דיי",    shape.triangleup, location.belowbar,
-          color.new(color.blue, 0), size=size.tiny)
-plotshape(goldOk,  "כניסה זהב",    shape.diamond, location.belowbar,
-          color.new(color.yellow, 0), size=size.tiny)
-plotshape(goldSell, "מכירת זהב",   shape.diamond, location.abovebar,
-          color.new(color.orange, 0), size=size.tiny)
+plotshape(swingOk, "כניסה סווינג", shape.labelup, location.belowbar, color.new(color.teal, 0), text="BUY", textcolor=color.white, size=size.small)
+plotshape(dayOk,   "כניסה דיי",    shape.triangleup, location.belowbar, color.new(color.blue, 0), size=size.tiny)
+plotshape(goldOk,  "כניסה זהב",    shape.diamond, location.belowbar, color.new(color.yellow, 0), size=size.tiny)
+plotshape(goldSell, "מכירת זהב",   shape.diamond, location.abovebar, color.new(color.orange, 0), size=size.tiny)
 
 if swingOk
-    label.new(bar_index, low, "כניסה " + str.tostring(close, format.mint) +
-              "\nסטופ " + str.tostring(sStop, format.mint) + " (" + str.tostring(sStopPct, "#.#") + "%)" +
-              "\nT1 " + str.tostring(sT1, format.mint) + "  T2 " + str.tostring(sT2, format.mint) +
-              "\n" + str.tostring(sQty) + " יח'",
-              style=label.style_label_up, color=color.new(color.teal, 20),
-              textcolor=color.white, size=size.small)
+    label.new(bar_index, low, "כניסה " + str.tostring(close, format.mint) + "\nסטופ " + str.tostring(sStop, format.mint) + " (" + str.tostring(sStopPct, "#.#") + "%)" + "\nT1 " + str.tostring(sT1, format.mint) + "  T2 " + str.tostring(sT2, format.mint) + "\n" + str.tostring(sQty) + " יח'", style=label.style_label_up, color=color.new(color.teal, 20), textcolor=color.white, size=size.small)
 
 // ---------------------------------------------------------------- alerts
 // טקסט קריא לפוש בטלפון
 f_msg(kind, entry, stop, t1, t2, qty) =>
-    kind + " " + syminfo.ticker + " @ " + str.tostring(entry, format.mint) +
-    " | סטופ " + str.tostring(stop, format.mint) +
-    " | T1 " + str.tostring(t1, format.mint) +
-    " | T2 " + str.tostring(t2, format.mint) +
-    " | " + str.tostring(qty) + " יח' | R:R " + str.tostring(rrT1, "#.#")
+    kind + " " + syminfo.ticker + " @ " + str.tostring(entry, format.mint) + " | סטופ " + str.tostring(stop, format.mint) + " | T1 " + str.tostring(t1, format.mint) + " | T2 " + str.tostring(t2, format.mint) + " | " + str.tostring(qty) + " יח' | R:R " + str.tostring(rrT1, "#.#")
 
 // JSON לוובהוק — רק אם הדלקת במפורש
 f_json(kind, entry, stop, t1, t2, qty) =>
-    '{"strategy":"idan_v3","kind":"' + kind + '","action":"buy","symbol":"' + syminfo.ticker +
-    '","entry":' + str.tostring(entry) + ',"stop":' + str.tostring(stop) +
-    ',"t1":' + str.tostring(t1) + ',"t2":' + str.tostring(t2) +
-    ',"qty":' + str.tostring(qty) + ',"tf":"' + timeframe.period + '"}'
+    '{"strategy":"idan_v3","kind":"' + kind + '","action":"buy","symbol":"' + syminfo.ticker + '","entry":' + str.tostring(entry) + ',"stop":' + str.tostring(stop) + ',"t1":' + str.tostring(t1) + ',"t2":' + str.tostring(t2) + ',"qty":' + str.tostring(qty) + ',"tf":"' + timeframe.period + '"}'
 
 if sendAlerts and swingOk
-    alert(autoAlerts ? f_json("swing", close, sStop, sT1, sT2, sQty)
-                     : "📈 סווינג — " + f_msg("קנייה", close, sStop, sT1, sT2, sQty),
-          alert.freq_once_per_bar_close)
+    alert(autoAlerts ? f_json("swing", close, sStop, sT1, sT2, sQty) : "📈 סווינג — " + f_msg("קנייה", close, sStop, sT1, sT2, sQty), alert.freq_once_per_bar_close)
 if sendAlerts and dayOk
-    alert(autoAlerts ? f_json("day", close, dStop, dT1, dT2, dQty)
-                     : "⚡ דיי 🧪 נייר — " + f_msg("קנייה", close, dStop, dT1, dT2, dQty),
-          alert.freq_once_per_bar_close)
+    alert(autoAlerts ? f_json("day", close, dStop, dT1, dT2, dQty) : "⚡ דיי 🧪 נייר — " + f_msg("קנייה", close, dStop, dT1, dT2, dQty), alert.freq_once_per_bar_close)
 if sendAlerts and goldOk
-    alert(autoAlerts ? f_json("gold", close, gStop, gT1, gT2, 0)
-                     : "🪙 זהב — " + f_msg("קנייה", close, gStop, gT1, gT2, 0),
-          alert.freq_once_per_bar_close)
+    alert(autoAlerts ? f_json("gold", close, gStop, gT1, gT2, 0) : "🪙 זהב — " + f_msg("קנייה", close, gStop, gT1, gT2, 0), alert.freq_once_per_bar_close)
 if sendAlerts and goldSell
-    alert("🪙 זהב — " + f_msg("מכירה (שורט)", close, gStopS, gT1S, gT2S, 0),
-          alert.freq_once_per_bar_close)
+    alert("🪙 זהב — " + f_msg("מכירה (שורט)", close, gStopS, gT1S, gT2S, 0), alert.freq_once_per_bar_close)
 
 // alertcondition = מה שמופיע ברשימה כשיוצרים התראה ידנית ב-TradingView
 alertcondition(swingOk, "Idan • כניסת סווינג", "📈 איתות סווינג ב-{{ticker}} במחיר {{close}}")
