@@ -1,5 +1,5 @@
 // Idan Signals v3.3 — 2026-07-30
-// ALL-ENGLISH build. Hebrew inside Pine code breaks on paste (RTL reordering) — v3.2 lesson.
+// v3.4 ALL-ENGLISH, no format.* namespace (compat with every Pine build). Hebrew inside Pine code breaks on paste (RTL reordering) — v3.2 lesson.
 // Logic identical to the engine: swing breakout (ATR-tight stop, R-multiple targets),
 // day ORB (paper only), gold 4 patterns BOTH directions. No line wraps anywhere.
 //@version=5
@@ -153,11 +153,11 @@ plotshape(goldBuy, "Gold BUY", shape.diamond, location.belowbar, color.new(color
 plotshape(goldSell, "Gold SELL", shape.diamond, location.abovebar, color.new(color.orange, 0), size=size.tiny)
 
 if swingOk
-    label.new(bar_index, low, "BUY " + str.tostring(close, format.mint) + "\nSL " + str.tostring(sStop, format.mint) + " (" + str.tostring(sStopPct, "#.#") + "%)" + "\nT1 " + str.tostring(sT1, format.mint) + "  T2 " + str.tostring(sT2, format.mint) + "\nQty " + str.tostring(sQty), style=label.style_label_up, color=color.new(color.teal, 20), textcolor=color.white, size=size.small)
+    label.new(bar_index, low, "BUY " + str.tostring(close, "#.##") + "\nSL " + str.tostring(sStop, "#.##") + " (" + str.tostring(sStopPct, "#.#") + "%)" + "\nT1 " + str.tostring(sT1, "#.##") + "  T2 " + str.tostring(sT2, "#.##") + "\nQty " + str.tostring(sQty), style=label.style_label_up, color=color.new(color.teal, 20), textcolor=color.white, size=size.small)
 
 // ---------------------------------------------------------------- alerts
 f_msg(act, entry, stop, t1, t2, qty) =>
-    act + " " + syminfo.ticker + " @ " + str.tostring(entry, format.mint) + " | SL " + str.tostring(stop, format.mint) + " | T1 " + str.tostring(t1, format.mint) + " | T2 " + str.tostring(t2, format.mint) + " | Qty " + str.tostring(qty)
+    act + " " + syminfo.ticker + " @ " + str.tostring(entry, "#.##") + " | SL " + str.tostring(stop, "#.##") + " | T1 " + str.tostring(t1, "#.##") + " | T2 " + str.tostring(t2, "#.##") + " | Qty " + str.tostring(qty)
 
 f_json(kind, entry, stop, t1, t2, qty) =>
     '{"strategy":"idan_v3","kind":"' + kind + '","action":"buy","symbol":"' + syminfo.ticker + '","entry":' + str.tostring(entry) + ',"stop":' + str.tostring(stop) + ',"t1":' + str.tostring(t1) + ',"t2":' + str.tostring(t2) + ',"qty":' + str.tostring(qty) + ',"tf":"' + timeframe.period + '"}'
