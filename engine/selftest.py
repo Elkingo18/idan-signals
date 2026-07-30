@@ -151,6 +151,10 @@ ck("rejects list blocks", not E.governor_check(st, {**base,"rejects":["early_ses
 st["halts"]["daily_stop_hit"]=True
 ck("daily stop halts everything", not E.governor_check(st, base, gov, 40)[0])
 st["halts"]["daily_stop_hit"]=False
+st["control"]={"halt":True,"close_all":False}
+ok,why = E.governor_check(st, base, gov, 40)
+ck("🛑 emergency halt blocks new positions", not ok, why)
+st["control"]={"halt":False,"close_all":False}
 now = datetime.now(E.IL)
 E.open_position(st, base, now, E.CFG["costs"], 40)
 ck("position opened", len(st["positions"])==1)
@@ -271,7 +275,9 @@ ck("level >= 1 with a name", st4["game"]["level"]>=1 and st4["game"]["level_name
 ck("badge first_win earned", any(b["id"]=="first_win" and b["earned"] for b in st4["game"]["badges"]))
 ck("badge k1100 earned at peak 1130", any(b["id"]=="k1100" and b["earned"] for b in st4["game"]["badges"]))
 ck("badge k2000 NOT earned", not any(b["id"]=="k2000" and b["earned"] for b in st4["game"]["badges"]))
-ck("monthly boss target = 8% of month-open equity", st4["game"]["boss"]["target"]>0, st4["game"]["boss"])
+b4=st4["game"]["boss"]
+ck("DAILY boss: target=8% and legend=20% of day-open equity",
+   abs(b4["target"]-b4["base"]*0.08)<0.01 and abs(b4["legend"]-b4["base"]*0.20)<0.01, b4)
 per = st4["periods"]
 ck("period summary day/week/month present", all(k in per for k in ("day","week","month","quarter","half","year")))
 ck("week P/L sums the 3 days", abs(per["week"]-106.0)<0.01, per["week"])
@@ -324,6 +330,14 @@ print("   rejected reasons:", {r["why"] for r in st5.get("rejected",[])})
 ck("equity curve recorded", len(st5["equity_curve"])>=1)
 ck("game block complete", all(k in st5["game"] for k in ("xp","level","level_name","badges","quests","boss")))
 ck("periods block complete", "periods" in st5)
+ck("universe_view present with sectors", len(st5.get("universe_view",[]))>10,
+   len(st5.get("universe_view",[])))
+ck("agents report present (swing/day/gold/guard)",
+   all(k in st5.get("agents",{}) for k in ("swing","day","gold","guard")))
+ck("gold agent reports scan status", "bars" in st5["agents"]["gold"] and "scanned" in st5["agents"]["gold"],
+   st5["agents"]["gold"].get("bars"))
+ck("daily boss in live state", st5["game"]["boss"].get("day") is not None)
+ck("control state exposed", "halt" in st5.get("control",{}))
 worst = min([t["r"] for t in st5["closed"]], default=0)
 ck("no single trade worse than -1.6R", worst > -1.7, f"{worst}R")
 print(f"\n   sim result: equity=${st5['wallet']['equity']}  trades={len(st5['closed'])}  "

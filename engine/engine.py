@@ -40,6 +40,7 @@ IL  = ZoneInfo("Asia/Jerusalem")
 UTC = ZoneInfo("UTC")
 
 STATE_F = os.path.join(DATA, "state.json")
+CTRL_F  = os.path.join(DATA, "control.json")
 CFG_F   = os.path.join(ENG,  "config.json")
 UNI_F   = os.path.join(ENG,  "universe.json")
 
@@ -437,6 +438,7 @@ def sector_of(tk):
 
 def governor_check(st, sig, g, risk_dollars):
     """-> (ok, reason)"""
+    if st.get("control", {}).get("halt"): return False, "emergency_halt"
     if st["halts"]["daily_stop_hit"]:  return False, "daily_loss_limit"
     if st["halts"]["weekly_stop_hit"]: return False, "weekly_loss_limit"
     if sig["state"] not in ("BUY_NOW", "SELL_NOW"): return False, "watch_only"
@@ -670,19 +672,25 @@ def rebuild_calendar_and_game(st):
     st["game"]["xp_next_level"] = xp_for_level(lv+1) - xp_for_level(lv) if lv < len(LEVELS) else 0
     st["game"]["badges"] = [{"id": i, "name": n, "earned": bool(f(st))} for i, n, f in BADGES]
 
-    # monthly boss = +8% on the month's opening equity
-    now_il = datetime.now(IL); mk = now_il.strftime("%Y-%m")
-    month_pnl = round(sum(c["pnl"] for d, c in cal.items() if d.startswith(mk)), 2)
-    base = st["wallet"]["start"]
-    hist = st.get("month_open_equity", {})
-    if mk not in hist:
-        hist[mk] = st["wallet"]["equity"] - month_pnl
-        st["month_open_equity"] = hist
-    target = round(hist[mk]*0.08, 2)
-    st["game"]["boss"] = {"month": mk, "name": "👹 בוס החודש",
-                          "target": target, "done": month_pnl,
-                          "pct": int(max(0, min(100, round(100*month_pnl/target)))) if target > 0 else 0,
-                          "beaten": month_pnl >= target}
+    # DAILY boss (Idan's request): 8% of the day-open equity = boss beaten,
+    # 20% = legendary. Honest note: with 2-4% risk per trade this is a rare
+    # "perfect day", not the expected outcome — most days end far below.
+    now_il = datetime.now(IL); dk = now_il.strftime("%Y-%m-%d")
+    gcfg2 = CFG.get("game", {})
+    dopen = st.get("day_open", {})
+    if dopen.get("date") != dk:
+        dopen = {"date": dk, "equity": st["wallet"]["equity"]}
+        st["day_open"] = dopen
+    day_done = round(st["wallet"]["equity"] - dopen["equity"], 2)
+    target   = round(dopen["equity"]*gcfg2.get("daily_target_pct", 0.08), 2)
+    legend   = round(dopen["equity"]*gcfg2.get("legendary_target_pct", 0.20), 2)
+    st["game"]["boss"] = {"day": dk, "name": "👹 בוס היום",
+                          "target": target, "legend": legend, "done": day_done,
+                          "base": dopen["equity"],
+                          "pct": int(max(0, min(100, round(100*day_done/target)))) if target > 0 else 0,
+                          "pct_legend": int(max(0, min(100, round(100*day_done/legend)))) if legend > 0 else 0,
+                          "beaten": day_done >= target, "legendary": day_done >= legend}
+    mk = now_il.strftime("%Y-%m")
     # periodic P/L summary the user asked for (day/week/month/quarter/half/year)
     st["periods"] = period_summary(cal, st["wallet"]["start"])
     # daily quests
@@ -745,6 +753,8 @@ def main():
     now_utc = datetime.now(UTC); now_et = now_utc.astimezone(ET); now_il = now_utc.astimezone(IL)
     st = load_json(STATE_F) or fresh_state()
     for k, v in fresh_state().items(): st.setdefault(k, v)
+    ctrl = load_json(CTRL_F, {"halt": False, "close_all": False}) or {}
+    st["control"] = {"halt": bool(ctrl.get("halt")), "close_all": bool(ctrl.get("close_all"))}
     st["risk_pct"] = CFG["risk_pct"]
     st["risk_pcts"] = {"stocks": CFG.get("risk_pct_stocks", CFG["risk_pct"]),
                        "gold":   CFG.get("risk_pct_gold",   CFG["risk_pct"])}
@@ -756,9 +766,10 @@ def main():
     tradable = [t for sec in UNI["sectors"].values() for t in sec]
     excl = set(UNI.get("low_liquidity_excluded", []))
     tradable = [t for t in tradable if t not in excl]
+    premium = UNI.get("premium_watch_only", [])
 
     # ---------- data ----------
-    daily = fetch_daily(tradable + ["SPY"], "8mo")
+    daily = fetch_daily(tradable + premium + ["SPY"], "8mo")
     spy = daily.get("SPY")
     regime_ok = True
     if spy:
@@ -775,6 +786,18 @@ def main():
     gold_bars = gb.get(CFG["gold"]["yf_symbol"], [])
     if gold_bars: prices[CFG["gold"]["symbol"]] = gold_bars[-1]["c"]
 
+    # ---------- emergency close-all ----------
+    if st["control"]["close_all"] and st["positions"]:
+        for pos in list(st["positions"]):
+            px = prices.get(pos["ticker"], pos["last"])
+            _exit_qty(st, pos, pos["qty_left"], px, now_il, costs, "emergency_close")
+        st["positions"] = []
+        log(st, "🛑 מפסק חירום: כל הפוזיציות נסגרו")
+        save_json(CTRL_F, {"halt": True, "close_all": False})
+        st["control"] = {"halt": True, "close_all": False}
+    if st["control"]["halt"]:
+        log(st, "🛑 המסחר מושהה (מפסק חירום) — אין פתיחות חדשות")
+
     # ---------- 1) manage what is already open ----------
     manage_positions(st, prices, now_il, costs)
     mark_to_market(st)
@@ -785,18 +808,40 @@ def main():
 
     # ---------- 2) scan ----------
     sigs = {"swing": [], "day": [], "gold": []}
+    uview = []
     scfg = CFG["swing"]
     if scfg["enabled"]:
         for tk in tradable:
             bars = daily.get(tk)
-            if not bars: continue
+            if not bars:
+                uview.append({"t": tk, "sec": sector_of(tk), "state": "no_data"})
+                continue
             try:
                 s = swing_signal(tk, bars, scfg, risk_stocks, st["wallet"]["cash"],
                                  st["wallet"]["equity"], g["max_notional_frac_of_equity"])
             except Exception:
                 s = None
+            c_ = [b["c"] for b in bars]; v_ = [b["v"] for b in bars]
+            ma_ = sma(c_, scfg["trend_ma_len"]); rsi_ = wilder_rsi(c_, scfg["rsi_len"])
+            uview.append({"t": tk, "sec": sector_of(tk),
+                          "px": round(c_[-1], 2),
+                          "trend": (None if not ma_ else round((c_[-1]/ma_-1)*100, 1)),
+                          "rsi": (None if rsi_ is None else round(rsi_)),
+                          "rvol": round(v_[-1]/(sma(v_, 20) or 1), 1),
+                          "state": ("signal" if (s and s["state"] == "BUY_NOW")
+                                    else "watch" if s else "none")})
             if s:
                 s["score"] = score(s, regime_ok); sigs["swing"].append(s)
+    for tk in premium:
+        bars = daily.get(tk)
+        if bars:
+            c_ = [b["c"] for b in bars]; ma_ = sma(c_, 50)
+            uview.append({"t": tk, "sec": "premium", "px": round(c_[-1], 2),
+                          "trend": (None if not ma_ else round((c_[-1]/ma_-1)*100, 1)),
+                          "state": "premium"})
+        else:
+            uview.append({"t": tk, "sec": "premium", "state": "no_data"})
+    st["universe_view"] = uview
 
     dcfg = CFG["day"]
     if dcfg["enabled"] and market_open_now(now_et):
@@ -839,6 +884,30 @@ def main():
         if open_position(st, c, now_il, costs, rd):
             manage_positions(st, prices, now_il, costs)   # instant-stop safety
             mark_to_market(st)
+
+    # ---------- agents report (who works on what, live) ----------
+    open_heat = sum(p["risk_open"] for p in st["positions"])
+    st["agents"] = {
+        "swing": {"icon": "📈", "name": "סוכן הסווינג", "domain": f"{len(tradable)} מניות ≤$20 · גרף יומי",
+                  "with_data": sum(1 for u in uview if u.get("state") not in (None, "no_data") and u.get("sec") != "premium"),
+                  "signals": len(sigs["swing"]),
+                  "desc": "פריצות מעל שיא משמעותי עם ווליום, מגמה ו-RSI. סטופ = ההדוק מבין השפל ל-1.6×ATR. יעדים 2R/3.5R."},
+        "day":   {"icon": "⚡", "name": "סוכן הדיי-טרייד 🧪", "domain": f"{len(UNI.get('day_focus', []))} מניות · 5 דק' · חלון 17:05-18:00",
+                  "active": market_open_now(now_et), "signals": len(sigs["day"]),
+                  "paper_only": True,
+                  "desc": "פריצת טווח פתיחה עם VWAP וזרימה. ניסיוני — נייר בלבד, לא מבוצע אוטומטית."},
+        "gold":  {"icon": "🪙", "name": "סוכן הזהב", "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
+                  "bars": len(gold_bars), "scanned": bool(gold_bars),
+                  "last_price": (round(gold_bars[-1]["c"], 2) if gold_bars else None),
+                  "signals": len(sigs["gold"]),
+                  "today_trades": st.get("gold_today", {}).get("count", 0)
+                                  if st.get("gold_today", {}).get("date") == now_il.strftime("%Y-%m-%d") else 0,
+                  "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R."},
+        "guard": {"icon": "🛡️", "name": "שומר הסיכון", "domain": "כל עסקה עוברת דרכו",
+                  "open": len(st["positions"]), "heat": round(open_heat, 2),
+                  "halt": st["control"]["halt"],
+                  "desc": "תקרות: 3 פוזיציות, heat 12.5%, סקטור אחד, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית."},
+    }
 
     # ---------- 4) finalise ----------
     mark_to_market(st)
