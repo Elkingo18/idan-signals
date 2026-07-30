@@ -457,6 +457,8 @@ def governor_check(st, sig, g, risk_dollars):
     if sig["kind"] == "gold":
         if sum(1 for p in open_pos if p["kind"] == "gold") >= g["max_gold_positions"]:
             return False, "max_gold"
+        if datetime.now(ET).hour == CFG.get("gold", {}).get("maintenance_hour_et", 17):
+            return False, "gold_maintenance_hour"
         gt = st.get("gold_today", {})
         today = datetime.now(IL).strftime("%Y-%m-%d")
         if gt.get("date") == today and gt.get("count", 0) >= CFG.get("gold", {}).get("max_trades_per_day", 8):
@@ -549,6 +551,8 @@ def _exit_qty(st, pos, qty, px, now, costs, reason):
     log(st, f"EXIT {pos['ticker']} x{qty} @ {fill:.4f} ({reason}) P/L ${pnl:+.2f} / {rec['r']:+.2f}R")
     if pnl < 0:
         st.setdefault("cooldown", {})[pos["ticker"]] = CFG["governor"]["cooldown_bars_after_loss"]
+    elif pos["kind"] == "gold":
+        st.setdefault("cooldown", {})[pos["ticker"]] = CFG.get("gold", {}).get("cooldown_after_win", 1)
     return pnl
 
 def manage_positions(st, prices, now, costs):
@@ -562,6 +566,14 @@ def manage_positions(st, prices, now, costs):
         pos["last"] = round(px, 4)
         sgn = 1 if pos.get("side", "long") == "long" else -1
         risk_ps = abs(pos["entry"]-pos["orig_stop"])
+        if pos["kind"] == "swing":
+            try:
+                held = (now.date() - datetime.fromisoformat(pos["opened"]).date()).days
+            except Exception:
+                held = 0
+            if held >= CFG.get("swing", {}).get("max_hold_days", 10) and not pos["half_done"]:
+                _exit_qty(st, pos, pos["qty_left"], px, now, costs, "time_stop")
+                continue
         if sgn*(px - pos["stop"]) <= 0:
             _exit_qty(st, pos, pos["qty_left"], pos["stop"], now, costs, "stop")
         else:
