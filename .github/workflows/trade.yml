@@ -1,0 +1,50 @@
+name: Idan Signals — auto paper trading
+
+on:
+  schedule:
+    # ---- times are UTC. Israel = UTC+3 (summer) / +2 (winter). US market = 13:30-20:00 UTC ----
+    - cron: '*/30 6-20 * * 1-5'    # every 30 min, Europe open -> US close (gold rides all day)
+    - cron: '5 21 * * 1-5'         # after the US close: settle the day, build the day-card
+    - cron: '0 1-5 * * 1-5'        # hourly overnight (Asia Globex) for gold
+  workflow_dispatch:                # "Run workflow" button — use this to test
+
+permissions:
+  contents: write                   # lets the run commit data/state.json back. No PAT needed.
+
+concurrency:
+  group: idan-engine
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install deps
+        run: pip install --quiet yfinance pandas
+
+      - name: Self-test (never trade with broken logic)
+        run: python engine/selftest.py
+
+      - name: Run the engine
+        run: python engine/engine.py
+
+      - name: Commit new state
+        run: |
+          git config user.name  "idan-signals-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/state.json
+          if git diff --staged --quiet; then
+            echo "nothing changed"
+          else
+            git commit -m "engine tick $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git pull --rebase --autostash origin main || true
+            git push
+          fi
