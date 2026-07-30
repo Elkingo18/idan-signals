@@ -265,6 +265,74 @@ def _one_ticker_news(sym, limit=3):
             continue
     return items
 
+POS_WORDS = ("beat", "beats", "tops", "surge", "surges", "soars", "soar", "record",
+             "raises", "raise", "upgrade", "upgraded", "outperform", "jumps", "jump",
+             "rally", "rallies", "growth", "profit", "wins", "win", "approval",
+             "approved", "partnership", "deal", "expands", "higher", "gains")
+NEG_WORDS = ("miss", "misses", "falls", "fall", "plunge", "plunges", "cuts", "cut",
+             "downgrade", "downgraded", "underperform", "drops", "drop", "lawsuit",
+             "probe", "investigation", "recall", "bankruptcy", "layoffs", "warning",
+             "warns", "delisting", "lower", "sinks", "tanks", "slides", "losses")
+TAG_LINE = {"דוחות": "פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה",
+            "העלאת המלצה": "אנליסט העלה המלצה — רוח גבית לטווח הקצר",
+            "הורדת המלצה": "אנליסט הוריד המלצה — לחץ שלילי אפשרי",
+            "יעד מחיר": "עודכן יעד מחיר על ידי אנליסט",
+            "רגולציה": "התפתחות רגולטורית — יכולה להזיז את המניה בחדות",
+            "אישור רגולטורי": "התקבל אישור רגולטורי",
+            "מיזוג": "דיווח על מיזוג — אירוע מהותי",
+            "רכישה": "דיווח על רכישה — אירוע מהותי",
+            "תביעה": "הליך משפטי — סיכון כותרות",
+            "דיבידנד": "עדכון דיבידנד",
+            "פיצול": "פיצול מניה",
+            "חוזה": "חוזה או הזמנה חדשה",
+            "שיתוף פעולה": "שיתוף פעולה חדש",
+            "תחזית": "עדכון תחזית מהחברה",
+            "חדלות פירעון": "סיכון חדלות פירעון — זהירות",
+            "מחיקה ממסחר": "סיכון מחיקה ממסחר — זהירות"}
+
+def _direction(text):
+    t = (text or "").lower()
+    p = sum(1 for w in POS_WORDS if w in t)
+    n = sum(1 for w in NEG_WORDS if w in t)
+    return "pos" if p > n else ("neg" if n > p else "neu")
+
+def _sig_words(title):
+    import re
+    stop = {"the", "and", "for", "with", "after", "before", "from", "this", "that",
+            "its", "has", "have", "are", "was", "will", "into", "over", "amid",
+            "says", "say", "stock", "stocks", "shares", "share", "inc", "corp"}
+    return {w for w in re.findall(r"[a-z]{3,}", (title or "").lower()) if w not in stop}
+
+def summarize_news(items):
+    """סקר מעמיק בגבולות היושר: מקבץ כותרות דומות, סופר כמה מקורות שונים
+    דיווחו (הצלבה = אימות), מזהה כיוון לפי מילות מפתח, ומחזיר סיכום קצר בעברית.
+    זה ניתוח מילות מפתח והצלבת מקורות — לא הבנת טקסט מלאה (אין AI במנוע)."""
+    groups = []
+    for it in items:
+        ws = _sig_words(it.get("title"))
+        placed = False
+        for g in groups:
+            if len(ws & g["words"]) >= 3:
+                g["items"].append(it); g["words"] |= ws; placed = True; break
+        if not placed:
+            groups.append({"items": [it], "words": set(ws)})
+    out = []
+    for g in groups:
+        best = g["items"][0]
+        srcs = {(it.get("src") or "?") for it in g["items"]}
+        d = _direction(" ".join(it.get("title", "") for it in g["items"]))
+        tag = next((it.get("tag") for it in g["items"] if it.get("tag")), None)
+        tone = {"pos": "דיווח חיובי", "neg": "דיווח שלילי", "neu": "דיווח ניטרלי"}[d]
+        line = TAG_LINE.get(tag, "")
+        corro = f"הוצלב ב-{len(srcs)} מקורות שונים" if len(srcs) > 1 else "מקור יחיד — לקחת בזהירות"
+        out.append({"summary": f"{tone}{(' · ' + line) if line else ''} · {corro}",
+                    "dir": d, "tag": tag, "sources": len(srcs),
+                    "title": best.get("title"), "url": best.get("url"),
+                    "src": best.get("src"), "time": best.get("time")})
+    order = {"pos": 0, "neg": 0, "neu": 1}
+    out.sort(key=lambda x: (order.get(x["dir"], 1), -x["sources"]))
+    return out[:4]
+
 def collect_news(sig_tickers, pos_tickers):
     """News for: open positions + active signals + the broad market + gold.
     The other agents 'read' it on screen; it never changes an order (honesty rule)."""
@@ -274,13 +342,14 @@ def collect_news(sig_tickers, pos_tickers):
     for t in list(pos_tickers) + list(sig_tickers):
         if t and t != "XAUUSD" and t not in targets: targets.append(t)
     for t in targets[:14]:                     # bounded so a run never hangs
-        n = _one_ticker_news(t, 3)
-        if n: out["tickers"][t] = n
+        n = _one_ticker_news(t, 5)             # 5 headlines -> cross-source grouping
+        if n: out["tickers"][t] = summarize_news(n)
     mkt = []
     for sym in ("SPY", "QQQ", "GC=F"):
-        for n in _one_ticker_news(sym, 3):
-            n2 = dict(n); n2["about"] = "זהב" if sym == "GC=F" else "שוק"
-            mkt.append(n2)
+        raw = _one_ticker_news(sym, 4)
+        for tp in summarize_news(raw):
+            tp2 = dict(tp); tp2["about"] = "זהב" if sym == "GC=F" else "שוק"
+            mkt.append(tp2)
     seen = set(); ded = []
     for n in mkt:
         k = (n.get("title") or "")[:60]
@@ -1098,7 +1167,7 @@ def main():
     ec = [p for p in st["equity_curve"] if p[0] != today]
     ec.append([today, st["wallet"]["equity"]])
     st["equity_curve"] = ec[-400:]
-    st["version"] = "4.1"
+    st["version"] = "4.2"
     st["updated_utc"] = now_utc.isoformat()
     st["updated_israel"] = now_il.strftime("%Y-%m-%d %H:%M")
     st["market"] = {"open": market_open_now(now_et), "et": now_et.strftime("%H:%M"),
