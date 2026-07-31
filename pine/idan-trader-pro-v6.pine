@@ -1,0 +1,580 @@
+//@version=6
+// =====================================================================
+//  IDAN TRADER PRO  v6.0  -  FAST EXECUTION EDITION
+//  One indicator, three engines: GOLD (intraday) / DAY (intraday stocks) / SWING (daily)
+//
+//  WHAT IS NEW IN v6
+//  Pine cannot place orders and cannot draw a clickable button - that is a
+//  TradingView platform limit. So v6 does the next best thing, and it is
+//  genuinely one click:
+//
+//  Every signal is SNAPPED to one of 9 saved TradingView Order Presets.
+//  A TradingView preset stores order type, bracket stop-loss % and bracket
+//  take-profit % - it does NOT store quantity. Quantity lives in the order
+//  ticket and it is sticky: you set it once and it stays.
+//
+//  So the buckets below are chosen to make the order size CONSTANT per asset
+//  class - every stock preset lands on the same dollar size, every gold
+//  preset lands on the same dollar size. Set the ticket size once, and from
+//  then on a signal means: read "PRESET S2", press Shift+B. Entry, stop and
+//  first target go in together, in one action.
+//
+//  The indicator rebuilds the stop, both targets and the quantity from the
+//  SNAPPED preset values - so the lines drawn on the chart are exactly the
+//  lines the broker will receive. Nothing drifts.
+//
+//  VENUE: Interactive Brokers via TradingView supports stocks, futures and
+//  leveraged forex only - spot gold XAUUSD is NOT tradable there. Gold
+//  signals are therefore tagged for MetaTrader, stocks for Interactive.
+//
+//  Turn on "Preset setup guide" once to see the exact 9 presets to create.
+//  No repainting: all signals evaluate on CLOSED bars only.
+//  Built for Idan - 31.07.2026
+// =====================================================================
+indicator("Idan Trader Pro v6", overlay = true, max_labels_count = 500, max_lines_count = 500, max_boxes_count = 500)
+
+// ------------------------------------------------------------------
+// INPUTS - account
+// ------------------------------------------------------------------
+gAcc      = "1. Account and risk"
+capital   = input.float(1000.0, "Account capital (USD)",             minval = 100,  step = 100, group = gAcc)
+riskStkP  = input.float(2.0,    "Risk per STOCK trade (%)",          minval = 0.1,  maxval = 10, step = 0.5, group = gAcc)
+riskGldP  = input.float(4.0,    "Risk per GOLD trade (%)",           minval = 0.1,  maxval = 10, step = 0.5, group = gAcc)
+maxPosP   = input.float(35.0,   "Max single position (% of capital)", minval = 5, maxval = 100, step = 5, group = gAcc)
+goldLev   = input.float(20.0,   "Gold leverage (CFD)",               minval = 1,    maxval = 500, step = 1, group = gAcc)
+ozPerLot  = input.float(100.0,  "Gold ounces per 1.00 lot (MT5)",    minval = 1,   step = 1, group = gAcc)
+
+// ------------------------------------------------------------------
+// INPUTS - fast execution (order presets)
+// ------------------------------------------------------------------
+gFast     = "2. Fast execution (one-click presets)"
+fastMode  = input.bool(true,  "Fast execution mode - snap signals to order presets", group = gFast)
+showGuide = input.bool(false, "Preset setup guide (turn on once, then off)",         group = gFast)
+showTkt   = input.bool(true,  "Trade ticket panel on chart",                         group = gFast)
+tktBars   = input.int(20,     "Keep ticket on screen for N bars",  minval = 1, maxval = 500, group = gFast)
+gB1       = input.float(0.30, "GOLD  preset 1 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+gB2       = input.float(0.40, "GOLD  preset 2 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+gB3       = input.float(0.55, "GOLD  preset 3 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+dB1       = input.float(0.80, "DAY   preset 1 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+dB2       = input.float(1.50, "DAY   preset 2 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+dB3       = input.float(2.50, "DAY   preset 3 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+sB1       = input.float(2.00, "SWING preset 1 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+sB2       = input.float(4.00, "SWING preset 2 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+sB3       = input.float(5.50, "SWING preset 3 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+
+// ------------------------------------------------------------------
+// INPUTS - engine selection
+// ------------------------------------------------------------------
+gEng      = "3. Engine"
+autoEng   = input.bool(true,  "Auto-detect engine (symbol + timeframe)", group = gEng)
+manEng    = input.string("Gold", "Manual engine", options = ["Gold", "Day", "Swing"], group = gEng)
+
+// ------------------------------------------------------------------
+// INPUTS - display
+// ------------------------------------------------------------------
+gVis      = "4. Display"
+showLbl   = input.bool(true,  "Signal labels (full order details)", group = gVis)
+showLvl   = input.bool(true,  "Draw entry / stop / target lines",   group = gVis)
+showChan  = input.bool(true,  "Breakout channel (20 bars)",         group = gVis)
+showTbl   = input.bool(true,  "Status table",                       group = gVis)
+showWatch = input.bool(true,  "Show WATCH markers (setup forming)", group = gVis)
+tblPos    = input.string("Top right", "Status table position", options = ["Top right", "Bottom right", "Top left", "Bottom left"], group = gVis)
+
+// ------------------------------------------------------------------
+// INPUTS - strategy parameters
+// ------------------------------------------------------------------
+gPar      = "5. Strategy parameters"
+pivLen    = input.int(3,     "Swing pivot length",       minval = 2, maxval = 10, group = gPar)
+trendLen  = input.int(50,    "Trend MA length",          minval = 10, group = gPar)
+rsiLen    = input.int(14,    "RSI length",               minval = 5,  group = gPar)
+volFac    = input.float(1.3, "Volume factor (x average)", minval = 1, step = 0.1, group = gPar)
+atrLen    = input.int(14,    "ATR length",               minval = 5,  group = gPar)
+atrStopS  = input.float(1.6, "Swing stop (x ATR)",       minval = 0.5, step = 0.1, group = gPar)
+atrStopG  = input.float(1.5, "Gold stop (x ATR)",        minval = 0.5, step = 0.1, group = gPar)
+rrT1S     = input.float(2.0, "Swing target 1 (R)",       minval = 1,  step = 0.5, group = gPar)
+rrT2S     = input.float(3.5, "Swing target 2 (R)",       minval = 1,  step = 0.5, group = gPar)
+rrT1G     = input.float(1.5, "Gold target 1 (R)",        minval = 1,  step = 0.5, group = gPar)
+rrT2G     = input.float(3.0, "Gold target 2 (R)",        minval = 1,  step = 0.5, group = gPar)
+rrT1D     = input.float(2.0, "Day target 1 (R)",         minval = 1,  step = 0.5, group = gPar)
+rrT2D     = input.float(3.0, "Day target 2 (R)",         minval = 1,  step = 0.5, group = gPar)
+orbMin    = input.int(15,    "Opening range (minutes)",  minval = 5, maxval = 60, group = gPar)
+emaF      = input.int(9,     "Gold fast EMA",            minval = 3,  group = gPar)
+emaM      = input.int(21,    "Gold mid EMA",             minval = 5,  group = gPar)
+emaS      = input.int(50,    "Gold slow EMA",            minval = 10, group = gPar)
+allowShrt = input.bool(true, "Allow SHORT signals on gold", group = gPar)
+minStopP  = input.float(0.3, "Min stop distance (%)",    minval = 0.05, step = 0.05, group = gPar)
+maxStopP  = input.float(12.0,"Max stop distance (%)",    minval = 1,    step = 0.5,  group = gPar)
+
+// ------------------------------------------------------------------
+// COLORS - one identity per engine
+// ------------------------------------------------------------------
+cGoldL  = color.new(#c9911a, 0)
+cGoldS  = color.new(#8a4b00, 0)
+cDay    = color.new(#7454c9, 0)
+cSwing  = color.new(#0e7fa8, 0)
+cStop   = color.new(#d6405a, 0)
+cTgt    = color.new(#0f9d63, 0)
+cTxt    = color.new(#ffffff, 0)
+cWatch  = color.new(#7c8296, 30)
+cInk    = color.new(#232a3b, 0)
+cCream  = color.new(#f7f4ec, 0)
+cWhite  = color.new(#ffffff, 0)
+
+// ------------------------------------------------------------------
+// ENGINE RESOLUTION
+// ------------------------------------------------------------------
+tfMin   = timeframe.in_seconds(timeframe.period) / 60.0
+sym     = str.upper(syminfo.ticker)
+isGoldSym = str.contains(sym, "XAU") or str.contains(sym, "GOLD") or str.startswith(sym, "GC") or str.startswith(sym, "MGC")
+isIntra   = timeframe.isintraday
+
+autoPick = isGoldSym and isIntra ? "Gold" : (isIntra ? "Day" : "Swing")
+engine   = autoEng ? autoPick : manEng
+isGold   = engine == "Gold"
+isDay    = engine == "Day"
+isSwing  = engine == "Swing"
+
+// ------------------------------------------------------------------
+// SHARED INDICATORS
+// ------------------------------------------------------------------
+atrV    = ta.atr(atrLen)
+rsiV    = ta.rsi(close, rsiLen)
+ma50    = ta.sma(close, trendLen)
+volMa   = ta.sma(volume, 20)
+relVol  = volMa > 0 ? volume / volMa : 1.0
+ema9    = ta.ema(close, emaF)
+ema21   = ta.ema(close, emaM)
+ema50   = ta.ema(close, emaS)
+
+newSess = ta.change(time("D")) != 0
+var float cumPV = 0.0
+var float cumVol = 0.0
+if newSess
+    cumPV  := 0.0
+    cumVol := 0.0
+tpx = (high + low + close) / 3.0
+cumPV  := cumPV + tpx * volume
+cumVol := cumVol + volume
+vwapV = cumVol > 0 ? cumPV / cumVol : close
+
+phRaw = ta.pivothigh(high, pivLen, pivLen)
+plRaw = ta.pivotlow(low,  pivLen, pivLen)
+var float lastPH = na
+var float lastPL = na
+if not na(phRaw)
+    lastPH := phRaw
+if not na(plRaw)
+    lastPL := plRaw
+
+chHi = ta.highest(high, 20)[1]
+chLo = ta.lowest(low, 20)[1]
+
+isNewDay = ta.change(time("D")) != 0
+var float orHi = na
+var float orLo = na
+var int   barsDay = 0
+orBars = math.max(1, math.round(orbMin / math.max(tfMin, 1)))
+if isNewDay
+    barsDay := 0
+    orHi := na
+    orLo := na
+barsDay := barsDay + 1
+if barsDay <= orBars
+    orHi := na(orHi) ? high : math.max(orHi, high)
+    orLo := na(orLo) ? low  : math.min(orLo, low)
+
+// ------------------------------------------------------------------
+// POSITION SIZING (classic mode)
+// ------------------------------------------------------------------
+riskDollarsStk = capital * riskStkP / 100.0
+riskDollarsGld = capital * riskGldP / 100.0
+capNotStk = capital * maxPosP / 100.0
+capNotGld = capital * maxPosP / 100.0 * goldLev
+
+sizeStock(entry, stop) =>
+    perShare = math.abs(entry - stop)
+    q = 0.0
+    if perShare > 0 and entry > 0
+        byRisk = riskDollarsStk / perShare
+        byCap  = capNotStk / entry
+        byCash = (capital * 0.95) / entry
+        q := math.floor(math.min(byRisk, math.min(byCap, byCash)))
+    math.max(q, 0)
+
+sizeGold(entry, stop) =>
+    dist = math.abs(entry - stop)
+    q = 0.0
+    if dist > 0 and entry > 0
+        byRisk   = riskDollarsGld / dist
+        byMargin = capNotGld / entry
+        q := math.floor(math.min(byRisk, byMargin) * 100.0) / 100.0
+    math.max(q, 0)
+
+// notional dollars a preset should carry for a given snapped stop percent
+presetNotional(pctStop, riskUsd, capNot) =>
+    d = pctStop / 100.0
+    d > 0 ? math.min(capNot, riskUsd / d) : 0.0
+
+// ------------------------------------------------------------------
+// SIGNAL STATE
+// ------------------------------------------------------------------
+var string sigKind  = ""
+var string sigSide  = ""
+var string sigPat   = ""
+var string sigPre   = ""
+var float  sigEntry = na
+var float  sigStop  = na
+var float  sigT1    = na
+var float  sigT2    = na
+var float  sigQty   = na
+var float  sigRisk  = na
+var float  sigNot   = na
+var int    sigBar   = na
+
+fire   = false
+fKind  = ""
+fSide  = ""
+fPat   = ""
+fEntry = 0.0
+fStop  = 0.0
+fT1    = 0.0
+fT2    = 0.0
+fQty   = 0.0
+fPre   = "MANUAL"
+fNot   = 0.0
+
+watchUp = false
+watchDn = false
+
+// ==================================================================
+// ENGINE 1 - GOLD (intraday, both directions, 4 patterns)
+// ==================================================================
+if isGold
+    bull = ema9 > ema21 and close > ema50 and rsiV > 50 and close > vwapV
+    bear = ema9 < ema21 and close < ema50 and rsiV < 50 and close < vwapV
+    xUp  = ta.crossover(ema9, ema21)
+    xDn  = ta.crossunder(ema9, ema21)
+    freshUp = xUp or xUp[1] or xUp[2]
+    freshDn = xDn or xDn[1] or xDn[2]
+    volOkG  = relVol > 1.3
+    pat = ""
+    side = ""
+    if bull
+        if freshUp
+            pat  := "EMA cross up"
+            side := "BUY"
+        else if math.min(low, math.min(low[1], low[2])) <= ema21 and close > ema9 and close > close[1] and rsiV >= 45 and rsiV <= 70
+            pat  := "Pullback to wave"
+            side := "BUY"
+        else if close[1] <= vwapV[1] and close > vwapV
+            pat  := "VWAP reclaim"
+            side := "BUY"
+        else if close > chHi and volOkG and rsiV > 52
+            pat  := "Range breakout"
+            side := "BUY"
+    if bear and allowShrt and side == ""
+        if freshDn
+            pat  := "EMA cross down"
+            side := "SELL"
+        else if math.max(high, math.max(high[1], high[2])) >= ema21 and close < ema9 and close < close[1] and rsiV >= 30 and rsiV <= 55
+            pat  := "Pullback to wave down"
+            side := "SELL"
+        else if close[1] >= vwapV[1] and close < vwapV
+            pat  := "VWAP break"
+            side := "SELL"
+        else if close < chLo and volOkG and rsiV < 48
+            pat  := "Range breakdown"
+            side := "SELL"
+    if side != "" and not na(atrV) and atrV > 0
+        dir     = side == "BUY" ? 1 : -1
+        e       = close
+        risk    = atrStopG * atrV
+        s       = e - dir * risk
+        stopPct = math.abs(e - s) / e * 100.0
+        okStop  = stopPct >= minStopP and stopPct <= maxStopP
+        q       = okStop ? sizeGold(e, s) : 0.0
+        if q > 0
+            fire   := true
+            fKind  := "GOLD"
+            fSide  := side
+            fPat   := pat
+            fEntry := e
+            fStop  := s
+            fT1    := e + dir * rrT1G * risk
+            fT2    := e + dir * rrT2G * risk
+            fQty   := q
+    watchUp := bull and side == ""
+    watchDn := bear and side == ""
+
+// ==================================================================
+// ENGINE 2 - DAY (intraday stocks, opening range breakout)
+// ==================================================================
+if isDay and not na(orHi) and not na(orLo)
+    afterOR = barsDay > orBars
+    brkUp   = afterOR and close > orHi and close[1] <= orHi and close > vwapV and relVol > volFac and rsiV > 50
+    if brkUp and orLo < close and not na(atrV)
+        e       = close
+        s       = orLo
+        risk    = e - s
+        stopPct = risk / e * 100.0
+        okStop  = risk > 0 and stopPct >= minStopP and stopPct <= maxStopP
+        q       = okStop ? sizeStock(e, s) : 0.0
+        if q > 0
+            fire   := true
+            fKind  := "DAY"
+            fSide  := "BUY"
+            fPat   := "Opening range breakout"
+            fEntry := e
+            fStop  := s
+            fT1    := e + rrT1D * risk
+            fT2    := e + rrT2D * risk
+            fQty   := q
+    watchUp := afterOR and close > vwapV and close > orHi * 0.995 and close <= orHi and not fire
+
+// ==================================================================
+// ENGINE 3 - SWING (daily stocks, pivot breakout)
+// ==================================================================
+if isSwing and not na(lastPH) and not na(lastPL) and not na(ma50) and not na(atrV)
+    trendUp = close > ma50
+    volOkS  = relVol > volFac
+    broke   = close > lastPH and close[1] <= lastPH
+    buyNow  = broke and volOkS and rsiV > 50 and trendUp
+    if buyNow
+        e       = close
+        sPiv    = lastPL
+        sAtr    = e - atrStopS * atrV
+        sRaw    = math.max(sPiv, sAtr)
+        s       = sRaw >= e * 0.995 ? e - math.max(atrV, e * 0.015) : sRaw
+        risk    = e - s
+        stopPct = risk / e * 100.0
+        room    = lastPH + (lastPH - lastPL)
+        okStop  = risk > 0 and stopPct >= math.max(minStopP, 1.2) and stopPct <= maxStopP and room >= e + 1.5 * risk
+        q       = okStop ? sizeStock(e, s) : 0.0
+        if q > 0
+            fire   := true
+            fKind  := "SWING"
+            fSide  := "BUY"
+            fPat   := "Pivot breakout"
+            fEntry := e
+            fStop  := s
+            fT1    := e + rrT1S * risk
+            fT2    := e + rrT2S * risk
+            fQty   := q
+    watchUp := trendUp and rsiV > 50 and not buyNow and lastPH > close and (lastPH - close) / close <= 0.03
+
+// ==================================================================
+// FAST EXECUTION - snap the live signal onto a saved order preset
+// The chart levels are rebuilt from the SNAPPED numbers, so what you
+// see is exactly what the broker will receive when you press Shift+B.
+// ==================================================================
+if fire and fastMode
+    dir    = fSide == "BUY" ? 1 : -1
+    rawPct = math.abs(fEntry - fStop) / fEntry * 100.0
+    b1     = fKind == "GOLD" ? gB1 : fKind == "DAY" ? dB1 : sB1
+    b2     = fKind == "GOLD" ? gB2 : fKind == "DAY" ? dB2 : sB2
+    b3     = fKind == "GOLD" ? gB3 : fKind == "DAY" ? dB3 : sB3
+    tag    = fKind == "GOLD" ? "G" : fKind == "DAY" ? "D" : "S"
+    idx    = rawPct <= b1 ? 1 : rawPct <= b2 ? 2 : rawPct <= b3 ? 3 : 0
+    snapP  = idx == 1 ? b1 : idx == 2 ? b2 : idx == 3 ? b3 : rawPct
+    rr1    = fKind == "GOLD" ? rrT1G : fKind == "DAY" ? rrT1D : rrT1S
+    rr2    = fKind == "GOLD" ? rrT2G : fKind == "DAY" ? rrT2D : rrT2S
+    riskU  = fKind == "GOLD" ? riskDollarsGld : riskDollarsStk
+    capN   = fKind == "GOLD" ? capNotGld : capNotStk
+    notion = presetNotional(snapP, riskU, capN)
+    fStop  := fEntry - dir * fEntry * snapP / 100.0
+    fT1    := fEntry + dir * fEntry * snapP * rr1 / 100.0
+    fT2    := fEntry + dir * fEntry * snapP * rr2 / 100.0
+    fNot   := notion
+    fQty   := fKind == "GOLD" ? math.floor(notion / fEntry * 100.0) / 100.0 : math.floor(notion / fEntry)
+    fPre   := idx == 0 ? "MANUAL" : tag + str.tostring(idx)
+    fire   := fQty > 0
+
+// ------------------------------------------------------------------
+// STORE THE SIGNAL
+// ------------------------------------------------------------------
+if fire
+    sigKind  := fKind
+    sigSide  := fSide
+    sigPat   := fPat
+    sigPre   := fPre
+    sigEntry := fEntry
+    sigStop  := fStop
+    sigT1    := fT1
+    sigT2    := fT2
+    sigQty   := fQty
+    sigRisk  := math.abs(fEntry - fStop) * fQty
+    sigNot   := fNot > 0 ? fNot : fEntry * fQty
+    sigBar   := bar_index
+
+// ------------------------------------------------------------------
+// TEXT BUILDERS
+// ------------------------------------------------------------------
+f2(x) => str.tostring(x, "#.##")
+f4(x) => str.tostring(x, "#.####")
+px(x) => isGold ? f2(x) : f4(x)
+
+qtyTxt(kind, q) =>
+    kind == "GOLD" ? f2(q) + " oz  (" + str.tostring(math.round(q / ozPerLot * 100.0) / 100.0, "#.##") + " lots)" : str.tostring(q, "#") + " shares"
+
+hotkey(side) =>
+    side == "BUY" ? "Shift+B" : "Shift+S"
+
+// where this order is actually placeable
+venue(kind) =>
+    kind == "GOLD" ? "MetaTrader 5  (IBKR has no spot gold)" : "Interactive - TradingView panel"
+
+orderText(kind, side, pat, pre, e, s, t1, t2, q, notion) =>
+    stopPct = math.abs(e - s) / e * 100.0
+    riskUsd = math.abs(e - s) * q
+    rr1     = math.abs(t1 - e) / math.abs(e - s)
+    head    = kind == "GOLD" ? "GOLD" : kind == "DAY" ? "DAY TRADE" : "SWING"
+    line1   = head + "  " + side + "  " + syminfo.ticker + "\n" + pat + "\n"
+    line2   = (pre == "MANUAL" ? "PRESET: none - place manually\n" : "PRESET " + pre + "   ->   press " + hotkey(side) + "\n") + "PLACE AT: " + venue(kind) + "\n"
+    line3   = "-----------------------------\n" + "ENTRY : " + px(e) + "\n" + "QTY   : " + qtyTxt(kind, q) + "\n" + "SIZE  : " + f2(notion) + " USD\n"
+    line4   = "STOP  : " + px(s) + "   (" + f2(stopPct) + "%)\n" + "TAKE 1: " + px(t1) + "   (half out)\n" + "TAKE 2: " + px(t2) + "\n"
+    line5   = "RISK  : " + f2(riskUsd) + " USD   R:R " + f2(rr1)
+    line1 + line2 + line3 + line4 + line5
+
+// ------------------------------------------------------------------
+// VISUALS - each engine has its own shape and style
+// ------------------------------------------------------------------
+goldBuy  = fire and fKind == "GOLD"  and fSide == "BUY"
+goldSell = fire and fKind == "GOLD"  and fSide == "SELL"
+dayBuy   = fire and fKind == "DAY"
+swingBuy = fire and fKind == "SWING"
+
+plotshape(goldBuy,  title = "Gold BUY",   style = shape.circle,     location = location.belowbar, color = cGoldL, size = size.small, text = "GOLD")
+plotshape(goldSell, title = "Gold SELL",  style = shape.circle,     location = location.abovebar, color = cGoldS, size = size.small, text = "GOLD")
+plotshape(dayBuy,   title = "Day BUY",    style = shape.diamond,    location = location.belowbar, color = cDay,   size = size.small, text = "DAY")
+plotshape(swingBuy, title = "Swing BUY",  style = shape.triangleup, location = location.belowbar, color = cSwing, size = size.normal, text = "SWING")
+plotshape(showWatch and watchUp and not fire, title = "Watch up",   style = shape.xcross, location = location.belowbar, color = cWatch, size = size.tiny)
+plotshape(showWatch and watchDn and not fire, title = "Watch down", style = shape.xcross, location = location.abovebar, color = cWatch, size = size.tiny)
+
+if showLbl and fire
+    lblCol = fKind == "GOLD" ? (fSide == "BUY" ? cGoldL : cGoldS) : fKind == "DAY" ? cDay : cSwing
+    lblSty = fSide == "BUY" ? label.style_label_upper_left : label.style_label_lower_left
+    lblY   = fSide == "BUY" ? low - atrV * 0.6 : high + atrV * 0.6
+    label.new(bar_index, lblY, orderText(fKind, fSide, fPat, fPre, fEntry, fStop, fT1, fT2, fQty, fNot), color = lblCol, textcolor = cTxt, style = lblSty, size = size.small, textalign = text.align_left)
+
+if showLvl and fire
+    ext = 30
+    line.new(bar_index, fEntry, bar_index + ext, fEntry, color = color.new(#232a3b, 20), width = 2)
+    line.new(bar_index, fStop,  bar_index + ext, fStop,  color = cStop, width = 2, style = line.style_dashed)
+    line.new(bar_index, fT1,    bar_index + ext, fT1,    color = cTgt,  width = 2, style = line.style_dotted)
+    line.new(bar_index, fT2,    bar_index + ext, fT2,    color = cTgt,  width = 1, style = line.style_dotted)
+    label.new(bar_index + ext, fStop, "SL " + px(fStop), color = color.new(cStop, 85), textcolor = cStop, style = label.style_label_left, size = size.tiny)
+    label.new(bar_index + ext, fT1,   "T1 " + px(fT1),   color = color.new(cTgt, 85),  textcolor = cTgt,  style = label.style_label_left, size = size.tiny)
+    label.new(bar_index + ext, fT2,   "T2 " + px(fT2),   color = color.new(cTgt, 85),  textcolor = cTgt,  style = label.style_label_left, size = size.tiny)
+
+plot(showChan ? chHi : na, "Channel high", color = color.new(#7c8296, 55), linewidth = 1)
+plot(showChan ? chLo : na, "Channel low",  color = color.new(#7c8296, 55), linewidth = 1)
+plot(isGold ? ema9  : na, "EMA fast", color = color.new(#c9911a, 25), linewidth = 1)
+plot(isGold ? ema21 : na, "EMA mid",  color = color.new(#7454c9, 25), linewidth = 1)
+plot(isGold ? ema50 : na, "EMA slow", color = color.new(#0e7fa8, 25), linewidth = 2)
+plot(isGold or isDay ? vwapV : na, "VWAP", color = color.new(#d6405a, 20), linewidth = 2)
+plot(isSwing ? ma50 : na, "MA trend", color = color.new(#0e7fa8, 20), linewidth = 2)
+plot(isDay and not na(orHi) ? orHi : na, "OR high", color = color.new(#7454c9, 30), style = plot.style_linebr, linewidth = 2)
+plot(isDay and not na(orLo) ? orLo : na, "OR low",  color = color.new(#7454c9, 30), style = plot.style_linebr, linewidth = 2)
+
+// ------------------------------------------------------------------
+// TRADE TICKET PANEL - the thing you look at when a signal appears
+// ------------------------------------------------------------------
+var table tk = table.new(position.bottom_left, 2, 9, border_width = 1, frame_width = 2, frame_color = cInk)
+tktLive = showTkt and barstate.islast and not na(sigBar) and (bar_index - sigBar) <= tktBars
+if tktLive
+    sideCol = sigSide == "BUY" ? cTgt : cStop
+    engCol  = sigKind == "GOLD" ? cGoldL : sigKind == "DAY" ? cDay : cSwing
+    table.cell(tk, 0, 0, "TRADE TICKET", text_color = cTxt, bgcolor = cInk, text_size = size.normal)
+    table.cell(tk, 1, 0, sigKind, text_color = cTxt, bgcolor = engCol, text_size = size.normal)
+    table.cell(tk, 0, 1, sigSide, text_color = cTxt, bgcolor = sideCol, text_size = size.large)
+    table.cell(tk, 1, 1, syminfo.ticker, text_color = cInk, bgcolor = cWhite, text_size = size.large)
+    preTxt = sigPre == "MANUAL" ? "place manually" : "PRESET " + sigPre
+    keyTxt = sigPre == "MANUAL" ? "-" : hotkey(sigSide)
+    table.cell(tk, 0, 2, preTxt, text_color = cTxt, bgcolor = sigPre == "MANUAL" ? color.new(#7c8296, 0) : cInk, text_size = size.large)
+    table.cell(tk, 1, 2, keyTxt, text_color = cTxt, bgcolor = sigPre == "MANUAL" ? color.new(#7c8296, 0) : cTgt, text_size = size.large)
+    table.cell(tk, 0, 3, "Place at", text_color = cInk, bgcolor = cCream, text_size = size.normal)
+    table.cell(tk, 1, 3, venue(sigKind), text_color = cInk, bgcolor = cWhite, text_size = size.normal)
+    table.cell(tk, 0, 4, "Entry", text_color = cInk, bgcolor = cCream, text_size = size.normal)
+    table.cell(tk, 1, 4, px(sigEntry), text_color = cInk, bgcolor = cWhite, text_size = size.normal)
+    table.cell(tk, 0, 5, "Stop", text_color = cTxt, bgcolor = cStop, text_size = size.normal)
+    table.cell(tk, 1, 5, px(sigStop), text_color = cInk, bgcolor = cWhite, text_size = size.normal)
+    table.cell(tk, 0, 6, "Take 1", text_color = cTxt, bgcolor = cTgt, text_size = size.normal)
+    table.cell(tk, 1, 6, px(sigT1), text_color = cInk, bgcolor = cWhite, text_size = size.normal)
+    table.cell(tk, 0, 7, "Size", text_color = cInk, bgcolor = cCream, text_size = size.normal)
+    table.cell(tk, 1, 7, qtyTxt(sigKind, sigQty) + "   =  " + f2(sigNot) + " USD", text_color = cInk, bgcolor = cWhite, text_size = size.normal)
+    table.cell(tk, 0, 8, "Risk", text_color = cInk, bgcolor = cCream, text_size = size.normal)
+    table.cell(tk, 1, 8, f2(sigRisk) + " USD   (" + str.tostring(bar_index - sigBar) + " bars ago)", text_color = cInk, bgcolor = cWhite, text_size = size.normal)
+
+// ------------------------------------------------------------------
+// PRESET SETUP GUIDE - the exact 9 presets to create, once
+// ------------------------------------------------------------------
+var table pg = table.new(position.middle_center, 5, 11, border_width = 1, frame_width = 2, frame_color = cInk)
+gRow(rowN, nm, stopPct, rr1, riskUsd, capNot) =>
+    notion = presetNotional(stopPct, riskUsd, capNot)
+    table.cell(pg, 0, rowN, nm, text_color = cTxt, bgcolor = cInk, text_size = size.small)
+    table.cell(pg, 1, rowN, f2(stopPct) + " %", text_color = cTxt, bgcolor = cStop, text_size = size.small)
+    table.cell(pg, 2, rowN, f2(stopPct * rr1) + " %", text_color = cTxt, bgcolor = cTgt, text_size = size.small)
+    table.cell(pg, 3, rowN, f2(notion) + " USD", text_color = cInk, bgcolor = cWhite, text_size = size.small)
+    table.cell(pg, 4, rowN, f2(notion * stopPct / 100.0) + " USD", text_color = cInk, bgcolor = cCream, text_size = size.small)
+
+if showGuide and barstate.islast
+    table.cell(pg, 0, 0, "PRESET", text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(pg, 1, 0, "Stop loss", text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(pg, 2, 0, "Take profit", text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(pg, 3, 0, "Ticket size (not preset)", text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(pg, 4, 0, "Real risk", text_color = cInk, bgcolor = cCream, text_size = size.small)
+    gRow(1, "G1  gold",  gB1, rrT1G, riskDollarsGld, capNotGld)
+    gRow(2, "G2  gold",  gB2, rrT1G, riskDollarsGld, capNotGld)
+    gRow(3, "G3  gold",  gB3, rrT1G, riskDollarsGld, capNotGld)
+    gRow(4, "D1  day",   dB1, rrT1D, riskDollarsStk, capNotStk)
+    gRow(5, "D2  day",   dB2, rrT1D, riskDollarsStk, capNotStk)
+    gRow(6, "D3  day",   dB3, rrT1D, riskDollarsStk, capNotStk)
+    gRow(7, "S1  swing", sB1, rrT1S, riskDollarsStk, capNotStk)
+    gRow(8, "S2  swing", sB2, rrT1S, riskDollarsStk, capNotStk)
+    gRow(9, "S3  swing", sB3, rrT1S, riskDollarsStk, capNotStk)
+    table.cell(pg, 0, 10, "Create these in Trading Panel", text_color = cTxt, bgcolor = cInk, text_size = size.small)
+    table.cell(pg, 1, 10, "Order ticket", text_color = cInk, bgcolor = cWhite, text_size = size.small)
+    table.cell(pg, 2, 10, "Save as preset", text_color = cInk, bgcolor = cWhite, text_size = size.small)
+    table.cell(pg, 3, 10, "Market order", text_color = cInk, bgcolor = cWhite, text_size = size.small)
+    table.cell(pg, 4, 10, "Size goes in the ticket once", text_color = cInk, bgcolor = cWhite, text_size = size.small)
+
+// ------------------------------------------------------------------
+// STATUS TABLE
+// ------------------------------------------------------------------
+tPos = tblPos == "Top right" ? position.top_right : tblPos == "Bottom right" ? position.bottom_right : tblPos == "Top left" ? position.top_left : position.bottom_left
+var table st = table.new(tPos, 2, 9, border_width = 1, frame_width = 1, frame_color = color.new(#232a3b, 50))
+if showTbl and barstate.islast
+    engCol = isGold ? cGoldL : isDay ? cDay : cSwing
+    engTxt = isGold ? "GOLD  (intraday)" : isDay ? "DAY TRADE  (intraday)" : "SWING  (daily)"
+    table.cell(st, 0, 0, "IDAN TRADER PRO v6", text_color = cTxt, bgcolor = cInk, text_size = size.small)
+    table.cell(st, 1, 0, fastMode ? "fast execution ON" : "manual mode", text_color = cTxt, bgcolor = fastMode ? cTgt : color.new(#7c8296, 0), text_size = size.small)
+    table.cell(st, 0, 1, "Engine",   text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(st, 1, 1, engTxt,     text_color = cTxt, bgcolor = engCol, text_size = size.small)
+    table.cell(st, 0, 2, "Capital",  text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(st, 1, 2, f2(capital) + " USD", text_color = cInk, bgcolor = cWhite, text_size = size.small)
+    table.cell(st, 0, 3, "Risk / trade", text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(st, 1, 3, isGold ? f2(riskDollarsGld) + " USD (" + f2(riskGldP) + "%)" : f2(riskDollarsStk) + " USD (" + f2(riskStkP) + "%)", text_color = cInk, bgcolor = cWhite, text_size = size.small)
+    table.cell(st, 0, 4, "Price",    text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(st, 1, 4, px(close),  text_color = cInk, bgcolor = cWhite, text_size = size.small)
+    table.cell(st, 0, 5, "RSI / RVOL", text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(st, 1, 5, f2(rsiV) + "  /  x" + f2(relVol), text_color = cInk, bgcolor = cWhite, text_size = size.small)
+    trendTxt = isGold ? (ema9 > ema21 and close > ema50 ? "UP" : ema9 < ema21 and close < ema50 ? "DOWN" : "MIXED") : (close > ma50 ? "UP" : "DOWN")
+    table.cell(st, 0, 6, "Trend",    text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(st, 1, 6, trendTxt,   text_color = cTxt, bgcolor = trendTxt == "UP" ? cTgt : trendTxt == "DOWN" ? cStop : color.new(#7c8296, 0), text_size = size.small)
+    lastTxt = na(sigEntry) ? "waiting for setup" : sigKind + " " + sigSide + " @ " + px(sigEntry) + "  (" + str.tostring(bar_index - sigBar) + " bars ago)"
+    table.cell(st, 0, 7, "Last signal", text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(st, 1, 7, lastTxt,    text_color = cInk, bgcolor = cWhite, text_size = size.small)
+    ordTxt = na(sigEntry) ? "-" : sigPre + "  |  SL " + px(sigStop) + "  T1 " + px(sigT1) + "  T2 " + px(sigT2) + "  |  " + qtyTxt(sigKind, sigQty) + "  |  risk " + f2(sigRisk)
+    table.cell(st, 0, 8, "Order",    text_color = cInk, bgcolor = cCream, text_size = size.small)
+    table.cell(st, 1, 8, ordTxt,     text_color = cInk, bgcolor = cWhite, text_size = size.small)
+
+// ------------------------------------------------------------------
+// ALERTS - one call carrying the whole order plus the preset to press
+// ------------------------------------------------------------------
+if fire
+    alert(orderText(fKind, fSide, fPat, fPre, fEntry, fStop, fT1, fT2, fQty, fNot), alert.freq_once_per_bar_close)
+
+alertcondition(goldBuy,  title = "GOLD BUY",   message = "GOLD BUY {{ticker}} @ {{close}} - open the chart for preset, stop and targets")
+alertcondition(goldSell, title = "GOLD SELL",  message = "GOLD SELL {{ticker}} @ {{close}} - open the chart for preset, stop and targets")
+alertcondition(dayBuy,   title = "DAY BUY",    message = "DAY BUY {{ticker}} @ {{close}} - open the chart for preset, stop and targets")
+alertcondition(swingBuy, title = "SWING BUY",  message = "SWING BUY {{ticker}} @ {{close}} - open the chart for preset, stop and targets")
