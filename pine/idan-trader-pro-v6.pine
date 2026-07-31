@@ -1,6 +1,6 @@
 //@version=6
 // =====================================================================
-//  IDAN TRADER PRO  v6.0  -  FAST EXECUTION EDITION
+//  IDAN TRADER PRO  v6.1  -  FAST EXECUTION EDITION
 //  One indicator, three engines: GOLD (intraday) / DAY (intraday stocks) / SWING (daily)
 //
 //  WHAT IS NEW IN v6
@@ -27,11 +27,18 @@
 //  leveraged forex only - spot gold XAUUSD is NOT tradable there. Gold
 //  signals are therefore tagged for MetaTrader, stocks for Interactive.
 //
+//  v6.1 FIX - gold was being silenced. One global "minimum stop percent" of
+//  0.3% was applied to BOTH a 5-dollar stock and to gold. Gold at 4,100 moves
+//  in tenths of a percent: the live engine is producing gold stops around
+//  0.11%, so every single gold signal was being filtered out before it could
+//  print. Gold now has its own floor, and the gold buckets were re-cut to
+//  0.10 / 0.18 / 0.30 to match what gold actually does.
+//
 //  Turn on "Preset setup guide" once to see the exact 9 presets to create.
 //  No repainting: all signals evaluate on CLOSED bars only.
 //  Built for Idan - 31.07.2026
 // =====================================================================
-indicator("Idan Trader Pro v6", overlay = true, max_labels_count = 500, max_lines_count = 500, max_boxes_count = 500)
+indicator("Idan Trader Pro v6.1", overlay = true, max_labels_count = 500, max_lines_count = 500, max_boxes_count = 500)
 
 // ------------------------------------------------------------------
 // INPUTS - account
@@ -52,9 +59,9 @@ fastMode  = input.bool(true,  "Fast execution mode - snap signals to order prese
 showGuide = input.bool(false, "Preset setup guide (turn on once, then off)",         group = gFast)
 showTkt   = input.bool(true,  "Trade ticket panel on chart",                         group = gFast)
 tktBars   = input.int(20,     "Keep ticket on screen for N bars",  minval = 1, maxval = 500, group = gFast)
-gB1       = input.float(0.30, "GOLD  preset 1 stop (%)", minval = 0.05, step = 0.05, group = gFast)
-gB2       = input.float(0.40, "GOLD  preset 2 stop (%)", minval = 0.05, step = 0.05, group = gFast)
-gB3       = input.float(0.55, "GOLD  preset 3 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+gB1       = input.float(0.10, "GOLD  preset 1 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+gB2       = input.float(0.18, "GOLD  preset 2 stop (%)", minval = 0.05, step = 0.05, group = gFast)
+gB3       = input.float(0.30, "GOLD  preset 3 stop (%)", minval = 0.05, step = 0.05, group = gFast)
 dB1       = input.float(0.80, "DAY   preset 1 stop (%)", minval = 0.05, step = 0.05, group = gFast)
 dB2       = input.float(1.50, "DAY   preset 2 stop (%)", minval = 0.05, step = 0.05, group = gFast)
 dB3       = input.float(2.50, "DAY   preset 3 stop (%)", minval = 0.05, step = 0.05, group = gFast)
@@ -102,7 +109,8 @@ emaF      = input.int(9,     "Gold fast EMA",            minval = 3,  group = gP
 emaM      = input.int(21,    "Gold mid EMA",             minval = 5,  group = gPar)
 emaS      = input.int(50,    "Gold slow EMA",            minval = 10, group = gPar)
 allowShrt = input.bool(true, "Allow SHORT signals on gold", group = gPar)
-minStopP  = input.float(0.3, "Min stop distance (%)",    minval = 0.05, step = 0.05, group = gPar)
+minStopP  = input.float(0.3,  "Min STOCK stop distance (%)", minval = 0.01, step = 0.05, group = gPar)
+minStopG  = input.float(0.05, "Min GOLD stop distance (%)",  minval = 0.01, step = 0.01, group = gPar)
 maxStopP  = input.float(12.0,"Max stop distance (%)",    minval = 1,    step = 0.5,  group = gPar)
 
 // ------------------------------------------------------------------
@@ -291,7 +299,7 @@ if isGold
         risk    = atrStopG * atrV
         s       = e - dir * risk
         stopPct = math.abs(e - s) / e * 100.0
-        okStop  = stopPct >= minStopP and stopPct <= maxStopP
+        okStop  = stopPct >= minStopG and stopPct <= maxStopP
         q       = okStop ? sizeGold(e, s) : 0.0
         if q > 0
             fire   := true
