@@ -1,0 +1,66 @@
+name: Control — start / stop / close all
+
+# Idan's on-off switch. Run it from the Actions tab, or from the three
+# buttons on the site. It only writes data/control.json; engine.py reads
+# that file on every tick and obeys it.
+#
+#   start      -> halt=false  close_all=false   trading resumes
+#   stop       -> halt=true   close_all=false   no NEW positions, open ones keep being managed
+#   close_all  -> halt=true   close_all=true    flatten everything at market, then stay halted
+#
+# engine.py rewrites control.json to {"halt": true, "close_all": false}
+# after it finishes flushing, so close_all never fires twice.
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What to do"
+        required: true
+        type: choice
+        default: stop
+        options:
+          - start
+          - stop
+          - close_all
+
+permissions:
+  contents: write
+
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write control.json
+        run: |
+          mkdir -p data
+          case "${{ inputs.action }}" in
+            start)     HALT=false; CLOSE=false ;;
+            stop)      HALT=true;  CLOSE=false ;;
+            close_all) HALT=true;  CLOSE=true  ;;
+            *) echo "unknown action"; exit 1 ;;
+          esac
+          printf '{"halt": %s, "close_all": %s}\n' "$HALT" "$CLOSE" > data/control.json
+          echo "--- data/control.json ---"
+          cat data/control.json
+
+      - name: Commit
+        run: |
+          git config user.name  "idan-control"
+          git config user.email "control@users.noreply.github.com"
+          git add data/control.json
+          git diff --staged --quiet && echo "no change" && exit 0
+          git commit -m "control: ${{ inputs.action }}"
+          git push
+
+      - name: Summary
+        run: |
+          echo "### 🎛️ Control → \`${{ inputs.action }}\`" >> $GITHUB_STEP_SUMMARY
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          cat data/control.json >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The engine picks this up on its next run (within 30 minutes)." >> $GITHUB_STEP_SUMMARY
+          echo "To apply it immediately, run the trading workflow manually." >> $GITHUB_STEP_SUMMARY
