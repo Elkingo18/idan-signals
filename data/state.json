@@ -2,17 +2,50 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 983.0285999999994,
-  "equity": 983.03,
+  "cash": 639.8060249999994,
+  "equity": 982.78,
   "realized_pnl": -16.97,
-  "open_pnl": 0.0,
+  "open_pnl": -0.25,
   "peak_equity": 1000.0,
-  "max_dd_pct": -1.7,
-  "return_pct": -1.7,
+  "max_dd_pct": -1.72,
+  "return_pct": -1.72,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [],
+ "positions": [
+  {
+   "id": "XAUUSD-1785496138",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 1.67,
+   "qty_left": 1.67,
+   "entry": 4110.45,
+   "stop": 4115.1,
+   "orig_stop": 4115.1,
+   "t1": 4103.85,
+   "t2": 4097.1,
+   "opened": "2026-07-31T14:08:58.676452+03:00",
+   "opened_day": "2026-07-31",
+   "risk_open": 7.51,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 62,
+   "pattern": "פולבק לגל ↓",
+   "snap": {
+    "rsi": 43.3,
+    "rvol": null,
+    "score": 62,
+    "stop_pct": 0.11,
+    "regime_ok": false,
+    "notional": 6864.7
+   },
+   "last": 4110.6001,
+   "margin": 343.22
+  }
+ ],
  "closed": [
   {
    "ticker": "XAUUSD",
@@ -223,24 +256,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 4121.5,
-    "entry": 4121.5,
-    "stop": 4126.7,
-    "t1": 4113.71,
-    "t2": 4105.93,
+    "state": "SELL_NOW",
+    "pattern": "פולבק לגל ↓",
+    "price": 4110.6,
+    "entry": 4110.6,
+    "stop": 4115.1,
+    "t1": 4103.85,
+    "t2": 4097.1,
     "rr1": 1.5,
-    "atr": 3.46,
-    "rsi": 28.3,
-    "vwap": 4133.96,
-    "stop_pct": 0.13,
-    "ounces": 1.66,
-    "notional": 6841.69,
-    "margin": 342.08,
-    "risk_dollars": 8.63,
-    "shares": 1.66,
-    "score": 51,
+    "atr": 3.0,
+    "rsi": 43.3,
+    "vwap": 4124.22,
+    "stop_pct": 0.11,
+    "ounces": 1.67,
+    "notional": 6864.7,
+    "margin": 343.24,
+    "risk_dollars": 7.51,
+    "shares": 1.67,
+    "score": 62,
     "news": [],
     "regime_ok": false
    }
@@ -268,7 +301,7 @@
   ],
   [
    "2026-07-31",
-   983.03
+   982.78
   ]
  ],
  "cooldown": {},
@@ -381,7 +414,7 @@
    "name": "👹 בוס היום",
    "target": 78.64,
    "legend": 196.61,
-   "done": 0.0,
+   "done": -0.25,
    "base": 983.03,
    "pct": 0,
    "pct_legend": 0,
@@ -397,10 +430,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": -16.97,
-  "daily_limit": -58.98,
-  "weekly_limit": -117.96
+  "daily_limit": -58.97,
+  "weekly_limit": -117.93
  },
  "log": [
+  {
+   "t": "2026-07-31 14:09",
+   "m": "OPEN GOLD SHORT XAUUSD x1.67 @ 4110.4500 stop 4115.1 T1 4103.85"
+  },
   {
    "t": "2026-07-30 12:51",
    "m": "EXIT XAUUSD x1.68 @ 4133.7500 (stop) P/L $-16.97 / -1.02R"
@@ -433,12 +470,12 @@
   "all_pct": -1.7
  },
  "rejected": [],
- "updated_utc": "2026-07-31T08:15:06.697125+00:00",
- "updated_israel": "2026-07-31 11:15",
+ "updated_utc": "2026-07-31T11:08:58.676452+00:00",
+ "updated_israel": "2026-07-31 14:08",
  "market": {
   "open": false,
-  "et": "04:15",
-  "il": "11:15"
+  "et": "07:08",
+  "il": "14:08"
  },
  "stats": {
   "trades": 1,
@@ -1566,12 +1603,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1153,
+   "bars": 1187,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4121.5,
+   "last_price": 4110.6,
    "signals": 1,
-   "today_trades": 0,
+   "today_trades": 1,
    "health": {
     "n": 1,
     "status": "na"
@@ -1581,14 +1618,14 @@
     "trades": 0,
     "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 0,
-   "heat": 0,
+   "open": 1,
+   "heat": 7.51,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -1601,11 +1638,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 18,
    "covered": 3,
-   "updated": "2026-07-31 11:15"
+   "updated": "2026-07-31 14:09"
   }
  },
  "gold_today": {
-  "date": "2026-07-30",
+  "date": "2026-07-31",
   "count": 1
  },
  "health": {
@@ -2160,17 +2197,6 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Ora Banda Mining expands Little Gem gold footprint with high-grade Sapphire and Gem lode hits",
-    "url": "https://www.proactiveinvestors.com/companies/news/1096324/ora-banda-mining-expands-little-gem-gold-footprint-with-high-grade-sapphire-and-gem-lode-hits-1096324.html",
-    "src": "Proactive",
-    "time": "2026-07-30 23:50",
-    "about": "זהב"
-   },
-   {
     "summary": "דיווח ניטרלי · הוצלב ב-2 מקורות שונים",
     "dir": "neu",
     "tag": null,
@@ -2186,6 +2212,17 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
+    "title": "Gold Headed for First Monthly Gain in Months",
+    "url": "https://www.wsj.com/finance/commodities-futures/gold-slips-as-markets-digest-fed-decision-8d03b84b?siteid=yhoof2&yptr=yahoo",
+    "src": "The Wall Street Journal",
+    "time": "2026-07-31 08:14",
+    "about": "זהב"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
     "title": "Gold on track to end four-month slump as investors weigh Fed signals",
     "url": "https://sg.finance.yahoo.com/news/gold-track-end-four-month-012517835.html",
     "src": "Reuters",
@@ -2193,6 +2230,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-07-31 11:15"
+  "updated": "2026-07-31 14:09"
  }
 }
