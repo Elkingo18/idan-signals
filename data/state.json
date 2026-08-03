@@ -2,37 +2,22 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 815.7419202095801,
-  "equity": 998.33,
-  "realized_pnl": -11.62,
-  "open_pnl": 9.95,
+  "cash": 994.3014409999993,
+  "equity": 994.3,
+  "realized_pnl": -5.7,
+  "open_pnl": 0.0,
   "peak_equity": 1000.0,
   "max_dd_pct": -1.72,
-  "return_pct": -0.17,
+  "return_pct": -0.57,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [
+ "positions": [],
+ "closed": [
   {
-   "id": "XAUUSD-1785496138",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "short",
-   "sector": "other",
-   "qty": 1.67,
-   "qty_left": 0.84,
-   "entry": 4110.45,
-   "stop": 4103.2501,
-   "orig_stop": 4115.1,
-   "t1": 4103.85,
-   "t2": 4097.1,
-   "opened": "2026-07-31T14:08:58.676452+03:00",
-   "opened_day": "2026-07-31",
-   "risk_open": 3.91,
-   "fees": 0.0,
-   "half_done": true,
-   "be_moved": true,
-   "score": 62,
    "pattern": "פולבק לגל ↓",
    "snap": {
     "rsi": 43.3,
@@ -42,11 +27,22 @@
     "regime_ok": false,
     "notional": 6864.7
    },
-   "last": 4098.6001,
-   "margin": 343.22
-  }
- ],
- "closed": [
+   "stop": 4115.1,
+   "t1": 4103.85,
+   "t2": 4097.1,
+   "fees": 0.0,
+   "qty": 0.84,
+   "entry": 4110.45,
+   "exit": 4103.4001,
+   "pnl": 5.92,
+   "r": 0.76,
+   "reason": "stop",
+   "opened": "2026-07-31T14:08:58.676452+03:00",
+   "closed": "2026-08-03T15:45:55.704500+03:00",
+   "day": "2026-08-03",
+   "held_days": 3,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -123,7 +119,7 @@
     "shares": 24,
     "notional": 345.36,
     "risk_dollars": 14.52,
-    "risk_pct_actual": 1.45,
+    "risk_pct_actual": 1.46,
     "stretch_target": 17.27,
     "score": 83,
     "news": [
@@ -179,10 +175,10 @@
     "pivot_high": 18.39,
     "rvol": 1.08,
     "above_ma50_pct": 14.08,
-    "shares": 19,
-    "notional": 349.41,
-    "risk_dollars": 18.8,
-    "risk_pct_actual": 1.88,
+    "shares": 18,
+    "notional": 331.02,
+    "risk_dollars": 17.81,
+    "risk_pct_actual": 1.79,
     "stretch_target": 22.07,
     "score": 78,
     "news": [
@@ -228,21 +224,21 @@
     "side": "short",
     "state": "SELL_NOW",
     "pattern": "חציית ממוצעים ↓",
-    "price": 4098.6,
-    "entry": 4098.6,
-    "stop": 4103.3,
-    "t1": 4091.49,
-    "t2": 4084.39,
+    "price": 4107.1,
+    "entry": 4107.1,
+    "stop": 4113.1,
+    "t1": 4098.05,
+    "t2": 4089.01,
     "rr1": 1.5,
-    "atr": 3.16,
-    "rsi": 33.0,
-    "vwap": 4104.96,
-    "stop_pct": 0.12,
-    "ounces": 1.7,
-    "notional": 6967.62,
-    "margin": 348.38,
-    "risk_dollars": 7.99,
-    "shares": 1.7,
+    "atr": 4.02,
+    "rsi": 43.9,
+    "vwap": 4113.75,
+    "stop_pct": 0.15,
+    "ounces": 1.69,
+    "notional": 6941.0,
+    "margin": 347.05,
+    "risk_dollars": 10.14,
+    "shares": 1.69,
     "score": 63,
     "news": [],
     "regime_ok": true
@@ -250,6 +246,19 @@
   ]
  },
  "calendar": {
+  "2026-08-03": {
+   "pnl": 5.92,
+   "trades": 1,
+   "wins": 1,
+   "losses": 0,
+   "r": 0.76,
+   "tickers": [
+    "XAUUSD"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "green"
+  },
   "2026-08-01": {
    "pnl": 5.35,
    "trades": 1,
@@ -289,14 +298,20 @@
   [
    "2026-08-01",
    998.33
+  ],
+  [
+   "2026-08-03",
+   994.3
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 1
+ },
  "game": {
-  "xp": 105,
+  "xp": 180,
   "level": 1,
-  "streak": 1,
-  "best_streak": 1,
+  "streak": 2,
+  "best_streak": 2,
   "badges": [
    {
     "id": "first_trade",
@@ -397,30 +412,34 @@
    }
   ],
   "boss": {
-   "day": "2026-08-01",
+   "day": "2026-08-03",
    "name": "👹 בוס היום",
-   "target": 79.87,
-   "legend": 199.67,
+   "target": 79.54,
+   "legend": 198.86,
    "done": 0.0,
-   "base": 998.33,
+   "base": 994.3,
    "pct": 0,
    "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
   "level_name": "🥚 טירון",
-  "xp_this_level": -15,
+  "xp_this_level": 60,
   "xp_next_level": 243
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 5.35,
-  "week_pnl": -11.62,
-  "daily_limit": -59.9,
-  "weekly_limit": -119.8
+  "day_pnl": 5.92,
+  "week_pnl": 5.92,
+  "daily_limit": -59.66,
+  "weekly_limit": -119.32
  },
  "log": [
+  {
+   "t": "2026-08-03 15:46",
+   "m": "EXIT XAUUSD x0.84 @ 4103.4001 (stop) P/L $+5.92 / +0.76R"
+  },
   {
    "t": "2026-08-01 01:17",
    "m": "BE XAUUSD stop -> breakeven 4110.45"
@@ -454,37 +473,37 @@
   "spy": 747.03
  },
  "periods": {
-  "day": 5.35,
-  "week": -11.62,
-  "month": -11.62,
-  "quarter": -11.62,
-  "half": -11.62,
-  "year": -11.62,
-  "two_year": -11.62,
-  "all": -11.62,
-  "all_pct": -1.16
+  "day": 5.92,
+  "week": -5.7,
+  "month": -5.7,
+  "quarter": -5.7,
+  "half": -5.7,
+  "year": -5.7,
+  "two_year": -5.7,
+  "all": -5.7,
+  "all_pct": -0.57
  },
  "rejected": [
   {
    "ticker": "XAUUSD",
    "kind": "gold",
-   "why": "already_open"
+   "why": "cooldown_after_loss"
   }
  ],
- "updated_utc": "2026-08-01T06:48:07.786500+00:00",
- "updated_israel": "2026-08-01 09:48",
+ "updated_utc": "2026-08-03T12:45:55.704500+00:00",
+ "updated_israel": "2026-08-03 15:45",
  "market": {
   "open": false,
-  "et": "02:48",
-  "il": "09:48"
+  "et": "08:45",
+  "il": "15:45"
  },
  "stats": {
-  "trades": 2,
-  "win_rate": 50.0,
-  "pf": 0.32,
-  "avg_r": -0.17,
-  "expectancy": -5.81,
-  "best": 5.35,
+  "trades": 3,
+  "win_rate": 66.7,
+  "pf": 0.66,
+  "avg_r": 0.14,
+  "expectancy": -1.9,
+  "best": 5.92,
   "worst": -16.97
  },
  "control": {
@@ -492,8 +511,8 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-08-01",
-  "equity": 998.33
+  "date": "2026-08-03",
+  "equity": 994.3
  },
  "universe_view": [
   {
@@ -1604,10 +1623,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1307,
+   "bars": 930,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4098.6,
+   "last_price": 4107.1,
    "signals": 1,
    "today_trades": 0,
    "health": {
@@ -1617,16 +1636,16 @@
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
     "trades": 1,
-    "pnl": 5.35
+    "pnl": 5.92
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 3.91,
+   "open": 0,
+   "heat": 0,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -1639,7 +1658,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 16,
    "covered": 2,
-   "updated": "2026-08-01 09:48"
+   "updated": "2026-08-03 15:46"
   }
  },
  "gold_today": {
@@ -1652,7 +1671,7 @@
    "status": "na"
   },
   "gold": {
-   "n": 2,
+   "n": 3,
    "status": "na"
   },
   "day": {
@@ -2121,14 +2140,47 @@
   },
   "market": [
    {
-    "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": "דוחות",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
     "sources": 1,
-    "title": "US Indices End Week Higher As Amazon Earnings Lift Sentiment, But Nasdaq Logs Worst Month In Over A Year — PSKY, BABA, RDDT, RIVN, AMZN In Focus",
-    "url": "https://stocktwits.com/news-articles/markets/equity/us-indices-end-week-higher-as-amazon-earnings-lift-sentiment/cZN4nG4RJ5b",
-    "src": "Stocktwits",
-    "time": "2026-07-31 22:02",
+    "title": "What's Inside URA Decides This Dip's Fate",
+    "url": "https://www.trefis.com/articles/609653/whats-inside-ura-decides-this-dips-fate/2026-08-01",
+    "src": "Trefis",
+    "time": "2026-08-01 16:36",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "These 3 ETFs Can Turn $500,000 Into $40,000 a Year Without Touching Principal",
+    "url": "https://247wallst.com/investing/2026/08/01/these-3-etfs-can-turn-500000-into-40000-a-year-without-touching-principal/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-01 16:29",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "JEPI vs JEPQ: After Comparing America’s Two Biggest Income ETFs, One Is the Better Buy for the Rest of 2026",
+    "url": "https://247wallst.com/investing/2026/08/01/jepi-vs-jepq-after-comparing-americas-two-biggest-income-etfs-one-is-the-better-buy-for-the-rest-of-2026/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-01 14:23",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Apple’s Safe Haven Illusion Faces an Impending Hangover",
+    "url": "https://247wallst.com/investing/2026/08/01/apples-safe-haven-illusion-faces-an-impending-hangover/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-01 12:50",
     "about": "שוק"
    },
    {
@@ -2136,10 +2188,10 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Forget IWM: SPSM Has Quietly Beaten It by 12.68 Points Over 10 Years",
-    "url": "https://247wallst.com/investing/2026/07/31/forget-iwm-spsm-has-quietly-beaten-it-by-12-68-points-over-10-years/",
+    "title": "Apple Soared 15% in July, but GPIQ Holders Lost 6%: The Hidden Options Tax on Covered-Call ETFs",
+    "url": "https://247wallst.com/investing/etf/2026/08/02/apple-soared-15-in-july-but-gpiq-holders-lost-6-the-hidden-options-tax-on-covered-call-etfs/",
     "src": "24/7 Wall St.",
-    "time": "2026-07-31 21:56",
+    "time": "2026-08-02 21:40",
     "about": "שוק"
    },
    {
@@ -2147,10 +2199,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "The 12% Yield Trap: How SPYI Returns Your Own Capital as ‘Income’",
-    "url": "https://247wallst.com/investing/etf/2026/07/31/the-12-yield-trap-how-spyi-returns-your-own-capital-as-income/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-01 02:35",
+    "title": "Stock Market Today: Dow Rallies 550 Points On Trump Reversal; Oil Prices Plunge (Live Coverage)",
+    "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-trump-iran-comments-oil-prices-plunge/?src=A00220&yptr=yahoo",
+    "src": "Investor's Business Daily",
+    "time": "2026-08-03 12:10",
     "about": "שוק"
    },
    {
@@ -2158,10 +2210,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Cash In Your IEFA Gain, Or Let It Ride?",
-    "url": "https://www.trefis.com/articles/609654/cash-in-your-iefa-gain-or-let-it-ride/2026-07-31",
-    "src": "Trefis",
-    "time": "2026-07-31 20:02",
+    "title": "Is QQQ Worth Buying Now That SpaceX Has Joined the Nasdaq-100? Here's My Honest Take.",
+    "url": "https://www.fool.com/investing/2026/08/03/is-qqq-worth-buying-now-spacex-joined-nasdaq-100/",
+    "src": "Motley Fool",
+    "time": "2026-08-03 11:05",
     "about": "שוק"
    },
    {
@@ -2169,46 +2221,13 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "How Much CRWD Are You Really Betting On?",
-    "url": "https://www.trefis.com/articles/609651/how-much-crwd-are-you-really-betting-on/2026-07-31",
-    "src": "Trefis",
-    "time": "2026-07-31 19:52",
+    "title": "Has Index Investing Gone Too Far?",
+    "url": "https://www.thedailyupside.com/advisor/investing-strategies/has-index-investing-gone-too-far/",
+    "src": "The Daily Upside",
+    "time": "2026-08-02 12:00",
     "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Pantheon Has Stark Take on The U.S. Economy",
-    "url": "https://finance.yahoo.com/economy/articles/pantheon-stark-u-economy-194546106.html",
-    "src": "GuruFocus.com",
-    "time": "2026-07-31 19:45",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": "דוחות",
-    "sources": 1,
-    "title": "Is Alkane Resources (ASX:ALK) Cheap Following Storheden Drilling Results?",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/alkane-resources-asx-alk-cheap-041710877.html",
-    "src": "Simply Wall St.",
-    "time": "2026-08-01 04:17",
-    "about": "זהב"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Gold prices today, Friday, July 31, 2026: Gold price finally breaks above $4,100 as U.S. paused airstrikes overnight",
-    "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-friday-july-31-2026-gold-price-finally-breaks-above-4100-as-us-paused-airstrikes-overnight-123436216.html",
-    "src": "Yahoo Personal Finance",
-    "time": "2026-07-31 12:34",
-    "about": "זהב"
    }
   ],
-  "updated": "2026-08-01 09:48"
+  "updated": "2026-08-03 15:46"
  }
 }
