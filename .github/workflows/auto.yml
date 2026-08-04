@@ -42,13 +42,46 @@ jobs:
 
       - name: Commit new state
         run: |
+          # data/ is a generated snapshot, not a document. It must never be
+          # merged: the newest engine tick is always the truth.
+          #
+          # The old version ran "git pull --rebase --autostash origin main || true"
+          # and then "git push". On a content conflict in data/state.json the
+          # rebase stopped, the "|| true" swallowed the failure, the repo was
+          # left on a DETACHED HEAD, and the push died with exit code 128.
+          #
+          # That is precisely what happened on 4.8.2026 at 15:31: the engine
+          # stopped publishing for two hours while the local bridge kept
+          # reconciling a frozen file and reporting "book: flat" every sixty
+          # seconds - a perfect health report on a paralysed system.
+          #
+          # Re-parenting onto origin/main with "reset --soft" keeps the freshly
+          # generated files and turns the push into a plain fast-forward.
+          # No merge, no conflict, last writer wins - the correct semantic for
+          # a regenerated snapshot.
+          set -e
           git config user.name  "idan-signals-bot"
           git config user.email "bot@users.noreply.github.com"
           git add data/
           if git diff --staged --quiet; then
             echo "nothing changed"
-          else
-            git commit -m "engine tick $(date -u '+%Y-%m-%d %H:%M UTC')"
-            git pull --rebase --autostash origin main || true
-            git push
+            exit 0
           fi
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --soft origin/main
+            git add data/
+            if git diff --staged --quiet; then
+              echo "remote already carries this state"
+              exit 0
+            fi
+            git commit -m "engine tick $(date -u '+%Y-%m-%d %H:%M UTC')"
+            if git push origin HEAD:main; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "push rejected - another run got there first, retrying"
+            sleep $(( (RANDOM % 10) + 5 ))
+          done
+          echo "could not push after 5 attempts"
+          exit 1
