@@ -39,13 +39,39 @@ jobs:
 
       - name: Commit new state
         run: |
+          # Same fix as auto.yml, and for the same reason: these two workflows
+          # both regenerate data/ and both push. When one lands while the other
+          # is mid-run, "git pull --rebase" hits a content conflict in
+          # data/state.json, the old "|| true" hid the failure, the repo ended
+          # up on a DETACHED HEAD and the push died with exit code 128.
+          #
+          # data/ is a generated snapshot, never a document: it must not be
+          # merged, the newest tick is simply the truth. Re-parenting onto
+          # origin/main keeps our fresh files and makes the push a plain
+          # fast-forward.
+          set -e
           git config user.name  "idan-signals-bot"
           git config user.email "bot@users.noreply.github.com"
           git add data/
           if git diff --staged --quiet; then
             echo "nothing changed"
-          else
-            git commit -m "engine tick $(date -u '+%Y-%m-%d %H:%M UTC')"
-            git pull --rebase --autostash origin main || true
-            git push
+            exit 0
           fi
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --soft origin/main
+            git add data/
+            if git diff --staged --quiet; then
+              echo "remote already carries this state"
+              exit 0
+            fi
+            git commit -m "engine tick $(date -u '+%Y-%m-%d %H:%M UTC')"
+            if git push origin HEAD:main; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "push rejected - another run got there first, retrying"
+            sleep $(( (RANDOM % 10) + 5 ))
+          done
+          echo "could not push after 5 attempts"
+          exit 1
