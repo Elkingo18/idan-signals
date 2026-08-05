@@ -2,17 +2,50 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 1014.6138730000007,
-  "equity": 1014.61,
+  "cash": 660.7596730000007,
+  "equity": 1014.36,
   "realized_pnl": 14.62,
-  "open_pnl": 0.0,
+  "open_pnl": -0.25,
   "peak_equity": 1021.75,
   "max_dd_pct": -1.72,
-  "return_pct": 1.46,
+  "return_pct": 1.44,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [],
+ "positions": [
+  {
+   "id": "XAUUSD-1785926858",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 1.68,
+   "qty_left": 1.68,
+   "entry": 4212.55,
+   "stop": 4218.3,
+   "orig_stop": 4218.3,
+   "t1": 4204.3,
+   "t2": 4195.9,
+   "opened": "2026-08-05T13:47:38.493685+03:00",
+   "opened_day": "2026-08-05",
+   "risk_open": 9.41,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 62,
+   "pattern": "פולבק לגל ↓",
+   "snap": {
+    "rsi": 40.0,
+    "rvol": null,
+    "score": 62,
+    "stop_pct": 0.13,
+    "regime_ok": true,
+    "notional": 7077.34
+   },
+   "last": 4212.7002,
+   "margin": 353.85
+  }
+ ],
  "closed": [
   {
    "ticker": "XAUUSD",
@@ -241,14 +274,14 @@
     "score": 83,
     "news": [
      {
-      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-      "dir": "pos",
-      "tag": null,
+      "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+      "dir": "neu",
+      "tag": "דוחות",
       "sources": 1,
-      "title": "Kenvue's Brand Strength and Growth Drivers Shape Its Future Outlook",
-      "url": "https://finance.yahoo.com/healthcare/articles/kenvues-brand-strength-growth-drivers-143800667.html",
-      "src": "Zacks",
-      "time": "2026-07-29 14:38"
+      "title": "Jobs Report, Berkshire Earnings: What to Watch the Rest of the Week",
+      "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-08-05-2026/card/jobs-report-berkshire-earnings-what-to-watch-the-rest-of-the-week-QUahvmShwtialYKVbvIR?siteid=yhoof2&yptr=yahoo",
+      "src": "The Wall Street Journal",
+      "time": "2026-08-05 07:18"
      },
      {
       "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -265,10 +298,10 @@
       "dir": "neu",
       "tag": "דוחות",
       "sources": 1,
-      "title": "SpaceX Earnings, Jobs Numbers: What to Watch This Week",
-      "url": "https://www.wsj.com/livecoverage/stock-market-today-spacex-earnings-08-04-2026/card/spacex-earnings-jobs-numbers-what-to-watch-this-week-vqSR3cVFGGzbAU6gfGA1?siteid=yhoof2&yptr=yahoo",
-      "src": "The Wall Street Journal",
-      "time": "2026-08-04 06:47"
+      "title": "Kenvue's Q2 Earnings Coming Up: Here's What Lies Ahead of the Stock",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/kenvues-q2-earnings-coming-heres-172200612.html",
+      "src": "Zacks",
+      "time": "2026-07-31 17:22"
      }
     ],
     "regime_ok": true
@@ -377,25 +410,25 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4237.0,
-    "entry": 4237.0,
-    "stop": 4227.6,
-    "t1": 4251.12,
-    "t2": 4265.25,
+    "side": "short",
+    "state": "SELL_NOW",
+    "pattern": "פולבק לגל ↓",
+    "price": 4212.7,
+    "entry": 4212.7,
+    "stop": 4218.3,
+    "t1": 4204.3,
+    "t2": 4195.9,
     "rr1": 1.5,
-    "atr": 6.28,
-    "rsi": 76.8,
-    "vwap": 4214.49,
-    "stop_pct": 0.22,
-    "ounces": 1.67,
-    "notional": 7075.79,
-    "margin": 353.79,
-    "risk_dollars": 15.7,
-    "shares": 1.67,
-    "score": 51,
+    "atr": 3.73,
+    "rsi": 40.0,
+    "vwap": 4218.71,
+    "stop_pct": 0.13,
+    "ounces": 1.68,
+    "notional": 7077.34,
+    "margin": 353.87,
+    "risk_dollars": 9.41,
+    "shares": 1.68,
+    "score": 62,
     "news": [],
     "regime_ok": true
    }
@@ -491,7 +524,7 @@
   ],
   [
    "2026-08-05",
-   1014.61
+   1014.36
   ]
  ],
  "cooldown": {},
@@ -604,7 +637,7 @@
    "name": "👹 בוס היום",
    "target": 81.17,
    "legend": 202.92,
-   "done": 0.0,
+   "done": -0.25,
    "base": 1014.61,
    "pct": 0,
    "pct_legend": 0,
@@ -620,10 +653,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 10.21,
   "week_pnl": 26.24,
-  "daily_limit": -60.88,
-  "weekly_limit": -121.75
+  "daily_limit": -60.86,
+  "weekly_limit": -121.72
  },
  "log": [
+  {
+   "t": "2026-08-05 13:47",
+   "m": "OPEN GOLD SHORT XAUUSD x1.68 @ 4212.5500 stop 4218.3 T1 4204.3"
+  },
   {
    "t": "2026-08-05 01:38",
    "m": "EXIT XAUUSD x0.84 @ 4136.2998 (stop) P/L $+10.21 / +0.73R"
@@ -688,12 +725,12 @@
   "all_pct": 1.46
  },
  "rejected": [],
- "updated_utc": "2026-08-05T06:47:02.302878+00:00",
- "updated_israel": "2026-08-05 09:47",
+ "updated_utc": "2026-08-05T10:47:38.493685+00:00",
+ "updated_israel": "2026-08-05 13:47",
  "market": {
   "open": false,
-  "et": "02:47",
-  "il": "09:47"
+  "et": "06:47",
+  "il": "13:47"
  },
  "stats": {
   "trades": 5,
@@ -1821,12 +1858,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 851,
+   "bars": 906,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4237.0,
+   "last_price": 4212.7,
    "signals": 1,
-   "today_trades": 0,
+   "today_trades": 1,
    "health": {
     "n": 5,
     "status": "na"
@@ -1836,14 +1873,14 @@
     "trades": 1,
     "pnl": 10.21
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 0,
-   "heat": 0,
+   "open": 1,
+   "heat": 9.41,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -1856,11 +1893,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 20,
    "covered": 4,
-   "updated": "2026-08-05 09:47"
+   "updated": "2026-08-05 13:47"
   }
  },
  "gold_today": {
-  "date": "2026-08-04",
+  "date": "2026-08-05",
   "count": 1
  },
  "health": {
@@ -2295,14 +2332,14 @@
    ],
    "KVUE": [
     {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": "דוחות",
      "sources": 1,
-     "title": "Kenvue's Brand Strength and Growth Drivers Shape Its Future Outlook",
-     "url": "https://finance.yahoo.com/healthcare/articles/kenvues-brand-strength-growth-drivers-143800667.html",
-     "src": "Zacks",
-     "time": "2026-07-29 14:38"
+     "title": "Jobs Report, Berkshire Earnings: What to Watch the Rest of the Week",
+     "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-08-05-2026/card/jobs-report-berkshire-earnings-what-to-watch-the-rest-of-the-week-QUahvmShwtialYKVbvIR?siteid=yhoof2&yptr=yahoo",
+     "src": "The Wall Street Journal",
+     "time": "2026-08-05 07:18"
     },
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -2319,20 +2356,20 @@
      "dir": "neu",
      "tag": "דוחות",
      "sources": 1,
-     "title": "SpaceX Earnings, Jobs Numbers: What to Watch This Week",
-     "url": "https://www.wsj.com/livecoverage/stock-market-today-spacex-earnings-08-04-2026/card/spacex-earnings-jobs-numbers-what-to-watch-this-week-vqSR3cVFGGzbAU6gfGA1?siteid=yhoof2&yptr=yahoo",
-     "src": "The Wall Street Journal",
-     "time": "2026-08-04 06:47"
+     "title": "Kenvue's Q2 Earnings Coming Up: Here's What Lies Ahead of the Stock",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/kenvues-q2-earnings-coming-heres-172200612.html",
+     "src": "Zacks",
+     "time": "2026-07-31 17:22"
     },
     {
      "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": "דוחות",
      "sources": 1,
-     "title": "Kenvue's Q2 Earnings Coming Up: Here's What Lies Ahead of the Stock",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/kenvues-q2-earnings-coming-heres-172200612.html",
+     "title": "Church & Dwight (CHD) Meets Q2 Earnings Estimates",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/church-dwight-chd-meets-q2-120502826.html",
      "src": "Zacks",
-     "time": "2026-07-31 17:22"
+     "time": "2026-07-31 12:05"
     }
    ],
    "INFY": [
@@ -2426,6 +2463,17 @@
     "about": "שוק"
    },
    {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "This $39.77 Billion Leveraged ETF Jumped 10.09% Tuesday, But Volatility Decay Cost Holders Millions",
+    "url": "https://247wallst.com/investing/etf/2026/08/04/this-39-77-billion-leveraged-etf-jumped-10-09-tuesday-but-volatility-decay-cost-holders-millions/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-05 09:10",
+    "about": "שוק"
+   },
+   {
     "summary": "דיווח ניטרלי · עדכון דיבידנד · מקור יחיד — לקחת בזהירות",
     "dir": "neu",
     "tag": "דיבידנד",
@@ -2452,24 +2500,13 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "ETF League Tables: Invesco Picks Up $2.8B",
-    "url": "http://www.etf.com/sections/etf-league-tables/etf-league-tables-invesco-picks-28b?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss",
-    "src": "etf.com",
-    "time": "2026-08-04 21:00",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Did Aeris' Higher 2027 Growth Capex With Flat Output Just Reframe Aeris Resources' (ASX:AIS) Investment Narrative?",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/did-aeris-higher-2027-growth-051210372.html",
-    "src": "Simply Wall St.",
-    "time": "2026-08-05 05:12",
+    "title": "Gold prices today, Tuesday, August 4, 2026: Gold remains above $4,100 with Iran threats looming",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-tuesday-august-4-2026-gold-remains-above-4100-with-iran-threats-looming-122138936.html",
+    "src": "Yahoo Personal Finance",
+    "time": "2026-08-04 12:21",
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-05 09:47"
+  "updated": "2026-08-05 13:47"
  }
 }
