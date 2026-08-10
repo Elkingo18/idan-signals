@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 677.6527580000024,
-  "equity": 988.33,
+  "cash": 332.64988300000243,
+  "equity": 988.1,
   "realized_pnl": -6.9,
-  "open_pnl": -3.76,
+  "open_pnl": -3.99,
   "peak_equity": 1021.75,
   "max_dd_pct": -3.4,
-  "return_pct": -1.17,
+  "return_pct": -1.19,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,6 +44,38 @@
    },
    "last": 17.26,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1786400508",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "long",
+   "sector": "other",
+   "qty": 1.55,
+   "qty_left": 1.55,
+   "entry": 4451.65,
+   "stop": 4446.2,
+   "orig_stop": 4446.2,
+   "t1": 4459.4,
+   "t2": 4467.3,
+   "opened": "2026-08-11T01:21:48.696224+03:00",
+   "opened_day": "2026-08-11",
+   "risk_open": 8.22,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 62,
+   "pattern": "פולבק לגל",
+   "snap": {
+    "rsi": 66.0,
+    "rvol": null,
+    "score": 62,
+    "stop_pct": 0.12,
+    "regime_ok": true,
+    "notional": 6899.82
+   },
+   "last": 4451.5,
+   "margin": 345.0
   }
  ],
  "closed": [
@@ -252,24 +284,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4448.5,
-    "entry": 4448.5,
-    "stop": 4442.0,
-    "t1": 4458.27,
-    "t2": 4468.03,
+    "state": "BUY_NOW",
+    "pattern": "פולבק לגל",
+    "price": 4451.5,
+    "entry": 4451.5,
+    "stop": 4446.2,
+    "t1": 4459.4,
+    "t2": 4467.3,
     "rr1": 1.5,
-    "atr": 4.34,
-    "rsi": 63.9,
-    "vwap": 4408.41,
-    "stop_pct": 0.15,
+    "atr": 3.51,
+    "rsi": 66.0,
+    "vwap": 4409.01,
+    "stop_pct": 0.12,
     "ounces": 1.55,
-    "notional": 6895.18,
-    "margin": 344.76,
-    "risk_dollars": 10.08,
+    "notional": 6899.82,
+    "margin": 344.99,
+    "risk_dollars": 8.22,
     "shares": 1.55,
-    "score": 57,
+    "score": 62,
     "news": [],
     "regime_ok": true
    }
@@ -395,6 +427,10 @@
   [
    "2026-08-10",
    988.33
+  ],
+  [
+   "2026-08-11",
+   988.1
   ]
  ],
  "cooldown": {},
@@ -503,12 +539,12 @@
    }
   ],
   "boss": {
-   "day": "2026-08-10",
+   "day": "2026-08-11",
    "name": "👹 בוס היום",
-   "target": 80.28,
-   "legend": 200.71,
-   "done": -15.21,
-   "base": 1003.54,
+   "target": 79.07,
+   "legend": 197.67,
+   "done": -0.23,
+   "base": 988.33,
    "pct": 0,
    "pct_legend": 0,
    "beaten": false,
@@ -521,12 +557,16 @@
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": -11.61,
+  "day_pnl": 0.0,
   "week_pnl": -11.61,
-  "daily_limit": -59.3,
-  "weekly_limit": -118.6
+  "daily_limit": -59.29,
+  "weekly_limit": -118.57
  },
  "log": [
+  {
+   "t": "2026-08-11 01:21",
+   "m": "OPEN GOLD XAUUSD x1.55 @ 4451.6500 stop 4446.2 T1 4459.4"
+  },
   {
    "t": "2026-08-10 13:44",
    "m": "EXIT XAUUSD x1.59 @ 4403.1500 (stop) P/L $-11.61 / -1.02R"
@@ -600,8 +640,8 @@
   "spy": 773.03
  },
  "periods": {
-  "day": -11.61,
-  "week": 4.72,
+  "day": 0,
+  "week": -1.2,
   "month": -6.9,
   "quarter": -6.9,
   "half": -6.9,
@@ -611,12 +651,12 @@
   "all_pct": -0.69
  },
  "rejected": [],
- "updated_utc": "2026-08-10T20:24:24.061939+00:00",
- "updated_israel": "2026-08-10 23:24",
+ "updated_utc": "2026-08-10T22:21:48.696224+00:00",
+ "updated_israel": "2026-08-11 01:21",
  "market": {
   "open": false,
-  "et": "16:24",
-  "il": "23:24"
+  "et": "18:21",
+  "il": "01:21"
  },
  "stats": {
   "trades": 7,
@@ -632,8 +672,8 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-08-10",
-  "equity": 1003.54
+  "date": "2026-08-11",
+  "equity": 988.33
  },
  "universe_view": [
   {
@@ -642,7 +682,7 @@
    "px": 5.35,
    "trend": 8.0,
    "rsi": 60,
-   "rvol": 0.7,
+   "rvol": 0.6,
    "df": 1,
    "state": "none"
   },
@@ -792,7 +832,7 @@
    "px": 16.63,
    "trend": 24.0,
    "rsi": 66,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -842,7 +882,7 @@
    "px": 14.69,
    "trend": 8.9,
    "rsi": 64,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -882,7 +922,7 @@
    "px": 14.01,
    "trend": -3.8,
    "rsi": 41,
-   "rvol": 0.8,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -892,7 +932,7 @@
    "px": 5.72,
    "trend": 5.7,
    "rsi": 62,
-   "rvol": 1.3,
+   "rvol": 1.4,
    "df": 0,
    "state": "none"
   },
@@ -922,7 +962,7 @@
    "px": 15.59,
    "trend": 9.0,
    "rsi": 60,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -1042,7 +1082,7 @@
    "px": 19.03,
    "trend": 1.6,
    "rsi": 48,
-   "rvol": 0.8,
+   "rvol": 1.2,
    "df": 1,
    "state": "none"
   },
@@ -1072,7 +1112,7 @@
    "px": 14.77,
    "trend": 5.4,
    "rsi": 52,
-   "rvol": 0.6,
+   "rvol": 0.5,
    "df": 0,
    "state": "none"
   },
@@ -1102,7 +1142,7 @@
    "px": 5.87,
    "trend": -8.2,
    "rsi": 34,
-   "rvol": 2.1,
+   "rvol": 2.0,
    "df": 0,
    "state": "none"
   },
@@ -1122,7 +1162,7 @@
    "px": 13.12,
    "trend": 5.2,
    "rsi": 64,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -1212,7 +1252,7 @@
    "px": 10.4,
    "trend": 7.9,
    "rsi": 68,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1222,7 +1262,7 @@
    "px": 8.46,
    "trend": 8.8,
    "rsi": 65,
-   "rvol": 1.3,
+   "rvol": 1.4,
    "df": 0,
    "state": "none"
   },
@@ -1292,7 +1332,7 @@
    "px": 12.0,
    "trend": -12.0,
    "rsi": 39,
-   "rvol": 0.7,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1744,10 +1784,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1021,
+   "bars": 1030,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4448.5,
+   "last_price": 4451.5,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -1756,17 +1796,17 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 1,
-    "pnl": -11.61
+    "trades": 0,
+    "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 16.11,
+   "open": 2,
+   "heat": 24.33,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -1779,11 +1819,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 12,
    "covered": 1,
-   "updated": "2026-08-10 23:24"
+   "updated": "2026-08-11 01:21"
   }
  },
  "gold_today": {
-  "date": "2026-08-10",
+  "date": "2026-08-11",
   "count": 1
  },
  "health": {
@@ -1948,7 +1988,7 @@
    "px": 8.81,
    "trend": 1.5,
    "rsi": 60,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": true
   },
   {
@@ -2018,7 +2058,7 @@
    "px": 31.77,
    "trend": 0.6,
    "rsi": 51,
-   "rvol": 0.8,
+   "rvol": 1.1,
    "near": false
   },
   {
@@ -2098,7 +2138,7 @@
    "px": 36.19,
    "trend": 14.2,
    "rsi": 60,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "near": false
   },
   {
@@ -2118,7 +2158,7 @@
    "px": 30.21,
    "trend": -2.9,
    "rsi": 51,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": false
   },
   {
@@ -2223,10 +2263,21 @@
     "dir": "neg",
     "tag": null,
     "sources": 1,
-    "title": "Trump Media (DJT) Stock Is Sliding Today: What’s Behind the Drop?",
-    "url": "https://247wallst.com/investing/2026/08/10/trump-media-djt-stock-is-sliding-today-whats-behind-the-drop/",
+    "title": "VYM’s 2.2% Yield Hides $141,000 in Decade-Long Underperformance Versus the S&P 500",
+    "url": "https://247wallst.com/investing/etf/2026/08/10/vyms-2-2-yield-hides-141000-in-decade-long-underperformance-versus-the-sp-500/",
     "src": "24/7 Wall St.",
-    "time": "2026-08-10 17:59",
+    "time": "2026-08-10 22:05",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "You Spent 40 Years Saving. Nobody Taught You How to Turn It Into a Paycheck. These 4 ETFs Do It Without Selling a Single Share",
+    "url": "https://247wallst.com/investing/etf/2026/08/10/you-spent-40-years-saving-nobody-taught-you-how-to-turn-it-into-a-paycheck-these-4-etfs-do-it-without-selling-a-single-share/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-10 21:55",
     "about": "שוק"
    },
    {
@@ -2252,14 +2303,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Wary Bulls Can Take Advantage Of This Spread On The S&P 500",
-    "url": "https://www.investors.com/research/options/spy-etf-bull-call-spread-options/?src=A00220&yptr=yahoo",
-    "src": "Investor's Business Daily",
-    "time": "2026-08-10 18:03",
+    "title": "Semiconductor ETFs See Profit-Taking as Investors Pile Into QQQ",
+    "url": "http://www.etf.com/sections/weekly-etf-flows/semiconductor-etfs-see-profit-taking-investors-pile-qqq?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss",
+    "src": "etf.com",
+    "time": "2026-08-10 21:16",
     "about": "שוק"
    },
    {
@@ -2285,28 +2336,17 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Exchange-Traded Funds, US Equities Lower After Midday",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-us-equities-172211482.html",
-    "src": "MT Newswires",
-    "time": "2026-08-10 17:22",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Why Momentum, Fed Liquidity, & Tech Beats Signal More Upside",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/why-momentum-fed-liquidity-tech-161500455.html",
-    "src": "Zacks",
-    "time": "2026-08-10 16:15",
+    "title": "Same 100 Stocks, Different Price: Why QQQ Costs $180 Annually While QQQM Charges $150",
+    "url": "https://247wallst.com/investing/etf/2026/08/10/same-100-stocks-different-price-why-qqq-costs-180-annually-while-qqqm-charges-150/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-10 21:45",
     "about": "שוק"
    }
   ],
-  "updated": "2026-08-10 23:24"
+  "updated": "2026-08-11 01:21"
  }
 }
