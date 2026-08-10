@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 338.6297580000013,
-  "equity": 1002.98,
-  "realized_pnl": 4.71,
-  "open_pnl": -0.71,
+  "cash": 677.6527580000024,
+  "equity": 991.93,
+  "realized_pnl": -6.9,
+  "open_pnl": -0.16,
   "peak_equity": 1021.75,
-  "max_dd_pct": -1.84,
-  "return_pct": 0.3,
+  "max_dd_pct": -2.92,
+  "return_pct": -0.81,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,27 +44,13 @@
    },
    "last": 17.46,
    "margin": 0.0
-  },
+  }
+ ],
+ "closed": [
   {
-   "id": "XAUUSD-1786341725",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "long",
-   "sector": "other",
-   "qty": 1.59,
-   "qty_left": 1.59,
-   "entry": 4410.45,
-   "stop": 4403.3,
-   "orig_stop": 4403.3,
-   "t1": 4420.73,
-   "t2": 4431.16,
-   "opened": "2026-08-10T09:02:05.554177+03:00",
-   "opened_day": "2026-08-10",
-   "risk_open": 10.81,
-   "fees": 0.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 56,
    "pattern": "פריצת טווח",
    "snap": {
     "rsi": 71.3,
@@ -74,11 +60,22 @@
     "regime_ok": true,
     "notional": 7012.38
    },
-   "last": 4410.1001,
-   "margin": 350.63
-  }
- ],
- "closed": [
+   "stop": 4403.3,
+   "t1": 4420.73,
+   "t2": 4431.16,
+   "fees": 0.0,
+   "qty": 1.59,
+   "entry": 4410.45,
+   "exit": 4403.15,
+   "pnl": -11.61,
+   "r": -1.02,
+   "reason": "stop",
+   "opened": "2026-08-10T09:02:05.554177+03:00",
+   "closed": "2026-08-10T13:43:25.671179+03:00",
+   "day": "2026-08-10",
+   "held_days": 0,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -271,7 +268,7 @@
     "shares": 18,
     "notional": 314.28,
     "risk_dollars": 19.71,
-    "risk_pct_actual": 1.97,
+    "risk_pct_actual": 1.99,
     "stretch_target": 20.95,
     "score": 80,
     "news": [
@@ -327,10 +324,10 @@
     "pivot_high": 4.878,
     "rvol": 1.64,
     "above_ma50_pct": 3.45,
-    "shares": 42,
-    "notional": 204.88,
-    "risk_dollars": 19.87,
-    "risk_pct_actual": 1.98,
+    "shares": 41,
+    "notional": 200.0,
+    "risk_dollars": 19.4,
+    "risk_pct_actual": 1.96,
     "stretch_target": 5.85,
     "score": 78,
     "news": [
@@ -363,31 +360,44 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "long",
-    "state": "BUY_NOW",
-    "pattern": "פריצת טווח",
-    "price": 4410.1,
-    "entry": 4410.1,
-    "stop": 4403.1,
-    "t1": 4420.53,
-    "t2": 4430.96,
+    "side": "short",
+    "state": "WATCH_SELL",
+    "pattern": "המשך מגמה ↓",
+    "price": 4400.3,
+    "entry": 4400.3,
+    "stop": 4405.0,
+    "t1": 4393.21,
+    "t2": 4386.12,
     "rr1": 1.5,
-    "atr": 4.64,
-    "rsi": 71.1,
-    "vwap": 4396.96,
-    "stop_pct": 0.16,
-    "ounces": 1.38,
-    "notional": 6085.94,
-    "margin": 304.3,
-    "risk_dollars": 9.66,
-    "shares": 1.38,
-    "score": 56,
+    "atr": 3.15,
+    "rsi": 39.5,
+    "vwap": 4405.44,
+    "stop_pct": 0.11,
+    "ounces": 1.57,
+    "notional": 6908.47,
+    "margin": 345.42,
+    "risk_dollars": 7.38,
+    "shares": 1.57,
+    "score": 57,
     "news": [],
     "regime_ok": true
    }
   ]
  },
  "calendar": {
+  "2026-08-10": {
+   "pnl": -11.61,
+   "trades": 1,
+   "wins": 0,
+   "losses": 1,
+   "r": -1.02,
+   "tickers": [
+    "XAUUSD"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "red"
+  },
   "2026-08-05": {
    "pnl": 0.3,
    "trades": 2,
@@ -493,14 +503,16 @@
   ],
   [
    "2026-08-10",
-   1002.98
+   991.93
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 3
+ },
  "game": {
-  "xp": 325,
+  "xp": 355,
   "level": 1,
-  "streak": 3,
+  "streak": 0,
   "best_streak": 4,
   "badges": [
    {
@@ -606,7 +618,7 @@
    "name": "👹 בוס היום",
    "target": 80.28,
    "legend": 200.71,
-   "done": -0.56,
+   "done": -11.61,
    "base": 1003.54,
    "pct": 0,
    "pct_legend": 0,
@@ -614,18 +626,22 @@
    "legendary": false
   },
   "level_name": "🥚 טירון",
-  "xp_this_level": 205,
+  "xp_this_level": 235,
   "xp_next_level": 243
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 0.0,
-  "week_pnl": 0,
-  "daily_limit": -60.18,
-  "weekly_limit": -120.36
+  "day_pnl": -11.61,
+  "week_pnl": -11.61,
+  "daily_limit": -59.52,
+  "weekly_limit": -119.03
  },
  "log": [
+  {
+   "t": "2026-08-10 13:43",
+   "m": "EXIT XAUUSD x1.59 @ 4403.1500 (stop) P/L $-11.61 / -1.02R"
+  },
   {
    "t": "2026-08-10 09:02",
    "m": "OPEN GOLD XAUUSD x1.59 @ 4410.4500 stop 4403.3 T1 4420.73"
@@ -695,41 +711,36 @@
   "spy": 773.26
  },
  "periods": {
-  "day": 0,
-  "week": 16.33,
-  "month": 4.71,
-  "quarter": 4.71,
-  "half": 4.71,
-  "year": 4.71,
-  "two_year": 4.71,
-  "all": 4.71,
-  "all_pct": 0.47
+  "day": -11.61,
+  "week": 4.72,
+  "month": -6.9,
+  "quarter": -6.9,
+  "half": -6.9,
+  "year": -6.9,
+  "two_year": -6.9,
+  "all": -6.9,
+  "all_pct": -0.69
  },
  "rejected": [
   {
    "ticker": "LYFT",
    "kind": "swing",
    "why": "already_open"
-  },
-  {
-   "ticker": "XAUUSD",
-   "kind": "gold",
-   "why": "already_open"
   }
  ],
- "updated_utc": "2026-08-10T06:03:17.513739+00:00",
- "updated_israel": "2026-08-10 09:03",
+ "updated_utc": "2026-08-10T10:43:25.671179+00:00",
+ "updated_israel": "2026-08-10 13:43",
  "market": {
   "open": false,
-  "et": "02:03",
-  "il": "09:03"
+  "et": "06:43",
+  "il": "13:43"
  },
  "stats": {
-  "trades": 6,
-  "win_rate": 66.7,
-  "pf": 1.18,
-  "avg_r": 0.14,
-  "expectancy": 0.79,
+  "trades": 7,
+  "win_rate": 57.1,
+  "pf": 0.82,
+  "avg_r": -0.02,
+  "expectancy": -0.99,
   "best": 10.21,
   "worst": -16.97
  },
@@ -1850,10 +1861,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 818,
+   "bars": 905,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4410.1,
+   "last_price": 4400.3,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -1862,21 +1873,21 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 0,
-    "pnl": 0
+    "trades": 1,
+    "pnl": -11.61
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 2,
-   "heat": 30.52,
+   "open": 1,
+   "heat": 19.71,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 2
+    "blocked": 1
    }
   },
   "news": {
@@ -1885,7 +1896,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 14,
    "covered": 2,
-   "updated": "2026-08-10 09:03"
+   "updated": "2026-08-10 13:43"
   }
  },
  "gold_today": {
@@ -1898,7 +1909,7 @@
    "status": "na"
   },
   "gold": {
-   "n": 6,
+   "n": 7,
    "status": "na"
   },
   "day": {
@@ -2413,17 +2424,6 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": "דוחות",
-    "sources": 1,
-    "title": "Is Kimbell Royalty Partners (KRP) Undervalued After Record Results And A Higher Distribution?",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/kimbell-royalty-partners-krp-undervalued-051128752.html",
-    "src": "Simply Wall St.",
-    "time": "2026-08-10 05:11",
-    "about": "זהב"
-   },
-   {
     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
     "dir": "neu",
     "tag": null,
@@ -2433,8 +2433,19 @@
     "src": "Yahoo Finance",
     "time": "2026-08-09 11:30",
     "about": "זהב"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Vanguard reveals what could be coming for US stocks. Here’s why it’s raising alarm bells for retirees",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/vanguard-reveals-could-coming-us-094500956.html",
+    "src": "Moneywise",
+    "time": "2026-08-10 09:45",
+    "about": "זהב"
    }
   ],
-  "updated": "2026-08-10 09:03"
+  "updated": "2026-08-10 13:43"
  }
 }
