@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 689.2605330000013,
-  "equity": 1003.54,
+  "cash": 338.6297580000013,
+  "equity": 1003.3,
   "realized_pnl": 4.71,
-  "open_pnl": -0.16,
+  "open_pnl": -0.4,
   "peak_equity": 1021.75,
-  "max_dd_pct": -1.78,
-  "return_pct": 0.35,
+  "max_dd_pct": -1.81,
+  "return_pct": 0.33,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,6 +44,38 @@
    },
    "last": 17.46,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1786341725",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "long",
+   "sector": "other",
+   "qty": 1.59,
+   "qty_left": 1.59,
+   "entry": 4410.45,
+   "stop": 4403.3,
+   "orig_stop": 4403.3,
+   "t1": 4420.73,
+   "t2": 4431.16,
+   "opened": "2026-08-10T09:02:05.554177+03:00",
+   "opened_day": "2026-08-10",
+   "risk_open": 11.13,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 56,
+   "pattern": "פריצת טווח",
+   "snap": {
+    "rsi": 71.3,
+    "rvol": null,
+    "score": 56,
+    "stop_pct": 0.16,
+    "regime_ok": true,
+    "notional": 7012.38
+   },
+   "last": 4410.2998,
+   "margin": 350.63
   }
  ],
  "closed": [
@@ -234,7 +266,7 @@
     "room": 19.55,
     "pivot_low": 13.49,
     "pivot_high": 16.52,
-    "rvol": 1.76,
+    "rvol": 1.93,
     "above_ma50_pct": 17.07,
     "shares": 18,
     "notional": 314.28,
@@ -258,10 +290,10 @@
       "dir": "neu",
       "tag": null,
       "sources": 1,
-      "title": "Autonomous driving will be 'big part' of society in next 5, 10 years: Lyft CEO",
-      "url": "https://finance.yahoo.com/video/autonomous-driving-big-part-society-151945061.html",
-      "src": "Yahoo Finance Video",
-      "time": "2026-08-07 15:19"
+      "title": "Dear Baidu Stock Fans, Mark Your Calendars for August 18",
+      "url": "https://www.barchart.com/story/news/3744676/dear-baidu-stock-fans-mark-your-calendars-for-august-18",
+      "src": "Barchart",
+      "time": "2026-08-09 13:00"
      },
      {
       "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -283,21 +315,21 @@
     "state": "WATCH_BUY",
     "price": 4.76,
     "entry": 4.878,
-    "stop": 4.4054,
-    "t1": 5.8231,
-    "t2": 6.5319,
+    "stop": 4.4049,
+    "t1": 5.8242,
+    "t2": 6.5339,
     "rr1": 2.0,
-    "stop_pct": 9.69,
+    "stop_pct": 9.7,
     "rsi": 56.2,
-    "atr": 0.295,
+    "atr": 0.296,
     "room": 5.636,
     "pivot_low": 4.12,
     "pivot_high": 4.878,
-    "rvol": 1.57,
+    "rvol": 1.64,
     "above_ma50_pct": 3.45,
     "shares": 42,
     "notional": 204.88,
-    "risk_dollars": 19.85,
+    "risk_dollars": 19.87,
     "risk_pct_actual": 1.98,
     "stretch_target": 5.85,
     "score": 78,
@@ -327,7 +359,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "long",
+    "state": "BUY_NOW",
+    "pattern": "פריצת טווח",
+    "price": 4410.3,
+    "entry": 4410.3,
+    "stop": 4403.3,
+    "t1": 4420.73,
+    "t2": 4431.16,
+    "rr1": 1.5,
+    "atr": 4.64,
+    "rsi": 71.3,
+    "vwap": 4396.81,
+    "stop_pct": 0.16,
+    "ounces": 1.59,
+    "notional": 7012.38,
+    "margin": 350.62,
+    "risk_dollars": 11.13,
+    "shares": 1.59,
+    "score": 56,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-08-05": {
@@ -432,6 +490,10 @@
   [
    "2026-08-08",
    1003.54
+  ],
+  [
+   "2026-08-10",
+   1003.3
   ]
  ],
  "cooldown": {},
@@ -540,11 +602,11 @@
    }
   ],
   "boss": {
-   "day": "2026-08-08",
+   "day": "2026-08-10",
    "name": "👹 בוס היום",
    "target": 80.28,
    "legend": 200.71,
-   "done": 0.0,
+   "done": -0.24,
    "base": 1003.54,
    "pct": 0,
    "pct_legend": 0,
@@ -559,11 +621,15 @@
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
-  "week_pnl": 16.33,
-  "daily_limit": -60.21,
-  "weekly_limit": -120.42
+  "week_pnl": 0,
+  "daily_limit": -60.2,
+  "weekly_limit": -120.4
  },
  "log": [
+  {
+   "t": "2026-08-10 09:02",
+   "m": "OPEN GOLD XAUUSD x1.59 @ 4410.4500 stop 4403.3 T1 4420.73"
+  },
   {
    "t": "2026-08-07 23:09",
    "m": "OPEN SWING LYFT x18 @ 17.4687 stop 16.3652 T1 19.6496"
@@ -630,7 +696,7 @@
  },
  "periods": {
   "day": 0,
-  "week": 21.68,
+  "week": 16.33,
   "month": 4.71,
   "quarter": 4.71,
   "half": 4.71,
@@ -646,12 +712,12 @@
    "why": "already_open"
   }
  ],
- "updated_utc": "2026-08-07T23:17:56.560266+00:00",
- "updated_israel": "2026-08-08 02:17",
+ "updated_utc": "2026-08-10T06:02:05.554177+00:00",
+ "updated_israel": "2026-08-10 09:02",
  "market": {
   "open": false,
-  "et": "19:17",
-  "il": "02:17"
+  "et": "02:02",
+  "il": "09:02"
  },
  "stats": {
   "trades": 6,
@@ -667,7 +733,7 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-08-08",
+  "date": "2026-08-10",
   "equity": 1003.54
  },
  "universe_view": [
@@ -677,7 +743,7 @@
    "px": 5.33,
    "trend": 7.3,
    "rsi": 60,
-   "rvol": 0.7,
+   "rvol": 1.0,
    "df": 1,
    "state": "none"
   },
@@ -727,7 +793,7 @@
    "px": 6.24,
    "trend": -17.4,
    "rsi": 42,
-   "rvol": 1.5,
+   "rvol": 1.7,
    "df": 0,
    "state": "none"
   },
@@ -747,7 +813,7 @@
    "px": 15.05,
    "trend": 29.6,
    "rsi": 74,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -757,7 +823,7 @@
    "px": 16.43,
    "trend": -0.7,
    "rsi": 42,
-   "rvol": 1.2,
+   "rvol": 1.3,
    "df": 0,
    "state": "none"
   },
@@ -767,7 +833,7 @@
    "px": 13.6,
    "trend": 0.9,
    "rsi": 66,
-   "rvol": 1.1,
+   "rvol": 1.3,
    "df": 0,
    "state": "none"
   },
@@ -797,7 +863,7 @@
    "px": 7.13,
    "trend": -12.6,
    "rsi": 40,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -917,7 +983,7 @@
    "px": 13.95,
    "trend": -4.2,
    "rsi": 39,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -947,7 +1013,7 @@
    "px": 2.48,
    "trend": -0.2,
    "rsi": 51,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -957,7 +1023,7 @@
    "px": 14.38,
    "trend": 0.7,
    "rsi": 50,
-   "rvol": 0.6,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -987,7 +1053,7 @@
    "px": 10.43,
    "trend": 5.6,
    "rsi": 62,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -1017,7 +1083,7 @@
    "px": 5.55,
    "trend": -19.7,
    "rsi": 44,
-   "rvol": 1.3,
+   "rvol": 1.4,
    "df": 0,
    "state": "none"
   },
@@ -1037,7 +1103,7 @@
    "px": 17.46,
    "trend": 17.1,
    "rsi": 69,
-   "rvol": 1.8,
+   "rvol": 1.9,
    "df": 1,
    "state": "signal"
   },
@@ -1057,7 +1123,7 @@
    "px": 7.38,
    "trend": 9.6,
    "rsi": 57,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1077,7 +1143,7 @@
    "px": 19.23,
    "trend": 2.8,
    "rsi": 51,
-   "rvol": 0.5,
+   "rvol": 0.7,
    "df": 1,
    "state": "none"
   },
@@ -1087,7 +1153,7 @@
    "px": 19.3,
    "trend": 10.2,
    "rsi": 57,
-   "rvol": 0.9,
+   "rvol": 1.1,
    "df": 0,
    "state": "none"
   },
@@ -1137,7 +1203,7 @@
    "px": 6.11,
    "trend": -4.5,
    "rsi": 38,
-   "rvol": 1.9,
+   "rvol": 2.0,
    "df": 0,
    "state": "none"
   },
@@ -1177,7 +1243,7 @@
    "px": 11.41,
    "trend": -50.6,
    "rsi": 29,
-   "rvol": 2.0,
+   "rvol": 2.1,
    "df": 0,
    "state": "none"
   },
@@ -1207,7 +1273,7 @@
    "px": 7.06,
    "trend": 9.4,
    "rsi": 59,
-   "rvol": 0.9,
+   "rvol": 1.1,
    "df": 1,
    "state": "none"
   },
@@ -1247,7 +1313,7 @@
    "px": 10.22,
    "trend": 6.1,
    "rsi": 66,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -1257,7 +1323,7 @@
    "px": 8.15,
    "trend": 4.4,
    "rsi": 61,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -1779,12 +1845,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1308,
+   "bars": 818,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4401.3,
-   "signals": 0,
-   "today_trades": 0,
+   "last_price": 4410.3,
+   "signals": 1,
+   "today_trades": 1,
    "health": {
     "n": 6,
     "status": "na"
@@ -1794,14 +1860,14 @@
     "trades": 0,
     "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 19.71,
+   "open": 2,
+   "heat": 30.84,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -1814,11 +1880,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 14,
    "covered": 2,
-   "updated": "2026-08-08 02:18"
+   "updated": "2026-08-10 09:02"
   }
  },
  "gold_today": {
-  "date": "2026-08-05",
+  "date": "2026-08-10",
   "count": 1
  },
  "health": {
@@ -1993,7 +2059,7 @@
    "px": 17.46,
    "trend": 17.1,
    "rsi": 69,
-   "rvol": 1.8,
+   "rvol": 1.9,
    "near": true
   },
   {
@@ -2013,7 +2079,7 @@
    "px": 2.97,
    "trend": -19.0,
    "rsi": 38,
-   "rvol": 0.5,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -2053,7 +2119,7 @@
    "px": 31.59,
    "trend": 0.5,
    "rsi": 51,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "near": false
   },
   {
@@ -2083,7 +2149,7 @@
    "px": 3.88,
    "trend": -22.7,
    "rsi": 43,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": false
   },
   {
@@ -2133,7 +2199,7 @@
    "px": 38.42,
    "trend": 21.4,
    "rsi": 66,
-   "rvol": 1.4,
+   "rvol": 1.6,
    "near": false
   },
   {
@@ -2193,7 +2259,7 @@
    "px": 2.97,
    "trend": -19.0,
    "rsi": 38,
-   "rvol": 0.5,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -2225,10 +2291,10 @@
      "dir": "neu",
      "tag": null,
      "sources": 1,
-     "title": "Autonomous driving will be 'big part' of society in next 5, 10 years: Lyft CEO",
-     "url": "https://finance.yahoo.com/video/autonomous-driving-big-part-society-151945061.html",
-     "src": "Yahoo Finance Video",
-     "time": "2026-08-07 15:19"
+     "title": "Dear Baidu Stock Fans, Mark Your Calendars for August 18",
+     "url": "https://www.barchart.com/story/news/3744676/dear-baidu-stock-fans-mark-your-calendars-for-august-18",
+     "src": "Barchart",
+     "time": "2026-08-09 13:00"
     },
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -2280,6 +2346,17 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
+    "title": "ISPY’s 0.56% Fee Hides a $38,000 Decade-Long Performance Gap Against SPY",
+    "url": "https://247wallst.com/investing/etf/2026/08/07/ispys-0-56-fee-hides-a-38000-decade-long-performance-gap-against-spy/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-08 03:15",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
     "title": "S&P 500 Ends At Record High, Clocks Strongest Week Since April As Poor Jobs Data Calms Rate Hike Fear — SEZL, SPCX, RDW, PLTR, TTD In Focus",
     "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-ends-at-record-high-clocks-strongest-week-since-april-as-poor-jobs-data-calms-rate-hike-fear-sezl-spcx-rdw-pltr-ttd-in-focus/cZof1R8RJ9w",
     "src": "Stocktwits",
@@ -2291,32 +2368,21 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
+    "title": "VOO Is About to Become the First $1 Trillion ETF, and SPY Holders Are Paying 3x More for the Same Index",
+    "url": "https://247wallst.com/investing/2026/08/08/voo-is-about-to-become-the-first-1-trillion-etf-and-spy-holders-are-paying-3x-more-for-the-same-index/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-08 18:08",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
     "title": "The 20 Most Actively Traded ETFs",
     "url": "http://www.etf.com/sections/features/20-most-actively-traded-etfs?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss",
     "src": "etf.com",
     "time": "2026-08-07 19:46",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "The Economy Lost Jobs, Wall Street Threw a Party: What Moved Markets This Week",
-    "url": "https://finance.yahoo.com/economy/articles/economy-lost-jobs-wall-street-194002543.html",
-    "src": "Benzinga",
-    "time": "2026-08-07 19:40",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "These New Drugs Could Fuel Fresh Highs for Biotech and Pharma Stocks",
-    "url": "https://www.barrons.com/articles/biotech-stocks-to-buy-new-drugs-1b626dfc?siteid=yhoof2&yptr=yahoo",
-    "src": "Barrons.com",
-    "time": "2026-08-07 15:30",
     "about": "שוק"
    },
    {
@@ -2335,35 +2401,35 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "A Guide to Nasdaq ETF Investing",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/guide-nasdaq-etf-investing-175900121.html",
-    "src": "Zacks",
-    "time": "2026-08-07 17:59",
+    "title": "What JEPQ Actually Paid the Last Time the Nasdaq Fell 10%: a Stress Test for Its 10% Yield",
+    "url": "https://247wallst.com/investing/etf/2026/08/08/what-jepq-actually-paid-the-last-time-the-nasdaq-fell-10-a-stress-test-for-its-10-yield/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-08 18:34",
     "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · עודכן יעד מחיר על ידי אנליסט · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": "יעד מחיר",
-    "sources": 1,
-    "title": "Gold rallies over 7%: UBS sets $5,000 price target",
-    "url": "https://finance.yahoo.com/video/gold-rallies-over-7-ubs-202522628.html",
-    "src": "Yahoo Finance Video",
-    "time": "2026-08-07 20:25",
-    "about": "זהב"
    },
    {
     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
     "dir": "pos",
     "tag": "דוחות",
     "sources": 1,
-    "title": "Galiano Gold Inc (GAU) (Q2 2026) Earnings Call Highlights: Record Revenue and Strategic ...",
-    "url": "https://finance.yahoo.com/markets/commodities/articles/galiano-gold-inc-gau-q2-230127689.html",
-    "src": "GuruFocus.com",
-    "time": "2026-08-07 23:01",
+    "title": "Is Kimbell Royalty Partners (KRP) Undervalued After Record Results And A Higher Distribution?",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/kimbell-royalty-partners-krp-undervalued-051128752.html",
+    "src": "Simply Wall St.",
+    "time": "2026-08-10 05:11",
+    "about": "זהב"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Gold's breakout could force investors back in: Chart of the Day",
+    "url": "https://finance.yahoo.com/markets/article/golds-breakout-could-force-investors-back-in-chart-of-the-day-113004349.html",
+    "src": "Yahoo Finance",
+    "time": "2026-08-09 11:30",
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-08 02:18"
+  "updated": "2026-08-10 09:02"
  }
 }
