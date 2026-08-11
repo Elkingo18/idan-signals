@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 332.67313300000245,
-  "equity": 997.56,
-  "realized_pnl": -6.9,
-  "open_pnl": 5.47,
+  "cash": 668.9731330000019,
+  "equity": 979.65,
+  "realized_pnl": -15.58,
+  "open_pnl": -3.76,
   "peak_equity": 1021.75,
-  "max_dd_pct": -3.4,
-  "return_pct": -0.24,
+  "max_dd_pct": -4.12,
+  "return_pct": -2.03,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,27 +44,13 @@
    },
    "last": 17.26,
    "margin": 0.0
-  },
+  }
+ ],
+ "closed": [
   {
-   "id": "XAUUSD-1786400538",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "long",
-   "sector": "other",
-   "qty": 1.55,
-   "qty_left": 1.55,
-   "entry": 4451.35,
-   "stop": 4445.9,
-   "orig_stop": 4445.9,
-   "t1": 4459.1,
-   "t2": 4467.0,
-   "opened": "2026-08-11T01:22:18.291776+03:00",
-   "opened_day": "2026-08-11",
-   "risk_open": 17.67,
-   "fees": 0.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 62,
    "pattern": "פולבק לגל",
    "snap": {
     "rsi": 65.5,
@@ -74,11 +60,22 @@
     "regime_ok": true,
     "notional": 6899.36
    },
-   "last": 4457.2998,
-   "margin": 344.98
-  }
- ],
- "closed": [
+   "stop": 4445.9,
+   "t1": 4459.1,
+   "t2": 4467.0,
+   "fees": 0.0,
+   "qty": 1.55,
+   "entry": 4451.35,
+   "exit": 4445.75,
+   "pnl": -8.68,
+   "r": -1.03,
+   "reason": "stop",
+   "opened": "2026-08-11T01:22:18.291776+03:00",
+   "closed": "2026-08-11T12:39:49.873666+03:00",
+   "day": "2026-08-11",
+   "held_days": 0,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -279,35 +276,22 @@
  "signals": {
   "swing": [],
   "day": [],
-  "gold": [
-   {
-    "kind": "gold",
-    "ticker": "XAUUSD",
-    "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 4457.3,
-    "entry": 4457.3,
-    "stop": 4464.9,
-    "t1": 4445.93,
-    "t2": 4434.56,
-    "rr1": 1.5,
-    "atr": 5.05,
-    "rsi": 29.9,
-    "vwap": 4468.69,
-    "stop_pct": 0.17,
-    "ounces": 1.34,
-    "notional": 5972.78,
-    "margin": 298.64,
-    "risk_dollars": 10.18,
-    "shares": 1.34,
-    "score": 51,
-    "news": [],
-    "regime_ok": true
-   }
-  ]
+  "gold": []
  },
  "calendar": {
+  "2026-08-11": {
+   "pnl": -8.68,
+   "trades": 1,
+   "wins": 0,
+   "losses": 1,
+   "r": -1.03,
+   "tickers": [
+    "XAUUSD"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "red"
+  },
   "2026-08-10": {
    "pnl": -11.61,
    "trades": 1,
@@ -430,13 +414,15 @@
   ],
   [
    "2026-08-11",
-   997.56
+   979.65
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 3
+ },
  "game": {
-  "xp": 355,
-  "level": 1,
+  "xp": 385,
+  "level": 2,
   "streak": 0,
   "best_streak": 4,
   "badges": [
@@ -543,26 +529,30 @@
    "name": "👹 בוס היום",
    "target": 79.07,
    "legend": 197.67,
-   "done": 9.23,
+   "done": -8.68,
    "base": 988.33,
-   "pct": 12,
-   "pct_legend": 5,
+   "pct": 0,
+   "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
-  "level_name": "🥚 טירון",
-  "xp_this_level": 235,
-  "xp_next_level": 243
+  "level_name": "🐣 מתלמד",
+  "xp_this_level": 22,
+  "xp_next_level": 332
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 0.0,
-  "week_pnl": -11.61,
-  "daily_limit": -59.85,
-  "weekly_limit": -119.71
+  "day_pnl": -8.68,
+  "week_pnl": -20.29,
+  "daily_limit": -58.78,
+  "weekly_limit": -117.56
  },
  "log": [
+  {
+   "t": "2026-08-11 12:40",
+   "m": "EXIT XAUUSD x1.55 @ 4445.7500 (stop) P/L $-8.68 / -1.03R"
+  },
   {
    "t": "2026-08-11 01:22",
    "m": "OPEN GOLD XAUUSD x1.55 @ 4451.3500 stop 4445.9 T1 4459.1"
@@ -640,30 +630,30 @@
   "spy": 773.03
  },
  "periods": {
-  "day": 0,
-  "week": -1.2,
-  "month": -6.9,
-  "quarter": -6.9,
-  "half": -6.9,
-  "year": -6.9,
-  "two_year": -6.9,
-  "all": -6.9,
-  "all_pct": -0.69
+  "day": -8.68,
+  "week": -9.88,
+  "month": -15.58,
+  "quarter": -15.58,
+  "half": -15.58,
+  "year": -15.58,
+  "two_year": -15.58,
+  "all": -15.58,
+  "all_pct": -1.56
  },
  "rejected": [],
- "updated_utc": "2026-08-11T05:35:05.466100+00:00",
- "updated_israel": "2026-08-11 08:35",
+ "updated_utc": "2026-08-11T09:39:49.873666+00:00",
+ "updated_israel": "2026-08-11 12:39",
  "market": {
   "open": false,
-  "et": "01:35",
-  "il": "08:35"
+  "et": "05:39",
+  "il": "12:39"
  },
  "stats": {
-  "trades": 7,
-  "win_rate": 57.1,
-  "pf": 0.82,
-  "avg_r": -0.02,
-  "expectancy": -0.99,
+  "trades": 8,
+  "win_rate": 50.0,
+  "pf": 0.67,
+  "avg_r": -0.15,
+  "expectancy": -1.95,
   "best": 10.21,
   "worst": -16.97
  },
@@ -1784,11 +1774,11 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 830,
+   "bars": 892,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4457.3,
-   "signals": 1,
+   "last_price": 4430.3,
+   "signals": 0,
    "today_trades": 1,
    "health": {
     "n": 7,
@@ -1796,17 +1786,17 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 0,
-    "pnl": 0
+    "trades": 1,
+    "pnl": -8.68
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 2,
-   "heat": 33.78,
+   "open": 1,
+   "heat": 16.11,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -1819,7 +1809,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 12,
    "covered": 1,
-   "updated": "2026-08-11 08:35"
+   "updated": "2026-08-11 12:40"
   }
  },
  "gold_today": {
@@ -1832,8 +1822,11 @@
    "status": "na"
   },
   "gold": {
-   "n": 7,
-   "status": "na"
+   "n": 8,
+   "exp": -1.95,
+   "pf": 0.67,
+   "avg_r": -0.15,
+   "status": "warn"
   },
   "day": {
    "n": 0,
@@ -2263,10 +2256,10 @@
     "dir": "neg",
     "tag": null,
     "sources": 1,
-    "title": "S&P500, Nasdaq, Dow Futures Unchanged After Ending Session Mildly Lower As  Investors Brace For Key Inflation Data  — SPCX, TSLA, INTC, NFLX, PLTR In Focus",
-    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p500-nasdaq-dow-futures-unchanged/cZok3PvRJfL",
+    "title": "S&P 500, Nasdaq, Dow Futures Mixed As CPI Countdown Begins: Why INTC, SLS, SPCX, RKLB, ASTS, RIOT, FRMI Stocks Are In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/why-nasdaq-dow-futures-mixed-premarket-cpi-countdown-intc-sls-spcx-rklb-asts-frmi-riot-stocks-focus/cZoZqRXRJQ5",
     "src": "Stocktwits",
-    "time": "2026-08-10 23:02",
+    "time": "2026-08-11 08:33",
     "about": "שוק"
    },
    {
@@ -2292,14 +2285,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
+    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+    "dir": "neg",
     "tag": null,
     "sources": 1,
-    "title": "SPY Charges 4.7x More Than Its Own Issuer’s Copy of the Same 500 Stocks",
-    "url": "https://247wallst.com/investing/2026/08/10/spy-charges-4-7x-more-than-its-own-issuers-copy-of-the-same-500-stocks/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-10 19:08",
+    "title": "S&P500, Nasdaq, Dow Futures Unchanged After Ending Session Mildly Lower As  Investors Brace For Key Inflation Data  — SPCX, TSLA, INTC, NFLX, PLTR In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p500-nasdaq-dow-futures-unchanged/cZok3PvRJfL",
+    "src": "Stocktwits",
+    "time": "2026-08-10 23:02",
     "about": "שוק"
    },
    {
@@ -2336,17 +2329,17 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
     "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Gold gains for third session, inflation reports in focus",
-    "url": "https://sg.finance.yahoo.com/news/gold-rises-third-straight-session-004825244.html",
-    "src": "Reuters",
-    "time": "2026-08-11 02:44",
+    "tag": "דוחות",
+    "sources": 2,
+    "title": "K92 Mining Q2 Earnings Call Highlights",
+    "url": "https://www.marketbeat.com/instant-alerts/k92-mining-q2-earnings-call-highlights-2026-08-11/?utm_source=yahoofinance&utm_medium=yahoofinance",
+    "src": "MarketBeat",
+    "time": "2026-08-11 09:03",
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-11 08:35"
+  "updated": "2026-08-11 12:40"
  }
 }
