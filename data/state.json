@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 684.6615080000028,
-  "equity": 1000.38,
+  "cash": 335.08255800000273,
+  "equity": 1000.15,
   "realized_pnl": 0.1,
-  "open_pnl": 1.28,
+  "open_pnl": 1.05,
   "peak_equity": 1021.75,
   "max_dd_pct": -4.12,
-  "return_pct": 0.04,
+  "return_pct": 0.01,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,6 +44,38 @@
    },
    "last": 17.54,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1786490632",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 1.58,
+   "qty_left": 1.58,
+   "entry": 4425.05,
+   "stop": 4430.6,
+   "orig_stop": 4430.6,
+   "t1": 4417.09,
+   "t2": 4408.97,
+   "opened": "2026-08-12T02:23:52.850243+03:00",
+   "opened_day": "2026-08-12",
+   "risk_open": 8.53,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 63,
+   "pattern": "חציית ממוצעים ↓",
+   "snap": {
+    "rsi": 38.2,
+    "rvol": null,
+    "score": 63,
+    "stop_pct": 0.12,
+    "regime_ok": true,
+    "notional": 6991.82
+   },
+   "last": 4425.2002,
+   "margin": 349.58
   }
  ],
  "closed": [
@@ -394,7 +426,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "short",
+    "state": "SELL_NOW",
+    "pattern": "חציית ממוצעים ↓",
+    "price": 4425.2,
+    "entry": 4425.2,
+    "stop": 4430.6,
+    "t1": 4417.09,
+    "t2": 4408.97,
+    "rr1": 1.5,
+    "atr": 3.61,
+    "rsi": 38.2,
+    "vwap": 4440.76,
+    "stop_pct": 0.12,
+    "ounces": 1.58,
+    "notional": 6991.82,
+    "margin": 349.59,
+    "risk_dollars": 8.53,
+    "shares": 1.58,
+    "score": 63,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-08-12": {
@@ -549,12 +607,10 @@
   ],
   [
    "2026-08-12",
-   1000.38
+   1000.15
   ]
  ],
- "cooldown": {
-  "XAUUSD": 1
- },
+ "cooldown": {},
  "game": {
   "xp": 520,
   "level": 2,
@@ -664,7 +720,7 @@
    "name": "👹 בוס היום",
    "target": 80.03,
    "legend": 200.08,
-   "done": 0.0,
+   "done": -0.23,
    "base": 1000.38,
    "pct": 0,
    "pct_legend": 0,
@@ -680,10 +736,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 4.25,
   "week_pnl": -4.61,
-  "daily_limit": -60.02,
-  "weekly_limit": -120.05
+  "daily_limit": -60.01,
+  "weekly_limit": -120.02
  },
  "log": [
+  {
+   "t": "2026-08-12 02:24",
+   "m": "OPEN GOLD SHORT XAUUSD x1.58 @ 4425.0500 stop 4430.6 T1 4417.09"
+  },
   {
    "t": "2026-08-12 01:24",
    "m": "EXIT XAUUSD x0.78 @ 4430.9000 (stop) P/L $+4.25 / +0.27R"
@@ -792,12 +852,12 @@
   "all_pct": 0.01
  },
  "rejected": [],
- "updated_utc": "2026-08-11T22:24:47.181335+00:00",
- "updated_israel": "2026-08-12 01:24",
+ "updated_utc": "2026-08-11T23:23:52.850243+00:00",
+ "updated_israel": "2026-08-12 02:23",
  "market": {
   "open": false,
-  "et": "18:24",
-  "il": "01:24"
+  "et": "19:23",
+  "il": "02:23"
  },
  "stats": {
   "trades": 10,
@@ -1925,32 +1985,32 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1033,
+   "bars": 1045,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4432.2,
-   "signals": 0,
-   "today_trades": 0,
+   "last_price": 4425.2,
+   "signals": 1,
+   "today_trades": 1,
    "health": {
-    "n": 9,
-    "exp": -0.46,
-    "pf": 0.91,
-    "avg_r": -0.05,
-    "status": "warn"
+    "n": 10,
+    "exp": 0.01,
+    "pf": 1.0,
+    "avg_r": -0.02,
+    "status": "ok"
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
     "trades": 1,
     "pnl": 4.25
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 21.15,
+   "open": 2,
+   "heat": 29.68,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -1963,12 +2023,12 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 15,
    "covered": 2,
-   "updated": "2026-08-12 01:24"
+   "updated": "2026-08-12 02:24"
   }
  },
  "gold_today": {
-  "date": "2026-08-11",
-  "count": 2
+  "date": "2026-08-12",
+  "count": 1
  },
  "health": {
   "swing": {
@@ -2504,6 +2564,17 @@
     "about": "שוק"
    },
    {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "Agnico Eagle Mines (AEM) Is Up 20.7% After EPS Jumps Despite Lower Gold Output And Buybacks",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/agnico-eagle-mines-aem-20-221422377.html",
+    "src": "Simply Wall St.",
+    "time": "2026-08-11 22:14",
+    "about": "זהב"
+   },
+   {
     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
     "dir": "neu",
     "tag": null,
@@ -2513,19 +2584,8 @@
     "src": "Yahoo Personal Finance",
     "time": "2026-08-11 11:52",
     "about": "זהב"
-   },
-   {
-    "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": "דוחות",
-    "sources": 1,
-    "title": "Stock Market Today, Aug. 11: Markets Slip as Oil Prices Rise, Upwork Tumbles on Mixed Earnings",
-    "url": "https://www.fool.com/coverage/stock-market-today/2026/08/11/stock-market-today-aug-11-markets-slip-as-oil-prices-rise-upwork-tumbles-on-mixed-earnings/",
-    "src": "Motley Fool",
-    "time": "2026-08-11 21:33",
-    "about": "זהב"
    }
   ],
-  "updated": "2026-08-12 01:24"
+  "updated": "2026-08-12 02:24"
  }
 }
