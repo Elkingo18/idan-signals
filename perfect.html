@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>הבוט המושלם — 600001050</title>
+<style>
+  :root{
+    --bg:#141210; --card:#1c1a17; --card2:#232019; --line:#2b2620;
+    --tx:#EDE4D5; --mut:#9a8f7e; --gold:#E0B341; --blue:#4189E0;
+    --grn:#3FB37F; --red:#E0574B; --chip:#2a2620;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);
+    font-family:-apple-system,"Segoe UI",Rubik,Arial,sans-serif;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1080px;margin:0 auto;padding:18px 16px 60px}
+  header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  h1{font-size:22px;margin:0;font-weight:800}
+  .sub{color:var(--mut);font-size:13px}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .p-live{background:rgba(63,179,127,.15);color:var(--grn)}
+  .p-warn{background:rgba(224,179,65,.15);color:var(--gold)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:14px}
+  h2{font-size:15px;margin:0 0 8px;font-weight:800}
+  .muted{color:var(--mut);font-size:13px;line-height:1.6}
+  .seats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:720px){.seats{grid-template-columns:1fr}}
+  .seat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;position:relative;overflow:hidden}
+  .seat.win{border-color:rgba(63,179,127,.5)}
+  .seat.lose{border-color:rgba(224,87,75,.5)}
+  .seat h3{margin:0 0 2px;font-size:15px}
+  .big{font-size:26px;font-weight:800;letter-spacing:.2px}
+  .rng{font-size:13px;color:var(--mut);margin-top:2px}
+  .badge{position:absolute;top:14px;left:14px;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px}
+  .b-alive{background:rgba(63,179,127,.16);color:var(--grn)}
+  .b-dead{background:rgba(224,87,75,.16);color:var(--red)}
+  .kv{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+  .kv td{padding:4px 0;border-bottom:1px solid var(--line)}
+  .kv td:last-child{text-align:left;font-variant-numeric:tabular-nums;font-weight:700}
+  .spark{margin-top:10px}
+  .tools{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  @media(max-width:720px){.tools{grid-template-columns:1fr}}
+  .tool{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .tool .st{font-size:12px;font-weight:800;padding:2px 8px;border-radius:999px;display:inline-block;margin-bottom:6px}
+  .st-on{background:rgba(63,179,127,.16);color:var(--grn)}
+  .st-block{background:rgba(224,87,75,.16);color:var(--red)}
+  .st-ready{background:rgba(224,179,65,.16);color:var(--gold)}
+  .step{display:flex;gap:8px;font-size:13px;color:var(--tx);margin:5px 0}
+  .step b{color:var(--gold)}
+  .foot{color:var(--mut);font-size:12px;margin-top:18px;text-align:center}
+  .warn{background:rgba(224,179,65,.08);border:1px solid rgba(224,179,65,.3);border-radius:12px;padding:12px 14px;color:#e9d9a8;font-size:13px;line-height:1.6}
+  a.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🎯 הבוט המושלם — 600001050</h1>
+    <span id="live" class="pill p-warn">טוען…</span>
+  </header>
+  <div class="sub" id="updated">האסטרטגיה שלמדתי מ-600001050, רצה כצל על נתונים אמיתיים — בלי לגעת בכסף.</div>
+
+  <div class="card">
+    <h2>מה הוא עושה — בשפה פשוטה</h2>
+    <div class="muted">
+      פותח <b>סקלפ קטן</b> (0.01 לוט) ומרוויח ‎+0.59$‎ בכל פעם, בשני הכיוונים במקביל.
+      כשהמחיר הולך נגדו הוא <b>לא יוצא</b> — מוסיף עוד לוט, וכל ~1.15$ עוד אחד
+      (0.02, 0.03, 0.05, 0.08, 0.13…), עד שהחבילה חוזרת לרווח וכולה נסגרת יחד.
+      זו שיטה שמנצחת <b>כמעט תמיד</b> (99%) — אבל כשהיא מפסידה, היא מפסידה גדול.
+      ההבדל בין להרוויח כמוהו לבין להימחק הוא <b>גודל החשבון</b>. זה בדיוק מה שהמסך הזה מראה.
+    </div>
+  </div>
+
+  <div class="seats" id="seats"></div>
+
+  <div class="card">
+    <h2>השורה התחתונה</h2>
+    <div class="muted" id="verdict"></div>
+    <div class="warn" style="margin-top:10px" id="stress"></div>
+  </div>
+
+  <div class="card">
+    <h2>הכלים מגיטהאב</h2>
+    <div class="tools" id="tools"></div>
+  </div>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+// ---- embedded snapshot (so the page renders even offline / file://) ----
+var SNAP = {"tracks":[{"key":"you2500","label":"אתה — 2,500$","start":2500,"lev":100,"bal_lo":257.26,"bal_hi":69653.28,"ret_lo_pct":-89.7,"ret_hi_pct":2686.1,"deepest":10,"sl_hits":24,"stopouts":0,"min_eq":59.29,"worst_basket":-2592.98,"baskets":859,"wins":835,"curve_lo":[129.7,168.82,213.54,232.17,257.26],"curve_hi":[14725.6,35567.25,51805.75,56400.07,69653.28],"alive":false},{"key":"master190","label":"המקור — 190,717$","start":190717,"lev":100,"bal_lo":168373.22,"bal_hi":259748.48,"ret_lo_pct":-11.7,"ret_hi_pct":36.2,"deepest":10,"sl_hits":26,"stopouts":0,"min_eq":164351.54,"worst_basket":-2592.98,"baskets":5033,"wins":5004,"curve_lo":[183867.61,176821.48,176963.12,174592.54,168373.22],"curve_hi":[204820.8,225662.45,241900.95,246495.27,259748.48],"alive":true}],"updated":"2026-08-12"};
+var LABSNAP = {"vectorbt":{"status":"online","version":"1.1.0","note":"רץ בענן על 95,149 נרות M1."},"dukascopy":{"status":"blocked","note":"נתוני טיק חסומים כרגע מהענן ומהמחשב."},"copier":{"status":"ready","note":"מעתיק MT5 demo→demo מוכן, דורש טרמינל שני."},"stress_note":"מבחן קיצון בסדר הפסימי מוחק כל גודל; בסדר האופטימי מכפיל. לכן הצל רץ כל לילה על נתונים טריים."};
+
+function money(v){ if(v==null||isNaN(v)) return "—";
+  return "$"+Number(v).toLocaleString("en-US",{maximumFractionDigits:0}); }
+function pct(v){ return (v>=0?"+":"")+Number(v).toFixed(1)+"%"; }
+
+// Draw the worst (cons) and best (opt) trajectories together, both as % return
+// from the account's start — so the "fan" width shows the real uncertainty:
+// tight at the master's size, enormous at yours.
+function sparkFan(clo, chi, start){
+  if(!clo||!chi||clo.length<2) return "";
+  var w=260,h=52,pad=4;
+  var toPct=function(v){ return (v/start-1)*100; };
+  var lo=clo.map(toPct), hi=chi.map(toPct);
+  var all=lo.concat(hi).concat([0]);
+  var mn=Math.min.apply(null,all), mx=Math.max.apply(null,all);
+  if(mx-mn<1e-9){mx+=1;mn-=1;}
+  var X=function(i,n){ return pad+(i/(n-1))*(w-2*pad); };
+  var Y=function(v){ return pad+(1-(v-mn)/(mx-mn))*(h-2*pad); };
+  function poly(arr){ return arr.map(function(v,i){return X(i,arr.length).toFixed(1)+","+Y(v).toFixed(1);}).join(" "); }
+  var zeroY=Y(0);
+  return '<svg class="spark" width="100%" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none">'+
+    '<line x1="'+pad+'" y1="'+zeroY.toFixed(1)+'" x2="'+(w-pad)+'" y2="'+zeroY.toFixed(1)+'" stroke="#4a443b" stroke-width="1" stroke-dasharray="3 3"/>'+
+    '<polyline points="'+poly(hi)+'" fill="none" stroke="#3FB37F" stroke-width="1.6" opacity="0.55" stroke-linejoin="round"/>'+
+    '<polyline points="'+poly(lo)+'" fill="none" stroke="#E0574B" stroke-width="1.6" opacity="0.85" stroke-linejoin="round"/>'+
+    '</svg>';
+}
+
+function renderSeats(d){
+  var host=document.getElementById("seats"); host.innerHTML="";
+  d.tracks.forEach(function(t){
+    var alive=t.alive;
+    var cls=alive?"win":"lose";
+    var badge=alive?'<span class="badge b-alive">שורד ✓</span>':'<span class="badge b-dead">נמחק ✕</span>';
+    var col=alive?getComputedStyle(document.documentElement).getPropertyValue('--grn'):getComputedStyle(document.documentElement).getPropertyValue('--red');
+    var html='<div class="seat '+cls+'">'+badge+
+      '<h3>'+t.label+'</h3>'+
+      '<div class="rng">התחלה: '+money(t.start)+' · מינוף 1:'+t.lev+'</div>'+
+      '<div class="big" style="margin-top:8px;color:'+(alive?'var(--grn)':'var(--red)')+'">'+pct(t.ret_lo_pct)+' … '+pct(t.ret_hi_pct)+'</div>'+
+      '<div class="rng">טווח יתרה: '+money(t.bal_lo)+' – '+money(t.bal_hi)+'</div>'+
+      sparkFan(t.curve_lo, t.curve_hi, t.start)+
+      '<div class="rng" style="margin-top:2px;font-size:11px">🔴 התרחיש הגרוע · 🟢 הטוב · הקו המקווקו = נקודת ההתחלה</div>'+
+      '<table class="kv">'+
+        '<tr><td>שפל הון מינימלי</td><td>'+money(t.min_eq)+'</td></tr>'+
+        '<tr><td>עומק סולם מרבי</td><td>'+t.deepest+' רגליים</td></tr>'+
+        '<tr><td>החבילה הגרועה</td><td style="color:var(--red)">'+money(t.worst_basket)+'</td></tr>'+
+        '<tr><td>חבילות · ניצחו</td><td>'+t.baskets+' · '+t.wins+'</td></tr>'+
+      '</table></div>';
+    host.insertAdjacentHTML("beforeend", html);
+  });
+}
+
+function renderVerdict(d){
+  var you=d.tracks.find(function(t){return t.key=="you2500"});
+  var mas=d.tracks.find(function(t){return t.key=="master190"});
+  document.getElementById("verdict").innerHTML =
+    'אותה אסטרטגיה בדיוק, שני גדלים. על <b>'+money(mas.start)+'</b> (הגודל האמיתי של 600001050) '+
+    'הסולם <b style="color:var(--grn)">שורד</b> כל תרחיש — השפל הגרוע ביותר עצר על '+money(mas.min_eq)+'. '+
+    'על <b>'+money(you.start)+'</b> (הגודל שלך היום) אותו סולם <b style="color:var(--red)">נמחק</b> '+
+    'בתרחיש הגרוע — ההון צנח ל-'+money(you.min_eq)+'. '+
+    'ה-‎44 אלף$‎ שלו הם ~23% על חשבון של 190K — לא על אלפים. '+
+    '<b>זה לא שהשיטה שלו טובה יותר — זה שהחשבון שלו גדול מספיק כדי לספוג את המכה שמגיעה.</b>';
+  document.getElementById("stress").textContent = (d.lab&&d.lab.stress_note) || LABSNAP.stress_note;
+}
+
+function renderTools(lab){
+  var host=document.getElementById("tools");
+  var map=[
+    ["vectorbt","מעבדת בקטסט (vectorbt)", lab.vectorbt],
+    ["dukascopy","נתוני טיק היסטוריים", lab.dukascopy],
+    ["copier","מעתיק עסקאות MT5", lab.copier]
+  ];
+  host.innerHTML = map.map(function(m){
+    var s=m[2]||{}; var st=s.status||"—";
+    var cls=st=="online"?"st-on":st=="blocked"?"st-block":"st-ready";
+    var lbl=st=="online"?"פעיל":st=="blocked"?"חסום":"מוכן";
+    return '<div class="tool"><span class="st '+cls+'">'+lbl+'</span>'+
+      '<div style="font-weight:700;font-size:14px;margin-bottom:4px">'+m[1]+'</div>'+
+      '<div class="muted" style="font-size:12px">'+(s.note||"")+'</div></div>';
+  }).join("");
+}
+
+function render(d, lab){
+  document.getElementById("updated").textContent =
+    "עודכן: "+(d.updated||"—")+" · רץ אוטומטית כל לילה ב-23:00 על נתוני היום.";
+  d.lab = lab;
+  renderSeats(d); renderVerdict(d); renderTools(lab);
+  document.getElementById("live").className="pill p-live";
+  document.getElementById("live").textContent="חי · צל בלבד, אפס סיכון";
+  document.getElementById("foot").textContent =
+    "כל המספרים משוחזרים מ-"+((d.tracks[0]||{}).baskets||0)+"+ חבילות על נרות אמיתיים. "+
+    "טווח [גרוע..טוב] כי נר של דקה לא מספר מה קרה בתוכו — לכן שני קצוות, והאמת ביניהם.";
+}
+
+function boot(){
+  render(SNAP, LABSNAP);   // instant paint from snapshot
+  // then try live
+  Promise.all([
+    fetch("/api/perfect").then(function(r){return r.ok?r.json():null}).catch(function(){return null}),
+    fetch("/api/lab").then(function(r){return r.ok?r.json():null}).catch(function(){return null})
+  ]).then(function(a){
+    var d=a[0], lab=a[1]||LABSNAP;
+    if(d && d.tracks && d.tracks.length) render(d, lab);
+  });
+}
+boot();
+setInterval(boot, 60000);
+</script>
+</body>
+</html>
