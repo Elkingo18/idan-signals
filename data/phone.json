@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-12T20:49:51.876069+00:00",
- "updated_israel": "2026-08-12 23:49",
+ "updated_utc": "2026-08-12T21:45:02.709160+00:00",
+ "updated_israel": "2026-08-13 00:45",
  "gold": {
   "schema": 1,
   "code_version": 7,
-  "updated": "2026.08.12 23:41:28",
+  "updated": "2026.08.13 00:44:43",
   "symbol": "XAUUSD",
   "account": 600001050,
   "server": "VantageMarkets-Live",
@@ -18,12 +18,12 @@
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
-  "params_version": 33,
+  "params_version": 34,
   "entry_rule": "burst 2.0atr/4bars",
   "risk_mode": "ladder 3-9 by drawdown",
-  "risk_now_pct": 6.0,
+  "risk_now_pct": 1.5,
   "high_water": 190726.99,
-  "risk_pct": 5.0,
+  "risk_pct": 1.5,
   "tf_minutes": 15,
   "last_decision": "",
   "spread_points": 0.0,
@@ -32,10 +32,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 931.93,
-  "realized_pnl": -70.27,
-  "open_pnl": 2.2,
-  "return_pct": -6.81
+  "equity": 907.15,
+  "realized_pnl": -95.45,
+  "open_pnl": 2.6,
+  "return_pct": -9.28
  },
  "positions": [
   {
@@ -44,78 +44,23 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 16.55,
-   "value": 331.0,
-   "unrealized": 2.2,
+   "mark": 16.57,
+   "value": 331.4,
+   "unrealized": 2.6,
    "realized": -25.18,
    "source": "engine"
   }
  ],
- "fills_today": [
-  {
-   "symbol": "AUR",
-   "side": "SLD",
-   "qty": 3.0,
-   "price": 6.91,
-   "time": "2026-08-12 13:31:28+00:00",
-   "commission": 0.2173,
-   "realized": -0.46
-  },
-  {
-   "symbol": "XNCR",
-   "side": "SLD",
-   "qty": 2.0,
-   "price": 22.1,
-   "time": "2026-08-12 13:35:05+00:00",
-   "commission": 0.4433,
-   "realized": -0.85
-  },
-  {
-   "symbol": "LYFT",
-   "side": "SLD",
-   "qty": 20.0,
-   "price": 16.37,
-   "time": "2026-08-12 18:28:19+00:00",
-   "commission": 1.0107,
-   "realized": -23.17
-  },
-  {
-   "symbol": "LYFT",
-   "side": "BOT",
-   "qty": 20.0,
-   "price": 16.37,
-   "time": "2026-08-12 18:29:37+00:00",
-   "commission": 1.0001,
-   "realized": 0.0
-  },
-  {
-   "symbol": "LYFT",
-   "side": "SLD",
-   "qty": 20.0,
-   "price": 16.37,
-   "time": "2026-08-12 19:31:12+00:00",
-   "commission": 1.0107,
-   "realized": -2.01
-  },
-  {
-   "symbol": "LYFT",
-   "side": "BOT",
-   "qty": 20.0,
-   "price": 16.39,
-   "time": "2026-08-12 19:32:47+00:00",
-   "commission": 1.0001,
-   "realized": 0.0
-  }
- ],
+ "fills_today": [],
  "engine_wallet": {
   "start": 1000.0,
   "cash": 354.1515046158821,
-  "equity": 1058.16,
+  "equity": 1054.7,
   "realized_pnl": 77.66,
-  "open_pnl": -14.06,
+  "open_pnl": -17.53,
   "peak_equity": 1187.69,
   "max_dd_pct": -11.24,
-  "return_pct": 5.82,
+  "return_pct": 5.47,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -266,12 +211,12 @@
    }
   ],
   "boss": {
-   "day": "2026-08-12",
+   "day": "2026-08-13",
    "name": "👹 בוס היום",
-   "target": 90.42,
-   "legend": 226.05,
-   "done": -72.08,
-   "base": 1130.24,
+   "target": 84.38,
+   "legend": 210.94,
+   "done": 0.0,
+   "base": 1054.7,
    "pct": 0,
    "pct_legend": 0,
    "beaten": false,
