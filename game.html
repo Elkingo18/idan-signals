@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>IDAN TRADER · השולחן</title>
+<style>
+  :root{
+    --bg:#100e0c; --card:#1b1916; --card2:#221f1a; --line:#2c2721;
+    --tx:#f0e7d8; --mut:#9a8f7e; --gold:#E7B84B; --blue:#57a0ee;
+    --grn:#41c48a; --red:#e8615423;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:radial-gradient(120% 60% at 50% 0%,#1a2b22 0%,var(--bg) 55%);
+    color:var(--tx);font-family:-apple-system,"Segoe UI",Rubik,Arial,sans-serif;padding-bottom:40px}
+  .top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 6px}
+  .brand{font-weight:900;letter-spacing:.5px;font-size:15px;color:var(--gold)}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-inline-end:6px}
+  .on{background:var(--grn);box-shadow:0 0 8px var(--grn)} .off{background:#c55}
+  .stamp{font-size:11px;color:var(--mut)}
+  .felt{margin:6px 12px 0;background:linear-gradient(160deg,#1c3a2c,#14261d);
+    border:1px solid #2c5040;border-radius:22px;padding:20px 16px;text-align:center;
+    box-shadow:inset 0 2px 30px rgba(0,0,0,.4)}
+  .pot-l{font-size:12px;color:#bfe6d2;letter-spacing:1px}
+  .pot{font-size:40px;font-weight:900;margin:2px 0}
+  .pot-sub{font-size:14px;font-weight:700}
+  .pos{color:var(--grn)} .neg{color:#ef6a5e}
+  .seats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+  .seat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px}
+  .seat h3{margin:0 0 8px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .kv{display:flex;justify-content:space-between;font-size:12.5px;padding:3px 0;border-bottom:1px solid var(--line)}
+  .kv:last-child{border:0}
+  .kv b{font-variant-numeric:tabular-nums}
+  .full{margin:0 12px 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px}
+  .full h3{margin:0 0 8px;font-size:13px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  td{padding:5px 0;border-bottom:1px solid var(--line)}
+  tr:last-child td{border:0}
+  .chip{font-size:10px;padding:1px 7px;border-radius:999px;background:#2a2620;color:var(--mut)}
+  .buy{color:var(--grn)} .sell{color:#ef6a5e}
+  a.pb{display:block;margin:4px 12px 0;text-align:center;background:rgba(231,184,75,.1);
+    border:1px solid rgba(231,184,75,.35);border-radius:14px;padding:12px;color:var(--gold);
+    text-decoration:none;font-weight:800}
+  .empty{color:var(--mut);font-size:12.5px;text-align:center;padding:8px}
+  .err{margin:12px;padding:12px;border:1px solid #5a3;border-radius:12px;background:#1a2b22;color:#bfe6d2;font-size:13px}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="brand">🃏 IDAN TRADER</div>
+    <div class="stamp"><span id="dot" class="dot off"></span><span id="stamp">מתחבר…</span></div>
+  </div>
+
+  <div class="felt">
+    <div class="pot-l">סך הקופה</div>
+    <div class="pot" id="equity">—</div>
+    <div class="pot-sub" id="dayp">היום —</div>
+  </div>
+
+  <div class="seats">
+    <div class="seat">
+      <h3>🪙 סוכן הזהב</h3>
+      <div class="kv"><span>יתרה</span><b id="gBal">—</b></div>
+      <div class="kv"><span>חשבון</span><b id="gAcc">—</b></div>
+      <div class="kv"><span>עסקאות היום</span><b id="gTr">—</b></div>
+      <div class="kv"><span>המצב</span><b id="gDec" style="font-size:11px">—</b></div>
+    </div>
+    <div class="seat">
+      <h3>📈 סוכן הסווינג</h3>
+      <div class="kv"><span>ארנק</span><b id="sEq">—</b></div>
+      <div class="kv"><span>ממומש</span><b id="sReal">—</b></div>
+      <div class="kv"><span>פתוח</span><b id="sOpen">—</b></div>
+      <div class="kv"><span>תשואה</span><b id="sRet">—</b></div>
+    </div>
+  </div>
+
+  <div class="full">
+    <h3>קלפי הקהילה — פוזיציות פתוחות</h3>
+    <div id="positions"><div class="empty">—</div></div>
+  </div>
+
+  <div class="full">
+    <h3>נסגר היום</h3>
+    <div id="fills"><div class="empty">—</div></div>
+  </div>
+
+  <a class="pb" href="./perfect.html">🎯 הבוט המושלם — 600001050</a>
+
+<script>
+// same-origin path on GitHub Pages (elkingo18.github.io/idan-signals/data/phone.json).
+// The mirror pushes data/phone.json to this very repo every minute; served here
+// with no CORS problem. Falls back to the raw URL if opened off-Pages.
+var RAW="data/phone.json";
+var RAW_FALLBACK="https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
+function money(v){ if(v==null||v==="—"||isNaN(v)) return "—";
+  return "$"+Number(v).toLocaleString("en-US",{maximumFractionDigits:0}); }
+function money2(v){ if(v==null||isNaN(v)) return "—";
+  return "$"+Number(v).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function signed(v){ if(v==null||isNaN(v)) return "—"; return (v>=0?"+":"")+money2(Math.abs(v)*(v<0?-1:1)); }
+function cls(v){ return v>0?"pos":v<0?"neg":""; }
+
+function render(d){
+  document.getElementById("dot").className="dot on";
+  document.getElementById("stamp").textContent="עודכן "+(d.updated_israel||"");
+  var g=d.gold||{}, ew=d.engine_wallet||{}, sw=d.shadow_wallet||{};
+  var totEq=(g.equity||0)+(ew.equity||0);
+  var totDay=(g.day_pnl||0)+((ew.realized_pnl||0)+(ew.open_pnl||0));
+  document.getElementById("equity").textContent=money(totEq);
+  var dp=document.getElementById("dayp");
+  dp.innerHTML='היום <span class="'+cls(g.day_pnl||0)+'">'+signed(g.day_pnl||0)+'</span> זהב · '+
+    '<span class="'+cls(ew.open_pnl)+'">'+signed(ew.open_pnl)+'</span> פתוח';
+  document.getElementById("gBal").textContent=money2(g.balance);
+  document.getElementById("gAcc").innerHTML=(g.account||"—")+(g.is_demo?' <span class="chip">דמו</span>':'');
+  document.getElementById("gTr").textContent=(g.trades_today!=null?g.trades_today:"—");
+  document.getElementById("gDec").textContent=g.last_decision||g.entry_rule||"—";
+  document.getElementById("sEq").textContent=money2(ew.equity);
+  var sr=document.getElementById("sReal"); sr.textContent=signed(ew.realized_pnl); sr.className=cls(ew.realized_pnl);
+  var so=document.getElementById("sOpen"); so.textContent=signed(ew.open_pnl); so.className=cls(ew.open_pnl);
+  var srt=document.getElementById("sRet"); srt.textContent=(ew.return_pct!=null?(ew.return_pct>=0?"+":"")+ew.return_pct.toFixed(1)+"%":"—"); srt.className=cls(ew.return_pct);
+
+  var P=d.positions||[];
+  document.getElementById("positions").innerHTML = P.length? '<table>'+P.map(function(p){
+    return '<tr><td><b>'+p.symbol+'</b> <span class="chip">'+(p.qty>0?"קנייה":"מכירה")+' '+Math.abs(p.qty)+'</span></td>'+
+      '<td>'+money2(p.mark)+'</td><td class="'+cls(p.unrealized)+'">'+signed(p.unrealized)+'</td></tr>';
+  }).join('')+'</table>' : '<div class="empty">אין פוזיציות פתוחות</div>';
+
+  var F=d.fills_today||[];
+  document.getElementById("fills").innerHTML = F.length? '<table>'+F.map(function(f){
+    var b=f.side==="BOT"||f.side==="BUY";
+    return '<tr><td><b>'+f.symbol+'</b> <span class="'+(b?"buy":"sell")+'">'+(b?"קנה":"מכר")+' '+f.qty+'</span></td>'+
+      '<td>'+money2(f.price)+'</td><td class="'+cls(f.realized)+'">'+signed(f.realized)+'</td></tr>';
+  }).join('')+'</table>' : '<div class="empty">עוד לא נסגרו עסקאות היום</div>';
+}
+
+function load(){
+  fetch(RAW+"?t="+Date.now(),{cache:"no-store"})
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(render)
+    .catch(function(){
+      // off-Pages fallback (e.g. opened as a local file)
+      fetch(RAW_FALLBACK+"?t="+Date.now(),{cache:"no-store"})
+        .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+        .then(render)
+        .catch(function(){
+          document.getElementById("dot").className="dot off";
+          document.getElementById("stamp").textContent="ממתין לנתונים…";
+        });
+    });
+}
+load(); setInterval(load, 30000);
+</script>
+</body>
+</html>
