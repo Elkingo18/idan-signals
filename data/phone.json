@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-12T19:29:25.701299+00:00",
- "updated_israel": "2026-08-12 22:29",
+ "updated_utc": "2026-08-12T19:30:30.466023+00:00",
+ "updated_israel": "2026-08-12 22:30",
  "gold": {
   "schema": 1,
   "code_version": 7,
-  "updated": "2026.08.12 22:29:10",
+  "updated": "2026.08.12 22:30:10",
   "symbol": "XAUUSD",
   "account": 600001050,
   "server": "VantageMarkets-Live",
@@ -25,17 +25,17 @@
   "high_water": 190726.99,
   "risk_pct": 5.0,
   "tf_minutes": 15,
-  "last_decision": "skip: no burst 1.26atr",
+  "last_decision": "skip: no burst 1.04atr",
   "spread_points": 27.0,
   "position": null
  },
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 931.82,
+  "equity": 931.66,
   "realized_pnl": -68.26,
-  "open_pnl": 0.08,
-  "return_pct": -6.82
+  "open_pnl": -0.08,
+  "return_pct": -6.83
  },
  "positions": [
   {
@@ -44,9 +44,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.42,
-   "mark": 16.424,
-   "value": 328.48,
-   "unrealized": 0.08,
+   "mark": 16.416,
+   "value": 328.32,
+   "unrealized": -0.08,
    "realized": -23.17,
    "source": "engine"
   }
@@ -92,12 +92,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 362.43837961588173,
-  "equity": 1063.03,
+  "equity": 1063.87,
   "realized_pnl": 88.78,
-  "open_pnl": -20.33,
+  "open_pnl": -19.49,
   "peak_equity": 1187.69,
   "max_dd_pct": -10.76,
-  "return_pct": 6.3,
+  "return_pct": 6.39,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -106,20 +106,20 @@
    "ticker": "DNLI",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 25.14,
+   "price": 25.13,
    "entry": 25.74,
    "stop": 24.0374,
    "t1": 29.1451,
    "t2": 31.6989,
    "rr1": 2.0,
    "rsi": 58.0,
-   "rvol": 0.55,
+   "rvol": 0.56,
    "score": 83,
    "shares": 9,
    "notional": 231.66,
    "risk_dollars": 15.32,
    "room": 28.852,
-   "above_ma50_pct": 6.32,
+   "above_ma50_pct": 6.28,
    "news": [
     {
      "summary": "דיווח חיובי · התפתחות רגולטורית — יכולה להזיז את המניה בחדות · הוצלב ב-2 מקורות שונים",
@@ -146,7 +146,7 @@
    "ticker": "LYFT",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 16.415,
+   "price": 16.4156,
    "entry": 16.52,
    "stop": 15.373,
    "t1": 18.8141,
@@ -191,7 +191,39 @@
    ]
   }
  ],
- "signals_day": [],
+ "signals_day": [
+  {
+   "kind": "day",
+   "ticker": "UIS",
+   "side": "long",
+   "state": "BUY_NOW",
+   "price": 2.865,
+   "entry": 2.865,
+   "stop": 2.82,
+   "t1": 2.955,
+   "t2": 3.0,
+   "rr1": 2.0,
+   "rsi": 69.4,
+   "rvol": 2.23,
+   "score": 71,
+   "shares": 82,
+   "notional": 234.93,
+   "risk_dollars": 3.69,
+   "room": null,
+   "above_ma50_pct": null,
+   "news": [
+    {
+     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
+     "dir": "pos",
+     "tag": "דוחות",
+     "sources": 4,
+     "title": "Unisys (UIS) Q2 2026 Earnings Call Transcript",
+     "src": "Motley Fool",
+     "time": "2026-08-08 00:31"
+    }
+   ]
+  }
+ ],
  "game": {
   "xp": 2550,
   "level": 6,
@@ -301,7 +333,7 @@
    "name": "👹 בוס היום",
    "target": 90.42,
    "legend": 226.05,
-   "done": -67.21,
+   "done": -66.37,
    "base": 1130.24,
    "pct": 0,
    "pct_legend": 0,
