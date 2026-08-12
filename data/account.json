@@ -1,25 +1,38 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-12T18:28:37Z",
- "updated_israel": "2026-08-12 21:28",
+ "updated_utc": "2026-08-12T18:29:42Z",
+ "updated_israel": "2026-08-12 21:29",
  "mode": "paper",
  "read_only": true,
  "broker": {
-  "net_liquidation": 1000843.84,
-  "total_cash": 999983.16,
-  "buying_power": 3999932.63,
+  "net_liquidation": 1000842.76,
+  "total_cash": 999654.76,
+  "buying_power": 3999424.24,
   "currency": "USD",
   "note": "IB paper starts around 1,000,000 virtual dollars. Ignored on purpose."
  },
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 954.91,
-  "realized_pnl": -45.09,
-  "open_pnl": 0,
-  "return_pct": -4.51
+  "equity": 930.66,
+  "realized_pnl": -68.26,
+  "open_pnl": -1.08,
+  "return_pct": -6.93
  },
- "positions": [],
+ "positions": [
+  {
+   "symbol": "LYFT",
+   "sec_type": "STK",
+   "currency": "USD",
+   "qty": 20.0,
+   "avg_cost": 16.42,
+   "mark": 16.366,
+   "value": 327.32,
+   "unrealized": -1.08,
+   "realized": -23.17,
+   "source": "engine"
+  }
+ ],
  "manual_positions": [],
  "open_orders": [],
  "fills_today": [
@@ -43,7 +56,7 @@
   }
  ],
  "counts": {
-  "engine_positions": 0,
+  "engine_positions": 1,
   "manual_positions": 0,
   "open_orders": 0
  }
