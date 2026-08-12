@@ -146,12 +146,14 @@ function renderVerdict(d){
   var you=d.tracks.find(function(t){return t.key=="you2500"});
   var mas=d.tracks.find(function(t){return t.key=="master190"});
   document.getElementById("verdict").innerHTML =
-    'אותה אסטרטגיה בדיוק, שני גדלים. על <b>'+money(mas.start)+'</b> (הגודל האמיתי של 600001050) '+
-    'הסולם <b style="color:var(--grn)">שורד</b> כל תרחיש — השפל הגרוע ביותר עצר על '+money(mas.min_eq)+'. '+
-    'על <b>'+money(you.start)+'</b> (הגודל שלך היום) אותו סולם <b style="color:var(--red)">נמחק</b> '+
-    'בתרחיש הגרוע — ההון צנח ל-'+money(you.min_eq)+'. '+
-    'ה-‎44 אלף$‎ שלו הם ~23% על חשבון של 190K — לא על אלפים. '+
-    '<b>זה לא שהשיטה שלו טובה יותר — זה שהחשבון שלו גדול מספיק כדי לספוג את המכה שמגיעה.</b>';
+    '<b>הדוח הרשמי המלא פוענח (80,538 פוזיציות, 15.5→12.8):</b> הרווח האמיתי של GoldTrap '+
+    'בחודש האחרון הוא <b style="color:var(--gold)">‎+3,240$‎</b> על חשבון של '+money(mas.start)+' — '+
+    '<b>‎~1.7%‎ בחודש</b>, לא 44 אלף. (ה"44 אלף" הוא סך הזכיות ברוטו — ‎79,404$‎ זכיות מול '+
+    '‎-76,164$‎ הפסדים באותו חודש. מכונת ענק ששומרת ~4% מהגלגל.) '+
+    '3 חודשים נטו: ‎+8,579$‎ · היום הגרוע: ‎-7,343$‎ · 19 מ-62 ימים בהפסד. '+
+    'על '+money(mas.start)+' הסולם <b style="color:var(--grn)">שורד</b>; על '+money(you.start)+' '+
+    'אותו סולם <b style="color:var(--red)">נמחק</b> בתרחיש הגרוע (ההון צנח ל-'+money(you.min_eq)+'). '+
+    '<b>השיטה אמיתית ורווחית — אבל בצנעה של 1.7% בחודש, והכוח שלה הוא גודל החשבון.</b>';
   document.getElementById("stress").textContent = (d.lab&&d.lab.stress_note) || LABSNAP.stress_note;
 }
 
