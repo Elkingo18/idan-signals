@@ -75,6 +75,11 @@
   </div>
 
   <div class="full">
+    <h3>החשבונות שלי</h3>
+    <div id="accounts"><div class="empty">טוען…</div></div>
+  </div>
+
+  <div class="full">
     <h3>קלפי הקהילה — פוזיציות פתוחות</h3>
     <div id="positions"><div class="empty">—</div></div>
   </div>
@@ -83,6 +88,8 @@
     <h3>נסגר היום</h3>
     <div id="fills"><div class="empty">—</div></div>
   </div>
+
+  <a class="pb" href="./scoreboard.html">🏆 לוח האלופים — מי הכי רווחי מבין ה-3</a>
 
   <a class="pb" href="./perfect.html">🎯 הבוט המושלם — 600001050</a>
 
@@ -110,7 +117,9 @@ function render(d){
   dp.innerHTML='היום <span class="'+cls(g.day_pnl||0)+'">'+signed(g.day_pnl||0)+'</span> זהב · '+
     '<span class="'+cls(ew.open_pnl)+'">'+signed(ew.open_pnl)+'</span> פתוח';
   document.getElementById("gBal").textContent=money2(g.balance);
-  document.getElementById("gAcc").innerHTML=(g.account||"—")+(g.is_demo?' <span class="chip">דמו</span>':'');
+  document.getElementById("gAcc").innerHTML='…'+String(g.account||"").slice(-4)+(g.is_demo?' <span class="chip">דמו</span>':'');
+  window.__LIVE = g.account;
+  if(window.__ACC) renderAccounts(window.__ACC, g.account);
   document.getElementById("gTr").textContent=(g.trades_today!=null?g.trades_today:"—");
   document.getElementById("gDec").textContent=g.last_decision||g.entry_rule||"—";
   document.getElementById("sEq").textContent=money2(ew.equity);
@@ -131,6 +140,29 @@ function render(d){
       '<td>'+money2(f.price)+'</td><td class="'+cls(f.realized)+'">'+signed(f.realized)+'</td></tr>';
   }).join('')+'</table>' : '<div class="empty">עוד לא נסגרו עסקאות היום</div>';
 }
+
+// account map — the 4-digit tag is the name Idan tracks by
+function renderAccounts(A, live){
+  var host=document.getElementById("accounts");
+  if(!A||!A.accounts){ host.innerHTML='<div class="empty">—</div>'; return; }
+  // NB: `order[role] || 9` would map engine(0) to 9 — 0 is falsy. Use `in`.
+  var order={engine:0,watch:1,copier:2,swing:3,idle:4};
+  var rank=function(r){ return (r in order) ? order[r] : 9; };
+  var list=A.accounts.slice().sort(function(a,b){return rank(a.role)-rank(b.role)});
+  host.innerHTML='<table>'+list.map(function(a){
+    var isLive = live && String(live)===String(a.login);
+    var dot = a.role==="idle" ? "" :
+      '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+a.color+
+      ';margin-inline-end:6px"></span>';
+    return '<tr><td style="width:56px"><b style="color:'+a.color+'">…'+a.tag+'</b></td>'+
+      '<td>'+dot+a.name+(isLive?' <span class="chip" style="background:#1baf7a;color:#04140d">חי</span>':'')+
+      '<div style="font-size:11px;color:var(--mut)">'+a.plan+'</div></td></tr>';
+  }).join('')+'</table>';
+}
+fetch("data/accounts.json?t="+Date.now(),{cache:"no-store"})
+  .then(function(r){return r.ok?r.json():null})
+  .then(function(A){ window.__ACC=A; renderAccounts(A, window.__LIVE); })
+  .catch(function(){});
 
 function load(){
   fetch(RAW+"?t="+Date.now(),{cache:"no-store"})
