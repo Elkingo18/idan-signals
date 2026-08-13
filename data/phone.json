@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-13T17:25:42.628181+00:00",
- "updated_israel": "2026-08-13 20:25",
+ "updated_utc": "2026-08-13T17:26:47.898133+00:00",
+ "updated_israel": "2026-08-13 20:26",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.13 20:25:32",
+  "updated": "2026.08.13 20:26:32",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,7 +26,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst 1.45atr",
-  "spread_points": 23.0,
+  "spread_points": 29.0,
   "position": null
  },
  "shadow_wallet": {
@@ -55,34 +55,74 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 740.1347986158864,
-  "equity": 1075.33,
+  "equity": 1075.13,
   "realized_pnl": 94.95,
-  "open_pnl": -14.17,
+  "open_pnl": -14.37,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 7.53,
+  "return_pct": 7.51,
   "name": "UHTA"
  },
  "signals_swing": [
   {
    "kind": "swing",
+   "ticker": "DNLI",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 25.395,
+   "entry": 25.74,
+   "stop": 24.0855,
+   "t1": 29.0491,
+   "t2": 31.5309,
+   "rr1": 2.0,
+   "rsi": 59.6,
+   "rvol": 0.32,
+   "score": 83,
+   "shares": 14,
+   "notional": 360.36,
+   "risk_dollars": 23.16,
+   "room": 28.852,
+   "above_ma50_pct": 6.84,
+   "news": [
+    {
+     "summary": "דיווח חיובי · התפתחות רגולטורית — יכולה להזיז את המניה בחדות · הוצלב ב-2 מקורות שונים",
+     "dir": "pos",
+     "tag": "רגולציה",
+     "sources": 2,
+     "title": "Denali Therapeutics Inc. (DNLI) Reports Q2 Loss, Tops Revenue Estimates",
+     "src": "Zacks",
+     "time": "2026-08-06 21:40"
+    },
+    {
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
+     "dir": "neu",
+     "tag": "דוחות",
+     "sources": 2,
+     "title": "Denali Therapeutics Inc. Q2 2026 Earnings Call Summary",
+     "src": "Moby",
+     "time": "2026-08-07 12:30"
+    }
+   ]
+  },
+  {
+   "kind": "swing",
    "ticker": "RXRX",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 3.34,
+   "price": 3.335,
    "entry": 3.36,
-   "stop": 3.0853,
-   "t1": 3.9093,
-   "t2": 4.3213,
+   "stop": 3.0842,
+   "t1": 3.9116,
+   "t2": 4.3253,
    "rr1": 2.0,
-   "rsi": 55.1,
-   "rvol": 0.34,
-   "score": 83,
-   "shares": 112,
-   "notional": 376.32,
-   "risk_dollars": 30.76,
+   "rsi": 54.9,
+   "rvol": 0.36,
+   "score": 77,
+   "shares": 111,
+   "notional": 372.96,
+   "risk_dollars": 30.62,
    "room": 3.86,
-   "above_ma50_pct": 1.45,
+   "above_ma50_pct": 1.3,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -112,148 +152,9 @@
      "time": "2026-08-12 13:59"
     }
    ]
-  },
-  {
-   "kind": "swing",
-   "ticker": "DNLI",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 25.38,
-   "entry": 25.74,
-   "stop": 24.0855,
-   "t1": 29.0491,
-   "t2": 31.5309,
-   "rr1": 2.0,
-   "rsi": 59.5,
-   "rvol": 0.31,
-   "score": 83,
-   "shares": 14,
-   "notional": 360.36,
-   "risk_dollars": 23.16,
-   "room": 28.852,
-   "above_ma50_pct": 6.78,
-   "news": [
-    {
-     "summary": "דיווח חיובי · התפתחות רגולטורית — יכולה להזיז את המניה בחדות · הוצלב ב-2 מקורות שונים",
-     "dir": "pos",
-     "tag": "רגולציה",
-     "sources": 2,
-     "title": "Denali Therapeutics Inc. (DNLI) Reports Q2 Loss, Tops Revenue Estimates",
-     "src": "Zacks",
-     "time": "2026-08-06 21:40"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 2,
-     "title": "Denali Therapeutics Inc. Q2 2026 Earnings Call Summary",
-     "src": "Moby",
-     "time": "2026-08-07 12:30"
-    }
-   ]
   }
  ],
- "signals_day": [
-  {
-   "kind": "day",
-   "ticker": "NU",
-   "side": "long",
-   "state": "BUY_NOW",
-   "price": 13.875,
-   "entry": 13.875,
-   "stop": 13.46,
-   "t1": 14.705,
-   "t2": 15.12,
-   "rr1": 2.0,
-   "rsi": 69.3,
-   "rvol": 3.33,
-   "score": 84,
-   "shares": 27,
-   "notional": 374.62,
-   "risk_dollars": 11.2,
-   "room": null,
-   "above_ma50_pct": null,
-   "news": [
-    {
-     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": "דוחות",
-     "sources": 1,
-     "title": "Nu Holdings' Second-Quarter Earnings Report Tomorrow Could Send the Stock Soaring. Here's Why.",
-     "src": "Motley Fool",
-     "time": "2026-08-12 19:53"
-    },
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Is Sea Stock a Buy Now as Growth Accelerates but Margins Tighten?",
-     "src": "Zacks",
-     "time": "2026-08-10 18:21"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 1,
-     "title": "Should You Buy, Hold or Sell Nu Holdings Stock Before Q2 Earnings?",
-     "src": "Zacks",
-     "time": "2026-08-12 14:35"
-    }
-   ]
-  },
-  {
-   "kind": "day",
-   "ticker": "OGN",
-   "side": "long",
-   "state": "BUY_NOW",
-   "price": 13.715,
-   "entry": 13.715,
-   "stop": 13.69,
-   "t1": 13.765,
-   "t2": 13.79,
-   "rr1": 2.0,
-   "rsi": 59.3,
-   "rvol": 2.41,
-   "score": 77,
-   "shares": 27,
-   "notional": 370.31,
-   "risk_dollars": 0.68,
-   "room": null,
-   "above_ma50_pct": null,
-   "news": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Sun Pharma's quarterly profit jumps on strength in specialty medicines",
-     "src": "Reuters",
-     "time": "2026-07-31 10:02"
-    },
-    {
-     "summary": "דיווח חיובי · דיווח על מיזוג — אירוע מהותי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": "מיזוג",
-     "sources": 1,
-     "title": "Organon & Co. Shareholders Clear Sun Pharma Merger Deal",
-     "src": "MarketBeat",
-     "time": "2026-07-23 15:07"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 1,
-     "title": "Compared to Estimates, Organon (OGN) Q2 Earnings: A Look at Key Metrics",
-     "src": "Zacks",
-     "time": "2026-07-31 15:00"
-    }
-   ]
-  }
- ],
+ "signals_day": [],
  "game": {
   "xp": 3060,
   "level": 7,
@@ -363,7 +264,7 @@
    "name": "👹 בוס היום",
    "target": 84.38,
    "legend": 210.94,
-   "done": 20.63,
+   "done": 20.43,
    "base": 1054.7,
    "pct": 24,
    "pct_legend": 10,
