@@ -1,0 +1,92 @@
+{
+ "schema": 1,
+ "updated": "2026-08-13",
+ "note": "מפת החשבונות. 4 הספרות האחרונות הן הכינוי בכל מסך ובכל דוח.",
+ "accounts": [
+  {
+   "tag": "4262",
+   "login": 111024262,
+   "name": "המנוע שלי — זהב v7",
+   "role": "engine",
+   "terminal": "MetaTrader 5 (טרמינל ראשי)",
+   "broker": "MetaQuotes-Demo",
+   "is_demo": true,
+   "start_balance": 1000,
+   "leverage": "1:500",
+   "risk": "סולם 2/1.5/1/0.75%",
+   "needs_autotrading": true,
+   "plan": "חשבון ההוכחה החדש — 1000$, מינוף 1:500. הזיכרון של V7 שוחזר. שלב 0 נמדד כאן. חייב מסחר אלגוריתמי ירוק.",
+   "color": "#2a78d6"
+  },
+  {
+   "tag": "5188",
+   "login": 111015188,
+   "name": "V7 מקביל — 10K$ (השוואה)",
+   "role": "parallel",
+   "terminal": "MetaTrader 5 - v7.2 (טרמינל שני)",
+   "broker": "MetaQuotes-Demo",
+   "is_demo": true,
+   "start_balance": 10000,
+   "risk": "סולם 2/1.5/1/0.75%",
+   "needs_autotrading": true,
+   "plan": "אותו v7 על 10K$ — רץ במקביל להשוואה בלבד. לא חשבון התוכנית.",
+   "color": "#57a0ee"
+  },
+  {
+   "tag": "1247",
+   "login": 111021247,
+   "name": "המעתיק — GoldTrap (השוואה)",
+   "role": "copier",
+   "terminal": "MT5-Copier (טרמינל שלישי)",
+   "broker": "MetaQuotes-Demo",
+   "is_demo": true,
+   "start_balance": 10000,
+   "risk": "משוכפל מ-GoldTrap, מוקטן לפי הון, תקרת 3 לוט",
+   "needs_autotrading": true,
+   "plan": "נשאר לצורכי השוואה בלבד. דורש טרמינל שלישי + הזנת שם משתמש/סיסמה.",
+   "color": "#1baf7a"
+  },
+  {
+   "tag": "1050",
+   "login": 600001050,
+   "name": "GoldTrap — נלמד (היסטוריה)",
+   "role": "watch",
+   "terminal": "-",
+   "broker": "VantageMarkets-Live",
+   "is_demo": false,
+   "start_balance": 190717,
+   "risk": "לא שלנו — קריאה בלבד",
+   "needs_autotrading": false,
+   "plan": "מקור לימוד. 80,538 עסקאות פוענחו. כרגע לא מחובר חי — הטרמינל הראשי עבר לחשבון 4262.",
+   "color": "#eda100"
+  },
+  {
+   "tag": "2581",
+   "login": 111012581,
+   "name": "דמו ישן (לא בשימוש)",
+   "role": "idle",
+   "terminal": "-",
+   "broker": "MetaQuotes-Demo",
+   "is_demo": true,
+   "start_balance": 10000,
+   "risk": "-",
+   "needs_autotrading": false,
+   "plan": "נשמר להיסטוריה בלבד.",
+   "color": "#837e91"
+  },
+  {
+   "tag": "IBKR",
+   "login": 0,
+   "name": "הסווינג — מניות",
+   "role": "swing",
+   "terminal": "Trader Workstation",
+   "broker": "Interactive Brokers (נייר)",
+   "is_demo": true,
+   "start_balance": 1000,
+   "risk": "3.5% למניה, עתודה 125$",
+   "needs_autotrading": false,
+   "plan": "מנוע שני. נכנס לתוכנית רק אחרי שיעבור את אותו שער.",
+   "color": "#4a3aa7"
+  }
+ ]
+}
