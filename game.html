@@ -5,44 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>IDAN TRADER · השולחן</title>
 <style>
+  /* 13.8.2026: Idan asked for bigger, bolder, more readable text everywhere -
+     including the signals tables. Sizes up ~25%, muted tone lightened, values bold. */
   :root{
-    --bg:#100e0c; --card:#1b1916; --card2:#221f1a; --line:#2c2721;
-    --tx:#f0e7d8; --mut:#9a8f7e; --gold:#E7B84B; --blue:#57a0ee;
-    --grn:#41c48a; --red:#e8615423;
+    --bg:#100e0c; --card:#1b1916; --card2:#221f1a; --line:#332e27;
+    --tx:#f6efe2; --mut:#bfb49f; --gold:#F0C35E; --blue:#57a0ee;
+    --grn:#4fd49a; --red:#e8615423;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   body{margin:0;background:radial-gradient(120% 60% at 50% 0%,#1a2b22 0%,var(--bg) 55%);
     color:var(--tx);font-family:-apple-system,"Segoe UI",Rubik,Arial,sans-serif;padding-bottom:40px}
   .top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 6px}
-  .brand{font-weight:900;letter-spacing:.5px;font-size:15px;color:var(--gold)}
-  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-inline-end:6px}
+  .brand{font-weight:900;letter-spacing:.5px;font-size:18px;color:var(--gold)}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-inline-end:6px}
   .on{background:var(--grn);box-shadow:0 0 8px var(--grn)} .off{background:#c55}
-  .stamp{font-size:11px;color:var(--mut)}
+  .stamp{font-size:13px;font-weight:600;color:var(--mut)}
   .felt{margin:6px 12px 0;background:linear-gradient(160deg,#1c3a2c,#14261d);
     border:1px solid #2c5040;border-radius:22px;padding:20px 16px;text-align:center;
     box-shadow:inset 0 2px 30px rgba(0,0,0,.4)}
-  .pot-l{font-size:12px;color:#bfe6d2;letter-spacing:1px}
-  .pot{font-size:40px;font-weight:900;margin:2px 0}
-  .pot-sub{font-size:14px;font-weight:700}
-  .pos{color:var(--grn)} .neg{color:#ef6a5e}
+  .pot-l{font-size:14px;font-weight:700;color:#cdeedd;letter-spacing:1px}
+  .pot{font-size:46px;font-weight:900;margin:2px 0}
+  .pot-sub{font-size:17px;font-weight:800}
+  .pos{color:var(--grn)} .neg{color:#ff7a6e}
   .seats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-  .seat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px}
-  .seat h3{margin:0 0 8px;font-size:13px;display:flex;align-items:center;gap:6px}
-  .kv{display:flex;justify-content:space-between;font-size:12.5px;padding:3px 0;border-bottom:1px solid var(--line)}
+  .seat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+  .seat h3{margin:0 0 8px;font-size:16px;font-weight:800;display:flex;align-items:center;gap:6px}
+  .kv{display:flex;justify-content:space-between;font-size:15px;padding:5px 0;border-bottom:1px solid var(--line)}
   .kv:last-child{border:0}
-  .kv b{font-variant-numeric:tabular-nums}
-  .full{margin:0 12px 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px}
-  .full h3{margin:0 0 8px;font-size:13px}
-  table{width:100%;border-collapse:collapse;font-size:12.5px}
-  td{padding:5px 0;border-bottom:1px solid var(--line)}
+  .kv span{color:var(--mut);font-weight:600}
+  .kv b{font-variant-numeric:tabular-nums;font-weight:800;font-size:15.5px}
+  .full{margin:0 12px 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+  .full h3{margin:0 0 8px;font-size:16px;font-weight:800}
+  table{width:100%;border-collapse:collapse;font-size:15px;font-weight:600}
+  td{padding:7px 0;border-bottom:1px solid var(--line)}
+  td b{font-size:15.5px;font-weight:800}
   tr:last-child td{border:0}
-  .chip{font-size:10px;padding:1px 7px;border-radius:999px;background:#2a2620;color:var(--mut)}
-  .buy{color:var(--grn)} .sell{color:#ef6a5e}
-  a.pb{display:block;margin:4px 12px 0;text-align:center;background:rgba(231,184,75,.1);
-    border:1px solid rgba(231,184,75,.35);border-radius:14px;padding:12px;color:var(--gold);
-    text-decoration:none;font-weight:800}
-  .empty{color:var(--mut);font-size:12.5px;text-align:center;padding:8px}
-  .err{margin:12px;padding:12px;border:1px solid #5a3;border-radius:12px;background:#1a2b22;color:#bfe6d2;font-size:13px}
+  .chip{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:#2a2620;color:var(--mut)}
+  .buy{color:var(--grn);font-weight:800} .sell{color:#ff7a6e;font-weight:800}
+  a.pb{display:block;margin:6px 12px 0;text-align:center;background:rgba(231,184,75,.12);
+    border:1px solid rgba(231,184,75,.45);border-radius:14px;padding:14px;color:var(--gold);
+    text-decoration:none;font-weight:900;font-size:16.5px}
+  .empty{color:var(--mut);font-size:14.5px;font-weight:600;text-align:center;padding:8px}
+  .err{margin:12px;padding:12px;border:1px solid #5a3;border-radius:12px;background:#1a2b22;color:#cdeedd;font-size:14.5px}
 </style>
 </head>
 <body>
