@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>לוח האלופים — 3 הבוטים</title>
+<style>
+  .viz-root{
+    color-scheme: dark;
+    --bg:#15141a; --card:#1e1d25; --card2:#26252f; --line:#33313d;
+    --tx:#f4f2ee; --tx2:#bdb9c8; --mut:#847f92;
+    --v7:#3987e5; --gt:#eda100; --grid:#e66767; --good:#199e70;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);
+       font-family:-apple-system,"Segoe UI",Rubik,Arial,sans-serif;line-height:1.55}
+  .wrap{max-width:1000px;margin:0 auto;padding:22px 16px 70px}
+  h1{font-size:24px;margin:0 0 2px;font-weight:800}
+  .sub{color:var(--tx2);font-size:13.5px;margin-bottom:6px}
+  .stamp{color:var(--mut);font-size:12px;margin-bottom:18px}
+  .winner{background:linear-gradient(150deg,#16344f,#191a24);border:1px solid #2b5580;
+          border-radius:18px;padding:18px 20px;margin-bottom:18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .winner .crown{font-size:40px}
+  .winner .t{font-size:13px;color:#8fc0ff;font-weight:700}
+  .winner .n{font-size:22px;font-weight:800}
+  .winner .d{color:var(--tx2);font-size:13.5px;margin-top:3px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:0;overflow:hidden;position:relative}
+  .card .top{padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+  .rank{position:absolute;top:12px;left:12px;font-size:12px;font-weight:800;
+        width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .r1{background:var(--v7);color:#04122a} .r2{background:var(--gt);color:#241a00} .r3{background:var(--grid);color:#2a0808}
+  .card h3{margin:0;font-size:16px;font-weight:800}
+  .card .role{font-size:12px;color:var(--mut);margin-top:2px}
+  .big{font-size:30px;font-weight:800;letter-spacing:-.3px;padding:12px 16px 2px}
+  .biglab{font-size:11.5px;color:var(--mut);padding:0 16px 12px}
+  .rows{padding:4px 16px 14px}
+  .row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--line)}
+  .row:last-child{border:0}
+  .row .k{color:var(--tx2)} .row .v{font-weight:700;font-variant-numeric:tabular-nums}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;margin-top:8px}
+  .t-live{background:rgba(25,158,112,.16);color:#57d3a0}
+  .t-real{background:rgba(237,161,0,.16);color:#ecc25a}
+  .t-sim{background:rgba(230,103,103,.16);color:#f0a0a0}
+  .verdict{font-size:12.5px;color:var(--tx2);padding:0 16px 14px;line-height:1.5}
+  .pos{color:#57d3a0} .neg{color:#f0a0a0}
+  .note{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:15px 17px;margin-top:18px;font-size:13.5px;color:var(--tx2);line-height:1.6}
+  .note b{color:var(--tx)}
+  .foot{color:var(--mut);font-size:12px;margin-top:20px;text-align:center}
+  .bar{height:7px;border-radius:4px;background:#2c2b35;margin:2px 16px 12px;overflow:hidden}
+  .bar > i{display:block;height:100%;border-radius:4px}
+</style>
+</head>
+<body class="viz-root">
+<div class="wrap">
+  <h1>🏆 לוח האלופים</h1>
+  <div class="sub">שלושת הבוטים, ראש בראש — מי באמת הכי רווח, וכמה זה עולה בסיכון.</div>
+  <div class="stamp" id="stamp">מתעדכן כל לילה · השוואה על בסיס אחיד: תשואה חודשית מול סיכון מחיקה</div>
+
+  <div class="winner">
+    <div class="crown">👑</div>
+    <div>
+      <div class="t">המנצח — הבוט לסחור דרכו</div>
+      <div class="n">v7 — המנוע שלנו (זהב burst)</div>
+      <div class="d">היתרון המאומת הגבוה ביותר <b>עם</b> הסיכון הנמוך ביותר. רץ עכשיו אצלך על חשבון דמו …4262 (1000$, מינוף 1:500) — שם מוכיחים אותו חי, עם הזיכרון המלא שלו.</div>
+    </div>
+  </div>
+
+  <div class="cards" id="cards"></div>
+
+  <div class="note" id="why"></div>
+
+  <div class="foot">נבנה מ-80,538 עסקאות אמת של GoldTrap · 894 עסקאות אימות של v7 · 20,000 סימולציות · עידן טריידר 13.8.2026</div>
+</div>
+
+<script>
+var SNAP = {
+ "updated":"2026-08-13",
+ "bots":[
+  {"key":"v7","rank":1,"name":"v7 — המנוע שלנו","role":"זהב · burst · דמו 1000$ מינוף 1:500","color":"var(--v7)","rankcls":"r1",
+   "month":"+16%","monthlab":"צפי מהיתרון המאומת (טרם הוכח חי)","barpct":100,"barcol":"var(--v7)",
+   "rows":[["הון עכשיו","1,000$"],["זיכרון V7","63 עס' · −0.05R · 65%"],["יתרון מאומת v34","+0.115R (894 בדיקה)"],["מצב","מוכיח חי · 0 מ-13.8"]],
+   "tag":"t-live","tagtext":"חי — 1000$ · מוכיח","verdict":"<b class='pos'>היתרון המאומת הגבוה ביותר עם הסיכון הנמוך ביותר.</b> אבל הזיכרון החי עדיין ≈ איזון — לכן זה רץ עכשיו על 1000$ להוכחה, ושלב 0 דורש 100+ עסקאות לפני כל כסף אמיתי."},
+  {"key":"gt","rank":2,"name":"GoldTrap — הבוט האמיתי","role":"רשת פיבונאצ׳י · חשבון אמיתי 190K$","color":"var(--gt)","rankcls":"r2",
+   "month":"+1.7%","monthlab":"תשואה חודשית אמיתית (נמדד)","barpct":11,"barcol":"var(--gt)",
+   "rows":[["רווח חודש אחרון","+3,240$ (על 190K$)"],["סיכון מחיקה","נמוך על 190K, קטלני על 10K"],["הצלחה","66.3%"],["מצב","נצפה ונלמד"]],
+   "tag":"t-real","tagtext":"אמיתי — 80,538 עסקאות","verdict":"<b>אמיתי ויציב</b> — אבל צנוע: 1.7% בחודש, וזה בזכות ה-190 אלף שלו. על 10K$ אותה שיטה <b class='neg'>נמחקת</b>. ה-44 אלף שראית הם ברוטו הזכיות, לא רווח."},
+  {"key":"grid","rank":3,"name":"הרשת — שכפול השיטה","role":"אותה שיטה של GoldTrap, על 10K$","color":"var(--grid)","rankcls":"r3",
+   "month":"−90% .. +2600%","monthlab":"טווח פרוע (סימולציה)","barpct":4,"barcol":"var(--grid)",
+   "rows":[["עומק סולם","עד 13 רגליים"],["סיכון מחיקה","74.6% — 3 מ-4 נמחקים"],["הפסד יומי אפשרי","עד −7,343$ (בקנה 190K)"],["מצב","סימולציה בלבד"]],
+   "tag":"t-sim","tagtext":"סימולציה — לא נכנס לחי","verdict":"<b class='neg'>הכי מסוכן.</b> על חשבון קטן זו מכונת מחיקה — נמדד 3 פעמים ונדחה. נשאר כשיעור, לא כבוט לסחור דרכו."}
+ ]
+};
+
+function render(d){
+  document.getElementById("stamp").textContent =
+    "עודכן "+(d.updated||"")+" · מתעדכן כל לילה · השוואה על בסיס אחיד";
+  var host=document.getElementById("cards"); host.innerHTML="";
+  d.bots.forEach(function(b){
+    var rows=b.rows.map(function(r){
+      return '<div class="row"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></div>';
+    }).join("");
+    host.insertAdjacentHTML("beforeend",
+      '<div class="card">'+
+        '<div class="rank '+b.rankcls+'">'+b.rank+'</div>'+
+        '<div class="top"><h3 style="color:'+b.color+'">'+b.name+'</h3>'+
+          '<div class="role">'+b.role+'</div>'+
+          '<span class="tag '+b.tag+'">'+b.tagtext+'</span></div>'+
+        '<div class="big" style="color:'+b.color+'">'+b.month+'</div>'+
+        '<div class="biglab">'+b.monthlab+'</div>'+
+        '<div class="bar"><i style="width:'+b.barpct+'%;background:'+b.barcol+'"></i></div>'+
+        '<div class="rows">'+rows+'</div>'+
+        '<div class="verdict">'+b.verdict+'</div>'+
+      '</div>');
+  });
+  document.getElementById("why").innerHTML =
+    '<b>ההחלטה, בשורה אחת:</b> אתה סוחר דרך <b style="color:var(--v7)">v7</b>. '+
+    'הוא נותן את התשואה הגבוהה ביותר עם הסיכון הנמוך ביותר, וזה מה שאנחנו מוכיחים עכשיו ב-30 הימים הקרובים. '+
+    '<b style="color:var(--gt)">GoldTrap</b> נשאר על המסך כמורה — אנחנו לומדים ממנו כל יום. '+
+    '<b style="color:var(--grid)">הרשת</b> נשארת מאחורי זכוכית — יפה להסתכל, מסוכן לגעת. '+
+    'ככה יש לך את שלושת הבוטים מול העיניים, בלי שאף אחד יסכן לך שקל אמיתי עד שנדע בוודאות מי מנצח.';
+}
+render(SNAP);
+fetch("data/scoreboard.json?t="+Date.now(),{cache:"no-store"})
+  .then(function(r){return r.ok?r.json():null}).then(function(d){ if(d&&d.bots) render(d); })
+  .catch(function(){});
+</script>
+</body>
+</html>
