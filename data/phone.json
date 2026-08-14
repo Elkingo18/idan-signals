@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-14T19:13:26.038160+00:00",
- "updated_israel": "2026-08-14 22:13",
+ "updated_utc": "2026-08-14T19:14:30.678290+00:00",
+ "updated_israel": "2026-08-14 22:14",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.14 22:13:20",
+  "updated": "2026.08.14 22:14:19",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,16 +26,16 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst -0.88atr",
-  "spread_points": 21.0,
+  "spread_points": 19.0,
   "position": null
  },
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 950.45,
+  "equity": 949.85,
   "realized_pnl": -70.27,
-  "open_pnl": 20.72,
-  "return_pct": -4.95
+  "open_pnl": 20.12,
+  "return_pct": -5.02
  },
  "positions": [
   {
@@ -44,9 +44,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.476,
-   "value": 349.52,
-   "unrealized": 20.72,
+   "mark": 17.446,
+   "value": 348.92,
+   "unrealized": 20.12,
    "realized": 0.0,
    "source": "engine"
   }
@@ -55,34 +55,83 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 781.107772615892,
-  "equity": 1131.01,
+  "equity": 1130.01,
   "realized_pnl": 135.95,
-  "open_pnl": 0.53,
+  "open_pnl": -0.47,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.1,
+  "return_pct": 13.0,
   "name": "UHTA"
  },
  "signals_swing": [
   {
    "kind": "swing",
+   "ticker": "SOFI",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 18.32,
+   "entry": 18.86,
+   "stop": 17.603,
+   "t1": 21.374,
+   "t2": 23.2594,
+   "rr1": 2.0,
+   "rsi": 55.6,
+   "rvol": 0.31,
+   "score": 83,
+   "shares": 20,
+   "notional": 377.2,
+   "risk_dollars": 25.14,
+   "room": 22.84,
+   "above_ma50_pct": 4.75,
+   "news": [
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "PayPal Stock Surged On A Profit Shift Management Had Already Spelled Out",
+     "src": "Trefis",
+     "time": "2026-08-14 16:43"
+    },
+    {
+     "summary": "דיווח שלילי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": "דוחות",
+     "sources": 1,
+     "title": "SoFi Stock Keeps Falling Despite ‘Exceptional’ Earnings. What It Would Take to Move SOFI Again.",
+     "src": "Barchart",
+     "time": "2026-08-14 11:30"
+    },
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "SoFi Originated a Record $10.7 Billion in Personal Loans Last Quarter. Here's Where That Credit Risk Actually Sits.",
+     "src": "Motley Fool",
+     "time": "2026-08-14 11:25"
+    }
+   ]
+  },
+  {
+   "kind": "swing",
    "ticker": "LYFT",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 17.495,
+   "price": 17.445,
    "entry": 17.755,
    "stop": 16.629,
    "t1": 20.007,
    "t2": 21.696,
    "rr1": 2.0,
-   "rsi": 63.2,
+   "rsi": 62.9,
    "rvol": 0.29,
    "score": 78,
    "shares": 22,
    "notional": 390.61,
    "risk_dollars": 24.77,
    "room": 22.02,
-   "above_ma50_pct": 14.99,
+   "above_ma50_pct": 14.67,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
@@ -117,21 +166,21 @@
  "signals_day": [
   {
    "kind": "day",
-   "ticker": "LUMN",
+   "ticker": "AUR",
    "side": "long",
    "state": "BUY_NOW",
-   "price": 6.565,
-   "entry": 6.565,
-   "stop": 6.37,
-   "t1": 6.955,
-   "t2": 7.15,
+   "price": 6.905,
+   "entry": 6.905,
+   "stop": 6.74,
+   "t1": 7.235,
+   "t2": 7.4,
    "rr1": 2.0,
-   "rsi": 72.8,
-   "rvol": 2.15,
-   "score": 84,
-   "shares": 60,
-   "notional": 393.9,
-   "risk_dollars": 11.7,
+   "rsi": 65.8,
+   "rvol": 1.66,
+   "score": 73,
+   "shares": 57,
+   "notional": 393.59,
+   "risk_dollars": 9.41,
    "room": null,
    "above_ma50_pct": null,
    "news": [
@@ -140,27 +189,27 @@
      "dir": "pos",
      "tag": null,
      "sources": 1,
-     "title": "Can AI Infrastructure Drive Verizon's Next Long-Term Growth?",
-     "src": "Zacks",
-     "time": "2026-08-13 17:51"
+     "title": "Aurora Innovation (AUR) Deepens Racing Ties: Branding Move or Strategic Shift for Self‑Driving Freight?",
+     "src": "Simply Wall St.",
+     "time": "2026-08-07 15:15"
+    },
+    {
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": "דוחות",
+     "sources": 1,
+     "title": "Aurora (AUR) Q2 2026 Earnings Call Transcript",
+     "src": "Motley Fool",
+     "time": "2026-08-08 00:33"
     },
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": null,
      "sources": 1,
-     "title": "AT&T Stock's Best Lever Is The Copper Network It Is Turning Off",
-     "src": "Trefis",
-     "time": "2026-08-14 14:24"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "VZ Paid Holders $59 Billion While The Stock Trailed The Market",
-     "src": "Trefis",
-     "time": "2026-08-13 13:55"
+     "title": "Aurora Innovation commercial scaling phase underway",
+     "src": "Trucking Dive",
+     "time": "2026-08-04 09:50"
     }
    ]
   }
@@ -274,9 +323,9 @@
    "name": "👹 בוס היום",
    "target": 86.62,
    "legend": 216.55,
-   "done": 48.28,
+   "done": 47.28,
    "base": 1082.73,
-   "pct": 56,
+   "pct": 55,
    "pct_legend": 22,
    "beaten": false,
    "legendary": false
