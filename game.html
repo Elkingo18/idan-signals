@@ -2,188 +2,1613 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IDAN TRADER · השולחן</title>
 <style>
-  /* 13.8.2026: Idan asked for bigger, bolder, more readable text everywhere -
-     including the signals tables. Sizes up ~25%, muted tone lightened, values bold. */
-  :root{
-    --bg:#100e0c; --card:#1b1916; --card2:#221f1a; --line:#332e27;
-    --tx:#f6efe2; --mut:#bfb49f; --gold:#F0C35E; --blue:#57a0ee;
-    --grn:#4fd49a; --red:#e8615423;
-  }
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{margin:0;background:radial-gradient(120% 60% at 50% 0%,#1a2b22 0%,var(--bg) 55%);
-    color:var(--tx);font-family:-apple-system,"Segoe UI",Rubik,Arial,sans-serif;padding-bottom:40px}
-  .top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 6px}
-  .brand{font-weight:900;letter-spacing:.5px;font-size:18px;color:var(--gold)}
-  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-inline-end:6px}
-  .on{background:var(--grn);box-shadow:0 0 8px var(--grn)} .off{background:#c55}
-  .stamp{font-size:13px;font-weight:600;color:var(--mut)}
-  .felt{margin:6px 12px 0;background:linear-gradient(160deg,#1c3a2c,#14261d);
-    border:1px solid #2c5040;border-radius:22px;padding:20px 16px;text-align:center;
-    box-shadow:inset 0 2px 30px rgba(0,0,0,.4)}
-  .pot-l{font-size:14px;font-weight:700;color:#cdeedd;letter-spacing:1px}
-  .pot{font-size:46px;font-weight:900;margin:2px 0}
-  .pot-sub{font-size:17px;font-weight:800}
-  .pos{color:var(--grn)} .neg{color:#ff7a6e}
-  .seats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-  .seat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
-  .seat h3{margin:0 0 8px;font-size:16px;font-weight:800;display:flex;align-items:center;gap:6px}
-  .kv{display:flex;justify-content:space-between;font-size:15px;padding:5px 0;border-bottom:1px solid var(--line)}
-  .kv:last-child{border:0}
-  .kv span{color:var(--mut);font-weight:600}
-  .kv b{font-variant-numeric:tabular-nums;font-weight:800;font-size:15.5px}
-  .full{margin:0 12px 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
-  .full h3{margin:0 0 8px;font-size:16px;font-weight:800}
-  table{width:100%;border-collapse:collapse;font-size:15px;font-weight:600}
-  td{padding:7px 0;border-bottom:1px solid var(--line)}
-  td b{font-size:15.5px;font-weight:800}
-  tr:last-child td{border:0}
-  .chip{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:#2a2620;color:var(--mut)}
-  .buy{color:var(--grn);font-weight:800} .sell{color:#ff7a6e;font-weight:800}
-  a.pb{display:block;margin:6px 12px 0;text-align:center;background:rgba(231,184,75,.12);
-    border:1px solid rgba(231,184,75,.45);border-radius:14px;padding:14px;color:var(--gold);
-    text-decoration:none;font-weight:900;font-size:16.5px}
-  .empty{color:var(--mut);font-size:14.5px;font-weight:600;text-align:center;padding:8px}
-  .err{margin:12px;padding:12px;border:1px solid #5a3;border-radius:12px;background:#1a2b22;color:#cdeedd;font-size:14.5px}
+/* ==========================================================================
+   IDAN TRADER - THE TABLE
+   A poker-room skin over the live trading system. Every number on this
+   screen comes from /api/status - nothing here is decorative data.
+   Three seats = the three engines. The pot = today. The rail = the guard.
+   ========================================================================== */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  /* --- felt & wood: the room ------------------------------------------ */
+  --felt-1:#1c6b4a;      --felt-2:#0e4530;     --felt-3:#062318;
+  --wood-1:#6b4423;      --wood-2:#3d2412;     --wood-3:#25150a;
+  --brass-1:#f6d878;     --brass-2:#d4a832;    --brass-3:#8a6420;
+
+  /* --- ink ------------------------------------------------------------- */
+  --ink:#fffdf5;         --ink-2:#e4dcc4;      --ink-3:#a89b78;
+
+  /* --- status: always paired with an icon + word, never colour alone --- */
+  --good:#37d67a;        --warn:#ffc453;       --bad:#ff5c5c;   --idle:#7d8a92;
+}
+
+html,body{height:100%}
+body{
+  font-family:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,"Noto Sans Hebrew",Arial,sans-serif;
+  background:
+    radial-gradient(120% 90% at 50% 0%, #17313f 0%, #0b1a22 45%, #050d12 100%);
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  min-height:100%;
+}
+
+/* metallic gold type - the Zynga signature */
+.gold-type{
+  background:linear-gradient(180deg,#fff3c4 0%,#f6d878 28%,#d9a834 55%,#a97a1e 78%,#f0cf7a 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.55));
+  font-weight:900;letter-spacing:.02em;
+}
+
+/* ============================ TOP RAIL ================================= */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:10px 18px;
+  background:linear-gradient(180deg,rgba(12,26,33,.97),rgba(8,18,24,.9));
+  border-bottom:2px solid rgba(246,216,120,.28);
+  box-shadow:0 6px 24px rgba(0,0,0,.55);
+  backdrop-filter:blur(8px);
+}
+.brand{display:flex;align-items:center;gap:10px;font-size:20px}
+.brand .chip-logo{
+  width:34px;height:34px;border-radius:50%;flex:0 0 34px;
+  background:
+    repeating-conic-gradient(#c9302c 0deg 22.5deg,#fff 22.5deg 45deg);
+  border:3px solid #8e2420;
+  box-shadow:0 2px 6px rgba(0,0,0,.6), inset 0 0 0 4px rgba(255,255,255,.85);
+}
+.lvl{
+  display:flex;align-items:center;gap:9px;
+  background:linear-gradient(180deg,#2a3f4d,#16262f);
+  border:1px solid rgba(246,216,120,.4);border-radius:999px;
+  padding:5px 13px 5px 7px;
+}
+.lvl .badge{
+  width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;font-weight:900;font-size:14px;color:#3b2a06;
+  background:radial-gradient(circle at 34% 28%,#fff2bd,#f3ce6b 45%,#c9982c 100%);
+  box-shadow:0 2px 5px rgba(0,0,0,.5), inset 0 -2px 4px rgba(140,100,20,.55);
+}
+.xpwrap{width:110px}
+.xpbar{height:7px;border-radius:99px;background:#0a171d;border:1px solid rgba(255,255,255,.13);overflow:hidden}
+.xpfill{height:100%;background:linear-gradient(90deg,#f6d878,#ffb43c);border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.xptext{font-size:10px;color:var(--ink-3);margin-top:3px;letter-spacing:.03em}
+
+.spacer{flex:1 1 auto}
+
+.equity-tile{text-align:left;line-height:1.05}
+.equity-tile .lab{font-size:10px;color:var(--ink-3);letter-spacing:.09em}
+.equity-tile .val{font-size:23px;font-weight:900;font-variant-numeric:tabular-nums}
+
+.statuslights{display:flex;gap:6px;flex-wrap:wrap}
+.light{
+  display:flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:700;
+  padding:4px 9px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  white-space:nowrap;
+}
+.light .dot{width:7px;height:7px;border-radius:50%;flex:0 0 7px}
+.light.ok   .dot{background:var(--good);box-shadow:0 0 7px var(--good)}
+.light.warn .dot{background:var(--warn);box-shadow:0 0 7px var(--warn)}
+.light.bad  .dot{background:var(--bad);box-shadow:0 0 7px var(--bad);animation:pulse 1.1s infinite}
+.light.idle .dot{background:var(--idle)}
+.light.ok{color:#bff5d6}.light.warn{color:#ffe2a8}.light.bad{color:#ffc9c9;border-color:rgba(255,92,92,.5)}
+@keyframes pulse{50%{opacity:.28}}
+
+/* ============================ ALERT BANNER ============================= */
+.alarm{
+  display:none;
+  margin:12px 18px 0;padding:13px 17px;border-radius:14px;
+  background:linear-gradient(180deg,#5e1414,#3a0c0c);
+  border:2px solid #ff5c5c;
+  box-shadow:0 0 26px rgba(255,60,60,.35);
+  font-weight:800;font-size:14.5px;line-height:1.6;
+}
+.alarm.show{display:block;animation:pulse 1.6s infinite}
+.alarm ul{margin:7px 20px 0 0}
+.alarm li{margin:3px 0;font-weight:600}
+
+/* ============================== TABLE ================================== */
+.room{padding:20px 18px 34px;max-width:1420px;margin:0 auto}
+
+.table-shell{
+  position:relative;
+  border-radius:50%/34%;
+  padding:26px;
+  background:
+    linear-gradient(180deg,var(--wood-1),var(--wood-2) 55%,var(--wood-3));
+  box-shadow:
+    0 26px 60px rgba(0,0,0,.72),
+    inset 0 3px 0 rgba(255,222,150,.32),
+    inset 0 -5px 14px rgba(0,0,0,.65);
+}
+.felt{
+  position:relative;
+  border-radius:50%/34%;
+  min-height:340px;
+  padding:22px 26px 46px;
+  background:
+    radial-gradient(70% 96% at 50% 42%, var(--felt-1) 0%, var(--felt-2) 58%, var(--felt-3) 100%);
+  box-shadow:
+    inset 0 0 0 3px rgba(246,216,120,.34),
+    inset 0 0 70px rgba(0,0,0,.62);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  gap:16px;
+  overflow:hidden;
+}
+/* felt weave */
+.felt::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;
+  background-image:
+    repeating-linear-gradient(45deg,rgba(255,255,255,.055) 0 1px,transparent 1px 4px),
+    repeating-linear-gradient(-45deg,rgba(0,0,0,.055) 0 1px,transparent 1px 4px);
+}
+
+.table-brand{
+  text-align:center;margin-top:4px;
+  font-size:13px;letter-spacing:.34em;color:rgba(246,216,120,.5);font-weight:800;
+}
+
+/* ------------------------------- POT ---------------------------------- */
+.pot{
+  text-align:center;position:relative;z-index:2;
+  padding:12px 30px;border-radius:20px;
+  background:radial-gradient(90% 130% at 50% 0%,rgba(0,0,0,.42),rgba(0,0,0,.16));
+  border:1px solid rgba(246,216,120,.24);
+}
+.pot .lab{font-size:11px;letter-spacing:.26em;color:rgba(246,216,120,.72);font-weight:800}
+.pot .amount{font-size:52px;font-weight:900;line-height:1.08;font-variant-numeric:tabular-nums}
+.pot .amount.up{color:#5ef2a0;text-shadow:0 0 26px rgba(94,242,160,.5),0 3px 0 rgba(0,0,0,.5)}
+.pot .amount.down{color:#ff7676;text-shadow:0 0 26px rgba(255,118,118,.45),0 3px 0 rgba(0,0,0,.5)}
+.pot .amount.flat{color:var(--ink-2);text-shadow:0 3px 0 rgba(0,0,0,.5)}
+.pot .sub{font-size:12px;color:var(--ink-3);margin-top:3px}
+
+.chipstack-row{display:flex;gap:5px;justify-content:center;margin-top:9px;min-height:19px}
+.chip{
+  width:26px;height:26px;border-radius:50%;
+  border:3px solid rgba(0,0,0,.42);
+  box-shadow:0 2px 4px rgba(0,0,0,.55), inset 0 0 0 3px rgba(255,255,255,.8);
+  animation:drop .45s cubic-bezier(.2,1.5,.4,1) backwards;
+}
+@keyframes drop{from{transform:translateY(-26px) scale(.6);opacity:0}}
+.chip.c1{background:repeating-conic-gradient(#c9302c 0 22.5deg,#fff 0 45deg)}
+.chip.c2{background:repeating-conic-gradient(#2e7d32 0 22.5deg,#fff 0 45deg)}
+.chip.c3{background:repeating-conic-gradient(#1565c0 0 22.5deg,#fff 0 45deg)}
+.chip.c4{background:repeating-conic-gradient(#000 0 22.5deg,#fff 0 45deg)}
+.chip.c5{background:repeating-conic-gradient(#6a1b9a 0 22.5deg,#fff 0 45deg)}
+
+/* --------------------------- COMMUNITY CARDS -------------------------- */
+.board{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;min-height:106px;align-items:center;z-index:2}
+.card{
+  width:78px;min-height:104px;border-radius:9px;
+  background:linear-gradient(180deg,#fffdf6,#e7e0cd);
+  color:#12202a;
+  box-shadow:0 7px 16px rgba(0,0,0,.55), inset 0 0 0 1px rgba(0,0,0,.14);
+  padding:7px 6px;display:flex;flex-direction:column;justify-content:space-between;
+  animation:deal .4s cubic-bezier(.2,1.3,.35,1) backwards;
+  position:relative;
+}
+@keyframes deal{from{transform:translateY(-30px) rotate(-9deg);opacity:0}}
+.card .tk{font-size:15px;font-weight:900;letter-spacing:-.02em;line-height:1}
+.card .kind{font-size:9.5px;color:#5d6b74;font-weight:700;margin-top:2px}
+.card .qty{font-size:11px;color:#33424c;font-weight:700}
+.card .pl{font-size:13px;font-weight:900;font-variant-numeric:tabular-nums}
+.card .pl.up{color:#1a8f4e}.card .pl.down{color:#c62828}
+.card .suit{position:absolute;top:5px;left:6px;font-size:13px;opacity:.75}
+.card.empty{
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,.045) 0 7px,rgba(255,255,255,.015) 7px 14px);
+  border:2px dashed rgba(246,216,120,.24);box-shadow:none;color:rgba(246,216,120,.5);
+  align-items:center;justify-content:center;font-size:10.5px;text-align:center;font-weight:700;
+}
+
+/* ------------------------------- SEATS -------------------------------- */
+/* Seats sit AROUND the table, not on the felt. Inside the ellipse the
+   right-hand seat was being clipped by the curve (overflow:hidden on a
+   50%/34% radius), which silently cut the gold agent's P&L off screen. */
+.seats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));
+  gap:15px;width:100%;
+  margin:-30px auto 0;max-width:1340px;position:relative;z-index:5;
+}
+.seat{
+  position:relative;
+  background:linear-gradient(180deg,rgba(9,28,22,.93),rgba(4,16,12,.96));
+  border:2px solid rgba(246,216,120,.2);
+  border-radius:17px;padding:14px 13px 12px;
+  box-shadow:0 9px 22px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.07);
+  transition:border-color .35s, box-shadow .35s, transform .35s;
+}
+.seat.active{
+  border-color:rgba(246,216,120,.85);
+  box-shadow:0 0 0 2px rgba(246,216,120,.2),0 0 34px rgba(246,216,120,.3),0 9px 22px rgba(0,0,0,.5);
+  transform:translateY(-3px);
+}
+.seat.folded{opacity:.5;filter:saturate(.4)}
+.seat-head{display:flex;align-items:center;gap:10px}
+.avatar{
+  width:50px;height:50px;border-radius:50%;flex:0 0 50px;
+  display:grid;place-items:center;font-size:25px;
+  background:radial-gradient(circle at 36% 28%,#3c5a6b,#16262f);
+  border:3px solid rgba(246,216,120,.42);
+  box-shadow:0 3px 9px rgba(0,0,0,.6), inset 0 0 12px rgba(0,0,0,.55);
+  position:relative;
+}
+.seat.active .avatar{border-color:#f6d878;box-shadow:0 0 18px rgba(246,216,120,.6),0 3px 9px rgba(0,0,0,.6)}
+.seat.dealer .avatar::after{
+  content:"D";position:absolute;bottom:-4px;left:-4px;
+  width:20px;height:20px;border-radius:50%;background:#fffdf5;color:#12202a;
+  font-size:11px;font-weight:900;display:grid;place-items:center;
+  box-shadow:0 2px 5px rgba(0,0,0,.6);
+}
+.seat-id{min-width:0;flex:1}
+.seat-name{font-size:14.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seat-role{font-size:10.5px;color:var(--ink-3);margin-top:1px}
+
+.stack{
+  margin-top:11px;padding-top:10px;border-top:1px solid rgba(246,216,120,.16);
+  display:flex;align-items:baseline;justify-content:space-between;gap:8px;
+}
+.stack .lab{font-size:10px;color:var(--ink-3);letter-spacing:.07em}
+.stack .val{font-size:24px;font-weight:900;font-variant-numeric:tabular-nums}
+
+.seat-stats{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;min-width:0}
+.seat-stats .pill{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.pill{
+  font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);color:var(--ink-2);
+  white-space:nowrap;
+}
+.pill.up{background:rgba(55,214,122,.15);border-color:rgba(55,214,122,.42);color:#8ff0b6}
+.pill.down{background:rgba(255,92,92,.15);border-color:rgba(255,92,92,.42);color:#ffb0b0}
+.pill.warn{background:rgba(255,196,83,.15);border-color:rgba(255,196,83,.42);color:#ffdb9c}
+
+.saying{
+  margin-top:9px;font-size:11px;color:var(--ink-3);
+  background:rgba(0,0,0,.3);border-radius:9px;padding:6px 9px;
+  min-height:28px;display:flex;align-items:center;gap:6px;line-height:1.4;
+}
+
+/* --------------------------- HAND / SIGNALS --------------------------- */
+.section-title{
+  display:flex;align-items:center;gap:9px;margin:26px 0 12px;
+  font-size:14px;font-weight:800;color:var(--ink-2);letter-spacing:.05em;
+}
+.section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(246,216,120,.34),transparent)}
+
+.hand{display:grid;grid-template-columns:repeat(auto-fill,minmax(206px,1fr));gap:12px}
+.hcard{
+  background:linear-gradient(180deg,#122a36,#0a1a22);
+  border:1px solid rgba(246,216,120,.2);border-radius:14px;padding:12px 13px;
+  box-shadow:0 6px 16px rgba(0,0,0,.42);
+}
+.hcard .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.hcard .tk{font-size:17px;font-weight:900}
+.hcard .score{
+  font-size:11px;font-weight:900;padding:3px 9px;border-radius:999px;
+  background:linear-gradient(180deg,#f6d878,#c9982c);color:#3b2a06;
+}
+.hcard .row{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ink-3);margin-top:7px}
+.hcard .row b{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:700}
+.hcard .bar{height:5px;border-radius:99px;background:#08161c;margin-top:9px;overflow:hidden}
+.hcard .bar>span{display:block;height:100%;background:linear-gradient(90deg,#37d67a,#f6d878)}
+
+/* ------------------------------ CHART --------------------------------- */
+.chartbox{
+  background:linear-gradient(180deg,rgba(12,32,42,.9),rgba(6,18,24,.94));
+  border:1px solid rgba(246,216,120,.18);border-radius:16px;padding:15px 16px 10px;
+}
+.chartbox h3{font-size:12.5px;font-weight:800;color:var(--ink-2);margin-bottom:3px}
+.chartbox .cap{font-size:10.5px;color:var(--ink-3);margin-bottom:9px}
+#spark{width:100%;height:132px;display:block;cursor:crosshair}
+.tip{
+  position:fixed;z-index:90;pointer-events:none;display:none;
+  background:#02090d;border:1px solid rgba(246,216,120,.45);border-radius:9px;
+  padding:6px 10px;font-size:11.5px;font-weight:700;
+  box-shadow:0 8px 22px rgba(0,0,0,.7);white-space:nowrap;
+}
+
+/* ============================ FEES ROW ================================= */
+.feerow{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:11px}
+.feetile{
+  background:linear-gradient(180deg,rgba(14,34,44,.92),rgba(7,19,25,.95));
+  border:1px solid rgba(246,216,120,.2);border-radius:14px;padding:12px 13px;
+}
+.feetile .lab{font-size:11px;color:var(--ink-3);display:flex;align-items:center;gap:6px}
+.feetile .val{font-size:22px;font-weight:900;font-variant-numeric:tabular-nums;margin-top:4px;color:#ff9b6a}
+.feetile .sub{font-size:10.5px;color:var(--ink-3);margin-top:3px;line-height:1.45}
+.feetile.total .val{color:#ffb43c;font-size:26px}
+
+/* ========================= ACTION FEED (clickable) ===================== */
+.feed{display:flex;flex-direction:column;gap:7px;max-height:520px;overflow-y:auto;padding-left:4px}
+.feed::-webkit-scrollbar{width:8px}
+.feed::-webkit-scrollbar-thumb{background:rgba(246,216,120,.28);border-radius:99px}
+.act{
+  display:flex;align-items:center;gap:11px;width:100%;text-align:right;
+  font-family:inherit;cursor:pointer;
+  background:linear-gradient(180deg,rgba(14,34,44,.9),rgba(7,19,25,.94));
+  border:1px solid rgba(246,216,120,.16);border-left:4px solid transparent;
+  border-radius:12px;padding:10px 12px;color:var(--ink);
+  transition:border-color .18s, transform .18s, background .18s;
+}
+.act:hover{border-color:rgba(246,216,120,.55);transform:translateX(-3px)}
+.act:focus-visible{outline:2px solid #f6d878;outline-offset:2px}
+.act.win{border-left-color:var(--good)}
+.act.loss{border-left-color:var(--bad)}
+.act.skip{border-left-color:var(--idle);opacity:.72}
+.act.open{border-left-color:var(--warn)}
+.act .ico{font-size:19px;flex:0 0 26px;text-align:center}
+.act .mid{flex:1;min-width:0}
+.act .ttl{font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.act .sub2{font-size:11px;color:var(--ink-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.act .amt{font-size:15px;font-weight:900;font-variant-numeric:tabular-nums;white-space:nowrap}
+.act .amt.up{color:#5ef2a0}.act .amt.down{color:#ff7676}.act .amt.mut{color:var(--ink-3);font-size:12px}
+.act .chev{color:rgba(246,216,120,.5);font-size:15px;flex:0 0 14px}
+
+.filterbar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:11px}
+.fbtn{
+  font-family:inherit;font-size:11.5px;font-weight:800;cursor:pointer;
+  padding:6px 13px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--ink-2);
+}
+.fbtn.on{background:linear-gradient(180deg,#fbe5a2,#c9982c);color:#3b2a06;border-color:#8a6420}
+.fbtn:focus-visible{outline:2px solid #f6d878;outline-offset:2px}
+
+/* ============================== DRAWER ================================= */
+.scrim{
+  position:fixed;inset:0;z-index:110;display:none;
+  background:rgba(2,8,12,.74);backdrop-filter:blur(3px);
+}
+.scrim.show{display:block}
+.drawer{
+  position:fixed;z-index:120;top:0;right:0;height:100%;width:min(560px,100%);
+  background:linear-gradient(180deg,#0e2532,#061520 60%,#030c12);
+  border-left:2px solid rgba(246,216,120,.4);
+  box-shadow:-20px 0 60px rgba(0,0,0,.75);
+  transform:translateX(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);
+  display:flex;flex-direction:column;
+}
+.drawer.show{transform:translateX(0)}
+.dhead{
+  padding:16px 18px;border-bottom:1px solid rgba(246,216,120,.24);
+  display:flex;align-items:flex-start;gap:12px;
+}
+.dhead .dt{flex:1;min-width:0}
+.dhead h2{font-size:20px;font-weight:900;line-height:1.25}
+.dhead .when{font-size:11.5px;color:var(--ink-3);margin-top:3px}
+.dclose{
+  font-family:inherit;font-size:20px;line-height:1;cursor:pointer;flex:0 0 34px;
+  width:34px;height:34px;border-radius:50%;color:var(--ink);
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+}
+.dclose:hover{background:rgba(255,255,255,.16)}
+.dbody{padding:16px 18px 30px;overflow-y:auto;flex:1}
+.dsec{margin-bottom:18px}
+.dsec h3{
+  font-size:12px;font-weight:900;color:#f6d878;letter-spacing:.07em;
+  margin-bottom:8px;display:flex;align-items:center;gap:7px;
+}
+.dsec p{font-size:13.5px;line-height:1.75;color:var(--ink-2)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:5px 13px;font-size:13px}
+.kv dt{color:var(--ink-3);white-space:nowrap}
+.kv dd{font-weight:700;font-variant-numeric:tabular-nums}
+.dbig{
+  text-align:center;padding:14px;border-radius:14px;margin-bottom:16px;
+  background:radial-gradient(80% 130% at 50% 0%,rgba(0,0,0,.4),rgba(0,0,0,.14));
+  border:1px solid rgba(246,216,120,.22);
+}
+.dbig .n{font-size:38px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.1}
+.dbig .n.up{color:#5ef2a0}.dbig .n.down{color:#ff7676}.dbig .n.mut{color:var(--ink-2)}
+.dbig .r{font-size:12.5px;color:var(--ink-3);margin-top:3px}
+
+/* the target ladder: entry -> stop -> t1 -> t2, drawn to scale */
+.ladder{position:relative;height:74px;margin:14px 0 6px}
+.ladder .track{position:absolute;left:0;right:0;top:32px;height:5px;border-radius:99px;background:#08161c;border:1px solid rgba(255,255,255,.1)}
+.ladder .fill{position:absolute;top:32px;height:5px;border-radius:99px;background:linear-gradient(90deg,#ff5c5c,#f6d878 45%,#37d67a)}
+.ladder .mk{position:absolute;top:12px;transform:translateX(50%);text-align:center;font-size:9.5px;color:var(--ink-3);white-space:nowrap}
+.ladder .mk i{display:block;width:2px;height:16px;background:rgba(255,255,255,.4);margin:0 auto 3px}
+.ladder .mk b{display:block;font-size:11px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.ladder .now{position:absolute;top:26px;transform:translateX(50%);width:14px;height:14px;border-radius:50%;
+  background:#fff;border:3px solid #0a1a22;box-shadow:0 0 12px rgba(255,255,255,.7)}
+
+.tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.tag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:var(--ink-2)}
+.tag.good{background:rgba(55,214,122,.16);border-color:rgba(55,214,122,.42);color:#8ff0b6}
+.tag.bad{background:rgba(255,92,92,.16);border-color:rgba(255,92,92,.42);color:#ffb0b0}
+
+/* ------------------------------ FOOTER -------------------------------- */
+.tablefoot{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+.btn{
+  font-family:inherit;font-size:12.5px;font-weight:800;cursor:pointer;
+  padding:9px 17px;border-radius:999px;color:#3b2a06;
+  background:linear-gradient(180deg,#fbe5a2,#e8bd53 48%,#c9982c);
+  border:1px solid #8a6420;
+  box-shadow:0 4px 10px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.6);
+  text-decoration:none;display:inline-block;
+}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{
+  background:linear-gradient(180deg,#223a47,#132531);color:var(--ink-2);
+  border-color:rgba(246,216,120,.3);box-shadow:0 4px 10px rgba(0,0,0,.45);
+}
+.stamp{text-align:center;font-size:10.5px;color:var(--ink-3);margin-top:13px;letter-spacing:.04em}
+
+/* ------------------------------ LOBBY --------------------------------- */
+.lobby{
+  position:fixed;inset:0;z-index:100;display:none;
+  place-items:center;text-align:center;
+  background:radial-gradient(90% 80% at 50% 35%,#123040,#05121a 70%,#02080c);
+}
+.lobby.show{display:grid}
+.lobby-inner{max-width:560px;padding:30px}
+.lobby h1{font-size:38px;margin-bottom:6px}
+.lobby p{color:var(--ink-2);font-size:14.5px;line-height:1.75;margin-bottom:18px}
+.spinner{
+  width:76px;height:76px;margin:0 auto 22px;border-radius:50%;
+  background:repeating-conic-gradient(#c9302c 0 22.5deg,#fff 0 45deg);
+  border:5px solid #8e2420;
+  box-shadow:0 5px 18px rgba(0,0,0,.65), inset 0 0 0 7px rgba(255,255,255,.85);
+  animation:spin 2.6s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.checklist{
+  text-align:right;display:inline-block;margin:0 auto 20px;
+  background:rgba(0,0,0,.36);border:1px solid rgba(246,216,120,.24);
+  border-radius:14px;padding:14px 20px;
+}
+.checklist div{display:flex;align-items:center;gap:9px;font-size:13.5px;padding:5px 0;font-weight:600}
+
+@media (max-width:760px){
+  .felt{min-height:auto;padding:22px 14px;border-radius:26px}
+  .table-shell{border-radius:32px;padding:12px}
+  .pot .amount{font-size:40px}
+  .room{padding:14px 11px 30px}
+  .card{width:66px;min-height:92px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
 </style>
 </head>
-<body>
-  <div class="top">
-    <div class="brand">🃏 IDAN TRADER</div>
-    <div class="stamp"><span id="dot" class="dot off"></span><span id="stamp">מתחבר…</span></div>
-  </div>
+<body data-palette="#37d67a,#f6d878,#4aa3df">
 
-  <div class="felt">
-    <div class="pot-l">סך הקופה</div>
-    <div class="pot" id="equity">—</div>
-    <div class="pot-sub" id="dayp">היום —</div>
+<!-- ============================ LOBBY ============================ -->
+<div class="lobby show" id="lobby">
+  <div class="lobby-inner">
+    <div class="spinner"></div>
+    <h1 class="gold-type">IDAN TRADER</h1>
+    <p id="lobbyMsg">מחפש את השולחן…</p>
+    <div class="checklist" id="checklist"></div>
+    <div><a class="btn ghost" href="/" id="toPanel">לפאנל הרגיל</a></div>
   </div>
+</div>
 
-  <div class="seats">
-    <div class="seat">
-      <h3>🪙 סוכן הזהב</h3>
-      <div class="kv"><span>יתרה</span><b id="gBal">—</b></div>
-      <div class="kv"><span>חשבון</span><b id="gAcc">—</b></div>
-      <div class="kv"><span>עסקאות היום</span><b id="gTr">—</b></div>
-      <div class="kv"><span>המצב</span><b id="gDec" style="font-size:11px">—</b></div>
-    </div>
-    <div class="seat">
-      <h3>📈 סוכן הסווינג</h3>
-      <div class="kv"><span>ארנק</span><b id="sEq">—</b></div>
-      <div class="kv"><span>ממומש</span><b id="sReal">—</b></div>
-      <div class="kv"><span>פתוח</span><b id="sOpen">—</b></div>
-      <div class="kv"><span>תשואה</span><b id="sRet">—</b></div>
+<!-- ============================ TOP RAIL ============================ -->
+<div class="topbar">
+  <div class="brand"><span class="chip-logo"></span><span class="gold-type">IDAN TRADER</span></div>
+
+  <div class="lvl">
+    <div class="badge" id="lvlNum">–</div>
+    <div class="xpwrap">
+      <div class="xpbar"><div class="xpfill" id="xpFill" style="width:0%"></div></div>
+      <div class="xptext" id="xpText">–</div>
     </div>
   </div>
 
-  <div class="full">
-    <h3>החשבונות שלי</h3>
-    <div id="accounts"><div class="empty">טוען…</div></div>
+  <div class="spacer"></div>
+  <div class="statuslights" id="lights"></div>
+  <div class="light" id="modeBadge" title="מצב המסחר" style="cursor:pointer"></div>
+  <div class="equity-tile">
+    <div class="lab">סך הקופה</div>
+    <div class="val gold-type" id="totalEquity">–</div>
+  </div>
+  <a href="/perfect" title="הבוט המושלם — 600001050 (צל, אפס סיכון)"
+     style="display:flex;flex-direction:column;align-items:center;justify-content:center;
+            text-decoration:none;color:#f6d878;background:rgba(246,216,120,.10);
+            border:1px solid rgba(246,216,120,.35);border-radius:12px;padding:8px 12px;
+            margin-inline-start:10px;font-weight:800;font-size:12px;line-height:1.3;white-space:nowrap">
+    <span style="font-size:18px">🎯</span>הבוט המושלם
+  </a>
+</div>
+
+<div class="alarm" id="alarm"></div>
+
+<!-- ============================= ROOM ============================= -->
+<div class="room">
+
+  <div class="table-shell">
+    <div class="felt">
+      <div class="table-brand">IDAN TRADER · HIGH STAKES</div>
+
+      <div class="pot">
+        <div class="lab">הקופה היום</div>
+        <div class="amount flat" id="potAmount">–</div>
+        <div class="sub" id="potSub">—</div>
+        <div class="chipstack-row" id="potChips"></div>
+      </div>
+
+      <div class="board" id="board"></div>
+    </div>
   </div>
 
-  <div class="full">
-    <h3>קלפי הקהילה — פוזיציות פתוחות</h3>
-    <div id="positions"><div class="empty">—</div></div>
+  <div class="seats" id="seats"></div>
+
+  <div class="section-title">🃏 היד — איתותים שממתינים לתורם</div>
+  <div class="hand" id="hand"></div>
+
+  <div class="section-title">🔥 עמלות שנשרפו</div>
+  <div class="feerow" id="feerow"></div>
+
+  <div class="section-title">📜 כל פעולה — לחץ כדי לראות למה</div>
+  <div class="filterbar" id="filterbar"></div>
+  <div class="feed" id="feed"></div>
+
+  <div class="section-title">📈 עקומת ההון</div>
+  <div class="chartbox">
+    <h3>סך ההון לאורך זמן</h3>
+    <div class="cap">זהב + מניות + מנוע, נדגם כל דקה. אין פה שום שחזור — זו הרשומה עצמה.</div>
+    <canvas id="spark"></canvas>
   </div>
 
-  <div class="full">
-    <h3>נסגר היום</h3>
-    <div id="fills"><div class="empty">—</div></div>
+  <div class="tablefoot">
+    <a class="btn" href="/" >⚙️ הפאנל המלא</a>
+    <button class="btn ghost" id="btnRefresh">🔄 רענן עכשיו</button>
+    <button class="btn ghost" id="btnSound">🔔 צליל: כבוי</button>
   </div>
+  <div class="stamp" id="stamp">—</div>
+</div>
 
-  <a class="pb" href="./scoreboard.html">🏆 לוח האלופים — מי הכי רווחי מבין ה-3</a>
+<div class="tip" id="tip"></div>
 
-  <a class="pb" href="./perfect.html">🎯 הבוט המושלם — 600001050</a>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+  <div class="dhead">
+    <div class="dt"><h2 id="dTitle">—</h2><div class="when" id="dWhen">—</div></div>
+    <button class="dclose" id="dClose" aria-label="סגור">×</button>
+  </div>
+  <div class="dbody" id="dBody"></div>
+</aside>
 
 <script>
-// same-origin path on GitHub Pages (elkingo18.github.io/idan-signals/data/phone.json).
-// The mirror pushes data/phone.json to this very repo every minute; served here
-// with no CORS problem. Falls back to the raw URL if opened off-Pages.
-var RAW="data/phone.json";
-var RAW_FALLBACK="https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
-function money(v){ if(v==null||v==="—"||isNaN(v)) return "—";
-  return "$"+Number(v).toLocaleString("en-US",{maximumFractionDigits:0}); }
-function money2(v){ if(v==null||isNaN(v)) return "—";
-  return "$"+Number(v).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); }
-function signed(v){ if(v==null||isNaN(v)) return "—"; return (v>=0?"+":"")+money2(Math.abs(v)*(v<0?-1:1)); }
-function cls(v){ return v>0?"pos":v<0?"neg":""; }
+"use strict";
+/* =========================================================================
+   Everything below reads the same /api/status the panel reads. No numbers
+   are invented here: if a value is missing it shows a dash, never a guess.
+   ========================================================================= */
 
-function render(d){
-  document.getElementById("dot").className="dot on";
-  document.getElementById("stamp").textContent="עודכן "+(d.updated_israel||"");
-  var g=d.gold||{}, ew=d.engine_wallet||{}, sw=d.shadow_wallet||{};
-  var totEq=(g.equity||0)+(ew.equity||0);
-  var totDay=(g.day_pnl||0)+((ew.realized_pnl||0)+(ew.open_pnl||0));
-  document.getElementById("equity").textContent=money(totEq);
-  var dp=document.getElementById("dayp");
-  dp.innerHTML='היום <span class="'+cls(g.day_pnl||0)+'">'+signed(g.day_pnl||0)+'</span> זהב · '+
-    '<span class="'+cls(ew.open_pnl)+'">'+signed(ew.open_pnl)+'</span> פתוח';
-  document.getElementById("gBal").textContent=money2(g.balance);
-  document.getElementById("gAcc").innerHTML='…'+String(g.account||"").slice(-4)+(g.is_demo?' <span class="chip">דמו</span>':'');
-  window.__LIVE = g.account;
-  if(window.__ACC) renderAccounts(window.__ACC, g.account);
-  document.getElementById("gTr").textContent=(g.trades_today!=null?g.trades_today:"—");
-  document.getElementById("gDec").textContent=g.last_decision||g.entry_rule||"—";
-  document.getElementById("sEq").textContent=money2(ew.equity);
-  var sr=document.getElementById("sReal"); sr.textContent=signed(ew.realized_pnl); sr.className=cls(ew.realized_pnl);
-  var so=document.getElementById("sOpen"); so.textContent=signed(ew.open_pnl); so.className=cls(ew.open_pnl);
-  var srt=document.getElementById("sRet"); srt.textContent=(ew.return_pct!=null?(ew.return_pct>=0?"+":"")+ew.return_pct.toFixed(1)+"%":"—"); srt.className=cls(ew.return_pct);
+var POLL_MS = 5000;
+var SOUND = false;
+var lastPot = null;
+var prevGoldTrades = null;
 
-  var P=d.positions||[];
-  document.getElementById("positions").innerHTML = P.length? '<table>'+P.map(function(p){
-    return '<tr><td><b>'+p.symbol+'</b> <span class="chip">'+(p.qty>0?"קנייה":"מכירה")+' '+Math.abs(p.qty)+'</span></td>'+
-      '<td>'+money2(p.mark)+'</td><td class="'+cls(p.unrealized)+'">'+signed(p.unrealized)+'</td></tr>';
-  }).join('')+'</table>' : '<div class="empty">אין פוזיציות פתוחות</div>';
-
-  var F=d.fills_today||[];
-  document.getElementById("fills").innerHTML = F.length? '<table>'+F.map(function(f){
-    var b=f.side==="BOT"||f.side==="BUY";
-    return '<tr><td><b>'+f.symbol+'</b> <span class="'+(b?"buy":"sell")+'">'+(b?"קנה":"מכר")+' '+f.qty+'</span></td>'+
-      '<td>'+money2(f.price)+'</td><td class="'+cls(f.realized)+'">'+signed(f.realized)+'</td></tr>';
-  }).join('')+'</table>' : '<div class="empty">עוד לא נסגרו עסקאות היום</div>';
+var $ = function(id){ return document.getElementById(id); };
+function money(v, dp){
+  if(v===null||v===undefined||isNaN(v)) return "–";
+  dp = (dp===undefined?0:dp);
+  return "$" + Number(v).toLocaleString("en-US",{minimumFractionDigits:dp,maximumFractionDigits:dp});
+}
+function signed(v, dp){
+  if(v===null||v===undefined||isNaN(v)) return "–";
+  dp = (dp===undefined?2:dp);
+  var s = Number(v)>=0 ? "+" : "−";
+  return s + "$" + Math.abs(Number(v)).toLocaleString("en-US",{minimumFractionDigits:dp,maximumFractionDigits:dp});
+}
+/* The gold expert writes its reasons in English. Idan reads Hebrew, and a
+   screen he uses every day should not make him translate. Anything not on
+   this list falls through unchanged rather than being silently swallowed. */
+var SAY_HE = {
+  "no trigger":       "אין עדיין נר פורץ",
+  "no pullback":      "מחכה לפולבק",
+  "max trades":       "הגיע למכסת העסקאות",
+  "spread too wide":  "המרווח רחב מדי",
+  "m15 against h1":   "M15 נגד המגמה השעתית",
+  "atr too high":     "התנודתיות גבוהה מדי",
+  "atr too low":      "התנודתיות נמוכה מדי",
+  "position open":    "כבר בפוזיציה",
+  "cooldown":         "בהפסקת התקררות",
+  "daily loss stop":  "נעצר להיום",
+  "disabled":         "המסחר מכובה",
+  "entry":            "נכנס לעסקה"
+};
+function sayHe(txt){
+  if(!txt) return "ממתין";
+  var s = String(txt);
+  /* the expert prefixes both ways: "skip: reason" and "take: entry" */
+  var body = s.replace(/^(skip|take|enter)\s*:\s*/i, "");
+  var he = SAY_HE[body.trim().toLowerCase()];
+  var pre = /^skip/i.test(s) ? "מדלג — " : (/^(take|enter)/i.test(s) ? "🎲 " : "");
+  return he ? (pre + he) : s;
 }
 
-// account map — the 4-digit tag is the name Idan tracks by
-function renderAccounts(A, live){
-  var host=document.getElementById("accounts");
-  if(!A||!A.accounts){ host.innerHTML='<div class="empty">—</div>'; return; }
-  // NB: `order[role] || 9` would map engine(0) to 9 — 0 is falsy. Use `in`.
-  var order={engine:0,watch:1,copier:2,swing:3,idle:4};
-  var rank=function(r){ return (r in order) ? order[r] : 9; };
-  var list=A.accounts.slice().sort(function(a,b){return rank(a.role)-rank(b.role)});
-  host.innerHTML='<table>'+list.map(function(a){
-    var isLive = live && String(live)===String(a.login);
-    var dot = a.role==="idle" ? "" :
-      '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+a.color+
-      ';margin-inline-end:6px"></span>';
-    return '<tr><td style="width:56px"><b style="color:'+a.color+'">…'+a.tag+'</b></td>'+
-      '<td>'+dot+a.name+(isLive?' <span class="chip" style="background:#1baf7a;color:#04140d">חי</span>':'')+
-      '<div style="font-size:11px;color:var(--mut)">'+a.plan+'</div></td></tr>';
-  }).join('')+'</table>';
+function ago(sec){
+  if(sec===null||sec===undefined) return "–";
+  sec = Math.max(0, Math.round(sec));
+  if(sec < 90) return sec + " שנ׳";
+  if(sec < 5400) return Math.round(sec/60) + " דק׳";
+  return (sec/3600).toFixed(1) + " שע׳";
 }
-fetch("data/accounts.json?t="+Date.now(),{cache:"no-store"})
-  .then(function(r){return r.ok?r.json():null})
-  .then(function(A){ window.__ACC=A; renderAccounts(A, window.__LIVE); })
-  .catch(function(){});
 
-function load(){
-  fetch(RAW+"?t="+Date.now(),{cache:"no-store"})
-    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
-    .then(render)
+/* ---------------------------------------------------------------- sound */
+function ding(kind){
+  if(!SOUND) return;
+  try{
+    var C = window.AudioContext || window.webkitAudioContext;
+    if(!C) return;
+    var ac = new C(), o = ac.createOscillator(), g = ac.createGain();
+    o.connect(g); g.connect(ac.destination);
+    o.type = "triangle";
+    o.frequency.value = kind === "bad" ? 220 : 880;
+    g.gain.setValueAtTime(0.0001, ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.16, ac.currentTime + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.5);
+    o.start(); o.stop(ac.currentTime + 0.52);
+  }catch(e){}
+}
+
+/* --------------------------------------------------------------- lobby */
+function showLobby(msg, checks){
+  $("lobby").classList.add("show");
+  $("lobbyMsg").textContent = msg;
+  var html = "";
+  (checks||[]).forEach(function(c){
+    var icon = c.ok ? "✅" : (c.warn ? "⏳" : "❌");
+    var col  = c.ok ? "var(--good)" : (c.warn ? "var(--warn)" : "var(--bad)");
+    html += '<div><span>'+icon+'</span><span style="color:'+col+'">'+c.label+'</span></div>';
+  });
+  $("checklist").innerHTML = html;
+}
+function hideLobby(){ $("lobby").classList.remove("show"); }
+
+/* ---------------------------------------------------------------- pot */
+function paintChips(el, amount){
+  el.innerHTML = "";
+  var n = Math.min(12, Math.max(0, Math.round(Math.abs(amount||0) / 12)));
+  for(var i=0;i<n;i++){
+    var d = document.createElement("div");
+    d.className = "chip c" + ((i % 5) + 1);
+    d.style.animationDelay = (i * 0.035) + "s";
+    el.appendChild(d);
+  }
+}
+
+/* -------------------------------------------------------------- render */
+function render(s){
+  var eng     = s.engine || {};
+  var gold    = (s.gold && s.gold.status) || {};
+  var goldOk  = !!(s.gold && s.gold.status);
+  var acct    = s.account || {};
+  var jobs    = s.jobs || {};
+  var fresh   = s.fresh || {};
+  var game    = eng.game || {};
+  var agents  = eng.agents || {};
+  var halts   = eng.halts || {};
+  var wallet  = eng.wallet || {};
+
+  /* ---- gate: the table only opens when the room is actually running --- */
+  var checks = [
+    { label:"שרת השליטה",              ok:true },
+    { label:"מנוע האיתותים",           ok:!!(jobs.engine && jobs.engine.running) },
+    { label:"חיבור לאינטראקטיב (TWS)", ok:!!s.tws },
+    { label:"הגשר",                    ok:!!(jobs.bridge && jobs.bridge.running) },
+    { label:"מראת החשבון",             ok:!!(jobs.mirror && jobs.mirror.running) },
+    { label:"מנוע הזהב",               ok:goldOk }
+  ];
+  var core = checks[1].ok && (checks[2].ok || goldOk);
+  if(!core){
+    showLobby("השולחן ייפתח כשהמערכת תפעל. חסר:", checks);
+    return;
+  }
+  hideLobby();
+
+  /* ------------------------------- level ----------------------------- */
+  var lvl = game.level || 0, xp = game.xp || 0;
+  $("lvlNum").textContent = lvl;
+  var into = xp % 500, pct = Math.min(100, (into/500)*100);
+  $("xpFill").style.width = pct + "%";
+  $("xpText").textContent = "XP " + xp.toLocaleString() +
+      (game.streak ? "  ·  🔥 " + game.streak : "");
+
+  /* ------------------------------ equity ----------------------------- */
+  var goldEq  = goldOk ? Number(gold.equity||0) : 0;
+  var stockEq = Number(((acct.shadow_wallet)||{}).equity || 0);
+  $("totalEquity").textContent = money(goldEq + stockEq, 2);
+
+  /* ------------------------------- pot -------------------------------
+     Two separate books, kept separate on purpose:
+       gold   - MetaTrader's own day P&L, the broker's number
+       stocks - the engine's swing + day agents
+     Deriving stocks as (halts.day_pnl - gold) was wrong: halts.day_pnl is
+     the ENGINE's total, and the engine carries its own shadow figure for
+     gold, so subtracting produced a phantom stock loss that never happened. */
+  var goldDay  = goldOk ? Number(gold.day_pnl||0) : 0;
+  var stockDay = Number(((agents.swing||{}).today||{}).pnl || 0) +
+                 Number(((agents.day  ||{}).today||{}).pnl || 0);
+  var pot = goldDay + stockDay;
+  var potEl = $("potAmount");
+  potEl.textContent = signed(pot, 2);
+  potEl.className = "amount " + (pot > 0.005 ? "up" : (pot < -0.005 ? "down" : "flat"));
+  /* open P&L is money still on the table - it is NOT in the pot yet */
+  var openPL = 0;
+  (eng.positions||[]).forEach(function(p){
+    var q = (p.qty_left!==undefined && p.qty_left!==null) ? p.qty_left : p.qty;
+    if(p.last!==undefined && p.last!==null && p.entry!==undefined){
+      openPL += (Number(p.last)-Number(p.entry))*Number(q||0)*(p.side==="short"?-1:1);
+    }
+  });
+  $("potSub").innerHTML =
+      "נסגר היום — זהב " + signed(goldDay,2) + " · מניות " + signed(stockDay,2) +
+      '<br><span style="opacity:.8">על השולחן (פתוח): ' + signed(openPL,2) + "</span>";
+  paintChips($("potChips"), pot);
+  if(lastPot !== null && Math.abs(pot - lastPot) > 0.01) ding(pot > lastPot ? "good" : "bad");
+  lastPot = pot;
+
+  /* -------------------------- community cards ------------------------ */
+  var board = $("board"); board.innerHTML = "";
+  var pos = (eng.positions || []).slice(0, 5);
+  var SUIT = { gold:"♦", swing:"♠", day:"♣" };
+  if(!pos.length){
+    var e = document.createElement("div");
+    e.className = "card empty";
+    e.textContent = "אין פוזיציות פתוחות";
+    board.appendChild(e);
+  } else {
+    pos.forEach(function(p, i){
+      /* No position carries a P&L field - it is derived, the same way the
+         engine derives it: (last - entry) x what is still open, signed by
+         side. Showing 0.00 because a field was missing would be a lie. */
+      var qty  = (p.qty_left !== undefined && p.qty_left !== null) ? p.qty_left : p.qty;
+      var have = (p.last !== undefined && p.last !== null && p.entry !== undefined);
+      var pl   = have ? (Number(p.last) - Number(p.entry)) * Number(qty||0) *
+                        (p.side === "short" ? -1 : 1) : null;
+      var c = document.createElement("div");
+      c.className = "card";
+      c.style.animationDelay = (i*0.07) + "s";
+      c.innerHTML =
+        '<div class="suit">'+(SUIT[p.kind]||"♥")+'</div>'+
+        '<div><div class="tk">'+(p.ticker||"?")+'</div>'+
+        '<div class="kind">'+(p.kind==="gold"?"זהב":p.kind==="swing"?"סווינג":"דיי")+
+        (p.half_done?" · חצי מומש":"")+'</div></div>'+
+        '<div><div class="qty">'+(qty||0)+' יח׳</div>'+
+        '<div class="pl '+((pl||0)>=0?"up":"down")+'">'+
+        (pl===null?"–":signed(pl,2))+'</div></div>';
+      board.appendChild(c);
+    });
+  }
+
+  /* ------------------------------- seats ----------------------------- */
+  var seats = $("seats"); seats.innerHTML = "";
+  var openBy = {};
+  (eng.positions||[]).forEach(function(p){ openBy[p.kind] = (openBy[p.kind]||0)+1; });
+
+  function seatCard(o){
+    var d = document.createElement("div");
+    d.className = "seat" + (o.active?" active":"") + (o.folded?" folded":"") + (o.dealer?" dealer":"");
+    var pills = o.pills.map(function(p){
+      return '<span class="pill '+(p.tone||"")+'">'+p.t+'</span>';
+    }).join("");
+    d.innerHTML =
+      '<div class="seat-head">'+
+        '<div class="avatar">'+o.icon+'</div>'+
+        '<div class="seat-id"><div class="seat-name">'+o.name+'</div>'+
+        '<div class="seat-role">'+o.role+'</div></div>'+
+      '</div>'+
+      '<div class="stack"><span class="lab">'+o.stackLab+'</span>'+
+      '<span class="val gold-type">'+o.stack+'</span></div>'+
+      '<div class="seat-stats">'+pills+'</div>'+
+      '<div class="saying">'+o.say+'</div>';
+    seats.appendChild(d);
+  }
+
+  /* --- gold -------------------------------------------------------- */
+  var gAge = null;
+  if(gold.updated){
+    var m = String(gold.updated).match(/(\d{4})\.(\d{2})\.(\d{2}) (\d{2}):(\d{2}):(\d{2})/);
+    if(m){
+      var gd = new Date(+m[1], +m[2]-1, +m[3], +m[4], +m[5], +m[6]);
+      gAge = (Date.now() - gd.getTime())/1000;
+    }
+  }
+  var gTrades = goldOk ? (gold.trades_today||0) : 0;
+  if(prevGoldTrades !== null && gTrades > prevGoldTrades) ding("good");
+  prevGoldTrades = gTrades;
+
+  seatCard({
+    icon:"💰", name:"סוכן הזהב", role:"XAUUSD · מטה-טריידר · M15",
+    active: !!(gold.position),
+    folded: !goldOk || gold.enabled === false,
+    stackLab:"ערימה", stack: goldOk ? money(gold.equity,2) : "–",
+    pills:[
+      {t:"היום " + signed(goldDay,2), tone: goldDay>0?"up":(goldDay<0?"down":"")},
+      {t:gTrades + " ידיים"},
+      {t:"v" + (gold.params_version||"?")},
+      {t:"מרווח " + (gold.spread_points!==undefined?gold.spread_points:"–")},
+      (gAge!==null && gAge>1800) ? {t:"⚠️ שקט " + ago(gAge), tone:"warn"} : {t:"עודכן " + ago(gAge)}
+    ],
+    say: gold.position
+        ? "🎯 בפוזיציה פתוחה"
+        : ("💭 " + sayHe(gold.last_decision))
+  });
+
+  /* --- swing ------------------------------------------------------- */
+  var sw = agents.swing || {};
+  var swToday = (sw.today||{});
+  seatCard({
+    icon:"📈", name:"סוכן הסווינג", role:"מניות · ימים עד שבועות",
+    active: (openBy.swing||0) > 0,
+    stackLab:"פוזיציות", stack: String(openBy.swing||0),
+    pills:[
+      {t:"היום " + signed(swToday.pnl||0,2), tone:(swToday.pnl||0)>0?"up":((swToday.pnl||0)<0?"down":"")},
+      {t:(swToday.trades||0) + " ידיים"},
+      {t:((eng.signals&&eng.signals.swing)||[]).length + " איתותים"}
+    ],
+    say: (openBy.swing||0) ? "🎯 מחזיק פוזיציה" : "💭 סורק את הרשימה"
+  });
+
+  /* --- day --------------------------------------------------------- */
+  var dy = agents.day || {};
+  var dyToday = (dy.today||{});
+  var mkt = (eng.market||{});
+  seatCard({
+    icon:"⚡", name:"סוכן הדיי-טרייד", role:"מניות · תוך-יומי 🧪",
+    active: (openBy.day||0) > 0,
+    folded: !mkt.open,
+    stackLab:"פוזיציות", stack: String(openBy.day||0),
+    pills:[
+      {t:"היום " + signed(dyToday.pnl||0,2), tone:(dyToday.pnl||0)>0?"up":((dyToday.pnl||0)<0?"down":"")},
+      {t:(dyToday.trades||0) + " ידיים"},
+      mkt.open ? {t:"🔔 השוק פתוח", tone:"up"} : {t:"השוק סגור · " + (mkt.et||"")}
+    ],
+    say: mkt.open ? "🎯 בשולחן" : "💤 ממתין לפעמון (16:30)"
+  });
+
+  /* --- the dealer: the risk guard ---------------------------------- */
+  var gd = agents.guard || {};
+  var halted = halts.daily_stop_hit || halts.weekly_stop_hit || (eng.control||{}).halt;
+  seatCard({
+    icon:"🛡️", name:"שומר הסיכון", role:"הדילר · חותך ידיים גרועות",
+    dealer:true, active: !!halted,
+    stackLab:"נחסמו היום", stack: String((gd.today||{}).blocked || 0),
+    pills:[
+      halts.daily_stop_hit ? {t:"⛔ מעצור יומי", tone:"down"} : {t:"✅ יום פתוח", tone:"up"},
+      halts.weekly_stop_hit ? {t:"⛔ מעצור שבועי", tone:"down"} : {t:"שבוע " + signed(halts.week_pnl||0,2)},
+      (s.arm && s.arm.armed) ? {t:"🔫 חמוש להיום", tone:"up"} : {t:"⚪ לא חמוש", tone:"warn"}
+    ],
+    say: halted ? "⛔ עצרתי את המסחר" : "👁️ צופה בכל יד"
+  });
+
+  /* ------------------------------ hand ------------------------------- */
+  var hand = $("hand"); hand.innerHTML = "";
+  var sigs = [];
+  var sg = eng.signals || {};
+  ["swing","day","gold"].forEach(function(k){
+    (sg[k]||[]).forEach(function(x){ x._k = k; sigs.push(x); });
+  });
+  sigs.sort(function(a,b){ return (b.score||0) - (a.score||0); });
+  if(!sigs.length){
+    hand.innerHTML = '<div class="hcard" style="grid-column:1/-1;text-align:center;color:var(--ink-3)">'+
+                     'אין איתותים ממתינים כרגע</div>';
+  }
+  sigs.slice(0,8).forEach(function(x){
+    var d = document.createElement("div");
+    d.className = "hcard";
+    var rr = x.rr1 !== undefined ? x.rr1 : "–";
+    d.innerHTML =
+      '<div class="top"><span class="tk">'+(x.ticker||"?")+'</span>'+
+      '<span class="score">'+(x.score!==undefined?x.score:"–")+'</span></div>'+
+      '<div class="row"><span>כניסה</span><b>'+(x.entry!==undefined?x.entry:"–")+'</b></div>'+
+      '<div class="row"><span>סטופ</span><b>'+(x.stop!==undefined?Number(x.stop).toFixed(2):"–")+'</b></div>'+
+      '<div class="row"><span>יעד</span><b>'+(x.t1!==undefined?Number(x.t1).toFixed(2):"–")+'</b></div>'+
+      '<div class="row"><span>סיכוי/סיכון</span><b>'+rr+'</b></div>'+
+      '<div class="bar"><span style="width:'+Math.min(100,(x.score||0))+'%"></span></div>';
+    hand.appendChild(d);
+  });
+
+  /* ----------------------------- lights ------------------------------ */
+  var L = [];
+  function light(ok, warn, label){
+    L.push('<span class="light '+(ok?"ok":(warn?"warn":"bad"))+'">'+
+           '<span class="dot"></span>'+label+'</span>');
+  }
+  light(jobs.engine && jobs.engine.running, false, "מנוע");
+  light(s.tws, false, "TWS");
+  light(jobs.bridge && jobs.bridge.running, false, "גשר");
+  var accFresh = (fresh.account||{});
+  light(!accFresh.stale, accFresh.stale, "מראה " + ago(accFresh.age_sec));
+  light(goldOk && !(gAge>1800), gAge>1800, "זהב " + ago(gAge));
+  $("lights").innerHTML = L.join("");
+
+  /* ---- the access guard: which account is this allowed to trade? ------
+     Shown permanently, not tucked in a menu. Somebody running this on a
+     friend's machine should never have to wonder whether it is pointed at
+     real money. */
+  var g = s.guard || {};
+  var mb = $("modeBadge");
+  var M = {
+    owner: ["ok",   "👑 מכונת המפעיל"],
+    live:  ["warn", "🔴 מסחר חי"],
+    demo:  ["ok",   "🎓 דמו"]
+  }[g.mode || "demo"] || ["bad", "🚫 חסום"];
+  mb.className = "light " + M[0];
+  mb.innerHTML = '<span class="dot"></span>' + M[1] +
+                 (g.install_id ? '  <span style="opacity:.65">· ' + g.install_id + '</span>' : "");
+  mb.onclick = function(){ openGuardDrawer(g); };
+
+  /* ----------------------------- alarms ------------------------------ */
+  var problems = [];
+  if(!(jobs.engine && jobs.engine.running)) problems.push("מנוע האיתותים לא רץ — אין מי שיחשב איתותים.");
+  if(!s.tws) problems.push("אין חיבור ל-TWS — המניות לא יכולות להתבצע.");
+  if(!(jobs.bridge && jobs.bridge.running)) problems.push("הגשר לא רץ — פקודות לא נשלחות לאינטראקטיב.");
+  if(accFresh.stale) problems.push("מראת החשבון בת " + ago(accFresh.age_sec) + " — המספרים על המסך אולי ישנים.");
+  if(gAge !== null && gAge > 1800) problems.push("הזהב שותק כבר " + ago(gAge) + " — בדוק שמטה-טריידר פתוח.");
+  if(goldOk && gold.enabled === false) problems.push("מנוע הזהב מכובה (enabled=false).");
+  var fe = (fresh.engine||{});
+  if(fe.stale) problems.push("ספר המנוע לא התעדכן " + ago(fe.age_sec) + ".");
+
+  var al = $("alarm");
+  if(problems.length){
+    al.className = "alarm show";
+    al.innerHTML = "🚨 <span>צריך את תשומת הלב שלך:</span><ul>" +
+        problems.map(function(p){ return "<li>"+p+"</li>"; }).join("") + "</ul>";
+  } else {
+    al.className = "alarm";
+    al.innerHTML = "";
+  }
+
+  $("stamp").textContent = "עודכן " + (s.now||"") + "  ·  מתרענן כל 5 שניות";
+}
+
+/* =========================================================================
+   FEES  -  what the trading actually cost
+   ========================================================================= */
+function renderFees(fees){
+  var box = $("feerow");
+  if(!fees || !fees.engines){
+    box.innerHTML = '<div class="feetile"><div class="lab">עמלות</div>'+
+      '<div class="sub">עוד לא חושבו. הרץ fees_now.bat</div></div>';
+    return;
+  }
+  var NAME = {gold:"🪙 זהב", swing:"📈 סווינג", day:"⚡ דיי", unclassified:"❓ לא מסווג"};
+  var total = 0, html = "";
+  fees.engines.forEach(function(e){ total += Number(e.cost_usd||0); });
+
+  html += '<div class="feetile total"><div class="lab">🔥 סך הכל נשרף</div>'+
+          '<div class="val">'+money(total,2)+'</div>'+
+          '<div class="sub">חושב '+(fees.generated||"—")+'</div></div>';
+
+  fees.engines.forEach(function(e){
+    var n = e.trades !== undefined ? e.trades : e.fills;
+    if(!Number(e.cost_usd||0) && !n) return;          // hide empty engines
+    var per = e.cost_per_trade !== undefined && e.cost_per_trade !== null
+              ? e.cost_per_trade : e.cost_per_fill;
+    var sub = (n||0) + (e.trades!==undefined ? " עסקאות" : " ביצועים");
+    if(per) sub += " · " + money(per,2) + " לאחת";
+    if(e.cost_in_R) sub += "<br>" + e.cost_in_R.toFixed(4) + "R לעסקה";
+    html += '<div class="feetile"><div class="lab">'+(NAME[e.engine]||e.engine)+'</div>'+
+            '<div class="val">'+money(e.cost_usd||0,2)+'</div>'+
+            '<div class="sub">'+sub+'</div></div>';
+  });
+  box.innerHTML = html;
+}
+
+/* =========================================================================
+   THE ACTION FEED  -  every trade and every refusal, each one clickable
+   ========================================================================= */
+var ACTIONS = [];
+var FILTER = "all";
+
+function goldReasonWhy(reason){
+  /* The full sentence behind each refusal. Idan does not read code - if the
+     screen says "no pullback" and stops there, it has explained nothing. */
+  var R = {
+    "no trigger":      ["אין נר פורץ",
+      "המגמה מתאימה והמחיר במקום הנכון, אבל הנר האחרון לא אישר: כדי להיכנס בקנייה הוא חייב להיות ירוק, לסגור מעל הממוצע המהיר, ולסגור גבוה מהנר שלפניו. זו הבדיקה שמונעת כניסה לתוך נר שנופל.",
+      "זו הסיבה הכי שכיחה — כ-51% מכל ההחלטות."],
+    "no pullback":     ["אין פולבק",
+      "המחיר לא חזר מספיק קרוב לממוצע הנע. המנוע קונה תיקונים בתוך מגמה, לא פריצות באוויר, ולכן הוא דורש שהמחיר ייגע בסביבת הממוצע לפני הכניסה.",
+      "ב-7.8 הורחב הסף מ-0.9 ל-1.6 כפול ATR בדיוק בגלל זה — בטרנד חזק המחיר לא חוזר עד לממוצע."],
+    "max trades":      ["הגיע למכסת העסקאות",
+      "המנוע סיים את מכסת העסקאות היומית והפסיק להיכנס.",
+      "המגבלה הוסרה ב-7.8 אחרי שנמדד שהיא חסמה 29 החלטות ביום אחד. אם אתה רואה את זה — משהו החזיר אותה."],
+    "spread too wide": ["המרווח רחב מדי",
+      "הפער בין מחיר הקנייה למכירה גדול מ-10% מהסיכון בעסקה. כניסה כזו מתחילה בהפסד גדול מדי עוד לפני שהשוק זז.",
+      "קורה בעיקר בחידוש המסחר ולקראת סגירת שישי."],
+    "m15 against h1":  ["M15 נגד המגמה השעתית",
+      "הגרף הרבע-שעתי הצביע לכיוון אחד והשעתי לכיוון הפוך, והמנוע דרש ששניהם יסכימו.",
+      "השער הזה נוטרל ב-6.8 (ema_slow ל-600) אחרי שהוא חסם 100% מההחלטות במשך שעות."],
+    "atr too high":    ["התנודתיות גבוהה מדי",
+      "טווח התנועה הממוצע חרג מהתקרה. בתנודתיות כזו הסטופ יוצא רחוק מאוד והעסקה מסוכנת מדי.", ""],
+    "atr too low":     ["התנודתיות נמוכה מדי",
+      "השוק שקט מדי — אין מספיק תנועה כדי לכסות את המרווח ולהגיע ליעד.", ""],
+    "position open":   ["כבר בפוזיציה",
+      "יש עסקה פתוחה על אותו נכס, והמנוע לא מוסיף עליה.", ""],
+    "cooldown":        ["הפסקת התקררות",
+      "שלושה הפסדים ברצף הפעילו הפסקה של 8 נרות. זה המנגנון שמונע מרצף רע להפוך ליום רע.",
+      "נמדד ב-7.8: בלעדיו השפל מעמיק מ-6.89R ל-8.0R. הוא מרוויח את מקומו."],
+    "daily loss stop": ["נעצר להיום", "ההפסד המצטבר היום עבר את הגבול והמסחר נעצר.",
+      "המעצור הזה בוטל ב-7.8 לבקשת עידן."],
+    "entry":           ["נכנס לעסקה", "כל התנאים התקיימו והמנוע פתח פוזיציה.", ""]
+  };
+  var key = String(reason||"").replace(/^skip:\s*/i,"").trim().toLowerCase();
+  return R[key] || [reason||"—", "אין הסבר שמור לסיבה הזו.", ""];
+}
+
+function buildActions(s, detail){
+  var out = [];
+  var eng = s.engine || {};
+
+  /* --- closed trades from the engine's own book (gold + stocks) ------- */
+  (eng.closed||[]).forEach(function(t){
+    out.push({
+      cls: (t.pnl||0) >= 0 ? "win" : "loss",
+      group: "trades",
+      ico: t.kind==="gold" ? "🪙" : (t.kind==="swing" ? "📈" : "⚡"),
+      ttl: (t.ticker||"?") + " · " + (t.reason==="stop" ? "יצא בסטופ" :
+            t.reason==="t1" ? "הגיע ליעד 1" : t.reason==="t2" ? "הגיע ליעד 2" :
+            t.reason==="bell" ? "נסגר בפעמון" : (t.reason||"נסגר")),
+      sub: (t.closed||"").slice(0,16).replace("T"," "),
+      amt: signed(t.pnl,2),
+      amtCls: (t.pnl||0) >= 0 ? "up" : "down",
+      data: t, type: "trade"
+    });
+  });
+
+  /* --- the gold expert's own decisions, including the refusals -------- */
+  ((detail && detail.gold && detail.gold.decisions) || []).forEach(function(d){
+    var act = (d.decision||d["decision"]||"").trim();
+    var reason = (d.reason||"").trim();
+    if(act === "hold") return;                    // not an action, just state
+    var isEntry = act === "take";
+    out.push({
+      cls: isEntry ? "open" : "skip",
+      group: isEntry ? "trades" : "skips",
+      ico: isEntry ? "🎯" : "🚫",
+      ttl: isEntry ? "זהב · נכנס לעסקה" : ("זהב · " + goldReasonWhy(reason)[0]),
+      sub: (d.time||"").slice(11,16) + "  ·  מחיר " + (d.close ? Number(d.close).toFixed(2) : "—"),
+      amt: isEntry ? "כניסה" : "דילוג",
+      amtCls: "mut",
+      data: d, type: "decision"
+    });
+  });
+
+  /* newest first, by whatever timestamp each carries */
+  function stamp(a){
+    if(a.type === "trade") return (a.data.closed||"").replace("T"," ");
+    return (a.data.time||"").replace(/\./g,"-");
+  }
+  out.sort(function(a,b){ return stamp(b).localeCompare(stamp(a)); });
+  return out;
+}
+
+function renderFeed(){
+  var box = $("feed");
+  var list = ACTIONS.filter(function(a){
+    return FILTER === "all" ? true : a.group === FILTER;
+  }).slice(0, 120);
+
+  if(!list.length){
+    box.innerHTML = '<div class="act" style="cursor:default;opacity:.6">'+
+      '<div class="mid"><div class="ttl">אין פעולות להצגה</div></div></div>';
+    return;
+  }
+  box.innerHTML = "";
+  list.forEach(function(a, i){
+    var b = document.createElement("button");
+    b.className = "act " + a.cls;
+    b.setAttribute("aria-label", a.ttl + " — לחץ לפירוט");
+    b.innerHTML =
+      '<span class="ico">'+a.ico+'</span>'+
+      '<span class="mid"><span class="ttl">'+a.ttl+'</span>'+
+      '<span class="sub2">'+a.sub+'</span></span>'+
+      '<span class="amt '+a.amtCls+'">'+a.amt+'</span>'+
+      '<span class="chev">‹</span>';
+    b.addEventListener("click", function(){ openDrawer(a); });
+    box.appendChild(b);
+  });
+}
+
+function renderFilters(){
+  var F = [["all","הכל"],["trades","עסקאות"],["skips","דילוגים"]];
+  $("filterbar").innerHTML = F.map(function(f){
+    return '<button class="fbtn'+(FILTER===f[0]?" on":"")+'" data-f="'+f[0]+'">'+f[1]+'</button>';
+  }).join("");
+  Array.prototype.forEach.call($("filterbar").children, function(b){
+    b.addEventListener("click", function(){
+      FILTER = b.getAttribute("data-f"); renderFilters(); renderFeed();
+    });
+  });
+}
+
+/* --------------------------------------------------------- the drawer */
+function ladderHTML(entry, stop, t1, t2, last, side){
+  entry=Number(entry); stop=Number(stop); t1=Number(t1);
+  t2=(t2!==undefined&&t2!==null&&!isNaN(Number(t2)))?Number(t2):null;
+  if(!isFinite(entry)||!isFinite(stop)||!isFinite(t1)) return "";
+  var pts=[stop,entry,t1]; if(t2!==null) pts.push(t2);
+  if(last!==undefined && last!==null && isFinite(Number(last))) pts.push(Number(last));
+  var lo=Math.min.apply(null,pts), hi=Math.max.apply(null,pts);
+  if(hi===lo) return "";
+  // keep the end labels inside the box: map the range into 8%..92%
+  var P=function(v){ return 8 + ((v-lo)/(hi-lo))*84; };
+  var h='<div class="ladder"><div class="track"></div>'+
+        '<div class="fill" style="right:'+Math.min(P(stop),P(t1))+'%;'+
+        'width:'+Math.abs(P(t1)-P(stop))+'%"></div>';
+  function mk(v,lab){ return '<div class="mk" style="right:'+P(v)+'%"><i></i><b>'+
+                             Number(v).toFixed(2)+'</b>'+lab+'</div>'; }
+  h += mk(stop,"סטופ") + mk(entry,"כניסה") + mk(t1,"יעד 1");
+  if(t2!==null) h += mk(t2,"יעד 2");
+  if(last!==undefined && last!==null && isFinite(Number(last)))
+    h += '<div class="now" style="right:'+P(Number(last))+'%"></div>';
+  return h + "</div>";
+}
+
+function openDrawer(a){
+  var b = $("dBody");
+  if(a.type === "trade"){
+    var t = a.data;
+    var win = (t.pnl||0) >= 0;
+    $("dTitle").textContent = (t.ticker||"?") + " · " +
+        (t.kind==="gold"?"זהב":t.kind==="swing"?"סווינג":"דיי-טרייד");
+    $("dWhen").textContent = "נפתחה " + (t.opened||"").slice(0,16).replace("T"," ") +
+        "   ·   נסגרה " + (t.closed||"").slice(0,16).replace("T"," ") +
+        (t.held_days!==undefined ? "   ·   " + t.held_days + " ימים" : "");
+
+    var REASON = {
+      stop:["🛑 יצא בסטופ","המחיר הגיע לרמת ההגנה שנקבעה מראש והעסקה נסגרה אוטומטית. זו לא תקלה — זו התוכנית עובדת. הסטופ נקבע ברגע הכניסה כדי שההפסד המקסימלי יהיה ידוע מראש."],
+      t1:["🎯 הגיע ליעד הראשון","המחיר הגיע ליעד הרווח הראשון. חצי מהפוזיציה מומשה והסטופ הוזז קדימה, כך שהשאר רץ בלי סיכון להפסד."],
+      t2:["🏆 הגיע ליעד השני","המחיר הגיע ליעד המלא והעסקה נסגרה ברווח מלא."],
+      bell:["🔔 נסגר בפעמון","העסקה הייתה דיי-טרייד ונסגרה עם סגירת השוק, לפי חוק 100/80/20."],
+      be:["⚖️ יצא באיזון","הסטופ כבר הוזז לנקודת הכניסה, אז היציאה הייתה בלי רווח ובלי הפסד."]
+    };
+    var rz = REASON[t.reason] || ["📕 נסגר", "העסקה נסגרה."];
+    if(t.reason === "stop" && (t.pnl||0) > 0){
+      rz = ["🔒 יצא בסטופ נעול ברווח",
+            "הסטופ כבר הוזז קדימה מעל מחיר הכניסה, כך שכשהמחיר חזר אליו העסקה " +
+            "נסגרה ברווח ולא בהפסד. זה בדיוק מה שנעילת הרווח נועדה לעשות: " +
+            "לתת לעסקה לרוץ, ולוודא שאם היא מתהפכת — היא מתהפכת לטובתך."];
+    }
+    if(t.reason === "stop" && (t.pnl||0) === 0){
+      rz = ["⚖️ יצא באיזון", "הסטופ הוזז לנקודת הכניסה, אז היציאה הייתה בלי רווח ובלי הפסד."];
+    }
+    var snap = t.snap || {};
+
+    b.innerHTML =
+      '<div class="dbig"><div class="n '+(win?"up":"down")+'">'+signed(t.pnl,2)+'</div>'+
+      '<div class="r">'+(t.r!==undefined?Number(t.r).toFixed(3)+"R":"")+
+      (t.fees?"   ·   עמלה "+money(t.fees,2):"")+'</div></div>'+
+
+      '<div class="dsec"><h3>'+rz[0]+'</h3><p>'+rz[1]+'</p></div>'+
+
+      '<div class="dsec"><h3>🎯 המטרות שנקבעו בכניסה</h3>'+
+      ladderHTML(t.entry,t.stop,t.t1,t.t2,t.exit,t.side)+
+      '<dl class="kv">'+
+      '<dt>כניסה</dt><dd>'+(t.entry!==undefined?Number(t.entry).toFixed(4):"—")+'</dd>'+
+      '<dt>סטופ</dt><dd>'+(t.stop!==undefined?Number(t.stop).toFixed(4):"—")+'</dd>'+
+      '<dt>יעד 1</dt><dd>'+(t.t1!==undefined?Number(t.t1).toFixed(4):"—")+'</dd>'+
+      '<dt>יעד 2</dt><dd>'+(t.t2!==undefined?Number(t.t2).toFixed(4):"—")+'</dd>'+
+      '<dt>יצא ב־</dt><dd>'+(t.exit!==undefined?Number(t.exit).toFixed(4):"—")+'</dd>'+
+      '<dt>כמות</dt><dd>'+(t.qty!==undefined?t.qty:"—")+'</dd>'+
+      '</dl></div>'+
+
+      '<div class="dsec"><h3>🔍 למה המנוע נכנס</h3>'+
+      '<p>'+(t.pattern ? "התבנית שזוהתה: <b>"+t.pattern+"</b>. " : "")+
+      'המנוע נכנס רק כשהמגמה, המיקום ביחס לממוצע הנע, והנר האחרון מסכימים על אותו כיוון.</p>'+
+      '<div class="tagrow">'+
+      (snap.score!==undefined?'<span class="tag">ציון '+snap.score+'</span>':"")+
+      (snap.rsi!==undefined&&snap.rsi!==null?'<span class="tag">RSI '+snap.rsi+'</span>':"")+
+      (snap.rvol!==undefined&&snap.rvol!==null?'<span class="tag">מחזור יחסי '+snap.rvol+'</span>':"")+
+      (snap.stop_pct!==undefined?'<span class="tag">סטופ '+snap.stop_pct+'%</span>':"")+
+      (snap.notional!==undefined?'<span class="tag">שווי '+money(snap.notional,0)+'</span>':"")+
+      (snap.regime_ok!==undefined?'<span class="tag '+(snap.regime_ok?"good":"bad")+'">'+
+        (snap.regime_ok?"✅ השוק תמך":"⚠️ השוק לא תמך")+'</span>':"")+
+      (t.followed_rules!==undefined?'<span class="tag '+(t.followed_rules?"good":"bad")+'">'+
+        (t.followed_rules?"✅ לפי הכללים":"⚠️ חריגה מהכללים")+'</span>':"")+
+      '</div></div>';
+
+  } else {
+    var d = a.data;
+    var isEntry = (d.decision||"").trim() === "take";
+    var why = goldReasonWhy(d.reason);
+    $("dTitle").textContent = isEntry ? "זהב · נכנס לעסקה" : ("זהב · " + why[0]);
+    $("dWhen").textContent = (d.time||"—") + "   ·   XAUUSD M15";
+
+    var f = function(k,dp){ var v=d[k]; return (v===undefined||v===""||v===null)?"—":Number(v).toFixed(dp===undefined?2:dp); };
+    b.innerHTML =
+      '<div class="dbig"><div class="n mut">'+f("close")+'</div>'+
+      '<div class="r">מחיר בסגירת הנר  ·  '+
+      (d.equity?"יתרה "+money(d.equity,2):"")+'</div></div>'+
+
+      '<div class="dsec"><h3>'+(isEntry?"🎯 למה הוא נכנס":"🚫 למה הוא לא נכנס")+'</h3>'+
+      '<p>'+why[1]+'</p>'+(why[2]?'<p style="margin-top:9px;color:var(--ink-3);font-size:12.5px">📌 '+why[2]+'</p>':"")+'</div>'+
+
+      '<div class="dsec"><h3>📊 מה היה נכון באותו רגע</h3><dl class="kv">'+
+      '<dt>ממוצע מהיר (20)</dt><dd>'+f("ema_f")+'</dd>'+
+      '<dt>ממוצע איטי</dt><dd>'+f("ema_s")+'</dd>'+
+      '<dt>תנודתיות (ATR)</dt><dd>'+f("atr_pts",1)+' נק׳</dd>'+
+      '<dt>RSI</dt><dd>'+f("rsi",1)+'</dd>'+
+      '<dt>עוצמת מגמה (ADX)</dt><dd>'+f("adx",1)+'</dd>'+
+      '<dt>H1 מהיר / איטי</dt><dd>'+f("h1_fast")+' / '+f("h1_slow")+'</dd>'+
+      '<dt>מרווח</dt><dd>'+f("spread_pts",0)+' נק׳</dd>'+
+      '<dt>כיוון</dt><dd>'+(String(d.dir)==="1"?"קנייה ▲":String(d.dir)==="-1"?"מכירה ▼":"—")+'</dd>'+
+      '<dt>שעה</dt><dd>'+(d.hour!==undefined?d.hour+":00":"—")+'</dd>'+
+      '<dt>יתרה אז</dt><dd>'+(d.equity?money(d.equity,2):"—")+'</dd>'+
+      '</dl></div>'+
+
+      '<div class="dsec"><h3>🧭 איך לקרוא את זה</h3>'+
+      '<p>ADX מעל 25 = מגמה חזקה, מתחת ל-20 = דשדוש. RSI מעל 70 = קניות יתר. '+
+      'כשהמחיר רחוק מהממוצע המהיר, המנוע נזהר מלרדוף אחרי תנועה שכבר קרתה.</p></div>';
+  }
+
+  $("scrim").classList.add("show");
+  $("drawer").classList.add("show");
+  $("dClose").focus();
+}
+function openGuardDrawer(g){
+  $("dTitle").textContent = "הרשאת המסחר";
+  $("dWhen").textContent = "מזהה ההתקנה: " + (g.install_id || "—");
+  var MODE = {
+    owner: ["👑","מכונת המפעיל","זו ההתקנה של עידן. היא לא תלויה ברשימת ההרשאות המפורסמת ולא ברשת — כדי שתקלה באינטרנט לא תשבית אותה."],
+    live:  ["🔴","מסחר חי","ההתקנה הזו אושרה למסחר בכסף אמיתי. האישור נבדק מחדש בכל מחזור, ואפשר לבטל אותו בכל רגע."],
+    demo:  ["🎓","דמו בלבד","ההתקנה תסחר אך ורק על חשבון דמו או חשבון נייר. כדי לעבור לכסף אמיתי צריך אישור מפורש."],
+    blocked:["🚫","חסום","המערכת לא מצליחה לוודא שהחשבון המחובר הוא דמו, ולכן היא לא סוחרת בכלל."]
+  }[g.mode || "demo"] || ["🚫","חסום",""];
+  var rows = (g.checks||[]).map(function(c){
+    return '<div class="item-chk" style="display:flex;gap:9px;align-items:flex-start;padding:8px 0;'+
+      'border-bottom:1px solid rgba(255,255,255,.07)">'+
+      '<span style="flex:0 0 20px">'+(c.ok?"✅":"❌")+'</span>'+
+      '<span style="flex:1"><b style="font-size:13px">'+c.label+'</b>'+
+      (c.detail?'<div style="font-size:11.5px;color:var(--ink-3);margin-top:2px">'+c.detail+'</div>':"")+
+      '</span></div>';
+  }).join("") || '<p style="color:var(--ink-3);font-size:13px">אין בדיקות לדווח.</p>';
+
+  $("dBody").innerHTML =
+    '<div class="dbig"><div class="n mut" style="font-size:30px">'+MODE[0]+' '+MODE[1]+'</div>'+
+    '<div class="r">'+(g.install_id||"—")+'</div></div>'+
+    '<div class="dsec"><h3>מה זה אומר</h3><p>'+MODE[2]+'</p></div>'+
+    '<div class="dsec"><h3>הבדיקות</h3>'+rows+'</div>'+
+    '<div class="dsec"><h3>🔒 מה אף פעם לא יוצא מהמחשב הזה</h3>'+
+    '<p>שם המשתמש והסיסמה של הברוקר, מספר החשבון, היתרה, הפוזיציות והעסקאות — '+
+    'כל אלה נשארים כאן. הבקשה היחידה שיוצאת החוצה היא קריאה של קובץ טקסט ציבורי '+
+    'אחד שאומר מי מאושר. המזהה שלמעלה נוצר אקראית ולא מקושר לשום דבר.</p></div>';
+  $("scrim").classList.add("show");
+  $("drawer").classList.add("show");
+  $("dClose").focus();
+}
+
+function closeDrawer(){
+  $("scrim").classList.remove("show");
+  $("drawer").classList.remove("show");
+}
+
+/* ------------------------------------------------------------- history */
+var HIST = [];
+function drawSpark(){
+  var cv = $("spark");
+  if(!cv) return;
+  var dpr = window.devicePixelRatio || 1;
+  var w = cv.clientWidth, h = 132;
+  cv.width = w*dpr; cv.height = h*dpr;
+  var x = cv.getContext("2d");
+  x.setTransform(dpr,0,0,dpr,0,0);
+  x.clearRect(0,0,w,h);
+  if(HIST.length < 2){
+    x.fillStyle = "#a89b78"; x.font = "12px system-ui"; x.textAlign = "center";
+    x.fillText("אוסף נתונים…", w/2, h/2);
+    return;
+  }
+  var pad = {t:12,r:10,b:18,l:10};
+  var vals = HIST.map(function(p){ return p.v; });
+  var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+  if(hi === lo){ hi = lo + 1; }
+  var PW = w - pad.l - pad.r, PH = h - pad.t - pad.b;
+  var X = function(i){ return pad.l + (i/(HIST.length-1))*PW; };
+  var Y = function(v){ return pad.t + (1-(v-lo)/(hi-lo))*PH; };
+
+  /* recessive grid */
+  x.strokeStyle = "rgba(255,255,255,.07)"; x.lineWidth = 1;
+  for(var g=0; g<=3; g++){
+    var yy = pad.t + (g/3)*PH;
+    x.beginPath(); x.moveTo(pad.l,yy); x.lineTo(w-pad.r,yy); x.stroke();
+  }
+  /* area */
+  var grad = x.createLinearGradient(0,pad.t,0,h-pad.b);
+  grad.addColorStop(0,"rgba(246,216,120,.28)");
+  grad.addColorStop(1,"rgba(246,216,120,0)");
+  x.beginPath(); x.moveTo(X(0), h-pad.b);
+  HIST.forEach(function(p,i){ x.lineTo(X(i), Y(p.v)); });
+  x.lineTo(X(HIST.length-1), h-pad.b); x.closePath();
+  x.fillStyle = grad; x.fill();
+  /* the line - 2px, single series, no legend needed */
+  x.beginPath();
+  HIST.forEach(function(p,i){ i ? x.lineTo(X(i),Y(p.v)) : x.moveTo(X(i),Y(p.v)); });
+  x.strokeStyle = "#f6d878"; x.lineWidth = 2; x.lineJoin = "round"; x.stroke();
+  /* end marker */
+  var last = HIST[HIST.length-1];
+  x.beginPath(); x.arc(X(HIST.length-1), Y(last.v), 4.5, 0, Math.PI*2);
+  x.fillStyle = "#f6d878"; x.fill();
+  x.strokeStyle = "#0a1a22"; x.lineWidth = 2; x.stroke();
+  /* endpoints labelled, never every point */
+  x.fillStyle = "#a89b78"; x.font = "10px system-ui";
+  x.textAlign = "right"; x.fillText(money(hi,0), w-pad.r, pad.t-2);
+  x.textAlign = "left";  x.fillText(money(lo,0), pad.l, h-4);
+
+  cv._geo = {X:X, Y:Y, pad:pad, w:w, h:h};
+}
+
+function hookSpark(){
+  var cv = $("spark"), tip = $("tip");
+  function move(ev){
+    if(!cv._geo || HIST.length < 2){ tip.style.display="none"; return; }
+    var r = cv.getBoundingClientRect();
+    var rel = (ev.clientX - r.left - cv._geo.pad.l) /
+              (cv._geo.w - cv._geo.pad.l - cv._geo.pad.r);
+    var i = Math.round(Math.max(0, Math.min(1, rel)) * (HIST.length-1));
+    var p = HIST[i];
+    if(!p){ tip.style.display="none"; return; }
+    tip.style.display = "block";
+    tip.style.left = (ev.clientX + 12) + "px";
+    tip.style.top  = (ev.clientY - 34) + "px";
+    tip.innerHTML = money(p.v,2) + "<br><span style='color:#a89b78;font-weight:600'>" + p.t + "</span>";
+    drawSpark();
+    var x = cv.getContext("2d");
+    x.beginPath();
+    x.moveTo(cv._geo.X(i), cv._geo.pad.t);
+    x.lineTo(cv._geo.X(i), cv._geo.h - cv._geo.pad.b);
+    x.strokeStyle = "rgba(255,255,255,.32)"; x.lineWidth = 1; x.stroke();
+    x.beginPath(); x.arc(cv._geo.X(i), cv._geo.Y(p.v), 5.5, 0, Math.PI*2);
+    x.fillStyle = "#fff"; x.fill();
+  }
+  cv.addEventListener("mousemove", move);
+  cv.addEventListener("mouseleave", function(){ tip.style.display="none"; drawSpark(); });
+}
+
+function loadHistory(){
+  fetch("/api/history", {cache:"no-store"}).then(function(r){ return r.json(); })
+  .then(function(j){
+    var rows = (j && j.rows) || [];
+    HIST = rows.map(function(r){
+      var v = (Number(r.gold)||0) + (Number(r.stocks)||0);
+      return { v:v, t:(r.t||"").replace("T"," ").slice(5,16) };
+    }).filter(function(p){ return p.v > 0; });
+    if(HIST.length > 400) HIST = HIST.slice(-400);
+    drawSpark();
+  }).catch(function(){});
+}
+
+/* ---------------------------------------------------------------- poll */
+var LAST_STATUS = null;
+function tick(){
+  /* מהטלפון אין שרת מקומי - קוראים את הקובץ שהמחשב מפרסם ל-GitHub.
+     נוסף 14.8.2026: בלי זה המסך בטלפון נתקע על "מתחבר..." לנצח. */
+  if(location.hostname!=="127.0.0.1" && location.hostname!=="localhost" && location.protocol!=="file:"){
+    return fetch("https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json?t="+Date.now(),
+                 {cache:"no-store"})
+      .then(function(r){ if(!r.ok) throw new Error("http "+r.status); return r.json(); })
+      .then(function(P){
+        var s = { now:P.updated_israel, gold:P.gold, phone_mode:true,
+                  account:{ positions:P.positions||[], shadow_wallet:P.shadow_wallet,
+                            updated_israel:P.updated_israel },
+                  engine:{ wallet:P.engine_wallet, signals:{ swing:P.signals_swing||[],
+                           day:P.signals_day||[] }, game:P.game, health:P.health },
+                  totals:{}, jobs:{}, fresh:{}, arm:{} };
+        LAST_STATUS = s;
+        try{ render(s); }catch(e){ console.error(e); }
+      })
+      .catch(function(){
+        showLobby("אין נתונים מהמחשב. ודא שהמחשב דלוק והמערכת רצה.", [
+          {label:"המחשב מפרסם כל דקה — נסה שוב בעוד רגע", warn:true}
+        ]);
+      });
+  }
+  fetch("/api/status", {cache:"no-store"})
+    .then(function(r){ if(!r.ok) throw new Error("http "+r.status); return r.json(); })
+    .then(function(s){
+      LAST_STATUS = s;
+      try{ render(s); }catch(e){ console.error(e); }
+      try{ ACTIONS = buildActions(s, DETAIL); renderFeed(); }catch(e){ console.error(e); }
+    })
     .catch(function(){
-      // off-Pages fallback (e.g. opened as a local file)
-      fetch(RAW_FALLBACK+"?t="+Date.now(),{cache:"no-store"})
-        .then(function(r){ if(!r.ok) throw 0; return r.json(); })
-        .then(render)
-        .catch(function(){
-          document.getElementById("dot").className="dot off";
-          document.getElementById("stamp").textContent="ממתין לנתונים…";
-        });
+      /* Opened by double-clicking the file instead of through the server.
+         The browser blocks a file:// page from reading 127.0.0.1, so the
+         generic "no connection" message sends you hunting for a fault that
+         is not there. Say what actually happened instead. */
+      if(location.protocol === "file:"){
+        showLobby("פתחת את הקובץ ישירות — ככה הדפדפן חוסם את הנתונים.", [
+          {label:"סגור את החלון הזה",                       ok:true},
+          {label:"לחץ פעמיים על game.bat בתיקיית IdanTrader", warn:true},
+          {label:"(או פתח בדפדפן: 127.0.0.1:8777/game)",      warn:true}
+        ]);
+        return;
+      }
+      showLobby("אין חיבור לשרת השליטה. הפעל את המערכת ונסה שוב.", [
+        {label:"שרת השליטה (פורט " + (location.port||"8777") + ")", ok:false},
+        {label:"נסה: restart.bat", warn:true}
+      ]);
     });
 }
-load(); setInterval(load, 30000);
+
+/* ------------------------------------------------------------ detail */
+var DETAIL = null;
+function loadDetail(){
+  fetch("/api/detail", {cache:"no-store"}).then(function(r){ return r.json(); })
+  .then(function(j){
+    DETAIL = j;
+    renderFees(j.fees);
+    if(LAST_STATUS){ ACTIONS = buildActions(LAST_STATUS, DETAIL); renderFeed(); }
+  }).catch(function(){});
+}
+
+$("dClose").addEventListener("click", closeDrawer);
+$("scrim").addEventListener("click", closeDrawer);
+document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeDrawer(); });
+
+$("btnRefresh").addEventListener("click", function(){ tick(); loadHistory(); loadDetail(); });
+$("btnSound").addEventListener("click", function(){
+  SOUND = !SOUND;
+  this.textContent = SOUND ? "🔔 צליל: פועל" : "🔔 צליל: כבוי";
+  if(SOUND) ding("good");
+});
+window.addEventListener("resize", drawSpark);
+
+hookSpark();
+renderFilters();
+tick(); loadHistory(); loadDetail();
+setInterval(tick, POLL_MS);
+setInterval(loadHistory, 60000);
+setInterval(loadDetail, 30000);
+</script>
+
+<!-- ============ הכפתור שמדליק ומוודא הכל (13.8.2026) ============ -->
+<div id="wakeupBox" style="position:fixed;left:14px;bottom:14px;z-index:9999;font-family:inherit;direction:rtl">
+  <button id="wakeupBtn" onclick="idanWakeup()" style="background:linear-gradient(180deg,#1baf7a,#0e7a54);color:#fff;border:2px solid #23d494;border-radius:14px;padding:14px 22px;font-size:20px;font-weight:bold;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.45)">
+    🔌 הדלק ובדוק הכל
+  </button>
+  <div id="wakeupLog" style="display:none;margin-top:8px;max-width:340px;max-height:200px;overflow:auto;background:#0d1b2a;color:#9fd8bb;border:1px solid #23d494;border-radius:10px;padding:10px;font-size:13px;white-space:pre-wrap;text-align:right"></div>
+</div>
+<script>
+function idanWakeup(){
+  var b=document.getElementById('wakeupBtn'),lg=document.getElementById('wakeupLog');
+  b.disabled=true;b.textContent='⏳ מדליק ובודק...';lg.style.display='block';lg.textContent='השומר יצא לדרך...';
+  fetch('/api/wakeup',{method:'POST'}).then(function(r){return r.json();}).then(function(j){
+    lg.textContent=(j.msg||'')+'\n';
+    var tries=0;
+    var t=setInterval(function(){
+      tries++;
+      fetch('/api/log/watchdog',{cache:'no-store'}).then(function(r){return r.text();}).then(function(txt){
+        var lines=txt.trim().split('\n');lg.textContent=lines.slice(-8).join('\n');
+        var last=lines[lines.length-1]||'';
+        if(last.indexOf('ok - ')>-1){b.textContent='✅ הכל חי';b.style.background='#0e7a54';clearInterval(t);setTimeout(function(){b.disabled=false;b.textContent='🔌 הדלק ובדוק הכל';},15000);}
+      });
+      if(tries>30){clearInterval(t);b.disabled=false;b.textContent='🔌 הדלק ובדוק הכל';}
+    },5000);
+  }).catch(function(e){lg.textContent='שגיאה: '+e;b.disabled=false;b.textContent='🔌 הדלק ובדוק הכל';});
+}
+// הכפתור מוצג רק כשהדף רץ מהמחשב עצמו (בטלפון אין דרך להדליק את המחשב)
+if(location.hostname!=='127.0.0.1'&&location.hostname!=='localhost'){document.getElementById('wakeupBox').style.display='none';}
+</script>
+
+<!-- ======== השולחן החי: הקלפים = העסקאות הפתוחות (14.8.2026) ======== -->
+<style>
+#liveTable{margin:18px auto;max-width:1100px;direction:rtl;font-family:inherit}
+#liveTable h2{font-size:26px;margin:0 0 4px;color:#f5c542;letter-spacing:.5px}
+#liveSub{font-size:15px;color:#8fb3d9;margin-bottom:12px}
+#liveCards{display:flex;flex-wrap:wrap;gap:12px}
+.lcard{position:relative;min-width:180px;flex:1 1 180px;max-width:250px;border-radius:16px;
+  padding:14px 14px 12px;background:linear-gradient(160deg,#16283d,#0d1b2a);
+  border:2px solid #24405e;box-shadow:0 6px 18px rgba(0,0,0,.45);animation:lcIn .35s ease}
+@keyframes lcIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.lcard.buy{border-color:#1baf7a}.lcard.sell{border-color:#e0574f}
+.lcard .lcTop{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#8fb3d9}
+.lcard .lcSide{font-weight:bold;font-size:17px}
+.lcard.buy .lcSide{color:#23d494}.lcard.sell .lcSide{color:#ff8078}
+.lcard .lcSym{font-size:21px;font-weight:bold;color:#fff;margin:6px 0 2px}
+.lcard .lcVol{font-size:14px;color:#a8c4e0}
+.lcard .lcPnl{font-size:27px;font-weight:bold;margin-top:8px;letter-spacing:.5px}
+.lcPnl.up{color:#23d494}.lcPnl.dn{color:#ff8078}.lcPnl.flat{color:#c9d8e8}
+.lcard .lcRow{display:flex;justify-content:space-between;font-size:13px;color:#8fb3d9;margin-top:6px}
+.lcard .lcTag{position:absolute;top:-11px;right:12px;font-size:12px;font-weight:bold;
+  padding:2px 10px;border-radius:9px;background:#24405e;color:#cfe3f7}
+.lcard.mine .lcTag{background:#2a78d6;color:#fff}
+.lcard.copy .lcTag{background:#1baf7a;color:#fff}
+.lcard.stock .lcTag{background:#4a3aa7;color:#fff}
+#liveEmpty{padding:22px;text-align:center;color:#8fb3d9;font-size:18px;
+  border:2px dashed #24405e;border-radius:16px}
+#liveDot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#23d494;
+  margin-left:6px;animation:lcPulse 1.6s infinite}
+@keyframes lcPulse{0%,100%{opacity:1}50%{opacity:.25}}
+</style>
+<div id="liveTable">
+  <h2><span id="liveDot"></span>השולחן החי — העסקאות הפתוחות שלי</h2>
+  <div id="liveSub">טוען…</div>
+  <div id="liveCards"></div>
+</div>
+<script>
+function lcMoney(v){ var s=(v<0?"-":"+")+"$"+Math.abs(v).toFixed(2); return s; }
+function lcCls(v){ return v>0.004?"up":(v<-0.004?"dn":"flat"); }
+
+function renderLive(P){
+  var box=document.getElementById("liveCards"), sub=document.getElementById("liveSub");
+  if(!box) return;
+  var cards=[], total=0, n=0;
+
+  // 1) בוט הזהב שלי
+  var g=(P&&P.gold)||{};
+  if(g.position){
+    var q=g.position, pnl=(+q.pnl||0); total+=pnl; n++;
+    var side=(q.side||"").toUpperCase()==="BUY"?"buy":"sell";
+    cards.push('<div class="lcard mine '+side+'"><div class="lcTag">בוט הזהב שלי</div>'+
+      '<div class="lcTop"><span class="lcSide">'+(side==="buy"?"קנייה ▲":"מכירה ▼")+'</span><span>'+(q.tp1_done?"TP1 ✓":"")+'</span></div>'+
+      '<div class="lcSym">'+(g.symbol||"XAUUSD")+'</div>'+
+      '<div class="lcVol">'+(+q.volume).toFixed(2)+' לוט</div>'+
+      '<div class="lcPnl '+lcCls(pnl)+'">'+lcMoney(pnl)+'</div>'+
+      '<div class="lcRow"><span>כניסה</span><b>'+(+q.entry).toFixed(2)+'</b></div>'+
+      '<div class="lcRow"><span>מחיר עכשיו</span><b>'+(+q.price).toFixed(2)+'</b></div>'+
+      '<div class="lcRow"><span>סטופ</span><b>'+(+q.sl).toFixed(2)+'</b></div>'+
+      '<div class="lcRow"><span>יעד</span><b>'+(+q.tp).toFixed(2)+'</b></div></div>');
+  }
+
+  // 2) המעתיק — רגלי הסולם (מועתקות 1:1 מהמורה)
+  var C=(P&&P.copier)||{};
+  (C.legs||[]).forEach(function(L,i){
+    n++;
+    var side=(L.side||"").toLowerCase()==="buy"?"buy":"sell";
+    cards.push('<div class="lcard copy '+side+'"><div class="lcTag">מעתיק · רגל '+(i+1)+'</div>'+
+      '<div class="lcTop"><span class="lcSide">'+(side==="buy"?"קנייה ▲":"מכירה ▼")+'</span></div>'+
+      '<div class="lcSym">'+(L.symbol||"XAUUSD")+'</div>'+
+      '<div class="lcVol">'+(+L.volume).toFixed(2)+' לוט</div>'+
+      '<div class="lcPnl flat">'+(+L.entry).toFixed(2)+'</div>'+
+      '<div class="lcRow"><span>מחיר כניסה</span><b>'+(+L.entry).toFixed(2)+'</b></div></div>');
+  });
+
+  // 3) מניות (IBKR)
+  ((P&&P.positions)||[]).forEach(function(s){
+    var u=(+s.unrealized||0); total+=u; n++;
+    var side=(+s.qty)>=0?"buy":"sell";
+    cards.push('<div class="lcard stock '+side+'"><div class="lcTag">בוט המניות</div>'+
+      '<div class="lcTop"><span class="lcSide">'+(side==="buy"?"קנייה ▲":"מכירה ▼")+'</span></div>'+
+      '<div class="lcSym">'+(s.symbol||"")+'</div>'+
+      '<div class="lcVol">'+Math.abs(+s.qty)+' מניות</div>'+
+      '<div class="lcPnl '+lcCls(u)+'">'+lcMoney(u)+'</div>'+
+      '<div class="lcRow"><span>עלות</span><b>'+(+s.avg_cost).toFixed(2)+'</b></div>'+
+      '<div class="lcRow"><span>מחיר עכשיו</span><b>'+(+s.mark).toFixed(2)+'</b></div></div>');
+  });
+
+  if(!cards.length){
+    box.innerHTML='<div id="liveEmpty">🃏 אין כרגע עסקאות פתוחות — הבוטים סורקים ומחכים להזדמנות.</div>';
+    sub.textContent='עודכן '+((P&&P.updated_israel)||new Date().toLocaleTimeString('he-IL'))+' · אין קלפים על השולחן';
+  } else {
+    box.innerHTML=cards.join("");
+    sub.innerHTML=n+' קלפים על השולחן · רווח/הפסד פתוח: <b class="'+lcCls(total)+'" style="font-size:19px">'+lcMoney(total)+'</b> · עודכן '+((P&&P.updated_israel)||new Date().toLocaleTimeString('he-IL'));
+  }
+}
+
+/* ---- מקור הנתונים: מקומי = השרת, מהטלפון = הקובץ שפורסם ל-GitHub ---- */
+var LIVE_LOCAL = (location.hostname==="127.0.0.1"||location.hostname==="localhost");
+var PHONE_URL  = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
+function liveTick(){
+  if(LIVE_LOCAL){
+    fetch("/api/status",{cache:"no-store"}).then(function(r){return r.json();})
+      .then(function(s){ renderLive({gold:s.gold, copier:(s.gold||{}).copier,
+                                     positions:((s.account||{}).positions)||[],
+                                     updated_israel:(s.account||{}).updated_israel}); })
+      .catch(function(){ fetch(PHONE_URL,{cache:"no-store"}).then(function(r){return r.json();}).then(renderLive).catch(function(){}); });
+  } else {
+    fetch(PHONE_URL+"?t="+Date.now(),{cache:"no-store"})
+      .then(function(r){return r.json();}).then(renderLive)
+      .catch(function(){ document.getElementById("liveSub").textContent="אין חיבור לנתונים — המחשב כבוי?"; });
+  }
+}
+liveTick();
+setInterval(liveTick, 5000);
 </script>
 </body>
 </html>
