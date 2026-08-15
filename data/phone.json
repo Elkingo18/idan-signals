@@ -1,7 +1,7 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-15T04:45:09.238482+00:00",
- "updated_israel": "2026-08-15 07:45",
+ "updated_utc": "2026-08-15T21:36:00.770978+00:00",
+ "updated_israel": "2026-08-16 00:36",
  "gold": {
   "schema": 1,
   "code_version": 8,
@@ -34,7 +34,40 @@
   "legs": [],
   "equity": 195253.79,
   "stamp": "2026.08.14 23:56:59",
-  "age_sec": 0.0
+  "age_sec": 0.8
+ },
+ "fees": {
+  "rate_atrade_per_oz": 0.37,
+  "rate_demo_per_oz": 0.285,
+  "rows": [
+   {
+    "name": "בוט הזהב",
+    "lots": 0.0,
+    "gross": 0.0,
+    "demo_fee": 0.0,
+    "atrade_fee": 0.0,
+    "net_atrade": 0.0,
+    "net_demo": 0.0
+   },
+   {
+    "name": "המעתיק",
+    "lots": 0.0,
+    "gross": 0.0,
+    "demo_fee": 0.0,
+    "atrade_fee": 0.0,
+    "net_atrade": 0.0,
+    "net_demo": 0.0
+   }
+  ],
+  "total": {
+   "name": "סה\"כ",
+   "lots": 0.0,
+   "gross": 0.0,
+   "demo_fee": 0.0,
+   "atrade_fee": 0.0,
+   "net_atrade": 0.0,
+   "net_demo": 0.0
+  }
  },
  "shadow_wallet": {
   "name": "UHTA",
@@ -61,13 +94,13 @@
  "fills_today": [],
  "engine_wallet": {
   "start": 1000.0,
-  "cash": 781.107772615892,
-  "equity": 1130.71,
+  "cash": 386.17472261589205,
+  "equity": 1130.44,
   "realized_pnl": 135.95,
-  "open_pnl": 0.23,
+  "open_pnl": -0.04,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.07,
+  "return_pct": 13.04,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -85,9 +118,9 @@
    "rsi": 63.1,
    "rvol": 0.51,
    "score": 78,
-   "shares": 22,
-   "notional": 390.61,
-   "risk_dollars": 24.77,
+   "shares": 14,
+   "notional": 248.57,
+   "risk_dollars": 15.76,
    "room": 22.02,
    "above_ma50_pct": 14.9,
    "news": [
@@ -134,9 +167,9 @@
    "rsi": 64.1,
    "rvol": 0.83,
    "score": 57,
-   "shares": 9,
-   "notional": 359.19,
-   "risk_dollars": 39.34,
+   "shares": 6,
+   "notional": 239.46,
+   "risk_dollars": 26.23,
    "room": 55.975,
    "above_ma50_pct": 21.99,
    "news": [
@@ -276,12 +309,12 @@
    }
   ],
   "boss": {
-   "day": "2026-08-15",
+   "day": "2026-08-16",
    "name": "👹 בוס היום",
-   "target": 90.46,
-   "legend": 226.14,
+   "target": 90.44,
+   "legend": 226.09,
    "done": 0.0,
-   "base": 1130.71,
+   "base": 1130.44,
    "pct": 0,
    "pct_legend": 0,
    "beaten": false,
@@ -309,7 +342,11 @@
   }
  },
  "gold_today": {
-  "date": "2026-08-14",
-  "count": 8
- }
+  "date": "2026-08-15",
+  "count": 1
+ },
+ "tws_connected": false,
+ "stocks_stale": true,
+ "stocks_as_of": "2026-08-15 07:45",
+ "published_by": "publish_phone.py"
 }
