@@ -1665,8 +1665,10 @@ function renderFees2(F){
     '<td class="feeCost">-$'+Math.abs(t.atrade_fee||0).toFixed(2)+'</td>'+
     '<td class="'+fCls(t.net_atrade)+' feeBig">'+fMoney(t.net_atrade||0,true)+'</td></tr>';
   body.innerHTML=html;
-  sub.innerHTML='מחושב לפי המחירון של <b>ATRADE</b>: ‎$'+(F.rate_atrade_per_oz||0.37)+
-    '‎ לאונקיה = ‎$'+((F.rate_atrade_per_oz||0.37)*100).toFixed(0)+'‎ ללוט · עסקאות שנסגרו היום';
+  var when = F.is_today ? 'היום' : ('יום המסחר האחרון — '+(F.day||''));
+  sub.innerHTML='<b style="color:#f5c542">'+when+'</b> · מחושב לפי המחירון של <b>ATRADE</b>: ‎$'+
+    (F.rate_atrade_per_oz||0.37)+'‎ לאונקיה = ‎$'+((F.rate_atrade_per_oz||0.37)*100).toFixed(0)+
+    '‎ ללוט · רק עסקאות שנסגרו';
   note.innerHTML='<b>איך קוראים את זה:</b> "ברוטו" = מה שהבוטים הרוויחו בעסקאות לפני שום עמלה. '+
     '"עמלת ATRADE" = מה שהברוקר היה לוקח. "נטו" = מה שבאמת נשאר לך ביד.<br>'+
     'הערה: העמלה יורדת בזמן אמת בתוך כל עסקה — היא לא חשבונית שמגיעה אחר כך. '+
