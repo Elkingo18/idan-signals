@@ -1610,5 +1610,86 @@ function liveTick(){
 liveTick();
 setInterval(liveTick, 5000);
 </script>
+
+<!-- ======== החשבון של היום: ברוטו · עמלות ATRADE · נטו (15.8.2026) ======== -->
+<style>
+#feePanel{margin:18px auto;max-width:1100px;direction:rtl;font-family:inherit}
+#feePanel h2{font-size:26px;margin:0 0 4px;color:#f5c542;letter-spacing:.5px}
+#feeSub{font-size:15px;color:#8fb3d9;margin-bottom:12px}
+#feeWrap{overflow-x:auto;border-radius:16px;border:2px solid #24405e;background:linear-gradient(160deg,#16283d,#0d1b2a);box-shadow:0 6px 18px rgba(0,0,0,.45)}
+#feeTbl{width:100%;border-collapse:collapse;font-size:17px;color:#e8f1fb;min-width:640px}
+#feeTbl th{background:#132741;padding:12px 14px;font-size:15px;color:#8fb3d9;font-weight:normal;text-align:center;border-bottom:2px solid #24405e}
+#feeTbl th:first-child{text-align:right}
+#feeTbl td{padding:13px 14px;text-align:center;border-bottom:1px solid #1c3450}
+#feeTbl td:first-child{text-align:right;font-weight:bold;font-size:18px}
+#feeTbl tr.totRow td{background:#132741;font-weight:bold;font-size:21px;border-bottom:none;padding:16px 14px}
+#feeTbl tr.totRow td:first-child{color:#f5c542}
+.feeUp{color:#23d494}.feeDn{color:#ff8078}.feeCost{color:#ffb454}
+#feeNote{margin-top:9px;font-size:13px;color:#6f8fb0;line-height:1.6}
+.feeBig{font-size:26px}
+</style>
+<div id="feePanel">
+  <h2>💰 החשבון של היום — כמה נשאר אחרי עמלות</h2>
+  <div id="feeSub">טוען…</div>
+  <div id="feeWrap">
+    <table id="feeTbl">
+      <thead><tr>
+        <th>הבוט</th><th>לוטים</th><th>ברוטו<br><span style="font-size:12px">(לפני עמלות)</span></th>
+        <th>עמלת ATRADE</th><th>נטו<br><span style="font-size:12px">(מה שנשאר)</span></th>
+      </tr></thead>
+      <tbody id="feeBody"></tbody>
+    </table>
+  </div>
+  <div id="feeNote"></div>
+</div>
+<script>
+function fMoney(v,sign){var a=Math.abs(v).toFixed(2);return (sign?(v<0?"-":"+"):"")+"$"+a;}
+function fCls(v){return v>0.004?"feeUp":(v<-0.004?"feeDn":"");}
+
+function renderFees2(F){
+  var sub=document.getElementById("feeSub"),body=document.getElementById("feeBody"),
+      note=document.getElementById("feeNote");
+  if(!F||!F.rows){sub.textContent="אין נתונים עדיין";return;}
+  var html="";
+  F.rows.forEach(function(r){
+    html+='<tr><td>'+r.name+'</td>'+
+      '<td>'+(+r.lots).toFixed(2)+'</td>'+
+      '<td class="'+fCls(r.gross)+'">'+fMoney(r.gross,true)+'</td>'+
+      '<td class="feeCost">-$'+Math.abs(r.atrade_fee).toFixed(2)+'</td>'+
+      '<td class="'+fCls(r.net_atrade)+'"><b>'+fMoney(r.net_atrade,true)+'</b></td></tr>';
+  });
+  var t=F.total||{};
+  html+='<tr class="totRow"><td>סה"כ</td>'+
+    '<td>'+(+t.lots||0).toFixed(2)+'</td>'+
+    '<td class="'+fCls(t.gross)+'">'+fMoney(t.gross||0,true)+'</td>'+
+    '<td class="feeCost">-$'+Math.abs(t.atrade_fee||0).toFixed(2)+'</td>'+
+    '<td class="'+fCls(t.net_atrade)+' feeBig">'+fMoney(t.net_atrade||0,true)+'</td></tr>';
+  body.innerHTML=html;
+  sub.innerHTML='מחושב לפי המחירון של <b>ATRADE</b>: ‎$'+(F.rate_atrade_per_oz||0.37)+
+    '‎ לאונקיה = ‎$'+((F.rate_atrade_per_oz||0.37)*100).toFixed(0)+'‎ ללוט · עסקאות שנסגרו היום';
+  note.innerHTML='<b>איך קוראים את זה:</b> "ברוטו" = מה שהבוטים הרוויחו בעסקאות לפני שום עמלה. '+
+    '"עמלת ATRADE" = מה שהברוקר היה לוקח. "נטו" = מה שבאמת נשאר לך ביד.<br>'+
+    'הערה: העמלה יורדת בזמן אמת בתוך כל עסקה — היא לא חשבונית שמגיעה אחר כך. '+
+    'הברוטו מחושב מהיתרה בפועל בתוספת מרווח הדמו הנמדד (‎$'+(F.rate_demo_per_oz||0.285)+'‎ לאונקיה). '+
+    'לא כולל ריבית לילה (swap) על פוזיציות שנשארות פתוחות.';
+}
+
+function feeTick(){
+  if(location.hostname==="127.0.0.1"||location.hostname==="localhost"){
+    fetch("/api/status",{cache:"no-store"}).then(function(r){return r.json();})
+      .then(function(s){renderFees2(s.fees);})
+      .catch(function(){
+        fetch(PHONE_URL,{cache:"no-store"}).then(function(r){return r.json();})
+          .then(function(P){renderFees2(P.fees);}).catch(function(){});
+      });
+  } else {
+    fetch(PHONE_URL+"?t="+Date.now(),{cache:"no-store"})
+      .then(function(r){return r.json();}).then(function(P){renderFees2(P.fees);})
+      .catch(function(){document.getElementById("feeSub").textContent="אין חיבור לנתונים — המחשב כבוי?";});
+  }
+}
+feeTick();
+setInterval(feeTick, 15000);
+</script>
 </body>
 </html>
