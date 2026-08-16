@@ -1,6 +1,6 @@
 # Idans Money Club - feed publisher (Windows)
 # Reads the member's own MetaTrader status.json (written by the gold bot)
-# and posts a small snapshot so their own stack shows in the app.
+# and posts a snapshot of THEIR OWN account so the app shows their numbers.
 # Demo data only. Read-only: it never places or changes an order.
 # Runs safely under Smart App Control's Constrained Language Mode.
 # Pass -loop to keep publishing every 2 minutes (used by the Startup launcher).
@@ -8,10 +8,12 @@ param([switch]$Loop)
 
 $ROOT = Join-Path $env:USERPROFILE 'IdanClub'
 $LOG  = Join-Path $ROOT 'feed.log'
+$HISTFILE = Join-Path $ROOT 'hist.json'
 function Say($m){ try { Add-Content -Path $LOG -Value ("{0}  {1}" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $m) -Encoding UTF8 } catch {} }
 
 $PROJECT = 'idan-money-club'
 $APIKEY  = 'AIzaSyA0n2xr_xomM8L_Usqrq_qFHb-ZliDAN5M'
+$START_BALANCE = 10000.0
 
 function Publish-Feed {
     $keyFile = Join-Path $ROOT 'feed.txt'
@@ -35,26 +37,70 @@ function Publish-Feed {
         $j = $raw | ConvertFrom-Json
     } catch { Say ('could not read status.json: ' + $_.Exception.Message); return }
 
-    # compact payload - only what the app seat needs
-    $compact = ('{"account":' + [string]$j.account +
-                ',"balance":' + [string]$j.balance +
-                ',"equity":' + [string]$j.equity +
-                ',"day_pnl":' + [string]$j.day_pnl +
-                ',"trades_today":' + [string]$j.trades_today +
-                ',"enabled":' + ($(if ($j.enabled -eq $false) {'false'} else {'true'})) +
-                ',"params_version":' + [string]$j.params_version + '}')
+    # --- keep a tiny local day-by-day history of THIS member's P&L ---------
+    $hist = @{}
+    if (Test-Path -LiteralPath $HISTFILE) {
+        try { $h = Get-Content -LiteralPath $HISTFILE -Raw | ConvertFrom-Json
+              foreach ($p in $h.PSObject.Properties) { $hist[$p.Name] = $p.Value } } catch {}
+    }
+    $today = (Get-Date).ToString('yyyy-MM-dd')
+    $dp = 0.0; if ($null -ne $j.day_pnl) { $dp = [double]$j.day_pnl }
+    # status.json already carries 2-decimal values; no [math]::Round (blocked in CLM)
+    $hist[$today] = $dp
+    try {
+        $histJson = $hist | ConvertTo-Json -Compress
+        Set-Content -LiteralPath $HISTFILE -Value $histJson -Encoding ASCII
+    } catch { Say ('history save failed: ' + $_.Exception.Message) }
+
+    # last 30 days as an ordered array
+    $histArr = @()
+    foreach ($k in ($hist.Keys | Sort-Object | Select-Object -Last 30)) {
+        $histArr += @{ d = $k; pnl = $hist[$k] }
+    }
+
+    # --- the member's own open position, if any ----------------------------
+    $pos = $null
+    if ($null -ne $j.position -and $j.position -ne 'None' -and $j.position -ne '') {
+        try {
+            $pp = $j.position
+            $pos = @{ side = [string]$pp.side; volume = $pp.volume; entry = $pp.entry;
+                      last = $pp.last; profit = $pp.profit }
+        } catch { $pos = $null }
+    }
+
+    # --- the payload: their account only -----------------------------------
+    $obj = @{
+        account        = $j.account
+        balance        = $j.balance
+        equity         = $j.equity
+        day_pnl        = $dp
+        trades_today   = $j.trades_today
+        enabled        = [bool]$j.enabled
+        params_version = $j.params_version
+        start          = $START_BALANCE
+        position       = $pos
+        hist           = $histArr
+    }
+    $compact = $obj | ConvertTo-Json -Compress -Depth 6
+    if ($compact.Length -gt 5800) {   # stay under the security-rule cap
+        $obj.hist = ($histArr | Select-Object -Last 14)
+        $compact = $obj | ConvertTo-Json -Compress -Depth 6
+    }
+
     $acct = [string]$j.account
     $nowIso = (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
+    $body = @{ fields = @{
+        j    = @{ stringValue = $compact }
+        t    = @{ stringValue = $nowIso }
+        acct = @{ stringValue = $acct }
+        v    = @{ integerValue = '1' }
+    } } | ConvertTo-Json -Compress -Depth 6
 
-    $esc = $compact.Replace('"','\"')
-    $body = '{"fields":{"j":{"stringValue":"' + $esc + '"},"t":{"stringValue":"' + $nowIso +
-            '"},"acct":{"stringValue":"' + $acct + '"},"v":{"integerValue":"1"}}}'
     $url = 'https://firestore.googleapis.com/v1/projects/' + $PROJECT +
            '/databases/(default)/documents/feeds/' + $KEY + '?key=' + $APIKEY
-
     try {
         Invoke-RestMethod -Method Patch -Uri $url -ContentType 'application/json' -Body $body | Out-Null
-        Say ('posted equity=' + [string]$j.equity + ' day=' + [string]$j.day_pnl)
+        Say ('posted equity=' + [string]$j.equity + ' day=' + [string]$dp)
     } catch {
         Say ('post failed: ' + $_.Exception.Message)
     }
@@ -62,10 +108,7 @@ function Publish-Feed {
 
 if ($Loop) {
     Say 'feed loop started'
-    while ($true) {
-        Publish-Feed
-        Start-Sleep -Seconds 120
-    }
+    while ($true) { Publish-Feed; Start-Sleep -Seconds 120 }
 } else {
     Publish-Feed
 }
