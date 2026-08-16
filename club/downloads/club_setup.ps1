@@ -94,11 +94,20 @@ Say ('   Gold symbol:                ' + $SYM)
 Say 'STEP 3 of 5 - installing the bot ...'
 $exp = Join-Path $T.Data 'MQL5\Experts'
 $mq  = Join-Path $exp 'IdanGold.mq5'
+$ex5 = Join-Path $exp 'IdanGold.ex5'
+$gotBot = $false
 try {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    Invoke-WebRequest -Uri ($BASEURL + 'IdanGold.mq5') -OutFile $mq -UseBasicParsing -TimeoutSec 60
-    Say '   Bot downloaded.'
-} catch { Say ('   Could not download the bot: ' + $_.Exception.Message); return }
+    # the ready-to-run build - no compiling needed on the member's machine
+    Invoke-WebRequest -Uri ($BASEURL + 'IdanGold.ex5') -OutFile $ex5 -UseBasicParsing -TimeoutSec 90
+    if ((Get-Item -LiteralPath $ex5 -ErrorAction SilentlyContinue).Length -gt 10000) { $gotBot = $true; Say '   Bot installed (ready-to-run build, nothing to compile).' }
+} catch { Say ('   Ready-made build not available: ' + $_.Exception.Message) }
+if (-not $gotBot) {
+    try {
+        Invoke-WebRequest -Uri ($BASEURL + 'IdanGold.mq5') -OutFile $mq -UseBasicParsing -TimeoutSec 60
+        Say '   Bot source downloaded (will be compiled below).'
+    } catch { Say ('   Could not download the bot: ' + $_.Exception.Message); return }
+}
 
 $filesDir = Join-Path $T.Data 'MQL5\Files\IdanGold'
 if (-not (Test-Path -LiteralPath $filesDir)) { New-Item -ItemType Directory -Path $filesDir -Force | Out-Null }
@@ -115,8 +124,9 @@ $params = @'
 Set-Content -LiteralPath (Join-Path $filesDir 'params.json') -Value $params -Encoding ASCII
 Say '   Settings written (same as Idans: burst entry, risk ladder 3-9%).'
 
-# compile - metaeditor lives next to terminal64.exe
+# compile - only needed if the ready-to-run build was unavailable
 $me = $null
+if ($gotBot) { $me = $null } else {
 if ($T.Origin -and (Test-Path -LiteralPath (Join-Path $T.Origin 'metaeditor64.exe'))) { $me = Join-Path $T.Origin 'metaeditor64.exe' }
 if (-not $me) {
     foreach ($g in @('C:\Program Files\MetaTrader 5\metaeditor64.exe',
@@ -129,17 +139,19 @@ if (-not $me) {
     $f = Get-ChildItem 'C:\Program Files' -Recurse -Filter 'metaeditor64.exe' -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($f) { $me = $f.FullName }
 }
-$compiled = $false
-if ($me) {
-    try {
-        $c = Start-Process -FilePath $me -ArgumentList @("/compile:`"$mq`"") -PassThru -Wait -WindowStyle Hidden
-        if (Test-Path -LiteralPath (Join-Path $exp 'IdanGold.ex5')) { $compiled = $true }
-        Say ('   Compiled the bot.' )
-    } catch { Say ('   Automatic compile did not run: ' + $_.Exception.Message) }
-} else {
-    Say '   MetaEditor not found - the bot will compile when you open MetaEditor once (F7).'
 }
-if (-not $compiled) { Say '   NOTE: if the bot does not appear in the Navigator, open MetaEditor, select IdanGold and press F7.' }
+$compiled = $gotBot
+if (-not $gotBot) {
+    if ($me) {
+        try {
+            $c = Start-Process -FilePath $me -ArgumentList @("/compile:`"$mq`"") -PassThru -Wait -WindowStyle Hidden
+            if (Test-Path -LiteralPath $ex5) { $compiled = $true; Say '   Compiled the bot.' }
+        } catch { Say ('   Automatic compile did not run: ' + $_.Exception.Message) }
+    } else {
+        Say '   MetaEditor not found - open MetaEditor once, select IdanGold and press F7.'
+    }
+    if (-not $compiled) { Say '   NOTE: if the bot is missing from the Navigator, open MetaEditor, select IdanGold, press F7.' }
+}
 
 # ---------------------------------------------------------------------
 # 4. attach it to a gold chart automatically and start the terminal
