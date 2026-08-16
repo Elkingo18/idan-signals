@@ -15,11 +15,75 @@ $PROJECT = 'idan-money-club'
 $APIKEY  = 'AIzaSyA0n2xr_xomM8L_Usqrq_qFHb-ZliDAN5M'
 $START_BALANCE = 10000.0
 
+function Find-ParamsFile {
+    # the gold bot reads MQL5\Files\IdanGold\params.json in its terminal
+    $base = Join-Path $env:APPDATA 'MetaQuotes\Terminal'
+    if (-not (Test-Path -LiteralPath $base)) { return $null }
+    $hit = Get-ChildItem -LiteralPath $base -Directory -ErrorAction SilentlyContinue | ForEach-Object {
+        $p = Join-Path $_.FullName 'MQL5\Files\IdanGold\params.json'
+        if (Test-Path -LiteralPath $p) { Get-Item -LiteralPath $p }
+    } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+    if ($hit) { return $hit.FullName } else { return $null }
+}
+function Apply-Commands($KEY) {
+    # Owner (Idan) can control this bot from the app. We READ commands/{KEY}
+    # from Firestore (public read, owner-only write) and apply them locally
+    # by editing the bot's params.json. The bot re-reads params.json live.
+    $cmdFile = Join-Path $ROOT 'cmd_applied.txt'
+    $lastTs = ''
+    if (Test-Path -LiteralPath $cmdFile) { $lastTs = (Get-Content -LiteralPath $cmdFile -Raw).Trim() }
+    $url = 'https://firestore.googleapis.com/v1/projects/' + $PROJECT +
+           '/databases/(default)/documents/commands/' + $KEY + '?key=' + $APIKEY
+    try {
+        $doc = Invoke-RestMethod -Method Get -Uri $url -ErrorAction Stop
+    } catch { return }   # no command doc yet -> nothing to do
+    if (-not $doc.fields) { return }
+    $f = $doc.fields
+    $ts = ''
+    if ($f.ts -and $f.ts.stringValue) { $ts = $f.ts.stringValue }
+    if (-not $ts -or $ts -eq $lastTs) { return }   # already applied
+
+    $pf = Find-ParamsFile
+    if (-not $pf) { return }
+    try {
+        $p = Get-Content -LiteralPath $pf -Raw | ConvertFrom-Json
+    } catch { return }
+
+    $changed = $false
+    if ($null -ne $f.enabled -and $null -ne $f.enabled.booleanValue) {
+        $p.enabled = [bool]$f.enabled.booleanValue; $changed = $true
+    }
+    if ($f.params -and $f.params.mapValue -and $f.params.mapValue.fields) {
+        $pp = $f.params.mapValue.fields
+        if ($null -ne $pp.risk_mode -and $null -ne $pp.risk_mode.integerValue) {
+            $p.risk_mode = [int]$pp.risk_mode.integerValue; $changed = $true
+        }
+        if ($pp.fixed_risk_pct -and $pp.fixed_risk_pct.doubleValue) {
+            # a fixed risk: pin the whole ladder to that value
+            $rv = [double]$pp.fixed_risk_pct.doubleValue
+            $p.rp_peak = $rv; $p.rp_norm = $rv; $p.rp_dd1 = $rv; $p.rp_dd2 = $rv
+            $p.risk_pct = $rv; $changed = $true
+        }
+    }
+    if ($changed) {
+        try {
+            $json = $p | ConvertTo-Json -Compress -Depth 6
+            Set-Content -LiteralPath $pf -Value $json -Encoding ASCII
+            Say ('applied owner command ts=' + $ts)
+        } catch { Say ('apply failed: ' + $_.Exception.Message) }
+    }
+    # record we've applied this command (even restart-only, which the app shows)
+    Set-Content -LiteralPath $cmdFile -Value $ts -Encoding ASCII
+}
+
 function Publish-Feed {
     $keyFile = Join-Path $ROOT 'feed.txt'
     if (-not (Test-Path -LiteralPath $keyFile)) { Say 'no feed.txt - run the setup first'; return }
     $KEY = (Get-Content -LiteralPath $keyFile -Raw).Trim()
     if ($KEY.Length -lt 24) { Say 'feed key too short'; return }
+
+    # apply any pending owner command before reading status
+    try { Apply-Commands $KEY } catch { Say ('command check failed: ' + $_.Exception.Message) }
 
     # newest status.json the gold bot has written, across all terminals
     $base = Join-Path $env:APPDATA 'MetaQuotes\Terminal'
