@@ -307,7 +307,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "1.1.0";
+const APP_VERSION = "1.2.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -753,6 +753,19 @@ async function makeFeedKey(){
     toast("נוצר מפתח חיבור ✓");
   } catch(e){ toast("שגיאה: " + (e.code||e.message)); }
 }
+async function linkKey(){
+  const v = ($("keyPaste").value||"").trim();
+  if (v.length < 24){ toast("המפתח קצר מדי — העתק אותו מחלון ההתקנה"); return; }
+  try { await db.collection("users").doc(ME.uid).update({feedId:v});
+    toast("חובר ✓ הבוט שלך יופיע תוך כדקותיים");
+    if (unsubFeed){ unsubFeed(); unsubFeed=null; } MYFEED=null; subscribeFeed();
+  } catch(e){ toast("שגיאה: " + (e.code||e.message)); }
+}
+async function unlinkKey(){
+  try { await db.collection("users").doc(ME.uid).update({feedId:""});
+    if (unsubFeed){ unsubFeed(); unsubFeed=null; } MYFEED=null; renderLinks(); toast("המפתח נותק");
+  } catch(e){ toast("שגיאה: " + (e.code||e.message)); }
+}
 function copyKey(){
   const k = (MYDOC||{}).feedId||"";
   navigator.clipboard.writeText(k).then(()=>toast("המפתח הועתק ✓"))
@@ -765,18 +778,23 @@ function renderLinks(){
   $("feedKeyBox").innerHTML = key
     ? `<div style="display:flex;gap:8px"><input type="text" readonly value="${key}" style="direction:ltr;font-family:monospace">
        <button class="btn sec" style="flex:none" onclick="copyKey()">העתק</button></div>
-       <div class="mini" style="margin-top:6px">${MYFEED && MYFEED.j ? "✅ הבוט שלך משדר — רואים אותו במסך השולחן" : "⏳ עוד לא התקבל שידור — השלם את שלבי ההתקנה למטה"}</div>`
-    : `<button class="btn" onclick="makeFeedKey()">🔑 צור לי מפתח חיבור</button>`;
+       <div class="mini" style="margin-top:6px">${MYFEED && MYFEED.j ? "✅ הבוט שלך משדר — רואים אותו במסך השולחן" : "⏳ עוד לא התקבל שידור — ודא שהבוט על הגרף ושכפתור Algo Trading ירוק"}</div>
+       <div class="mini" style="margin-top:6px"><a href="#" onclick="unlinkKey();return false;">החלף מפתח</a></div>`
+    : `<div class="mini">אחרי שהרצת את קובץ ההתקנה במחשב שלך — הוא נתן לך מפתח. הדבק אותו כאן:</div>
+       <div style="display:flex;gap:8px;margin-top:7px">
+         <input type="text" id="keyPaste" placeholder="f1a2b3..." style="direction:ltr;font-family:monospace">
+         <button class="btn" style="flex:none" onclick="linkKey()">חבר</button>
+       </div>
+       <div class="mini" style="margin-top:7px">עוד לא התקנת? רד לשלב הבא — קודם מורידים את קובץ ההתקנה.</div>`;
   /* MT5 wizard */
   $("mt5Wizard").innerHTML = `
-    הבוט של המועדון ירוץ <b>אצלך במחשב, על חשבון דמו שלך</b> (כסף מדומה). חמישה שלבים:
-    <br><b>1.</b> הורד והתקן את <a href="https://www.metatrader5.com/he/download" target="_blank" rel="noopener">MetaTrader 5</a> (התוכנה החינמית).
-    <br><b>2.</b> פתח בתוכנה חשבון דמו: קובץ ← פתח חשבון ← MetaQuotes Demo ← 10,000$.
-    <br><b>3.</b> צור למעלה מפתח חיבור והעתק אותו.
-    <br><b>4.</b> הורד והפעל את <a href="${DL}IdanGold-Setup.bat" download>קובץ ההתקנה של הבוט</a> — הוא יתקין את הבוט ואת המשדר, וישאל אותך את המפתח (הדבק אותו).
-    <br><b>5.</b> במטה-טריידר: פתח גרף זהב (XAUUSD), גרור מהצד את <b>IdanGold</b> על הגרף, אשר, וודא שכפתור "אלגו-טריידינג" למעלה ירוק.
-    <br>מרגע זה הערימה שלך מופיעה במסך השולחן, והבוט סוחר דמו אצלך בדיוק לפי ההגדרות של עידן.
-    <br><span style="color:var(--ink3)">להסרה: מחק את המשימה IdanClubFeed במתזמן המשימות ואת הבוט מהגרף.</span>`;
+    הבוט ירוץ <b>אצלך במחשב, על חשבון הדמו שלך</b> (כסף מדומה). שלושה שלבים:
+    <br><b>1.</b> צריך <a href="https://www.metatrader5.com/he/download" target="_blank" rel="noopener">MetaTrader 5</a> מותקן עם חשבון דמו (קובץ ← פתח חשבון ← MetaQuotes Demo ← 10,000$). יש לך כבר? עבור לשלב 2.
+    <br><b>2.</b> הורד והפעל את <a href="${DL}IdanGold-Setup.bat" download><b>קובץ ההתקנה</b></a> — הוא מתקין את הבוט, מכניס את ההגדרות של עידן, פותח גרף זהב עם הבוט עליו, ונותן לך <b>מפתח חיבור</b>.
+    <br><b>3.</b> העתק את המפתח מחלון ההתקנה והדבק אותו למעלה ⬆ — וזהו. תוך כדקותיים הערימה שלך מופיעה במסך השולחן.
+    <br><span style="color:var(--warn)">אם ווינדוס מציג "SmartScreen" — לחץ "מידע נוסף" ואז "הפעל בכל זאת". הקובץ לא חתום דיגיטלית, זו התראה רגילה.</span>
+    <br><span style="color:var(--warn)">במטה-טריידר: כפתור "Algo Trading" בסרגל העליון חייב להיות ירוק.</span>
+    <br><span style="color:var(--ink3)">להסרה: מחק את המשימה IdanClubFeed במתזמן המשימות, והורד את הבוט מהגרף.</span>`;
   /* IBKR wizard */
   $("ibkrWizard").innerHTML = `
     <b>1.</b> פתח <a href="https://www.interactivebrokers.com/en/trading/free-trial.php" target="_blank" rel="noopener">חשבון נייר (Paper) חינמי באינטראקטיב</a> והתקן את TWS.
