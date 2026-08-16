@@ -53,10 +53,25 @@ nav button.on{color:var(--gold)}
 .gbtn{display:flex;align-items:center;gap:11px;background:#fff;color:#1f1f1f;font-weight:700;font-size:16.5px;padding:13px 24px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
 .gbtn img{width:22px;height:22px}
 /* ---------- seats ---------- */
-.pot{background:radial-gradient(ellipse at top,var(--felt),var(--felt2));border:2.5px solid #0a3, ;border:2.5px solid #14805a;border-radius:20px;padding:18px;text-align:center;margin:12px 0}
-.pot .lab{color:#9fdcc2;font-size:12.5px;letter-spacing:1.5px}
-.pot .amt{font-size:38px;font-weight:900;margin:2px 0}
+.pot{position:relative;background:radial-gradient(ellipse 120% 90% at 50% 18%,#12784f,var(--felt) 45%,var(--felt2));border:3px solid #14805a;border-radius:130px/70px;padding:20px 18px 22px;text-align:center;margin:12px 0;box-shadow:inset 0 0 60px rgba(0,0,0,.45),0 8px 26px rgba(0,0,0,.5)}
+.pot::before{content:"";position:absolute;inset:7px;border:1.5px solid rgba(159,220,194,.35);border-radius:120px/62px;pointer-events:none}
+.pot .lab{color:#9fdcc2;font-size:12px;letter-spacing:1.2px}
+.pot .amt{font-size:38px;font-weight:900;margin:2px 0;text-shadow:0 2px 8px rgba(0,0,0,.5)}
 .pot .sub{color:#bfe9d8;font-size:13px;line-height:1.6}
+/* live trades = playing cards on the felt */
+.board{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0 4px;min-height:10px}
+.pcard{width:82px;height:116px;background:linear-gradient(160deg,#fff,#eef3f8);border-radius:11px;box-shadow:0 6px 16px rgba(0,0,0,.45);position:relative;color:#14243a;padding:7px 8px;display:flex;flex-direction:column;justify-content:space-between;animation:deal .45s cubic-bezier(.2,.8,.3,1.2) both}
+@keyframes deal{from{transform:translateY(-26px) rotate(-8deg) scale(.9);opacity:0}to{transform:none;opacity:1}}
+.pcard .corner{font-weight:900;font-size:15px;line-height:1}
+.pcard .suit{position:absolute;top:6px;left:8px;font-size:15px}
+.pcard .suitbig{text-align:center;font-size:30px;margin:-4px 0}
+.pcard .tk{font-weight:900;font-size:15px;text-align:center;letter-spacing:.3px}
+.pcard .pl{text-align:center;font-weight:900;font-size:14px;border-radius:7px;padding:2px 0}
+.pcard.win .pl{background:rgba(35,180,120,.16);color:#0a7a4a}
+.pcard.loss .pl{background:rgba(220,60,80,.14);color:#c0293c}
+.pcard.red{color:#c0293c}
+.pcard .meta{font-size:10.5px;color:#5a7089;text-align:center}
+.board .empty{color:#bfe9d8;font-size:13.5px;padding:14px 8px;text-align:center;width:100%}
 .seat{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:12px;margin:9px 0}
 .seat.dim{opacity:.62}
 .seat .ic{font-size:30px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#132741;border-radius:13px;flex:none}
@@ -190,6 +205,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
         <div class="lab">הקופה של יום המסחר האחרון · נטו לכיס (מחירון ATRADE)</div>
         <div class="amt" id="potNet">—</div>
         <div class="sub" id="potSub">טוען נתונים…</div>
+        <div class="board" id="board"></div>
       </div>
       <div class="lights" id="lights"></div>
       <div id="seats"></div>
@@ -202,7 +218,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
         </div>
         <div class="mini" id="fNote"></div>
       </div>
-      <div class="card"><h3>🃏 קלפים על השולחן (פוזיציות פתוחות)</h3><div id="openPos" class="mini">—</div></div>
+      <div class="card"><h3>🃏 העסקאות החיות</h3><div id="openPos" class="mini">—</div></div>
     </section>
 
     <!-- ===== calendar ===== -->
@@ -307,7 +323,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "1.3.0";
+const APP_VERSION = "1.4.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -552,6 +568,42 @@ function myBotSeatHTML(closed){
           closed?{t:"🌙 שוק סגור"}:((age!==null&&age>600)?{t:"⚠️ שקט "+ago(age), tone:"wa"}:{t:"עודכן "+ago(age)})]});
 }
 
+/* ---------- live trades rendered as playing cards on the felt ---------- */
+function normPos(p){
+  const sym = p.ticker||p.symbol||"?";
+  const qty = (p.qty!==undefined&&p.qty!==null)?p.qty:(p.qty_left!==undefined?p.qty_left:0);
+  const entry = (p.entry!==undefined&&p.entry!==null)?p.entry:p.avg_cost;
+  const last = (p.last!==undefined&&p.last!==null)?p.last:p.mark;
+  const side = p.side || ((p.kind==="gold")? "long" : "long");
+  const pl = (p.unrealized!==undefined&&p.unrealized!==null) ? +p.unrealized :
+             ((last!==undefined&&entry!==undefined)?((+last-+entry)*(+qty||0)*(side==="short"?-1:1)):null);
+  const kind = p.kind || (sym==="XAUUSD"?"gold":"swing");
+  return {sym, qty, entry, last, side, pl, kind};
+}
+function cardHTML(p, i){
+  const n = normPos(p);
+  const SUIT = { gold:"♦", swing:"♠", day:"♣", copier:"♥" };
+  const suit = SUIT[n.kind] || "♠";
+  const red = (suit==="♦"||suit==="♥");
+  const win = (n.pl||0) >= 0;
+  return `<div class="pcard ${win?'win':'loss'} ${red?'red':''}" style="animation-delay:${i*0.06}s">
+    <div class="corner">${n.side==="short"?"S":"B"}<span style="font-size:12px"> ${suit}</span></div>
+    <div class="suitbig">${suit}</div>
+    <div class="tk">${n.sym}</div>
+    <div class="meta">${n.qty||0} יח׳ @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</div>
+    <div class="pl">${n.pl===null?"–":signed(n.pl)}</div>
+  </div>`;
+}
+function renderBoard(positions){
+  const board = $("board"); if (!board) return;
+  const pos = (positions||[]).slice(0,6);
+  if (!pos.length){
+    board.innerHTML = '<div class="empty">אין קלפים על השולחן כרגע — הבוטים סורקים ומחכים לעסקה 🂠</div>';
+  } else {
+    board.innerHTML = pos.map(cardHTML).join("");
+  }
+}
+
 /* ---------- the table ---------- */
 function seatHTML(o){
   return `<div class="seat ${o.dim?'dim':''}">
@@ -586,6 +638,7 @@ function renderTable(){
     $("fNet").textContent = "🔒"; $("fNet").className = "v";
     $("fNote").innerHTML = "דוח העמלות נפתח אחרי שהבוט שלך מחובר ומשדר.";
     $("openPos").innerHTML = "🔒 נפתח אחרי חיבור הבוט שלך.";
+    renderBoard([]);
     return;
   }
   const g = P.gold||{}, slv = P.slave||{}, sh = P.shadow_wallet||{}, eng = P.engine_wallet||{};
@@ -672,20 +725,23 @@ function renderTable(){
     "הרווח כפי שהחשבונות מציגים, פחות עמלת ATRADE (‎$37‎ ללוט) על הנפח שנסחר בפועל · מאז 13.8.2026" +
     (bProfit>0 ? " · העמלות לוקחות <b>"+Math.round(Math.abs(bFee||0)/bProfit*100)+"%</b> מהרווח" : "");
 
-  /* open positions */
-  const pos = P.positions||[];
-  $("openPos").innerHTML = pos.length
-    ? pos.map(p=>{
-        const sym = p.ticker||p.symbol||"?";
-        const qty = (p.qty!==undefined&&p.qty!==null)?p.qty:(p.qty_left!==undefined?p.qty_left:0);
-        const entry = (p.entry!==undefined&&p.entry!==null)?p.entry:p.avg_cost;
-        const last = (p.last!==undefined&&p.last!==null)?p.last:p.mark;
-        const pl = (p.unrealized!==undefined&&p.unrealized!==null) ? +p.unrealized :
-                   ((last!==undefined&&entry!==undefined)?((+last-+entry)*(+qty||0)*(p.side==="short"?-1:1)):null);
+  /* live trades: the gold bot's open position + the stock positions,
+     shown as playing cards on the felt above */
+  const live = [];
+  if (g.position && (g.position.entry!==undefined || g.position.avg_cost!==undefined || g.position.price!==undefined)){
+    const gp = g.position;
+    live.push({kind:"gold", ticker:"XAUUSD", side:gp.side||gp.type||"long",
+      qty:gp.volume||gp.qty||gp.lots, entry:gp.entry||gp.price||gp.avg_cost,
+      last:gp.last||gp.current||gp.price, unrealized:gp.profit!==undefined?gp.profit:gp.pl});
+  }
+  (P.positions||[]).forEach(p => live.push(Object.assign({kind:p.kind||"swing"}, p)));
+  renderBoard(live);
+  $("openPos").innerHTML = live.length
+    ? live.map(p=>{ const n=normPos(p);
         return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1c3450">
-          <b>${sym}</b><span>${qty||0} יח׳ @ ${entry!==undefined?(+entry).toFixed(2):"—"}</span>
-          <b class="${(pl||0)>=0?'up':'dn'}">${pl===null?"—":signed(pl)}</b></div>`; }).join("")
-    : "אין עסקאות פתוחות כרגע — הבוטים סורקים ומחכים להזדמנות.";
+          <b>${n.sym}</b><span>${n.qty||0} יח׳ @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</span>
+          <b class="${(n.pl||0)>=0?'up':'dn'}">${n.pl===null?"—":signed(n.pl)}</b></div>`; }).join("")
+    : "אין עסקאות פתוחות כרגע — הבוטים סורקים ומחכים להזדמנות. 🂠";
 }
 
 /* ---------- calendar ---------- */
