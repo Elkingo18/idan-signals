@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Idan's Money Club</title>
+<meta name="theme-color" content="#0d1b2a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg:#0d1b2a; --bg2:#16283d; --line:#24405e; --felt:#0e5c3f; --felt2:#0a4a33;
+  --gold:#f5c542; --ink:#e8f1fb; --ink2:#8fb3d9; --ink3:#6f8fb0;
+  --up:#23d494; --dn:#ff6b7d; --warn:#ffb454;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,"Noto Sans Hebrew",sans-serif;direction:rtl}
+.hidden{display:none!important}
+button{font-family:inherit;cursor:pointer;border:none;border-radius:12px}
+a{color:var(--gold)}
+.wrap{max-width:860px;margin:0 auto;padding:0 14px 90px}
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,#0d1b2a 75%,rgba(13,27,42,0));padding:12px 14px 8px}
+.hrow{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:18px;letter-spacing:.3px}
+.logo .chip{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe38a,var(--gold) 60%,#8a6d1a);border:3px dashed #0d1b2a;box-shadow:0 0 0 2px var(--gold)}
+.hspace{flex:1}
+.wallet{background:var(--bg2);border:1.5px solid var(--line);border-radius:14px;padding:6px 13px;text-align:center}
+.wallet .v{font-size:17px;font-weight:900;color:var(--gold)}
+.wallet .k{font-size:10.5px;color:var(--ink2)}
+.avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--gold);object-fit:cover}
+/* ---------- bottom nav ---------- */
+nav{position:fixed;bottom:0;right:0;left:0;z-index:40;background:#101f31;border-top:1.5px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(8px + env(safe-area-inset-bottom))}
+nav button{background:none;color:var(--ink3);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 8px;border-radius:10px}
+nav button .i{font-size:20px}
+nav button.on{color:var(--gold)}
+/* ---------- cards ---------- */
+.card{background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:15px;margin:12px 0;box-shadow:0 5px 16px rgba(0,0,0,.35)}
+.card h3{font-size:16.5px;margin-bottom:9px;color:var(--gold)}
+.mini{font-size:12.5px;color:var(--ink3);line-height:1.6}
+.up{color:var(--up)}.dn{color:var(--dn)}.wa{color:var(--warn)}
+.btn{background:var(--gold);color:#1a1a05;font-weight:800;font-size:16px;padding:13px 22px;border-radius:13px;box-shadow:0 4px 14px rgba(245,197,66,.3)}
+.btn.sec{background:var(--bg2);color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
+.btn:disabled{opacity:.45;cursor:default}
+.tag{display:inline-block;background:#132741;border:1px solid var(--line);color:var(--ink2);border-radius:999px;padding:3px 10px;font-size:11.5px;margin:2px}
+.tag.up{color:var(--up)}.tag.dn{color:var(--dn)}.tag.wa{color:var(--warn)}
+/* ---------- login ---------- */
+.full{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 20px;gap:14px}
+.bigchip{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe38a,var(--gold) 60%,#8a6d1a);border:7px dashed #0d1b2a;box-shadow:0 0 0 5px var(--gold),0 14px 40px rgba(0,0,0,.5)}
+.title{font-size:30px;font-weight:900}.title small{display:block;font-size:14px;color:var(--ink2);font-weight:400;margin-top:5px}
+.gbtn{display:flex;align-items:center;gap:11px;background:#fff;color:#1f1f1f;font-weight:700;font-size:16.5px;padding:13px 24px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.gbtn img{width:22px;height:22px}
+/* ---------- seats ---------- */
+.pot{background:radial-gradient(ellipse at top,var(--felt),var(--felt2));border:2.5px solid #0a3, ;border:2.5px solid #14805a;border-radius:20px;padding:18px;text-align:center;margin:12px 0}
+.pot .lab{color:#9fdcc2;font-size:12.5px;letter-spacing:1.5px}
+.pot .amt{font-size:38px;font-weight:900;margin:2px 0}
+.pot .sub{color:#bfe9d8;font-size:13px;line-height:1.6}
+.seat{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:12px;margin:9px 0}
+.seat.dim{opacity:.62}
+.seat .ic{font-size:30px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#132741;border-radius:13px;flex:none}
+.seat .mid{flex:1;min-width:0}
+.seat .nm{font-weight:800;font-size:15.5px}
+.seat .rl{font-size:11.5px;color:var(--ink3)}
+.seat .tags{margin-top:5px}
+.seat .stack{text-align:left;flex:none}
+.seat .stack .v{font-size:18px;font-weight:900;color:var(--gold)}
+.seat .stack .k{font-size:10.5px;color:var(--ink3)}
+.lights{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+/* ---------- fees ---------- */
+.fee3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:10px 0}
+.feebox{background:#132741;border:1.5px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center}
+.feebox .k{font-size:11.5px;color:var(--ink2)}
+.feebox .v{font-size:20px;font-weight:900;margin-top:3px}
+.feebox.net{border-color:var(--gold);background:linear-gradient(160deg,#1c2f14,#132741)}
+.feebox.net .k{color:var(--gold)}
+/* ---------- calendar ---------- */
+.calhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.calhead b{font-size:17px}
+.calhead button{background:#132741;color:var(--ink);border:1px solid var(--line);width:34px;height:34px;border-radius:10px;font-size:16px}
+.dow,.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.dow span{text-align:center;font-size:11px;color:var(--ink3);padding:3px 0}
+.cal .d{min-height:56px;background:#132741;border:1px solid var(--line);border-radius:10px;padding:4px;font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
+.cal .d.off{opacity:.28;cursor:default}
+.cal .d .n{font-size:10.5px}
+.cal .d .p{font-weight:800;font-size:11.5px;direction:ltr;text-align:left}
+.cal .d.g{background:rgba(35,212,148,.14);border-color:rgba(35,212,148,.5)}
+.cal .d.r{background:rgba(255,107,125,.12);border-color:rgba(255,107,125,.5)}
+/* ---------- tables ---------- */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{color:var(--ink2);font-weight:400;font-size:12px;text-align:right;padding:7px 6px;border-bottom:1.5px solid var(--line)}
+td{padding:8px 6px;border-bottom:1px solid #1c3450}
+tr:last-child td{border-bottom:none}
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(5,12,20,.8);z-index:60;display:flex;align-items:center;justify-content:center;padding:18px}
+.mbox{background:var(--bg2);border:1.5px solid var(--line);border-radius:18px;padding:18px;max-width:480px;width:100%;max-height:82svh;overflow-y:auto}
+/* ---------- contract ---------- */
+.contract{background:#132741;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px;line-height:1.75;max-height:44svh;overflow-y:auto;text-align:right}
+.contract h4{color:var(--gold);margin:9px 0 3px}
+input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);border-radius:11px;color:var(--ink);font-size:16px;padding:11px;font-family:inherit}
+.chk{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin:11px 0;text-align:right}
+.chk input{width:19px;height:19px;flex:none;margin-top:1px}
+/* ---------- tour ---------- */
+.dots{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--gold)}
+/* ---------- admin ---------- */
+.urow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #1c3450;font-size:13px}
+.urow img{width:30px;height:30px;border-radius:50%}
+.sw{position:relative;width:40px;height:22px;background:#24405e;border-radius:999px;flex:none;transition:.15s}
+.sw.on{background:var(--up)}
+.sw::after{content:"";position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}
+.sw.on::after{transform:translateX(-18px)}
+.toast{position:fixed;bottom:84px;right:50%;transform:translateX(50%);background:#132741;border:1.5px solid var(--gold);color:var(--ink);border-radius:12px;padding:10px 18px;z-index:80;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+#installBtn{position:fixed;top:64px;left:12px;z-index:45;background:var(--felt);color:#dff7ec;border:1.5px solid #14805a;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+
+<!-- ======================= LOGIN ======================= -->
+<div id="v-login" class="full hidden">
+  <div class="bigchip"></div>
+  <div class="title">Idan's Money Club<small>מועדון ניהול הכסף של עידן · הבוטים, המספרים, והאמת</small></div>
+  <button class="gbtn" id="btnGoogle">
+    <img alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHBhdGggZmlsbD0iI0VBNDMzNSIgZD0iTTI0IDkuNWMzLjU0IDAgNi43MSAxLjIyIDkuMjEgMy42bDYuODUtNi44NUMzNS45IDIuMzggMzAuNDcgMCAyNCAwIDE0LjYyIDAgNi41MSA1LjM4IDIuNTYgMTMuMjJsNy45OCA2LjE5QzEyLjQzIDEzLjcyIDE3Ljc0IDkuNSAyNCA5LjV6Ii8+PHBhdGggZmlsbD0iIzQyODVGNCIgZD0iTTQ2LjU4IDI0LjVjMC0xLjU3LS4xNS0zLjA5LS40Mi00LjVIMjR2OS4wMWgxMi43Yy0uNTUgMi45Ni0yLjIzIDUuNDgtNC43OCA3LjE4bDcuNzMgNmM0LjUxLTQuMTggNy4wOS0xMC4zNiA3LjA5LTE3LjY5eiIvPjxwYXRoIGZpbGw9IiNGQkJDMDUiIGQ9Ik0xMC41MyAyOC41OWMtLjQ4LTEuNDUtLjc2LTIuOTktLjc2LTQuNTlzLjI3LTMuMTQuNzYtNC41OWwtNy45OC02LjE5QzEuMjIgMTYuNDYgMCAyMC4xMiAwIDI0YzAgMy44OCAxLjIyIDcuNTQgMi41NiAxMC43OGw3Ljk3LTYuMTl6Ii8+PHBhdGggZmlsbD0iIzM0QTg1MyIgZD0iTTI0IDQ4YzYuNDggMCAxMS45My0yLjEzIDE1Ljg5LTUuODFsLTcuNzMtNmMtMi4xNSAxLjQ1LTQuOTIgMi4zLTguMTYgMi4zLTYuMjYgMC0xMS41Ny00LjIyLTEzLjQ3LTkuOTFsLTcuOTggNi4xOUM2LjUxIDQyLjYyIDE0LjYyIDQ4IDI0IDQ4eiIvPjwvc3ZnPg==">
+    התחברות עם חשבון Google
+  </button>
+  <div class="mini" style="max-width:330px">כל המספרים כאן הם חשבונות <b>דמו</b> (כסף מדומה) ואינם ייעוץ השקעות. הכניסה לחברים שהוזמנו על ידי עידן.</div>
+  <div id="loginErr" class="mini dn"></div>
+</div>
+
+<!-- ======================= CONTRACT ======================= -->
+<div id="v-contract" class="full hidden" style="justify-content:flex-start;padding-top:30px">
+  <div class="title" style="font-size:22px">📜 הסכם חברות במועדון<small>חתימה חד-פעמית לפני הכניסה</small></div>
+  <div class="contract" id="contractText"></div>
+  <div style="width:100%;max-width:560px">
+    <label class="chk"><input type="checkbox" id="agreeChk"><span>קראתי את כל ההסכם, הבנתי אותו, אני מעל גיל 18 ואני מסכים לכל האמור בו.</span></label>
+    <input type="text" id="signName" placeholder="שם מלא (זו החתימה שלך)" autocomplete="name">
+    <button class="btn" id="btnSign" style="width:100%;margin-top:12px" disabled>✍️ חתום והיכנס למועדון</button>
+  </div>
+</div>
+
+<!-- ======================= TOUR ======================= -->
+<div id="v-tour" class="full hidden">
+  <div class="card" style="max-width:420px;width:100%;text-align:center">
+    <div id="tourIcon" style="font-size:52px;margin-bottom:6px">🃏</div>
+    <h3 id="tourTitle" style="font-size:19px"></h3>
+    <div id="tourBody" class="mini" style="font-size:14px;color:var(--ink)"></div>
+    <div class="dots" id="tourDots"></div>
+    <button class="btn" id="tourNext" style="width:100%;margin-top:14px">הבא</button>
+  </div>
+</div>
+
+<!-- ======================= LOCKED / BLOCKED ======================= -->
+<div id="v-locked" class="full hidden">
+  <div style="font-size:56px">🔒</div>
+  <div class="title" style="font-size:22px">המועדון עבר לכסף אמיתי</div>
+  <div class="mini" style="max-width:360px;font-size:14px">בשלב הזה הכניסה פתוחה רק למי שפתח חשבון דרך הקישור של עידן, ועידן אישר אותו. אם כבר נרשמת — דבר עם עידן שיאשר אותך.</div>
+  <a id="lockedLink" class="btn" style="text-decoration:none" target="_blank" rel="noopener">🔗 לפתיחת חשבון דרך הקישור של עידן</a>
+  <button class="btn sec" onclick="signOut()">התנתק</button>
+</div>
+<div id="v-blocked" class="full hidden">
+  <div style="font-size:56px">🚫</div>
+  <div class="title" style="font-size:22px">אין גישה</div>
+  <div class="mini">החשבון שלך הושהה. דבר עם עידן.</div>
+  <button class="btn sec" onclick="signOut()">התנתק</button>
+</div>
+
+<!-- ======================= MAIN ======================= -->
+<div id="v-app" class="hidden">
+  <header><div class="hrow">
+    <div class="logo"><div class="chip"></div>Idan's Money Club</div>
+    <div class="hspace"></div>
+    <div class="wallet"><div class="v" id="hWallet">—</div><div class="k">הארנקים שלנו (דמו)</div></div>
+    <img class="avatar" id="hAvatar" alt="" referrerpolicy="no-referrer">
+  </div></header>
+  <button id="installBtn" class="hidden">📥 התקן את האפליקציה</button>
+
+  <div class="wrap">
+    <!-- ===== table ===== -->
+    <section id="t-table">
+      <div class="pot">
+        <div class="lab">הקופה של יום המסחר האחרון · נטו לכיס (מחירון ATRADE)</div>
+        <div class="amt" id="potNet">—</div>
+        <div class="sub" id="potSub">טוען נתונים…</div>
+      </div>
+      <div class="lights" id="lights"></div>
+      <div id="seats"></div>
+      <div class="card">
+        <h3>💰 כמה נשאר בכיס — יום המסחר האחרון</h3>
+        <div class="fee3">
+          <div class="feebox"><div class="k">לפני עמלות</div><div class="v" id="fGross">—</div></div>
+          <div class="feebox"><div class="k">העמלות</div><div class="v wa" id="fFee">—</div></div>
+          <div class="feebox net"><div class="k">נשאר בכיס</div><div class="v" id="fNet">—</div></div>
+        </div>
+        <div class="mini" id="fNote"></div>
+      </div>
+      <div class="card"><h3>🃏 קלפים על השולחן (פוזיציות פתוחות)</h3><div id="openPos" class="mini">—</div></div>
+    </section>
+
+    <!-- ===== calendar ===== -->
+    <section id="t-cal" class="hidden">
+      <div class="card">
+        <div class="calhead">
+          <button id="calPrev">‹</button><b id="calTitle"></b><button id="calNext">›</button>
+          <div style="margin-inline-start:auto;text-align:left">
+            <div id="calSum" style="font-weight:900;font-size:17px">—</div>
+            <div class="mini" id="calSum2"></div>
+          </div>
+        </div>
+        <div class="dow"><span>א׳</span><span>ב׳</span><span>ג׳</span><span>ד׳</span><span>ה׳</span><span>ו׳</span><span>ש׳</span></div>
+        <div class="cal" id="calGrid"></div>
+        <div class="mini" style="margin-top:9px">כל יום מציג את <b>הנטו לכיס</b> של אותו יום בדולרים, אחרי עמלות לפי מחירון ATRADE. לחיצה על יום — הפירוט המלא. ירוק = יום מרוויח, אדום = מפסיד.</div>
+      </div>
+    </section>
+
+    <!-- ===== reports ===== -->
+    <section id="t-reports" class="hidden">
+      <div class="card">
+        <h3>📊 דוח ימי — ברוטו · עמלות · נטו לכיס</h3>
+        <div style="overflow-x:auto"><table id="repTable"></table></div>
+        <div class="mini" style="margin-top:8px">מקור: יומני המסחר של הבוטים במחשב של עידן, מפורסמים אוטומטית. העמלות מחושבות לפי ‎$0.37‎ לאונקיה (‎$37‎ ללוט) — המחירון של ATRADE, הברוקר הישראלי המפוקח שנבחר.</div>
+      </div>
+      <div class="card">
+        <h3>🚦 איפה זה עומד מול כסף אמיתי</h3>
+        <div class="mini" style="font-size:13.5px">
+        לפני שנכנס אפילו שקל אמיתי, בוט הזהב חייב לעבור <b>שער קבלה מספרי</b>: 100 עסקאות לפחות, רווח ממוצע של ‎+0.05R‎ ומעלה לעסקה, שפל של פחות מ-25%, לאורך 30 ימי מסחר. <b>עד שהשער לא עובר — הכול נשאר בדמו.</b> זה לא ביורוקרטיה, זו ההגנה מהונאה עצמית: מערכת שלא הוכיחה את עצמה בכסף מדומה לא נוגעת בכסף אמיתי. את המדידה הרשמית מריצה ביקורת לילה אוטומטית במחשב של עידן.</div>
+      </div>
+      <div class="card">
+        <h3>🕵️ כלל הדיווח הכן</h3>
+        <div class="mini" style="font-size:13.5px">כשיש שני מקורות שחלוקים על מספר — לא מדווחים אותו כרווח. תראה לפעמים תג ⚠️ "ספרים חלוקים" על שולחן המניות: זה בדיוק הכלל הזה עובד. עדיף אמת לא נוחה ממספר יפה ושקרי.</div>
+      </div>
+    </section>
+
+    <!-- ===== strategies ===== -->
+    <section id="t-learn" class="hidden" ></section>
+
+    <!-- ===== connections ===== -->
+    <section id="t-links" class="hidden">
+      <div class="card"><h3>🔗 החיבורים שלך</h3>
+        <div class="mini" style="font-size:14px;line-height:1.8" id="linksBody"></div>
+      </div>
+      <div class="card"><h3>📲 שתף את המועדון</h3>
+        <div class="mini">שלח לחבר את הקישור — הוא ייפתח, יתחבר עם גוגל, יחתום ויצטרף:</div>
+        <div style="display:flex;gap:8px;margin-top:9px">
+          <input type="text" id="shareUrl" readonly value="">
+          <button class="btn sec" style="flex:none" onclick="copyShare()">העתק</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== admin ===== -->
+    <section id="t-admin" class="hidden">
+      <div class="card"><h3>👑 מצב המועדון</h3>
+        <div style="display:flex;align-items:center;gap:11px;margin:8px 0">
+          <div class="sw" id="modeSw" onclick="toggleMode()"></div>
+          <div><b id="modeLbl">דמו</b><div class="mini" id="modeHint">כולם רואים. במעבר לאמיתי — רק מי שחיברת דרך הברוקר שלך ייכנס.</div></div>
+        </div>
+        <div class="mini" style="margin-top:10px">קישור ההפניה של הברוקר שלך (יוצג לחברים במסך הנעילה ובחיבורים):</div>
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <input type="text" id="brokerLinkInp" placeholder="https://..." style="direction:ltr">
+          <button class="btn sec" style="flex:none" onclick="saveBrokerLink()">שמור</button>
+        </div>
+      </div>
+      <div class="card"><h3>👥 החברים</h3>
+        <div class="mini" style="margin-bottom:6px">מתג ירוק ראשון = מאושר להיכנס · מתג שני = מחובר דרך הברוקר שלך (נדרש במצב אמיתי)</div>
+        <div id="usersList" class="mini">טוען…</div>
+      </div>
+    </section>
+  </div>
+
+  <nav id="mainNav">
+    <button data-t="table" class="on"><span class="i">🃏</span>השולחן</button>
+    <button data-t="cal"><span class="i">📅</span>לוח שנה</button>
+    <button data-t="reports"><span class="i">📊</span>דוחות</button>
+    <button data-t="learn"><span class="i">📖</span>אסטרטגיות</button>
+    <button data-t="links"><span class="i">🔗</span>חיבורים</button>
+    <button data-t="admin" id="navAdmin" class="hidden"><span class="i">👑</span>ניהול</button>
+  </nav>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+"use strict";
+/* ================= Idan's Money Club · v1.0 · 16.8.2026 =================
+   מסך אחד לחברים: הבוטים בדמו, לוח שנה של נטו-לכיס, דוחות, אסטרטגיות.
+   התחברות גוגל · חוזה דיגיטלי · הדרכה · נעילת "כסף אמיתי" לפי אישור עידן. */
+
+const OWNER_EMAIL = "idan2189@gmail.com";
+const CONTRACT_VERSION = 1;
+const APP_VERSION = "1.0.0";
+const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
+const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
+
+const FB_CONFIG = {
+  apiKey: "AIzaSyA0n2xr_xomM8L_Usqrq_qFHb-ZliDAN5M",
+  authDomain: "idan-money-club.firebaseapp.com",
+  projectId: "idan-money-club",
+  storageBucket: "idan-money-club.firebasestorage.app",
+  messagingSenderId: "716426791193",
+  appId: "1:716426791193:web:6259ec7f9a97f628255d88"
+};
+
+/* ---------- tiny utils ---------- */
+const $ = id => document.getElementById(id);
+function money(v, d){ if(v===undefined||v===null||isNaN(v)) return "—";
+  const a = Math.abs(+v).toLocaleString("en-US",{minimumFractionDigits:d===undefined?2:d,maximumFractionDigits:d===undefined?2:d});
+  return (v<0?"-":"")+"$"+a; }
+function signed(v,d){ if(v===undefined||v===null||isNaN(v)) return "—";
+  return (v>0?"+":(v<0?"-":""))+"$"+Math.abs(+v).toLocaleString("en-US",{minimumFractionDigits:d===undefined?2:d,maximumFractionDigits:d===undefined?2:d}); }
+function cls(v){ return v>0.004?"up":(v<-0.004?"dn":""); }
+function ago(sec){ if(sec===null||sec===undefined||isNaN(sec)) return "—";
+  if(sec<90) return Math.round(sec)+" שנ׳"; if(sec<5400) return Math.round(sec/60)+" דק׳";
+  if(sec<172800) return (sec/3600).toFixed(1)+" שע׳"; return Math.round(sec/86400)+" ימים"; }
+function toast(msg){ const t=document.createElement("div"); t.className="toast"; t.textContent=msg;
+  document.body.appendChild(t); setTimeout(()=>t.remove(), 2600); }
+function goldMarketClosedNow(){ const n=new Date(),d=n.getDay(),h=n.getHours()+n.getMinutes()/60;
+  if(d===6||d===0) return true; if(d===1&&h<1) return true; if(d===5&&h>=23.9) return true; return false; }
+function usMarketOpenNow(){ const n=new Date(),d=n.getDay(),h=n.getHours()+n.getMinutes()/60;
+  return (d>=1&&d<=5)&&h>=16.5&&h<23; }
+
+/* ---------- the contract ---------- */
+const CONTRACT_HTML = `
+<h4>הסכם חברות — Idan's Money Club · גרסה ${CONTRACT_VERSION} · אוגוסט 2026</h4>
+<p><b>1. מה זה המועדון.</b> מסך מעקב אחרי מערכת מסחר אוטומטית שבנה עידן ("המערכת"). המספרים מגיעים מחשבונות <b>דמו</b> (כסף מדומה) ומחשבון אמיתי אחד של צד שלישי שמשמש כמקור אותות בלבד ("המורה"). שום דבר כאן אינו חשבון שלך.</p>
+<p><b>2. לא ייעוץ ולא ניהול.</b> התוכן במועדון אינו ייעוץ השקעות, אינו שיווק השקעות ואינו ניהול תיקים, ואינו מותאם אישית לאף אחד. עידן אינו בעל רישיון לפי חוק הסדרת העיסוק בייעוץ השקעות, בשיווק השקעות ובניהול תיקי השקעות, התשנ"ה-1995. כל החלטה כספית שלך — באחריותך בלבד, ומומלץ להתייעץ עם בעל רישיון.</p>
+<p><b>3. השלב הנוכחי — דמו בלבד.</b> אין חיבור לכסף שלך, אין מסחר בשמך, ואתה לא יכול להפסיד כאן כסף — כי אין כאן כסף אמיתי של אף חבר.</p>
+<p><b>4. אם בעתיד תבחר לפתוח חשבון אמיתי.</b> תעשה זאת בעצמך, ישירות מול ברוקר מפוקח, בחשבון על שמך שרק לך יש גישה אליו. עידן לא יקבל גישה לכסף שלך, לא יבצע עבורך פעולות ולא יקבע לך הגדרות סיכון. הפעלת מערכת אוטומטית על חשבונך — החלטה שלך ובאחריותך.</p>
+<p><b>5. גילוי נאות — עמלת הפניה.</b> אם תפתח חשבון דרך קישור ההפניה של עידן, עידן עשוי לקבל תגמול מהברוקר (עמלת הפניה על נפח המסחר או על ההצטרפות). זה לא עולה לך כסף נוסף, אבל זהו ניגוד עניינים פוטנציאלי שאתה זכאי לדעת עליו — ולכן הוא כתוב כאן.</p>
+<p><b>6. סיכון.</b> מסחר ממונף בזהב, במט"ח ובמניות מסוכן ויכול למחוק את כל הכסף המושקע. ביצועי עבר — כולל תוצאות הדמו במסכים האלה — אינם מנבאים דבר. חלק מהשיטות המוצגות (רשת/מרטינגייל של "המורה" ו"המעתיק") מסוכנות במיוחד, מוצגות כלימוד בלבד, ולפי כללי המועדון לעולם לא יופעלו בכסף אמיתי.</p>
+<p><b>7. שקיפות המספרים.</b> המועדון מציג גם הפסדים, גם עמלות וגם סתירות בין ספרים כשהן קיימות. המספרים מגיעים אוטומטית מהמחשב של עידן וייתכנו בהם תקלות, עיכובים וטעויות. אין התחייבות לזמינות או לדיוק.</p>
+<p><b>8. פרטיות.</b> נשמרים: שם, אימייל, תמונת הפרופיל מגוגל, מועד ההצטרפות והחתימה. אפשר לבקש מעידן מחיקה מלאה בכל עת.</p>
+<p><b>9. שינויים.</b> עידן רשאי לעדכן הסכם זה; שינוי מהותי יחייב חתימה מחודשת בכניסה הבאה.</p>
+<p><b>10. בחתימתי אני מאשר</b> שקראתי והבנתי את כל האמור, שאני בן 18 ומעלה, ושהשימוש במועדון על אחריותי בלבד.</p>`;
+
+/* ---------- the tour ---------- */
+const TOUR = [
+  {i:"🃏", t:"ברוך הבא לשולחן", b:"כל בוט הוא שחקן פוקר: הערימה שלו היא כמה כסף יש לו בחשבון הדמו, והקופה במרכז היא כמה נכנס לכיס ביום המסחר האחרון — אחרי עמלות."},
+  {i:"📅", t:"לוח השנה של הכסף", b:"כל יום מסחר מקבל משבצת: ירוק = יום מרוויח, אדום = מפסיד, והמספר הוא הנטו לכיס בדולרים. לחיצה על יום פותחת את הפירוט המלא."},
+  {i:"📊", t:"דוחות בלי איפור", b:"ברוטו לפני עמלות, כמה הברוקר לוקח, וכמה באמת נשאר. המועדון מציג גם הפסדים וגם ימים רעים — זה העיקרון."},
+  {i:"📖", t:"האסטרטגיות — כולל הסיכונים", b:"לכל בוט יש דף שמסביר בדיוק איך הוא חושב, מה מדדנו, ואיפה הוא מסוכן. בלי הבטחות: מה שלא הוכיח את עצמו — כתוב שלא."},
+  {i:"🔒", t:"דמו עכשיו, אמיתי רק דרך עידן", b:"כרגע הכול צפייה בדמו. כשעידן יעביר את המועדון לכסף אמיתי, ייכנסו רק חברים שפתחו חשבון דרך הקישור שלו ואושרו. תקבל הודעה כשזה קורה."}
+];
+
+/* ---------- strategy pages ---------- */
+const LEARN = [
+ {i:"💰", t:"בוט הזהב — פריצת מומנטום (הראשי)", b:`סוחר XAUUSD על גרף 15 דקות בחשבון דמו.
+<br><b>איך הוא חושב:</b> נסחר רק בכיוון המגמה השעתית (EMA 34 מול 89) · נכנס רק כשיש "הצתה" — תזוזה של 2 ATR תוך 4 נרות · סטופ 1 ATR מהכניסה · נועל רווח מ-0.3R, מזיז לנקודת איזון ב-0.5R, ומטרייל 2×ATR כדי לתת לרווח לרוץ · בלמים: עצירת יום ב-6%- , עצירה אחרי 3 הפסדים רצופים, צינון 8 נרות.
+<br><b>מה המצב באמת:</b> ביומיים האחרונים שנמדדו הוא מרוויח, אבל המדגם קטן. נקודת התורפה הידועה: הזוכה הממוצע קטן מהמפסיד הממוצע — הוא חייב אחוז הצלחה גבוה כדי להישאר ברווח. לכן יש שער קבלה של 100 עסקאות לפני כסף אמיתי.`},
+ {i:"🎓", t:"GoldTrap — המורה (צפייה בלבד)", b:`חשבון אמיתי של צד שלישי (~195,000$) שאנחנו מחוברים אליו במצב משקיע — רואים, לא נוגעים.
+<br><b>השיטה שלו:</b> רשת בסולם פיבונאצ'י — פותח רגל קטנה, ואם המחיר הולך נגדו מוסיף רגליים גדלות (0.01→0.02→0.03→0.05→0.08…) כדי לקרב את נקודת האיזון.
+<br><b>למה זה מסוכן:</b> מדדנו את השיטה על נתונים אמיתיים — יום עם 99.2% הצלחה הסתיים בהפסד, כי 7 סלים גרועים מחקו 917 נצחונות. המורה שורד כי יש לו הון עמוק שסופג. על חשבון קטן זו מחיקה. <b>ולכן: השיטה הזו אצלנו בדמו בלבד, לתמיד.</b>`},
+ {i:"🪞", t:"המעתיק — המעבדה (דמו בלבד)", b:`חשבון דמו שמעתיק 1:1 כל רגל של המורה, כדי שנוכל למדוד את השיטה שלו בלי לסכן כלום.
+<br><b>מה הוא לימד אותנו:</b> ביום מסחר אחד הוא עשה +16.1% — אבל העמלות על אותו יום היו ~1,500$ על חשבון של 10,000$. הברוקר לקח 54% מהרווח הגולמי. העתקה של סוחר-הון-גדול על חשבון קטן היא התאבדות בעמלות. <b>המעתיק לא יעבור לעולם לכסף אמיתי — הוא קיים כדי ללמוד.</b>`},
+ {i:"📈", t:"בוט המניות — סווינג (נייר)", b:`סורק מניות אמריקאיות וסוחר "סווינג" — תפיסת גל שלם של ימים עד שבועות — בחשבון נייר (כסף מדומה) באינטראקטיב ברוקרס.
+<br><b>סטטוס כן:</b> כרגע יש סתירה בין שני ספרי החשבון (המנוע מול הברוקר) — ולפי כלל המועדון, מספר ששני מקורות חלוקים עליו לא מדווח כרווח. עד שהסתירה תיושב תראה על השולחן תג ⚠️.`},
+ {i:"🚦", t:"שער שלב 0 — למה אין עדיין כסף אמיתי", b:`כסף אמיתי נכנס רק אחרי שבוט הזהב עומד בכל אלה בדמו: 100 עסקאות לפחות · רווח ממוצע ≥ +0.05R לעסקה · שפל מקסימלי < 25% · לאורך 30 ימי מסחר.
+<br>זו ההגנה של כולנו מהונאה עצמית. מערכת שנראית מדהים שבוע אחד יכולה להיות מזל — 100 עסקאות מפרידות בין מזל לשיטה. הביקורת רצה כל לילה אוטומטית ואי אפשר "לעגל פינות".`},
+ {i:"💸", t:"עמלות 101 — למה זה המספר הכי חשוב", b:`כל עסקת זהב עולה כסף לברוקר (מרווח). לוט אחד = 100 אונקיות. אצל ATRADE (הברוקר הישראלי המפוקח שנבחר) העלות היא ‎$0.37‎ לאונקיה = ‎$37‎ ללוט סיבוב מלא.
+<br>לכן כל מסך במועדון מראה שלושה מספרים: <b>ברוטו</b> (מה הרוויחו העסקאות) · <b>עמלות</b> (מה הברוקר לוקח) · <b>נטו לכיס</b> (מה באמת נשאר). מערכת שמרוויחה ברוטו ומפסידה נטו — מפסידה.`}
+];
+
+/* ---------- firebase ---------- */
+let auth=null, db=null, ME=null, MYDOC=null, SETTINGS={mode:"demo", brokerLink:""}, IS_OWNER=false;
+let unsubMe=null, unsubSet=null, unsubUsers=null;
+let PHONE=null, phoneTimer=null, calCursor=new Date();
+
+function initFirebase(){
+  if (window.__TEST_FIREBASE__){ auth = window.__TEST_FIREBASE__.auth; db = window.__TEST_FIREBASE__.db; return; }
+  firebase.initializeApp(FB_CONFIG);
+  auth = firebase.auth(); db = firebase.firestore();
+}
+
+/* ---------- views ---------- */
+const VIEWS = ["v-login","v-contract","v-tour","v-locked","v-blocked","v-app"];
+function show(id){ VIEWS.forEach(v => $(v).classList.toggle("hidden", v!==id)); }
+
+function route(){
+  if (!ME){ show("v-login"); return; }
+  if (!MYDOC){ show("v-login"); return; }
+  IS_OWNER = (ME.email||"").toLowerCase() === OWNER_EMAIL;
+  if (MYDOC.allowed === false && !IS_OWNER){ show("v-blocked"); return; }
+  if (!MYDOC.signedContract || (MYDOC.contractVersion||0) < CONTRACT_VERSION){
+    $("contractText").innerHTML = CONTRACT_HTML; show("v-contract"); return; }
+  if (SETTINGS.mode === "real" && !IS_OWNER && !MYDOC.brokerLinked){
+    $("lockedLink").href = SETTINGS.brokerLink || "#";
+    $("lockedLink").classList.toggle("hidden", !SETTINGS.brokerLink);
+    show("v-locked"); return; }
+  if (!MYDOC.tourDone){ startTour(); show("v-tour"); return; }
+  enterApp();
+}
+
+function enterApp(){
+  show("v-app");
+  $("hAvatar").src = ME.photoURL || "icon-192.png";
+  $("navAdmin").classList.toggle("hidden", !IS_OWNER);
+  $("shareUrl").value = APP_URL;
+  renderLearn(); renderLinks();
+  if (IS_OWNER) initAdmin();
+  if (!phoneTimer){ pollPhone(); phoneTimer = setInterval(pollPhone, 15000); }
+}
+
+/* ---------- auth ---------- */
+function isStandaloneMobile(){
+  const mob = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  return mob || window.matchMedia("(display-mode: standalone)").matches;
+}
+async function signIn(){
+  $("loginErr").textContent = "";
+  const prov = new firebase.auth.GoogleAuthProvider();
+  try {
+    if (isStandaloneMobile()) await auth.signInWithRedirect(prov);
+    else await auth.signInWithPopup(prov);
+  } catch(e){
+    try { await auth.signInWithRedirect(prov); }
+    catch(e2){ $("loginErr").textContent = "ההתחברות נכשלה: " + (e2.message||e2.code||e2); }
+  }
+}
+function signOut(){ try{ auth.signOut(); }catch(e){} location.reload(); }
+
+async function onUser(user){
+  if (unsubMe) { unsubMe(); unsubMe=null; }
+  if (!user){ ME=null; MYDOC=null; show("v-login"); return; }
+  ME = user;
+  const uref = db.collection("users").doc(user.uid);
+  try {
+    const snap = await uref.get();
+    if (!snap.exists){
+      await uref.set({
+        email:(user.email||"").toLowerCase(), name:user.displayName||"", photo:user.photoURL||"",
+        created:new Date().toISOString(), allowed:true, brokerLinked:false,
+        signedContract:false, contractVersion:0, tourDone:false, appVersion:APP_VERSION });
+    }
+  } catch(e){ $("loginErr").textContent = "שגיאת הרשאות מסד: " + (e.code||e.message); show("v-login"); return; }
+  unsubMe = uref.onSnapshot(s => { MYDOC = s.data()||{}; route(); });
+  if (unsubSet) unsubSet();
+  const sref = db.collection("settings").doc("global");
+  unsubSet = sref.onSnapshot(async s => {
+    if (!s.exists){
+      SETTINGS = {mode:"demo", brokerLink:""};
+      if ((user.email||"").toLowerCase() === OWNER_EMAIL){
+        try{ await sref.set({mode:"demo", brokerLink:"", contractVersion:CONTRACT_VERSION}); }catch(e){}
+      }
+    } else SETTINGS = s.data();
+    route(); if (IS_OWNER) reflectAdmin();
+  }, err => { SETTINGS = {mode:"demo", brokerLink:""}; route(); });
+}
+
+/* ---------- contract ---------- */
+function wireContract(){
+  const upd = () => { $("btnSign").disabled = !($("agreeChk").checked && $("signName").value.trim().length >= 3); };
+  $("agreeChk").onchange = upd; $("signName").oninput = upd;
+  $("btnSign").onclick = async () => {
+    const name = $("signName").value.trim();
+    $("btnSign").disabled = true;
+    try {
+      await db.collection("signatures").doc(ME.uid).set({
+        uid:ME.uid, email:(ME.email||"").toLowerCase(), name,
+        contractVersion:CONTRACT_VERSION, signedAt:new Date().toISOString(),
+        userAgent:navigator.userAgent });
+      await db.collection("users").doc(ME.uid).update({
+        signedContract:true, contractVersion:CONTRACT_VERSION, signedName:name,
+        signedAt:new Date().toISOString() });
+      toast("נחתם ✓ ברוך הבא למועדון");
+    } catch(e){ toast("שגיאה בחתימה: " + (e.code||e.message)); $("btnSign").disabled=false; }
+  };
+}
+
+/* ---------- tour ---------- */
+let tourIdx = 0;
+function startTour(){ tourIdx = 0; drawTour(); }
+function drawTour(){
+  const s = TOUR[tourIdx];
+  $("tourIcon").textContent = s.i; $("tourTitle").textContent = s.t; $("tourBody").textContent = s.b;
+  $("tourDots").innerHTML = TOUR.map((_,i)=>`<i class="${i===tourIdx?'on':''}"></i>`).join("");
+  $("tourNext").textContent = tourIdx === TOUR.length-1 ? "🎉 מתחילים!" : "הבא";
+}
+function wireTour(){
+  $("tourNext").onclick = async () => {
+    if (tourIdx < TOUR.length-1){ tourIdx++; drawTour(); return; }
+    try{ await db.collection("users").doc(ME.uid).update({tourDone:true}); }catch(e){}
+  };
+}
+
+/* ---------- data polling ---------- */
+async function pollPhone(){
+  try {
+    const r = await fetch(DATA_URL + "?t=" + Date.now(), {cache:"no-store"});
+    if (!r.ok) throw new Error("http " + r.status);
+    PHONE = await r.json();
+    renderTable(); renderCalendar(); renderReports();
+  } catch(e){
+    if (!PHONE) $("potSub").textContent = "מחכה לשידור מהמחשב של עידן…";
+  }
+}
+
+/* ---------- the table ---------- */
+function seatHTML(o){
+  return `<div class="seat ${o.dim?'dim':''}">
+    <div class="ic">${o.icon}</div>
+    <div class="mid"><div class="nm">${o.name}</div><div class="rl">${o.role}</div>
+      <div class="tags">${o.tags.map(t=>`<span class="tag ${t.tone||''}">${t.t}</span>`).join("")}</div></div>
+    <div class="stack"><div class="v">${o.stack}</div><div class="k">${o.stackLab}</div></div>
+  </div>`;
+}
+function renderTable(){
+  const P = PHONE; if (!P) return;
+  const closed = goldMarketClosedNow();
+  const g = P.gold||{}, cop = P.copier||{}, slv = P.slave||{}, sh = P.shadow_wallet||{}, eng = P.engine_wallet||{};
+  let updAge = null;
+  if (P.updated_utc){ const t = new Date(P.updated_utc).getTime(); if(!isNaN(t)) updAge = Math.max(0,(Date.now()-t)/1000); }
+
+  /* wallet: OUR demo accounts (gold + copier + stocks-broker-side) */
+  const wallet = (+g.equity||0) + (+slv.equity||+slv.balance||0) + (+sh.equity||0);
+  $("hWallet").textContent = money(wallet, 0);
+
+  /* pot: last day net after ATRADE fees */
+  const fees = P.fees||{}, tot = fees.total||{};
+  $("potNet").textContent = signed(tot.net_atrade);
+  $("potNet").className = "amt " + cls(tot.net_atrade);
+  $("potSub").innerHTML =
+    (fees.is_today ? "היום" : "יום המסחר האחרון — " + (fees.day||"")) +
+    " · ברוטו " + signed(tot.gross) + " · עמלות -" + money(Math.abs(tot.atrade_fee||0)) +
+    (closed ? " · 🌙 שוק הזהב סגור, חוזרים שני 01:00" : "");
+
+  /* lights */
+  let L = [];
+  const light = (ok, warn, txt) => L.push(`<span class="tag ${ok?'up':(warn?'wa':'dn')}">● ${txt}</span>`);
+  light(updAge!==null && updAge<240, updAge!==null && updAge<1800, "שידור מהמחשב " + (updAge!==null?ago(updAge):"—"));
+  light(closed || true, false, closed ? "זהב · שוק סגור 🌙" : "זהב חי");
+  light(!!P.tws_connected, !P.tws_connected && !usMarketOpenNow(), P.tws_connected ? "מניות מחוברות" : (usMarketOpenNow() ? "מניות מנותקות" : "מניות · שוק סגור"));
+  $("lights").innerHTML = L.join("");
+
+  /* seats */
+  const gDay = +g.day_pnl||0;
+  const engEq = +eng.equity||0, shEq = +sh.equity||0;
+  const disputed = engEq>0 && shEq>0 && Math.abs(engEq-shEq) > Math.max(5, .02*shEq);
+  let seats = "";
+  seats += seatHTML({icon:"💰", name:"בוט הזהב", role:"XAUUSD · מטה-טריידר · דמו", dim:false,
+    stack:money(g.equity), stackLab:"הערימה",
+    tags:[{t:"יום אחרון "+signed(gDay), tone:cls(gDay)},{t:(g.trades_today||0)+" ידיים"},
+          closed?{t:"🌙 שוק סגור"}:{t:"חי"}]});
+  if (cop.equity!==undefined && cop.equity!==null){
+    const legs=(cop.legs||[]).length;
+    seats += seatHTML({icon:"🎓", name:"GoldTrap — המורה", role:"חשבון אמיתי · צפייה בלבד · לא שלנו",
+      stack:money(cop.equity), stackLab:"הערימה שלו",
+      tags:[{t:legs+" רגליים פתוחות", tone:legs?"up":""}, closed?{t:"🌙 שוק סגור"}:{t:"משדר ✓",tone:"up"}]});
+  }
+  if (slv.balance!==undefined && slv.balance!==null){
+    const sDay=+slv.day_pnl||0;
+    seats += seatHTML({icon:"🪞", name:"המעתיק", role:"עותק 1:1 מהמורה · דמו · מעבדה בלבד",
+      stack:money(slv.equity!==undefined&&slv.equity!==null?slv.equity:slv.balance), stackLab:"הערימה",
+      tags:[{t:"היום "+signed(sDay), tone:cls(sDay)},{t:((+slv.day_lots||0).toFixed(2))+" לוט"},
+            {t:(slv.open_positions||0)+" פתוחות"}, closed?{t:"🌙 שוק סגור"}:{t:"חי"}]});
+  }
+  const stTags = [{t:(P.positions||[]).length+" פוזיציות"}];
+  if (disputed) stTags.push({t:"⚠️ ספרים חלוקים — לא מדווח רווח", tone:"wa"});
+  if (P.stocks_stale && P.stocks_as_of) stTags.push({t:"נכון ל-"+P.stocks_as_of, tone:"wa"});
+  seats += seatHTML({icon:"📈", name:"בוט המניות — סווינג", role:"אינטראקטיב ברוקרס · חשבון נייר",
+    dim:!P.tws_connected && usMarketOpenNow(),
+    stack:money(shEq), stackLab:"לפי הברוקר", tags:stTags});
+  $("seats").innerHTML = seats;
+
+  /* fee boxes */
+  $("fGross").textContent = signed(tot.gross); $("fGross").className = "v "+cls(tot.gross);
+  $("fFee").textContent = "-"+money(Math.abs(tot.atrade_fee||0));
+  $("fNet").textContent = signed(tot.net_atrade); $("fNet").className = "v "+cls(tot.net_atrade);
+  $("fNote").innerHTML = (tot.gross>0 ? "העמלות לקחו <b>"+Math.round(Math.abs(tot.atrade_fee||0)/tot.gross*100)+"%</b> מהברוטו · " : "") +
+    "מחושב לפי מחירון ATRADE: ‎$0.37‎ לאונקיה (‎$37‎ ללוט) · רק עסקאות שנסגרו";
+
+  /* open positions */
+  const pos = P.positions||[];
+  $("openPos").innerHTML = pos.length
+    ? pos.map(p=>{
+        const sym = p.ticker||p.symbol||"?";
+        const qty = (p.qty!==undefined&&p.qty!==null)?p.qty:(p.qty_left!==undefined?p.qty_left:0);
+        const entry = (p.entry!==undefined&&p.entry!==null)?p.entry:p.avg_cost;
+        const last = (p.last!==undefined&&p.last!==null)?p.last:p.mark;
+        const pl = (p.unrealized!==undefined&&p.unrealized!==null) ? +p.unrealized :
+                   ((last!==undefined&&entry!==undefined)?((+last-+entry)*(+qty||0)*(p.side==="short"?-1:1)):null);
+        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1c3450">
+          <b>${sym}</b><span>${qty||0} יח׳ @ ${entry!==undefined?(+entry).toFixed(2):"—"}</span>
+          <b class="${(pl||0)>=0?'up':'dn'}">${pl===null?"—":signed(pl)}</b></div>`; }).join("")
+    : "אין עסקאות פתוחות כרגע — הבוטים סורקים ומחכים להזדמנות.";
+}
+
+/* ---------- calendar ---------- */
+function renderCalendar(){
+  const P = PHONE; if (!P) return;
+  const H = P.history||{};
+  const y = calCursor.getFullYear(), m = calCursor.getMonth();
+  const monthName = calCursor.toLocaleDateString("he-IL",{month:"long", year:"numeric"});
+  $("calTitle").textContent = monthName;
+  const first = new Date(y,m,1), startDow = first.getDay(), days = new Date(y,m+1,0).getDate();
+  let html = "", mSum = 0, mDays = 0;
+  for (let i=0;i<startDow;i++) html += `<div class="d off"></div>`;
+  for (let d=1;d<=days;d++){
+    const key = y+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+    const e = H[key];
+    if (e && (e.net_atrade!==undefined)){
+      mSum += e.net_atrade; mDays++;
+      html += `<div class="d ${e.net_atrade>0.004?'g':(e.net_atrade<-0.004?'r':'')}" onclick="dayModal('${key}')">
+        <span class="n">${d}</span><span class="p ${cls(e.net_atrade)}">${signed(e.net_atrade,0)}</span></div>`;
+    } else html += `<div class="d off"><span class="n">${d}</span></div>`;
+  }
+  $("calGrid").innerHTML = html;
+  $("calSum").textContent = signed(mSum); $("calSum").className = cls(mSum);
+  $("calSum2").textContent = mDays + " ימי מסחר החודש";
+}
+function dayModal(key){
+  const e = ((PHONE||{}).history||{})[key]; if (!e) return;
+  const box = document.createElement("div"); box.className = "modal";
+  box.innerHTML = `<div class="mbox">
+    <h3 style="color:var(--gold)">📅 ${key.split("-").reverse().join(".")}</h3>
+    <table>
+      <tr><th>הבוט</th><th>לוטים</th><th>ברוטו</th><th>עמלת ATRADE</th><th>נטו לכיס</th></tr>
+      ${e.gold_gross!==undefined?`<tr><td>💰 הזהב</td><td>${(e.gold_lots||0).toFixed(2)}</td>
+        <td class="${cls(e.gold_gross)}">${signed(e.gold_gross)}</td><td class="wa">-${money(Math.abs((e.gold_gross||0)-(e.gold_net_atrade||0)))}</td>
+        <td class="${cls(e.gold_net_atrade)}"><b>${signed(e.gold_net_atrade)}</b></td></tr>`:""}
+      ${e.copier_gross!==undefined?`<tr><td>🪞 המעתיק</td><td>${(e.copier_lots||0).toFixed(2)}</td>
+        <td class="${cls(e.copier_gross)}">${signed(e.copier_gross)}</td><td class="wa">-${money(Math.abs((e.copier_gross||0)-(e.copier_net_atrade||0)))}</td>
+        <td class="${cls(e.copier_net_atrade)}"><b>${signed(e.copier_net_atrade)}</b></td></tr>`:""}
+      <tr><td><b>סה"כ</b></td><td></td><td class="${cls(e.gross)}">${signed(e.gross)}</td>
+        <td class="wa">-${money(Math.abs(e.fees_atrade||0))}</td>
+        <td class="${cls(e.net_atrade)}" style="font-size:16px"><b>${signed(e.net_atrade)}</b></td></tr>
+    </table>
+    <div class="mini" style="margin-top:8px">בדמו בפועל נשאר: ${signed(e.net_demo)} (מחירון הדמו זול יותר מ-ATRADE)</div>
+    <button class="btn sec" style="width:100%;margin-top:12px" onclick="this.closest('.modal').remove()">סגור</button>
+  </div>`;
+  box.onclick = ev => { if (ev.target===box) box.remove(); };
+  document.body.appendChild(box);
+}
+
+/* ---------- reports ---------- */
+function renderReports(){
+  const P = PHONE; if (!P) return;
+  const H = P.history||{};
+  const keys = Object.keys(H).sort().reverse().slice(0,14);
+  let html = `<tr><th>תאריך</th><th>ברוטו</th><th>עמלות</th><th>נטו לכיס</th><th>נטו בדמו</th></tr>`;
+  if (!keys.length) html += `<tr><td colspan="5" class="mini">עוד אין ימים מתועדים — הפיד מתמלא אוטומטית מיום ליום.</td></tr>`;
+  keys.forEach(k=>{ const e=H[k];
+    html += `<tr><td>${k.split("-").reverse().join(".")}</td>
+      <td class="${cls(e.gross)}">${signed(e.gross)}</td>
+      <td class="wa">-${money(Math.abs(e.fees_atrade||0))}</td>
+      <td class="${cls(e.net_atrade)}"><b>${signed(e.net_atrade)}</b></td>
+      <td class="${cls(e.net_demo)}">${signed(e.net_demo)}</td></tr>`; });
+  $("repTable").innerHTML = html;
+}
+
+/* ---------- learn ---------- */
+function renderLearn(){
+  $("t-learn").innerHTML = LEARN.map(x=>`<div class="card"><h3>${x.i} ${x.t}</h3>
+    <div class="mini" style="font-size:13.5px;color:var(--ink)">${x.b}</div></div>`).join("") +
+    `<div class="card"><div class="mini">⚖️ כל האמור הוא תיעוד של מערכת בפיתוח, לא ייעוץ ולא הזמנה להשקיע. ההסכם שחתמת עליו הוא הקובע.</div></div>`;
+}
+
+/* ---------- links ---------- */
+function renderLinks(){
+  const real = SETTINGS.mode === "real";
+  $("linksBody").innerHTML = `
+  <b>🥇 מטה-טריידר 5 (זהב)</b><br>
+  ${real ? `המועדון במצב אמיתי: פותחים חשבון <b>רק דרך הקישור של עידן</b>${SETTINGS.brokerLink?` — <a href="${SETTINGS.brokerLink}" target="_blank" rel="noopener">לחץ כאן</a>`:""}, ואחרי האישור שלו החשבון שלך מופיע כאן.`
+        : `בשלב הדמו אין מה לחבר — אתה רואה את חשבונות הדמו של עידן ישירות במסך. כשהמועדון יעבור לכסף אמיתי, כאן יופיע הקישור לפתיחת חשבון דרך עידן.`}<br><br>
+  <b>🏦 אינטראקטיב ברוקרס (מניות)</b><br>
+  ${real ? `כנ"ל — דרך הקישור של עידן בלבד.` : `אותו סיפור — צפייה בדמו עכשיו, חיבור אישי יגיע בשלב האמיתי.`}<br><br>
+  <span class="mini">⚖️ גילוי נאות: אם תפתח בעתיד חשבון דרך קישור של עידן, עידן עשוי לקבל עמלת הפניה מהברוקר. זה לא עולה לך כלום, וזכותך לדעת.</span>`;
+}
+function copyShare(){
+  navigator.clipboard.writeText($("shareUrl").value).then(()=>toast("הקישור הועתק ✓"))
+    .catch(()=>{ $("shareUrl").select(); document.execCommand("copy"); toast("הקישור הועתק ✓"); });
+}
+
+/* ---------- admin ---------- */
+function reflectAdmin(){
+  if (!IS_OWNER) return;
+  $("modeSw").classList.toggle("on", SETTINGS.mode==="real");
+  $("modeLbl").textContent = SETTINGS.mode==="real" ? "כסף אמיתי 🔴" : "דמו 🎓";
+  if (document.activeElement !== $("brokerLinkInp")) $("brokerLinkInp").value = SETTINGS.brokerLink||"";
+}
+function initAdmin(){
+  reflectAdmin();
+  if (unsubUsers) return;
+  unsubUsers = db.collection("users").onSnapshot(qs=>{
+    let html = "";
+    qs.forEach(doc=>{
+      const u = doc.data(), id = doc.id;
+      const isOwnerRow = (u.email||"")===OWNER_EMAIL;
+      html += `<div class="urow">
+        <img src="${u.photo||'icon-192.png'}" referrerpolicy="no-referrer" alt="">
+        <div style="flex:1;min-width:0"><b>${u.name||u.email}</b>
+          <div class="mini">${u.email}${u.signedContract?` · ✍️ חתם${u.signedAt?" "+String(u.signedAt).slice(0,10):""}`:" · ⚠️ לא חתם"}</div></div>
+        ${isOwnerRow ? `<span class="tag up">👑 בעלים</span>` : `
+        <div class="sw ${u.allowed!==false?'on':''}" title="מאושר" onclick="tglUser('${id}','allowed',${u.allowed!==false})"></div>
+        <div class="sw ${u.brokerLinked?'on':''}" title="דרך הברוקר" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div>`}
+      </div>`;
+    });
+    $("usersList").innerHTML = html || "עוד אין נרשמים.";
+  }, err => { $("usersList").textContent = "שגיאה בטעינת משתמשים: " + err.code; });
+}
+async function tglUser(id, field, cur){
+  try{ await db.collection("users").doc(id).update({[field]: !cur}); }
+  catch(e){ toast("שגיאה: "+(e.code||e.message)); }
+}
+async function toggleMode(){
+  const to = SETTINGS.mode==="real" ? "demo" : "real";
+  if (to==="real" && !confirm("להעביר את המועדון למצב כסף אמיתי? חברים שלא חוברו דרך הברוקר שלך יינעלו בחוץ.")) return;
+  try{ await db.collection("settings").doc("global").set({...SETTINGS, mode:to}, {merge:true}); toast(to==="real"?"המועדון במצב אמיתי":"המועדון חזר לדמו"); }
+  catch(e){ toast("שגיאה: "+(e.code||e.message)); }
+}
+async function saveBrokerLink(){
+  try{ await db.collection("settings").doc("global").set({...SETTINGS, brokerLink:$("brokerLinkInp").value.trim()}, {merge:true}); toast("נשמר ✓"); }
+  catch(e){ toast("שגיאה: "+(e.code||e.message)); }
+}
+
+/* ---------- nav ---------- */
+function wireNav(){
+  document.querySelectorAll("#mainNav button").forEach(b=>{
+    b.onclick = () => {
+      document.querySelectorAll("#mainNav button").forEach(x=>x.classList.remove("on"));
+      b.classList.add("on");
+      ["table","cal","reports","learn","links","admin"].forEach(t=>{
+        $("t-"+t).classList.toggle("hidden", t!==b.getAttribute("data-t")); });
+    };
+  });
+  $("calPrev").onclick = () => { calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth()-1, 1); renderCalendar(); };
+  $("calNext").onclick = () => { calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth()+1, 1); renderCalendar(); };
+}
+
+/* ---------- PWA install + update ---------- */
+let deferredPrompt = null;
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault(); deferredPrompt = e;
+  $("installBtn").classList.remove("hidden");
+});
+function wireInstall(){
+  $("installBtn").onclick = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt(); await deferredPrompt.userChoice;
+    deferredPrompt = null; $("installBtn").classList.add("hidden");
+  };
+}
+if ("serviceWorker" in navigator && !window.__TEST_FIREBASE__){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(()=>{});
+    let refreshed = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (refreshed) return; refreshed = true; location.reload();
+    });
+  });
+}
+
+/* ---------- boot ---------- */
+function boot(){
+  initFirebase(); wireContract(); wireTour(); wireNav(); wireInstall();
+  $("btnGoogle").onclick = signIn;
+  show("v-login");
+  auth.onAuthStateChanged(onUser);
+}
+boot();
+</script>
+</body>
+</html>
