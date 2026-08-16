@@ -260,6 +260,16 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 
     <!-- ===== connections ===== -->
     <section id="t-links" class="hidden">
+      <div class="card"><h3>✅ בדיקת מערכת</h3>
+        <div class="mini">לחיצה אחת בודקת שהכל מחובר ועובד אצלך:</div>
+        <button class="btn" style="width:100%;margin-top:10px" onclick="runHealthCheck()">🔍 בדוק שהכל עובד</button>
+        <div id="healthOut" style="margin-top:11px"></div>
+      </div>
+      <div class="card"><h3>📱 פתח בטלפון</h3>
+        <div class="mini">סרוק את הקוד עם המצלמה בטלפון (אנדרואיד או אייפון) כדי לפתוח את המועדון שם, ולהתקין כאפליקציה:</div>
+        <div id="qrBox" style="display:flex;justify-content:center;margin:12px 0"></div>
+        <button class="btn sec" style="width:100%" onclick="copyShare()">העתק את הקישור</button>
+      </div>
       <div class="card"><h3>🔑 מפתח החיבור שלי</h3>
         <div class="mini">המפתח מקשר בין הבוט שירוץ אצלך במחשב לבין המסך הזה. שומרים אותו לעצמך בלבד.</div>
         <div id="feedKeyBox" style="margin-top:9px"></div>
@@ -323,7 +333,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "1.4.0";
+const APP_VERSION = "1.5.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -430,7 +440,7 @@ function enterApp(){
   $("hAvatar").src = ME.photoURL || "icon-192.png";
   $("navAdmin").classList.toggle("hidden", !IS_OWNER);
   $("shareUrl").value = APP_URL;
-  renderLearn(); renderLinks();
+  renderLearn(); renderLinks(); renderQR();
   if (IS_OWNER) initAdmin();
   if (!phoneTimer){ pollPhone(); phoneTimer = setInterval(pollPhone, 15000); }
 }
@@ -616,9 +626,78 @@ function seatHTML(o){
 /* 16.8 (בקשת עידן): חבר שעוד לא חיבר בוט משלו רואה 0 ומסכים נעולים —
    לא את המספרים של המועדון. הכל נפתח ברגע שהבוט שלו משדר. */
 function fullView(){ return IS_OWNER || (MYFEED && MYFEED.j); }
+/* a connected (non-owner) member sees ONLY their own account */
+function memberView(){ return !IS_OWNER && MYFEED && MYFEED.j; }
+function myData(){
+  if (!MYFEED || !MYFEED.j) return null;
+  try { return JSON.parse(MYFEED.j) || null; } catch(e){ return null; }
+}
+function feeLabels(a,b,c){
+  const ks = document.querySelectorAll('#t-table .feebox .k');
+  if (ks[0]) ks[0].textContent = a; if (ks[1]) ks[1].textContent = b; if (ks[2]) ks[2].textContent = c;
+}
+function renderMember(){
+  const closed = goldMarketClosedNow();
+  const mj = myData() || {};
+  const start = (mj.start!==undefined) ? +mj.start : 10000;
+  const equity = (mj.equity!==undefined && mj.equity!==null) ? +mj.equity : (+mj.balance||start);
+  const day = +mj.day_pnl||0;
+  const since = equity - start;
+  let age = null;
+  if (MYFEED.t){ const t=new Date(MYFEED.t).getTime(); if(!isNaN(t)) age=Math.max(0,(Date.now()-t)/1000); }
+
+  $("hWallet").textContent = money(equity,0);
+  const wl = document.querySelector(".wallet .k"); if (wl) wl.textContent = "הארנק שלי (דמו)";
+
+  /* pot = MY day P&L */
+  $("potNet").textContent = signed(day); $("potNet").className = "amt " + cls(day);
+  $("potSub").innerHTML = "הרווח שלי היום · מאז ההתחלה <b class='"+cls(since)+"'>"+signed(since)+"</b>" +
+    (closed ? " · 🌙 שוק הזהב סגור, חוזרים שני 01:00" : "");
+
+  /* lights - my connection health */
+  let L = [];
+  const light=(ok,warn,txt)=>L.push(`<span class="tag ${ok?'up':(warn?'wa':'dn')}">● ${txt}</span>`);
+  light(age!==null&&age<300, age!==null&&age<1200, "הבוט שלי משדר " + (age!==null?ago(age):"—"));
+  light(mj.enabled!==false, mj.enabled===false, mj.enabled===false?"הבוט מכובה":"הבוט פעיל");
+  light(closed||true, false, closed?"זהב · שוק סגור 🌙":"זהב חי");
+  $("lights").innerHTML = L.join("");
+
+  /* seats - ONLY my bot; the Ladder shown as coming-soon with no numbers */
+  let s = myBotSeatHTML(closed);
+  if (!s) s = seatHTML({icon:"🤖", name:"הבוט שלי", role:"מחכה לשידור הראשון", dim:true,
+    stack:money(equity,0), stackLab:"הערימה שלי", tags:[{t:"ודא Algo Trading ירוק", tone:"wa"}]});
+  s += seatHTML({icon:"🪜", name:"The Ladder", role:"בוט רשת · בקרוב לחברים", dim:true,
+    stack:"בקרוב", stackLab:"", tags:[{t:"יתווסף כטרמינל שני", tone:"wa"}]});
+  $("seats").innerHTML = s;
+
+  /* my three numbers */
+  feeLabels("רווח היום","מאז ההתחלה","הערימה שלי");
+  $("fGross").textContent = signed(day); $("fGross").className = "v "+cls(day);
+  $("fFee").textContent = signed(since); $("fFee").className = "v "+cls(since);
+  $("fNet").textContent = money(equity,2); $("fNet").className = "v";
+  $("fNote").innerHTML = "אלה המספרים של <b>החשבון שלך</b> בלבד (דמו). " +
+    (mj.trades_today!==undefined ? (mj.trades_today+" עסקאות היום · ") : "") +
+    "עמלת ATRADE (‎$37‎ ללוט) חלה כשעוברים לכסף אמיתי.";
+
+  /* my live position as a card */
+  const live = [];
+  if (mj.position && (mj.position.entry!==undefined && mj.position.entry!==null)){
+    const p = mj.position;
+    live.push({kind:"gold", ticker:"XAUUSD", side:p.side||"long", qty:p.volume,
+               entry:p.entry, last:p.last, unrealized:p.profit});
+  }
+  renderBoard(live);
+  $("openPos").innerHTML = live.length
+    ? live.map(p=>{ const n=normPos(p);
+        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1c3450">
+          <b>${n.sym}</b><span>${n.qty||0} לוט @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</span>
+          <b class="${(n.pl||0)>=0?'up':'dn'}">${n.pl===null?"—":signed(n.pl)}</b></div>`; }).join("")
+    : "אין כרגע עסקה פתוחה אצלך — הבוט סורק ומחכה 🂠";
+}
 function renderTable(){
   const P = PHONE; if (!P) return;
   const closed = goldMarketClosedNow();
+  if (memberView()){ renderMember(); return; }
   if (!fullView()){
     $("hWallet").textContent = money(0,0);
     const wl0 = document.querySelector(".wallet .k"); if (wl0) wl0.textContent = "הארנק שלי (דמו)";
@@ -745,6 +824,13 @@ function renderTable(){
 }
 
 /* ---------- calendar ---------- */
+function memberHistory(){
+  const mj = myData(); const H = {};
+  if (mj && Array.isArray(mj.hist)){
+    mj.hist.forEach(x => { if (x && x.d) H[x.d] = {net_demo:+x.pnl||0, pocket:+x.pnl||0, lots:0, fee:0, gold_net_demo:+x.pnl||0, gold_lots:0}; });
+  }
+  return H;
+}
 function renderCalendar(){
   const P = PHONE; if (!P) return;
   if (!fullView()){
@@ -753,7 +839,7 @@ function renderCalendar(){
     $("calSum").textContent = "—"; $("calSum").className = ""; $("calSum2").textContent = "";
     return;
   }
-  const H = P.history||{};
+  const H = memberView() ? memberHistory() : (P.history||{});
   const y = calCursor.getFullYear(), m = calCursor.getMonth();
   const monthName = calCursor.toLocaleDateString("he-IL",{month:"long", year:"numeric"});
   $("calTitle").textContent = monthName;
@@ -811,7 +897,7 @@ function renderReports(){
     $("repTable").innerHTML = '<tr><td class="mini" style="padding:22px;text-align:center">🔒 הדוחות נפתחים אחרי שהבוט שלך מחובר ומשדר — התחל במסך החיבורים.</td></tr>';
     return;
   }
-  const H = P.history||{};
+  const H = memberView() ? memberHistory() : (P.history||{});
   const keys = Object.keys(H).sort().reverse().slice(0,14);
   let html = `<tr><th>תאריך</th><th>לוטים</th><th>הרווח בחשבונות</th><th>עמלת ATRADE</th><th>נשאר בכיס</th></tr>`;
   if (!keys.length) html += `<tr><td colspan="5" class="mini">עוד אין ימים מתועדים — הפיד מתמלא אוטומטית מיום ליום.</td></tr>`;
@@ -898,6 +984,65 @@ function renderLinks(){
     ? `🔴 המועדון במצב <b>כסף אמיתי</b>: פותחים חשבון <b>רק דרך הקישור של עידן</b>${SETTINGS.brokerLink?` — <a href="${SETTINGS.brokerLink}" target="_blank" rel="noopener">לחץ כאן</a>`:""}, ועידן מאשר אותך אחרי הפתיחה.<br><span class="mini">⚖️ גילוי נאות: בפתיחת חשבון דרך הקישור, עידן עשוי לקבל עמלת הפניה מהברוקר. זה לא עולה לך כלום, וזכותך לדעת.</span>`
     : `🎓 המועדון במצב <b>דמו</b> — הכול בכסף מדומה, גם אצלך. כשעוברים לאמיתי: פתיחת חשבון רק דרך הקישור של עידן, והאפליקציה תיפתח רק למי שעידן אישר.<br><span class="mini">⚖️ גילוי נאות: בשלב האמיתי, פתיחת חשבון דרך הקישור של עידן עשויה לזכות אותו בעמלת הפניה מהברוקר. לא עולה לך כלום, וזכותך לדעת.</span>`;
 }
+/* QR to open on a phone (Android or iPhone) - no library, uses an image API,
+   with an inline SVG fallback link if the image is blocked. */
+function renderQR(){
+  const box = $("qrBox"); if (!box) return;
+  const url = APP_URL;
+  const src = "https://api.qrserver.com/v1/create-qr-code/?size=190x190&margin=8&data=" + encodeURIComponent(url);
+  const img = new Image();
+  img.width = 190; img.height = 190; img.alt = "QR";
+  img.style.cssText = "border-radius:12px;background:#fff;padding:6px";
+  img.referrerPolicy = "no-referrer";
+  img.onerror = function(){ box.innerHTML = '<a class="btn sec" href="'+url+'" target="_blank" rel="noopener">פתח את הקישור</a>'; };
+  box.innerHTML = ""; box.appendChild(img); img.src = src;
+}
+
+/* one-click "does everything work?" for the member */
+async function runHealthCheck(){
+  const out = $("healthOut"); out.innerHTML = '<div class="mini">בודק…</div>';
+  const rows = [];
+  const add = (ok, warn, label, fix) => rows.push({ok, warn, label, fix});
+
+  // 1) signed in
+  add(!!ME, false, "מחובר עם חשבון גוגל", "");
+  // 2) approved by Idan
+  const approved = IS_OWNER || (MYDOC && MYDOC.allowed === true);
+  add(approved, !approved, approved ? "אושרת על ידי עידן" : "ממתין לאישור של עידן",
+      approved ? "" : "בקש מעידן לאשר אותך בלשונית הניהול.");
+  // 3) has a connection key
+  const hasKey = !!(MYDOC && MYDOC.feedId);
+  add(hasKey, !hasKey, hasKey ? "מפתח חיבור מוגדר" : "אין עדיין מפתח חיבור",
+      hasKey ? "" : "הרץ את קובץ ההתקנה במחשב, והדבק כאן את המפתח שהוא נותן.");
+  // 4) the bot is broadcasting
+  let age = null;
+  if (MYFEED && MYFEED.t){ const t=new Date(MYFEED.t).getTime(); if(!isNaN(t)) age=Math.max(0,(Date.now()-t)/1000); }
+  const live = !!(MYFEED && MYFEED.j) && age!==null && age < 600;
+  add(live, !!(MYFEED&&MYFEED.j)&&!live, live ? ("הבוט שלך משדר ("+ago(age)+")") : "הבוט לא משדר עדיין",
+      live ? "" : "פתח את מטה-טריידר, ודא שהבוט על גרף הזהב ושכפתור Algo Trading ירוק. אם עדיין לא — לחץ למטה 'הפעל את המשדר'.");
+  // 5) the bot is enabled / trading
+  let enabled = true;
+  const mj = myData(); if (mj && mj.enabled === false) enabled = false;
+  if (MYFEED && MYFEED.j) add(enabled, !enabled, enabled ? "הבוט פעיל (Algo Trading)" : "הבוט מכובה",
+      enabled ? "" : "לחץ על כפתור Algo Trading במטה-טריידר עד שהוא ירוק.");
+
+  const allOk = rows.every(r => r.ok);
+  let html = rows.map(r =>
+    `<div class="urow" style="border:none;padding:6px 0">
+       <span style="font-size:18px">${r.ok?'✅':(r.warn?'⏳':'❌')}</span>
+       <div style="flex:1;min-width:0"><b style="font-size:14px">${r.label}</b>
+         ${r.fix?`<div class="mini">${r.fix}</div>`:''}</div>
+     </div>`).join("");
+  if (allOk) html = '<div class="tag up" style="font-size:14px;display:block;text-align:center;padding:10px">🎉 הכל עובד! אתה מחובר וסוחר.</div>' + html;
+  else html += `<button class="btn" style="width:100%;margin-top:10px" onclick="copyRestart()">📋 העתק פקודה שמפעילה מחדש את המשדר</button>
+                <div class="mini" style="margin-top:6px">הדבק אותה ב-PowerShell במחשב (כמו בהתקנה) והמשדר יעלה שוב.</div>`;
+  out.innerHTML = html;
+}
+function copyRestart(){
+  const cmd = "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File \"$env:USERPROFILE\\IdanClub\\feed_publish.ps1\" -loop";
+  navigator.clipboard.writeText(cmd).then(()=>toast("הפקודה הועתקה ✓")).catch(()=>toast(cmd));
+}
+
 function copyShare(){
   navigator.clipboard.writeText($("shareUrl").value).then(()=>toast("הקישור הועתק ✓"))
     .catch(()=>{ $("shareUrl").select(); document.execCommand("copy"); toast("הקישור הועתק ✓"); });
