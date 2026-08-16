@@ -4,24 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Idan's Money Club</title>
-<meta name="theme-color" content="#161311">
+<meta name="theme-color" content="#131722">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{
-  /* deep-red casino-luxury, chess.com-clean theme */
-  --bg:#161311; --bg2:#211b19; --line:#3a2c28;
-  --felt:#7a1f1f; --felt2:#5a1414;
-  --gold:#e0483d;            /* the accent - crimson */
-  --richgold:#f5c542;        /* true gold - the luxury spark */
-  --accent2:#f0a030;
-  --ink:#f3ece9; --ink2:#c8a9a2; --ink3:#96786f;
-  --up:#3fb765; --dn:#e0483d; --warn:#f0a030;
+  /* TradingView-dark with luxury gold */
+  --bg:#131722; --bg2:#1e222d; --line:#2a2e39;
+  --felt:#5c1a1f; --felt2:#38100f;
+  --gold:#d4af37;            /* luxury gold - THE accent */
+  --richgold:#e6c25a;
+  --accent2:#d4af37;
+  --ink:#d1d4dc; --ink2:#9aa0ac; --ink3:#787b86;
+  --up:#26a69a; --dn:#ef5350; --warn:#ff9800;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
-body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,"Noto Sans Hebrew",sans-serif;direction:rtl}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans Hebrew",sans-serif;direction:rtl;font-variant-numeric:tabular-nums}
 .hidden{display:none!important}
 button{font-family:inherit;cursor:pointer;border:none;border-radius:12px}
 a{color:var(--gold)}
@@ -34,7 +34,7 @@ section{--acc:var(--gold)}
 #t-links{--acc:#5fa8d3}             /* cool tech blue */
 #t-learn{--acc:#b28dff}             /* scholarly violet */
 #t-admin{--acc:var(--richgold)}     /* the crown room */
-section .card{border-top:3px solid var(--acc)}
+section .card{border-top:2px solid var(--acc)}
 section .card h3{color:var(--acc)}
 /* ---------- desktop: spread across the whole screen ---------- */
 @media(min-width:920px){
@@ -43,10 +43,8 @@ section .card h3{color:var(--acc)}
   .cal .d .p{font-size:17px}
   .calhead b{font-size:21px}
   #calSum{font-size:22px!important}
-  #t-table{display:grid;grid-template-columns:1.15fr .85fr;gap:0 16px;align-items:start}
-  #t-table .pot, #t-table .lights{grid-column:1/-1}
-  #t-table #seats{grid-column:1}
-  #t-table .card{grid-column:2}
+  #t-table{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;align-items:start}
+  #t-table .pot, #t-table .lights, #t-table #seats{grid-column:1/-1}
   #t-cal, #t-reports, #t-links, #t-learn, #t-admin{display:grid;grid-template-columns:repeat(2,1fr);gap:0 16px;align-items:start}
   #t-cal > .card:first-child, #t-reports > .card:first-child, #t-links > .card:first-child{grid-column:1/-1}
   #t-chat .card{max-width:900px;margin-left:auto;margin-right:auto}
@@ -60,7 +58,7 @@ section .card h3{color:var(--acc)}
 .botpick{display:flex;align-items:center;gap:13px;background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:15px;cursor:pointer;transition:.15s;text-align:right}
 .botpick:not(.dim):hover{border-color:var(--richgold);transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.45)}
 .botpick.dim{opacity:.55;cursor:default}
-.botpick .bp-ic{font-size:34px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#2a1512;border-radius:14px;flex:none}
+.botpick .bp-ic{font-size:34px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#262b38;border-radius:14px;flex:none}
 .botpick .bp-mid{flex:1;min-width:0}
 .botpick .bp-mid b{font-size:16.5px}
 .botpick .bp-go{flex:none;font-weight:900;color:var(--richgold);font-size:15px}
@@ -78,19 +76,19 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,#16131
 .wallet .k{font-size:10.5px;color:var(--ink2)}
 .avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--gold);object-fit:cover}
 /* ---------- bottom nav ---------- */
-nav{position:fixed;bottom:0;right:0;left:0;z-index:40;background:#1d1512;border-top:1.5px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(8px + env(safe-area-inset-bottom))}
+nav{position:fixed;bottom:0;right:0;left:0;z-index:40;background:#161a25;border-top:1.5px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(8px + env(safe-area-inset-bottom))}
 nav button{background:none;color:var(--ink3);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 8px;border-radius:10px}
 nav button .i{font-size:20px}
 nav button.on{color:var(--gold)}
 /* ---------- cards ---------- */
-.card{background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:15px;margin:12px 0;box-shadow:0 5px 16px rgba(0,0,0,.35)}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:15px;margin:12px 0}
 .card h3{font-size:16.5px;margin-bottom:9px;color:var(--gold)}
 .mini{font-size:12.5px;color:var(--ink3);line-height:1.6}
 .up{color:var(--up)}.dn{color:var(--dn)}.wa{color:var(--warn)}
-.btn{background:linear-gradient(135deg,#e8564a,#b3271d);color:#fff;font-weight:800;font-size:16px;padding:13px 22px;border-radius:13px;box-shadow:0 4px 14px rgba(245,197,66,.3)}
+.btn{background:linear-gradient(135deg,#e6c25a,#b8912e);color:#141414;font-weight:800;font-size:16px;padding:13px 22px;border-radius:9px;box-shadow:0 3px 12px rgba(212,175,55,.25)}
 .btn.sec{background:var(--bg2);color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
 .btn:disabled{opacity:.45;cursor:default}
-.tag{display:inline-block;background:#241a17;border:1px solid var(--line);color:var(--ink2);border-radius:999px;padding:3px 10px;font-size:11.5px;margin:2px}
+.tag{display:inline-block;background:#2a2e39;border:1px solid var(--line);color:var(--ink2);border-radius:999px;padding:3px 10px;font-size:11.5px;margin:2px}
 .tag.up{color:var(--up)}.tag.dn{color:var(--dn)}.tag.wa{color:var(--warn)}
 /* ---------- login ---------- */
 .full{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 20px;gap:14px}
@@ -99,8 +97,8 @@ nav button.on{color:var(--gold)}
 .gbtn{display:flex;align-items:center;gap:11px;background:#fff;color:#1f1f1f;font-weight:700;font-size:16.5px;padding:13px 24px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
 .gbtn img{width:22px;height:22px}
 /* ---------- seats ---------- */
-.pot{position:relative;background:radial-gradient(ellipse 120% 90% at 50% 18%,#8f2626,var(--felt) 45%,var(--felt2));border:3px solid #9a3030;border-radius:130px/70px;padding:20px 18px 22px;text-align:center;margin:12px 0;box-shadow:inset 0 0 60px rgba(0,0,0,.45),0 8px 26px rgba(0,0,0,.5),0 0 0 3px rgba(245,197,66,.22)}
-.pot::before{content:"";position:absolute;inset:7px;border:1.5px solid rgba(255,180,170,.30);border-radius:120px/62px;pointer-events:none}
+.pot{position:relative;background:radial-gradient(ellipse 120% 90% at 50% 18%,#6e2026,var(--felt) 45%,var(--felt2));border:2px solid #7a2a30;border-radius:100px/56px;padding:18px 18px 20px;text-align:center;margin:12px 0;box-shadow:inset 0 0 60px rgba(0,0,0,.5),0 6px 22px rgba(0,0,0,.45),0 0 0 2.5px rgba(212,175,55,.45)}
+.pot::before{content:"";position:absolute;inset:7px;border:1px solid rgba(212,175,55,.35);border-radius:92px/50px;pointer-events:none}
 .pot .lab{color:#f0c9c2;font-size:12px;letter-spacing:1.2px}
 .pot .amt{font-size:38px;font-weight:900;margin:2px 0;text-shadow:0 2px 8px rgba(0,0,0,.5)}
 .pot .sub{color:#f2d7d1;font-size:13px;line-height:1.6}
@@ -118,31 +116,36 @@ nav button.on{color:var(--gold)}
 .pcard.red{color:#c0293c}
 .pcard .meta{font-size:10.5px;color:#5a7089;text-align:center}
 .board .empty{color:#f2d7d1;font-size:13.5px;padding:14px 8px;text-align:center;width:100%}
-.seat{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:12px;margin:9px 0}
+#seats{display:grid;grid-template-columns:1fr;gap:10px;margin:9px 0}
+@media(min-width:560px){#seats.arena{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}}
+.seat{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:13px 14px;position:relative;overflow:hidden}
+.seat::after{content:"";position:absolute;top:0;right:0;left:0;height:2px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.7),transparent)}
 .seat.dim{opacity:.62}
-.seat .ic{font-size:30px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#241a17;border-radius:13px;flex:none}
-.seat .mid{flex:1;min-width:0}
-.seat .nm{font-weight:800;font-size:15.5px}
-.seat .rl{font-size:11.5px;color:var(--ink3)}
-.seat .tags{margin-top:5px}
-.seat .stack{text-align:left;flex:none}
-.seat .stack .v{font-size:18px;font-weight:900;color:var(--richgold)}
-.seat .stack .k{font-size:10.5px;color:var(--ink3)}
+.seat .shead{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.seat .ic{font-size:20px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:#2a2e39;border-radius:8px;flex:none}
+.seat .nm{font-weight:800;font-size:14.5px}
+.seat .rl{font-size:11px;color:var(--ink3)}
+.seat .sbody{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.seat .sv{font-size:22px;font-weight:900;color:var(--richgold);letter-spacing:.2px;direction:ltr}
+.seat .sk{font-size:10px;color:var(--ink3)}
+.seat .sday{font-size:14.5px;font-weight:800;direction:ltr}
+.seat .sday small{font-weight:700;opacity:.85}
+.seat .tags{margin-top:7px}
 .lights{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
 /* ---------- fees ---------- */
 .fee3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:10px 0}
-.feebox{background:#241a17;border:1.5px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center}
+.feebox{background:#2a2e39;border:1.5px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center}
 .feebox .k{font-size:11.5px;color:var(--ink2)}
 .feebox .v{font-size:20px;font-weight:900;margin-top:3px}
-.feebox.net{border-color:var(--richgold);background:linear-gradient(160deg,#2a2110,#241a17)}
+.feebox.net{border-color:var(--richgold);background:linear-gradient(160deg,#2a2110,#2a2e39)}
 .feebox.net .k{color:var(--gold)}
 /* ---------- calendar ---------- */
 .calhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .calhead b{font-size:17px}
-.calhead button{background:#241a17;color:var(--ink);border:1px solid var(--line);width:34px;height:34px;border-radius:10px;font-size:16px}
+.calhead button{background:#2a2e39;color:var(--ink);border:1px solid var(--line);width:34px;height:34px;border-radius:10px;font-size:16px}
 .dow,.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .dow span{text-align:center;font-size:11px;color:var(--ink3);padding:3px 0}
-.cal .d{min-height:62px;background:#241a17;border:1px solid var(--line);border-radius:10px;padding:4px;font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
+.cal .d{min-height:62px;background:#2a2e39;border:1px solid var(--line);border-radius:10px;padding:4px;font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
 .cal .d.off{opacity:.28;cursor:default}
 .cal .d .n{font-size:10.5px}
 .cal .d .p{font-weight:800;font-size:12.5px;direction:ltr;text-align:left}
@@ -151,15 +154,15 @@ nav button.on{color:var(--gold)}
 /* ---------- tables ---------- */
 table{width:100%;border-collapse:collapse;font-size:13.5px}
 th{color:var(--ink2);font-weight:400;font-size:12px;text-align:right;padding:7px 6px;border-bottom:1.5px solid var(--line)}
-td{padding:8px 6px;border-bottom:1px solid #35271f}
+td{padding:8px 6px;border-bottom:1px solid #2a2e39}
 tr:last-child td{border-bottom:none}
 /* ---------- modal ---------- */
 .modal{position:fixed;inset:0;background:rgba(5,12,20,.8);z-index:60;display:flex;align-items:center;justify-content:center;padding:18px}
 .mbox{background:var(--bg2);border:1.5px solid var(--line);border-radius:18px;padding:18px;max-width:480px;width:100%;max-height:82svh;overflow-y:auto}
 /* ---------- contract ---------- */
-.contract{background:#241a17;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px;line-height:1.75;max-height:44svh;overflow-y:auto;text-align:right}
+.contract{background:#2a2e39;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px;line-height:1.75;max-height:44svh;overflow-y:auto;text-align:right}
 .contract h4{color:var(--gold);margin:9px 0 3px}
-input[type=text]{width:100%;background:#1c1310;border:1.5px solid var(--line);border-radius:11px;color:var(--ink);font-size:16px;padding:11px;font-family:inherit}
+input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);border-radius:11px;color:var(--ink);font-size:16px;padding:11px;font-family:inherit}
 .chk{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin:11px 0;text-align:right}
 .chk input{width:19px;height:19px;flex:none;margin-top:1px}
 /* ---------- tour ---------- */
@@ -167,9 +170,9 @@ input[type=text]{width:100%;background:#1c1310;border:1.5px solid var(--line);bo
 .dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
 .dots i.on{background:var(--gold)}
 /* ---------- admin ---------- */
-.urow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #35271f;font-size:13px}
+.urow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #2a2e39;font-size:13px}
 .urow img{width:30px;height:30px;border-radius:50%}
-.sw{position:relative;width:40px;height:22px;background:#4a3630;border-radius:999px;flex:none;transition:.15s}
+.sw{position:relative;width:40px;height:22px;background:#363a45;border-radius:999px;flex:none;transition:.15s}
 .sw.on{background:var(--up)}
 .sw::after{content:"";position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}
 .sw.on::after{transform:translateX(-18px)}
@@ -185,10 +188,10 @@ input[type=text]{width:100%;background:#1c1310;border:1.5px solid var(--line);bo
 .msg.profit{border-color:var(--up);background:linear-gradient(160deg,#123a22,#0f2a1a)}
 .dmrow{display:flex;align-items:center;gap:9px;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px}
 .dmrow img{width:28px;height:28px;border-radius:50%}
-.dmrow.on{background:#2a1512}
+.dmrow.on{background:#262b38}
 /* member bot control row */
 .ctrlbtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.ctrlbtns button{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:#2a1512;color:var(--ink)}
+.ctrlbtns button{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:#262b38;color:var(--ink)}
 .navMore{}
 #installBtn{position:fixed;top:64px;left:12px;z-index:45;background:var(--felt);color:#ffe7e2;border:1.5px solid #9a3030;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
 </style>
@@ -405,7 +408,7 @@ input[type=text]{width:100%;background:#1c1310;border:1.5px solid var(--line);bo
           <button class="btn sec" style="flex:1;min-width:120px" onclick="broadcastToggle(false)">⏸️ כבה לכולם</button>
         </div>
         <div class="mini">סיכון סטנדרטי לדחיפה:
-          <select id="riskPreset" style="background:#1c1310;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px">
+          <select id="riskPreset" style="background:#131722;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px">
             <option value="36">כמו שלי — סולם 3-9% (v36)</option>
             <option value="15">זהיר — 1.5% קבוע</option>
             <option value="10">שמרני מאוד — 1.0% קבוע</option>
@@ -461,7 +464,7 @@ input[type=text]{width:100%;background:#1c1310;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "2.1.0";
+const APP_VERSION = "2.2.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -756,11 +759,11 @@ function myBotSeatHTML(closed){
   let age = null;
   if (MYFEED.t){ const t = new Date(MYFEED.t).getTime(); if(!isNaN(t)) age = Math.max(0,(Date.now()-t)/1000); }
   const day = +j.day_pnl||0;
+  const meEq = +(j.equity!==undefined?j.equity:j.balance)||0;
   return seatHTML({icon:"🤖", name:"הבוט שלי — בוט הזהב", role:"רץ על החשבון שלך · דמו · " + (j.account||MYFEED.acct||""),
     dim: !closed && age!==null && age>600,
-    stack:money(j.equity!==undefined?j.equity:j.balance), stackLab:"הערימה שלך",
-    tags:[{t:"היום "+signed(day), tone:cls(day)},
-          {t:(j.trades_today||0)+" ידיים"},
+    stack:money(meEq), stackLab:"הערימה שלך", day:day, eq:meEq,
+    tags:[{t:(j.trades_today||0)+" ידיים"},
           (j.enabled===false)?{t:"מכובה", tone:"wa"}:{t:"פעיל", tone:"up"},
           closed?{t:"🌙 שוק סגור"}:((age!==null&&age>600)?{t:"⚠️ שקט "+ago(age), tone:"wa"}:{t:"עודכן "+ago(age)})]});
 }
@@ -803,11 +806,20 @@ function renderBoard(positions){
 
 /* ---------- the table ---------- */
 function seatHTML(o){
+  /* TV-style player pod. o.day (today's P&L $) + o.eq (account base) add
+     the day line in dollars AND percent of the account. */
+  let dayLine = "";
+  if (o.day !== undefined && o.day !== null){
+    const base = (o.eq && Math.abs(o.eq - o.day) > 1) ? (o.eq - o.day) : o.eq;
+    const pct = (base && base > 0) ? (o.day / base * 100) : null;
+    dayLine = `<div class="sday ${cls(o.day)}">${signed(o.day)}` +
+      (pct!==null ? ` <small>(${pct>0?"+":""}${pct.toFixed(2)}%)</small>` : "") + `</div>`;
+  }
   return `<div class="seat ${o.dim?'dim':''}">
-    <div class="ic">${o.icon}</div>
-    <div class="mid"><div class="nm">${o.name}</div><div class="rl">${o.role}</div>
-      <div class="tags">${o.tags.map(t=>`<span class="tag ${t.tone||''}">${t.t}</span>`).join("")}</div></div>
-    <div class="stack"><div class="v">${o.stack}</div><div class="k">${o.stackLab}</div></div>
+    <div class="shead"><div class="ic">${o.icon}</div>
+      <div><div class="nm">${o.name}</div><div class="rl">${o.role}</div></div></div>
+    <div class="sbody"><div><div class="sv">${o.stack}</div><div class="sk">${o.stackLab||""}</div></div>${dayLine}</div>
+    <div class="tags">${o.tags.map(t=>`<span class="tag ${t.tone||''}">${t.t}</span>`).join("")}</div>
   </div>`;
 }
 /* 16.8 (בקשת עידן): חבר שעוד לא חיבר בוט משלו רואה 0 ומסכים נעולים —
@@ -856,6 +868,7 @@ function renderMember(){
     stack:money(equity,0), stackLab:"הערימה שלי", tags:[{t:"ודא Algo Trading ירוק", tone:"wa"}]});
   s += seatHTML({icon:"🪜", name:"The Ladder", role:"בוט רשת · בקרוב לחברים", dim:true,
     stack:"בקרוב", stackLab:"", tags:[{t:"יתווסף כטרמינל שני", tone:"wa"}]});
+  $("seats").className = "";
   $("seats").innerHTML = s;
 
   /* my three numbers */
@@ -877,7 +890,7 @@ function renderMember(){
   renderBoard(live);
   $("openPos").innerHTML = live.length
     ? live.map(p=>{ const n=normPos(p);
-        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #35271f">
+        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #2a2e39">
           <b>${n.sym}</b><span>${n.qty||0} לוט @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</span>
           <b class="${(n.pl||0)>=0?'up':'dn'}">${n.pl===null?"—":signed(n.pl)}</b></div>`; }).join("")
     : "אין כרגע עסקה פתוחה אצלך — הבוט סורק ומחכה 🂠";
@@ -899,6 +912,7 @@ function renderTable(){
       stack:"🔒", stackLab:"", tags:[{t:"מתחברים — ורואים הכל", tone:"wa"}]});
     s += seatHTML({icon:"🪜", name:"The Ladder", role:"נפתח אחרי שתתחבר", dim:true,
       stack:"🔒", stackLab:"", tags:[{t:"מתחברים — ורואים הכל", tone:"wa"}]});
+    $("seats").className = "";
     $("seats").innerHTML = s;
     $("fGross").textContent = "🔒"; $("fGross").className = "v";
     $("fFee").textContent = "🔒";
@@ -936,17 +950,27 @@ function renderTable(){
   /* 2.1.0 (Idan): the pot shows TODAY ONLY - live now - not the running total.
      The since-start numbers live in the fee card below. */
   const ldTot = (LD && LD.total) || {};
-  const potVal = v2 ? (ldTot.pocket!==undefined ? ldTot.pocket : 0) : tot.net_atrade;
-  const isToday = v2 ? (LD && LD.is_today) : fees.is_today;
-  const liveNow = updAge!==null && updAge<240 && !closed;
-  $("potLab").innerHTML = (liveNow?'<span class="livedot"></span>LIVE · ':'') +
-    (isToday ? "הקופה של היום · נטו לכיס אחרי עמלות"
-    : "הקופה של יום המסחר האחרון" + (v2&&LD&&LD.day?(" · "+String(LD.day).split(/[-.]/).reverse().join(".")):""));
+  /* 2.2.0: the pot is the LIVE sum of the three players' profit TODAY */
+  const _gD = +(g.day_pnl)||0;
+  const _lD = +(slv.day_pnl)||0;
+  const _dispute = (+eng.equity>0 && +sh.equity>0 && Math.abs(+eng.equity - +sh.equity) > Math.max(5,.02*(+sh.equity)));
+  const _sD = (!_dispute && sh.day_pnl!==undefined) ? (+sh.day_pnl||0) : 0;
+  const liveSum = _gD + _lD + _sD;
+  const liveNow = updAge!==null && updAge<240;
+  let potVal, potLabTxt;
+  if (Math.abs(liveSum) >= 0.005 || !v2 || ldTot.pocket===undefined){
+    potVal = v2 ? liveSum : tot.net_atrade;
+    potLabTxt = "הקופה של היום · שלושת הבוטים";
+  } else {
+    potVal = ldTot.pocket;
+    potLabTxt = "יום המסחר האחרון" + (LD&&LD.day?(" · "+String(LD.day).split(/[-.]/).reverse().join(".")):"") + " · נטו לכיס";
+  }
+  $("potLab").innerHTML = (liveNow?'<span class="livedot"></span>LIVE · ':'') + potLabTxt;
   $("potNet").textContent = signed(potVal);
   $("potNet").className = "amt " + cls(potVal);
   $("potSub").innerHTML = v2
-    ? ("רווח היום " + signed(ldTot.profit) + " · עמלות -" + money(Math.abs(ldTot.fee||0)) +
-       " · מאז ההתחלה <b class='"+cls(tot.pocket)+"'>" + signed(tot.pocket) + "</b> בכיס" +
+    ? ("💰 " + signed(_gD) + " · 🪜 " + signed(_lD) + (sh.day_pnl!==undefined&&!_dispute?(" · 📈 " + signed(_sD)):"") +
+       " · מאז ההתחלה <b class='"+cls(tot.pocket)+"'>" + signed(tot.pocket) + "</b> בכיס אחרי עמלות" +
        (closed ? " · 🌙 שוק הזהב סגור, חוזרים שני 01:00" : ""))
     : ((fees.is_today ? "היום" : "יום המסחר האחרון — " + (fees.day||"")) +
        " · עמלות -" + money(Math.abs(tot.atrade_fee||0)) +
@@ -964,27 +988,32 @@ function renderTable(){
   const gDay = +g.day_pnl||0;
   const engEq = +eng.equity||0, shEq = +sh.equity||0;
   const disputed = engEq>0 && shEq>0 && Math.abs(engEq-shEq) > Math.max(5, .02*shEq);
+  /* 2.2.0 (Idan): THREE PLAYERS at the table - gold, Ladder, swing -
+     each with today's profit in DOLLARS and PERCENT of the account. */
   let seats = "";
-  /* my own connected bot first, if the member linked one (16.8) */
   seats += myBotSeatHTML(closed);
-  seats += seatHTML({icon:"💰", name:"בוט הזהב", role:"XAUUSD · מטה-טריידר · דמו", dim:false,
-    stack:money(g.equity), stackLab:"הערימה",
-    tags:[{t:"יום אחרון "+signed(gDay), tone:cls(gDay)},{t:(g.trades_today||0)+" ידיים"},
-          closed?{t:"🌙 שוק סגור"}:{t:"חי"}]});
-  /* 16.8 interview: the source account is not shown here at all */
+  const gEq = +g.equity||0;
+  seats += seatHTML({icon:"💰", name:"בוט הזהב", role:"XAUUSD · מטה-טריידר · דמו",
+    stack:money(gEq), stackLab:"הערימה", day:gDay, eq:gEq,
+    tags:[{t:(g.trades_today||0)+" ידיים"}, closed?{t:"🌙 שוק סגור"}:{t:"חי", tone:"up"}]});
+  /* the source account is not shown here at all */
+  let sDay = null, lEq = 0;
   if (slv.balance!==undefined && slv.balance!==null){
-    const sDay=+slv.day_pnl||0;
-    seats += seatHTML({icon:"🪜", name:"The Ladder", role:"בוט רשת בסולם · דמו · מעבדה בלבד · צפייה",
-      stack:money(slv.equity!==undefined&&slv.equity!==null?slv.equity:slv.balance), stackLab:"הערימה",
-      tags:[{t:"היום "+signed(sDay), tone:cls(sDay)},{t:((+slv.day_lots||0).toFixed(2))+" לוט"},
-            {t:(slv.open_positions||0)+" פתוחות"}, closed?{t:"🌙 שוק סגור"}:{t:"חי"}]});
+    sDay = +slv.day_pnl||0;
+    lEq = +(slv.equity!==undefined&&slv.equity!==null?slv.equity:slv.balance)||0;
+    seats += seatHTML({icon:"🪜", name:"The Ladder", role:"בוט רשת בסולם · דמו · צפייה",
+      stack:money(lEq), stackLab:"הערימה", day:sDay, eq:lEq,
+      tags:[{t:((+slv.day_lots||0).toFixed(2))+" לוט"},
+            {t:(slv.open_positions||0)+" פתוחות"}, closed?{t:"🌙 שוק סגור"}:{t:"חי", tone:"up"}]});
   }
   const stTags = [{t:(P.positions||[]).length+" פוזיציות"}];
   if (disputed) stTags.push({t:"⚠️ ספרים חלוקים — לא מדווח רווח", tone:"wa"});
   if (P.stocks_stale && P.stocks_as_of) stTags.push({t:"נכון ל-"+P.stocks_as_of, tone:"wa"});
+  const shDay = (!disputed && sh.day_pnl!==undefined) ? (+sh.day_pnl||0) : undefined;
   seats += seatHTML({icon:"📈", name:"בוט המניות — סווינג", role:"אינטראקטיב ברוקרס · חשבון נייר",
     dim:!P.tws_connected && usMarketOpenNow(),
-    stack:money(shEq), stackLab:"לפי הברוקר", tags:stTags});
+    stack:money(shEq), stackLab:"לפי הברוקר", day:shDay, eq:shEq, tags:stTags});
+  $("seats").className = "arena";
   $("seats").innerHTML = seats;
 
   /* fee boxes - v2: profit / fee / pocket, since the start */
@@ -1013,7 +1042,7 @@ function renderTable(){
   renderBoard(live);
   $("openPos").innerHTML = live.length
     ? live.map(p=>{ const n=normPos(p);
-        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #35271f">
+        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #2a2e39">
           <b>${n.sym}</b><span>${n.qty||0} יח׳ @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</span>
           <b class="${(n.pl||0)>=0?'up':'dn'}">${n.pl===null?"—":signed(n.pl)}</b></div>`; }).join("")
     : "אין עסקאות פתוחות כרגע — הבוטים סורקים ומחכים להזדמנות. 🂠";
