@@ -703,12 +703,39 @@ function render(s){
     { label:"מראת החשבון",             ok:!!(jobs.mirror && jobs.mirror.running) },
     { label:"מנוע הזהב",               ok:goldOk }
   ];
-  var core = checks[1].ok && (checks[2].ok || goldOk);
-  if(!core){
-    showLobby("השולחן ייפתח כשהמערכת תפעל. חסר:", checks);
-    return;
+  /* 16.8.2026: the phone reads a published FILE - it has no way to see the
+     local jobs, so this gate used to lock the phone out forever ("stuck on
+     waiting for all the bots"). Phone mode always renders what is known. */
+  if(s.phone_mode){
+    hideLobby();
+  } else {
+    var core = checks[1].ok && (checks[2].ok || goldOk);
+    if(!core){
+      showLobby("השולחן ייפתח כשהמערכת תפעל. חסר:", checks);
+      return;
+    }
+    hideLobby();
   }
-  hideLobby();
+
+  /* market clocks - so a quiet weekend is called "closed", not "broken" */
+  function goldMarketClosedNow(){
+    var n=new Date(), d=n.getDay(), h=n.getHours()+n.getMinutes()/60;
+    if(d===6||d===0) return true;          /* שבת וראשון */
+    if(d===1 && h<1) return true;          /* שני לפני 01:00 */
+    if(d===5 && h>=23.9) return true;      /* צאת שישי */
+    return false;
+  }
+  function usMarketOpenNow(){
+    var n=new Date(), d=n.getDay(), h=n.getHours()+n.getMinutes()/60;
+    return (d>=1&&d<=5) && h>=16.5 && h<23;
+  }
+  var goldClosed = goldMarketClosedNow();
+  var usOpen = usMarketOpenNow();
+  var updAge = null;
+  if(s.phone_updated_utc){
+    var pu = new Date(s.phone_updated_utc).getTime();
+    if(!isNaN(pu)) updAge = Math.max(0,(Date.now()-pu)/1000);
+  }
 
   /* ------------------------------- level ----------------------------- */
   var lvl = game.level || 0, xp = game.xp || 0;
@@ -721,7 +748,8 @@ function render(s){
   /* ------------------------------ equity ----------------------------- */
   var goldEq  = goldOk ? Number(gold.equity||0) : 0;
   var stockEq = Number(((acct.shadow_wallet)||{}).equity || 0);
-  $("totalEquity").textContent = money(goldEq + stockEq, 2);
+  var slaveEq = (s.slave && s.slave.equity!==undefined && s.slave.equity!==null) ? Number(s.slave.equity||0) : 0;
+  $("totalEquity").textContent = money(goldEq + stockEq + slaveEq, 2);
 
   /* ------------------------------- pot -------------------------------
      Two separate books, kept separate on purpose:
@@ -745,8 +773,9 @@ function render(s){
       openPL += (Number(p.last)-Number(p.entry))*Number(q||0)*(p.side==="short"?-1:1);
     }
   });
+  var dayLbl = (s.phone_mode && goldClosed) ? "יום המסחר האחרון" : "נסגר היום";
   $("potSub").innerHTML =
-      "נסגר היום — זהב " + signed(goldDay,2) + " · מניות " + signed(stockDay,2) +
+      dayLbl + " — זהב " + signed(goldDay,2) + " · מניות " + signed(stockDay,2) +
       '<br><span style="opacity:.8">על השולחן (פתוח): ' + signed(openPL,2) + "</span>";
   paintChips($("potChips"), pot);
   if(lastPot !== null && Math.abs(pot - lastPot) > 0.01) ding(pot > lastPot ? "good" : "bad");
@@ -832,26 +861,74 @@ function render(s){
       {t:gTrades + " ידיים"},
       {t:"v" + (gold.params_version||"?")},
       {t:"מרווח " + (gold.spread_points!==undefined?gold.spread_points:"–")},
-      (gAge!==null && gAge>1800) ? {t:"⚠️ שקט " + ago(gAge), tone:"warn"} : {t:"עודכן " + ago(gAge)}
+      (goldClosed ? {t:"🌙 שוק סגור"} :
+        ((gAge!==null && gAge>1800) ? {t:"⚠️ שקט " + ago(gAge), tone:"warn"} : {t:"עודכן " + ago(gAge)}))
     ],
-    say: gold.position
-        ? "🎯 בפוזיציה פתוחה"
-        : ("💭 " + sayHe(gold.last_decision))
+    say: goldClosed
+        ? "😴 שוק הזהב סגור — חוזרים שני 01:00"
+        : (gold.position ? "🎯 בפוזיציה פתוחה" : ("💭 " + sayHe(gold.last_decision)))
   });
+
+  /* --- the teacher (GoldTrap, real account, investor feed) ----------- */
+  var cop = (s.gold && s.gold.copier) || null;
+  if(cop && cop.equity!==undefined && cop.equity!==null){
+    var cLegs = (cop.legs||[]).length;
+    var cAge  = (cop.age_sec!==undefined && cop.age_sec!==null) ? Number(cop.age_sec) : null;
+    seatCard({
+      icon:"🎓", name:"GoldTrap — המורה", role:"חשבון אמיתי · משקיע · צפייה בלבד",
+      active: cLegs>0,
+      stackLab:"ערימה", stack: money(cop.equity,2),
+      pills:[
+        {t: cLegs + " רגליים פתוחות", tone: cLegs>0?"up":""},
+        (goldClosed ? {t:"🌙 שוק סגור"} :
+          ((cAge!==null && cAge>120) ? {t:"⚠️ שידור שקט " + ago(cAge), tone:"warn"} : {t:"משדר ✓", tone:"up"}))
+      ],
+      say: cLegs>0 ? "🎯 סל פתוח על השולחן" : "💭 ממתין לסט-אפ הבא"
+    });
+  }
+
+  /* --- the copier: OUR stack that mirrors him (added 16.8.2026) ------ */
+  var slv = s.slave || null;
+  if(slv && (slv.equity!==undefined && slv.equity!==null || slv.balance!==undefined && slv.balance!==null)){
+    var sDay = Number(slv.day_pnl||0);
+    seatCard({
+      icon:"🪞", name:"המעתיק", role:"עותק 1:1 מהמורה · דמו · מעבדה",
+      active: Number(slv.open_positions||0)>0,
+      folded: slv.ok===false && !goldClosed,
+      stackLab:"ערימה", stack: money((slv.equity!==undefined&&slv.equity!==null)?slv.equity:slv.balance,2),
+      pills:[
+        {t:"היום " + signed(sDay,2), tone:sDay>0?"up":(sDay<0?"down":"")},
+        {t:(slv.day_lots!==undefined&&slv.day_lots!==null?(+slv.day_lots).toFixed(2):"0") + " לוט היום"},
+        {t:(slv.open_positions||0) + " פתוחות"},
+        (goldClosed ? {t:"🌙 שוק סגור"} : {t:"עודכן " + ago(slv.age_sec)})
+      ],
+      say: Number(slv.open_positions||0)>0 ? "🎯 מעתיק את הסל של המורה"
+           : (goldClosed ? "😴 שוק סגור — המספרים מיום המסחר האחרון" : "💭 מחכה שהמורה יפתח")
+    });
+  }
 
   /* --- swing ------------------------------------------------------- */
   var sw = agents.swing || {};
   var swToday = (sw.today||{});
-  seatCard({
-    icon:"📈", name:"סוכן הסווינג", role:"מניות · ימים עד שבועות",
-    active: (openBy.swing||0) > 0,
-    stackLab:"פוזיציות", stack: String(openBy.swing||0),
-    pills:[
+  var engEq = Number((wallet||{}).equity||0);
+  var disputed = s.phone_mode && engEq>0 && stockEq>0 && Math.abs(engEq-stockEq) > Math.max(5, 0.02*stockEq);
+  var swingPills = [
       {t:"היום " + signed(swToday.pnl||0,2), tone:(swToday.pnl||0)>0?"up":((swToday.pnl||0)<0?"down":"")},
       {t:(swToday.trades||0) + " ידיים"},
       {t:((eng.signals&&eng.signals.swing)||[]).length + " איתותים"}
-    ],
-    say: (openBy.swing||0) ? "🎯 מחזיק פוזיציה" : "💭 סורק את הרשימה"
+  ];
+  if(disputed){
+    swingPills.push({t:"⚠️ ספרים חלוקים — ברוקר " + money(stockEq,2) + " מול מנוע " + money(engEq,2), tone:"warn"});
+  }
+  var nOpenStock = s.phone_mode ? ((acct.positions||[]).length) : (openBy.swing||0);
+  seatCard({
+    icon:"📈", name:"סוכן הסווינג", role:"מניות · אינטראקטיב · נייר",
+    active: nOpenStock > 0,
+    stackLab: s.phone_mode ? "ערימה (ברוקר)" : "פוזיציות",
+    stack: s.phone_mode ? (stockEq>0 ? money(stockEq,2) : "–") : String(openBy.swing||0),
+    pills: swingPills,
+    say: disputed ? "🕵️ שני הספרים חלוקים — לא מדווח רווח עד יישוב"
+         : (nOpenStock ? "🎯 מחזיק פוזיציה" : "💭 סורק את הרשימה")
   });
 
   /* --- day --------------------------------------------------------- */
@@ -919,12 +996,23 @@ function render(s){
     L.push('<span class="light '+(ok?"ok":(warn?"warn":"bad"))+'">'+
            '<span class="dot"></span>'+label+'</span>');
   }
-  light(jobs.engine && jobs.engine.running, false, "מנוע");
-  light(s.tws, false, "TWS");
-  light(jobs.bridge && jobs.bridge.running, false, "גשר");
   var accFresh = (fresh.account||{});
-  light(!accFresh.stale, accFresh.stale, "מראה " + ago(accFresh.age_sec));
-  light(goldOk && !(gAge>1800), gAge>1800, "זהב " + ago(gAge));
+  if(s.phone_mode){
+    light(updAge!==null && updAge<240, updAge!==null && updAge<1800,
+          "שידור מהמחשב " + (updAge!==null ? ago(updAge) : "—"));
+    light(goldClosed || (goldOk && !(gAge>1800)), !goldClosed && gAge>1800,
+          goldClosed ? "זהב · שוק סגור 🌙" : "זהב " + ago(gAge));
+    if(s.slave) light(s.slave.ok!==false || goldClosed, false, "מעתיק");
+    light(s.tws, !s.tws && !usOpen, s.tws ? "אינטראקטיב מחובר" :
+          (usOpen ? "אינטראקטיב מנותק" : "מניות · שוק סגור"));
+    if(s.stocks_stale && s.stocks_as_of) L.push('<span class="light warn"><span class="dot"></span>מניות נכון ל-' + s.stocks_as_of + '</span>');
+  } else {
+    light(jobs.engine && jobs.engine.running, false, "מנוע");
+    light(s.tws, false, "TWS");
+    light(jobs.bridge && jobs.bridge.running, false, "גשר");
+    light(!accFresh.stale, accFresh.stale, "מראה " + ago(accFresh.age_sec));
+    light(goldOk && !(gAge>1800), gAge>1800, "זהב " + ago(gAge));
+  }
   $("lights").innerHTML = L.join("");
 
   /* ---- the access guard: which account is this allowed to trade? ------
@@ -945,6 +1033,12 @@ function render(s){
 
   /* ----------------------------- alarms ------------------------------ */
   var problems = [];
+  if(s.phone_mode){
+    if(updAge!==null && updAge>1800) problems.push("המחשב לא שידר כבר " + ago(updAge) + " — כדאי לבדוק שהוא דלוק. המספרים על המסך הם האחרונים שהתקבלו.");
+    if(!goldClosed && gAge!==null && gAge>1800) problems.push("שוק הזהב פתוח אבל הבוט שותק " + ago(gAge) + " — בדוק שמטה-טריידר רץ.");
+    if(usOpen && !s.tws) problems.push("שוק המניות פתוח אבל אינטראקטיב מנותק — נתוני המניות נכונים ל-" + (s.stocks_as_of||"?") + ".");
+    if(goldOk && gold.enabled === false) problems.push("מנוע הזהב מכובה (enabled=false).");
+  } else {
   if(!(jobs.engine && jobs.engine.running)) problems.push("מנוע האיתותים לא רץ — אין מי שיחשב איתותים.");
   if(!s.tws) problems.push("אין חיבור ל-TWS — המניות לא יכולות להתבצע.");
   if(!(jobs.bridge && jobs.bridge.running)) problems.push("הגשר לא רץ — פקודות לא נשלחות לאינטראקטיב.");
@@ -953,6 +1047,7 @@ function render(s){
   if(goldOk && gold.enabled === false) problems.push("מנוע הזהב מכובה (enabled=false).");
   var fe = (fresh.engine||{});
   if(fe.stale) problems.push("ספר המנוע לא התעדכן " + ago(fe.age_sec) + ".");
+  }
 
   var al = $("alarm");
   if(problems.length){
@@ -1394,7 +1489,15 @@ function tick(){
                  {cache:"no-store"})
       .then(function(r){ if(!r.ok) throw new Error("http "+r.status); return r.json(); })
       .then(function(P){
-        var s = { now:P.updated_israel, gold:P.gold, phone_mode:true,
+        /* 16.8.2026: the seats expect gold under .status and the gate used
+           to demand local-server jobs that a phone can never see - so the
+           phone sat in the lobby forever. Map everything the seats need and
+           let render() know this is phone mode. */
+        var s = { now:P.updated_israel,
+                  gold:{ status:P.gold, copier:P.copier }, phone_mode:true,
+                  slave:P.slave||null, tws:!!P.tws_connected,
+                  stocks_stale:!!P.stocks_stale, stocks_as_of:P.stocks_as_of||null,
+                  phone_updated_utc:P.updated_utc||null,
                   account:{ positions:P.positions||[], shadow_wallet:P.shadow_wallet,
                             updated_israel:P.updated_israel },
                   engine:{ wallet:P.engine_wallet, signals:{ swing:P.signals_swing||[],
@@ -1404,9 +1507,14 @@ function tick(){
         try{ render(s); }catch(e){ console.error(e); }
       })
       .catch(function(){
-        showLobby("אין נתונים מהמחשב. ודא שהמחשב דלוק והמערכת רצה.", [
-          {label:"המחשב מפרסם כל דקה — נסה שוב בעוד רגע", warn:true}
-        ]);
+        /* No data THIS tick. If we have ever rendered - keep the table on
+           screen (the freshness light says how old it is) instead of
+           yanking the whole room away. Lobby only on a truly first load. */
+        if(!LAST_STATUS){
+          showLobby("מחכה לשידור הראשון מהמחשב…", [
+            {label:"המחשב מפרסם כל דקה — המסך יתעדכן לבד", warn:true}
+          ]);
+        }
       });
   }
   fetch("/api/status", {cache:"no-store"})
@@ -1631,6 +1739,21 @@ setInterval(liveTick, 5000);
 <div id="feePanel">
   <h2>💰 החשבון של היום — כמה נשאר אחרי עמלות</h2>
   <div id="feeSub">טוען…</div>
+  <div id="feeHead" style="display:none;grid-template-columns:repeat(3,1fr);gap:10px;margin:4px 0 14px">
+    <div style="border:2px solid #24405e;border-radius:14px;padding:13px 10px;text-align:center;background:#132741">
+      <div style="font-size:13px;color:#8fb3d9">לפני עמלות (ברוטו)</div>
+      <div id="feeHG" style="font-size:24px;font-weight:800;margin-top:3px">–</div>
+    </div>
+    <div style="border:2px solid #24405e;border-radius:14px;padding:13px 10px;text-align:center;background:#132741">
+      <div style="font-size:13px;color:#8fb3d9">העמלות (ATRADE)</div>
+      <div id="feeHF" style="font-size:24px;font-weight:800;margin-top:3px;color:#ffb454">–</div>
+    </div>
+    <div style="border:2px solid #f5c542;border-radius:14px;padding:13px 10px;text-align:center;background:linear-gradient(160deg,#1c2f14,#132741)">
+      <div style="font-size:13px;color:#f5c542">נשאר בכיס (נטו)</div>
+      <div id="feeHN" style="font-size:26px;font-weight:900;margin-top:3px">–</div>
+      <div id="feeHP" style="font-size:12px;color:#8fb3d9;margin-top:2px"></div>
+    </div>
+  </div>
   <div id="feeWrap">
     <table id="feeTbl">
       <thead><tr>
@@ -1665,6 +1788,17 @@ function renderFees2(F){
     '<td class="feeCost">-$'+Math.abs(t.atrade_fee||0).toFixed(2)+'</td>'+
     '<td class="'+fCls(t.net_atrade)+' feeBig">'+fMoney(t.net_atrade||0,true)+'</td></tr>';
   body.innerHTML=html;
+  /* the three numbers Idan asked to see without hunting (16.8.2026) */
+  try{
+    var hd=document.getElementById("feeHead");
+    hd.style.display="grid";
+    var _g=+(t.gross||0), _f=Math.abs(+(t.atrade_fee||0)), _n=+(t.net_atrade||0);
+    var eG=document.getElementById("feeHG"), eF=document.getElementById("feeHF"), eN=document.getElementById("feeHN");
+    eG.textContent=fMoney(_g,true); eG.className=fCls(_g);
+    eF.textContent="-$"+_f.toFixed(2);
+    eN.textContent=fMoney(_n,true); eN.className=fCls(_n)+" feeBig";
+    document.getElementById("feeHP").textContent = _g>0 ? ("העמלות לקחו "+Math.round(_f/_g*100)+"% מהברוטו") : "";
+  }catch(e){}
   var when = F.is_today ? 'היום' : ('יום המסחר האחרון — '+(F.day||''));
   sub.innerHTML='<b style="color:#f5c542">'+when+'</b> · מחושב לפי המחירון של <b>ATRADE</b>: ‎$'+
     (F.rate_atrade_per_oz||0.37)+'‎ לאונקיה = ‎$'+((F.rate_atrade_per_oz||0.37)*100).toFixed(0)+
@@ -1673,7 +1807,9 @@ function renderFees2(F){
     '"עמלת ATRADE" = מה שהברוקר היה לוקח. "נטו" = מה שבאמת נשאר לך ביד.<br>'+
     'הערה: העמלה יורדת בזמן אמת בתוך כל עסקה — היא לא חשבונית שמגיעה אחר כך. '+
     'הברוטו מחושב מהיתרה בפועל בתוספת מרווח הדמו הנמדד (‎$'+(F.rate_demo_per_oz||0.285)+'‎ לאונקיה). '+
-    'לא כולל ריבית לילה (swap) על פוזיציות שנשארות פתוחות.';
+    'לא כולל ריבית לילה (swap) על פוזיציות שנשארות פתוחות.'+
+    ((t.demo_fee!==undefined)?('<br>בדמו (המחירים של MetaQuotes) שולם בפועל ‎-$'+Math.abs(t.demo_fee||0).toFixed(2)+
+    '‎ → נטו בדמו '+fMoney(t.net_demo||0,true)+'. הטבלה למעלה מתרגמת את אותו מסחר למחירון ATRADE.'):'');
 }
 
 function feeTick(){
