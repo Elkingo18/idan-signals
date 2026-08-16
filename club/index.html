@@ -166,6 +166,12 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
   <div class="mini">החשבון שלך הושהה. דבר עם עידן.</div>
   <button class="btn sec" onclick="signOut()">התנתק</button>
 </div>
+<div id="v-pending" class="full hidden">
+  <div style="font-size:56px">⏳</div>
+  <div class="title" style="font-size:22px">מחכה לאישור של עידן</div>
+  <div class="mini" style="max-width:340px;font-size:14px">נרשמת וחתמת — נשאר רק שעידן יאשר את הכניסה שלך. תקבל גישה ברגע שהוא מאשר, בדרך כלל תוך זמן קצר. אפשר לסגור ולחזור מאוחר יותר.</div>
+  <button class="btn sec" onclick="signOut()">התנתק בינתיים</button>
+</div>
 
 <!-- ======================= MAIN ======================= -->
 <div id="v-app" class="hidden">
@@ -188,9 +194,9 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
       <div class="lights" id="lights"></div>
       <div id="seats"></div>
       <div class="card">
-        <h3>💰 כמה נשאר בכיס — יום המסחר האחרון</h3>
+        <h3>💰 כמה נשאר בכיס — מאז ההתחלה (13.8)</h3>
         <div class="fee3">
-          <div class="feebox"><div class="k">לפני עמלות</div><div class="v" id="fGross">—</div></div>
+          <div class="feebox"><div class="k">הרווח בחשבונות</div><div class="v" id="fGross">—</div></div>
           <div class="feebox"><div class="k">העמלות</div><div class="v wa" id="fFee">—</div></div>
           <div class="feebox net"><div class="k">נשאר בכיס</div><div class="v" id="fNet">—</div></div>
         </div>
@@ -238,11 +244,21 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 
     <!-- ===== connections ===== -->
     <section id="t-links" class="hidden">
-      <div class="card"><h3>🔗 החיבורים שלך</h3>
+      <div class="card"><h3>🔑 מפתח החיבור שלי</h3>
+        <div class="mini">המפתח מקשר בין הבוט שירוץ אצלך במחשב לבין המסך הזה. שומרים אותו לעצמך בלבד.</div>
+        <div id="feedKeyBox" style="margin-top:9px"></div>
+      </div>
+      <div class="card"><h3>🥇 חיבור בוט הזהב לחשבון הדמו שלך</h3>
+        <div class="mini" style="font-size:13.5px;line-height:1.9" id="mt5Wizard"></div>
+      </div>
+      <div class="card"><h3>🏦 חיבור אינטראקטיב (מניות · חשבון נייר)</h3>
+        <div class="mini" style="font-size:13.5px;line-height:1.9" id="ibkrWizard"></div>
+      </div>
+      <div class="card"><h3>🔗 מצב כללי</h3>
         <div class="mini" style="font-size:14px;line-height:1.8" id="linksBody"></div>
       </div>
       <div class="card"><h3>📲 שתף את המועדון</h3>
-        <div class="mini">שלח לחבר את הקישור — הוא ייפתח, יתחבר עם גוגל, יחתום ויצטרף:</div>
+        <div class="mini">שלח לחבר את הקישור — הוא ייפתח, יתחבר עם גוגל, יחתום, יאושר על ידי עידן ויצטרף:</div>
         <div style="display:flex;gap:8px;margin-top:9px">
           <input type="text" id="shareUrl" readonly value="">
           <button class="btn sec" style="flex:none" onclick="copyShare()">העתק</button>
@@ -264,7 +280,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
         </div>
       </div>
       <div class="card"><h3>👥 החברים</h3>
-        <div class="mini" style="margin-bottom:6px">מתג ירוק ראשון = מאושר להיכנס · מתג שני = מחובר דרך הברוקר שלך (נדרש במצב אמיתי)</div>
+        <div class="mini" style="margin-bottom:6px">חדשים מחכים למעלה עם ⏳ — המתג הראשון מכניס אותם · מתג שני = מחובר דרך הברוקר שלך (נדרש במצב אמיתי)</div>
         <div id="usersList" class="mini">טוען…</div>
       </div>
     </section>
@@ -290,8 +306,8 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
    התחברות גוגל · חוזה דיגיטלי · הדרכה · נעילת "כסף אמיתי" לפי אישור עידן. */
 
 const OWNER_EMAIL = "idan2189@gmail.com";
-const CONTRACT_VERSION = 1;
-const APP_VERSION = "1.0.1";
+const CONTRACT_VERSION = 2;
+const APP_VERSION = "1.1.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -325,12 +341,12 @@ function usMarketOpenNow(){ const n=new Date(),d=n.getDay(),h=n.getHours()+n.get
 /* ---------- the contract ---------- */
 const CONTRACT_HTML = `
 <h4>הסכם חברות — Idan's Money Club · גרסה ${CONTRACT_VERSION} · אוגוסט 2026</h4>
-<p><b>1. מה זה המועדון.</b> מסך מעקב אחרי מערכת מסחר אוטומטית שבנה עידן ("המערכת"). המספרים מגיעים מחשבונות <b>דמו</b> (כסף מדומה) ומחשבון אמיתי אחד של צד שלישי שמשמש כמקור אותות בלבד ("המורה"). שום דבר כאן אינו חשבון שלך.</p>
+<p><b>1. מה זה המועדון.</b> מעקב וחיבור למערכת מסחר אוטומטית שבנה עידן ("המערכת"). המספרים המוצגים מגיעים מחשבונות <b>דמו</b> (כסף מדומה) של המערכת, ומחשבונות דמו של חברים שבחרו לחבר. חלק מהאותות מגיעים ממקורות חיצוניים.</p>
 <p><b>2. לא ייעוץ ולא ניהול.</b> התוכן במועדון אינו ייעוץ השקעות, אינו שיווק השקעות ואינו ניהול תיקים, ואינו מותאם אישית לאף אחד. עידן אינו בעל רישיון לפי חוק הסדרת העיסוק בייעוץ השקעות, בשיווק השקעות ובניהול תיקי השקעות, התשנ"ה-1995. כל החלטה כספית שלך — באחריותך בלבד, ומומלץ להתייעץ עם בעל רישיון.</p>
-<p><b>3. השלב הנוכחי — דמו בלבד.</b> אין חיבור לכסף שלך, אין מסחר בשמך, ואתה לא יכול להפסיד כאן כסף — כי אין כאן כסף אמיתי של אף חבר.</p>
+<p><b>3. השלב הנוכחי — דמו בלבד.</b> גם אם תחבר חשבון ותריץ את הבוט — זה חשבון דמו עם כסף מדומה. אין מסחר בכסף אמיתי שלך, ואי אפשר להפסיד כאן כסף אמיתי.</p>
 <p><b>4. אם בעתיד תבחר לפתוח חשבון אמיתי.</b> תעשה זאת בעצמך, ישירות מול ברוקר מפוקח, בחשבון על שמך שרק לך יש גישה אליו. עידן לא יקבל גישה לכסף שלך, לא יבצע עבורך פעולות ולא יקבע לך הגדרות סיכון. הפעלת מערכת אוטומטית על חשבונך — החלטה שלך ובאחריותך.</p>
 <p><b>5. גילוי נאות — עמלת הפניה.</b> אם תפתח חשבון דרך קישור ההפניה של עידן, עידן עשוי לקבל תגמול מהברוקר (עמלת הפניה על נפח המסחר או על ההצטרפות). זה לא עולה לך כסף נוסף, אבל זהו ניגוד עניינים פוטנציאלי שאתה זכאי לדעת עליו — ולכן הוא כתוב כאן.</p>
-<p><b>6. סיכון.</b> מסחר ממונף בזהב, במט"ח ובמניות מסוכן ויכול למחוק את כל הכסף המושקע. ביצועי עבר — כולל תוצאות הדמו במסכים האלה — אינם מנבאים דבר. חלק מהשיטות המוצגות (רשת/מרטינגייל של "המורה" ו"המעתיק") מסוכנות במיוחד, מוצגות כלימוד בלבד, ולפי כללי המועדון לעולם לא יופעלו בכסף אמיתי.</p>
+<p><b>6. סיכון.</b> מסחר ממונף בזהב, במט"ח ובמניות מסוכן ויכול למחוק את כל הכסף המושקע. ביצועי עבר — כולל תוצאות הדמו במסכים האלה — אינם מנבאים דבר. חלק מהשיטות המוצגות (שיטת הרשת של "The Ladder") מסוכנות במיוחד, מוצגות כלימוד בלבד, ולפי כללי המועדון לעולם לא יופעלו בכסף אמיתי.</p>
 <p><b>7. שקיפות המספרים.</b> המועדון מציג גם הפסדים, גם עמלות וגם סתירות בין ספרים כשהן קיימות. המספרים מגיעים אוטומטית מהמחשב של עידן וייתכנו בהם תקלות, עיכובים וטעויות. אין התחייבות לזמינות או לדיוק.</p>
 <p><b>8. פרטיות.</b> נשמרים: שם, אימייל, תמונת הפרופיל מגוגל, מועד ההצטרפות והחתימה. אפשר לבקש מעידן מחיקה מלאה בכל עת.</p>
 <p><b>9. שינויים.</b> עידן רשאי לעדכן הסכם זה; שינוי מהותי יחייב חתימה מחודשת בכניסה הבאה.</p>
@@ -342,7 +358,7 @@ const TOUR = [
   {i:"📅", t:"לוח השנה של הכסף", b:"כל יום מסחר מקבל משבצת: ירוק = יום מרוויח, אדום = מפסיד, והמספר הוא הנטו לכיס בדולרים. לחיצה על יום פותחת את הפירוט המלא."},
   {i:"📊", t:"דוחות בלי איפור", b:"ברוטו לפני עמלות, כמה הברוקר לוקח, וכמה באמת נשאר. המועדון מציג גם הפסדים וגם ימים רעים — זה העיקרון."},
   {i:"📖", t:"האסטרטגיות — כולל הסיכונים", b:"לכל בוט יש דף שמסביר בדיוק איך הוא חושב, מה מדדנו, ואיפה הוא מסוכן. בלי הבטחות: מה שלא הוכיח את עצמו — כתוב שלא."},
-  {i:"🔒", t:"דמו עכשיו, אמיתי רק דרך עידן", b:"כרגע הכול צפייה בדמו. כשעידן יעביר את המועדון לכסף אמיתי, ייכנסו רק חברים שפתחו חשבון דרך הקישור שלו ואושרו. תקבל הודעה כשזה קורה."}
+  {i:"🤖", t:"חבר את הבוט לחשבון דמו שלך", b:"במסך החיבורים יש אשף פשוט: פותחים חשבון דמו במטה-טריידר 5, מורידים את הבוט של המועדון בלחיצה, והוא רץ אצלך על כסף מדומה — והערימה שלך מופיעה כאן. כשהמועדון יעבור לכסף אמיתי, ייכנסו רק חברים שפתחו חשבון דרך הקישור של עידן ואושרו."}
 ];
 
 /* ---------- strategy pages ---------- */
@@ -350,11 +366,9 @@ const LEARN = [
  {i:"💰", t:"בוט הזהב — פריצת מומנטום (הראשי)", b:`סוחר XAUUSD על גרף 15 דקות בחשבון דמו.
 <br><b>איך הוא חושב:</b> נסחר רק בכיוון המגמה השעתית (EMA 34 מול 89) · נכנס רק כשיש "הצתה" — תזוזה של 2 ATR תוך 4 נרות · סטופ 1 ATR מהכניסה · נועל רווח מ-0.3R, מזיז לנקודת איזון ב-0.5R, ומטרייל 2×ATR כדי לתת לרווח לרוץ · בלמים: עצירת יום ב-6%- , עצירה אחרי 3 הפסדים רצופים, צינון 8 נרות.
 <br><b>מה המצב באמת:</b> ביומיים האחרונים שנמדדו הוא מרוויח, אבל המדגם קטן. נקודת התורפה הידועה: הזוכה הממוצע קטן מהמפסיד הממוצע — הוא חייב אחוז הצלחה גבוה כדי להישאר ברווח. לכן יש שער קבלה של 100 עסקאות לפני כסף אמיתי.`},
- {i:"🎓", t:"GoldTrap — המורה (צפייה בלבד)", b:`חשבון אמיתי של צד שלישי (~195,000$) שאנחנו מחוברים אליו במצב משקיע — רואים, לא נוגעים.
-<br><b>השיטה שלו:</b> רשת בסולם פיבונאצ'י — פותח רגל קטנה, ואם המחיר הולך נגדו מוסיף רגליים גדלות (0.01→0.02→0.03→0.05→0.08…) כדי לקרב את נקודת האיזון.
-<br><b>למה זה מסוכן:</b> מדדנו את השיטה על נתונים אמיתיים — יום עם 99.2% הצלחה הסתיים בהפסד, כי 7 סלים גרועים מחקו 917 נצחונות. המורה שורד כי יש לו הון עמוק שסופג. על חשבון קטן זו מחיקה. <b>ולכן: השיטה הזו אצלנו בדמו בלבד, לתמיד.</b>`},
- {i:"🪞", t:"המעתיק — המעבדה (דמו בלבד)", b:`חשבון דמו שמעתיק 1:1 כל רגל של המורה, כדי שנוכל למדוד את השיטה שלו בלי לסכן כלום.
-<br><b>מה הוא לימד אותנו:</b> ביום מסחר אחד הוא עשה +16.1% — אבל העמלות על אותו יום היו ~1,500$ על חשבון של 10,000$. הברוקר לקח 54% מהרווח הגולמי. העתקה של סוחר-הון-גדול על חשבון קטן היא התאבדות בעמלות. <b>המעתיק לא יעבור לעולם לכסף אמיתי — הוא קיים כדי ללמוד.</b>`},
+ {i:"🪜", t:"The Ladder — בוט הרשת (צפייה בלבד, דמו לתמיד)", b:`בוט שפותח רגל קטנה, ואם המחיר הולך נגדו מוסיף רגליים גדלות בסולם (0.01→0.02→0.03→0.05→0.08…) כדי לקרב את נקודת האיזון, וסוגר את כל הסל ברווח קטן.
+<br><b>למה הוא נראה מדהים:</b> רוב הסלים נסגרים ברווח — אחוזי הצלחה של 99%. ביום מסחר אחד הוא עשה +16.1%.
+<br><b>ולמה הוא בדמו לתמיד:</b> מדדנו את השיטה על נתונים אמיתיים — יום עם 99.2% הצלחה הסתיים בהפסד ענק, כי 7 סלים גרועים מחקו 917 נצחונות. והעמלות: ביום ה-+16.1% הוא שילם ~1,500$ עמלות על חשבון של 10,000$. שיטת רשת על חשבון קטן = מחיקה. <b>לכן הוא מוצג ללימוד בלבד, אי אפשר להוריד אותו, והוא לא יעבור לעולם לכסף אמיתי.</b>`},
  {i:"📈", t:"בוט המניות — סווינג (נייר)", b:`סורק מניות אמריקאיות וסוחר "סווינג" — תפיסת גל שלם של ימים עד שבועות — בחשבון נייר (כסף מדומה) באינטראקטיב ברוקרס.
 <br><b>סטטוס כן:</b> כרגע יש סתירה בין שני ספרי החשבון (המנוע מול הברוקר) — ולפי כלל המועדון, מספר ששני מקורות חלוקים עליו לא מדווח כרווח. עד שהסתירה תיושב תראה על השולחן תג ⚠️.`},
  {i:"🚦", t:"שער שלב 0 — למה אין עדיין כסף אמיתי", b:`כסף אמיתי נכנס רק אחרי שבוט הזהב עומד בכל אלה בדמו: 100 עסקאות לפחות · רווח ממוצע ≥ +0.05R לעסקה · שפל מקסימלי < 25% · לאורך 30 ימי מסחר.
@@ -375,16 +389,17 @@ function initFirebase(){
 }
 
 /* ---------- views ---------- */
-const VIEWS = ["v-login","v-contract","v-tour","v-locked","v-blocked","v-app"];
+const VIEWS = ["v-login","v-contract","v-tour","v-locked","v-blocked","v-pending","v-app"];
 function show(id){ VIEWS.forEach(v => $(v).classList.toggle("hidden", v!==id)); }
 
 function route(){
   if (!ME){ show("v-login"); return; }
   if (!MYDOC){ show("v-login"); return; }
   IS_OWNER = (ME.email||"").toLowerCase() === OWNER_EMAIL;
-  if (MYDOC.allowed === false && !IS_OWNER){ show("v-blocked"); return; }
   if (!MYDOC.signedContract || (MYDOC.contractVersion||0) < CONTRACT_VERSION){
     $("contractText").innerHTML = CONTRACT_HTML; show("v-contract"); return; }
+  /* 16.8 interview: entry by Idan's approval only */
+  if (!IS_OWNER && MYDOC.allowed !== true){ show("v-pending"); return; }
   if (SETTINGS.mode === "real" && !IS_OWNER && !MYDOC.brokerLinked){
     $("lockedLink").href = SETTINGS.brokerLink || "#";
     $("lockedLink").classList.toggle("hidden", !SETTINGS.brokerLink);
@@ -395,6 +410,7 @@ function route(){
 
 function enterApp(){
   show("v-app");
+  subscribeFeed();
   $("hAvatar").src = ME.photoURL || "icon-192.png";
   $("navAdmin").classList.toggle("hidden", !IS_OWNER);
   $("shareUrl").value = APP_URL;
@@ -434,9 +450,10 @@ async function onUser(user){
   try {
     const snap = await uref.get();
     if (!snap.exists){
+      const isOwn = (user.email||"").toLowerCase() === OWNER_EMAIL;
       await uref.set({
         email:(user.email||"").toLowerCase(), name:user.displayName||"", photo:user.photoURL||"",
-        created:new Date().toISOString(), allowed:true, brokerLinked:false,
+        created:new Date().toISOString(), allowed:isOwn, brokerLinked:false,
         signedContract:false, contractVersion:0, tourDone:false, appVersion:APP_VERSION });
     }
   } catch(e){ $("loginErr").textContent = "שגיאת הרשאות מסד: " + (e.code||e.message); show("v-login"); return; }
@@ -502,6 +519,38 @@ async function pollPhone(){
   }
 }
 
+/* ---------- my connected bot (the feed a friend's terminal posts) ------ */
+let MYFEED = null, unsubFeed = null;
+function subscribeFeed(){
+  if (unsubFeed || !MYDOC || !MYDOC.feedId) return;
+  try {
+    unsubFeed = db.collection("feeds").doc(MYDOC.feedId).onSnapshot(snap => {
+      MYFEED = snap.exists ? snap.data() : null;
+      renderTable(); renderLinks();
+    }, () => {});
+  } catch(e){}
+}
+function myBotSeatHTML(closed){
+  if (!MYDOC || !MYDOC.feedId) return "";
+  if (!MYFEED || !MYFEED.j){
+    return seatHTML({icon:"🤖", name:"הבוט שלי", role:"מחכה לשידור הראשון מהמחשב שלך",
+      dim:true, stack:"—", stackLab:"הערימה שלך",
+      tags:[{t:"עקוב אחרי שלבי החיבור במסך החיבורים", tone:"wa"}]});
+  }
+  let j = {};
+  try { j = JSON.parse(MYFEED.j) || {}; } catch(e){}
+  let age = null;
+  if (MYFEED.t){ const t = new Date(MYFEED.t).getTime(); if(!isNaN(t)) age = Math.max(0,(Date.now()-t)/1000); }
+  const day = +j.day_pnl||0;
+  return seatHTML({icon:"🤖", name:"הבוט שלי — בוט הזהב", role:"רץ על החשבון שלך · דמו · " + (j.account||MYFEED.acct||""),
+    dim: !closed && age!==null && age>600,
+    stack:money(j.equity!==undefined?j.equity:j.balance), stackLab:"הערימה שלך",
+    tags:[{t:"היום "+signed(day), tone:cls(day)},
+          {t:(j.trades_today||0)+" ידיים"},
+          (j.enabled===false)?{t:"מכובה", tone:"wa"}:{t:"פעיל", tone:"up"},
+          closed?{t:"🌙 שוק סגור"}:((age!==null&&age>600)?{t:"⚠️ שקט "+ago(age), tone:"wa"}:{t:"עודכן "+ago(age)})]});
+}
+
 /* ---------- the table ---------- */
 function seatHTML(o){
   return `<div class="seat ${o.dim?'dim':''}">
@@ -514,22 +563,41 @@ function seatHTML(o){
 function renderTable(){
   const P = PHONE; if (!P) return;
   const closed = goldMarketClosedNow();
-  const g = P.gold||{}, cop = P.copier||{}, slv = P.slave||{}, sh = P.shadow_wallet||{}, eng = P.engine_wallet||{};
+  const g = P.gold||{}, slv = P.slave||{}, sh = P.shadow_wallet||{}, eng = P.engine_wallet||{};
   let updAge = null;
   if (P.updated_utc){ const t = new Date(P.updated_utc).getTime(); if(!isNaN(t)) updAge = Math.max(0,(Date.now()-t)/1000); }
 
-  /* wallet: OUR demo accounts (gold + copier + stocks-broker-side) */
-  const wallet = (+g.equity||0) + (+slv.equity||+slv.balance||0) + (+sh.equity||0);
-  $("hWallet").textContent = money(wallet, 0);
+  /* wallet: a connected member sees THEIR account; otherwise the club's */
+  const clubWallet = (+g.equity||0) + (+slv.equity||+slv.balance||0) + (+sh.equity||0);
+  let walletShown = clubWallet, walletLab = "הארנקים של המועדון (דמו)";
+  if (MYFEED && MYFEED.j){
+    try { const mj = JSON.parse(MYFEED.j)||{};
+      if (mj.equity!==undefined || mj.balance!==undefined){
+        walletShown = +(mj.equity!==undefined?mj.equity:mj.balance)||0;
+        walletLab = "הארנק שלי (דמו)";
+      }
+    } catch(e){}
+  }
+  $("hWallet").textContent = money(walletShown, 0);
+  const wl = document.querySelector(".wallet .k"); if (wl) wl.textContent = walletLab;
 
-  /* pot: last day net after ATRADE fees */
-  const fees = P.fees||{}, tot = fees.total||{};
-  $("potNet").textContent = signed(tot.net_atrade);
-  $("potNet").className = "amt " + cls(tot.net_atrade);
-  $("potSub").innerHTML =
-    (fees.is_today ? "היום" : "יום המסחר האחרון — " + (fees.day||"")) +
-    " · ברוטו " + signed(tot.gross) + " · עמלות -" + money(Math.abs(tot.atrade_fee||0)) +
-    (closed ? " · 🌙 שוק הזהב סגור, חוזרים שני 01:00" : "");
+  /* pot: Idan's model (16.8) - the profit the accounts SHOW, minus the
+     ATRADE fee on the recorded volume, cumulative since the start */
+  const fees = P.fees||{};
+  const v2 = fees.schema === 2;
+  const SS = v2 ? (fees.since_start||{}) : null;
+  const LD = v2 ? (fees.last_day||{}) : null;
+  const tot = v2 ? (SS.total||{}) : (fees.total||{});
+  const potVal = v2 ? tot.pocket : tot.net_atrade;
+  $("potNet").textContent = signed(potVal);
+  $("potNet").className = "amt " + cls(potVal);
+  $("potSub").innerHTML = v2
+    ? ("מאז ההתחלה · הרווח בחשבונות " + signed(tot.profit) + " · עמלות ATRADE -" + money(Math.abs(tot.fee||0)) +
+       ((LD && LD.total && LD.total.pocket!==undefined) ? (" · " + (LD.is_today?"היום":"יום אחרון") + " " + signed(LD.total.pocket) + " בכיס") : "") +
+       (closed ? " · 🌙 שוק הזהב סגור, חוזרים שני 01:00" : ""))
+    : ((fees.is_today ? "היום" : "יום המסחר האחרון — " + (fees.day||"")) +
+       " · עמלות -" + money(Math.abs(tot.atrade_fee||0)) +
+       (closed ? " · 🌙 שוק הזהב סגור" : ""));
 
   /* lights */
   let L = [];
@@ -544,19 +612,16 @@ function renderTable(){
   const engEq = +eng.equity||0, shEq = +sh.equity||0;
   const disputed = engEq>0 && shEq>0 && Math.abs(engEq-shEq) > Math.max(5, .02*shEq);
   let seats = "";
+  /* my own connected bot first, if the member linked one (16.8) */
+  seats += myBotSeatHTML(closed);
   seats += seatHTML({icon:"💰", name:"בוט הזהב", role:"XAUUSD · מטה-טריידר · דמו", dim:false,
     stack:money(g.equity), stackLab:"הערימה",
     tags:[{t:"יום אחרון "+signed(gDay), tone:cls(gDay)},{t:(g.trades_today||0)+" ידיים"},
           closed?{t:"🌙 שוק סגור"}:{t:"חי"}]});
-  if (cop.equity!==undefined && cop.equity!==null){
-    const legs=(cop.legs||[]).length;
-    seats += seatHTML({icon:"🎓", name:"GoldTrap — המורה", role:"חשבון אמיתי · צפייה בלבד · לא שלנו",
-      stack:money(cop.equity), stackLab:"הערימה שלו",
-      tags:[{t:legs+" רגליים פתוחות", tone:legs?"up":""}, closed?{t:"🌙 שוק סגור"}:{t:"משדר ✓",tone:"up"}]});
-  }
+  /* 16.8 interview: the source account is not shown here at all */
   if (slv.balance!==undefined && slv.balance!==null){
     const sDay=+slv.day_pnl||0;
-    seats += seatHTML({icon:"🪞", name:"המעתיק", role:"עותק 1:1 מהמורה · דמו · מעבדה בלבד",
+    seats += seatHTML({icon:"🪜", name:"The Ladder", role:"בוט רשת בסולם · דמו · מעבדה בלבד · צפייה",
       stack:money(slv.equity!==undefined&&slv.equity!==null?slv.equity:slv.balance), stackLab:"הערימה",
       tags:[{t:"היום "+signed(sDay), tone:cls(sDay)},{t:((+slv.day_lots||0).toFixed(2))+" לוט"},
             {t:(slv.open_positions||0)+" פתוחות"}, closed?{t:"🌙 שוק סגור"}:{t:"חי"}]});
@@ -569,12 +634,18 @@ function renderTable(){
     stack:money(shEq), stackLab:"לפי הברוקר", tags:stTags});
   $("seats").innerHTML = seats;
 
-  /* fee boxes */
-  $("fGross").textContent = signed(tot.gross); $("fGross").className = "v "+cls(tot.gross);
-  $("fFee").textContent = "-"+money(Math.abs(tot.atrade_fee||0));
-  $("fNet").textContent = signed(tot.net_atrade); $("fNet").className = "v "+cls(tot.net_atrade);
-  $("fNote").innerHTML = (tot.gross>0 ? "העמלות לקחו <b>"+Math.round(Math.abs(tot.atrade_fee||0)/tot.gross*100)+"%</b> מהברוטו · " : "") +
-    "מחושב לפי מחירון ATRADE: ‎$0.37‎ לאונקיה (‎$37‎ ללוט) · רק עסקאות שנסגרו";
+  /* fee boxes - v2: profit / fee / pocket, since the start */
+  const bProfit = v2 ? tot.profit : tot.gross;
+  const bFee = v2 ? tot.fee : tot.atrade_fee;
+  const bPocket = v2 ? tot.pocket : tot.net_atrade;
+  $("fGross").textContent = signed(bProfit); $("fGross").className = "v "+cls(bProfit);
+  $("fFee").textContent = "-"+money(Math.abs(bFee||0));
+  $("fNet").textContent = signed(bPocket); $("fNet").className = "v "+cls(bPocket);
+  let perBot = "";
+  if (v2 && SS.rows) perBot = SS.rows.map(r => r.name + " " + signed(r.profit) + " − " + money(Math.abs(r.fee)) + " = <b class='"+cls(r.pocket)+"'>" + signed(r.pocket) + "</b>").join(" · ") + "<br>";
+  $("fNote").innerHTML = perBot +
+    "הרווח כפי שהחשבונות מציגים, פחות עמלת ATRADE (‎$37‎ ללוט) על הנפח שנסחר בפועל · מאז 13.8.2026" +
+    (bProfit>0 ? " · העמלות לוקחות <b>"+Math.round(Math.abs(bFee||0)/bProfit*100)+"%</b> מהרווח" : "");
 
   /* open positions */
   const pos = P.positions||[];
@@ -605,10 +676,11 @@ function renderCalendar(){
   for (let d=1;d<=days;d++){
     const key = y+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
     const e = H[key];
-    if (e && (e.net_atrade!==undefined)){
-      mSum += e.net_atrade; mDays++;
-      html += `<div class="d ${e.net_atrade>0.004?'g':(e.net_atrade<-0.004?'r':'')}" onclick="dayModal('${key}')">
-        <span class="n">${d}</span><span class="p ${cls(e.net_atrade)}">${signed(e.net_atrade,0)}</span></div>`;
+    const dayVal = e ? (e.pocket!==undefined ? e.pocket : e.net_atrade) : undefined;
+    if (e && dayVal!==undefined){
+      mSum += dayVal; mDays++;
+      html += `<div class="d ${dayVal>0.004?'g':(dayVal<-0.004?'r':'')}" onclick="dayModal('${key}')">
+        <span class="n">${d}</span><span class="p ${cls(dayVal)}">${signed(dayVal,0)}</span></div>`;
     } else html += `<div class="d off"><span class="n">${d}</span></div>`;
   }
   $("calGrid").innerHTML = html;
@@ -617,22 +689,28 @@ function renderCalendar(){
 }
 function dayModal(key){
   const e = ((PHONE||{}).history||{})[key]; if (!e) return;
+  const gFee = (e.gold_lots||0)*37, cFee = (e.copier_lots||0)*37;
+  const gPocket = (e.gold_net_demo!==undefined) ? e.gold_net_demo - gFee : undefined;
+  const cPocket = (e.copier_net_demo!==undefined) ? e.copier_net_demo - cFee : undefined;
+  const dFee = (e.fee!==undefined) ? e.fee : (gFee + cFee);
+  const dPocket = (e.pocket!==undefined) ? e.pocket : (e.net_demo||0) - dFee;
   const box = document.createElement("div"); box.className = "modal";
   box.innerHTML = `<div class="mbox">
     <h3 style="color:var(--gold)">📅 ${key.split("-").reverse().join(".")}</h3>
     <table>
-      <tr><th>הבוט</th><th>לוטים</th><th>ברוטו</th><th>עמלת ATRADE</th><th>נטו לכיס</th></tr>
-      ${e.gold_gross!==undefined?`<tr><td>💰 הזהב</td><td>${(e.gold_lots||0).toFixed(2)}</td>
-        <td class="${cls(e.gold_gross)}">${signed(e.gold_gross)}</td><td class="wa">-${money(Math.abs((e.gold_gross||0)-(e.gold_net_atrade||0)))}</td>
-        <td class="${cls(e.gold_net_atrade)}"><b>${signed(e.gold_net_atrade)}</b></td></tr>`:""}
-      ${e.copier_gross!==undefined?`<tr><td>🪞 המעתיק</td><td>${(e.copier_lots||0).toFixed(2)}</td>
-        <td class="${cls(e.copier_gross)}">${signed(e.copier_gross)}</td><td class="wa">-${money(Math.abs((e.copier_gross||0)-(e.copier_net_atrade||0)))}</td>
-        <td class="${cls(e.copier_net_atrade)}"><b>${signed(e.copier_net_atrade)}</b></td></tr>`:""}
-      <tr><td><b>סה"כ</b></td><td></td><td class="${cls(e.gross)}">${signed(e.gross)}</td>
-        <td class="wa">-${money(Math.abs(e.fees_atrade||0))}</td>
-        <td class="${cls(e.net_atrade)}" style="font-size:16px"><b>${signed(e.net_atrade)}</b></td></tr>
+      <tr><th>הבוט</th><th>לוטים</th><th>הרווח בחשבון</th><th>עמלת ATRADE</th><th>נשאר בכיס</th></tr>
+      ${gPocket!==undefined?`<tr><td>💰 הזהב</td><td>${(e.gold_lots||0).toFixed(2)}</td>
+        <td class="${cls(e.gold_net_demo)}">${signed(e.gold_net_demo)}</td><td class="wa">-${money(gFee)}</td>
+        <td class="${cls(gPocket)}"><b>${signed(gPocket)}</b></td></tr>`:""}
+      ${cPocket!==undefined?`<tr><td>🪜 The Ladder</td><td>${(e.copier_lots||0).toFixed(2)}</td>
+        <td class="${cls(e.copier_net_demo)}">${signed(e.copier_net_demo)}</td><td class="wa">-${money(cFee)}</td>
+        <td class="${cls(cPocket)}"><b>${signed(cPocket)}</b></td></tr>`:""}
+      <tr><td><b>סה"כ</b></td><td>${(e.lots!==undefined?e.lots:((e.gold_lots||0)+(e.copier_lots||0))).toFixed(2)}</td>
+        <td class="${cls(e.net_demo)}">${signed(e.net_demo)}</td>
+        <td class="wa">-${money(Math.abs(dFee))}</td>
+        <td class="${cls(dPocket)}" style="font-size:16px"><b>${signed(dPocket)}</b></td></tr>
     </table>
-    <div class="mini" style="margin-top:8px">בדמו בפועל נשאר: ${signed(e.net_demo)} (מחירון הדמו זול יותר מ-ATRADE)</div>
+    <div class="mini" style="margin-top:8px">"הרווח בחשבון" = מה שהדמו הראה באותו יום. "נשאר בכיס" = אחרי עמלת ATRADE (‎$37‎ ללוט).</div>
     <button class="btn sec" style="width:100%;margin-top:12px" onclick="this.closest('.modal').remove()">סגור</button>
   </div>`;
   box.onclick = ev => { if (ev.target===box) box.remove(); };
@@ -644,14 +722,17 @@ function renderReports(){
   const P = PHONE; if (!P) return;
   const H = P.history||{};
   const keys = Object.keys(H).sort().reverse().slice(0,14);
-  let html = `<tr><th>תאריך</th><th>ברוטו</th><th>עמלות</th><th>נטו לכיס</th><th>נטו בדמו</th></tr>`;
+  let html = `<tr><th>תאריך</th><th>לוטים</th><th>הרווח בחשבונות</th><th>עמלת ATRADE</th><th>נשאר בכיס</th></tr>`;
   if (!keys.length) html += `<tr><td colspan="5" class="mini">עוד אין ימים מתועדים — הפיד מתמלא אוטומטית מיום ליום.</td></tr>`;
   keys.forEach(k=>{ const e=H[k];
+    const lots = e.lots!==undefined?e.lots:((e.gold_lots||0)+(e.copier_lots||0));
+    const fee = e.fee!==undefined?e.fee:lots*37;
+    const pocket = e.pocket!==undefined?e.pocket:(e.net_demo||0)-fee;
     html += `<tr><td>${k.split("-").reverse().join(".")}</td>
-      <td class="${cls(e.gross)}">${signed(e.gross)}</td>
-      <td class="wa">-${money(Math.abs(e.fees_atrade||0))}</td>
-      <td class="${cls(e.net_atrade)}"><b>${signed(e.net_atrade)}</b></td>
-      <td class="${cls(e.net_demo)}">${signed(e.net_demo)}</td></tr>`; });
+      <td>${lots.toFixed(2)}</td>
+      <td class="${cls(e.net_demo)}">${signed(e.net_demo)}</td>
+      <td class="wa">-${money(Math.abs(fee))}</td>
+      <td class="${cls(pocket)}"><b>${signed(pocket)}</b></td></tr>`; });
   $("repTable").innerHTML = html;
 }
 
@@ -662,16 +743,51 @@ function renderLearn(){
     `<div class="card"><div class="mini">⚖️ כל האמור הוא תיעוד של מערכת בפיתוח, לא ייעוץ ולא הזמנה להשקיע. ההסכם שחתמת עליו הוא הקובע.</div></div>`;
 }
 
-/* ---------- links ---------- */
+/* ---------- links & wizards ---------- */
+const DL = APP_URL + "downloads/";
+async function makeFeedKey(){
+  const a = new Uint8Array(16); crypto.getRandomValues(a);
+  const key = "f" + Array.from(a, b => b.toString(16).padStart(2,"0")).join("");
+  try {
+    await db.collection("users").doc(ME.uid).update({feedId:key});
+    toast("נוצר מפתח חיבור ✓");
+  } catch(e){ toast("שגיאה: " + (e.code||e.message)); }
+}
+function copyKey(){
+  const k = (MYDOC||{}).feedId||"";
+  navigator.clipboard.writeText(k).then(()=>toast("המפתח הועתק ✓"))
+    .catch(()=>toast(k));
+}
 function renderLinks(){
   const real = SETTINGS.mode === "real";
-  $("linksBody").innerHTML = `
-  <b>🥇 מטה-טריידר 5 (זהב)</b><br>
-  ${real ? `המועדון במצב אמיתי: פותחים חשבון <b>רק דרך הקישור של עידן</b>${SETTINGS.brokerLink?` — <a href="${SETTINGS.brokerLink}" target="_blank" rel="noopener">לחץ כאן</a>`:""}, ואחרי האישור שלו החשבון שלך מופיע כאן.`
-        : `בשלב הדמו אין מה לחבר — אתה רואה את חשבונות הדמו של עידן ישירות במסך. כשהמועדון יעבור לכסף אמיתי, כאן יופיע הקישור לפתיחת חשבון דרך עידן.`}<br><br>
-  <b>🏦 אינטראקטיב ברוקרס (מניות)</b><br>
-  ${real ? `כנ"ל — דרך הקישור של עידן בלבד.` : `אותו סיפור — צפייה בדמו עכשיו, חיבור אישי יגיע בשלב האמיתי.`}<br><br>
-  <span class="mini">⚖️ גילוי נאות: אם תפתח בעתיד חשבון דרך קישור של עידן, עידן עשוי לקבל עמלת הפניה מהברוקר. זה לא עולה לך כלום, וזכותך לדעת.</span>`;
+  /* the key box */
+  const key = (MYDOC||{}).feedId;
+  $("feedKeyBox").innerHTML = key
+    ? `<div style="display:flex;gap:8px"><input type="text" readonly value="${key}" style="direction:ltr;font-family:monospace">
+       <button class="btn sec" style="flex:none" onclick="copyKey()">העתק</button></div>
+       <div class="mini" style="margin-top:6px">${MYFEED && MYFEED.j ? "✅ הבוט שלך משדר — רואים אותו במסך השולחן" : "⏳ עוד לא התקבל שידור — השלם את שלבי ההתקנה למטה"}</div>`
+    : `<button class="btn" onclick="makeFeedKey()">🔑 צור לי מפתח חיבור</button>`;
+  /* MT5 wizard */
+  $("mt5Wizard").innerHTML = `
+    הבוט של המועדון ירוץ <b>אצלך במחשב, על חשבון דמו שלך</b> (כסף מדומה). חמישה שלבים:
+    <br><b>1.</b> הורד והתקן את <a href="https://www.metatrader5.com/he/download" target="_blank" rel="noopener">MetaTrader 5</a> (התוכנה החינמית).
+    <br><b>2.</b> פתח בתוכנה חשבון דמו: קובץ ← פתח חשבון ← MetaQuotes Demo ← 10,000$.
+    <br><b>3.</b> צור למעלה מפתח חיבור והעתק אותו.
+    <br><b>4.</b> הורד והפעל את <a href="${DL}IdanGold-Setup.bat" download>קובץ ההתקנה של הבוט</a> — הוא יתקין את הבוט ואת המשדר, וישאל אותך את המפתח (הדבק אותו).
+    <br><b>5.</b> במטה-טריידר: פתח גרף זהב (XAUUSD), גרור מהצד את <b>IdanGold</b> על הגרף, אשר, וודא שכפתור "אלגו-טריידינג" למעלה ירוק.
+    <br>מרגע זה הערימה שלך מופיעה במסך השולחן, והבוט סוחר דמו אצלך בדיוק לפי ההגדרות של עידן.
+    <br><span style="color:var(--ink3)">להסרה: מחק את המשימה IdanClubFeed במתזמן המשימות ואת הבוט מהגרף.</span>`;
+  /* IBKR wizard */
+  $("ibkrWizard").innerHTML = `
+    <b>1.</b> פתח <a href="https://www.interactivebrokers.com/en/trading/free-trial.php" target="_blank" rel="noopener">חשבון נייר (Paper) חינמי באינטראקטיב</a> והתקן את TWS.
+    <br><b>2.</b> ב-TWS: File ← Global Configuration ← API ← Settings ← סמן Enable ActiveX and Socket Clients (פורט 7497).
+    <br><b>3.</b> הורד והפעל את <a href="${DL}IdanStocks-Setup.bat" download>קובץ ההתקנה למניות</a> — יתקין את המשדר וישאל את אותו מפתח חיבור.
+    <br>בשלב הזה החשבון שלך <b>משתקף</b> במסך (איתותי הסווינג מוצגים לכולם); הפעלת המסחר האוטומטי המלא על הנייר שלך תגיע בעדכון הקרוב — תקבל הודעה.
+    <br><br><b>מצב כללי:</b> <span id="ibkrState"></span>`;
+  /* general state */
+  $("linksBody").innerHTML = real
+    ? `🔴 המועדון במצב <b>כסף אמיתי</b>: פותחים חשבון <b>רק דרך הקישור של עידן</b>${SETTINGS.brokerLink?` — <a href="${SETTINGS.brokerLink}" target="_blank" rel="noopener">לחץ כאן</a>`:""}, ועידן מאשר אותך אחרי הפתיחה.<br><span class="mini">⚖️ גילוי נאות: בפתיחת חשבון דרך הקישור, עידן עשוי לקבל עמלת הפניה מהברוקר. זה לא עולה לך כלום, וזכותך לדעת.</span>`
+    : `🎓 המועדון במצב <b>דמו</b> — הכול בכסף מדומה, גם אצלך. כשעוברים לאמיתי: פתיחת חשבון רק דרך הקישור של עידן, והאפליקציה תיפתח רק למי שעידן אישר.<br><span class="mini">⚖️ גילוי נאות: בשלב האמיתי, פתיחת חשבון דרך הקישור של עידן עשויה לזכות אותו בעמלת הפניה מהברוקר. לא עולה לך כלום, וזכותך לדעת.</span>`;
 }
 function copyShare(){
   navigator.clipboard.writeText($("shareUrl").value).then(()=>toast("הקישור הועתק ✓"))
@@ -689,17 +805,23 @@ function initAdmin(){
   reflectAdmin();
   if (unsubUsers) return;
   unsubUsers = db.collection("users").onSnapshot(qs=>{
+    const rows = [];
+    qs.forEach(doc => rows.push({id: doc.id, u: doc.data()||{}}));
+    rows.sort((a,b) => {
+      const pa = a.u.allowed===true?1:0, pb = b.u.allowed===true?1:0;
+      return pa - pb; /* pending first */
+    });
     let html = "";
-    qs.forEach(doc=>{
-      const u = doc.data(), id = doc.id;
+    rows.forEach(({id,u})=>{
       const isOwnerRow = (u.email||"")===OWNER_EMAIL;
-      html += `<div class="urow">
+      const pending = !isOwnerRow && u.allowed!==true;
+      html += `<div class="urow" style="${pending?'background:rgba(255,180,84,.07);border-radius:10px;padding-inline:6px':''}">
         <img src="${u.photo||'icon-192.png'}" referrerpolicy="no-referrer" alt="">
-        <div style="flex:1;min-width:0"><b>${u.name||u.email}</b>
-          <div class="mini">${u.email}${u.signedContract?` · ✍️ חתם${u.signedAt?" "+String(u.signedAt).slice(0,10):""}`:" · ⚠️ לא חתם"}</div></div>
+        <div style="flex:1;min-width:0"><b>${u.name||u.email}</b>${pending?' <span class="tag wa">⏳ ממתין לאישור</span>':''}
+          <div class="mini">${u.email}${u.signedContract?` · ✍️ חתם${u.signedAt?" "+String(u.signedAt).slice(0,10):""}`:" · ⚠️ לא חתם"}${u.feedId?` · 🤖 בוט מחובר`:""}</div></div>
         ${isOwnerRow ? `<span class="tag up">👑 בעלים</span>` : `
-        <div class="sw ${u.allowed!==false?'on':''}" title="מאושר" onclick="tglUser('${id}','allowed',${u.allowed!==false})"></div>
-        <div class="sw ${u.brokerLinked?'on':''}" title="דרך הברוקר" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div>`}
+        <div class="sw ${u.allowed===true?'on':''}" title="מאושר להיכנס" onclick="tglUser('${id}','allowed',${u.allowed===true})"></div>
+        <div class="sw ${u.brokerLinked?'on':''}" title="דרך הברוקר (למצב אמיתי)" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div>`}
       </div>`;
     });
     $("usersList").innerHTML = html || "עוד אין נרשמים.";
