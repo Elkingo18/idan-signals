@@ -49,9 +49,12 @@ code{background:#0f2032;border:1px solid var(--line);border-radius:6px;padding:1
   <div id="win">
     <div class="card">
       <h2>📋 שלב 1 — העתק את הפקודה</h2>
-      <div class="t">ווינדוס חוסם קובצי התקנה שיורדים מהאינטרנט, אז עוקפים את זה בלי להוריד כלום:</div>
-      <div class="cmd" id="cmdWin">[Net.ServicePointManager]::SecurityProtocol='Tls12'; irm https://elkingo18.github.io/idan-signals/club/downloads/club_setup.ps1 | iex</div>
+      <div class="t"><b>לא מורידים שום קובץ</b> — ווינדוס חוסם קובצי התקנה מהאינטרנט,
+        אז ההתקנה רצה ישירות מהפקודה הזו:</div>
+      <div class="cmd" id="cmdWin">irm https://elkingo18.github.io/idan-signals/club/downloads/club_setup.ps1 | iex</div>
       <button class="copy" onclick="cp('cmdWin',this)">העתק את הפקודה</button>
+      <div class="warn">אם כבר הורדת קודם קובץ בשם <code>IdanGold-Setup.bat</code> — <b>מחק אותו</b>
+        ואל תנסה להריץ אותו. ווינדוס יחסום אותו תמיד. הדרך היחידה היא הפקודה שלמעלה.</div>
     </div>
     <div class="card">
       <h2>▶️ שלב 2 — הדבק אותה ב-PowerShell</h2>
