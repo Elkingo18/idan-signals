@@ -4,15 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Idan's Money Club</title>
-<meta name="theme-color" content="#0d1b2a">
+<meta name="theme-color" content="#161311">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{
-  --bg:#0d1b2a; --bg2:#16283d; --line:#24405e; --felt:#0e5c3f; --felt2:#0a4a33;
-  --gold:#f5c542; --ink:#e8f1fb; --ink2:#8fb3d9; --ink3:#6f8fb0;
-  --up:#23d494; --dn:#ff6b7d; --warn:#ffb454;
+  /* deep-red, chess.com-clean theme */
+  --bg:#161311; --bg2:#211b19; --line:#3a2c28;
+  --felt:#7a1f1f; --felt2:#5a1414;
+  --gold:#e0483d;            /* the accent (was gold) - now crimson */
+  --accent2:#f0a030;         /* warm secondary spark, used sparingly */
+  --ink:#f3ece9; --ink2:#c8a9a2; --ink3:#96786f;
+  --up:#3fb765; --dn:#e0483d; --warn:#f0a030;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
@@ -22,10 +26,10 @@ button{font-family:inherit;cursor:pointer;border:none;border-radius:12px}
 a{color:var(--gold)}
 .wrap{max-width:860px;margin:0 auto;padding:0 14px 90px}
 /* ---------- header ---------- */
-header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,#0d1b2a 75%,rgba(13,27,42,0));padding:12px 14px 8px}
+header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,#161311 78%,rgba(22,19,17,0));padding:12px 14px 8px}
 .hrow{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:10px}
 .logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:18px;letter-spacing:.3px}
-.logo .chip{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe38a,var(--gold) 60%,#8a6d1a);border:3px dashed #0d1b2a;box-shadow:0 0 0 2px var(--gold)}
+.logo .chip{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a7d,var(--gold) 58%,#7a1f1f);border:3px dashed #161311;box-shadow:0 0 0 2px var(--gold)}
 .hspace{flex:1}
 .wallet{background:var(--bg2);border:1.5px solid var(--line);border-radius:14px;padding:6px 13px;text-align:center}
 .wallet .v{font-size:17px;font-weight:900;color:var(--gold)}
@@ -48,16 +52,16 @@ nav button.on{color:var(--gold)}
 .tag.up{color:var(--up)}.tag.dn{color:var(--dn)}.tag.wa{color:var(--warn)}
 /* ---------- login ---------- */
 .full{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 20px;gap:14px}
-.bigchip{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe38a,var(--gold) 60%,#8a6d1a);border:7px dashed #0d1b2a;box-shadow:0 0 0 5px var(--gold),0 14px 40px rgba(0,0,0,.5)}
+.bigchip{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a7d,var(--gold) 58%,#7a1f1f);border:7px dashed #161311;box-shadow:0 0 0 5px var(--gold),0 14px 40px rgba(0,0,0,.55)}
 .title{font-size:30px;font-weight:900}.title small{display:block;font-size:14px;color:var(--ink2);font-weight:400;margin-top:5px}
 .gbtn{display:flex;align-items:center;gap:11px;background:#fff;color:#1f1f1f;font-weight:700;font-size:16.5px;padding:13px 24px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
 .gbtn img{width:22px;height:22px}
 /* ---------- seats ---------- */
-.pot{position:relative;background:radial-gradient(ellipse 120% 90% at 50% 18%,#12784f,var(--felt) 45%,var(--felt2));border:3px solid #14805a;border-radius:130px/70px;padding:20px 18px 22px;text-align:center;margin:12px 0;box-shadow:inset 0 0 60px rgba(0,0,0,.45),0 8px 26px rgba(0,0,0,.5)}
-.pot::before{content:"";position:absolute;inset:7px;border:1.5px solid rgba(159,220,194,.35);border-radius:120px/62px;pointer-events:none}
-.pot .lab{color:#9fdcc2;font-size:12px;letter-spacing:1.2px}
+.pot{position:relative;background:radial-gradient(ellipse 120% 90% at 50% 18%,#8f2626,var(--felt) 45%,var(--felt2));border:3px solid #9a3030;border-radius:130px/70px;padding:20px 18px 22px;text-align:center;margin:12px 0;box-shadow:inset 0 0 60px rgba(0,0,0,.45),0 8px 26px rgba(0,0,0,.5)}
+.pot::before{content:"";position:absolute;inset:7px;border:1.5px solid rgba(255,180,170,.30);border-radius:120px/62px;pointer-events:none}
+.pot .lab{color:#f0c9c2;font-size:12px;letter-spacing:1.2px}
 .pot .amt{font-size:38px;font-weight:900;margin:2px 0;text-shadow:0 2px 8px rgba(0,0,0,.5)}
-.pot .sub{color:#bfe9d8;font-size:13px;line-height:1.6}
+.pot .sub{color:#f2d7d1;font-size:13px;line-height:1.6}
 /* live trades = playing cards on the felt */
 .board{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0 4px;min-height:10px}
 .pcard{width:82px;height:116px;background:linear-gradient(160deg,#fff,#eef3f8);border-radius:11px;box-shadow:0 6px 16px rgba(0,0,0,.45);position:relative;color:#14243a;padding:7px 8px;display:flex;flex-direction:column;justify-content:space-between;animation:deal .45s cubic-bezier(.2,.8,.3,1.2) both}
@@ -71,7 +75,7 @@ nav button.on{color:var(--gold)}
 .pcard.loss .pl{background:rgba(220,60,80,.14);color:#c0293c}
 .pcard.red{color:#c0293c}
 .pcard .meta{font-size:10.5px;color:#5a7089;text-align:center}
-.board .empty{color:#bfe9d8;font-size:13.5px;padding:14px 8px;text-align:center;width:100%}
+.board .empty{color:#f2d7d1;font-size:13.5px;padding:14px 8px;text-align:center;width:100%}
 .seat{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:12px;margin:9px 0}
 .seat.dim{opacity:.62}
 .seat .ic{font-size:30px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#132741;border-radius:13px;flex:none}
@@ -96,10 +100,10 @@ nav button.on{color:var(--gold)}
 .calhead button{background:#132741;color:var(--ink);border:1px solid var(--line);width:34px;height:34px;border-radius:10px;font-size:16px}
 .dow,.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .dow span{text-align:center;font-size:11px;color:var(--ink3);padding:3px 0}
-.cal .d{min-height:56px;background:#132741;border:1px solid var(--line);border-radius:10px;padding:4px;font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
+.cal .d{min-height:62px;background:#132741;border:1px solid var(--line);border-radius:10px;padding:4px;font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
 .cal .d.off{opacity:.28;cursor:default}
 .cal .d .n{font-size:10.5px}
-.cal .d .p{font-weight:800;font-size:11.5px;direction:ltr;text-align:left}
+.cal .d .p{font-weight:800;font-size:12.5px;direction:ltr;text-align:left}
 .cal .d.g{background:rgba(35,212,148,.14);border-color:rgba(35,212,148,.5)}
 .cal .d.r{background:rgba(255,107,125,.12);border-color:rgba(255,107,125,.5)}
 /* ---------- tables ---------- */
@@ -127,8 +131,24 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 .sw.on{background:var(--up)}
 .sw::after{content:"";position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}
 .sw.on::after{transform:translateX(-18px)}
-.toast{position:fixed;bottom:84px;right:50%;transform:translateX(50%);background:#132741;border:1.5px solid var(--gold);color:var(--ink);border-radius:12px;padding:10px 18px;z-index:80;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
-#installBtn{position:fixed;top:64px;left:12px;z-index:45;background:var(--felt);color:#dff7ec;border:1.5px solid #14805a;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.toast{position:fixed;bottom:84px;right:50%;transform:translateX(50%);background:var(--bg2);border:1.5px solid var(--gold);color:var(--ink);border-radius:12px;padding:10px 18px;z-index:80;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+/* chat */
+.chatTab{flex:1;background:none;color:var(--ink3);font-size:14.5px;font-weight:700;padding:12px;border:none;cursor:pointer;font-family:inherit}
+.chatTab.on{color:var(--gold);box-shadow:inset 0 -2.5px 0 var(--gold)}
+.msg{max-width:82%;padding:8px 12px;border-radius:14px;font-size:14px;line-height:1.5;word-break:break-word}
+.msg .who{font-size:11px;color:var(--ink3);margin-bottom:2px}
+.msg.them{align-self:flex-start;background:var(--bg2);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.me{align-self:flex-end;background:linear-gradient(160deg,#7a1f1f,#5a1414);border:1px solid #9a3030;border-bottom-right-radius:4px}
+.msg .t{font-size:10px;color:var(--ink3);margin-top:3px;text-align:left}
+.msg.profit{border-color:var(--up);background:linear-gradient(160deg,#123a22,#0f2a1a)}
+.dmrow{display:flex;align-items:center;gap:9px;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px}
+.dmrow img{width:28px;height:28px;border-radius:50%}
+.dmrow.on{background:#2a1512}
+/* member bot control row */
+.ctrlbtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.ctrlbtns button{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:#2a1512;color:var(--ink)}
+.navMore{}
+#installBtn{position:fixed;top:64px;left:12px;z-index:45;background:var(--felt);color:#ffe7e2;border:1.5px solid #9a3030;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
 </style>
 </head>
 <body>
@@ -240,9 +260,13 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
     <!-- ===== reports ===== -->
     <section id="t-reports" class="hidden">
       <div class="card">
-        <h3>📊 דוח ימי — ברוטו · עמלות · נטו לכיס</h3>
+        <h3>📊 דוח ימי — הרווח נטו לכיס</h3>
         <div style="overflow-x:auto"><table id="repTable"></table></div>
-        <div class="mini" style="margin-top:8px">מקור: יומני המסחר של הבוטים במחשב של עידן, מפורסמים אוטומטית. העמלות מחושבות לפי ‎$0.37‎ לאונקיה (‎$37‎ ללוט) — המחירון של ATRADE, הברוקר הישראלי המפוקח שנבחר.</div>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+          <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareReportWhatsApp()">🟢 שתף דוח בוואטסאפ</button>
+          <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="copyReport()">📋 העתק דוח</button>
+        </div>
+        <div class="mini" style="margin-top:8px">העמלות מחושבות לפי ‎$37‎ ללוט — המחירון של ATRADE, הברוקר הישראלי המפוקח שנבחר.</div>
       </div>
       <div class="card">
         <h3>🚦 איפה זה עומד מול כסף אמיתי</h3>
@@ -305,9 +329,44 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
           <button class="btn sec" style="flex:none" onclick="saveBrokerLink()">שמור</button>
         </div>
       </div>
+      <div class="card"><h3>🎛️ שליטה בבוטים של החברים</h3>
+        <div class="mini" style="margin-bottom:8px">שנה הגדרות, הדלק/כבה, או סנכרן את כולם להגדרות שלך. החבר רק עושה רענן — וזה חל אצלו.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+          <button class="btn" style="flex:1;min-width:150px" onclick="syncAll()">🔄 סנכרן את כולם להגדרות שלי</button>
+          <button class="btn sec" style="flex:1;min-width:120px" onclick="broadcastToggle(true)">▶️ הדלק לכולם</button>
+          <button class="btn sec" style="flex:1;min-width:120px" onclick="broadcastToggle(false)">⏸️ כבה לכולם</button>
+        </div>
+        <div class="mini">סיכון סטנדרטי לדחיפה:
+          <select id="riskPreset" style="background:#0f1a12;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px">
+            <option value="36">כמו שלי — סולם 3-9% (v36)</option>
+            <option value="15">זהיר — 1.5% קבוע</option>
+            <option value="10">שמרני מאוד — 1.0% קבוע</option>
+          </select>
+        </div>
+      </div>
       <div class="card"><h3>👥 החברים</h3>
-        <div class="mini" style="margin-bottom:6px">חדשים מחכים למעלה עם ⏳ — המתג הראשון מכניס אותם · מתג שני = מחובר דרך הברוקר שלך (נדרש במצב אמיתי)</div>
+        <div class="mini" style="margin-bottom:6px">⏳ = ממתין לאישור (מתג ראשון מכניס) · 🤖 = בוט מחובר · לכל חבר: שליטה בבוט שלו</div>
         <div id="usersList" class="mini">טוען…</div>
+      </div>
+    </section>
+
+    <!-- ===== chat ===== -->
+    <section id="t-chat" class="hidden">
+      <div class="card" style="padding:0;overflow:hidden">
+        <div style="display:flex;border-bottom:1.5px solid var(--line)">
+          <button id="chatTabGroup" class="chatTab on" onclick="openChannel('club')">👥 קבוצת המועדון</button>
+          <button id="chatTabDM" class="chatTab" onclick="showDMList()">💬 פרטי</button>
+        </div>
+        <div id="dmList" class="hidden" style="max-height:140px;overflow-y:auto"></div>
+        <div id="chatMsgs" style="height:46vh;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px"></div>
+        <div style="display:flex;gap:7px;padding:10px;border-top:1.5px solid var(--line)">
+          <input type="text" id="chatInput" placeholder="הודעה…" style="flex:1" onkeydown="if(event.key==='Enter')sendChat()">
+          <button class="btn" style="flex:none;padding:11px 16px" onclick="sendChat()">שלח</button>
+        </div>
+        <div style="padding:8px 10px 12px;border-top:1px solid var(--line);display:flex;gap:7px;flex-wrap:wrap">
+          <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareProfitToChat()">📈 שתף את הרווח שלי היום</button>
+          <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareProfitWhatsApp()">🟢 שתף בוואטסאפ</button>
+        </div>
       </div>
     </section>
   </div>
@@ -316,8 +375,9 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
     <button data-t="table" class="on"><span class="i">🃏</span>השולחן</button>
     <button data-t="cal"><span class="i">📅</span>לוח שנה</button>
     <button data-t="reports"><span class="i">📊</span>דוחות</button>
-    <button data-t="learn"><span class="i">📖</span>אסטרטגיות</button>
+    <button data-t="chat"><span class="i">💬</span>צ'אט</button>
     <button data-t="links"><span class="i">🔗</span>חיבורים</button>
+    <button data-t="learn" class="navMore"><span class="i">📖</span>אסטרטגיות</button>
     <button data-t="admin" id="navAdmin" class="hidden"><span class="i">👑</span>ניהול</button>
   </nav>
 </div>
@@ -333,7 +393,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "1.5.0";
+const APP_VERSION = "2.0.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -442,6 +502,7 @@ function enterApp(){
   $("shareUrl").value = APP_URL;
   renderLearn(); renderLinks(); renderQR();
   if (IS_OWNER) initAdmin();
+  watchMyCommands();
   if (!phoneTimer){ pollPhone(); phoneTimer = setInterval(pollPhone, 15000); }
 }
 
@@ -861,7 +922,8 @@ function renderCalendar(){
   $("calSum2").textContent = mDays + " ימי מסחר החודש";
 }
 function dayModal(key){
-  const e = ((PHONE||{}).history||{})[key]; if (!e) return;
+  const H = memberView() ? memberHistory() : ((PHONE||{}).history||{});
+  const e = H[key]; if (!e) return;
   const gFee = (e.gold_lots||0)*37, cFee = (e.copier_lots||0)*37;
   const gPocket = (e.gold_net_demo!==undefined) ? e.gold_net_demo - gFee : undefined;
   const cPocket = (e.copier_net_demo!==undefined) ? e.copier_net_demo - cFee : undefined;
@@ -1076,14 +1138,71 @@ function initAdmin(){
         ${isOwnerRow ? `<span class="tag up">👑 בעלים</span>` : `
         <div class="sw ${u.allowed===true?'on':''}" title="מאושר להיכנס" onclick="tglUser('${id}','allowed',${u.allowed===true})"></div>
         <div class="sw ${u.brokerLinked?'on':''}" title="דרך הברוקר (למצב אמיתי)" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div>`}
-      </div>`;
+      </div>
+      ${(!isOwnerRow && u.feedId) ? `<div class="ctrlbtns" style="padding:0 6px 8px">
+        <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','on')">▶️ הדלק בוט</button>
+        <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','off')">⏸️ כבה</button>
+        <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','sync')">🔄 סנכרן להגדרות שלי</button>
+        <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','restart')">↻ הפעל מחדש</button>
+      </div>` : ''}`;
     });
     $("usersList").innerHTML = html || "עוד אין נרשמים.";
+    ADMIN_USERS = rows;
   }, err => { $("usersList").textContent = "שגיאה בטעינת משתמשים: " + err.code; });
 }
 async function tglUser(id, field, cur){
   try{ await db.collection("users").doc(id).update({[field]: !cur}); }
   catch(e){ toast("שגיאה: "+(e.code||e.message)); }
+}
+
+/* ---------- command channel: owner controls members' bots ------------- */
+let ADMIN_USERS = [];
+function riskParams(preset){
+  if (preset==="15") return {risk_mode:0, fixed_risk_pct:1.5, label:"סיכון 1.5% קבוע"};
+  if (preset==="10") return {risk_mode:0, fixed_risk_pct:1.0, label:"סיכון 1.0% קבוע"};
+  return {risk_mode:1, label:"סולם 3-9% (כמו של עידן)"};
+}
+async function writeCommand(feedId, cmd){
+  cmd.ts = new Date().toISOString();
+  cmd.by = "עידן";
+  await db.collection("commands").doc(feedId).set(cmd, {merge:false});
+}
+async function cmdMember(feedId, name, action){
+  try{
+    if (action==="on")  { await writeCommand(feedId, {enabled:true, note:"עידן הדליק לך את הבוט"}); toast("נשלחה פקודת הדלקה ל"+name); }
+    if (action==="off") { await writeCommand(feedId, {enabled:false, note:"עידן כיבה לך את הבוט זמנית"}); toast("נשלחה פקודת כיבוי ל"+name); }
+    if (action==="restart"){ await writeCommand(feedId, {restart:true, note:"עידן הפעיל מחדש את הבוט שלך"}); toast("נשלחה הפעלה מחדש ל"+name); }
+    if (action==="sync"){ const rp=riskParams($("riskPreset").value);
+      await writeCommand(feedId, {enabled:true, params:rp, note:"עידן סנכרן לך את ההגדרות ("+rp.label+")"}); toast("סונכרן "+name+" → "+rp.label); }
+  }catch(e){ toast("שגיאה: "+(e.code||e.message)); }
+}
+async function syncAll(){
+  const rp = riskParams($("riskPreset").value);
+  if (!confirm("לסנכרן את כל החברים המחוברים להגדרות: "+rp.label+"?")) return;
+  let n=0;
+  for (const {u} of ADMIN_USERS){ if (u.feedId && (u.email||"")!==OWNER_EMAIL){
+    try{ await writeCommand(u.feedId, {enabled:true, params:rp, note:"עידן סנכרן לך את ההגדרות ("+rp.label+")"}); n++; }catch(e){} } }
+  toast("סונכרנו "+n+" חברים → "+rp.label);
+}
+async function broadcastToggle(on){
+  if (!confirm(on?"להדליק את הבוט לכל החברים?":"לכבות את הבוט לכל החברים?")) return;
+  let n=0;
+  for (const {u} of ADMIN_USERS){ if (u.feedId && (u.email||"")!==OWNER_EMAIL){
+    try{ await writeCommand(u.feedId, {enabled:on, note:on?"עידן הדליק לך את הבוט":"עידן כיבה לך את הבוט זמנית"}); n++; }catch(e){} } }
+  toast((on?"הודלק":"כובה")+" ל-"+n+" חברים");
+}
+/* member side: watch commands aimed at ME and show a small notice */
+let unsubCmd = null, lastCmdTs = null;
+function watchMyCommands(){
+  if (unsubCmd || !MYDOC || !MYDOC.feedId || IS_OWNER) return;
+  unsubCmd = db.collection("commands").doc(MYDOC.feedId).onSnapshot(snap=>{
+    if (!snap.exists) return;
+    const c = snap.data()||{};
+    if (c.ts && c.ts !== lastCmdTs){
+      if (lastCmdTs !== null && c.note) toast("👑 " + c.note);
+      lastCmdTs = c.ts;
+    }
+  }, ()=>{});
 }
 async function toggleMode(){
   const to = SETTINGS.mode==="real" ? "demo" : "real";
@@ -1096,14 +1215,104 @@ async function saveBrokerLink(){
   catch(e){ toast("שגיאה: "+(e.code||e.message)); }
 }
 
+/* ---------- chat: club group + private DMs + share profit ------------- */
+let CHAN = "club", unsubChat = null, MEMBERS = {}, CHAT_STARTED = false;
+function dmChannel(uidA, uidB){ return "dm_" + [uidA,uidB].sort().join("_"); }
+function loadMembersForDM(){
+  db.collection("users").onSnapshot(qs=>{
+    MEMBERS = {}; qs.forEach(d=>{ const u=d.data()||{}; if (d.id!==ME.uid && u.allowed===true) MEMBERS[d.id]={name:u.name||u.email, photo:u.photo}; });
+    if (!$("dmList").classList.contains("hidden")) renderDMList();
+  }, ()=>{});
+}
+function showDMList(){
+  $("chatTabGroup").classList.remove("on"); $("chatTabDM").classList.add("on");
+  $("dmList").classList.remove("hidden"); renderDMList();
+  $("chatMsgs").innerHTML = '<div class="mini" style="text-align:center;padding:20px">בחר חבר כדי לשוחח פרטי 👆</div>';
+}
+function renderDMList(){
+  const ids = Object.keys(MEMBERS);
+  $("dmList").innerHTML = ids.length
+    ? ids.map(id=>`<div class="dmrow" onclick="openDM('${id}','${(MEMBERS[id].name||'').replace(/'/g,'')}')">
+        <img src="${MEMBERS[id].photo||'icon-192.png'}" referrerpolicy="no-referrer"><span>${MEMBERS[id].name}</span></div>`).join("")
+    : '<div class="mini" style="padding:12px">אין עדיין חברים אחרים מאושרים.</div>';
+}
+function openDM(id, name){
+  $("dmList").classList.add("hidden");
+  openChannel(dmChannel(ME.uid, id), "💬 " + name);
+}
+function openChannel(chan, label){
+  CHAN = chan;
+  const grp = chan === "club";
+  $("chatTabGroup").classList.toggle("on", grp);
+  $("chatTabDM").classList.toggle("on", !grp);
+  if (grp) $("dmList").classList.add("hidden");
+  if (unsubChat) unsubChat();
+  unsubChat = db.collection("chat").doc(chan).collection("messages")
+    .orderBy("ts").limitToLast(100).onSnapshot(qs=>{
+      const box = $("chatMsgs"); box.innerHTML = "";
+      qs.forEach(d=>{
+        const m = d.data()||{};
+        const mine = m.uid === ME.uid;
+        const div = document.createElement("div");
+        div.className = "msg " + (mine?"me":"them") + (m.kind==="profit"?" profit":"");
+        div.innerHTML = (mine?"":`<div class="who">${(m.name||"").replace(/</g,'')}</div>`) +
+          (m.text||"").replace(/</g,"&lt;") +
+          `<div class="t">${m.ts?new Date(m.ts).toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'}):''}</div>`;
+        box.appendChild(div);
+      });
+      box.scrollTop = box.scrollHeight;
+    }, ()=>{ $("chatMsgs").innerHTML='<div class="mini" style="padding:16px;text-align:center">לא ניתן לטעון הודעות.</div>'; });
+}
+async function postMsg(text, kind){
+  if (!text || !text.trim()) return;
+  try{
+    await db.collection("chat").doc(CHAN).collection("messages").add({
+      uid: ME.uid, name: ME.displayName || (ME.email||"").split("@")[0],
+      text: text.trim().slice(0,600), kind: kind||"text", ts: new Date().toISOString() });
+  }catch(e){ toast("שגיאה בשליחה: "+(e.code||e.message)); }
+}
+function sendChat(){ const v=$("chatInput").value; $("chatInput").value=""; postMsg(v); }
+function myTodayProfit(){
+  if (memberView()){ const mj=myData()||{}; return +mj.day_pnl||0; }
+  const f = (PHONE&&PHONE.fees)||{}; const t=(f.last_day&&f.last_day.total)||{}; return +t.pocket||0;
+}
+function shareProfitToChat(){
+  const p = myTodayProfit();
+  const txt = "📈 הרווח שלי היום (דמו): " + signed(p) + " 🃏";
+  const prev = CHAN; if (CHAN.startsWith("dm_")) { openChannel("club"); }
+  setTimeout(()=>postMsg(txt,"profit"), 200);
+  toast("שותף לקבוצה ✓");
+}
+function shareProfitWhatsApp(){
+  const p = myTodayProfit();
+  const txt = "📈 הרווח שלי היום ב-Idan's Money Club (דמו): " + signed(p) + "\n" + APP_URL;
+  window.open("https://wa.me/?text=" + encodeURIComponent(txt), "_blank");
+}
+function buildReportText(){
+  const H = memberView() ? memberHistory() : ((PHONE&&PHONE.history)||{});
+  const keys = Object.keys(H).sort().reverse().slice(0,14);
+  let total = 0;
+  const lines = keys.map(k=>{ const e=H[k];
+    const pk = (e.pocket!==undefined)?e.pocket:(e.net_atrade!==undefined?e.net_atrade:0);
+    total += pk; return k.split("-").reverse().join(".") + " — " + signed(pk) + " נטו"; });
+  return "📊 דוח Idan's Money Club (דמו)\n" +
+    (memberView()?"החשבון שלי":"המועדון") + "\n" +
+    (lines.join("\n") || "אין עדיין ימים מתועדים") +
+    "\n———\nסה\"כ " + keys.length + " ימים: " + signed(total) + "\n" + APP_URL;
+}
+function shareReportWhatsApp(){ window.open("https://wa.me/?text=" + encodeURIComponent(buildReportText()), "_blank"); }
+function copyReport(){ navigator.clipboard.writeText(buildReportText()).then(()=>toast("הדוח הועתק ✓")).catch(()=>toast("העתקה נכשלה")); }
+
 /* ---------- nav ---------- */
 function wireNav(){
   document.querySelectorAll("#mainNav button").forEach(b=>{
     b.onclick = () => {
       document.querySelectorAll("#mainNav button").forEach(x=>x.classList.remove("on"));
       b.classList.add("on");
-      ["table","cal","reports","learn","links","admin"].forEach(t=>{
-        $("t-"+t).classList.toggle("hidden", t!==b.getAttribute("data-t")); });
+      const tab = b.getAttribute("data-t");
+      ["table","cal","reports","learn","links","admin","chat"].forEach(t=>{
+        $("t-"+t).classList.toggle("hidden", t!==tab); });
+      if (tab==="chat" && !CHAT_STARTED){ CHAT_STARTED=true; loadMembersForDM(); openChannel("club"); }
     };
   });
   $("calPrev").onclick = () => { calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth()-1, 1); renderCalendar(); };
