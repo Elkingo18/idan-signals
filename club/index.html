@@ -10,11 +10,12 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{
-  /* deep-red, chess.com-clean theme */
+  /* deep-red casino-luxury, chess.com-clean theme */
   --bg:#161311; --bg2:#211b19; --line:#3a2c28;
   --felt:#7a1f1f; --felt2:#5a1414;
-  --gold:#e0483d;            /* the accent (was gold) - now crimson */
-  --accent2:#f0a030;         /* warm secondary spark, used sparingly */
+  --gold:#e0483d;            /* the accent - crimson */
+  --richgold:#f5c542;        /* true gold - the luxury spark */
+  --accent2:#f0a030;
   --ink:#f3ece9; --ink2:#c8a9a2; --ink3:#96786f;
   --up:#3fb765; --dn:#e0483d; --warn:#f0a030;
 }
@@ -24,19 +25,60 @@ body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,"Noto Sa
 .hidden{display:none!important}
 button{font-family:inherit;cursor:pointer;border:none;border-radius:12px}
 a{color:var(--gold)}
-.wrap{max-width:860px;margin:0 auto;padding:0 14px 90px}
+.wrap{max-width:1380px;margin:0 auto;padding:0 14px 90px}
+/* ---------- per-page personality: each tab has its own accent ---------- */
+section{--acc:var(--gold)}
+#t-cal{--acc:var(--richgold)}       /* the money calendar - pure gold */
+#t-reports{--acc:#3fb765}           /* honest green ledger */
+#t-chat{--acc:#e07a5f}              /* warm terracotta lounge */
+#t-links{--acc:#5fa8d3}             /* cool tech blue */
+#t-learn{--acc:#b28dff}             /* scholarly violet */
+#t-admin{--acc:var(--richgold)}     /* the crown room */
+section .card{border-top:3px solid var(--acc)}
+section .card h3{color:var(--acc)}
+/* ---------- desktop: spread across the whole screen ---------- */
+@media(min-width:920px){
+  .cal .d{min-height:96px;padding:8px;border-radius:13px}
+  .cal .d .n{font-size:13px}
+  .cal .d .p{font-size:17px}
+  .calhead b{font-size:21px}
+  #calSum{font-size:22px!important}
+  #t-table{display:grid;grid-template-columns:1.15fr .85fr;gap:0 16px;align-items:start}
+  #t-table .pot, #t-table .lights{grid-column:1/-1}
+  #t-table #seats{grid-column:1}
+  #t-table .card{grid-column:2}
+  #t-cal, #t-reports, #t-links, #t-learn, #t-admin{display:grid;grid-template-columns:repeat(2,1fr);gap:0 16px;align-items:start}
+  #t-cal > .card:first-child, #t-reports > .card:first-child, #t-links > .card:first-child{grid-column:1/-1}
+  #t-chat .card{max-width:900px;margin-left:auto;margin-right:auto}
+  #t-chat #chatMsgs{height:56vh}
+  .pot .amt{font-size:48px}
+}
+/* live pulse on the pot when data is fresh */
+.livedot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#3fb765;margin-inline-end:6px;vertical-align:1px;animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,183,101,.6)}70%{box-shadow:0 0 0 8px rgba(63,183,101,0)}100%{box-shadow:0 0 0 0 rgba(63,183,101,0)}}
+/* choose-your-bot cards */
+.botpick{display:flex;align-items:center;gap:13px;background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:15px;cursor:pointer;transition:.15s;text-align:right}
+.botpick:not(.dim):hover{border-color:var(--richgold);transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.45)}
+.botpick.dim{opacity:.55;cursor:default}
+.botpick .bp-ic{font-size:34px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#2a1512;border-radius:14px;flex:none}
+.botpick .bp-mid{flex:1;min-width:0}
+.botpick .bp-mid b{font-size:16.5px}
+.botpick .bp-go{flex:none;font-weight:900;color:var(--richgold);font-size:15px}
+.bp-tag{display:inline-block;font-size:10.5px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin-inline-start:7px;color:var(--ink2);vertical-align:2px}
+.bp-tag.rec{border-color:var(--richgold);color:var(--richgold)}
+.bp-tag.soon{color:var(--warn)}
 /* ---------- header ---------- */
 header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,#161311 78%,rgba(22,19,17,0));padding:12px 14px 8px}
-.hrow{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.hrow{max-width:1380px;margin:0 auto;display:flex;align-items:center;gap:10px}
 .logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:18px;letter-spacing:.3px}
 .logo .chip{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a7d,var(--gold) 58%,#7a1f1f);border:3px dashed #161311;box-shadow:0 0 0 2px var(--gold)}
 .hspace{flex:1}
 .wallet{background:var(--bg2);border:1.5px solid var(--line);border-radius:14px;padding:6px 13px;text-align:center}
-.wallet .v{font-size:17px;font-weight:900;color:var(--gold)}
+.wallet .v{font-size:17px;font-weight:900;color:var(--richgold)}
 .wallet .k{font-size:10.5px;color:var(--ink2)}
 .avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--gold);object-fit:cover}
 /* ---------- bottom nav ---------- */
-nav{position:fixed;bottom:0;right:0;left:0;z-index:40;background:#101f31;border-top:1.5px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(8px + env(safe-area-inset-bottom))}
+nav{position:fixed;bottom:0;right:0;left:0;z-index:40;background:#1d1512;border-top:1.5px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(8px + env(safe-area-inset-bottom))}
 nav button{background:none;color:var(--ink3);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 8px;border-radius:10px}
 nav button .i{font-size:20px}
 nav button.on{color:var(--gold)}
@@ -45,10 +87,10 @@ nav button.on{color:var(--gold)}
 .card h3{font-size:16.5px;margin-bottom:9px;color:var(--gold)}
 .mini{font-size:12.5px;color:var(--ink3);line-height:1.6}
 .up{color:var(--up)}.dn{color:var(--dn)}.wa{color:var(--warn)}
-.btn{background:var(--gold);color:#1a1a05;font-weight:800;font-size:16px;padding:13px 22px;border-radius:13px;box-shadow:0 4px 14px rgba(245,197,66,.3)}
+.btn{background:linear-gradient(135deg,#e8564a,#b3271d);color:#fff;font-weight:800;font-size:16px;padding:13px 22px;border-radius:13px;box-shadow:0 4px 14px rgba(245,197,66,.3)}
 .btn.sec{background:var(--bg2);color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
 .btn:disabled{opacity:.45;cursor:default}
-.tag{display:inline-block;background:#132741;border:1px solid var(--line);color:var(--ink2);border-radius:999px;padding:3px 10px;font-size:11.5px;margin:2px}
+.tag{display:inline-block;background:#241a17;border:1px solid var(--line);color:var(--ink2);border-radius:999px;padding:3px 10px;font-size:11.5px;margin:2px}
 .tag.up{color:var(--up)}.tag.dn{color:var(--dn)}.tag.wa{color:var(--warn)}
 /* ---------- login ---------- */
 .full{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 20px;gap:14px}
@@ -57,7 +99,7 @@ nav button.on{color:var(--gold)}
 .gbtn{display:flex;align-items:center;gap:11px;background:#fff;color:#1f1f1f;font-weight:700;font-size:16.5px;padding:13px 24px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
 .gbtn img{width:22px;height:22px}
 /* ---------- seats ---------- */
-.pot{position:relative;background:radial-gradient(ellipse 120% 90% at 50% 18%,#8f2626,var(--felt) 45%,var(--felt2));border:3px solid #9a3030;border-radius:130px/70px;padding:20px 18px 22px;text-align:center;margin:12px 0;box-shadow:inset 0 0 60px rgba(0,0,0,.45),0 8px 26px rgba(0,0,0,.5)}
+.pot{position:relative;background:radial-gradient(ellipse 120% 90% at 50% 18%,#8f2626,var(--felt) 45%,var(--felt2));border:3px solid #9a3030;border-radius:130px/70px;padding:20px 18px 22px;text-align:center;margin:12px 0;box-shadow:inset 0 0 60px rgba(0,0,0,.45),0 8px 26px rgba(0,0,0,.5),0 0 0 3px rgba(245,197,66,.22)}
 .pot::before{content:"";position:absolute;inset:7px;border:1.5px solid rgba(255,180,170,.30);border-radius:120px/62px;pointer-events:none}
 .pot .lab{color:#f0c9c2;font-size:12px;letter-spacing:1.2px}
 .pot .amt{font-size:38px;font-weight:900;margin:2px 0;text-shadow:0 2px 8px rgba(0,0,0,.5)}
@@ -78,29 +120,29 @@ nav button.on{color:var(--gold)}
 .board .empty{color:#f2d7d1;font-size:13.5px;padding:14px 8px;text-align:center;width:100%}
 .seat{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:12px;margin:9px 0}
 .seat.dim{opacity:.62}
-.seat .ic{font-size:30px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#132741;border-radius:13px;flex:none}
+.seat .ic{font-size:30px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#241a17;border-radius:13px;flex:none}
 .seat .mid{flex:1;min-width:0}
 .seat .nm{font-weight:800;font-size:15.5px}
 .seat .rl{font-size:11.5px;color:var(--ink3)}
 .seat .tags{margin-top:5px}
 .seat .stack{text-align:left;flex:none}
-.seat .stack .v{font-size:18px;font-weight:900;color:var(--gold)}
+.seat .stack .v{font-size:18px;font-weight:900;color:var(--richgold)}
 .seat .stack .k{font-size:10.5px;color:var(--ink3)}
 .lights{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
 /* ---------- fees ---------- */
 .fee3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:10px 0}
-.feebox{background:#132741;border:1.5px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center}
+.feebox{background:#241a17;border:1.5px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center}
 .feebox .k{font-size:11.5px;color:var(--ink2)}
 .feebox .v{font-size:20px;font-weight:900;margin-top:3px}
-.feebox.net{border-color:var(--gold);background:linear-gradient(160deg,#1c2f14,#132741)}
+.feebox.net{border-color:var(--richgold);background:linear-gradient(160deg,#2a2110,#241a17)}
 .feebox.net .k{color:var(--gold)}
 /* ---------- calendar ---------- */
 .calhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .calhead b{font-size:17px}
-.calhead button{background:#132741;color:var(--ink);border:1px solid var(--line);width:34px;height:34px;border-radius:10px;font-size:16px}
+.calhead button{background:#241a17;color:var(--ink);border:1px solid var(--line);width:34px;height:34px;border-radius:10px;font-size:16px}
 .dow,.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .dow span{text-align:center;font-size:11px;color:var(--ink3);padding:3px 0}
-.cal .d{min-height:62px;background:#132741;border:1px solid var(--line);border-radius:10px;padding:4px;font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
+.cal .d{min-height:62px;background:#241a17;border:1px solid var(--line);border-radius:10px;padding:4px;font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
 .cal .d.off{opacity:.28;cursor:default}
 .cal .d .n{font-size:10.5px}
 .cal .d .p{font-weight:800;font-size:12.5px;direction:ltr;text-align:left}
@@ -109,15 +151,15 @@ nav button.on{color:var(--gold)}
 /* ---------- tables ---------- */
 table{width:100%;border-collapse:collapse;font-size:13.5px}
 th{color:var(--ink2);font-weight:400;font-size:12px;text-align:right;padding:7px 6px;border-bottom:1.5px solid var(--line)}
-td{padding:8px 6px;border-bottom:1px solid #1c3450}
+td{padding:8px 6px;border-bottom:1px solid #35271f}
 tr:last-child td{border-bottom:none}
 /* ---------- modal ---------- */
 .modal{position:fixed;inset:0;background:rgba(5,12,20,.8);z-index:60;display:flex;align-items:center;justify-content:center;padding:18px}
 .mbox{background:var(--bg2);border:1.5px solid var(--line);border-radius:18px;padding:18px;max-width:480px;width:100%;max-height:82svh;overflow-y:auto}
 /* ---------- contract ---------- */
-.contract{background:#132741;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px;line-height:1.75;max-height:44svh;overflow-y:auto;text-align:right}
+.contract{background:#241a17;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px;line-height:1.75;max-height:44svh;overflow-y:auto;text-align:right}
 .contract h4{color:var(--gold);margin:9px 0 3px}
-input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);border-radius:11px;color:var(--ink);font-size:16px;padding:11px;font-family:inherit}
+input[type=text]{width:100%;background:#1c1310;border:1.5px solid var(--line);border-radius:11px;color:var(--ink);font-size:16px;padding:11px;font-family:inherit}
 .chk{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin:11px 0;text-align:right}
 .chk input{width:19px;height:19px;flex:none;margin-top:1px}
 /* ---------- tour ---------- */
@@ -125,9 +167,9 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 .dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
 .dots i.on{background:var(--gold)}
 /* ---------- admin ---------- */
-.urow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #1c3450;font-size:13px}
+.urow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #35271f;font-size:13px}
 .urow img{width:30px;height:30px;border-radius:50%}
-.sw{position:relative;width:40px;height:22px;background:#24405e;border-radius:999px;flex:none;transition:.15s}
+.sw{position:relative;width:40px;height:22px;background:#4a3630;border-radius:999px;flex:none;transition:.15s}
 .sw.on{background:var(--up)}
 .sw::after{content:"";position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}
 .sw.on::after{transform:translateX(-18px)}
@@ -173,6 +215,32 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
     <label class="chk"><input type="checkbox" id="agreeChk"><span>קראתי את כל ההסכם, הבנתי אותו, אני מעל גיל 18 ואני מסכים לכל האמור בו.</span></label>
     <input type="text" id="signName" placeholder="שם מלא (זו החתימה שלך)" autocomplete="name">
     <button class="btn" id="btnSign" style="width:100%;margin-top:12px" disabled>✍️ חתום והיכנס למועדון</button>
+  </div>
+</div>
+
+<!-- ======================= CHOOSE YOUR BOT ======================= -->
+<div id="v-choosebot" class="full hidden" style="justify-content:flex-start;padding-top:34px">
+  <div class="title" style="font-size:23px">🎰 בחר את הבוט שלך<small>אתה בוחר — לא עידן. הכל על דמו (כסף מדומה) עד שמאשרים אחרת ביחד.</small></div>
+  <div style="width:100%;max-width:560px;display:flex;flex-direction:column;gap:10px">
+    <div class="botpick" data-bot="gold" onclick="pickBot('gold')">
+      <div class="bp-ic">💰</div>
+      <div class="bp-mid"><b>בוט הזהב</b><span class="bp-tag rec">מומלץ · זמין עכשיו</span>
+        <div class="mini">פריצות מומנטום על זהב (XAUUSD) · רץ אצלך על מטה-טריידר 5 בחשבון דמו · עם בלמי ביטחון</div></div>
+      <div class="bp-go">בחר ›</div>
+    </div>
+    <div class="botpick" data-bot="swing" onclick="pickBot('swing')">
+      <div class="bp-ic">📈</div>
+      <div class="bp-mid"><b>בוט המניות — סווינג</b><span class="bp-tag">חשבון נייר</span>
+        <div class="mini">גלים של ימים-שבועות על מניות אמריקאיות · אינטראקטיב ברוקרס בחשבון נייר (מדומה)</div></div>
+      <div class="bp-go">בחר ›</div>
+    </div>
+    <div class="botpick dim" data-bot="ladder">
+      <div class="bp-ic">🪜</div>
+      <div class="bp-mid"><b>The Ladder</b><span class="bp-tag soon">בקרוב · צפייה בלבד</span>
+        <div class="mini">בוט הרשת — מוצג ללימוד בלבד ולא ירד לעולם לכסף אמיתי. יתווסף לצפייה בהמשך.</div></div>
+      <div class="bp-go">🔒</div>
+    </div>
+    <div class="mini" style="text-align:center;margin-top:4px">אפשר לשנות את הבחירה בכל רגע במסך החיבורים. הבחירה רק קובעת איזה אשף חיבור תראה קודם.</div>
   </div>
 </div>
 
@@ -222,7 +290,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
     <!-- ===== table ===== -->
     <section id="t-table">
       <div class="pot">
-        <div class="lab">הקופה של יום המסחר האחרון · נטו לכיס (מחירון ATRADE)</div>
+        <div class="lab" id="potLab">הקופה של היום · נטו לכיס אחרי עמלות</div>
         <div class="amt" id="potNet">—</div>
         <div class="sub" id="potSub">טוען נתונים…</div>
         <div class="board" id="board"></div>
@@ -337,7 +405,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
           <button class="btn sec" style="flex:1;min-width:120px" onclick="broadcastToggle(false)">⏸️ כבה לכולם</button>
         </div>
         <div class="mini">סיכון סטנדרטי לדחיפה:
-          <select id="riskPreset" style="background:#0f1a12;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px">
+          <select id="riskPreset" style="background:#1c1310;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px">
             <option value="36">כמו שלי — סולם 3-9% (v36)</option>
             <option value="15">זהיר — 1.5% קבוע</option>
             <option value="10">שמרני מאוד — 1.0% קבוע</option>
@@ -393,7 +461,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "2.0.0";
+const APP_VERSION = "2.1.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -444,7 +512,8 @@ const TOUR = [
   {i:"📅", t:"לוח השנה של הכסף", b:"כל יום מסחר מקבל משבצת: ירוק = יום מרוויח, אדום = מפסיד, והמספר הוא הנטו לכיס בדולרים. לחיצה על יום פותחת את הפירוט המלא."},
   {i:"📊", t:"דוחות בלי איפור", b:"ברוטו לפני עמלות, כמה הברוקר לוקח, וכמה באמת נשאר. המועדון מציג גם הפסדים וגם ימים רעים — זה העיקרון."},
   {i:"📖", t:"האסטרטגיות — כולל הסיכונים", b:"לכל בוט יש דף שמסביר בדיוק איך הוא חושב, מה מדדנו, ואיפה הוא מסוכן. בלי הבטחות: מה שלא הוכיח את עצמו — כתוב שלא."},
-  {i:"🤖", t:"חבר את הבוט לחשבון דמו שלך", b:"במסך החיבורים יש אשף פשוט: פותחים חשבון דמו במטה-טריידר 5, מורידים את הבוט של המועדון בלחיצה, והוא רץ אצלך על כסף מדומה — והערימה שלך מופיעה כאן. כשהמועדון יעבור לכסף אמיתי, ייכנסו רק חברים שפתחו חשבון דרך הקישור של עידן ואושרו."}
+  {i:"💬", t:"הצ'אט של המועדון", b:"קבוצה לכל החברים והודעות פרטיות. כפתור אחד משתף את הרווח שלך היום — עם השם שלך, הפירוט לכל בוט והתאריך — בקבוצה או בוואטסאפ."},
+  {i:"🤖", t:"חבר את הבוט לחשבון דמו שלך", b:"במסך החיבורים יש אשף פשוט: פותחים חשבון דמו במטה-טריידר 5, מורידים את הבוט של המועדון בלחיצה, והוא רץ אצלך על כסף מדומה — והערימה שלך מופיעה כאן. אם משהו לא עובד — כפתור 'בדוק שהכל עובד' מאתר את הבעיה ואומר בדיוק מה לעשות."}
 ];
 
 /* ---------- strategy pages ---------- */
@@ -475,7 +544,7 @@ function initFirebase(){
 }
 
 /* ---------- views ---------- */
-const VIEWS = ["v-login","v-contract","v-tour","v-locked","v-blocked","v-pending","v-app"];
+const VIEWS = ["v-login","v-contract","v-choosebot","v-tour","v-locked","v-blocked","v-pending","v-app"];
 function show(id){ VIEWS.forEach(v => $(v).classList.toggle("hidden", v!==id)); }
 
 function route(){
@@ -486,6 +555,8 @@ function route(){
     $("contractText").innerHTML = CONTRACT_HTML; show("v-contract"); return; }
   /* 16.8 interview: entry by Idan's approval only */
   if (!IS_OWNER && MYDOC.allowed !== true){ show("v-pending"); return; }
+  /* 2.1.0: the MEMBER chooses their bot (demo) - not Idan */
+  if (!IS_OWNER && !MYDOC.botChoice){ show("v-choosebot"); return; }
   if (SETTINGS.mode === "real" && !IS_OWNER && !MYDOC.brokerLinked){
     $("lockedLink").href = SETTINGS.brokerLink || "#";
     $("lockedLink").classList.toggle("hidden", !SETTINGS.brokerLink);
@@ -503,28 +574,75 @@ function enterApp(){
   renderLearn(); renderLinks(); renderQR();
   if (IS_OWNER) initAdmin();
   watchMyCommands();
-  if (!phoneTimer){ pollPhone(); phoneTimer = setInterval(pollPhone, 15000); }
+  if (!phoneTimer){ pollPhone(); phoneTimer = setInterval(pollPhone, 8000); }
 }
 
 /* ---------- auth ---------- */
+/* 2.1.0: the QR often opens inside a LIMITED in-app browser (camera app,
+   WhatsApp, Instagram...) where the Google popup opens, you pick an email,
+   and it silently dies. Three layers of defense:
+   1. in-app browser detected  -> explain + copy-link so they open Chrome/Safari
+   2. real mobile browser      -> signInWithRedirect (no popup at all)
+   3. desktop                  -> popup, with redirect as fallback           */
+function isMobileUA(){ return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); }
+function isInAppBrowser(){
+  const ua = navigator.userAgent;
+  return /FBAN|FBAV|FB_IAB|Instagram|Line\/|Telegram|TikTok|Snapchat|GSA\/|DuckDuckGo|; wv\)|\bwv\b/i.test(ua)
+      || (isMobileUA() && /Android/i.test(ua) && !/Chrome\/\d|Firefox\/\d|SamsungBrowser\/\d|EdgA\/\d/i.test(ua));
+}
+function loginErrHTML(h){ const el=$("loginErr"); el.classList.remove("dn"); el.innerHTML=h; }
 async function signIn(){
-  /* 16.8.2026: popup ONLY. signInWithRedirect cannot return the user on
-     github.io because Chrome blocks third-party storage for the firebaseapp
-     auth domain - the redirect completes and comes back empty. The popup
-     talks to the opener with postMessage and is not affected. */
   $("loginErr").textContent = "";
+  if (isInAppBrowser()){
+    loginErrHTML("⚠️ נראה שהאפליקציה נפתחה בתוך דפדפן מוגבל (מצלמה / וואטסאפ) שגוגל חוסמת בו התחברות.<br>" +
+      "<b>פתח את הקישור בכרום או בספארי</b> ואז ההתחברות תעבוד:<br>" +
+      "<button class='btn sec' style='margin-top:8px' onclick='copyAppLink()'>📋 העתק את הקישור</button>");
+    return;
+  }
   const prov = new firebase.auth.GoogleAuthProvider();
   prov.setCustomParameters({prompt:"select_account"});
+  if (isMobileUA()){
+    try {
+      sessionStorage.setItem("imc_login_pending","1");
+      await auth.signInWithRedirect(prov);
+      return;
+    } catch(e){ /* fall through to popup */ }
+  }
   try {
     await auth.signInWithPopup(prov);
   } catch(e){
     if (e && (e.code === "auth/popup-blocked" || e.code === "auth/cancelled-popup-request")){
-      $("loginErr").textContent = "הדפדפן חסם את חלון ההתחברות — אשר חלונות קופצים לאתר הזה ונסה שוב.";
+      try { sessionStorage.setItem("imc_login_pending","1"); await auth.signInWithRedirect(prov); return; } catch(e2){}
+      loginErrHTML("הדפדפן חסם את חלון ההתחברות — אשר חלונות קופצים לאתר הזה ונסה שוב.");
     } else if (e && e.code === "auth/popup-closed-by-user"){
-      $("loginErr").textContent = "החלון נסגר לפני שבחרת חשבון — נסה שוב.";
+      loginErrHTML("החלון נסגר לפני שבחרת חשבון — נסה שוב.");
     } else {
-      $("loginErr").textContent = "ההתחברות נכשלה: " + ((e&&(e.message||e.code))||e);
+      loginErrHTML("ההתחברות נכשלה: " + ((e&&(e.message||e.code))||e));
     }
+  }
+}
+function copyAppLink(){
+  (navigator.clipboard ? navigator.clipboard.writeText(APP_URL) : Promise.reject())
+    .then(()=>toast("הקישור הועתק ✓ הדבק בכרום/ספארי"))
+    .catch(()=>{ prompt("העתק את הקישור:", APP_URL); });
+}
+/* complete a mobile redirect sign-in when the page comes back */
+function completeRedirect(){
+  if (!auth.getRedirectResult) return;
+  auth.getRedirectResult().then(res => {
+    if (res && res.user) sessionStorage.removeItem("imc_login_pending");
+  }).catch(e => {
+    loginErrHTML("ההתחברות לא הושלמה (" + (e.code||e.message||e) + ") — נסה שוב.");
+  });
+  /* if a redirect was pending but no user arrived, tell them instead of a blank screen */
+  if (sessionStorage.getItem("imc_login_pending")){
+    setTimeout(()=>{
+      if (!ME && sessionStorage.getItem("imc_login_pending")){
+        sessionStorage.removeItem("imc_login_pending");
+        loginErrHTML("ההתחברות לא הסתיימה. נסה שוב — או פתח בכרום/ספארי אם זה לא עובד.<br>" +
+          "<button class='btn sec' style='margin-top:8px' onclick='copyAppLink()'>📋 העתק את הקישור</button>");
+      }
+    }, 3500);
   }
 }
 function signOut(){ try{ auth.signOut(); }catch(e){} location.reload(); }
@@ -576,6 +694,14 @@ function wireContract(){
       toast("נחתם ✓ ברוך הבא למועדון");
     } catch(e){ toast("שגיאה בחתימה: " + (e.code||e.message)); $("btnSign").disabled=false; }
   };
+}
+
+/* ---------- choose your bot ---------- */
+async function pickBot(which){
+  try {
+    await db.collection("users").doc(ME.uid).update({botChoice: which, botChosenAt: new Date().toISOString()});
+    toast(which==="gold" ? "💰 בוט הזהב נבחר!" : "📈 בוט הסווינג נבחר!");
+  } catch(e){ toast("שגיאה בשמירה: " + (e.code||e.message)); }
 }
 
 /* ---------- tour ---------- */
@@ -712,6 +838,7 @@ function renderMember(){
 
   /* pot = MY day P&L */
   $("potNet").textContent = signed(day); $("potNet").className = "amt " + cls(day);
+  $("potLab").innerHTML = (age!==null&&age<300&&!closed?'<span class="livedot"></span>LIVE · ':'') + "הקופה שלי היום · דמו";
   $("potSub").innerHTML = "הרווח שלי היום · מאז ההתחלה <b class='"+cls(since)+"'>"+signed(since)+"</b>" +
     (closed ? " · 🌙 שוק הזהב סגור, חוזרים שני 01:00" : "");
 
@@ -750,7 +877,7 @@ function renderMember(){
   renderBoard(live);
   $("openPos").innerHTML = live.length
     ? live.map(p=>{ const n=normPos(p);
-        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1c3450">
+        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #35271f">
           <b>${n.sym}</b><span>${n.qty||0} לוט @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</span>
           <b class="${(n.pl||0)>=0?'up':'dn'}">${n.pl===null?"—":signed(n.pl)}</b></div>`; }).join("")
     : "אין כרגע עסקה פתוחה אצלך — הבוט סורק ומחכה 🂠";
@@ -806,12 +933,20 @@ function renderTable(){
   const SS = v2 ? (fees.since_start||{}) : null;
   const LD = v2 ? (fees.last_day||{}) : null;
   const tot = v2 ? (SS.total||{}) : (fees.total||{});
-  const potVal = v2 ? tot.pocket : tot.net_atrade;
+  /* 2.1.0 (Idan): the pot shows TODAY ONLY - live now - not the running total.
+     The since-start numbers live in the fee card below. */
+  const ldTot = (LD && LD.total) || {};
+  const potVal = v2 ? (ldTot.pocket!==undefined ? ldTot.pocket : 0) : tot.net_atrade;
+  const isToday = v2 ? (LD && LD.is_today) : fees.is_today;
+  const liveNow = updAge!==null && updAge<240 && !closed;
+  $("potLab").innerHTML = (liveNow?'<span class="livedot"></span>LIVE · ':'') +
+    (isToday ? "הקופה של היום · נטו לכיס אחרי עמלות"
+    : "הקופה של יום המסחר האחרון" + (v2&&LD&&LD.day?(" · "+String(LD.day).split(/[-.]/).reverse().join(".")):""));
   $("potNet").textContent = signed(potVal);
   $("potNet").className = "amt " + cls(potVal);
   $("potSub").innerHTML = v2
-    ? ("מאז ההתחלה · הרווח בחשבונות " + signed(tot.profit) + " · עמלות ATRADE -" + money(Math.abs(tot.fee||0)) +
-       ((LD && LD.total && LD.total.pocket!==undefined) ? (" · " + (LD.is_today?"היום":"יום אחרון") + " " + signed(LD.total.pocket) + " בכיס") : "") +
+    ? ("רווח היום " + signed(ldTot.profit) + " · עמלות -" + money(Math.abs(ldTot.fee||0)) +
+       " · מאז ההתחלה <b class='"+cls(tot.pocket)+"'>" + signed(tot.pocket) + "</b> בכיס" +
        (closed ? " · 🌙 שוק הזהב סגור, חוזרים שני 01:00" : ""))
     : ((fees.is_today ? "היום" : "יום המסחר האחרון — " + (fees.day||"")) +
        " · עמלות -" + money(Math.abs(tot.atrade_fee||0)) +
@@ -878,7 +1013,7 @@ function renderTable(){
   renderBoard(live);
   $("openPos").innerHTML = live.length
     ? live.map(p=>{ const n=normPos(p);
-        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1c3450">
+        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #35271f">
           <b>${n.sym}</b><span>${n.qty||0} יח׳ @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</span>
           <b class="${(n.pl||0)>=0?'up':'dn'}">${n.pl===null?"—":signed(n.pl)}</b></div>`; }).join("")
     : "אין עסקאות פתוחות כרגע — הבוטים סורקים ומחכים להזדמנות. 🂠";
@@ -1250,7 +1385,8 @@ function openChannel(chan, label){
   unsubChat = db.collection("chat").doc(chan).collection("messages")
     .orderBy("ts").limitToLast(100).onSnapshot(qs=>{
       const box = $("chatMsgs"); box.innerHTML = "";
-      qs.forEach(d=>{
+      let got = 0;
+      qs.forEach(d=>{ got++;
         const m = d.data()||{};
         const mine = m.uid === ME.uid;
         const div = document.createElement("div");
@@ -1260,6 +1396,12 @@ function openChannel(chan, label){
           `<div class="t">${m.ts?new Date(m.ts).toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'}):''}</div>`;
         box.appendChild(div);
       });
+      if (!got){
+        box.innerHTML = '<div style="margin:auto;text-align:center;color:var(--ink3);font-size:14px;line-height:2">' +
+          '<div style="font-size:44px">🎰</div>' + (grp
+            ? 'עוד אין הודעות בקבוצה —<br>תהיה הראשון! שתף את הרווח שלך היום 📈'
+            : 'עוד אין הודעות כאן —<br>תגיד שלום 👋') + '</div>';
+      }
       box.scrollTop = box.scrollHeight;
     }, ()=>{ $("chatMsgs").innerHTML='<div class="mini" style="padding:16px;text-align:center">לא ניתן לטעון הודעות.</div>'; });
 }
@@ -1276,17 +1418,49 @@ function myTodayProfit(){
   if (memberView()){ const mj=myData()||{}; return +mj.day_pnl||0; }
   const f = (PHONE&&PHONE.fees)||{}; const t=(f.last_day&&f.last_day.total)||{}; return +t.pocket||0;
 }
+/* 2.1.0 (Idan): the share message carries the user's NAME, the total of
+   each bot for today, and the date of those profits at the bottom. */
+function buildProfitShare(){
+  const who = (ME && (ME.displayName || (ME.email||"").split("@")[0])) || "";
+  const lines = ["🎰 Idan's Money Club", "👤 " + who, ""];
+  let total = 0, day = new Date();
+  if (memberView()){
+    const mj = myData()||{};
+    const p = +mj.day_pnl||0; total = p;
+    lines.push("🤖 הבוט שלי — בוט הזהב: " + signed(p));
+  } else {
+    const f = (PHONE&&PHONE.fees)||{};
+    const LD = (f.schema===2 && f.last_day) || {};
+    if (LD.day){ const d = String(LD.day).split(/[-.]/); if(d.length===3) day = new Date(+d[0],+d[1]-1,+d[2]); }
+    const ICON = {"בוט הזהב":"💰","The Ladder":"🪜"};
+    (LD.rows||[]).forEach(r => {
+      lines.push((ICON[r.name]||"🤖") + " " + r.name + ": " + signed(r.pocket));
+      total += +r.pocket||0;
+    });
+    if (!LD.rows || !LD.rows.length){
+      total = (LD.total && LD.total.pocket!==undefined) ? +LD.total.pocket
+            : +(((f.total||{}).net_atrade))||0;
+      lines.push("💰 הבוטים: " + signed(total));
+    }
+    /* the swing bot reports only when both books agree */
+    const P = PHONE||{}, sh = P.shadow_wallet||{}, eng = P.engine_wallet||{};
+    const shD = +sh.day_pnl||0;
+    const agree = !(+eng.equity>0 && +sh.equity>0 && Math.abs(+eng.equity - +sh.equity) > Math.max(5,.02*(+sh.equity)));
+    if (sh.day_pnl!==undefined && agree){ lines.push("📈 סווינג מניות: " + signed(shD)); total += shD; }
+  }
+  lines.push("━━━━━━━━━━");
+  lines.push("💵 סה\"כ היום: " + signed(total) + " (דמו)");
+  lines.push("📅 " + day.toLocaleDateString("he-IL",{day:"2-digit",month:"2-digit",year:"numeric"}));
+  return lines.join("\n");
+}
 function shareProfitToChat(){
-  const p = myTodayProfit();
-  const txt = "📈 הרווח שלי היום (דמו): " + signed(p) + " 🃏";
-  const prev = CHAN; if (CHAN.startsWith("dm_")) { openChannel("club"); }
+  const txt = buildProfitShare();
+  if (CHAN.startsWith("dm_")) { openChannel("club"); }
   setTimeout(()=>postMsg(txt,"profit"), 200);
   toast("שותף לקבוצה ✓");
 }
 function shareProfitWhatsApp(){
-  const p = myTodayProfit();
-  const txt = "📈 הרווח שלי היום ב-Idan's Money Club (דמו): " + signed(p) + "\n" + APP_URL;
-  window.open("https://wa.me/?text=" + encodeURIComponent(txt), "_blank");
+  window.open("https://wa.me/?text=" + encodeURIComponent(buildProfitShare() + "\n" + APP_URL), "_blank");
 }
 function buildReportText(){
   const H = memberView() ? memberHistory() : ((PHONE&&PHONE.history)||{});
@@ -1348,6 +1522,7 @@ function boot(){
   $("btnGoogle").onclick = signIn;
   show("v-login");
   auth.onAuthStateChanged(onUser);
+  completeRedirect();
 }
 boot();
 </script>
