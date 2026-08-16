@@ -291,7 +291,7 @@ input[type=text]{width:100%;background:#0f2032;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 1;
-const APP_VERSION = "1.0.0";
+const APP_VERSION = "1.0.1";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -404,19 +404,24 @@ function enterApp(){
 }
 
 /* ---------- auth ---------- */
-function isStandaloneMobile(){
-  const mob = /Android|iPhone|iPad/i.test(navigator.userAgent);
-  return mob || window.matchMedia("(display-mode: standalone)").matches;
-}
 async function signIn(){
+  /* 16.8.2026: popup ONLY. signInWithRedirect cannot return the user on
+     github.io because Chrome blocks third-party storage for the firebaseapp
+     auth domain - the redirect completes and comes back empty. The popup
+     talks to the opener with postMessage and is not affected. */
   $("loginErr").textContent = "";
   const prov = new firebase.auth.GoogleAuthProvider();
+  prov.setCustomParameters({prompt:"select_account"});
   try {
-    if (isStandaloneMobile()) await auth.signInWithRedirect(prov);
-    else await auth.signInWithPopup(prov);
+    await auth.signInWithPopup(prov);
   } catch(e){
-    try { await auth.signInWithRedirect(prov); }
-    catch(e2){ $("loginErr").textContent = "ההתחברות נכשלה: " + (e2.message||e2.code||e2); }
+    if (e && (e.code === "auth/popup-blocked" || e.code === "auth/cancelled-popup-request")){
+      $("loginErr").textContent = "הדפדפן חסם את חלון ההתחברות — אשר חלונות קופצים לאתר הזה ונסה שוב.";
+    } else if (e && e.code === "auth/popup-closed-by-user"){
+      $("loginErr").textContent = "החלון נסגר לפני שבחרת חשבון — נסה שוב.";
+    } else {
+      $("loginErr").textContent = "ההתחברות נכשלה: " + ((e&&(e.message||e.code))||e);
+    }
   }
 }
 function signOut(){ try{ auth.signOut(); }catch(e){} location.reload(); }
