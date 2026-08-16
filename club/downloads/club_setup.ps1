@@ -29,16 +29,16 @@ $keyFile = Join-Path $root 'feed.txt'
 $KEY = ''
 if (Test-Path -LiteralPath $keyFile) { $KEY = (Get-Content -LiteralPath $keyFile -Raw).Trim() }
 if ($KEY.Length -lt 24) {
-    $bytes = New-Object 'System.Byte[]' 16
-    [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($bytes)
-    $KEY = 'f' + (($bytes | ForEach-Object { $_.ToString('x2') }) -join '')
+    # Get-Random only: .NET crypto classes are blocked when Windows
+    # Smart App Control forces PowerShell into Constrained Language Mode.
+    $KEY = 'f' + (-join (1..32 | ForEach-Object { '0123456789abcdef'[(Get-Random -Maximum 16)] }))
     Set-Content -LiteralPath $keyFile -Value $KEY -Encoding ASCII
 }
 Say 'STEP 1 of 5 - your personal connection key:'
 Line
 Say ('        ' + $KEY)
 Line
-Say '   It is saved here:  ' + $keyFile
+Say ('   It is saved here:  ' + $keyFile)
 Say '   You will paste it into the app at the end (Connections screen).'
 try { Set-Clipboard -Value $KEY; Say '   (copied to your clipboard)' } catch {}
 Line
@@ -54,32 +54,37 @@ if (-not (Test-Path -LiteralPath $tbase)) {
     Say '   open a DEMO account inside it, then run this file again.'
     return
 }
-$cands = @()
+# plain variables - [pscustomobject] is blocked in Constrained Language Mode
+$Tdata = ''; $Tname = ''; $Texe = ''; $Torigin = ''; $Tseen = $null
+$anyData = ''; $anyName = ''; $anySeen = $null
 foreach ($d in (Get-ChildItem -LiteralPath $tbase -Directory -ErrorAction SilentlyContinue)) {
-    $exp = Join-Path $d.FullName 'MQL5\Experts'
-    if (-not (Test-Path -LiteralPath $exp)) { continue }
+    $expd = Join-Path $d.FullName 'MQL5\Experts'
+    if (-not (Test-Path -LiteralPath $expd)) { continue }
+    if (($null -eq $anySeen) -or ($d.LastWriteTime -gt $anySeen)) {
+        $anyData = $d.FullName; $anyName = $d.Name; $anySeen = $d.LastWriteTime
+    }
     $origin = ''
     $op = Join-Path $d.FullName 'origin.txt'
     if (Test-Path -LiteralPath $op) { $origin = (Get-Content -LiteralPath $op -Raw -ErrorAction SilentlyContinue).Trim() }
     $exe = ''
     if ($origin -and (Test-Path -LiteralPath (Join-Path $origin 'terminal64.exe'))) { $exe = Join-Path $origin 'terminal64.exe' }
-    $cands += [pscustomobject]@{ Data=$d.FullName; Name=$d.Name; Exe=$exe; Origin=$origin; Seen=$d.LastWriteTime }
+    if ($exe -and (($null -eq $Tseen) -or ($d.LastWriteTime -gt $Tseen))) {
+        $Tdata = $d.FullName; $Tname = $d.Name; $Texe = $exe; $Torigin = $origin; $Tseen = $d.LastWriteTime
+    }
 }
-if (-not $cands) {
+if (-not $Tdata) { $Tdata = $anyData; $Tname = $anyName }
+if (-not $Tdata) {
     Say '   Found the MetaQuotes folder but no terminal data yet.'
     Say '   Open MetaTrader once, log into a DEMO account, then run this again.'
     return
 }
-# prefer a data folder we can actually drive (has a terminal64.exe), newest first
-$T = ($cands | Where-Object { $_.Exe } | Sort-Object Seen -Descending | Select-Object -First 1)
-if (-not $T) { $T = ($cands | Sort-Object Seen -Descending | Select-Object -First 1) }
-Say ('   Using MetaTrader data folder: ' + $T.Name)
-if ($T.Exe) { Say ('   Terminal program:            ' + $T.Exe) }
+Say ('   Using MetaTrader data folder: ' + $Tname)
+if ($Texe) { Say ('   Terminal program:            ' + $Texe) }
 
 # which gold symbol does this broker use?
 $SYM = 'XAUUSD'
 try {
-    $sbase = Join-Path $T.Data 'bases'
+    $sbase = Join-Path $Tdata 'bases'
     if (Test-Path -LiteralPath $sbase) {
         $hit = Get-ChildItem -LiteralPath $sbase -Recurse -Directory -ErrorAction SilentlyContinue |
                Where-Object { $_.Name -match '^(XAUUSD|GOLD)' } | Select-Object -First 1
@@ -92,12 +97,13 @@ Say ('   Gold symbol:                ' + $SYM)
 # 3. install the bot + the exact settings Idan runs
 # ---------------------------------------------------------------------
 Say 'STEP 3 of 5 - installing the bot ...'
-$exp = Join-Path $T.Data 'MQL5\Experts'
+$exp = Join-Path $Tdata 'MQL5\Experts'
 $mq  = Join-Path $exp 'IdanGold.mq5'
 $ex5 = Join-Path $exp 'IdanGold.ex5'
 $gotBot = $false
 try {
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    # (no TLS tweak here on purpose: setting it is a .NET static call, which
+    #  Smart App Control blocks. Windows 11 already negotiates TLS 1.2+.)
     # the ready-to-run build - no compiling needed on the member's machine
     Invoke-WebRequest -Uri ($BASEURL + 'IdanGold.ex5') -OutFile $ex5 -UseBasicParsing -TimeoutSec 90
     if ((Get-Item -LiteralPath $ex5 -ErrorAction SilentlyContinue).Length -gt 10000) { $gotBot = $true; Say '   Bot installed (ready-to-run build, nothing to compile).' }
@@ -109,7 +115,7 @@ if (-not $gotBot) {
     } catch { Say ('   Could not download the bot: ' + $_.Exception.Message); return }
 }
 
-$filesDir = Join-Path $T.Data 'MQL5\Files\IdanGold'
+$filesDir = Join-Path $Tdata 'MQL5\Files\IdanGold'
 if (-not (Test-Path -LiteralPath $filesDir)) { New-Item -ItemType Directory -Path $filesDir -Force | Out-Null }
 $params = @'
 { "version":36,"enabled":true,"risk_pct":5.0,"h1_fast":34,"h1_slow":89,
@@ -127,7 +133,7 @@ Say '   Settings written (same as Idans: burst entry, risk ladder 3-9%).'
 # compile - only needed if the ready-to-run build was unavailable
 $me = $null
 if ($gotBot) { $me = $null } else {
-if ($T.Origin -and (Test-Path -LiteralPath (Join-Path $T.Origin 'metaeditor64.exe'))) { $me = Join-Path $T.Origin 'metaeditor64.exe' }
+if ($Torigin -and (Test-Path -LiteralPath (Join-Path $Torigin 'metaeditor64.exe'))) { $me = Join-Path $Torigin 'metaeditor64.exe' }
 if (-not $me) {
     foreach ($g in @('C:\Program Files\MetaTrader 5\metaeditor64.exe',
                      'C:\Program Files\MetaTrader 5 - v7.2\metaeditor64.exe',
@@ -177,12 +183,12 @@ Symbol=$SYM
 Period=M15
 "@
 Set-Content -LiteralPath $ini -Value $iniText -Encoding ASCII
-if ($T.Exe) {
+if ($Texe) {
     try {
         Get-Process terminal64 -ErrorAction SilentlyContinue |
-            Where-Object { $_.Path -eq $T.Exe } | Stop-Process -Force -ErrorAction SilentlyContinue
+            Where-Object { $_.Path -eq $Texe } | Stop-Process -Force -ErrorAction SilentlyContinue
         Start-Sleep -Seconds 4
-        Start-Process -FilePath $T.Exe -ArgumentList ('/config:"{0}"' -f $ini)
+        Start-Process -FilePath $Texe -ArgumentList ('/config:"{0}"' -f $ini)
         Say '   MetaTrader restarted with the bot on a gold chart.'
     } catch { Say ('   Could not restart MetaTrader automatically: ' + $_.Exception.Message) }
 } else {
@@ -207,8 +213,7 @@ try {
 
 # a friendly desktop shortcut to the app
 try {
-    $desk = [Environment]::GetFolderPath('Desktop')
-    if (-not $desk) { $desk = Join-Path $env:USERPROFILE 'Desktop' }
+    $desk = Join-Path $env:USERPROFILE 'Desktop'
     if (-not (Test-Path -LiteralPath $desk)) { New-Item -ItemType Directory -Path $desk -Force | Out-Null }
     Set-Content -LiteralPath (Join-Path $desk 'Idans Money Club.url') `
         -Value "[InternetShortcut]`r`nURL=https://elkingo18.github.io/idan-signals/club/" -Encoding ASCII
