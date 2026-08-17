@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T19:01:22.456582+00:00",
- "updated_israel": "2026-08-17 22:01",
+ "updated_utc": "2026-08-17T19:02:27.395252+00:00",
+ "updated_israel": "2026-08-17 22:02",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 22:01:15",
+  "updated": "2026.08.17 22:02:16",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,14 +26,14 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 20.0,
+  "spread_points": 19.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [],
   "equity": 197354.83,
-  "stamp": "2026.08.17 22:01:13",
+  "stamp": "2026.08.17 22:02:26",
   "age_sec": 0.7
  },
  "slave": {
@@ -46,8 +46,8 @@
   "open_positions": 0,
   "open_lots": 0.0,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 22:01:21",
-  "age_sec": 0.4
+  "stamp": "2026.08.17 22:02:27",
+  "age_sec": 0.1
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -123,58 +123,58 @@
   "return_pct": 13.05,
   "name": "UHTA"
  },
- "signals_swing": [
+ "signals_swing": [],
+ "signals_day": [
   {
-   "kind": "swing",
-   "ticker": "WEN",
+   "kind": "day",
+   "ticker": "ARQQ",
    "side": "long",
-   "state": "WATCH_BUY",
-   "price": 8.565,
-   "entry": 8.8,
-   "stop": 8.0934,
-   "t1": 10.2132,
-   "t2": 11.2732,
+   "state": "BUY_NOW",
+   "price": 24.24,
+   "entry": 24.24,
+   "stop": 23.4,
+   "t1": 25.92,
+   "t2": 26.76,
    "rr1": 2.0,
-   "rsi": 61.1,
-   "rvol": 0.45,
+   "rsi": 56.5,
+   "rvol": 1.38,
    "score": 78,
-   "shares": 44,
-   "notional": 387.2,
-   "risk_dollars": 31.09,
-   "room": 10.54,
-   "above_ma50_pct": 14.02,
+   "shares": 16,
+   "notional": 387.84,
+   "risk_dollars": 13.44,
+   "room": null,
+   "above_ma50_pct": null,
    "news": [
     {
-     "summary": "דיווח חיובי · הוצלב ב-2 מקורות שונים",
+     "summary": "דיווח שלילי · הליך משפטי — סיכון כותרות · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": "תביעה",
+     "sources": 1,
+     "title": "Arqit Quantum (ARQQ) Stock Looks Pricey After $7 Million Settlement Clears A Key Overhang",
+     "src": "Simply Wall St.",
+     "time": "2026-06-21 06:06"
+    },
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
      "dir": "pos",
      "tag": null,
-     "sources": 2,
-     "title": "Wendy's Traders Smell a Buyout Cooking — Nelson Peltz Preps a Bid",
-     "src": "Benzinga",
-     "time": "2026-08-16 21:30"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": "דוחות",
      "sources": 1,
-     "title": "Q2 Earnings Highlights: Wendy's (NASDAQ:WEN) Vs The Rest Of The Traditional Fast Food Stocks",
-     "src": "StockStory",
-     "time": "2026-08-17 09:18"
+     "title": "ARQQ Stock On Track For A Four-Month High – What’s Driving The Rally?",
+     "src": "Stocktwits",
+     "time": "2026-06-17 16:09"
     },
     {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
      "tag": null,
      "sources": 1,
-     "title": "How Burger King Revamped Its Whopper and Overtook Wendy’s",
-     "src": "The Wall Street Journal",
-     "time": "2026-08-17 00:00"
+     "title": "Can D-Wave Hold Its Own Against 2 Fast-Growing Rivals?",
+     "src": "MarketBeat",
+     "time": "2026-06-16 11:35"
     }
    ]
   }
  ],
- "signals_day": [],
  "game": {
   "xp": 3905,
   "level": 8,
