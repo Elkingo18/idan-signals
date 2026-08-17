@@ -1,0 +1,119 @@
+rules_version = '2';
+
+// ===========================================================================
+//  Idan's Money Club — Firestore rules            v3 · 17.8.2026
+//
+//  Three kinds of caller have to work, and the rules have to tell them apart:
+//
+//   1. A SIGNED-IN MEMBER in the app (Google login).
+//   2. AN UNAUTHENTICATED READER holding a personal feed key. That is the
+//      personal-QR link: the key itself (24+ random characters) is the
+//      password, and the document behind it holds nothing but that one
+//      member's own demo numbers. Without this, ?feed=<key> returns 403 and
+//      the QR is dead — which is exactly what happened before these rules
+//      were pasted.
+//   3. A MEMBER'S PC SCRIPT (feed_publish.ps1) posting that member's numbers.
+//      It runs under Constrained Language Mode with no login, so it can only
+//      use the public API key. It writes feeds/<key> and reads commands/<key>.
+//
+//  Everything else is closed. Nothing here ever exposes one member's account
+//  to another member.
+// ===========================================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function owner() {
+      return request.auth != null
+          && request.auth.token.email == 'idan2189@gmail.com';
+    }
+    function signedIn() { return request.auth != null; }
+    function isMe(uid)  { return signedIn() && request.auth.uid == uid; }
+    // a feed key is only a secret if it is long enough to be one
+    function longKey(k) { return k.size() >= 24; }
+
+    // ---------------------------------------------------------------- users
+    // A member reads and updates their own card. The whole list is readable
+    // by any signed-in member because the club chat needs names and avatars
+    // to build the private-message list; nothing financial lives here.
+    match /users/{uid} {
+      allow read:   if signedIn();
+      allow create: if isMe(uid) || owner();
+      allow update: if isMe(uid) || owner();
+      allow delete: if owner();
+    }
+
+    // ----------------------------------------------------------- signatures
+    // The signed membership agreement. Written once, by the person signing.
+    match /signatures/{uid} {
+      allow create: if isMe(uid);
+      allow read:   if isMe(uid) || owner();
+      allow update, delete: if false;         // a signature is never edited
+    }
+
+    // ------------------------------------------------------------- settings
+    match /settings/{doc} {
+      allow read:  if true;                   // demo/real mode drives the gate
+      allow write: if owner();
+    }
+
+    // ------------------------------------------------- the emergency stop
+    // v3 (17.8.2026). The club's stop button writes here; account_mirror.py
+    // on Idan's PC reads it over the public REST endpoint every cycle and
+    // writes data\control.json, which the engine and the bridge already obey.
+    // World-readable on purpose — it is two booleans and nothing else. Only
+    // Idan can write it.
+    match /control/{doc} {
+      allow read:  if true;
+      allow write: if owner();
+    }
+
+    // ---------------------------------------------------------------- feeds
+    // ONE member's own demo numbers, addressed by their secret key.
+    // Read is open because the personal QR link carries no login.
+    // Write is open for the same reason — the member's PC script has no login
+    // either — but only to a key long enough to be unguessable, and only with
+    // a payload that looks like a feed post.
+    match /feeds/{key} {
+      allow read: if longKey(key);
+      // the field list must match feed_publish.ps1 exactly: j, t, acct, v.
+      // It writes 'v' as a schema number - leaving it out of this list would
+      // reject every member's post and silently kill their feed.
+      allow create, update: if longKey(key)
+                            && request.resource.data.keys().hasOnly(['j','t','acct','v','name'])
+                            && request.resource.data.j is string
+                            && request.resource.data.j.size() < 20000;
+      allow delete: if owner();
+    }
+
+    // ------------------------------------------------------------- commands
+    // Idan controls a member's bot from the app; the member's script polls
+    // this document and applies it locally. Public read, owner-only write.
+    match /commands/{key} {
+      allow read:  if longKey(key);
+      allow write: if owner();
+    }
+
+    // ----------------------------------------------------------------- chat
+    // The club room is for signed-in members. A private thread is named
+    // dm_<uidA>_<uidB>, so membership of the thread is checkable from the id.
+    match /chat/{chan} {
+      allow read, write: if signedIn();
+      match /messages/{msg} {
+        allow read: if signedIn()
+                    && (chan == 'club' || !chan.matches('dm_.*')
+                        || chan.split('_').hasAny([request.auth.uid]) || owner());
+        allow create: if signedIn()
+                      && request.resource.data.uid == request.auth.uid
+                      && request.resource.data.text is string
+                      && request.resource.data.text.size() <= 2000;
+        allow update, delete: if owner();
+      }
+    }
+
+    // Anything not named above is closed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
