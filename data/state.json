@@ -38,7 +38,7 @@
    "r": -1.03,
    "reason": "stop",
    "opened": "2026-08-17T11:56:39.669169+03:00",
-   "closed": "2026-08-17T14:35:59.321053+03:00",
+   "closed": "2026-08-17T14:36:48.609546+03:00",
    "day": "2026-08-17",
    "held_days": 0,
    "followed_rules": true
@@ -656,24 +656,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4460.0,
-    "entry": 4460.0,
-    "stop": 4454.4,
-    "t1": 4468.45,
-    "t2": 4476.89,
+    "state": "BUY_NOW",
+    "pattern": "פולבק לגל",
+    "price": 4461.1,
+    "entry": 4461.1,
+    "stop": 4455.5,
+    "t1": 4469.55,
+    "t2": 4477.99,
     "rr1": 1.5,
     "atr": 3.75,
-    "rsi": 58.5,
+    "rsi": 60.4,
     "vwap": 4454.94,
     "stop_pct": 0.13,
     "ounces": 1.51,
-    "notional": 6734.6,
-    "margin": 336.73,
+    "notional": 6736.26,
+    "margin": 336.81,
     "risk_dollars": 8.46,
     "shares": 1.51,
-    "score": 57,
+    "score": 62,
     "news": [],
     "regime_ok": true
    }
@@ -1202,13 +1202,19 @@
   "all": -33.7,
   "all_pct": -3.37
  },
- "rejected": [],
- "updated_utc": "2026-08-17T11:35:59.321053+00:00",
- "updated_israel": "2026-08-17 14:35",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "cooldown_after_loss"
+  }
+ ],
+ "updated_utc": "2026-08-17T11:36:48.609546+00:00",
+ "updated_israel": "2026-08-17 14:36",
  "market": {
   "open": false,
-  "et": "07:35",
-  "il": "14:35"
+  "et": "07:36",
+  "il": "14:36"
  },
  "stats": {
   "trades": 20,
@@ -1262,8 +1268,8 @@
    "t": "ERIC",
    "sec": "tech",
    "px": 10.27,
-   "trend": -6.0,
-   "rsi": 49,
+   "trend": -4.6,
+   "rsi": 50,
    "rvol": 0.9,
    "df": 1,
    "state": "none"
@@ -1282,7 +1288,7 @@
    "t": "LUMN",
    "sec": "tech",
    "px": 6.72,
-   "trend": -6.9,
+   "trend": -6.0,
    "rsi": 52,
    "rvol": 1.4,
    "df": 0,
@@ -1312,7 +1318,7 @@
    "t": "VTRS",
    "sec": "health",
    "px": 16.23,
-   "trend": -1.9,
+   "trend": -2.1,
    "rsi": 41,
    "rvol": 0.7,
    "df": 0,
@@ -1323,7 +1329,7 @@
    "sec": "health",
    "px": 13.72,
    "trend": 1.6,
-   "rsi": 76,
+   "rsi": 77,
    "rvol": 0.8,
    "df": 0,
    "state": "none"
@@ -1362,8 +1368,8 @@
    "t": "TNDM",
    "sec": "health",
    "px": 22.72,
-   "trend": 29.1,
-   "rsi": 69,
+   "trend": 30.2,
+   "rsi": 70,
    "rvol": 0.8,
    "df": 0,
    "state": "none"
@@ -1402,9 +1408,9 @@
    "t": "AMRX",
    "sec": "health",
    "px": 18.15,
-   "trend": 7.4,
+   "trend": 6.0,
    "rsi": 55,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "df": 0,
    "state": "none"
   },
@@ -1432,8 +1438,8 @@
    "t": "SAN",
    "sec": "fintech",
    "px": 14.76,
-   "trend": 8.6,
-   "rsi": 65,
+   "trend": 7.9,
+   "rsi": 64,
    "rvol": 1.4,
    "df": 0,
    "state": "none"
@@ -1442,8 +1448,8 @@
    "t": "ITUB",
    "sec": "fintech",
    "px": 7.4,
-   "trend": -8.1,
-   "rsi": 31,
+   "trend": -8.3,
+   "rsi": 30,
    "rvol": 1.5,
    "df": 0,
    "state": "none"
@@ -1562,9 +1568,9 @@
    "t": "SHLS",
    "sec": "cleanenergy",
    "px": 8.45,
-   "trend": -13.2,
-   "rsi": 44,
-   "rvol": 0.7,
+   "trend": -13.8,
+   "rsi": 43,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1612,7 +1618,7 @@
    "t": "ULCC",
    "sec": "travel",
    "px": 6.69,
-   "trend": -2.0,
+   "trend": -1.6,
    "rsi": 48,
    "rvol": 0.5,
    "df": 0,
@@ -1632,8 +1638,8 @@
    "t": "KVUE",
    "sec": "consumer",
    "px": 19.2,
-   "trend": 1.9,
-   "rsi": 52,
+   "trend": 1.6,
+   "rsi": 51,
    "rvol": 0.5,
    "df": 1,
    "state": "none"
@@ -1652,9 +1658,9 @@
    "t": "AEO",
    "sec": "consumer",
    "px": 16.17,
-   "trend": -6.3,
+   "trend": -6.7,
    "rsi": 40,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -1682,9 +1688,9 @@
    "t": "GT",
    "sec": "consumer",
    "px": 6.11,
-   "trend": -6.1,
-   "rsi": 39,
-   "rvol": 1.0,
+   "trend": -7.3,
+   "rsi": 38,
+   "rvol": 1.1,
    "df": 1,
    "state": "none"
   },
@@ -1922,7 +1928,7 @@
    "t": "SBS",
    "sec": "utilities",
    "px": 4.6,
-   "trend": -16.7,
+   "trend": -16.8,
    "rsi": 23,
    "rvol": 1.6,
    "df": 0,
@@ -1995,7 +2001,7 @@
    "t": "ABBV",
    "sec": "premium",
    "px": 249.46,
-   "trend": 2.0,
+   "trend": 2.3,
    "state": "premium"
   },
   {
@@ -2114,7 +2120,7 @@
    "t": "TGT",
    "sec": "premium",
    "px": 154.48,
-   "trend": 12.6,
+   "trend": 12.2,
    "state": "premium"
   },
   {
@@ -2163,7 +2169,7 @@
    "t": "IRDM",
    "sec": "premium",
    "px": 50.2,
-   "trend": 4.4,
+   "trend": 4.6,
    "state": "premium"
   },
   {
@@ -2240,63 +2246,63 @@
    "t": "SQM",
    "sec": "premium",
    "px": 74.32,
-   "trend": 0.7,
+   "trend": 1.7,
    "state": "premium"
   },
   {
    "t": "IIPR",
    "sec": "premium",
    "px": 55.99,
-   "trend": -7.6,
+   "trend": -8.0,
    "state": "premium"
   },
   {
    "t": "SMG",
    "sec": "premium",
    "px": 60.94,
-   "trend": -6.0,
+   "trend": -6.9,
    "state": "premium"
   },
   {
    "t": "JAZZ",
    "sec": "premium",
    "px": 244.96,
-   "trend": 1.4,
+   "trend": 0.8,
    "state": "premium"
   },
   {
    "t": "AWK",
    "sec": "premium",
    "px": 136.2,
-   "trend": 4.1,
+   "trend": 3.6,
    "state": "premium"
   },
   {
    "t": "XYL",
    "sec": "premium",
    "px": 119.68,
-   "trend": 2.3,
+   "trend": 2.1,
    "state": "premium"
   },
   {
    "t": "VLTO",
    "sec": "premium",
    "px": 97.68,
-   "trend": 7.9,
+   "trend": 7.6,
    "state": "premium"
   },
   {
    "t": "ECL",
    "sec": "premium",
    "px": 276.11,
-   "trend": 1.0,
+   "trend": 0.8,
    "state": "premium"
   },
   {
    "t": "WTRG",
    "sec": "premium",
    "px": 40.38,
-   "trend": 4.7,
+   "trend": 4.3,
    "state": "premium"
   }
  ],
@@ -2339,7 +2345,7 @@
    "bars": 917,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4460.0,
+   "last_price": 4461.1,
    "signals": 1,
    "today_trades": 2,
    "health": {
@@ -2365,7 +2371,7 @@
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -2414,7 +2420,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 3.1,
-   "trend": 1.6,
+   "trend": 2.0,
    "rsi": 53,
    "rvol": 0.4,
    "near": false
@@ -2444,9 +2450,9 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 4.54,
-   "trend": -1.1,
+   "trend": -0.5,
    "rsi": 50,
-   "rvol": 1.1,
+   "rvol": 1.0,
    "near": false
   },
   {
@@ -2474,9 +2480,9 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 11.46,
-   "trend": 3.5,
+   "trend": 3.9,
    "rsi": 55,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": false
   },
   {
@@ -2484,7 +2490,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 1.11,
-   "trend": -17.4,
+   "trend": -17.0,
    "rsi": 40,
    "rvol": 0.6,
    "near": false
@@ -2494,8 +2500,8 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 2.83,
-   "trend": -10.4,
-   "rsi": 50,
+   "trend": -7.4,
+   "rsi": 51,
    "rvol": 0.8,
    "near": false
   },
@@ -2504,9 +2510,9 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 12.76,
-   "trend": -24.1,
-   "rsi": 41,
-   "rvol": 0.6,
+   "trend": -21.9,
+   "rsi": 42,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -2514,8 +2520,8 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 24.36,
-   "trend": 21.5,
-   "rsi": 61,
+   "trend": 21.1,
+   "rsi": 62,
    "rvol": 0.6,
    "near": true
   },
@@ -2524,7 +2530,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 3.58,
-   "trend": -34.7,
+   "trend": -35.6,
    "rsi": 34,
    "rvol": 0.2,
    "near": false
@@ -2574,8 +2580,8 @@
    "list": "מעניינות",
    "grp": "07/26",
    "px": 2.86,
-   "trend": -19.2,
-   "rsi": 36,
+   "trend": -18.5,
+   "rsi": 37,
    "rvol": 0.7,
    "near": false
   },
@@ -2584,7 +2590,7 @@
    "list": "מעניינות",
    "grp": "07/26",
    "px": 17.38,
-   "trend": 29.3,
+   "trend": 30.4,
    "rsi": 69,
    "rvol": 0.7,
    "near": true
@@ -2594,9 +2600,9 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 1.3,
-   "trend": -19.2,
+   "trend": -18.7,
    "rsi": 42,
-   "rvol": 0.4,
+   "rvol": 0.5,
    "near": false
   },
   {
@@ -2604,7 +2610,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 5.11,
-   "trend": 5.1,
+   "trend": 6.5,
    "rsi": 56,
    "rvol": 0.7,
    "near": false
@@ -2664,8 +2670,8 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 7.15,
-   "trend": -12.6,
-   "rsi": 41,
+   "trend": -13.2,
+   "rsi": 40,
    "rvol": 0.5,
    "near": false
   },
@@ -2674,7 +2680,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 6.09,
-   "trend": 7.3,
+   "trend": 7.8,
    "rsi": 55,
    "rvol": 0.3,
    "near": false
@@ -2684,8 +2690,8 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 16.01,
-   "trend": 9.3,
-   "rsi": 51,
+   "trend": 8.6,
+   "rsi": 50,
    "rvol": 0.8,
    "near": false
   },
@@ -2694,7 +2700,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 38.84,
-   "trend": 21.7,
+   "trend": 22.0,
    "rsi": 64,
    "rvol": 0.8,
    "near": true
@@ -2724,9 +2730,9 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 4.87,
-   "trend": 6.5,
+   "trend": 5.7,
    "rsi": 61,
-   "rvol": 0.9,
+   "rvol": 0.8,
    "near": true
   },
   {
@@ -2744,7 +2750,7 @@
    "list": "לפני פריצה",
    "grp": "07/26",
    "px": 23.34,
-   "trend": 39.6,
+   "trend": 41.4,
    "rsi": 74,
    "rvol": 0.4,
    "near": true
@@ -2754,8 +2760,8 @@
    "list": "לפני פריצה",
    "grp": "07/26",
    "px": 2.86,
-   "trend": -19.2,
-   "rsi": 36,
+   "trend": -18.5,
+   "rsi": 37,
    "rvol": 0.7,
    "near": false
   },
@@ -2764,7 +2770,7 @@
    "list": "לפני פריצה",
    "grp": "07/26",
    "px": 17.38,
-   "trend": 29.3,
+   "trend": 30.4,
    "rsi": 69,
    "rvol": 0.7,
    "near": true
