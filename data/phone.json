@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T14:57:10.698143+00:00",
- "updated_israel": "2026-08-17 17:57",
+ "updated_utc": "2026-08-17T14:56:03.080770+00:00",
+ "updated_israel": "2026-08-17 17:55",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 17:56:56",
+  "updated": "2026.08.17 17:55:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,36 +26,28 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 27.0,
+  "spread_points": 25.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [
-   {
-    "ticket": "471517738",
-    "symbol": "XAUUSD",
-    "side": "buy",
-    "volume": 0.01,
-    "entry": 4415.69
-   }
-  ],
-  "equity": 197144.51,
-  "stamp": "2026.08.17 17:57:09",
-  "age_sec": 0.8
+  "legs": [],
+  "equity": 197143.81,
+  "stamp": "2026.08.17 17:56:01",
+  "age_sec": 0.2
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12454.98,
-  "equity": 12454.66,
-  "day_pnl": 839.03,
+  "balance": 12453.89,
+  "equity": 12453.89,
+  "day_pnl": 837.94,
   "day_lots": 0.0,
-  "open_positions": 1,
-  "open_lots": 0.01,
+  "open_positions": 0,
+  "open_lots": 0.0,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 17:57:10",
-  "age_sec": 0.4
+  "stamp": "2026.08.17 17:56:02",
+  "age_sec": 0.3
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -76,18 +68,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2454.98,
+     "profit": 2453.89,
      "lots": 40.43,
      "fee": 1132.04,
-     "pocket": 1322.94
+     "pocket": 1321.85
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2562.02,
+    "profit": 2560.93,
     "lots": 47.01,
     "fee": 1316.28,
-    "pocket": 1245.74
+    "pocket": 1244.65
    }
   },
   "last_day": {
@@ -100,10 +92,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 950.53,
+  "equity": 950.21,
   "realized_pnl": -70.27,
-  "open_pnl": 20.8,
-  "return_pct": -4.95
+  "open_pnl": 20.48,
+  "return_pct": -4.98
  },
  "positions": [
   {
@@ -112,9 +104,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.48,
-   "value": 349.6,
-   "unrealized": 20.8,
+   "mark": 17.464,
+   "value": 349.28,
+   "unrealized": 20.48,
    "realized": 0.0,
    "source": "engine"
   }
@@ -123,66 +115,38 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 782.8370606158998,
-  "equity": 1132.34,
+  "equity": 1131.54,
   "realized_pnl": 137.69,
-  "open_pnl": 0.13,
+  "open_pnl": -0.67,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.23,
+  "return_pct": 13.15,
   "name": "UHTA"
  },
- "signals_swing": [
+ "signals_swing": [],
+ "signals_day": [
   {
-   "kind": "swing",
-   "ticker": "WEN",
+   "kind": "day",
+   "ticker": "AUR",
    "side": "long",
-   "state": "WATCH_BUY",
-   "price": 8.555,
-   "entry": 8.8,
-   "stop": 8.0968,
-   "t1": 10.2064,
-   "t2": 11.2612,
+   "state": "BUY_NOW",
+   "price": 7.0399,
+   "entry": 7.0399,
+   "stop": 6.855,
+   "t1": 7.4097,
+   "t2": 7.5946,
    "rr1": 2.0,
-   "rsi": 61.0,
-   "rvol": 0.2,
-   "score": 78,
-   "shares": 45,
-   "notional": 396.0,
-   "risk_dollars": 31.64,
-   "room": 10.54,
-   "above_ma50_pct": 13.89,
-   "news": [
-    {
-     "summary": "דיווח חיובי · הוצלב ב-2 מקורות שונים",
-     "dir": "pos",
-     "tag": null,
-     "sources": 2,
-     "title": "Wendy's Traders Smell a Buyout Cooking — Nelson Peltz Preps a Bid",
-     "src": "Benzinga",
-     "time": "2026-08-16 21:30"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 1,
-     "title": "Q2 Earnings Highlights: Wendy's (NASDAQ:WEN) Vs The Rest Of The Traditional Fast Food Stocks",
-     "src": "StockStory",
-     "time": "2026-08-17 09:18"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "How Burger King Revamped Its Whopper and Overtook Wendy’s",
-     "src": "The Wall Street Journal",
-     "time": "2026-08-17 00:00"
-    }
-   ]
+   "rsi": 73.6,
+   "rvol": 2.85,
+   "score": 84,
+   "shares": 56,
+   "notional": 394.23,
+   "risk_dollars": 10.35,
+   "room": null,
+   "above_ma50_pct": null,
+   "news": []
   }
  ],
- "signals_day": [],
  "game": {
   "xp": 3905,
   "level": 8,
@@ -292,10 +256,10 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": 1.9,
+   "done": 1.1,
    "base": 1130.44,
-   "pct": 2,
-   "pct_legend": 1,
+   "pct": 1,
+   "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
