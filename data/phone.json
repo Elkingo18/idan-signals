@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T17:42:57.946756+00:00",
- "updated_israel": "2026-08-17 20:42",
+ "updated_utc": "2026-08-17T17:45:09.279629+00:00",
+ "updated_israel": "2026-08-17 20:45",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 20:42:56",
+  "updated": "2026.08.17 20:44:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,33 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 23.0,
+  "spread_points": 20.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471578257",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.13,
+    "entry": 4418.06
+   },
+   {
+    "ticket": "471578157",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.08,
+    "entry": 4416.84
+   },
+   {
+    "ticket": "471577955",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.05,
+    "entry": 4415.89
+   },
    {
     "ticket": "471577573",
     "symbol": "XAUUSD",
@@ -54,22 +75,22 @@
     "entry": 4412.47
    }
   ],
-  "equity": 197240.24,
-  "stamp": "2026.08.17 20:42:57",
-  "age_sec": 0.2
+  "equity": 197196.13,
+  "stamp": "2026.08.17 20:45:08",
+  "age_sec": 0.5
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12576.29,
-  "equity": 12567.98,
+  "equity": 12528.41,
   "day_pnl": 74.74,
   "day_lots": 0.0,
-  "open_positions": 3,
-  "open_lots": 0.06,
+  "open_positions": 5,
+  "open_lots": 0.19,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 20:42:57",
-  "age_sec": 0.1
+  "stamp": "2026.08.17 20:45:08",
+  "age_sec": 0.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -114,10 +135,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 947.65,
+  "equity": 947.8,
   "realized_pnl": -70.27,
-  "open_pnl": 17.92,
-  "return_pct": -5.24
+  "open_pnl": 18.07,
+  "return_pct": -5.22
  },
  "positions": [
   {
@@ -126,9 +147,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.336,
-   "value": 346.72,
-   "unrealized": 17.92,
+   "mark": 17.3434,
+   "value": 346.87,
+   "unrealized": 18.07,
    "realized": 0.0,
    "source": "engine"
   }
