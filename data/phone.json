@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T10:16:26.183724+00:00",
- "updated_israel": "2026-08-17 13:16",
+ "updated_utc": "2026-08-17T10:17:30.803109+00:00",
+ "updated_israel": "2026-08-17 13:17",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 13:16:16",
+  "updated": "2026.08.17 13:17:16",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10536.94,
-  "equity": 10402.84,
+  "equity": 10434.64,
   "day_start_equity": 10972.23,
-  "day_pnl": -569.39,
+  "day_pnl": -537.59,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -26,28 +26,43 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst -0.53atr",
-  "spread_points": 23.0,
+  "spread_points": 22.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 196166.36,
-  "stamp": "2026.08.17 13:16:25",
-  "age_sec": 0.3
+  "legs": [
+   {
+    "ticket": "471387297",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.02,
+    "entry": 4398.2
+   },
+   {
+    "ticket": "471387181",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.01,
+    "entry": 4396.89
+   }
+  ],
+  "equity": 196165.71,
+  "stamp": "2026.08.17 13:17:29",
+  "age_sec": 0.9
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12538.52,
-  "equity": 12538.84,
-  "day_pnl": 922.57,
+  "balance": 12539.0,
+  "equity": 12538.3,
+  "day_pnl": 923.05,
   "day_lots": 0.0,
-  "open_positions": 1,
-  "open_lots": 0.01,
+  "open_positions": 2,
+  "open_lots": 0.03,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 13:16:24",
-  "age_sec": 1.4
+  "stamp": "2026.08.17 13:17:30",
+  "age_sec": 0.1
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -68,18 +83,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2538.52,
+     "profit": 2539.0,
      "lots": 40.43,
      "fee": 1132.04,
-     "pocket": 1406.48
+     "pocket": 1406.96
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 3075.46,
+    "profit": 3075.94,
     "lots": 47.01,
     "fee": 1316.28,
-    "pocket": 1759.18
+    "pocket": 1759.66
    }
   },
   "last_day": {
