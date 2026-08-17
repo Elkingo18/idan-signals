@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T00:22:45.552084+00:00",
- "updated_israel": "2026-08-17 03:22",
+ "updated_utc": "2026-08-17T00:23:49.833143+00:00",
+ "updated_israel": "2026-08-17 03:23",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 03:22:35",
+  "updated": "2026.08.17 03:23:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,28 +26,36 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst -0.07atr",
-  "spread_points": 31.0,
+  "spread_points": 32.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 195416.2,
-  "stamp": "2026.08.17 03:22:44",
-  "age_sec": 0.5
+  "legs": [
+   {
+    "ticket": "471256277",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.01,
+    "entry": 4384.6
+   }
+  ],
+  "equity": 195416.01,
+  "stamp": "2026.08.17 03:23:48",
+  "age_sec": 0.8
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 11827.21,
-  "equity": 11866.58,
-  "day_pnl": 211.26,
+  "balance": 11867.5,
+  "equity": 11867.06,
+  "day_pnl": 251.55,
   "day_lots": 0.0,
-  "open_positions": 8,
-  "open_lots": 0.91,
+  "open_positions": 1,
+  "open_lots": 0.01,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 03:22:44",
-  "age_sec": 0.5
+  "stamp": "2026.08.17 03:23:49",
+  "age_sec": 0.3
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -68,18 +76,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 1827.21,
+     "profit": 1867.5,
      "lots": 40.43,
      "fee": 1495.91,
-     "pocket": 331.3
+     "pocket": 371.59
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2799.44,
+    "profit": 2839.73,
     "lots": 47.01,
     "fee": 1739.37,
-    "pocket": 1060.07
+    "pocket": 1100.36
    }
   },
   "last_day": {
