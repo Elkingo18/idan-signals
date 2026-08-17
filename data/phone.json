@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T06:45:01.883964+00:00",
- "updated_israel": "2026-08-17 09:45",
+ "updated_utc": "2026-08-17T06:46:06.865682+00:00",
+ "updated_israel": "2026-08-17 09:46",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 09:44:56",
+  "updated": "2026.08.17 09:45:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10536.94,
-  "equity": 10389.34,
+  "equity": 10434.04,
   "day_start_equity": 10972.23,
-  "day_pnl": -582.89,
+  "day_pnl": -538.19,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -25,29 +25,37 @@
   "high_water": 11624.21,
   "risk_pct": 5.0,
   "tf_minutes": 15,
-  "last_decision": "skip: no burst -0.12atr",
-  "spread_points": 22.0,
+  "last_decision": "skip: no burst 0.06atr",
+  "spread_points": 30.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 195998.73,
-  "stamp": "2026.08.17 09:45:00",
+  "legs": [
+   {
+    "ticket": "471329944",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.01,
+    "entry": 4398.07
+   }
+  ],
+  "equity": 195998.56,
+  "stamp": "2026.08.17 09:46:05",
   "age_sec": 0.9
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12386.32,
-  "equity": 12386.32,
-  "day_pnl": 770.37,
+  "balance": 12386.54,
+  "equity": 12385.76,
+  "day_pnl": 770.59,
   "day_lots": 0.0,
-  "open_positions": 0,
-  "open_lots": 0.0,
+  "open_positions": 1,
+  "open_lots": 0.01,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 09:45:00",
-  "age_sec": 1.0
+  "stamp": "2026.08.17 09:46:06",
+  "age_sec": 0.0
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -68,18 +76,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2386.32,
+     "profit": 2386.54,
      "lots": 40.43,
      "fee": 1495.91,
-     "pocket": 890.41
+     "pocket": 890.63
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2923.26,
+    "profit": 2923.48,
     "lots": 47.01,
     "fee": 1739.37,
-    "pocket": 1183.89
+    "pocket": 1184.11
    }
   },
   "last_day": {
