@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T17:23:15.510083+00:00",
- "updated_israel": "2026-08-17 20:23",
+ "updated_utc": "2026-08-17T17:25:25.950436+00:00",
+ "updated_israel": "2026-08-17 20:25",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 20:22:56",
+  "updated": "2026.08.17 20:25:16",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,33 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 23.0,
+  "spread_points": 22.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471569094",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.05,
+    "entry": 4416.31
+   },
+   {
+    "ticket": "471568946",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.03,
+    "entry": 4417.39
+   },
+   {
+    "ticket": "471568610",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.02,
+    "entry": 4418.51
+   },
    {
     "ticket": "471568288",
     "symbol": "XAUUSD",
@@ -40,21 +61,21 @@
     "entry": 4419.66
    }
   ],
-  "equity": 197225.42,
-  "stamp": "2026.08.17 20:23:14",
-  "age_sec": 0.8
+  "equity": 197221.08,
+  "stamp": "2026.08.17 20:25:25",
+  "age_sec": 0.2
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12548.67,
-  "equity": 12547.26,
+  "equity": 12541.99,
   "day_pnl": 47.12,
   "day_lots": 0.0,
-  "open_positions": 1,
-  "open_lots": 0.01,
+  "open_positions": 4,
+  "open_lots": 0.11,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 20:23:15",
+  "stamp": "2026.08.17 20:25:25",
   "age_sec": 0.2
  },
  "fees": {
@@ -100,10 +121,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 948.05,
+  "equity": 948.21,
   "realized_pnl": -70.27,
-  "open_pnl": 18.32,
-  "return_pct": -5.2
+  "open_pnl": 18.48,
+  "return_pct": -5.18
  },
  "positions": [
   {
@@ -112,9 +133,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.356,
-   "value": 347.12,
-   "unrealized": 18.32,
+   "mark": 17.364,
+   "value": 347.28,
+   "unrealized": 18.48,
    "realized": 0.0,
    "source": "engine"
   }
