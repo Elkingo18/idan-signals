@@ -1,7 +1,7 @@
-/* Idan's Money Club - service worker v1.0.0
+/* Idan's Money Club - service worker v3.0.0
    Network-first for the app itself so every publish reaches everyone
    automatically; cache fallback keeps it opening offline. */
-const VERSION = "imc-v2.5.0";
+const VERSION = "imc-v3.0.0";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", e => {
