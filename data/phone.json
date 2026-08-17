@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T15:37:59.765720+00:00",
- "updated_israel": "2026-08-17 18:37",
+ "updated_utc": "2026-08-17T15:39:07.340111+00:00",
+ "updated_israel": "2026-08-17 18:39",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 18:37:55",
+  "updated": "2026.08.17 18:38:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,35 +26,42 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 24.0,
+  "spread_points": 23.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
    {
-    "ticket": "471535596",
+    "ticket": "471535956",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.02,
+    "entry": 4422.89
+   },
+   {
+    "ticket": "471535820",
     "symbol": "XAUUSD",
     "side": "buy",
     "volume": 0.01,
-    "entry": 4423.03
+    "entry": 4423.96
    }
   ],
-  "equity": 197180.5,
-  "stamp": "2026.08.17 18:37:58",
-  "age_sec": 0.9
+  "equity": 197179.98,
+  "stamp": "2026.08.17 18:39:06",
+  "age_sec": 0.5
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12504.57,
-  "equity": 12504.8,
-  "day_pnl": 3.02,
+  "balance": 12504.83,
+  "equity": 12503.91,
+  "day_pnl": 3.28,
   "day_lots": 0.0,
-  "open_positions": 1,
-  "open_lots": 0.01,
+  "open_positions": 2,
+  "open_lots": 0.03,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 18:37:59",
+  "stamp": "2026.08.17 18:39:06",
   "age_sec": 0.2
  },
  "fees": {
@@ -76,18 +83,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2504.57,
+     "profit": 2504.83,
      "lots": 40.43,
      "fee": 1132.04,
-     "pocket": 1372.53
+     "pocket": 1372.79
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2611.61,
+    "profit": 2611.87,
     "lots": 47.01,
     "fee": 1316.28,
-    "pocket": 1295.33
+    "pocket": 1295.59
    }
   },
   "last_day": {
@@ -100,10 +107,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 948.81,
+  "equity": 949.01,
   "realized_pnl": -70.27,
-  "open_pnl": 19.08,
-  "return_pct": -5.12
+  "open_pnl": 19.28,
+  "return_pct": -5.1
  },
  "positions": [
   {
@@ -112,9 +119,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.394,
-   "value": 347.88,
-   "unrealized": 19.08,
+   "mark": 17.404,
+   "value": 348.08,
+   "unrealized": 19.28,
    "realized": 0.0,
    "source": "engine"
   }
