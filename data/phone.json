@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-18 01:21",
+  "updated_israel": "2026-08-18 01:22",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "skip: no burst 1.07atr",
-    "age_sec": 19.3,
+    "age_sec": 6.3,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v2",
     "teacher_equity": 197354.83,
     "teacher_legs": 0,
-    "age_sec": 0.1,
+    "age_sec": 0.2,
     "status": "ok",
     "note": "מעתיק את המורה 1:1 עם שומר-מחיר-כניסה"
    },
@@ -46,7 +46,7 @@
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1125.92,
+    "equity": 1126.62,
     "balance": 389.19,
     "day_gross": 16.0,
     "day_open_equity": 1127.24,
@@ -63,8 +63,8 @@
      "file_ok": true
     },
     "broker_equity": 945.73,
-    "age_sec": 354.3,
-    "status": "stale",
+    "age_sec": 120.3,
+    "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
@@ -94,7 +94,7 @@
    "day_fee": 0.0,
    "day_net": 16.0,
    "day_pct": 0.07,
-   "equity": 23897.84,
+   "equity": 23898.54,
    "day_open_equity": 23899.16,
    "pocket_since_start": 1455.64,
    "fee_since_start": 1316.28
@@ -113,12 +113,12 @@
    "price": 16.44
   }
  ],
- "updated_utc": "2026-08-17T22:21:54.326498+00:00",
- "updated_israel": "2026-08-18 01:21",
+ "updated_utc": "2026-08-17T22:23:00.320953+00:00",
+ "updated_israel": "2026-08-18 01:22",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.18 01:21:35",
+  "updated": "2026.08.18 01:22:54",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -139,14 +139,14 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst 1.07atr",
-  "spread_points": 43.0,
+  "spread_points": 42.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [],
   "equity": 197354.83,
-  "stamp": "2026.08.18 01:21:53",
+  "stamp": "2026.08.18 01:22:57",
   "age_sec": 0.6
  },
  "slave": {
@@ -163,8 +163,8 @@
   "floating": 0.0,
   "code_version": 201,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.18 01:21:53",
-  "age_sec": 0.1
+  "stamp": "2026.08.18 01:22:59",
+  "age_sec": 0.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -232,12 +232,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 389.19106061589974,
-  "equity": 1125.92,
+  "equity": 1126.62,
   "realized_pnl": 137.69,
-  "open_pnl": -6.29,
+  "open_pnl": -5.59,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 12.59,
+  "return_pct": 12.66,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -306,7 +306,7 @@
    "score": 78,
    "rsi": 62.1,
    "rvol": 0.64,
-   "placed_for": "2026-08-18 01:11"
+   "placed_for": "2026-08-18 01:16"
   }
  ],
  "scan_universe": {
@@ -327,7 +327,13 @@
   "max_price": 130.0,
   "cash_reserve_usd": 75.0
  },
- "rejected": [],
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
  "game": {
   "xp": 3905,
   "level": 8,
@@ -437,7 +443,7 @@
    "name": "👹 בוס היום",
    "target": 90.18,
    "legend": 225.45,
-   "done": -1.32,
+   "done": -0.62,
    "base": 1127.24,
    "pct": 0,
    "pct_legend": 0,
