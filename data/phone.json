@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T15:24:29.343012+00:00",
- "updated_israel": "2026-08-17 18:24",
+ "updated_utc": "2026-08-17T15:26:43.666920+00:00",
+ "updated_israel": "2026-08-17 18:26",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 18:24:16",
+  "updated": "2026.08.17 18:26:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,36 +26,43 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 20.0,
+  "spread_points": 26.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
    {
-    "ticket": "471529983",
+    "ticket": "471530840",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.02,
+    "entry": 4422.64
+   },
+   {
+    "ticket": "471530525",
     "symbol": "XAUUSD",
     "side": "sell",
     "volume": 0.01,
-    "entry": 4423.14
+    "entry": 4421.31
    }
   ],
-  "equity": 197166.56,
-  "stamp": "2026.08.17 18:24:28",
-  "age_sec": 0.5
+  "equity": 197163.1,
+  "stamp": "2026.08.17 18:26:42",
+  "age_sec": 0.8
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12484.05,
-  "equity": 12483.99,
-  "day_pnl": 868.1,
+  "balance": 12485.35,
+  "equity": 12482.12,
+  "day_pnl": 869.4,
   "day_lots": 0.0,
-  "open_positions": 1,
-  "open_lots": 0.01,
+  "open_positions": 2,
+  "open_lots": 0.03,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 18:24:29",
-  "age_sec": 0.1
+  "stamp": "2026.08.17 18:26:42",
+  "age_sec": 1.0
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -76,18 +83,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2484.05,
+     "profit": 2485.35,
      "lots": 40.43,
      "fee": 1132.04,
-     "pocket": 1352.01
+     "pocket": 1353.31
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2591.09,
+    "profit": 2592.39,
     "lots": 47.01,
     "fee": 1316.28,
-    "pocket": 1274.81
+    "pocket": 1276.11
    }
   },
   "last_day": {
@@ -123,16 +130,66 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 782.8370606158998,
-  "equity": 1131.04,
+  "equity": 1130.14,
   "realized_pnl": 137.69,
-  "open_pnl": -1.17,
+  "open_pnl": -2.07,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.1,
+  "return_pct": 13.01,
   "name": "UHTA"
  },
  "signals_swing": [],
- "signals_day": [],
+ "signals_day": [
+  {
+   "kind": "day",
+   "ticker": "TRT",
+   "side": "long",
+   "state": "BUY_NOW",
+   "price": 11.885,
+   "entry": 11.885,
+   "stop": 11.47,
+   "t1": 12.715,
+   "t2": 13.13,
+   "rr1": 2.0,
+   "rsi": 57.6,
+   "rvol": 2.31,
+   "score": 90,
+   "shares": 33,
+   "notional": 392.21,
+   "risk_dollars": 13.69,
+   "room": null,
+   "above_ma50_pct": null,
+   "news": [
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "Trio-Tech Stock Surges 104.4% in 3 Months: What's Driving the Rally?",
+     "src": "Zacks",
+     "time": "2026-06-25 15:40"
+    },
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "Trump Rattled Markets Again and These 3 Forgotten Stocks Under $30 Were the Unlikely Winners",
+     "src": "24/7 Wall St.",
+     "time": "2026-05-18 14:35"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "TRT vs. INTT: Which Semiconductor Testing Stock Is the Better Buy?",
+     "src": "Zacks",
+     "time": "2026-07-13 16:24"
+    }
+   ]
+  }
+ ],
  "game": {
   "xp": 3905,
   "level": 8,
@@ -242,9 +299,9 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": 0.6,
+   "done": -0.3,
    "base": 1130.44,
-   "pct": 1,
+   "pct": 0,
    "pct_legend": 0,
    "beaten": false,
    "legendary": false
