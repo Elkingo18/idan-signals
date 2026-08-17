@@ -341,7 +341,7 @@ input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);bo
         </div>
         <div class="dow"><span>א׳</span><span>ב׳</span><span>ג׳</span><span>ד׳</span><span>ה׳</span><span>ו׳</span><span>ש׳</span></div>
         <div class="cal" id="calGrid"></div>
-        <div class="mini" style="margin-top:9px">כל יום מציג את <b>הנטו לכיס</b> של אותו יום בדולרים, אחרי עמלות לפי מחירון ATRADE. לחיצה על יום — הפירוט המלא. ירוק = יום מרוויח, אדום = מפסיד.</div>
+        <div class="mini" style="margin-top:9px">כל יום מציג את <b>הנטו לכיס</b> של אותו יום בדולרים, אחרי עמלות לפי מחירון Vantage. לחיצה על יום — הפירוט המלא. ירוק = יום מרוויח, אדום = מפסיד.</div>
       </div>
     </section>
 
@@ -354,7 +354,7 @@ input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);bo
           <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareReportWhatsApp()">🟢 שתף דוח בוואטסאפ</button>
           <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="copyReport()">📋 העתק דוח</button>
         </div>
-        <div class="mini" style="margin-top:8px">העמלות מחושבות לפי ‎$37‎ ללוט — המחירון של ATRADE, הברוקר הישראלי המפוקח שנבחר.</div>
+        <div class="mini" style="margin-top:8px">העמלות מחושבות לפי ‎$28‎ ללוט — המחירון של Vantage (חשבון Standard), הברוקר שנבחר.</div>
       </div>
       <div class="card">
         <h3>🚦 איפה זה עומד מול כסף אמיתי</h3>
@@ -481,7 +481,7 @@ input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "2.3.0";
+const APP_VERSION = "2.4.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -548,7 +548,7 @@ const LEARN = [
 <br><b>סטטוס כן:</b> כרגע יש סתירה בין שני ספרי החשבון (המנוע מול הברוקר) — ולפי כלל המועדון, מספר ששני מקורות חלוקים עליו לא מדווח כרווח. עד שהסתירה תיושב תראה על השולחן תג ⚠️.`},
  {i:"🚦", t:"שער שלב 0 — למה אין עדיין כסף אמיתי", b:`כסף אמיתי נכנס רק אחרי שבוט הזהב עומד בכל אלה בדמו: 100 עסקאות לפחות · רווח ממוצע ≥ +0.05R לעסקה · שפל מקסימלי < 25% · לאורך 30 ימי מסחר.
 <br>זו ההגנה של כולנו מהונאה עצמית. מערכת שנראית מדהים שבוע אחד יכולה להיות מזל — 100 עסקאות מפרידות בין מזל לשיטה. הביקורת רצה כל לילה אוטומטית ואי אפשר "לעגל פינות".`},
- {i:"💸", t:"עמלות 101 — למה זה המספר הכי חשוב", b:`כל עסקת זהב עולה כסף לברוקר (מרווח). לוט אחד = 100 אונקיות. אצל ATRADE (הברוקר הישראלי המפוקח שנבחר) העלות היא ‎$0.37‎ לאונקיה = ‎$37‎ ללוט סיבוב מלא.
+ {i:"💸", t:"עמלות 101 — למה זה המספר הכי חשוב", b:`כל עסקת זהב עולה כסף לברוקר (מרווח). לוט אחד = 100 אונקיות. אצל Vantage (חשבון Standard) העלות היא ‎$0.28‎ לאונקיה = ‎$28‎ ללוט סיבוב מלא.
 <br>לכן כל מסך במועדון מראה שלושה מספרים: <b>ברוטו</b> (מה הרוויחו העסקאות) · <b>עמלות</b> (מה הברוקר לוקח) · <b>נטו לכיס</b> (מה באמת נשאר). מערכת שמרוויחה ברוטו ומפסידה נטו — מפסידה.`}
 ];
 
@@ -921,13 +921,13 @@ function renderMember(){
   $("fNet").textContent = money(equity,2); $("fNet").className = "v";
   /* 2.3.0: my own bot's profit -> fees -> pocket, so I see the real number */
   const myLots = +mj.lots_total||0;
-  const myFee = myLots * 37;
+  const myFee = myLots * 28;
   renderFeeBots([{name:"הבוט שלי", profit:since, fee:myFee, pocket:since - myFee,
     lots: myLots||undefined,
-    note: myLots ? "" : "עמלת ATRADE (‎$37‎ ללוט) תנוכה כאן ברגע שהבוט ידווח את הנפח שנסחר."}]);
+    note: myLots ? "" : "עמלת Vantage (‎$28‎ ללוט) תנוכה כאן ברגע שהבוט ידווח את הנפח שנסחר."}]);
   $("fNote").innerHTML = "אלה המספרים של <b>החשבון שלך</b> בלבד (דמו). " +
     (mj.trades_today!==undefined ? (mj.trades_today+" עסקאות היום · ") : "") +
-    "עמלת ATRADE (‎$37‎ ללוט) היא מה שתשלם כשעוברים לכסף אמיתי.";
+    "עמלת Vantage (‎$28‎ ללוט) היא מה שתשלם כשעוברים לכסף אמיתי.";
 
   /* my live position as a card */
   const live = [];
@@ -991,7 +991,7 @@ function renderTable(){
   const wl = document.querySelector(".wallet .k"); if (wl) wl.textContent = walletLab;
 
   /* pot: Idan's model (16.8) - the profit the accounts SHOW, minus the
-     ATRADE fee on the recorded volume, cumulative since the start */
+     Vantage fee on the recorded volume, cumulative since the start */
   const fees = P.fees||{};
   const v2 = fees.schema === 2;
   const SS = v2 ? (fees.since_start||{}) : null;
@@ -1077,18 +1077,18 @@ function renderTable(){
   const botRows = [];
   if (v2 && SS.rows) SS.rows.forEach(r => botRows.push({
     name:r.name, profit:r.profit, fee:r.fee, pocket:r.pocket, lots:r.lots }));
-  /* the swing bot trades stocks at IBKR - no ATRADE per-lot fee model */
+  /* the swing bot trades stocks at IBKR - no per-lot gold fee model */
   const swProfit = (+sh.equity||0) - (+sh.start||10000);
   if (sh.equity!==undefined && !disputed){
     botRows.push({name:"בוט המניות — סווינג", profit:swProfit, fee:0, pocket:swProfit,
-      note:"מניות בחשבון נייר — עמלות הברוקר על מניות אינן במחירון ATRADE, לכן לא מנוכות כאן."});
+      note:"מניות בחשבון נייר — עמלות הברוקר על מניות אינן במחירון Vantage, לכן לא מנוכות כאן."});
   } else if (sh.equity!==undefined && disputed){
     botRows.push({name:"בוט המניות — סווינג", profit:0, fee:0, pocket:0,
       note:"⚠️ שני ספרי החשבון חלוקים — לפי כלל הדיווח הכן, לא מדווח כאן רווח עד שהסתירה תיושב."});
   }
   renderFeeBots(botRows);
   $("fNote").innerHTML =
-    "הרווח כפי שהחשבונות מציגים, פחות עמלת ATRADE (‎$37‎ ללוט) על הנפח שנסחר בפועל · מאז 13.8.2026" +
+    "הרווח כפי שהחשבונות מציגים, פחות עמלת Vantage (‎$28‎ ללוט) על הנפח שנסחר בפועל · מאז 13.8.2026" +
     (bProfit>0 ? " · בסך הכל העמלות לוקחות <b class='wa'>"+Math.round(Math.abs(bFee||0)/bProfit*100)+"%</b> מהרווח" : "");
 
   /* live trades: the gold bot's open position + the stock positions,
@@ -1150,7 +1150,7 @@ function renderCalendar(){
 function dayModal(key){
   const H = memberView() ? memberHistory() : ((PHONE||{}).history||{});
   const e = H[key]; if (!e) return;
-  const gFee = (e.gold_lots||0)*37, cFee = (e.copier_lots||0)*37;
+  const gFee = (e.gold_lots||0)*28, cFee = (e.copier_lots||0)*28;
   const gPocket = (e.gold_net_demo!==undefined) ? e.gold_net_demo - gFee : undefined;
   const cPocket = (e.copier_net_demo!==undefined) ? e.copier_net_demo - cFee : undefined;
   const dFee = (e.fee!==undefined) ? e.fee : (gFee + cFee);
@@ -1159,7 +1159,7 @@ function dayModal(key){
   box.innerHTML = `<div class="mbox">
     <h3 style="color:var(--gold)">📅 ${key.split("-").reverse().join(".")}</h3>
     <table>
-      <tr><th>הבוט</th><th>לוטים</th><th>הרווח בחשבון</th><th>עמלת ATRADE</th><th>נשאר בכיס</th></tr>
+      <tr><th>הבוט</th><th>לוטים</th><th>הרווח בחשבון</th><th>עמלת Vantage</th><th>נשאר בכיס</th></tr>
       ${gPocket!==undefined?`<tr><td>💰 הזהב</td><td>${(e.gold_lots||0).toFixed(2)}</td>
         <td class="${cls(e.gold_net_demo)}">${signed(e.gold_net_demo)}</td><td class="wa">-${money(gFee)}</td>
         <td class="${cls(gPocket)}"><b>${signed(gPocket)}</b></td></tr>`:""}
@@ -1171,7 +1171,7 @@ function dayModal(key){
         <td class="wa">-${money(Math.abs(dFee))}</td>
         <td class="${cls(dPocket)}" style="font-size:16px"><b>${signed(dPocket)}</b></td></tr>
     </table>
-    <div class="mini" style="margin-top:8px">"הרווח בחשבון" = מה שהדמו הראה באותו יום. "נשאר בכיס" = אחרי עמלת ATRADE (‎$37‎ ללוט).</div>
+    <div class="mini" style="margin-top:8px">"הרווח בחשבון" = מה שהדמו הראה באותו יום. "נשאר בכיס" = אחרי עמלת Vantage (‎$28‎ ללוט).</div>
     <button class="btn sec" style="width:100%;margin-top:12px" onclick="this.closest('.modal').remove()">סגור</button>
   </div>`;
   box.onclick = ev => { if (ev.target===box) box.remove(); };
@@ -1187,11 +1187,11 @@ function renderReports(){
   }
   const H = memberView() ? memberHistory() : (P.history||{});
   const keys = Object.keys(H).sort().reverse().slice(0,14);
-  let html = `<tr><th>תאריך</th><th>לוטים</th><th>הרווח בחשבונות</th><th>עמלת ATRADE</th><th>נשאר בכיס</th></tr>`;
+  let html = `<tr><th>תאריך</th><th>לוטים</th><th>הרווח בחשבונות</th><th>עמלת Vantage</th><th>נשאר בכיס</th></tr>`;
   if (!keys.length) html += `<tr><td colspan="5" class="mini">עוד אין ימים מתועדים — הפיד מתמלא אוטומטית מיום ליום.</td></tr>`;
   keys.forEach(k=>{ const e=H[k];
     const lots = e.lots!==undefined?e.lots:((e.gold_lots||0)+(e.copier_lots||0));
-    const fee = e.fee!==undefined?e.fee:lots*37;
+    const fee = e.fee!==undefined?e.fee:lots*28;
     const pocket = e.pocket!==undefined?e.pocket:(e.net_demo||0)-fee;
     html += `<tr><td>${k.split("-").reverse().join(".")}</td>
       <td>${lots.toFixed(2)}</td>
