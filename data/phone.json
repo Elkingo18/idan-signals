@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T01:04:43.516687+00:00",
- "updated_israel": "2026-08-17 04:04",
+ "updated_utc": "2026-08-17T01:05:47.760685+00:00",
+ "updated_israel": "2026-08-17 04:05",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 04:04:36",
+  "updated": "2026.08.17 04:05:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10972.23,
-  "equity": 11173.53,
+  "equity": 11124.03,
   "day_start_equity": 10972.23,
-  "day_pnl": 201.3,
+  "day_pnl": 151.8,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -26,36 +26,50 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "fail: order rejected 0",
-  "spread_points": 41.0,
+  "spread_points": 46.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
    {
-    "ticket": "471268534",
+    "ticket": "471268831",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.03,
+    "entry": 4406.65
+   },
+   {
+    "ticket": "471268709",
     "symbol": "XAUUSD",
     "side": "buy",
     "volume": 0.02,
-    "entry": 4407.51
+    "entry": 4407.87
+   },
+   {
+    "ticket": "471268631",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.01,
+    "entry": 4409.07
    }
   ],
-  "equity": 195637.27,
-  "stamp": "2026.08.17 04:04:42",
-  "age_sec": 0.5
+  "equity": 195629.51,
+  "stamp": "2026.08.17 04:05:46",
+  "age_sec": 0.7
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12024.25,
-  "equity": 12023.06,
-  "day_pnl": 408.3,
+  "balance": 12024.07,
+  "equity": 12015.91,
+  "day_pnl": 408.12,
   "day_lots": 0.0,
-  "open_positions": 2,
-  "open_lots": 0.03,
+  "open_positions": 3,
+  "open_lots": 0.06,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 04:04:42",
-  "age_sec": 0.8
+  "stamp": "2026.08.17 04:05:47",
+  "age_sec": 0.5
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -76,18 +90,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2024.25,
+     "profit": 2024.07,
      "lots": 40.43,
      "fee": 1495.91,
-     "pocket": 528.34
+     "pocket": 528.16
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2996.48,
+    "profit": 2996.3,
     "lots": 47.01,
     "fee": 1739.37,
-    "pocket": 1257.11
+    "pocket": 1256.93
    }
   },
   "last_day": {
