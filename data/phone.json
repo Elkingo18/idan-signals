@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T18:31:42.999567+00:00",
- "updated_israel": "2026-08-17 21:31",
+ "updated_utc": "2026-08-17T18:33:53.984991+00:00",
+ "updated_israel": "2026-08-17 21:33",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 21:31:36",
+  "updated": "2026.08.17 21:33:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,26 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 20.0,
+  "spread_points": 21.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471596164",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.37,
+    "entry": 4399.41
+   },
+   {
+    "ticket": "471595261",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.22,
+    "entry": 4401.68
+   },
    {
     "ticket": "471594534",
     "symbol": "XAUUSD",
@@ -75,21 +89,21 @@
     "entry": 4409.64
    }
   ],
-  "equity": 197246.96,
-  "stamp": "2026.08.17 21:31:42",
-  "age_sec": 0.3
+  "equity": 197113.24,
+  "stamp": "2026.08.17 21:33:53",
+  "age_sec": 0.2
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12647.9,
-  "equity": 12588.98,
+  "equity": 12425.8,
   "day_pnl": 146.35,
   "day_lots": 0.0,
-  "open_positions": 6,
-  "open_lots": 0.32,
+  "open_positions": 8,
+  "open_lots": 0.91,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 21:31:42",
+  "stamp": "2026.08.17 21:33:53",
   "age_sec": 0.4
  },
  "fees": {
@@ -135,10 +149,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 948.41,
+  "equity": 948.61,
   "realized_pnl": -70.27,
-  "open_pnl": 18.68,
-  "return_pct": -5.16
+  "open_pnl": 18.88,
+  "return_pct": -5.14
  },
  "positions": [
   {
@@ -147,9 +161,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.374,
-   "value": 347.48,
-   "unrealized": 18.68,
+   "mark": 17.384,
+   "value": 347.68,
+   "unrealized": 18.88,
    "realized": 0.0,
    "source": "engine"
   }
