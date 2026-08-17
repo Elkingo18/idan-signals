@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T13:35:02.381462+00:00",
- "updated_israel": "2026-08-17 16:34",
+ "updated_utc": "2026-08-17T13:36:09.725686+00:00",
+ "updated_israel": "2026-08-17 16:36",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 16:34:56",
+  "updated": "2026.08.17 16:35:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,26 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 28.0,
+  "spread_points": 21.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471460366",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.03,
+    "entry": 4386.7
+   },
+   {
+    "ticket": "471460138",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.02,
+    "entry": 4387.8
+   },
    {
     "ticket": "471459829",
     "symbol": "XAUUSD",
@@ -40,22 +54,22 @@
     "entry": 4389.04
    }
   ],
-  "equity": 196291.95,
-  "stamp": "2026.08.17 16:35:01",
-  "age_sec": 0.5
+  "equity": 196286.01,
+  "stamp": "2026.08.17 16:36:08",
+  "age_sec": 0.8
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12632.34,
-  "equity": 12631.97,
+  "equity": 12625.98,
   "day_pnl": 1016.39,
   "day_lots": 0.0,
-  "open_positions": 1,
-  "open_lots": 0.01,
+  "open_positions": 2,
+  "open_lots": 0.03,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 16:35:01",
-  "age_sec": 0.4
+  "stamp": "2026.08.17 16:36:04",
+  "age_sec": 4.8
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -100,10 +114,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 949.53,
+  "equity": 949.31,
   "realized_pnl": -70.27,
-  "open_pnl": 19.8,
-  "return_pct": -5.05
+  "open_pnl": 19.58,
+  "return_pct": -5.07
  },
  "positions": [
   {
@@ -112,9 +126,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.43,
-   "value": 348.6,
-   "unrealized": 19.8,
+   "mark": 17.4192,
+   "value": 348.38,
+   "unrealized": 19.58,
    "realized": 0.0,
    "source": "engine"
   }
