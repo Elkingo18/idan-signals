@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T13:15:23.938539+00:00",
- "updated_israel": "2026-08-17 16:15",
+ "updated_utc": "2026-08-17T13:16:29.622891+00:00",
+ "updated_israel": "2026-08-17 16:16",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 16:15:16",
+  "updated": "2026.08.17 16:16:16",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,28 +26,50 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 24.0,
+  "spread_points": 25.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 196269.04,
-  "stamp": "2026.08.17 16:15:23",
-  "age_sec": 0.0
+  "legs": [
+   {
+    "ticket": "471453602",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.03,
+    "entry": 4384.92
+   },
+   {
+    "ticket": "471453498",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.02,
+    "entry": 4383.59
+   },
+   {
+    "ticket": "471453296",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.01,
+    "entry": 4382.47
+   }
+  ],
+  "equity": 196263.06,
+  "stamp": "2026.08.17 16:16:27",
+  "age_sec": 0.7
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12614.1,
-  "equity": 12614.1,
-  "day_pnl": 998.15,
+  "balance": 12614.49,
+  "equity": 12607.08,
+  "day_pnl": 998.54,
   "day_lots": 0.0,
-  "open_positions": 0,
-  "open_lots": 0.0,
+  "open_positions": 3,
+  "open_lots": 0.06,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 16:15:22",
-  "age_sec": 1.3
+  "stamp": "2026.08.17 16:16:27",
+  "age_sec": 1.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -68,18 +90,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2614.1,
+     "profit": 2614.49,
      "lots": 40.43,
      "fee": 1132.04,
-     "pocket": 1482.06
+     "pocket": 1482.45
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2721.14,
+    "profit": 2721.53,
     "lots": 47.01,
     "fee": 1316.28,
-    "pocket": 1404.86
+    "pocket": 1405.25
    }
   },
   "last_day": {
