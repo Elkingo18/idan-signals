@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-17 23:36",
+  "updated_israel": "2026-08-17 23:37",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "skip: daily loss stop",
-    "age_sec": 13.4,
+    "age_sec": 6.7,
     "status": "ok"
    },
    {
@@ -37,8 +37,8 @@
     "mode": "exact 1:1 v2",
     "teacher_equity": 197354.83,
     "teacher_legs": 0,
-    "age_sec": 3003.7,
-    "status": "stale",
+    "age_sec": 0.2,
+    "status": "ok",
     "note": "מעתיק את המורה 1:1 עם שומר-מחיר-כניסה"
    },
    {
@@ -63,8 +63,8 @@
      "file_ok": true
     },
     "broker_equity": 945.73,
-    "age_sec": 307.4,
-    "status": "stale",
+    "age_sec": 81.7,
+    "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
@@ -113,12 +113,12 @@
    "price": 16.44
   }
  ],
- "updated_utc": "2026-08-17T20:36:07.441290+00:00",
- "updated_israel": "2026-08-17 23:36",
+ "updated_utc": "2026-08-17T20:38:21.702893+00:00",
+ "updated_israel": "2026-08-17 23:38",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 23:35:54",
+  "updated": "2026.08.17 23:38:15",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -146,12 +146,12 @@
   "ok": true,
   "legs": [],
   "equity": 197354.83,
-  "stamp": "2026.08.17 23:36:06",
-  "age_sec": 0.7
+  "stamp": "2026.08.17 23:38:20",
+  "age_sec": 1.0
  },
  "slave": {
-  "ok": false,
-  "account": 25946715,
+  "ok": true,
+  "account": 5054417542,
   "balance": 12664.88,
   "equity": 12664.88,
   "day_pnl": 0.0,
@@ -159,12 +159,12 @@
   "day_start_balance": 12664.88,
   "open_positions": 0,
   "open_lots": 0.0,
-  "positions": null,
-  "floating": null,
-  "code_version": null,
+  "positions": [],
+  "floating": 0.0,
+  "code_version": 201,
   "mode": "exact 1:1 v2",
-  "stamp": "2024.08.23 23:58:59",
-  "age_sec": 3003.7
+  "stamp": "2026.08.17 23:38:21",
+  "age_sec": 0.2
  },
  "fees": {
   "rate_atrade_per_oz": 0.28,
@@ -482,6 +482,6 @@
  },
  "tws_connected": true,
  "stocks_stale": false,
- "stocks_as_of": "2026-08-17 23:36",
+ "stocks_as_of": "2026-08-17 23:37",
  "published_by": "publish_phone.py"
 }
