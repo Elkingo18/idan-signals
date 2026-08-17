@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T05:56:34.489321+00:00",
- "updated_israel": "2026-08-17 08:56",
+ "updated_utc": "2026-08-17T05:58:42.670329+00:00",
+ "updated_israel": "2026-08-17 08:58",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 08:56:16",
+  "updated": "2026.08.17 08:58:35",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10536.94,
-  "equity": 10353.64,
+  "equity": 10315.54,
   "day_start_equity": 10972.23,
-  "day_pnl": -618.59,
+  "day_pnl": -656.69,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -26,28 +26,36 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst 0.00atr",
-  "spread_points": 42.0,
+  "spread_points": 25.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 195956.71,
-  "stamp": "2026.08.17 08:56:33",
-  "age_sec": 0.4
+  "legs": [
+   {
+    "ticket": "471320969",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.01,
+    "entry": 4393.68
+   }
+  ],
+  "equity": 195957.25,
+  "stamp": "2026.08.17 08:58:41",
+  "age_sec": 0.6
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12337.31,
-  "equity": 12337.31,
-  "day_pnl": 721.36,
+  "balance": 12337.29,
+  "equity": 12336.83,
+  "day_pnl": 721.34,
   "day_lots": 0.0,
-  "open_positions": 0,
-  "open_lots": 0.0,
+  "open_positions": 1,
+  "open_lots": 0.01,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 08:56:33",
-  "age_sec": 0.6
+  "stamp": "2026.08.17 08:58:41",
+  "age_sec": 1.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -68,18 +76,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2337.31,
+     "profit": 2337.29,
      "lots": 40.43,
      "fee": 1495.91,
-     "pocket": 841.4
+     "pocket": 841.38
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2874.25,
+    "profit": 2874.23,
     "lots": 47.01,
     "fee": 1739.37,
-    "pocket": 1134.88
+    "pocket": 1134.86
    }
   },
   "last_day": {
@@ -115,12 +123,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 378.00859761589555,
-  "equity": 1117.11,
+  "equity": 1117.29,
   "realized_pnl": 122.44,
-  "open_pnl": 0.14,
+  "open_pnl": 0.31,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 11.71,
+  "return_pct": 11.73,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -333,7 +341,7 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": -13.33,
+   "done": -13.15,
    "base": 1130.44,
    "pct": 0,
    "pct_legend": 0,
