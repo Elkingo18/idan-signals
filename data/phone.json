@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T16:00:32.146512+00:00",
- "updated_israel": "2026-08-17 19:00",
+ "updated_utc": "2026-08-17T16:01:40.328454+00:00",
+ "updated_israel": "2026-08-17 19:01",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 19:00:16",
+  "updated": "2026.08.17 19:01:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -61,22 +61,22 @@
     "entry": 4423.33
    }
   ],
-  "equity": 197177.2,
-  "stamp": "2026.08.17 19:00:28",
-  "age_sec": 0.3
+  "equity": 197191.94,
+  "stamp": "2026.08.17 19:01:39",
+  "age_sec": 0.5
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12516.84,
-  "equity": 12502.43,
+  "equity": 12510.46,
   "day_pnl": 15.29,
   "day_lots": 0.0,
   "open_positions": 4,
   "open_lots": 0.11,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 19:00:31",
-  "age_sec": 0.3
+  "stamp": "2026.08.17 19:01:40",
+  "age_sec": 0.0
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -144,15 +144,65 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 782.8370606158998,
-  "equity": 1131.24,
+  "equity": 1131.14,
   "realized_pnl": 137.69,
-  "open_pnl": -0.97,
+  "open_pnl": -1.07,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.12,
+  "return_pct": 13.11,
   "name": "UHTA"
  },
- "signals_swing": [],
+ "signals_swing": [
+  {
+   "kind": "swing",
+   "ticker": "WEN",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 8.545,
+   "entry": 8.8,
+   "stop": 8.0968,
+   "t1": 10.2064,
+   "t2": 11.2612,
+   "rr1": 2.0,
+   "rsi": 60.8,
+   "rvol": 0.28,
+   "score": 78,
+   "shares": 44,
+   "notional": 387.2,
+   "risk_dollars": 30.94,
+   "room": 10.54,
+   "above_ma50_pct": 13.76,
+   "news": [
+    {
+     "summary": "דיווח חיובי · הוצלב ב-2 מקורות שונים",
+     "dir": "pos",
+     "tag": null,
+     "sources": 2,
+     "title": "Wendy's Traders Smell a Buyout Cooking — Nelson Peltz Preps a Bid",
+     "src": "Benzinga",
+     "time": "2026-08-16 21:30"
+    },
+    {
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": "דוחות",
+     "sources": 1,
+     "title": "Q2 Earnings Highlights: Wendy's (NASDAQ:WEN) Vs The Rest Of The Traditional Fast Food Stocks",
+     "src": "StockStory",
+     "time": "2026-08-17 09:18"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "How Burger King Revamped Its Whopper and Overtook Wendy’s",
+     "src": "The Wall Street Journal",
+     "time": "2026-08-17 00:00"
+    }
+   ]
+  }
+ ],
  "signals_day": [],
  "game": {
   "xp": 3905,
@@ -263,7 +313,7 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": 0.8,
+   "done": 0.7,
    "base": 1130.44,
    "pct": 1,
    "pct_legend": 0,
