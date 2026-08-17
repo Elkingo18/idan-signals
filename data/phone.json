@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T13:58:56.720255+00:00",
- "updated_israel": "2026-08-17 16:58",
+ "updated_utc": "2026-08-17T14:01:43.200460+00:00",
+ "updated_israel": "2026-08-17 17:01",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 16:58:56",
+  "updated": "2026.08.17 17:01:35",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,36 +26,43 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 12.0,
+  "spread_points": 46.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
    {
-    "ticket": "471478479",
+    "ticket": "471480789",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.02,
+    "entry": 4407.88
+   },
+   {
+    "ticket": "471480690",
     "symbol": "XAUUSD",
     "side": "sell",
     "volume": 0.01,
-    "entry": 4407.93
+    "entry": 4406.6
    }
   ],
-  "equity": 196932.79,
-  "stamp": "2026.08.17 16:58:55",
-  "age_sec": 0.8
+  "equity": 196943.68,
+  "stamp": "2026.08.17 17:01:42",
+  "age_sec": 0.3
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12212.22,
-  "equity": 12212.72,
-  "day_pnl": 596.27,
+  "balance": 12212.53,
+  "equity": 12224.47,
+  "day_pnl": 596.58,
   "day_lots": 0.0,
-  "open_positions": 1,
-  "open_lots": 0.01,
+  "open_positions": 5,
+  "open_lots": 0.19,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 16:58:55",
-  "age_sec": 1.3
+  "stamp": "2026.08.17 17:01:05",
+  "age_sec": 37.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -76,18 +83,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2212.22,
+     "profit": 2212.53,
      "lots": 40.43,
      "fee": 1132.04,
-     "pocket": 1080.18
+     "pocket": 1080.49
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2319.26,
+    "profit": 2319.57,
     "lots": 47.01,
     "fee": 1316.28,
-    "pocket": 1002.98
+    "pocket": 1003.29
    }
   },
   "last_day": {
@@ -100,10 +107,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 946.8,
+  "equity": 946.6,
   "realized_pnl": -70.27,
-  "open_pnl": 17.07,
-  "return_pct": -5.32
+  "open_pnl": 16.87,
+  "return_pct": -5.34
  },
  "positions": [
   {
@@ -112,9 +119,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.2936,
-   "value": 345.87,
-   "unrealized": 17.07,
+   "mark": 17.2836,
+   "value": 345.67,
+   "unrealized": 16.87,
    "realized": 0.0,
    "source": "engine"
   }
@@ -123,12 +130,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 782.8370606158998,
-  "equity": 1129.14,
+  "equity": 1128.84,
   "realized_pnl": 137.69,
-  "open_pnl": -3.07,
+  "open_pnl": -3.37,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 12.91,
+  "return_pct": 12.88,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -137,20 +144,20 @@
    "ticker": "HBAN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 18.0765,
+   "price": 18.06,
    "entry": 18.58,
    "stop": 18.0411,
    "t1": 19.6579,
    "t2": 20.4663,
    "rr1": 2.0,
-   "rsi": 59.6,
-   "rvol": 0.06,
+   "rsi": 59.4,
+   "rvol": 0.07,
    "score": 83,
    "shares": 21,
    "notional": 390.18,
    "risk_dollars": 11.32,
    "room": 19.96,
-   "above_ma50_pct": 2.98,
+   "above_ma50_pct": 2.89,
    "news": [
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -186,20 +193,20 @@
    "ticker": "WEN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 8.58,
+   "price": 8.545,
    "entry": 8.8,
    "stop": 8.0968,
    "t1": 10.2064,
    "t2": 11.2612,
    "rr1": 2.0,
-   "rsi": 61.4,
-   "rvol": 0.09,
+   "rsi": 60.8,
+   "rvol": 0.1,
    "score": 78,
    "shares": 44,
    "notional": 387.2,
    "risk_dollars": 30.94,
    "room": 10.54,
-   "above_ma50_pct": 14.22,
+   "above_ma50_pct": 13.76,
    "news": [
     {
      "summary": "דיווח חיובי · הוצלב ב-2 מקורות שונים",
@@ -227,6 +234,37 @@
      "title": "How Burger King Revamped Its Whopper and Overtook Wendy’s",
      "src": "The Wall Street Journal",
      "time": "2026-08-17 00:00"
+    }
+   ]
+  },
+  {
+   "kind": "swing",
+   "ticker": "INDI",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 4.725,
+   "entry": 4.85,
+   "stop": 4.273,
+   "t1": 6.004,
+   "t2": 6.8695,
+   "rr1": 2.0,
+   "rsi": 65.2,
+   "rvol": 0.32,
+   "score": 57,
+   "shares": 68,
+   "notional": 329.8,
+   "risk_dollars": 39.24,
+   "room": 6.72,
+   "above_ma50_pct": 20.35,
+   "news": [
+    {
+     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-5 מקורות שונים",
+     "dir": "pos",
+     "tag": "דוחות",
+     "sources": 5,
+     "title": "indie Semiconductor (INDI) Q2 2026 Earnings Call Transcript",
+     "src": "Motley Fool",
+     "time": "2026-08-13 22:15"
     }
    ]
   }
@@ -341,7 +379,7 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": -1.3,
+   "done": -1.6,
    "base": 1130.44,
    "pct": 0,
    "pct_legend": 0,
