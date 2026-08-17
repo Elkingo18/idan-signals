@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T16:06:12.425857+00:00",
- "updated_israel": "2026-08-17 19:06",
+ "updated_utc": "2026-08-17T16:07:19.200927+00:00",
+ "updated_israel": "2026-08-17 19:07",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 19:05:56",
+  "updated": "2026.08.17 19:07:16",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,19 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 22.0,
+  "spread_points": 24.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471546429",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.02,
+    "entry": 4424.93
+   },
    {
     "ticket": "471545533",
     "symbol": "XAUUSD",
@@ -40,21 +47,21 @@
     "entry": 4426.03
    }
   ],
-  "equity": 197200.58,
-  "stamp": "2026.08.17 19:06:11",
-  "age_sec": 0.6
+  "equity": 197200.05,
+  "stamp": "2026.08.17 19:07:18",
+  "age_sec": 0.4
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12521.91,
-  "equity": 12521.37,
+  "equity": 12521.07,
   "day_pnl": 20.36,
   "day_lots": 0.0,
-  "open_positions": 1,
-  "open_lots": 0.01,
+  "open_positions": 2,
+  "open_lots": 0.03,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 19:06:12",
+  "stamp": "2026.08.17 19:07:18",
   "age_sec": 0.1
  },
  "fees": {
@@ -123,12 +130,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 782.8370606158998,
-  "equity": 1131.14,
+  "equity": 1130.74,
   "realized_pnl": 137.69,
-  "open_pnl": -1.07,
+  "open_pnl": -1.47,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.11,
+  "return_pct": 13.07,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -137,20 +144,20 @@
    "ticker": "WEN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 8.545,
+   "price": 8.5701,
    "entry": 8.8,
    "stop": 8.0968,
    "t1": 10.2064,
    "t2": 11.2612,
    "rr1": 2.0,
-   "rsi": 60.8,
+   "rsi": 61.2,
    "rvol": 0.28,
    "score": 78,
    "shares": 44,
    "notional": 387.2,
    "risk_dollars": 30.94,
    "room": 10.54,
-   "above_ma50_pct": 13.76,
+   "above_ma50_pct": 14.09,
    "news": [
     {
      "summary": "דיווח חיובי · הוצלב ב-2 מקורות שונים",
@@ -182,7 +189,57 @@
    ]
   }
  ],
- "signals_day": [],
+ "signals_day": [
+  {
+   "kind": "day",
+   "ticker": "ALT",
+   "side": "long",
+   "state": "BUY_NOW",
+   "price": 3.02,
+   "entry": 3.02,
+   "stop": 2.9,
+   "t1": 3.26,
+   "t2": 3.38,
+   "rr1": 2.0,
+   "rsi": 65.8,
+   "rvol": 3.08,
+   "score": 90,
+   "shares": 131,
+   "notional": 395.62,
+   "risk_dollars": 15.72,
+   "room": null,
+   "above_ma50_pct": null,
+   "news": [
+    {
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
+     "dir": "neu",
+     "tag": "דוחות",
+     "sources": 2,
+     "title": "Altimmune Inc (ALT) (Q2 2026) Earnings Call Highlights: Advancing MASH and AUD Pipelines with ...",
+     "src": "GuruFocus.com",
+     "time": "2026-08-12 23:03"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Kodiak's Q2 Loss Wider Than Expected, Pipeline Development in Focus",
+     "src": "Zacks",
+     "time": "2026-08-14 14:14"
+    },
+    {
+     "summary": "דיווח ניטרלי · התפתחות רגולטורית — יכולה להזיז את המניה בחדות · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": "רגולציה",
+     "sources": 1,
+     "title": "BLTE Stock Rises as FDA Grants Priority Review to Tinlarebant NDA",
+     "src": "Zacks",
+     "time": "2026-08-12 12:54"
+    }
+   ]
+  }
+ ],
  "game": {
   "xp": 3905,
   "level": 8,
@@ -292,9 +349,9 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": 0.7,
+   "done": 0.3,
    "base": 1130.44,
-   "pct": 1,
+   "pct": 0,
    "pct_legend": 0,
    "beaten": false,
    "legendary": false
