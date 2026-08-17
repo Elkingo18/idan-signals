@@ -139,6 +139,21 @@ nav button.on{color:var(--gold)}
 .feebox .v{font-size:20px;font-weight:900;margin-top:3px}
 .feebox.net{border-color:var(--richgold);background:linear-gradient(160deg,#2a2110,#2a2e39)}
 .feebox.net .k{color:var(--gold)}
+/* ---------- per-bot fee breakdown (2.3.0) ---------- */
+.fbot{background:#1a1e29;border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin-top:9px}
+.fbot .fb-h{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.fbot .fb-h .e{font-size:17px}
+.fbot .fb-h b{font-size:14px}
+.fbot .fb-h .lot{margin-inline-start:auto;font-size:10.5px;color:var(--ink3)}
+.fbot .fb-g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;text-align:center}
+.fbot .fb-g div{background:#131722;border:1px solid var(--line);border-radius:8px;padding:7px 4px}
+.fbot .fb-g .k{font-size:10px;color:var(--ink2);margin-bottom:2px}
+.fbot .fb-g .v{font-size:15px;font-weight:900;direction:ltr}
+.fbot .fb-g .pocket{border-color:rgba(212,175,55,.55);background:linear-gradient(160deg,#241f12,#131722)}
+.fbot .fb-g .pocket .k{color:var(--gold)}
+.fbot .fb-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;margin-top:8px;background:#131722}
+.fbot .fb-bar i{display:block}
+.fbot .fb-note{font-size:10.5px;color:var(--ink3);margin-top:5px}
 /* ---------- calendar ---------- */
 .calhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .calhead b{font-size:17px}
@@ -307,6 +322,8 @@ input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);bo
           <div class="feebox"><div class="k">העמלות</div><div class="v wa" id="fFee">—</div></div>
           <div class="feebox net"><div class="k">נשאר בכיס</div><div class="v" id="fNet">—</div></div>
         </div>
+        <!-- 2.3.0 (Idan): every bot separately - profit, fees paid, net in pocket -->
+        <div id="feeBots"></div>
         <div class="mini" id="fNote"></div>
       </div>
       <div class="card"><h3>🃏 העסקאות החיות</h3><div id="openPos" class="mini">—</div></div>
@@ -464,7 +481,7 @@ input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "2.2.0";
+const APP_VERSION = "2.3.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 
@@ -831,6 +848,32 @@ function myData(){
   if (!MYFEED || !MYFEED.j) return null;
   try { return JSON.parse(MYFEED.j) || null; } catch(e){ return null; }
 }
+/* ---------- per-bot: profit -> fees paid -> net in pocket (2.3.0) ------ */
+const BOT_EMOJI = {"בוט הזהב":"💰","The Ladder":"🪜","בוט המניות — סווינג":"📈","הבוט שלי":"🤖"};
+function feeBotCard(o){
+  /* o: {name, profit, fee, pocket, lots, note} */
+  const profit = +o.profit||0, fee = Math.abs(+o.fee||0), pocket = +o.pocket||0;
+  const feeShare = profit > 0 ? Math.min(100, fee/profit*100) : 0;
+  /* the split bar only makes sense when a fee was actually charged -
+     otherwise it would claim "you keep 100%", which is not honest. */
+  const bar = (profit > 0 && fee > 0)
+    ? `<div class="fb-bar"><i style="width:${(100-feeShare).toFixed(1)}%;background:var(--gold)"></i><i style="width:${feeShare.toFixed(1)}%;background:var(--warn)"></i></div>
+       <div class="fb-note">העמלות לוקחות <b class="wa">${Math.round(feeShare)}%</b> מהרווח של הבוט הזה · נשאר לך <b style="color:var(--gold)">${Math.round(100-feeShare)}%</b>` +
+       (o.note ? ` · ${o.note}` : "") + `</div>`
+    : (o.note ? `<div class="fb-note">${o.note}</div>` : "");
+  return `<div class="fbot">
+    <div class="fb-h"><span class="e">${BOT_EMOJI[o.name]||"🤖"}</span><b>${o.name}</b>
+      ${o.lots!==undefined?`<span class="lot">${(+o.lots).toFixed(2)} לוט נסחרו</span>`:""}</div>
+    <div class="fb-g">
+      <div><div class="k">הרוויח בחשבון</div><div class="v ${cls(profit)}">${signed(profit)}</div></div>
+      <div><div class="k">עמלות ששולמו</div><div class="v wa">${fee?("-"+money(fee)):"—"}</div></div>
+      <div class="pocket"><div class="k">נשאר בכיס</div><div class="v ${cls(pocket)}">${signed(pocket)}</div></div>
+    </div>${bar}</div>`;
+}
+function renderFeeBots(rows){
+  const box = $("feeBots"); if (!box) return;
+  box.innerHTML = (rows||[]).map(feeBotCard).join("");
+}
 function feeLabels(a,b,c){
   const ks = document.querySelectorAll('#t-table .feebox .k');
   if (ks[0]) ks[0].textContent = a; if (ks[1]) ks[1].textContent = b; if (ks[2]) ks[2].textContent = c;
@@ -876,9 +919,15 @@ function renderMember(){
   $("fGross").textContent = signed(day); $("fGross").className = "v "+cls(day);
   $("fFee").textContent = signed(since); $("fFee").className = "v "+cls(since);
   $("fNet").textContent = money(equity,2); $("fNet").className = "v";
+  /* 2.3.0: my own bot's profit -> fees -> pocket, so I see the real number */
+  const myLots = +mj.lots_total||0;
+  const myFee = myLots * 37;
+  renderFeeBots([{name:"הבוט שלי", profit:since, fee:myFee, pocket:since - myFee,
+    lots: myLots||undefined,
+    note: myLots ? "" : "עמלת ATRADE (‎$37‎ ללוט) תנוכה כאן ברגע שהבוט ידווח את הנפח שנסחר."}]);
   $("fNote").innerHTML = "אלה המספרים של <b>החשבון שלך</b> בלבד (דמו). " +
     (mj.trades_today!==undefined ? (mj.trades_today+" עסקאות היום · ") : "") +
-    "עמלת ATRADE (‎$37‎ ללוט) חלה כשעוברים לכסף אמיתי.";
+    "עמלת ATRADE (‎$37‎ ללוט) היא מה שתשלם כשעוברים לכסף אמיתי.";
 
   /* my live position as a card */
   const live = [];
@@ -917,6 +966,7 @@ function renderTable(){
     $("fGross").textContent = "🔒"; $("fGross").className = "v";
     $("fFee").textContent = "🔒";
     $("fNet").textContent = "🔒"; $("fNet").className = "v";
+    renderFeeBots([]);
     $("fNote").innerHTML = "דוח העמלות נפתח אחרי שהבוט שלך מחובר ומשדר.";
     $("openPos").innerHTML = "🔒 נפתח אחרי חיבור הבוט שלך.";
     renderBoard([]);
@@ -1023,11 +1073,23 @@ function renderTable(){
   $("fGross").textContent = signed(bProfit); $("fGross").className = "v "+cls(bProfit);
   $("fFee").textContent = "-"+money(Math.abs(bFee||0));
   $("fNet").textContent = signed(bPocket); $("fNet").className = "v "+cls(bPocket);
-  let perBot = "";
-  if (v2 && SS.rows) perBot = SS.rows.map(r => r.name + " " + signed(r.profit) + " − " + money(Math.abs(r.fee)) + " = <b class='"+cls(r.pocket)+"'>" + signed(r.pocket) + "</b>").join(" · ") + "<br>";
-  $("fNote").innerHTML = perBot +
+  /* 2.3.0: a full card per bot - profit, fees paid, net in pocket */
+  const botRows = [];
+  if (v2 && SS.rows) SS.rows.forEach(r => botRows.push({
+    name:r.name, profit:r.profit, fee:r.fee, pocket:r.pocket, lots:r.lots }));
+  /* the swing bot trades stocks at IBKR - no ATRADE per-lot fee model */
+  const swProfit = (+sh.equity||0) - (+sh.start||10000);
+  if (sh.equity!==undefined && !disputed){
+    botRows.push({name:"בוט המניות — סווינג", profit:swProfit, fee:0, pocket:swProfit,
+      note:"מניות בחשבון נייר — עמלות הברוקר על מניות אינן במחירון ATRADE, לכן לא מנוכות כאן."});
+  } else if (sh.equity!==undefined && disputed){
+    botRows.push({name:"בוט המניות — סווינג", profit:0, fee:0, pocket:0,
+      note:"⚠️ שני ספרי החשבון חלוקים — לפי כלל הדיווח הכן, לא מדווח כאן רווח עד שהסתירה תיושב."});
+  }
+  renderFeeBots(botRows);
+  $("fNote").innerHTML =
     "הרווח כפי שהחשבונות מציגים, פחות עמלת ATRADE (‎$37‎ ללוט) על הנפח שנסחר בפועל · מאז 13.8.2026" +
-    (bProfit>0 ? " · העמלות לוקחות <b>"+Math.round(Math.abs(bFee||0)/bProfit*100)+"%</b> מהרווח" : "");
+    (bProfit>0 ? " · בסך הכל העמלות לוקחות <b class='wa'>"+Math.round(Math.abs(bFee||0)/bProfit*100)+"%</b> מהרווח" : "");
 
   /* live trades: the gold bot's open position + the stock positions,
      shown as playing cards on the felt above */
