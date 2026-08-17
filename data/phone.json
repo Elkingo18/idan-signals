@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T08:43:06.202669+00:00",
- "updated_israel": "2026-08-17 11:43",
+ "updated_utc": "2026-08-17T08:44:10.657508+00:00",
+ "updated_israel": "2026-08-17 11:44",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 11:42:56",
+  "updated": "2026.08.17 11:43:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10536.94,
-  "equity": 10437.64,
+  "equity": 10410.64,
   "day_start_equity": 10972.23,
-  "day_pnl": -534.59,
+  "day_pnl": -561.59,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -26,12 +26,19 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst -0.44atr",
-  "spread_points": 22.0,
+  "spread_points": 25.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471363536",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.03,
+    "entry": 4397.31
+   },
    {
     "ticket": "471363119",
     "symbol": "XAUUSD",
@@ -47,22 +54,22 @@
     "entry": 4399.7
    }
   ],
-  "equity": 196109.31,
-  "stamp": "2026.08.17 11:43:05",
-  "age_sec": 0.2
+  "equity": 196107.78,
+  "stamp": "2026.08.17 11:44:09",
+  "age_sec": 0.7
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12483.04,
-  "equity": 12480.31,
+  "equity": 12478.27,
   "day_pnl": 867.09,
   "day_lots": 0.0,
-  "open_positions": 2,
-  "open_lots": 0.03,
+  "open_positions": 3,
+  "open_lots": 0.06,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 11:43:05",
-  "age_sec": 0.6
+  "stamp": "2026.08.17 11:44:09",
+  "age_sec": 0.5
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -130,12 +137,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 387.9900106158967,
-  "equity": 1132.66,
+  "equity": 1126.82,
   "realized_pnl": 137.47,
-  "open_pnl": 0.67,
+  "open_pnl": -5.17,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.27,
+  "return_pct": 12.68,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -348,10 +355,10 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": 2.22,
+   "done": -3.62,
    "base": 1130.44,
-   "pct": 2,
-   "pct_legend": 1,
+   "pct": 0,
+   "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
