@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T04:58:27.031615+00:00",
- "updated_israel": "2026-08-17 07:58",
+ "updated_utc": "2026-08-17T04:59:31.362697+00:00",
+ "updated_israel": "2026-08-17 07:59",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 07:58:16",
+  "updated": "2026.08.17 07:59:16",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10536.94,
-  "equity": 10290.34,
+  "equity": 10210.54,
   "day_start_equity": 10972.23,
-  "day_pnl": -681.89,
+  "day_pnl": -761.69,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -31,23 +31,38 @@
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 195904.92,
-  "stamp": "2026.08.17 07:58:25",
-  "age_sec": 1.0
+  "legs": [
+   {
+    "ticket": "471307239",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.02,
+    "entry": 4390.71
+   },
+   {
+    "ticket": "471307166",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.01,
+    "entry": 4391.93
+   }
+  ],
+  "equity": 195904.71,
+  "stamp": "2026.08.17 07:59:30",
+  "age_sec": 0.3
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12277.6,
-  "equity": 12277.6,
-  "day_pnl": 661.65,
+  "balance": 12278.12,
+  "equity": 12278.65,
+  "day_pnl": 662.17,
   "day_lots": 0.0,
-  "open_positions": 0,
-  "open_lots": 0.0,
+  "open_positions": 2,
+  "open_lots": 0.03,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 07:58:26",
-  "age_sec": 0.6
+  "stamp": "2026.08.17 07:59:30",
+  "age_sec": 0.5
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -68,18 +83,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2277.6,
+     "profit": 2278.12,
      "lots": 40.43,
      "fee": 1495.91,
-     "pocket": 781.69
+     "pocket": 782.21
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2814.54,
+    "profit": 2815.06,
     "lots": 47.01,
     "fee": 1739.37,
-    "pocket": 1075.17
+    "pocket": 1075.69
    }
   },
   "last_day": {
