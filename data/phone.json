@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T07:36:02.189012+00:00",
+ "updated_utc": "2026-08-17T07:36:05.722875+00:00",
  "updated_israel": "2026-08-17 10:36",
  "gold": {
   "schema": 1,
@@ -47,61 +47,56 @@
     "entry": 4408.78
    }
   ],
-  "equity": 196064.15,
-  "stamp": "2026.08.17 10:36:01",
-  "age_sec": 0.2
+  "equity": 196064.78,
+  "stamp": "2026.08.17 10:36:04",
+  "age_sec": 0.7
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12445.36,
-  "equity": 12442.14,
+  "equity": 12442.62,
   "day_pnl": 829.41,
   "day_lots": 0.0,
   "open_positions": 2,
   "open_lots": 0.03,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 10:36:00",
-  "age_sec": 1.4
+  "stamp": "2026.08.17 10:36:05",
+  "age_sec": 0.5
  },
  "fees": {
-  "model": "profit_minus_fee_v2",
-  "schema": 2,
   "rate_atrade_per_oz": 0.37,
-  "start": {
-   "gold": 10000.0,
-   "copier": 10000.0
-  },
-  "since_start": {
-   "rows": [
-    {
-     "name": "בוט הזהב",
-     "profit": 536.94,
-     "lots": 6.58,
-     "fee": 243.46,
-     "pocket": 293.48
-    },
-    {
-     "name": "The Ladder",
-     "profit": 2445.36,
-     "lots": 40.43,
-     "fee": 1495.91,
-     "pocket": 949.45
-    }
-   ],
-   "total": {
-    "name": "סה\"כ",
-    "profit": 2982.3,
-    "lots": 47.01,
-    "fee": 1739.37,
-    "pocket": 1242.93
+  "rate_demo_per_oz": 0.285,
+  "day": "2026/08/14",
+  "is_today": false,
+  "rows": [
+   {
+    "name": "בוט הזהב",
+    "lots": 6.23,
+    "gross": 1179.54,
+    "demo_fee": 177.55,
+    "atrade_fee": 230.51,
+    "net_atrade": 949.03,
+    "net_demo": 1001.98
+   },
+   {
+    "name": "המעתיק",
+    "lots": 40.43,
+    "gross": 2762.56,
+    "demo_fee": 1152.25,
+    "atrade_fee": 1495.91,
+    "net_atrade": 1266.65,
+    "net_demo": 1610.31
    }
-  },
-  "last_day": {
-   "day": "2026.08.14",
-   "is_today": false,
-   "rows": [],
-   "total": {}
+  ],
+  "total": {
+   "name": "סה\"כ",
+   "lots": 46.66,
+   "gross": 3942.1,
+   "demo_fee": 1329.8,
+   "atrade_fee": 1726.42,
+   "net_atrade": 2215.68,
+   "net_demo": 2612.29
   }
  },
  "shadow_wallet": {
@@ -413,5 +408,7 @@
   }
  },
  "tws_connected": true,
- "stocks_stale": false
+ "stocks_stale": false,
+ "stocks_as_of": "2026-08-17 10:36",
+ "published_by": "publish_phone.py"
 }
