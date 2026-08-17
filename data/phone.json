@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T16:06:01.236125+00:00",
+ "updated_utc": "2026-08-17T16:06:12.425857+00:00",
  "updated_israel": "2026-08-17 19:06",
  "gold": {
   "schema": 1,
@@ -40,65 +40,70 @@
     "entry": 4426.03
    }
   ],
-  "equity": 197199.94,
-  "stamp": "2026.08.17 19:05:52",
-  "age_sec": 0.4
+  "equity": 197200.58,
+  "stamp": "2026.08.17 19:06:11",
+  "age_sec": 0.6
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12521.91,
-  "equity": 12520.83,
+  "equity": 12521.37,
   "day_pnl": 20.36,
   "day_lots": 0.0,
   "open_positions": 1,
   "open_lots": 0.01,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 19:06:00",
+  "stamp": "2026.08.17 19:06:12",
   "age_sec": 0.1
  },
  "fees": {
+  "model": "profit_minus_fee_v2",
+  "schema": 2,
   "rate_atrade_per_oz": 0.28,
-  "rate_demo_per_oz": 0.285,
-  "day": "2026/08/14",
-  "is_today": false,
-  "rows": [
-   {
-    "name": "בוט הזהב",
-    "lots": 6.23,
-    "gross": 1179.54,
-    "demo_fee": 177.55,
-    "atrade_fee": 174.44,
-    "net_atrade": 1005.1,
-    "net_demo": 1001.98
-   },
-   {
-    "name": "המעתיק",
-    "lots": 40.43,
-    "gross": 2762.56,
-    "demo_fee": 1152.25,
-    "atrade_fee": 1132.04,
-    "net_atrade": 1630.52,
-    "net_demo": 1610.31
+  "start": {
+   "gold": 10000.0,
+   "copier": 10000.0
+  },
+  "since_start": {
+   "rows": [
+    {
+     "name": "בוט הזהב",
+     "profit": 107.04,
+     "lots": 6.58,
+     "fee": 184.24,
+     "pocket": -77.2
+    },
+    {
+     "name": "The Ladder",
+     "profit": 2521.91,
+     "lots": 40.43,
+     "fee": 1132.04,
+     "pocket": 1389.87
+    }
+   ],
+   "total": {
+    "name": "סה\"כ",
+    "profit": 2628.95,
+    "lots": 47.01,
+    "fee": 1316.28,
+    "pocket": 1312.67
    }
-  ],
-  "total": {
-   "name": "סה\"כ",
-   "lots": 46.66,
-   "gross": 3942.1,
-   "demo_fee": 1329.8,
-   "atrade_fee": 1306.48,
-   "net_atrade": 2635.62,
-   "net_demo": 2612.29
+  },
+  "last_day": {
+   "day": "2026.08.14",
+   "is_today": false,
+   "rows": [],
+   "total": {}
   }
  },
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 949.25,
+  "equity": 948.81,
   "realized_pnl": -70.27,
-  "open_pnl": 19.52,
-  "return_pct": -5.07
+  "open_pnl": 19.08,
+  "return_pct": -5.12
  },
  "positions": [
   {
@@ -107,9 +112,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.416,
-   "value": 348.32,
-   "unrealized": 19.52,
+   "mark": 17.394,
+   "value": 347.88,
+   "unrealized": 19.08,
    "realized": 0.0,
    "source": "engine"
   }
@@ -352,7 +357,5 @@
   }
  },
  "tws_connected": true,
- "stocks_stale": false,
- "stocks_as_of": "2026-08-17 19:04",
- "published_by": "publish_phone.py"
+ "stocks_stale": false
 }
