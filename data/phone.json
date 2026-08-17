@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T07:57:39.727345+00:00",
- "updated_israel": "2026-08-17 10:57",
+ "updated_utc": "2026-08-17T07:58:53.363452+00:00",
+ "updated_israel": "2026-08-17 10:58",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 10:57:36",
+  "updated": "2026.08.17 10:58:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10536.94,
-  "equity": 10662.94,
+  "equity": 10652.74,
   "day_start_equity": 10972.23,
-  "day_pnl": -309.29,
+  "day_pnl": -319.49,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -26,28 +26,36 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst 1.70atr",
-  "spread_points": 28.0,
+  "spread_points": 25.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 196082.72,
-  "stamp": "2026.08.17 10:57:38",
-  "age_sec": 0.7
+  "legs": [
+   {
+    "ticket": "471353000",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.01,
+    "entry": 4404.88
+   }
+  ],
+  "equity": 196081.65,
+  "stamp": "2026.08.17 10:58:51",
+  "age_sec": 0.4
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12454.51,
-  "equity": 12454.51,
+  "equity": 12453.36,
   "day_pnl": 838.56,
   "day_lots": 0.0,
-  "open_positions": 0,
-  "open_lots": 0.0,
+  "open_positions": 1,
+  "open_lots": 0.01,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 10:57:38",
-  "age_sec": 1.1
+  "stamp": "2026.08.17 10:58:51",
+  "age_sec": 1.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -115,12 +123,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 579.7205833301816,
-  "equity": 1138.12,
+  "equity": 1136.1,
   "realized_pnl": 130.47,
-  "open_pnl": 13.12,
+  "open_pnl": 11.09,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.81,
+  "return_pct": 13.61,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -333,9 +341,9 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": 7.68,
+   "done": 5.66,
    "base": 1130.44,
-   "pct": 8,
+   "pct": 6,
    "pct_legend": 3,
    "beaten": false,
    "legendary": false
