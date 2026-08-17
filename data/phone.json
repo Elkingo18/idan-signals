@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T00:07:39.574860+00:00",
- "updated_israel": "2026-08-17 03:07",
+ "updated_utc": "2026-08-17T00:08:44.133903+00:00",
+ "updated_israel": "2026-08-17 03:08",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 03:07:36",
+  "updated": "2026.08.17 03:08:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,26 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst -1.22atr",
-  "spread_points": 30.0,
+  "spread_points": 35.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471252362",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.05,
+    "entry": 4375.76
+   },
+   {
+    "ticket": "471252280",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.03,
+    "entry": 4374.48
+   },
    {
     "ticket": "471252106",
     "symbol": "XAUUSD",
@@ -47,21 +61,21 @@
     "entry": 4372.37
    }
   ],
-  "equity": 195353.35,
-  "stamp": "2026.08.17 03:07:38",
-  "age_sec": 0.5
+  "equity": 195348.06,
+  "stamp": "2026.08.17 03:08:43",
+  "age_sec": 0.1
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 11791.29,
-  "equity": 11789.6,
+  "equity": 11781.3,
   "day_pnl": 175.34,
   "day_lots": 0.0,
-  "open_positions": 2,
-  "open_lots": 0.03,
+  "open_positions": 4,
+  "open_lots": 0.11,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 03:07:38",
+  "stamp": "2026.08.17 03:08:43",
   "age_sec": 0.6
  },
  "fees": {
@@ -130,12 +144,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 377.15644761589346,
-  "equity": 1107.97,
+  "equity": 1108.85,
   "realized_pnl": 121.22,
-  "open_pnl": -7.78,
+  "open_pnl": -6.9,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 10.8,
+  "return_pct": 10.88,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -348,7 +362,7 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": -22.47,
+   "done": -21.59,
    "base": 1130.44,
    "pct": 0,
    "pct_legend": 0,
