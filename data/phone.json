@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T13:47:21.711345+00:00",
- "updated_israel": "2026-08-17 16:47",
+ "updated_utc": "2026-08-17T13:48:28.043458+00:00",
+ "updated_israel": "2026-08-17 16:48",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 16:47:15",
+  "updated": "2026.08.17 16:48:15",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,50 +26,57 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 24.0,
+  "spread_points": 28.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
    {
-    "ticket": "471468201",
+    "ticket": "471468772",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.05,
+    "entry": 4390.23
+   },
+   {
+    "ticket": "471468696",
     "symbol": "XAUUSD",
     "side": "sell",
     "volume": 0.03,
-    "entry": 4389.26
+    "entry": 4389.19
    },
    {
-    "ticket": "471468062",
+    "ticket": "471468657",
     "symbol": "XAUUSD",
     "side": "sell",
     "volume": 0.02,
-    "entry": 4388.04
+    "entry": 4388.08
    },
    {
-    "ticket": "471467950",
+    "ticket": "471468541",
     "symbol": "XAUUSD",
     "side": "sell",
     "volume": 0.01,
-    "entry": 4386.68
+    "entry": 4386.96
    }
   ],
-  "equity": 196307.97,
-  "stamp": "2026.08.17 16:47:20",
-  "age_sec": 0.8
+  "equity": 196294.6,
+  "stamp": "2026.08.17 16:48:27",
+  "age_sec": 0.2
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12650.72,
-  "equity": 12647.82,
-  "day_pnl": 1034.77,
+  "balance": 12656.9,
+  "equity": 12638.14,
+  "day_pnl": 1040.95,
   "day_lots": 0.0,
-  "open_positions": 3,
-  "open_lots": 0.06,
+  "open_positions": 4,
+  "open_lots": 0.11,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 16:47:21",
-  "age_sec": 0.1
+  "stamp": "2026.08.17 16:48:27",
+  "age_sec": 0.4
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -90,18 +97,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2650.72,
+     "profit": 2656.9,
      "lots": 40.43,
      "fee": 1132.04,
-     "pocket": 1518.68
+     "pocket": 1524.86
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 2757.76,
+    "profit": 2763.94,
     "lots": 47.01,
     "fee": 1316.28,
-    "pocket": 1441.48
+    "pocket": 1447.66
    }
   },
   "last_day": {
@@ -114,10 +121,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 945.01,
+  "equity": 945.13,
   "realized_pnl": -70.27,
-  "open_pnl": 15.28,
-  "return_pct": -5.5
+  "open_pnl": 15.4,
+  "return_pct": -5.49
  },
  "positions": [
   {
@@ -126,9 +133,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.204,
-   "value": 344.08,
-   "unrealized": 15.28,
+   "mark": 17.21,
+   "value": 344.2,
+   "unrealized": 15.4,
    "realized": 0.0,
    "source": "engine"
   }
