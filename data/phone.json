@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T05:02:44.339651+00:00",
- "updated_israel": "2026-08-17 08:02",
+ "updated_utc": "2026-08-17T05:03:48.585022+00:00",
+ "updated_israel": "2026-08-17 08:03",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 08:02:36",
+  "updated": "2026.08.17 08:03:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10536.94,
-  "equity": 10260.04,
+  "equity": 10256.14,
   "day_start_equity": 10972.23,
-  "day_pnl": -712.19,
+  "day_pnl": -716.09,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -26,12 +26,19 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 25.0,
+  "spread_points": 24.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471308358",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.02,
+    "entry": 4392.33
+   },
    {
     "ticket": "471308114",
     "symbol": "XAUUSD",
@@ -40,22 +47,22 @@
     "entry": 4391.2
    }
   ],
-  "equity": 195907.46,
-  "stamp": "2026.08.17 08:02:43",
-  "age_sec": 0.3
+  "equity": 195907.64,
+  "stamp": "2026.08.17 08:03:47",
+  "age_sec": 0.5
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12282.6,
-  "equity": 12281.3,
+  "equity": 12281.92,
   "day_pnl": 666.65,
   "day_lots": 0.0,
-  "open_positions": 1,
-  "open_lots": 0.01,
+  "open_positions": 2,
+  "open_lots": 0.03,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 08:02:42",
-  "age_sec": 1.4
+  "stamp": "2026.08.17 08:03:46",
+  "age_sec": 1.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
