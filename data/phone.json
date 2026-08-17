@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T15:41:23.138273+00:00",
- "updated_israel": "2026-08-17 18:41",
+ "updated_utc": "2026-08-17T15:42:30.101342+00:00",
+ "updated_israel": "2026-08-17 18:42",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 18:41:16",
+  "updated": "2026.08.17 18:42:16",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,19 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 25.0,
+  "spread_points": 21.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471537173",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.05,
+    "entry": 4420.66
+   },
    {
     "ticket": "471536743",
     "symbol": "XAUUSD",
@@ -54,22 +61,22 @@
     "entry": 4423.96
    }
   ],
-  "equity": 197169.63,
-  "stamp": "2026.08.17 18:41:22",
+  "equity": 197168.58,
+  "stamp": "2026.08.17 18:42:29",
   "age_sec": 0.3
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12504.83,
-  "equity": 12493.29,
+  "equity": 12490.93,
   "day_pnl": 3.28,
   "day_lots": 0.0,
-  "open_positions": 3,
-  "open_lots": 0.06,
+  "open_positions": 4,
+  "open_lots": 0.11,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 18:41:22",
-  "age_sec": 0.0
+  "stamp": "2026.08.17 18:42:29",
+  "age_sec": 0.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -114,10 +121,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 949.01,
+  "equity": 949.26,
   "realized_pnl": -70.27,
-  "open_pnl": 19.28,
-  "return_pct": -5.1
+  "open_pnl": 19.53,
+  "return_pct": -5.07
  },
  "positions": [
   {
@@ -126,9 +133,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.404,
-   "value": 348.08,
-   "unrealized": 19.28,
+   "mark": 17.4166,
+   "value": 348.33,
+   "unrealized": 19.53,
    "realized": 0.0,
    "source": "engine"
   }
@@ -137,12 +144,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 782.8370606158998,
-  "equity": 1130.74,
+  "equity": 1131.54,
   "realized_pnl": 137.69,
-  "open_pnl": -1.47,
+  "open_pnl": -0.67,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.07,
+  "return_pct": 13.15,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -151,20 +158,20 @@
    "ticker": "WEN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 8.5477,
+   "price": 8.55,
    "entry": 8.8,
    "stop": 8.0968,
    "t1": 10.2064,
    "t2": 11.2612,
    "rr1": 2.0,
-   "rsi": 60.8,
-   "rvol": 0.26,
+   "rsi": 60.9,
+   "rvol": 0.27,
    "score": 78,
-   "shares": 44,
-   "notional": 387.2,
-   "risk_dollars": 30.94,
+   "shares": 45,
+   "notional": 396.0,
+   "risk_dollars": 31.64,
    "room": 10.54,
-   "above_ma50_pct": 13.8,
+   "above_ma50_pct": 13.83,
    "news": [
     {
      "summary": "דיווח חיובי · הוצלב ב-2 מקורות שונים",
@@ -199,81 +206,41 @@
  "signals_day": [
   {
    "kind": "day",
-   "ticker": "TRT",
+   "ticker": "CLF",
    "side": "long",
    "state": "BUY_NOW",
-   "price": 11.95,
-   "entry": 11.95,
-   "stop": 11.47,
-   "t1": 12.91,
-   "t2": 13.39,
+   "price": 11.872,
+   "entry": 11.872,
+   "stop": 11.6001,
+   "t1": 12.4158,
+   "t2": 12.6877,
    "rr1": 2.0,
-   "rsi": 58.9,
-   "rvol": 3.86,
-   "score": 90,
+   "rsi": 66.7,
+   "rvol": 1.91,
+   "score": 73,
    "shares": 33,
-   "notional": 394.35,
-   "risk_dollars": 15.84,
+   "notional": 391.78,
+   "risk_dollars": 8.97,
    "room": null,
    "above_ma50_pct": null,
    "news": [
     {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": "דוחות",
      "sources": 1,
-     "title": "Trio-Tech Stock Surges 104.4% in 3 Months: What's Driving the Rally?",
+     "title": "L.B. Foster's Earnings and Revenues Surpass Estimates in Q2",
      "src": "Zacks",
-     "time": "2026-06-25 15:40"
-    },
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Trump Rattled Markets Again and These 3 Forgotten Stocks Under $30 Were the Unlikely Winners",
-     "src": "24/7 Wall St.",
-     "time": "2026-05-18 14:35"
+     "time": "2026-08-13 12:06"
     },
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": null,
      "sources": 1,
-     "title": "TRT vs. INTT: Which Semiconductor Testing Stock Is the Better Buy?",
+     "title": "Cleveland-Cliffs (CLF)'s Technical Outlook is Bright After Key Golden Cross",
      "src": "Zacks",
-     "time": "2026-07-13 16:24"
-    }
-   ]
-  },
-  {
-   "kind": "day",
-   "ticker": "UIS",
-   "side": "long",
-   "state": "BUY_NOW",
-   "price": 2.84,
-   "entry": 2.84,
-   "stop": 2.8,
-   "t1": 2.92,
-   "t2": 2.96,
-   "rr1": 2.0,
-   "rsi": 57.4,
-   "rvol": 1.61,
-   "score": 73,
-   "shares": 139,
-   "notional": 394.76,
-   "risk_dollars": 5.56,
-   "room": null,
-   "above_ma50_pct": null,
-   "news": [
-    {
-     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
-     "dir": "pos",
-     "tag": "דוחות",
-     "sources": 4,
-     "title": "Unisys (UIS) Q2 2026 Earnings Call Transcript",
-     "src": "Motley Fool",
-     "time": "2026-08-08 00:31"
+     "time": "2026-07-31 13:55"
     }
    ]
   }
@@ -387,9 +354,9 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": 0.3,
+   "done": 1.1,
    "base": 1130.44,
-   "pct": 0,
+   "pct": 1,
    "pct_legend": 0,
    "beaten": false,
    "legendary": false
