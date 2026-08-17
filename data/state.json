@@ -2,37 +2,22 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 649.1955580000056,
-  "equity": 963.84,
-  "realized_pnl": -35.37,
-  "open_pnl": 0.2,
+  "cash": 962.6782297643795,
+  "equity": 962.68,
+  "realized_pnl": -36.32,
+  "open_pnl": 0.0,
   "peak_equity": 1021.75,
   "max_dd_pct": -7.21,
-  "return_pct": -3.62,
+  "return_pct": -3.73,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [
+ "positions": [],
+ "closed": [
   {
-   "id": "LYFT-1786133382",
-   "kind": "swing",
    "ticker": "LYFT",
+   "kind": "swing",
    "side": "long",
-   "sector": "travel",
-   "qty": 18,
-   "qty_left": 18,
-   "entry": 17.4687,
-   "stop": 16.3652,
-   "orig_stop": 16.3652,
-   "t1": 19.6496,
-   "t2": 21.2917,
-   "opened": "2026-08-07T23:09:42.465703+03:00",
-   "opened_day": "2026-08-07",
-   "risk_open": 20.07,
-   "fees": 1.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 80,
    "pattern": null,
    "snap": {
     "rsi": 69.1,
@@ -42,11 +27,22 @@
     "regime_ok": true,
     "notional": 314.28
    },
-   "last": 17.48,
-   "margin": 0.0
-  }
- ],
- "closed": [
+   "stop": 16.3652,
+   "t1": 19.6496,
+   "t2": 21.2917,
+   "fees": 2.0,
+   "qty": 18,
+   "entry": 17.4687,
+   "exit": 17.4713,
+   "pnl": -0.95,
+   "r": -0.05,
+   "reason": "time_stop",
+   "opened": "2026-08-07T23:09:42.465703+03:00",
+   "closed": "2026-08-17T05:33:54.207595+03:00",
+   "day": "2026-08-17",
+   "held_days": 10,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -524,7 +520,7 @@
     "room": 22.02,
     "pivot_low": 13.49,
     "pivot_high": 17.755,
-    "rvol": 0.46,
+    "rvol": 0.51,
     "above_ma50_pct": 14.9,
     "shares": 17,
     "notional": 301.83,
@@ -548,29 +544,68 @@
       "dir": "neu",
       "tag": null,
       "sources": 1,
+      "title": "Billionaire Investor David Tepper Just Exited 12 Stocks. These 5 Are the Most Surprising.",
+      "url": "https://247wallst.com/investing/2026/08/16/billionaire-investor-david-tepper-just-exited-12-stocks-these-5-are-the-most-surprising/",
+      "src": "24/7 Wall St.",
+      "time": "2026-08-16 21:43"
+     },
+     {
+      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+      "dir": "neu",
+      "tag": null,
+      "sources": 1,
       "title": "Uber Stock Looks Cheap. Here’s Why.",
       "url": "https://www.barrons.com/articles/buy-uber-stock-pick-price-cf718bc4?siteid=yhoof2&yptr=yahoo",
       "src": "Barrons.com",
       "time": "2026-08-14 16:50"
-     },
-     {
-      "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-      "dir": "neu",
-      "tag": "דוחות",
-      "sources": 1,
-      "title": "Lyft (LYFT) Q2 2026 Earnings Call Transcript",
-      "url": "https://www.fool.com/earnings/call-transcripts/2026/08/13/lyft-lyft-q2-2026-earnings-call-transcript/",
-      "src": "Motley Fool",
-      "time": "2026-08-13 21:58"
      }
     ],
     "regime_ok": true
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "long",
+    "state": "WATCH_BUY",
+    "pattern": "המשך מגמה",
+    "price": 4451.3,
+    "entry": 4451.3,
+    "stop": 4443.4,
+    "t1": 4463.16,
+    "t2": 4475.03,
+    "rr1": 1.5,
+    "atr": 5.27,
+    "rsi": 50.0,
+    "vwap": 4448.95,
+    "stop_pct": 0.18,
+    "ounces": 1.51,
+    "notional": 6721.46,
+    "margin": 336.07,
+    "risk_dollars": 11.93,
+    "shares": 1.51,
+    "score": 51,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
+  "2026-08-17": {
+   "pnl": -0.95,
+   "trades": 1,
+   "wins": 0,
+   "losses": 1,
+   "r": -0.05,
+   "tickers": [
+    "LYFT"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "red"
+  },
   "2026-08-14": {
    "pnl": -9.55,
    "trades": 1,
@@ -758,12 +793,18 @@
   [
    "2026-08-14",
    963.84
+  ],
+  [
+   "2026-08-17",
+   962.68
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "LYFT": 3
+ },
  "game": {
-  "xp": 690,
-  "level": 2,
+  "xp": 720,
+  "level": 3,
   "streak": 0,
   "best_streak": 4,
   "badges": [
@@ -866,30 +907,34 @@
    }
   ],
   "boss": {
-   "day": "2026-08-14",
+   "day": "2026-08-17",
    "name": "👹 בוס היום",
-   "target": 77.37,
-   "legend": 193.42,
-   "done": -3.24,
-   "base": 967.08,
+   "target": 77.01,
+   "legend": 192.54,
+   "done": 0.0,
+   "base": 962.68,
    "pct": 0,
    "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
-  "level_name": "🐣 מתלמד",
-  "xp_this_level": 327,
-  "xp_next_level": 332
+  "level_name": "🗡️ סוחר זוטר",
+  "xp_this_level": 25,
+  "xp_next_level": 407
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": -9.55,
-  "week_pnl": -40.08,
-  "daily_limit": -57.83,
-  "weekly_limit": -115.66
+  "day_pnl": -0.95,
+  "week_pnl": -0.95,
+  "daily_limit": -57.76,
+  "weekly_limit": -115.52
  },
  "log": [
+  {
+   "t": "2026-08-17 05:34",
+   "m": "EXIT LYFT x18 @ 17.4713 (time_stop) P/L $-0.95 / -0.05R"
+  },
   {
    "t": "2026-08-14 10:47",
    "m": "EXIT XAUUSD x1.54 @ 4377.8500 (stop) P/L $-9.55 / -1.02R"
@@ -1035,30 +1080,30 @@
   "spy": 776.34
  },
  "periods": {
-  "day": -9.55,
-  "week": -40.08,
-  "month": -35.37,
-  "quarter": -35.37,
-  "half": -35.37,
-  "year": -35.37,
-  "two_year": -35.37,
-  "all": -35.37,
-  "all_pct": -3.54
+  "day": -0.95,
+  "week": -41.03,
+  "month": -36.32,
+  "quarter": -36.32,
+  "half": -36.32,
+  "year": -36.32,
+  "two_year": -36.32,
+  "all": -36.32,
+  "all_pct": -3.63
  },
  "rejected": [],
- "updated_utc": "2026-08-14T20:40:38.895657+00:00",
- "updated_israel": "2026-08-14 23:40",
+ "updated_utc": "2026-08-17T02:33:54.207595+00:00",
+ "updated_israel": "2026-08-17 05:33",
  "market": {
   "open": false,
-  "et": "16:40",
-  "il": "23:40"
+  "et": "22:33",
+  "il": "05:33"
  },
  "stats": {
-  "trades": 16,
-  "win_rate": 50.0,
+  "trades": 17,
+  "win_rate": 47.1,
   "pf": 0.66,
   "avg_r": -0.13,
-  "expectancy": -2.21,
+  "expectancy": -2.14,
   "best": 15.19,
   "worst": -22.5
  },
@@ -1067,8 +1112,8 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-08-14",
-  "equity": 967.08
+  "date": "2026-08-17",
+  "equity": 962.68
  },
  "universe_view": [
   {
@@ -1077,7 +1122,7 @@
    "px": 5.41,
    "trend": 9.9,
    "rsi": 59,
-   "rvol": 0.7,
+   "rvol": 0.9,
    "df": 1,
    "state": "none"
   },
@@ -1087,7 +1132,7 @@
    "px": 10.76,
    "trend": -8.4,
    "rsi": 54,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 1,
    "state": "none"
   },
@@ -1097,7 +1142,7 @@
    "px": 8.9,
    "trend": -7.0,
    "rsi": 48,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1105,8 +1150,8 @@
    "t": "ERIC",
    "sec": "tech",
    "px": 10.27,
-   "trend": -4.6,
-   "rsi": 50,
+   "trend": -6.0,
+   "rsi": 49,
    "rvol": 0.9,
    "df": 1,
    "state": "none"
@@ -1125,9 +1170,9 @@
    "t": "LUMN",
    "sec": "tech",
    "px": 6.72,
-   "trend": -6.0,
+   "trend": -6.9,
    "rsi": 52,
-   "rvol": 1.0,
+   "rvol": 1.4,
    "df": 0,
    "state": "none"
   },
@@ -1135,7 +1180,7 @@
    "t": "INFY",
    "sec": "tech",
    "px": 12.09,
-   "trend": 4.4,
+   "trend": 4.0,
    "rsi": 52,
    "rvol": 0.4,
    "df": 0,
@@ -1147,7 +1192,7 @@
    "px": 16.01,
    "trend": 33.5,
    "rsi": 70,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -1155,7 +1200,7 @@
    "t": "VTRS",
    "sec": "health",
    "px": 16.23,
-   "trend": -2.1,
+   "trend": -1.9,
    "rsi": 41,
    "rvol": 0.7,
    "df": 0,
@@ -1166,8 +1211,8 @@
    "sec": "health",
    "px": 13.72,
    "trend": 1.6,
-   "rsi": 77,
-   "rvol": 0.5,
+   "rsi": 76,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -1197,7 +1242,7 @@
    "px": 6.81,
    "trend": -15.8,
    "rsi": 39,
-   "rvol": 0.4,
+   "rvol": 0.5,
    "df": 0,
    "state": "none"
   },
@@ -1205,9 +1250,9 @@
    "t": "TNDM",
    "sec": "health",
    "px": 22.72,
-   "trend": 30.2,
-   "rsi": 70,
-   "rvol": 0.7,
+   "trend": 29.1,
+   "rsi": 69,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -1225,9 +1270,9 @@
    "t": "NEO",
    "sec": "health",
    "px": 15.94,
-   "trend": 14.7,
-   "rsi": 58,
-   "rvol": 0.4,
+   "trend": 16.9,
+   "rsi": 59,
+   "rvol": 0.3,
    "df": 0,
    "state": "none"
   },
@@ -1245,7 +1290,7 @@
    "t": "AMRX",
    "sec": "health",
    "px": 18.15,
-   "trend": 6.0,
+   "trend": 7.4,
    "rsi": 55,
    "rvol": 1.0,
    "df": 0,
@@ -1267,7 +1312,7 @@
    "px": 15.23,
    "trend": 13.1,
    "rsi": 65,
-   "rvol": 1.9,
+   "rvol": 2.0,
    "df": 1,
    "state": "none"
   },
@@ -1275,9 +1320,9 @@
    "t": "SAN",
    "sec": "fintech",
    "px": 14.76,
-   "trend": 7.9,
-   "rsi": 64,
-   "rvol": 1.2,
+   "trend": 8.6,
+   "rsi": 65,
+   "rvol": 1.4,
    "df": 0,
    "state": "none"
   },
@@ -1285,9 +1330,9 @@
    "t": "ITUB",
    "sec": "fintech",
    "px": 7.4,
-   "trend": -8.3,
-   "rsi": 30,
-   "rvol": 1.4,
+   "trend": -8.1,
+   "rsi": 31,
+   "rvol": 1.5,
    "df": 0,
    "state": "none"
   },
@@ -1305,7 +1350,7 @@
    "t": "HBAN",
    "sec": "fintech",
    "px": 17.91,
-   "trend": 2.2,
+   "trend": 2.5,
    "rsi": 57,
    "rvol": 0.6,
    "df": 1,
@@ -1315,9 +1360,9 @@
    "t": "FLG",
    "sec": "fintech",
    "px": 14.25,
-   "trend": -2.3,
+   "trend": -2.0,
    "rsi": 47,
-   "rvol": 0.4,
+   "rvol": 0.5,
    "df": 0,
    "state": "none"
   },
@@ -1347,7 +1392,7 @@
    "px": 2.54,
    "trend": 3.7,
    "rsi": 53,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1357,7 +1402,7 @@
    "px": 15.77,
    "trend": 9.9,
    "rsi": 61,
-   "rvol": 0.5,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -1385,8 +1430,8 @@
    "t": "NXE",
    "sec": "cleanenergy",
    "px": 10.39,
-   "trend": 6.5,
-   "rsi": 60,
+   "trend": 6.0,
+   "rsi": 59,
    "rvol": 0.4,
    "df": 0,
    "state": "none"
@@ -1405,9 +1450,9 @@
    "t": "SHLS",
    "sec": "cleanenergy",
    "px": 8.45,
-   "trend": -13.8,
-   "rsi": 43,
-   "rvol": 0.6,
+   "trend": -13.2,
+   "rsi": 44,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -1475,9 +1520,9 @@
    "t": "KVUE",
    "sec": "consumer",
    "px": 19.2,
-   "trend": 1.6,
-   "rsi": 51,
-   "rvol": 0.4,
+   "trend": 1.9,
+   "rsi": 52,
+   "rvol": 0.5,
    "df": 1,
    "state": "none"
   },
@@ -1485,9 +1530,9 @@
    "t": "KSS",
    "sec": "consumer",
    "px": 19.21,
-   "trend": 7.3,
-   "rsi": 54,
-   "rvol": 1.0,
+   "trend": 8.1,
+   "rsi": 56,
+   "rvol": 1.1,
    "df": 0,
    "state": "none"
   },
@@ -1495,7 +1540,7 @@
    "t": "AEO",
    "sec": "consumer",
    "px": 16.17,
-   "trend": -6.7,
+   "trend": -6.3,
    "rsi": 40,
    "rvol": 0.7,
    "df": 0,
@@ -1507,7 +1552,7 @@
    "px": 15.62,
    "trend": 10.0,
    "rsi": 63,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -1525,8 +1570,8 @@
    "t": "GT",
    "sec": "consumer",
    "px": 6.11,
-   "trend": -7.3,
-   "rsi": 38,
+   "trend": -6.1,
+   "rsi": 39,
    "rvol": 1.0,
    "df": 1,
    "state": "none"
@@ -1535,9 +1580,9 @@
    "t": "UAA",
    "sec": "consumer",
    "px": 5.36,
-   "trend": -15.9,
+   "trend": -15.4,
    "rsi": 30,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -1557,7 +1602,7 @@
    "px": 13.58,
    "trend": 14.5,
    "rsi": 65,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -1687,7 +1732,7 @@
    "px": 4.71,
    "trend": 19.9,
    "rsi": 65,
-   "rvol": 1.9,
+   "rvol": 2.0,
    "df": 0,
    "state": "none"
   },
@@ -1717,7 +1762,7 @@
    "px": 4.52,
    "trend": -7.8,
    "rsi": 39,
-   "rvol": 0.7,
+   "rvol": 1.1,
    "df": 1,
    "state": "none"
   },
@@ -1727,7 +1772,7 @@
    "px": 11.7,
    "trend": -11.4,
    "rsi": 36,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -1765,7 +1810,7 @@
    "t": "SBS",
    "sec": "utilities",
    "px": 4.6,
-   "trend": -16.8,
+   "trend": -16.7,
    "rsi": 23,
    "rvol": 1.6,
    "df": 0,
@@ -1838,7 +1883,7 @@
    "t": "ABBV",
    "sec": "premium",
    "px": 249.46,
-   "trend": 2.3,
+   "trend": 2.0,
    "state": "premium"
   },
   {
@@ -1922,7 +1967,7 @@
    "t": "DE",
    "sec": "premium",
    "px": 608.85,
-   "trend": 1.1,
+   "trend": 1.4,
    "state": "premium"
   },
   {
@@ -1957,7 +2002,7 @@
    "t": "TGT",
    "sec": "premium",
    "px": 154.48,
-   "trend": 12.2,
+   "trend": 12.6,
    "state": "premium"
   },
   {
@@ -2006,7 +2051,7 @@
    "t": "IRDM",
    "sec": "premium",
    "px": 50.2,
-   "trend": 4.6,
+   "trend": 4.4,
    "state": "premium"
   },
   {
@@ -2083,63 +2128,63 @@
    "t": "SQM",
    "sec": "premium",
    "px": 74.32,
-   "trend": 1.7,
+   "trend": 0.7,
    "state": "premium"
   },
   {
    "t": "IIPR",
    "sec": "premium",
    "px": 55.99,
-   "trend": -8.0,
+   "trend": -7.6,
    "state": "premium"
   },
   {
    "t": "SMG",
    "sec": "premium",
    "px": 60.94,
-   "trend": -6.9,
+   "trend": -6.0,
    "state": "premium"
   },
   {
    "t": "JAZZ",
    "sec": "premium",
    "px": 244.96,
-   "trend": 0.8,
+   "trend": 1.4,
    "state": "premium"
   },
   {
    "t": "AWK",
    "sec": "premium",
    "px": 136.2,
-   "trend": 3.6,
+   "trend": 4.1,
    "state": "premium"
   },
   {
    "t": "XYL",
    "sec": "premium",
    "px": 119.68,
-   "trend": 2.1,
+   "trend": 2.3,
    "state": "premium"
   },
   {
    "t": "VLTO",
    "sec": "premium",
    "px": 97.68,
-   "trend": 7.6,
+   "trend": 7.9,
    "state": "premium"
   },
   {
    "t": "ECL",
    "sec": "premium",
    "px": 276.11,
-   "trend": 0.8,
+   "trend": 1.0,
    "state": "premium"
   },
   {
    "t": "WTRG",
    "sec": "premium",
    "px": 40.38,
-   "trend": 4.3,
+   "trend": 4.7,
    "state": "premium"
   }
  ],
@@ -2156,10 +2201,10 @@
    },
    "desc": "פריצות מעל שיא משמעותי עם ווליום, מגמה ו-RSI. סטופ = ההדוק מבין השפל ל-1.6×ATR. יעדים 2R/3.5R.",
    "today": {
-    "trades": 0,
-    "pnl": 0
+    "trades": 1,
+    "pnl": -0.95
    },
-   "open_now": 1
+   "open_now": 0
   },
   "day": {
    "icon": "⚡",
@@ -2179,12 +2224,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1303,
+   "bars": 1084,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4429.7,
-   "signals": 0,
-   "today_trades": 1,
+   "last_price": 4451.3,
+   "signals": 1,
+   "today_trades": 0,
    "health": {
     "n": 16,
     "exp": -2.21,
@@ -2194,8 +2239,8 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 1,
-    "pnl": -9.55
+    "trades": 0,
+    "pnl": 0
    },
    "open_now": 0
   },
@@ -2203,8 +2248,8 @@
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 20.07,
+   "open": 0,
+   "heat": 0,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -2217,7 +2262,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 12,
    "covered": 1,
-   "updated": "2026-08-14 23:40"
+   "updated": "2026-08-17 05:34"
   }
  },
  "gold_today": {
@@ -2226,7 +2271,7 @@
  },
  "health": {
   "swing": {
-   "n": 0,
+   "n": 1,
    "status": "na"
   },
   "gold": {
@@ -2257,7 +2302,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 3.1,
-   "trend": 2.0,
+   "trend": 1.6,
    "rsi": 53,
    "rvol": 0.4,
    "near": false
@@ -2269,7 +2314,7 @@
    "px": 6.63,
    "trend": -5.3,
    "rsi": 49,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "near": false
   },
   {
@@ -2287,9 +2332,9 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 4.54,
-   "trend": -0.5,
+   "trend": -1.1,
    "rsi": 50,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "near": false
   },
   {
@@ -2309,7 +2354,7 @@
    "px": 11.9,
    "trend": 5.4,
    "rsi": 55,
-   "rvol": 0.3,
+   "rvol": 0.4,
    "near": false
   },
   {
@@ -2317,9 +2362,9 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 11.46,
-   "trend": 3.9,
+   "trend": 3.5,
    "rsi": 55,
-   "rvol": 0.9,
+   "rvol": 0.8,
    "near": false
   },
   {
@@ -2327,7 +2372,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 1.11,
-   "trend": -17.0,
+   "trend": -17.4,
    "rsi": 40,
    "rvol": 0.6,
    "near": false
@@ -2337,8 +2382,8 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 2.83,
-   "trend": -7.4,
-   "rsi": 51,
+   "trend": -10.4,
+   "rsi": 50,
    "rvol": 0.8,
    "near": false
   },
@@ -2347,9 +2392,9 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 12.76,
-   "trend": -21.9,
-   "rsi": 42,
-   "rvol": 0.7,
+   "trend": -24.1,
+   "rsi": 41,
+   "rvol": 0.6,
    "near": false
   },
   {
@@ -2357,8 +2402,8 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 24.36,
-   "trend": 21.1,
-   "rsi": 62,
+   "trend": 21.5,
+   "rsi": 61,
    "rvol": 0.6,
    "near": true
   },
@@ -2367,8 +2412,8 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 3.58,
-   "trend": -35.6,
-   "rsi": 34,
+   "trend": -37.2,
+   "rsi": 35,
    "rvol": 0.2,
    "near": false
   },
@@ -2417,9 +2462,9 @@
    "list": "מעניינות",
    "grp": "07/26",
    "px": 2.86,
-   "trend": -18.5,
-   "rsi": 37,
-   "rvol": 0.6,
+   "trend": -19.2,
+   "rsi": 36,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -2427,9 +2472,9 @@
    "list": "מעניינות",
    "grp": "07/26",
    "px": 17.38,
-   "trend": 30.4,
-   "rsi": 69,
-   "rvol": 0.7,
+   "trend": 30.8,
+   "rsi": 68,
+   "rvol": 0.8,
    "near": true
   },
   {
@@ -2437,7 +2482,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 1.3,
-   "trend": -18.7,
+   "trend": -19.2,
    "rsi": 42,
    "rvol": 0.4,
    "near": false
@@ -2447,7 +2492,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 5.11,
-   "trend": 6.5,
+   "trend": 5.1,
    "rsi": 56,
    "rvol": 0.7,
    "near": false
@@ -2459,7 +2504,7 @@
    "px": 28.15,
    "trend": -11.3,
    "rsi": 43,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "near": false
   },
   {
@@ -2477,8 +2522,8 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 24.4,
-   "trend": 2.3,
-   "rsi": 52,
+   "trend": 3.0,
+   "rsi": 51,
    "rvol": 0.6,
    "near": false
   },
@@ -2489,7 +2534,7 @@
    "px": 3.51,
    "trend": -26.4,
    "rsi": 42,
-   "rvol": 1.2,
+   "rvol": 1.3,
    "near": false
   },
   {
@@ -2507,9 +2552,9 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 7.15,
-   "trend": -13.2,
+   "trend": -13.6,
    "rsi": 40,
-   "rvol": 0.5,
+   "rvol": 0.4,
    "near": false
   },
   {
@@ -2517,25 +2562,29 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 6.09,
-   "trend": 7.8,
-   "rsi": 55,
-   "rvol": 0.3,
+   "trend": 7.9,
+   "rsi": 54,
+   "rvol": 0.4,
    "near": false
   },
   {
    "t": "GRND",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": null
+   "px": 16.01,
+   "trend": 9.3,
+   "rsi": 51,
+   "rvol": 0.8,
+   "near": false
   },
   {
    "t": "IBTA",
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 38.84,
-   "trend": 22.0,
-   "rsi": 64,
-   "rvol": 0.7,
+   "trend": 20.0,
+   "rsi": 62,
+   "rvol": 0.9,
    "near": true
   },
   {
@@ -2543,8 +2592,8 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 10.74,
-   "trend": -18.0,
-   "rsi": 33,
+   "trend": -17.2,
+   "rsi": 35,
    "rvol": 0.6,
    "near": false
   },
@@ -2563,9 +2612,9 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 4.87,
-   "trend": 5.7,
+   "trend": 6.5,
    "rsi": 61,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": true
   },
   {
@@ -2583,7 +2632,7 @@
    "list": "לפני פריצה",
    "grp": "07/26",
    "px": 23.34,
-   "trend": 41.4,
+   "trend": 41.0,
    "rsi": 74,
    "rvol": 0.4,
    "near": true
@@ -2593,9 +2642,9 @@
    "list": "לפני פריצה",
    "grp": "07/26",
    "px": 2.86,
-   "trend": -18.5,
-   "rsi": 37,
-   "rvol": 0.6,
+   "trend": -19.2,
+   "rsi": 36,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -2603,9 +2652,9 @@
    "list": "לפני פריצה",
    "grp": "07/26",
    "px": 17.38,
-   "trend": 30.4,
-   "rsi": 69,
-   "rvol": 0.7,
+   "trend": 30.8,
+   "rsi": 68,
+   "rvol": 0.8,
    "near": true
   }
  ],
@@ -2627,6 +2676,16 @@
      "dir": "neu",
      "tag": null,
      "sources": 1,
+     "title": "Billionaire Investor David Tepper Just Exited 12 Stocks. These 5 Are the Most Surprising.",
+     "url": "https://247wallst.com/investing/2026/08/16/billionaire-investor-david-tepper-just-exited-12-stocks-these-5-are-the-most-surprising/",
+     "src": "24/7 Wall St.",
+     "time": "2026-08-16 21:43"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
      "title": "Uber Stock Looks Cheap. Here’s Why.",
      "url": "https://www.barrons.com/articles/buy-uber-stock-pick-price-cf718bc4?siteid=yhoof2&yptr=yahoo",
      "src": "Barrons.com",
@@ -2641,29 +2700,19 @@
      "url": "https://www.fool.com/earnings/call-transcripts/2026/08/13/lyft-lyft-q2-2026-earnings-call-transcript/",
      "src": "Motley Fool",
      "time": "2026-08-13 21:58"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Lyft Director Janey Whiteside Sells 14,220 Shares at $17.00",
-     "url": "https://www.fool.com/coverage/filings/2026/08/13/lyft-director-janey-whiteside-sells-14-220-shares-at-usd17-00/",
-     "src": "Motley Fool",
-     "time": "2026-08-13 11:20"
     }
    ]
   },
   "market": [
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "summary": "דיווח חיובי · עדכון דיבידנד · מקור יחיד — לקחת בזהירות",
     "dir": "pos",
-    "tag": null,
+    "tag": "דיבידנד",
     "sources": 1,
-    "title": "Broadcom is Down Over 3 Months: One Wall Street Pro Sees 60%+ Gains Ahead",
-    "url": "https://247wallst.com/investing/2026/08/14/broadcom-is-down-over-3-months-one-wall-street-pro-sees-60-gains-ahead/",
+    "title": "High Dividend ETFs Are Beating the S&P 500 by 9 Points in 2026 and These 3 Pay Up to 4 Percent While Doing It",
+    "url": "https://247wallst.com/investing/2026/08/16/high-dividend-etfs-are-beating-the-sp-500-by-9-points-in-2026-and-these-3-pay-up-to-4-percent-while-doing-it/",
     "src": "24/7 Wall St.",
-    "time": "2026-08-14 15:42",
+    "time": "2026-08-16 14:46",
     "about": "שוק"
    },
    {
@@ -2671,10 +2720,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Stocks Are Finally Pulling Back and These Buffer ETFs Still Promise 100 Percent Downside Protection",
-    "url": "https://247wallst.com/investing/2026/08/14/stocks-are-finally-pulling-back-and-these-buffer-etfs-still-promise-100-percent-downside-protection/",
+    "title": "“That Ain’t Okay:” Dave Ramsey Blasts Couple With $150,000 in Cash and a $60,000 Car Loan",
+    "url": "https://247wallst.com/personal-finance/2026/08/16/that-aint-okay-dave-ramsey-blasts-couple-with-150000-in-cash-and-a-60000-car-loan/",
     "src": "24/7 Wall St.",
-    "time": "2026-08-14 20:26",
+    "time": "2026-08-16 23:57",
     "about": "שוק"
    },
    {
@@ -2682,43 +2731,21 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Cash Pays 3.8% and the Fed May Hike. This T-Bill Fund Pays the Same but Sends No Tax Bill Until You Sell",
-    "url": "https://247wallst.com/investing/2026/08/14/cash-pays-3-8-and-the-fed-may-hike-this-t-bill-fund-pays-the-same-but-sends-no-tax-bill-until-you-sell/",
+    "title": "JEPQ vs. SPYI: Nearly Identical Yields, and One ETF Charges You Twice the Fee",
+    "url": "https://247wallst.com/investing/etf/2026/08/15/jepq-vs-spyi-nearly-identical-yields-and-one-etf-charges-you-twice-the-fee/",
     "src": "24/7 Wall St.",
-    "time": "2026-08-14 19:34",
+    "time": "2026-08-15 22:45",
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "summary": "דיווח ניטרלי · עדכון דיבידנד · מקור יחיד — לקחת בזהירות",
     "dir": "neu",
-    "tag": null,
+    "tag": "דיבידנד",
     "sources": 1,
-    "title": "U.S. Dollar to Slip Ahead? ETFs in Focus",
-    "url": "https://finance.yahoo.com/markets/currencies/articles/u-dollar-slip-ahead-etfs-150000297.html",
-    "src": "Zacks",
-    "time": "2026-08-14 15:00",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
-    "tag": null,
-    "sources": 1,
-    "title": "Exchange-Traded Funds Mixed, US Equities Fall After Midday",
-    "url": "https://finance.yahoo.com/markets/articles/exchange-traded-funds-mixed-us-172121860.html",
-    "src": "MT Newswires",
-    "time": "2026-08-14 17:21",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Michael Burry Ramped Up His Bets Against Micron and the QQQ ETF. Is the ‘Big Short’ Investor Asking for Trouble?",
-    "url": "https://247wallst.com/investing/2026/08/14/michael-burry-ramped-up-his-bets-against-micron-and-the-qqq-etf-is-the-big-short-investor-asking-for-trouble/",
+    "title": "DIVO or JEPI: Which Monthly Dividend Actually Protects Your Principal?",
+    "url": "https://247wallst.com/investing/2026/08/15/divo-or-jepi-which-monthly-dividend-actually-protects-your-principal/",
     "src": "24/7 Wall St.",
-    "time": "2026-08-14 14:40",
+    "time": "2026-08-15 18:23",
     "about": "שוק"
    },
    {
@@ -2726,10 +2753,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Wall Street Rethinks What Fed Does Next",
-    "url": "https://finance.yahoo.com/economy/policy/articles/wall-street-rethinks-fed-does-182624692.html",
-    "src": "GuruFocus.com",
-    "time": "2026-08-14 18:26",
+    "title": "This ETF Is the Most Important in the Market. You Probably Haven’t Heard of It.",
+    "url": "https://www.barchart.com/story/news/3875975/this-etf-is-the-most-important-in-the-market-you-probably-havent-heard-of-it",
+    "src": "Barchart",
+    "time": "2026-08-16 14:00",
     "about": "שוק"
    },
    {
@@ -2737,13 +2764,35 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Cooling Inflation Likely to Aid These ETF Areas",
-    "url": "https://finance.yahoo.com/economy/policy/articles/cooling-inflation-likely-aid-etf-144100361.html",
-    "src": "Zacks",
-    "time": "2026-08-14 14:41",
+    "title": "If You Invest $100 a Month in VGT Starting Today, Here's What History Says You Could Have in 20 Years",
+    "url": "https://www.fool.com/investing/2026/08/16/if-invest-100-month-vgt-etf-today-20-years/",
+    "src": "Motley Fool",
+    "time": "2026-08-16 11:50",
     "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "The Anti-AI ETF Is Here, and Its Biggest Holdings Are Engines, Trucks and Air Conditioners",
+    "url": "https://247wallst.com/investing/etf/2026/08/15/the-anti-ai-etf-is-here-and-its-biggest-holdings-are-engines-trucks-and-air-conditioners/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-15 19:35",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Small Cap Watch: D3 Energy, Astral Resources, Surefire and Dalaroo advance company programs",
+    "url": "https://www.proactiveinvestors.com/companies/news/1097077/small-cap-watch-d3-energy-astral-resources-surefire-and-dalaroo-advance-company-programs-1097077.html",
+    "src": "Proactive",
+    "time": "2026-08-16 23:19",
+    "about": "זהב"
    }
   ],
-  "updated": "2026-08-14 23:40"
+  "updated": "2026-08-17 05:34"
  }
 }
