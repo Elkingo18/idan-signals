@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T13:49:34.377021+00:00",
- "updated_israel": "2026-08-17 16:49",
+ "updated_utc": "2026-08-17T13:52:00.331651+00:00",
+ "updated_israel": "2026-08-17 16:51",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 16:49:16",
+  "updated": "2026.08.17 16:51:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,33 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 31.0,
+  "spread_points": 27.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471472222",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 1.04,
+    "entry": 4400.12
+   },
+   {
+    "ticket": "471471542",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.62,
+    "entry": 4398.29
+   },
+   {
+    "ticket": "471470879",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.37,
+    "entry": 4396.47
+   },
    {
     "ticket": "471469871",
     "symbol": "XAUUSD",
@@ -82,22 +103,22 @@
     "entry": 4386.96
    }
   ],
-  "equity": 196200.58,
-  "stamp": "2026.08.17 16:49:33",
+  "equity": 195267.13,
+  "stamp": "2026.08.17 16:51:59",
   "age_sec": 0.5
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12656.9,
-  "equity": 12549.97,
+  "equity": 11631.66,
   "day_pnl": 1040.95,
   "day_lots": 0.0,
-  "open_positions": 7,
-  "open_lots": 0.54,
+  "open_positions": 10,
+  "open_lots": 2.57,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 16:49:33",
-  "age_sec": 0.7
+  "stamp": "2026.08.17 16:51:58",
+  "age_sec": 1.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -142,10 +163,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 945.13,
+  "equity": 945.25,
   "realized_pnl": -70.27,
-  "open_pnl": 15.4,
-  "return_pct": -5.49
+  "open_pnl": 15.52,
+  "return_pct": -5.47
  },
  "positions": [
   {
@@ -154,9 +175,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.21,
-   "value": 344.2,
-   "unrealized": 15.4,
+   "mark": 17.216,
+   "value": 344.32,
+   "unrealized": 15.52,
    "realized": 0.0,
    "source": "engine"
   }
@@ -165,12 +186,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 782.8370606158998,
-  "equity": 1126.84,
+  "equity": 1127.24,
   "realized_pnl": 137.69,
-  "open_pnl": -5.37,
+  "open_pnl": -4.97,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 12.68,
+  "return_pct": 12.72,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -179,20 +200,20 @@
    "ticker": "HBAN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 18.145,
+   "price": 18.13,
    "entry": 18.58,
-   "stop": 18.0422,
-   "t1": 19.6556,
-   "t2": 20.4623,
+   "stop": 18.0411,
+   "t1": 19.6579,
+   "t2": 20.4663,
    "rr1": 2.0,
-   "rsi": 60.7,
-   "rvol": 0.04,
+   "rsi": 60.4,
+   "rvol": 0.05,
    "score": 83,
    "shares": 21,
    "notional": 390.18,
-   "risk_dollars": 11.29,
+   "risk_dollars": 11.32,
    "room": 19.96,
-   "above_ma50_pct": 3.36,
+   "above_ma50_pct": 3.28,
    "news": [
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -228,20 +249,20 @@
    "ticker": "WEN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 8.585,
+   "price": 8.5987,
    "entry": 8.8,
    "stop": 8.0968,
    "t1": 10.2064,
    "t2": 11.2612,
    "rr1": 2.0,
-   "rsi": 61.5,
-   "rvol": 0.07,
+   "rsi": 61.7,
+   "rvol": 0.08,
    "score": 78,
    "shares": 44,
    "notional": 387.2,
    "risk_dollars": 30.94,
    "room": 10.54,
-   "above_ma50_pct": 14.28,
+   "above_ma50_pct": 14.46,
    "news": [
     {
      "summary": "דיווח חיובי · הוצלב ב-2 מקורות שונים",
@@ -277,20 +298,20 @@
    "ticker": "HIMX",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 15.37,
+   "price": 15.56,
    "entry": 15.6,
-   "stop": 14.1598,
-   "t1": 18.4803,
-   "t2": 20.6405,
+   "stop": 14.1591,
+   "t1": 18.4819,
+   "t2": 20.6433,
    "rr1": 2.0,
-   "rsi": 58.2,
-   "rvol": 0.07,
+   "rsi": 59.3,
+   "rvol": 0.08,
    "score": 70,
    "shares": 25,
    "notional": 390.0,
-   "risk_dollars": 36.0,
+   "risk_dollars": 36.02,
    "room": 19.81,
-   "above_ma50_pct": 3.0,
+   "above_ma50_pct": 4.25,
    "news": [
     {
      "summary": "דיווח שלילי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
@@ -318,6 +339,37 @@
      "title": "Kopin Soars Tuesday Following MicroLED Development Award",
      "src": "24/7 Wall St.",
      "time": "2026-08-11 17:40"
+    }
+   ]
+  },
+  {
+   "kind": "swing",
+   "ticker": "INDI",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 4.78,
+   "entry": 4.85,
+   "stop": 4.2741,
+   "t1": 6.0017,
+   "t2": 6.8655,
+   "rr1": 2.0,
+   "rsi": 65.9,
+   "rvol": 0.25,
+   "score": 57,
+   "shares": 68,
+   "notional": 329.8,
+   "risk_dollars": 39.16,
+   "room": 6.72,
+   "above_ma50_pct": 21.72,
+   "news": [
+    {
+     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-5 מקורות שונים",
+     "dir": "pos",
+     "tag": "דוחות",
+     "sources": 5,
+     "title": "indie Semiconductor (INDI) Q2 2026 Earnings Call Transcript",
+     "src": "Motley Fool",
+     "time": "2026-08-13 22:15"
     }
    ]
   }
@@ -432,7 +484,7 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": -3.6,
+   "done": -3.2,
    "base": 1130.44,
    "pct": 0,
    "pct_legend": 0,
