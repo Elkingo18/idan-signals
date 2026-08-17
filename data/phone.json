@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T08:37:43.460259+00:00",
- "updated_israel": "2026-08-17 11:37",
+ "updated_utc": "2026-08-17T08:38:47.869683+00:00",
+ "updated_israel": "2026-08-17 11:38",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 11:37:36",
+  "updated": "2026.08.17 11:38:35",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10536.94,
-  "equity": 10515.94,
+  "equity": 10552.84,
   "day_start_equity": 10972.23,
-  "day_pnl": -456.29,
+  "day_pnl": -419.39,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -26,28 +26,36 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst -0.44atr",
-  "spread_points": 28.0,
+  "spread_points": 23.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 196109.91,
-  "stamp": "2026.08.17 11:37:42",
-  "age_sec": 0.5
+  "legs": [
+   {
+    "ticket": "471362265",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.01,
+    "entry": 4401.8
+   }
+  ],
+  "equity": 196109.62,
+  "stamp": "2026.08.17 11:38:46",
+  "age_sec": 0.9
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12481.47,
-  "equity": 12481.47,
+  "equity": 12481.26,
   "day_pnl": 865.52,
   "day_lots": 0.0,
-  "open_positions": 0,
-  "open_lots": 0.0,
+  "open_positions": 1,
+  "open_lots": 0.01,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 11:37:42",
-  "age_sec": 0.4
+  "stamp": "2026.08.17 11:38:47",
+  "age_sec": 0.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -115,12 +123,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 387.9900106158967,
-  "equity": 1131.95,
+  "equity": 1132.66,
   "realized_pnl": 137.47,
-  "open_pnl": -0.04,
+  "open_pnl": 0.67,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.2,
+  "return_pct": 13.27,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -138,9 +146,9 @@
    "rsi": 63.1,
    "rvol": 0.51,
    "score": 78,
-   "shares": 22,
-   "notional": 390.61,
-   "risk_dollars": 24.77,
+   "shares": 14,
+   "notional": 248.57,
+   "risk_dollars": 15.76,
    "room": 22.02,
    "above_ma50_pct": 14.9,
    "news": [
@@ -187,9 +195,9 @@
    "rsi": 64.1,
    "rvol": 0.83,
    "score": 57,
-   "shares": 9,
-   "notional": 359.19,
-   "risk_dollars": 39.34,
+   "shares": 6,
+   "notional": 239.46,
+   "risk_dollars": 26.23,
    "room": 55.975,
    "above_ma50_pct": 21.99,
    "news": [
@@ -333,7 +341,7 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": 1.51,
+   "done": 2.22,
    "base": 1130.44,
    "pct": 2,
    "pct_legend": 1,
