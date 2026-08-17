@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T13:55:23.155979+00:00",
- "updated_israel": "2026-08-17 16:55",
+ "updated_utc": "2026-08-17T13:56:31.492582+00:00",
+ "updated_israel": "2026-08-17 16:56",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 16:55:15",
+  "updated": "2026.08.17 16:56:16",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,26 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 28.0,
+  "spread_points": 45.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471475706",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.08,
+    "entry": 4406.75
+   },
+   {
+    "ticket": "471475672",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.05,
+    "entry": 4405.38
+   },
    {
     "ticket": "471475484",
     "symbol": "XAUUSD",
@@ -54,22 +68,22 @@
     "entry": 4401.89
    }
   ],
-  "equity": 196806.45,
-  "stamp": "2026.08.17 16:55:22",
-  "age_sec": 0.3
+  "equity": 196786.54,
+  "stamp": "2026.08.17 16:56:30",
+  "age_sec": 0.6
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 11495.62,
-  "equity": 11485.0,
+  "equity": 11469.34,
   "day_pnl": -120.33,
   "day_lots": 0.0,
-  "open_positions": 3,
-  "open_lots": 0.06,
+  "open_positions": 5,
+  "open_lots": 0.19,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 16:55:22",
-  "age_sec": 0.0
+  "stamp": "2026.08.17 16:56:30",
+  "age_sec": 0.9
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -137,12 +151,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 782.8370606158998,
-  "equity": 1127.24,
+  "equity": 1129.14,
   "realized_pnl": 137.69,
-  "open_pnl": -4.97,
+  "open_pnl": -3.07,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 12.72,
+  "return_pct": 12.91,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -151,20 +165,20 @@
    "ticker": "HBAN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 18.13,
+   "price": 18.0765,
    "entry": 18.58,
    "stop": 18.0411,
    "t1": 19.6579,
    "t2": 20.4663,
    "rr1": 2.0,
-   "rsi": 60.4,
-   "rvol": 0.05,
+   "rsi": 59.6,
+   "rvol": 0.06,
    "score": 83,
    "shares": 21,
    "notional": 390.18,
    "risk_dollars": 11.32,
    "room": 19.96,
-   "above_ma50_pct": 3.28,
+   "above_ma50_pct": 2.98,
    "news": [
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -200,20 +214,20 @@
    "ticker": "WEN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 8.5987,
+   "price": 8.58,
    "entry": 8.8,
    "stop": 8.0968,
    "t1": 10.2064,
    "t2": 11.2612,
    "rr1": 2.0,
-   "rsi": 61.7,
-   "rvol": 0.08,
+   "rsi": 61.4,
+   "rvol": 0.09,
    "score": 78,
    "shares": 44,
    "notional": 387.2,
    "risk_dollars": 30.94,
    "room": 10.54,
-   "above_ma50_pct": 14.46,
+   "above_ma50_pct": 14.22,
    "news": [
     {
      "summary": "דיווח חיובי · הוצלב ב-2 מקורות שונים",
@@ -241,86 +255,6 @@
      "title": "How Burger King Revamped Its Whopper and Overtook Wendy’s",
      "src": "The Wall Street Journal",
      "time": "2026-08-17 00:00"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
-   "ticker": "HIMX",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 15.56,
-   "entry": 15.6,
-   "stop": 14.1591,
-   "t1": 18.4819,
-   "t2": 20.6433,
-   "rr1": 2.0,
-   "rsi": 59.3,
-   "rvol": 0.08,
-   "score": 70,
-   "shares": 25,
-   "notional": 390.0,
-   "risk_dollars": 36.02,
-   "room": 19.81,
-   "above_ma50_pct": 4.25,
-   "news": [
-    {
-     "summary": "דיווח שלילי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
-     "dir": "neg",
-     "tag": "דוחות",
-     "sources": 2,
-     "title": "Himax Technologies (HIMX) Stock Dropped, So What Is Behind The Attention Now?",
-     "src": "Simply Wall St.",
-     "time": "2026-08-14 16:08"
-    },
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "HIMX Q2 Deep Dive: Automotive Display ICs and New Technologies Drive Growth",
-     "src": "StockStory",
-     "time": "2026-08-12 07:49"
-    },
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Kopin Soars Tuesday Following MicroLED Development Award",
-     "src": "24/7 Wall St.",
-     "time": "2026-08-11 17:40"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
-   "ticker": "INDI",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 4.78,
-   "entry": 4.85,
-   "stop": 4.2741,
-   "t1": 6.0017,
-   "t2": 6.8655,
-   "rr1": 2.0,
-   "rsi": 65.9,
-   "rvol": 0.25,
-   "score": 57,
-   "shares": 68,
-   "notional": 329.8,
-   "risk_dollars": 39.16,
-   "room": 6.72,
-   "above_ma50_pct": 21.72,
-   "news": [
-    {
-     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-5 מקורות שונים",
-     "dir": "pos",
-     "tag": "דוחות",
-     "sources": 5,
-     "title": "indie Semiconductor (INDI) Q2 2026 Earnings Call Transcript",
-     "src": "Motley Fool",
-     "time": "2026-08-13 22:15"
     }
    ]
   }
@@ -435,7 +369,7 @@
    "name": "👹 בוס היום",
    "target": 90.44,
    "legend": 226.09,
-   "done": -3.2,
+   "done": -1.3,
    "base": 1130.44,
    "pct": 0,
    "pct_legend": 0,
