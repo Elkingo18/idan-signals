@@ -58,9 +58,12 @@ function Apply-Commands($KEY) {
         if ($null -ne $pp.risk_mode -and $null -ne $pp.risk_mode.integerValue) {
             $p.risk_mode = [int]$pp.risk_mode.integerValue; $changed = $true
         }
-        if ($pp.fixed_risk_pct -and $pp.fixed_risk_pct.doubleValue) {
-            # a fixed risk: pin the whole ladder to that value
-            $rv = [double]$pp.fixed_risk_pct.doubleValue
+        if ($pp.fixed_risk_pct -and ($pp.fixed_risk_pct.doubleValue -or $pp.fixed_risk_pct.integerValue)) {
+            # a fixed risk: pin the whole ladder to that value.
+            # whole numbers (1.0) arrive from the web SDK as integerValue!
+            $rv = 0.0
+            if ($pp.fixed_risk_pct.doubleValue) { $rv = [double]$pp.fixed_risk_pct.doubleValue }
+            else { $rv = [double]$pp.fixed_risk_pct.integerValue }
             $p.rp_peak = $rv; $p.rp_norm = $rv; $p.rp_dd1 = $rv; $p.rp_dd2 = $rv
             $p.risk_pct = $rv; $changed = $true
         }
