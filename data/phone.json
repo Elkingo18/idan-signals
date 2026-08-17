@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-18 01:06",
+  "updated_israel": "2026-08-18 01:08",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "skip: no burst 1.88atr",
-    "age_sec": 20.1,
+    "age_sec": 18.1,
     "status": "ok"
    },
    {
@@ -53,7 +53,7 @@
     "day_pct": 1.42,
     "open_count": 1,
     "open_gross": 16.0,
-    "pending": 0,
+    "pending": 1,
     "scan": {
      "universe_json": 70,
      "ido_lists": 33,
@@ -63,8 +63,8 @@
      "file_ok": true
     },
     "broker_equity": 945.73,
-    "age_sec": 335.1,
-    "status": "stale",
+    "age_sec": 133.1,
+    "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
@@ -113,12 +113,12 @@
    "price": 16.44
   }
  ],
- "updated_utc": "2026-08-17T22:06:35.095186+00:00",
- "updated_israel": "2026-08-18 01:06",
+ "updated_utc": "2026-08-17T22:08:13.071878+00:00",
+ "updated_israel": "2026-08-18 01:08",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.18 01:06:15",
+  "updated": "2026.08.18 01:07:55",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -139,14 +139,14 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst 1.88atr",
-  "spread_points": 8.0,
+  "spread_points": 79.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [],
   "equity": 197354.83,
-  "stamp": "2026.08.18 01:06:34",
+  "stamp": "2026.08.18 01:08:12",
   "age_sec": 0.4
  },
  "slave": {
@@ -163,7 +163,7 @@
   "floating": 0.0,
   "code_version": 201,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.18 01:06:33",
+  "stamp": "2026.08.18 01:08:12",
   "age_sec": 0.2
  },
  "fees": {
@@ -255,9 +255,9 @@
    "rsi": 62.1,
    "rvol": 0.64,
    "score": 78,
-   "shares": 44,
-   "notional": 387.2,
-   "risk_dollars": 31.09,
+   "shares": 35,
+   "notional": 308.0,
+   "risk_dollars": 24.73,
    "room": 10.54,
    "above_ma50_pct": 14.74,
    "news": [
@@ -292,7 +292,23 @@
   }
  ],
  "signals_day": [],
- "pending_entries": [],
+ "pending_entries": [
+  {
+   "ticker": "WEN",
+   "kind": "swing",
+   "side": "long",
+   "qty": 35,
+   "entry": 8.8,
+   "stop": 8.0934,
+   "t1": 10.2132,
+   "t2": 11.2732,
+   "notional": 308.0,
+   "score": 78,
+   "rsi": 62.1,
+   "rvol": 0.64,
+   "placed_for": "2026-08-18 01:01"
+  }
+ ],
  "scan_universe": {
   "universe_json": 70,
   "ido_lists": 33,
@@ -311,7 +327,13 @@
   "max_price": 130.0,
   "cash_reserve_usd": 75.0
  },
- "rejected": [],
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
  "game": {
   "xp": 3905,
   "level": 8,
