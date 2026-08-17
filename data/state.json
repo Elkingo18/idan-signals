@@ -2,37 +2,22 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 801.9393772809362,
-  "equity": 979.95,
-  "realized_pnl": -27.83,
-  "open_pnl": 8.78,
+  "cash": 973.8707547643801,
+  "equity": 973.87,
+  "realized_pnl": -25.13,
+  "open_pnl": 0.0,
   "peak_equity": 1021.75,
   "max_dd_pct": -7.21,
-  "return_pct": -2.0,
+  "return_pct": -2.61,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [
+ "positions": [],
+ "closed": [
   {
-   "id": "XAUUSD-1786934284",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "long",
-   "sector": "other",
-   "qty": 1.51,
-   "qty_left": 0.76,
-   "entry": 4453.45,
-   "stop": 4457.15,
-   "orig_stop": 4445.6,
-   "t1": 4464.92,
-   "t2": 4476.55,
-   "opened": "2026-08-17T05:38:04.695497+03:00",
-   "opened_day": "2026-08-17",
-   "risk_open": 5.97,
-   "fees": 0.0,
-   "half_done": true,
-   "be_moved": true,
-   "score": 56,
    "pattern": "פולבק לגל",
    "snap": {
     "rsi": 53.0,
@@ -42,11 +27,22 @@
     "regime_ok": true,
     "notional": 6724.48
    },
-   "last": 4465.0,
-   "margin": 336.24
-  }
- ],
- "closed": [
+   "stop": 4445.6,
+   "t1": 4464.92,
+   "t2": 4476.55,
+   "fees": 0.0,
+   "qty": 0.76,
+   "entry": 4453.45,
+   "exit": 4457.0,
+   "pnl": 2.7,
+   "r": 0.23,
+   "reason": "stop",
+   "opened": "2026-08-17T05:38:04.695497+03:00",
+   "closed": "2026-08-17T11:22:05.954573+03:00",
+   "day": "2026-08-17",
+   "held_days": 0,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -587,7 +583,7 @@
     "shares": 17,
     "notional": 301.83,
     "risk_dollars": 19.14,
-    "risk_pct_actual": 1.95,
+    "risk_pct_actual": 1.97,
     "stretch_target": 21.31,
     "score": 78,
     "news": [
@@ -633,22 +629,22 @@
     "side": "long",
     "state": "WATCH_BUY",
     "pattern": "המשך מגמה",
-    "price": 4465.0,
-    "entry": 4465.0,
-    "stop": 4459.1,
-    "t1": 4473.91,
-    "t2": 4482.81,
+    "price": 4457.1,
+    "entry": 4457.1,
+    "stop": 4451.2,
+    "t1": 4465.95,
+    "t2": 4474.8,
     "rr1": 1.5,
-    "atr": 3.96,
-    "rsi": 65.9,
-    "vwap": 4454.65,
+    "atr": 3.93,
+    "rsi": 50.0,
+    "vwap": 4455.14,
     "stop_pct": 0.13,
-    "ounces": 1.53,
-    "notional": 6831.45,
-    "margin": 341.57,
-    "risk_dollars": 9.03,
-    "shares": 1.53,
-    "score": 57,
+    "ounces": 1.52,
+    "notional": 6774.79,
+    "margin": 338.74,
+    "risk_dollars": 8.97,
+    "shares": 1.52,
+    "score": 51,
     "news": [],
     "regime_ok": true
    }
@@ -656,11 +652,11 @@
  },
  "calendar": {
   "2026-08-17": {
-   "pnl": 7.54,
-   "trades": 2,
-   "wins": 1,
+   "pnl": 10.24,
+   "trades": 3,
+   "wins": 2,
    "losses": 1,
-   "r": 0.67,
+   "r": 0.9,
    "tickers": [
     "XAUUSD",
     "LYFT"
@@ -859,14 +855,14 @@
   ],
   [
    "2026-08-17",
-   979.95
+   973.87
   ]
  ],
  "cooldown": {
   "XAUUSD": 1
  },
  "game": {
-  "xp": 780,
+  "xp": 820,
   "level": 3,
   "streak": 1,
   "best_streak": 4,
@@ -974,26 +970,30 @@
    "name": "👹 בוס היום",
    "target": 77.01,
    "legend": 192.54,
-   "done": 17.27,
+   "done": 11.19,
    "base": 962.68,
-   "pct": 22,
-   "pct_legend": 9,
+   "pct": 15,
+   "pct_legend": 6,
    "beaten": false,
    "legendary": false
   },
   "level_name": "🗡️ סוחר זוטר",
-  "xp_this_level": 85,
+  "xp_this_level": 125,
   "xp_next_level": 407
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 7.54,
-  "week_pnl": 7.54,
-  "daily_limit": -58.8,
-  "weekly_limit": -117.59
+  "day_pnl": 10.24,
+  "week_pnl": 10.24,
+  "daily_limit": -58.43,
+  "weekly_limit": -116.86
  },
  "log": [
+  {
+   "t": "2026-08-17 11:22",
+   "m": "EXIT XAUUSD x0.76 @ 4457.0000 (stop) P/L $+2.70 / +0.23R"
+  },
   {
    "t": "2026-08-17 10:59",
    "m": "BE XAUUSD stop -> breakeven 4453.45"
@@ -1155,30 +1155,30 @@
   "spy": 776.34
  },
  "periods": {
-  "day": 7.54,
-  "week": -32.54,
-  "month": -27.83,
-  "quarter": -27.83,
-  "half": -27.83,
-  "year": -27.83,
-  "two_year": -27.83,
-  "all": -27.83,
-  "all_pct": -2.78
+  "day": 10.24,
+  "week": -29.84,
+  "month": -25.13,
+  "quarter": -25.13,
+  "half": -25.13,
+  "year": -25.13,
+  "two_year": -25.13,
+  "all": -25.13,
+  "all_pct": -2.51
  },
  "rejected": [],
- "updated_utc": "2026-08-17T07:59:28.426925+00:00",
- "updated_israel": "2026-08-17 10:59",
+ "updated_utc": "2026-08-17T08:22:05.954573+00:00",
+ "updated_israel": "2026-08-17 11:22",
  "market": {
   "open": false,
-  "et": "03:59",
-  "il": "10:59"
+  "et": "04:22",
+  "il": "11:22"
  },
  "stats": {
-  "trades": 18,
-  "win_rate": 50.0,
-  "pf": 0.74,
-  "avg_r": -0.08,
-  "expectancy": -1.55,
+  "trades": 19,
+  "win_rate": 52.6,
+  "pf": 0.76,
+  "avg_r": -0.06,
+  "expectancy": -1.32,
   "best": 15.19,
   "worst": -22.5
  },
@@ -1275,7 +1275,7 @@
    "t": "VTRS",
    "sec": "health",
    "px": 16.23,
-   "trend": -2.1,
+   "trend": -1.9,
    "rsi": 41,
    "rvol": 0.7,
    "df": 0,
@@ -1285,8 +1285,8 @@
    "t": "OGN",
    "sec": "health",
    "px": 13.72,
-   "trend": 1.5,
-   "rsi": 77,
+   "trend": 1.6,
+   "rsi": 76,
    "rvol": 0.8,
    "df": 0,
    "state": "none"
@@ -1365,9 +1365,9 @@
    "t": "AMRX",
    "sec": "health",
    "px": 18.15,
-   "trend": 6.0,
+   "trend": 7.4,
    "rsi": 55,
-   "rvol": 1.1,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -1595,8 +1595,8 @@
    "t": "KVUE",
    "sec": "consumer",
    "px": 19.2,
-   "trend": 1.6,
-   "rsi": 51,
+   "trend": 1.9,
+   "rsi": 52,
    "rvol": 0.5,
    "df": 1,
    "state": "none"
@@ -1615,9 +1615,9 @@
    "t": "AEO",
    "sec": "consumer",
    "px": 16.17,
-   "trend": -6.7,
+   "trend": -6.3,
    "rsi": 40,
-   "rvol": 0.8,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -1645,9 +1645,9 @@
    "t": "GT",
    "sec": "consumer",
    "px": 6.11,
-   "trend": -7.3,
-   "rsi": 38,
-   "rvol": 1.1,
+   "trend": -6.1,
+   "rsi": 39,
+   "rvol": 1.0,
    "df": 1,
    "state": "none"
   },
@@ -1655,7 +1655,7 @@
    "t": "UAA",
    "sec": "consumer",
    "px": 5.36,
-   "trend": -15.9,
+   "trend": -15.4,
    "rsi": 30,
    "rvol": 0.8,
    "df": 0,
@@ -2077,7 +2077,7 @@
    "t": "TGT",
    "sec": "premium",
    "px": 154.48,
-   "trend": 12.2,
+   "trend": 12.6,
    "state": "premium"
   },
   {
@@ -2217,7 +2217,7 @@
    "t": "SMG",
    "sec": "premium",
    "px": 60.94,
-   "trend": -6.9,
+   "trend": -6.0,
    "state": "premium"
   },
   {
@@ -2231,7 +2231,7 @@
    "t": "AWK",
    "sec": "premium",
    "px": 136.2,
-   "trend": 3.6,
+   "trend": 4.1,
    "state": "premium"
   },
   {
@@ -2252,7 +2252,7 @@
    "t": "ECL",
    "sec": "premium",
    "px": 276.11,
-   "trend": 0.8,
+   "trend": 1.0,
    "state": "premium"
   },
   {
@@ -2299,32 +2299,32 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 867,
+   "bars": 872,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4465.0,
+   "last_price": 4457.1,
    "signals": 1,
    "today_trades": 1,
    "health": {
-    "n": 16,
-    "exp": -2.21,
-    "pf": 0.66,
-    "avg_r": -0.13,
+    "n": 17,
+    "exp": -1.58,
+    "pf": 0.74,
+    "avg_r": -0.08,
     "status": "warn"
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 1,
-    "pnl": 8.49
+    "trades": 2,
+    "pnl": 11.19
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 5.97,
+   "open": 0,
+   "heat": 0,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -2337,7 +2337,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 12,
    "covered": 1,
-   "updated": "2026-08-17 10:59"
+   "updated": "2026-08-17 11:22"
   }
  },
  "gold_today": {
@@ -2350,10 +2350,10 @@
    "status": "na"
   },
   "gold": {
-   "n": 17,
-   "exp": -1.58,
-   "pf": 0.74,
-   "avg_r": -0.08,
+   "n": 18,
+   "exp": -1.34,
+   "pf": 0.77,
+   "avg_r": -0.06,
    "status": "warn"
   },
   "day": {
@@ -2377,7 +2377,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 3.1,
-   "trend": 2.0,
+   "trend": 1.6,
    "rsi": 53,
    "rvol": 0.4,
    "near": false
@@ -2387,7 +2387,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 6.63,
-   "trend": -4.9,
+   "trend": -5.3,
    "rsi": 49,
    "rvol": 0.8,
    "near": false
@@ -2407,9 +2407,9 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 4.54,
-   "trend": -0.5,
+   "trend": -1.1,
    "rsi": 50,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "near": false
   },
   {
@@ -2467,9 +2467,9 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 12.76,
-   "trend": -21.9,
-   "rsi": 42,
-   "rvol": 0.7,
+   "trend": -24.1,
+   "rsi": 41,
+   "rvol": 0.6,
    "near": false
   },
   {
@@ -2477,8 +2477,8 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 24.36,
-   "trend": 21.1,
-   "rsi": 62,
+   "trend": 21.5,
+   "rsi": 61,
    "rvol": 0.6,
    "near": true
   },
@@ -2537,8 +2537,8 @@
    "list": "מעניינות",
    "grp": "07/26",
    "px": 2.86,
-   "trend": -18.5,
-   "rsi": 37,
+   "trend": -19.2,
+   "rsi": 36,
    "rvol": 0.7,
    "near": false
   },
@@ -2627,9 +2627,9 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 7.15,
-   "trend": -12.6,
-   "rsi": 41,
-   "rvol": 0.5,
+   "trend": -13.6,
+   "rsi": 40,
+   "rvol": 0.4,
    "near": false
   },
   {
@@ -2637,9 +2637,9 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 6.09,
-   "trend": 7.3,
-   "rsi": 55,
-   "rvol": 0.3,
+   "trend": 7.9,
+   "rsi": 54,
+   "rvol": 0.4,
    "near": false
   },
   {
@@ -2717,8 +2717,8 @@
    "list": "לפני פריצה",
    "grp": "07/26",
    "px": 2.86,
-   "trend": -18.5,
-   "rsi": 37,
+   "trend": -19.2,
+   "rsi": 36,
    "rvol": 0.7,
    "near": false
   },
@@ -2868,6 +2868,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-17 10:59"
+  "updated": "2026-08-17 11:22"
  }
 }
