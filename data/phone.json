@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T15:26:43.666920+00:00",
- "updated_israel": "2026-08-17 18:26",
+ "updated_utc": "2026-08-17T15:27:51.339411+00:00",
+ "updated_israel": "2026-08-17 18:27",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 18:26:36",
+  "updated": "2026.08.17 18:27:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,12 +26,19 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 26.0,
+  "spread_points": 23.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [
+   {
+    "ticket": "471531379",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.03,
+    "entry": 4423.74
+   },
    {
     "ticket": "471530840",
     "symbol": "XAUUSD",
@@ -47,22 +54,22 @@
     "entry": 4421.31
    }
   ],
-  "equity": 197163.1,
-  "stamp": "2026.08.17 18:26:42",
-  "age_sec": 0.8
+  "equity": 197160.91,
+  "stamp": "2026.08.17 18:27:50",
+  "age_sec": 0.5
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12485.35,
-  "equity": 12482.12,
+  "equity": 12480.5,
   "day_pnl": 869.4,
   "day_lots": 0.0,
   "open_positions": 2,
   "open_lots": 0.03,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 18:26:42",
-  "age_sec": 1.0
+  "stamp": "2026.08.17 18:27:50",
+  "age_sec": 1.1
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -107,9 +114,9 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 948.65,
+  "equity": 948.61,
   "realized_pnl": -70.27,
-  "open_pnl": 18.92,
+  "open_pnl": 18.88,
   "return_pct": -5.14
  },
  "positions": [
@@ -119,9 +126,9 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.386,
-   "value": 347.72,
-   "unrealized": 18.92,
+   "mark": 17.384,
+   "value": 347.68,
+   "unrealized": 18.88,
    "realized": 0.0,
    "source": "engine"
   }
