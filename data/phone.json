@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T16:11:50.814372+00:00",
- "updated_israel": "2026-08-17 19:11",
+ "updated_utc": "2026-08-17T16:12:57.766913+00:00",
+ "updated_israel": "2026-08-17 19:12",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 19:11:36",
+  "updated": "2026.08.17 19:12:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,28 +26,36 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 23.0,
+  "spread_points": 24.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 197204.58,
-  "stamp": "2026.08.17 19:11:50",
-  "age_sec": 0.0
+  "legs": [
+   {
+    "ticket": "471548064",
+    "symbol": "XAUUSD",
+    "side": "sell",
+    "volume": 0.01,
+    "entry": 4426.7
+   }
+  ],
+  "equity": 197204.95,
+  "stamp": "2026.08.17 19:12:56",
+  "age_sec": 1.0
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
   "balance": 12529.08,
-  "equity": 12529.08,
+  "equity": 12529.47,
   "day_pnl": 27.53,
   "day_lots": 0.0,
-  "open_positions": 0,
-  "open_lots": 0.0,
+  "open_positions": 1,
+  "open_lots": 0.01,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 19:11:50",
-  "age_sec": 0.2
+  "stamp": "2026.08.17 19:12:57",
+  "age_sec": 0.4
  },
  "fees": {
   "model": "profit_minus_fee_v2",
