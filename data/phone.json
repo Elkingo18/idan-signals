@@ -1,20 +1,20 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T09:41:17.947417+00:00",
- "updated_israel": "2026-08-17 12:41",
+ "updated_utc": "2026-08-17T09:42:22.363958+00:00",
+ "updated_israel": "2026-08-17 12:42",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 12:41:16",
+  "updated": "2026.08.17 12:42:15",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 10536.94,
-  "equity": 10364.44,
+  "equity": 10387.84,
   "day_start_equity": 10972.23,
-  "day_pnl": -607.79,
+  "day_pnl": -584.39,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -26,28 +26,35 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst -0.76atr",
-  "spread_points": 26.0,
+  "spread_points": 25.0,
   "position": null
  },
  "copier": {
-  "ok": false,
-  "legs": [],
-  "equity": null,
-  "stamp": null,
-  "age_sec": 0.0,
-  "error": "[Errno 13] Permission denied: 'C:\\\\Users\\\\המלך\\\\AppData\\\\Roaming\\\\MetaQuotes\\\\Terminal\\\\Common\\\\Files\\\\IdanCopy\\\\master_positions.csv'"
+  "ok": true,
+  "legs": [
+   {
+    "ticket": "471379811",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.01,
+    "entry": 4396.45
+   }
+  ],
+  "equity": 196152.37,
+  "stamp": "2026.08.17 12:42:21",
+  "age_sec": 0.4
  },
  "slave": {
   "ok": true,
   "account": 5054417542,
-  "balance": 12527.5,
-  "equity": 12529.71,
-  "day_pnl": 911.55,
+  "balance": 12529.68,
+  "equity": 12529.14,
+  "day_pnl": 913.73,
   "day_lots": 0.0,
-  "open_positions": 2,
-  "open_lots": 0.03,
+  "open_positions": 1,
+  "open_lots": 0.01,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 12:41:17",
+  "stamp": "2026.08.17 12:42:21",
   "age_sec": 0.3
  },
  "fees": {
@@ -69,18 +76,18 @@
     },
     {
      "name": "The Ladder",
-     "profit": 2527.5,
+     "profit": 2529.68,
      "lots": 40.43,
      "fee": 1495.91,
-     "pocket": 1031.59
+     "pocket": 1033.77
     }
    ],
    "total": {
     "name": "סה\"כ",
-    "profit": 3064.44,
+    "profit": 3066.62,
     "lots": 47.01,
     "fee": 1739.37,
-    "pocket": 1325.07
+    "pocket": 1327.25
    }
   },
   "last_day": {
