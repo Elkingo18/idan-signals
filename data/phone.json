@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-17T13:05:42.311629+00:00",
- "updated_israel": "2026-08-17 16:05",
+ "updated_utc": "2026-08-17T13:06:00.626679+00:00",
+ "updated_israel": "2026-08-17 16:06",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 16:05:36",
+  "updated": "2026.08.17 16:05:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -26,15 +26,15 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 25.0,
+  "spread_points": 27.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [],
   "equity": 196268.63,
-  "stamp": "2026.08.17 16:05:40",
-  "age_sec": 0.4
+  "stamp": "2026.08.17 16:05:59",
+  "age_sec": 0.7
  },
  "slave": {
   "ok": true,
@@ -46,47 +46,42 @@
   "open_positions": 0,
   "open_lots": 0.0,
   "mode": "exact 1:1",
-  "stamp": "2026.08.17 16:05:38",
-  "age_sec": 0.2
+  "stamp": "2026.08.17 16:05:59",
+  "age_sec": 0.5
  },
  "fees": {
-  "model": "profit_minus_fee_v2",
-  "schema": 2,
   "rate_atrade_per_oz": 0.28,
-  "start": {
-   "gold": 10000.0,
-   "copier": 10000.0
-  },
-  "since_start": {
-   "rows": [
-    {
-     "name": "בוט הזהב",
-     "profit": 107.04,
-     "lots": 6.58,
-     "fee": 184.24,
-     "pocket": -77.2
-    },
-    {
-     "name": "The Ladder",
-     "profit": 2613.86,
-     "lots": 40.43,
-     "fee": 1132.04,
-     "pocket": 1481.82
-    }
-   ],
-   "total": {
-    "name": "סה\"כ",
-    "profit": 2720.9,
-    "lots": 47.01,
-    "fee": 1316.28,
-    "pocket": 1404.62
+  "rate_demo_per_oz": 0.285,
+  "day": "2026/08/14",
+  "is_today": false,
+  "rows": [
+   {
+    "name": "בוט הזהב",
+    "lots": 6.23,
+    "gross": 1179.54,
+    "demo_fee": 177.55,
+    "atrade_fee": 174.44,
+    "net_atrade": 1005.1,
+    "net_demo": 1001.98
+   },
+   {
+    "name": "המעתיק",
+    "lots": 40.43,
+    "gross": 2762.56,
+    "demo_fee": 1152.25,
+    "atrade_fee": 1132.04,
+    "net_atrade": 1630.52,
+    "net_demo": 1610.31
    }
-  },
-  "last_day": {
-   "day": "2026.08.14",
-   "is_today": false,
-   "rows": [],
-   "total": {}
+  ],
+  "total": {
+   "name": "סה\"כ",
+   "lots": 46.66,
+   "gross": 3942.1,
+   "demo_fee": 1329.8,
+   "atrade_fee": 1306.48,
+   "net_atrade": 2635.62,
+   "net_demo": 2612.29
   }
  },
  "shadow_wallet": {
@@ -143,7 +138,35 @@
    "risk_dollars": 24.77,
    "room": 22.02,
    "above_ma50_pct": 14.9,
-   "news": []
+   "news": [
+    {
+     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": "דוחות",
+     "sources": 1,
+     "title": "Where Does Lyft (LYFT) Valuation Sit Following Its Q2 2026 Earnings?",
+     "src": "Simply Wall St.",
+     "time": "2026-08-13 01:10"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Billionaire Investor David Tepper Just Exited 12 Stocks. These 5 Are the Most Surprising.",
+     "src": "24/7 Wall St.",
+     "time": "2026-08-16 21:43"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Uber Stock Looks Cheap. Here’s Why.",
+     "src": "Barrons.com",
+     "time": "2026-08-14 16:50"
+    }
+   ]
   },
   {
    "kind": "swing",
@@ -370,5 +393,7 @@
   }
  },
  "tws_connected": true,
- "stocks_stale": false
+ "stocks_stale": false,
+ "stocks_as_of": "2026-08-17 16:05",
+ "published_by": "publish_phone.py"
 }
