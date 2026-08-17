@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-17 23:42",
+  "updated_israel": "2026-08-17 23:43",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "skip: daily loss stop",
-    "age_sec": 16.1,
+    "age_sec": 22.1,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v2",
     "teacher_equity": 197354.83,
     "teacher_legs": 0,
-    "age_sec": 0.4,
+    "age_sec": 0.2,
     "status": "ok",
     "note": "מעתיק את המורה 1:1 עם שומר-מחיר-כניסה"
    },
@@ -53,7 +53,7 @@
     "day_pct": 0.15,
     "open_count": 1,
     "open_gross": 16.0,
-    "pending": 0,
+    "pending": 1,
     "scan": {
      "universe_json": 70,
      "ido_lists": 33,
@@ -63,8 +63,8 @@
      "file_ok": true
     },
     "broker_equity": 945.73,
-    "age_sec": 311.1,
-    "status": "stale",
+    "age_sec": 76.1,
+    "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
@@ -113,12 +113,12 @@
    "price": 16.44
   }
  ],
- "updated_utc": "2026-08-17T20:42:11.116264+00:00",
- "updated_israel": "2026-08-17 23:42",
+ "updated_utc": "2026-08-17T20:43:16.074182+00:00",
+ "updated_israel": "2026-08-17 23:43",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.17 23:41:55",
+  "updated": "2026.08.17 23:42:54",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -146,7 +146,7 @@
   "ok": true,
   "legs": [],
   "equity": 197354.83,
-  "stamp": "2026.08.17 23:42:10",
+  "stamp": "2026.08.17 23:43:15",
   "age_sec": 0.4
  },
  "slave": {
@@ -163,8 +163,8 @@
   "floating": 0.0,
   "code_version": 201,
   "mode": "exact 1:1 v2",
-  "stamp": "2026.08.17 23:42:09",
-  "age_sec": 0.4
+  "stamp": "2026.08.17 23:43:15",
+  "age_sec": 0.2
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -292,7 +292,23 @@
   }
  ],
  "signals_day": [],
- "pending_entries": [],
+ "pending_entries": [
+  {
+   "ticker": "WEN",
+   "kind": "swing",
+   "side": "long",
+   "qty": 44,
+   "entry": 8.8,
+   "stop": 8.0934,
+   "t1": 10.2132,
+   "t2": 11.2732,
+   "notional": 387.2,
+   "score": 78,
+   "rsi": 62.1,
+   "rvol": 0.64,
+   "placed_for": "2026-08-17 23:37"
+  }
+ ],
  "scan_universe": {
   "universe_json": 70,
   "ido_lists": 33,
