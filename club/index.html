@@ -1424,7 +1424,8 @@ function renderCalendar(){
   $("calSum2").textContent = mDays + " ימי מסחר החודש";
 }
 function dayModal(key){
-  const H = memberView() ? memberHistory() : ((PHONE||{}).history||{});
+  if (!fullView()) return;                       /* three-state gate, 17.8 */
+  const H = IS_OWNER ? ((PHONE||{}).history||{}) : memberHistory();
   const e = H[key]; if (!e) return;
   const gFee = (e.gold_lots||0)*28, cFee = (e.copier_lots||0)*28;
   const gPocket = (e.gold_net_demo!==undefined) ? e.gold_net_demo - gFee : undefined;
@@ -1461,7 +1462,7 @@ function renderReports(){
     $("repTable").innerHTML = '<tr><td class="mini" style="padding:22px;text-align:center">🔒 הדוחות נפתחים אחרי שהבוט שלך מחובר ומשדר — התחל במסך החיבורים.</td></tr>';
     return;
   }
-  const H = memberView() ? memberHistory() : (P.history||{});
+  const H = IS_OWNER ? (P.history||{}) : memberHistory();
   const keys = Object.keys(H).sort().reverse().slice(0,14);
   let html = `<tr><th>תאריך</th><th>לוטים</th><th>הרווח בחשבונות</th><th>עמלת Vantage</th><th>נשאר בכיס</th></tr>`;
   if (!keys.length) html += `<tr><td colspan="5" class="mini">עוד אין ימים מתועדים — הפיד מתמלא אוטומטית מיום ליום.</td></tr>`;
@@ -1822,7 +1823,7 @@ async function postMsg(text, kind){
 }
 function sendChat(){ const v=$("chatInput").value; $("chatInput").value=""; postMsg(v); }
 function myTodayProfit(){
-  if (memberView()){ const mj=myData()||{}; return +mj.day_pnl||0; }
+  if (!IS_OWNER){ const mj=myData()||{}; return +mj.day_pnl||0; }
   const f = (PHONE&&PHONE.fees)||{}; const t=(f.last_day&&f.last_day.total)||{}; return +t.pocket||0;
 }
 /* 2.1.0 (Idan): the share message carries the user's NAME, the total of
@@ -1831,7 +1832,7 @@ function buildProfitShare(){
   const who = (ME && (ME.displayName || (ME.email||"").split("@")[0])) || "";
   const lines = ["🎰 Idan's Money Club", "👤 " + who, ""];
   let total = 0, day = new Date();
-  if (memberView()){
+  if (!IS_OWNER){                                /* three-state gate, 17.8 */
     const mj = myData()||{};
     const p = +mj.day_pnl||0; total = p;
     lines.push("🤖 הבוט שלי — בוט הזהב: " + signed(p));
@@ -1870,14 +1871,14 @@ function shareProfitWhatsApp(){
   window.open("https://wa.me/?text=" + encodeURIComponent(buildProfitShare() + "\n" + APP_URL), "_blank");
 }
 function buildReportText(){
-  const H = memberView() ? memberHistory() : ((PHONE&&PHONE.history)||{});
+  const H = IS_OWNER ? ((PHONE&&PHONE.history)||{}) : memberHistory();
   const keys = Object.keys(H).sort().reverse().slice(0,14);
   let total = 0;
   const lines = keys.map(k=>{ const e=H[k];
     const pk = (e.pocket!==undefined)?e.pocket:(e.net_atrade!==undefined?e.net_atrade:0);
     total += pk; return k.split("-").reverse().join(".") + " — " + signed(pk) + " נטו"; });
   return "📊 דוח Idan's Money Club (דמו)\n" +
-    (memberView()?"החשבון שלי":"המועדון") + "\n" +
+    (IS_OWNER?"המועדון":"החשבון שלי") + "\n" +
     (lines.join("\n") || "אין עדיין ימים מתועדים") +
     "\n———\nסה\"כ " + keys.length + " ימים: " + signed(total) + "\n" + APP_URL;
 }
@@ -2137,17 +2138,20 @@ function botChipHTML(b){
 }
 function renderLive(){
   const P = PHONE;
-  const L = memberView() ? memberLive() : liveOf(P);
-  if (!L){
+  /* THE THREE-STATE GATE (17.8.2026, found by audit). The owner sees the
+     club. A member whose own bot is broadcasting sees THAT bot. Anyone else -
+     including an approved member who simply has not installed a bot yet -
+     sees a lock. The club's data is not even fetched into a local for them. */
+  const L = IS_OWNER ? liveOf(P) : (memberView() ? memberLive() : null);
+  if (!L && fullView()){
     $("heroBig").textContent = "—";
     $("liveRows").innerHTML = '<div class="empty">מחכה לשידור הראשון מהמחשב…</div>';
     return;
   }
-  LIVE_CACHE = L;
-  const T = L.totals||{};
+  const T = (L||{}).totals||{};
 
-  /* a member who has not connected a bot yet sees a locked table, not the club's money */
-  if (!memberView() && !fullView()){
+  if (!L){
+    LIVE_CACHE = null;
     $("cnrBal").textContent = "🔒"; $("cnrBalSub").textContent = "";
     $("cnrDay").textContent = "🔒"; $("cnrDaySub").textContent = "";
     $("heroLab").textContent = "השולחן נפתח כשהבוט שלך משדר";
@@ -2158,6 +2162,7 @@ function renderLive(){
     $("tickerIn").innerHTML = "";
     return;
   }
+  LIVE_CACHE = L;
 
   /* corners - small, exactly like BALANCE / TOTAL BET on the reference table */
   $("cnrBal").textContent = money(T.equity, 0);
@@ -2225,8 +2230,7 @@ let LIVE_CACHE = null;
 /* ------------------------------------------------------------ ticker */
 function renderTicker(){
   const P = PHONE || {};
-  let ev = (P.events||[]).slice(-24).reverse();
-  if (memberView()) ev = [];
+  let ev = IS_OWNER ? (P.events||[]).slice(-24).reverse() : [];
   const el = $("tickerIn");
   if (!ev.length){
     const L = LIVE_CACHE||{}; const T = L.totals||{};
@@ -2353,7 +2357,9 @@ function renderBotSheet(id){
 /* --------------------------------------------------------- the swing */
 function renderSwing(){
   const P = PHONE; if (!P) return;
-  if (memberView()){
+  /* this screen IS the club's Interactive account - there is no member
+     version of it. Anyone who is not Idan sees the locked copy. */
+  if (!IS_OWNER){
     $("swKpis").innerHTML = "";
     $("swNote").innerHTML = "מסך הסווינג מציג את חשבון המניות של המועדון. החשבון שלך מוצג בשולחן החי.";
     ["swOpen","swPending","swSignals","swGov"].forEach(i=>$(i).innerHTML='<div class="emptyline">🔒</div>');
@@ -2414,9 +2420,16 @@ function renderSwing(){
 /* Idan asked for the percent next to the dollars, per day. */
 function renderCalendar(){
   const P = PHONE; if (!P) return;
-  const H = memberView() ? memberHistory() : (P.history||{});
+  if (!fullView()){
+    $("calGrid").innerHTML = '<div class="d off" style="grid-column:1/-1;min-height:70px;'
+      + 'display:flex;align-items:center;justify-content:center">🔒</div>';
+    $("calSum").textContent = "🔒"; $("calSum").className = "";
+    $("calSum2").textContent = "לוח השנה נפתח אחרי שהבוט שלך מחובר ומשדר.";
+    return;
+  }
+  const H = IS_OWNER ? (P.history||{}) : memberHistory();
   const eqBase = (function(){
-    const L = LIVE_CACHE || (memberView()?memberLive():liveOf(P)) || {};
+    const L = (IS_OWNER ? (LIVE_CACHE||liveOf(P)) : memberLive()) || {};
     return +(L.totals||{}).equity || 0;
   })();
   const y = calCursor.getFullYear(), m = calCursor.getMonth();
@@ -2500,7 +2513,15 @@ function feeLabels(a,b,c){
 function renderMoney(){
   const P = PHONE; if (!P) return;
   if (!$("fNet")) return;
-  const L = LIVE_CACHE || (memberView()?memberLive():liveOf(P)) || {rows:[]};
+  if (!fullView()){
+    feeLabels("הרווח בחשבונות","העמלות","נשאר בכיס");
+    ["fGross","fFee","fNet"].forEach(function(i){ $(i).textContent="🔒"; $(i).className="v"; });
+    renderFeeBots([]);
+    $("openPos").innerHTML = "🔒 נפתח אחרי חיבור הבוט שלך.";
+    $("fNote").innerHTML = "דוח העמלות נפתח אחרי שהבוט שלך מחובר ומשדר.";
+    return;
+  }
+  const L = (IS_OWNER ? (LIVE_CACHE||liveOf(P)) : memberLive()) || {rows:[]};
 
   /* the open trades, listed plainly */
   const rows = L.rows||[];
@@ -2532,14 +2553,6 @@ function renderMoney(){
       + "עמלת Vantage (‎$28‎ ללוט) היא מה שתשלם כשעוברים לכסף אמיתי.";
     return;
   }
-  if (!fullView()){
-    feeLabels("הרווח בחשבונות","העמלות","נשאר בכיס");
-    ["fGross","fFee","fNet"].forEach(function(i){ $(i).textContent="🔒"; $(i).className="v"; });
-    renderFeeBots([]);
-    $("fNote").innerHTML = "דוח העמלות נפתח אחרי שהבוט שלך מחובר ומשדר.";
-    return;
-  }
-
   const fees = P.fees||{}, v2 = fees.schema===2;
   const SS = v2 ? (fees.since_start||{}) : null;
   const tot = v2 ? (SS.total||{}) : (fees.total||{});
