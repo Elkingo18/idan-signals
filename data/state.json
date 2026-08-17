@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 633.3348297643801,
-  "equity": 969.82,
+  "equity": 968.6,
   "realized_pnl": -25.13,
-  "open_pnl": -4.05,
+  "open_pnl": -5.28,
   "peak_equity": 1021.75,
   "max_dd_pct": -7.21,
-  "return_pct": -3.02,
+  "return_pct": -3.14,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -28,7 +28,7 @@
    "t2": 4435.72,
    "opened": "2026-08-17T11:56:39.669169+03:00",
    "opened_day": "2026-08-17",
-   "risk_open": 4.28,
+   "risk_open": 3.06,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -42,7 +42,7 @@
     "regime_ok": true,
     "notional": 6810.95
    },
-   "last": 4454.1001,
+   "last": 4454.8999,
    "margin": 340.54
   }
  ],
@@ -616,7 +616,7 @@
     "shares": 17,
     "notional": 301.83,
     "risk_dollars": 19.14,
-    "risk_pct_actual": 1.97,
+    "risk_pct_actual": 1.98,
     "stretch_target": 21.31,
     "score": 78,
     "news": [
@@ -655,7 +655,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "long",
+    "state": "BUY_NOW",
+    "pattern": "פולבק לגל",
+    "price": 4454.9,
+    "entry": 4454.9,
+    "stop": 4448.9,
+    "t1": 4463.89,
+    "t2": 4472.89,
+    "rr1": 1.5,
+    "atr": 4.0,
+    "rsi": 51.8,
+    "vwap": 4454.77,
+    "stop_pct": 0.13,
+    "ounces": 1.52,
+    "notional": 6771.45,
+    "margin": 338.57,
+    "risk_dollars": 9.12,
+    "shares": 1.52,
+    "score": 56,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-08-17": {
@@ -862,7 +888,7 @@
   ],
   [
    "2026-08-17",
-   969.82
+   968.6
   ]
  ],
  "cooldown": {},
@@ -975,10 +1001,10 @@
    "name": "👹 בוס היום",
    "target": 77.01,
    "legend": 192.54,
-   "done": 7.14,
+   "done": 5.92,
    "base": 962.68,
-   "pct": 9,
-   "pct_legend": 4,
+   "pct": 8,
+   "pct_legend": 3,
    "beaten": false,
    "legendary": false
   },
@@ -991,8 +1017,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 10.24,
   "week_pnl": 10.24,
-  "daily_limit": -58.19,
-  "weekly_limit": -116.38
+  "daily_limit": -58.12,
+  "weekly_limit": -116.23
  },
  "log": [
   {
@@ -1174,13 +1200,19 @@
   "all": -25.13,
   "all_pct": -2.51
  },
- "rejected": [],
- "updated_utc": "2026-08-17T10:45:06.745000+00:00",
- "updated_israel": "2026-08-17 13:45",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-08-17T11:00:50.660442+00:00",
+ "updated_israel": "2026-08-17 14:00",
  "market": {
   "open": false,
-  "et": "06:45",
-  "il": "13:45"
+  "et": "07:00",
+  "il": "14:00"
  },
  "stats": {
   "trades": 19,
@@ -2308,11 +2340,11 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 907,
+   "bars": 910,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4454.1,
-   "signals": 0,
+   "last_price": 4454.9,
+   "signals": 1,
    "today_trades": 2,
    "health": {
     "n": 18,
@@ -2333,11 +2365,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 1,
-   "heat": 4.28,
+   "heat": 3.06,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -2346,7 +2378,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 12,
    "covered": 1,
-   "updated": "2026-08-17 13:45"
+   "updated": "2026-08-17 14:00"
   }
  },
  "gold_today": {
@@ -2866,17 +2898,17 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "U.S. Futures Mostly Higher as Iran Ceasefire Set to Expire",
-    "url": "https://www.wsj.com/finance/stocks/u-s-futures-mostly-higher-as-iran-ceasefire-set-to-expire-794f8b05?siteid=yhoof2&yptr=yahoo",
-    "src": "The Wall Street Journal",
-    "time": "2026-08-17 08:40",
+    "title": "Toronto futures little changed as investors await domestic inflation data",
+    "url": "https://ca.finance.yahoo.com/news/toronto-futures-little-changed-investors-104137948.html",
+    "src": "Reuters",
+    "time": "2026-08-17 10:41",
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-17 13:45"
+  "updated": "2026-08-17 14:00"
  }
 }
