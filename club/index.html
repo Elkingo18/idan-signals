@@ -4,211 +4,379 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Idan's Money Club</title>
-<meta name="theme-color" content="#131722">
+<meta name="theme-color" content="#0a1410">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{
-  /* TradingView-dark with luxury gold */
-  --bg:#131722; --bg2:#1e222d; --line:#2a2e39;
-  --felt:#5c1a1f; --felt2:#38100f;
-  --gold:#d4af37;            /* luxury gold - THE accent */
-  --richgold:#e6c25a;
-  --accent2:#d4af37;
-  --ink:#d1d4dc; --ink2:#9aa0ac; --ink3:#787b86;
-  --up:#26a69a; --dn:#ef5350; --warn:#ff9800;
+  /* v3 — the live casino table (Evolution reference, 17.8.2026).
+     The old build was a red poker lobby. Idan rejected it. This is the
+     dealer's felt: deep green, brass rail, and NOTHING competing with the
+     money. Every chrome colour here is deliberately low-contrast so the
+     only bright things on the screen are the numbers. */
+  --felt:#0d3b2e; --felt2:#072a20; --felt3:#04170f;
+  --rail:#7a5c22; --brass:#c9a227;
+  --gold:#d4af37; --richgold:#f0d478;
+  --bg:#0a1410; --bg2:#10201a; --line:#1d3a30; --line2:#2a5245;
+  --ink:#e8eee9; --ink2:#9fb3a9; --ink3:#6d8378;
+  --up:#35d39a; --dn:#ff6b7d; --warn:#ffb547;
+  --accent2:#d4af37; --bg-old:#131722;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
-body{background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans Hebrew",sans-serif;direction:rtl;font-variant-numeric:tabular-nums}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans Hebrew",sans-serif;
+  direction:rtl;font-variant-numeric:tabular-nums;overflow-x:hidden}
 .hidden{display:none!important}
 button{font-family:inherit;cursor:pointer;border:none;border-radius:12px}
 a{color:var(--gold)}
-.wrap{max-width:1380px;margin:0 auto;padding:0 14px 90px}
-/* ---------- per-page personality: each tab has its own accent ---------- */
-section{--acc:var(--gold)}
-#t-cal{--acc:var(--richgold)}       /* the money calendar - pure gold */
-#t-reports{--acc:#3fb765}           /* honest green ledger */
-#t-chat{--acc:#e07a5f}              /* warm terracotta lounge */
-#t-links{--acc:#5fa8d3}             /* cool tech blue */
-#t-learn{--acc:#b28dff}             /* scholarly violet */
-#t-admin{--acc:var(--richgold)}     /* the crown room */
-section .card{border-top:2px solid var(--acc)}
-section .card h3{color:var(--acc)}
-/* ---------- desktop: spread across the whole screen ---------- */
-@media(min-width:920px){
-  .cal .d{min-height:96px;padding:8px;border-radius:13px}
-  .cal .d .n{font-size:13px}
-  .cal .d .p{font-size:17px}
-  .calhead b{font-size:21px}
-  #calSum{font-size:22px!important}
-  #t-table{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;align-items:start}
-  #t-table .pot, #t-table .lights, #t-table #seats{grid-column:1/-1}
-  #t-cal, #t-reports, #t-links, #t-learn, #t-admin{display:grid;grid-template-columns:repeat(2,1fr);gap:0 16px;align-items:start}
-  #t-cal > .card:first-child, #t-reports > .card:first-child, #t-links > .card:first-child{grid-column:1/-1}
-  #t-chat .card{max-width:900px;margin-left:auto;margin-right:auto}
-  #t-chat #chatMsgs{height:56vh}
-  .pot .amt{font-size:48px}
-}
-/* live pulse on the pot when data is fresh */
-.livedot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#3fb765;margin-inline-end:6px;vertical-align:1px;animation:pulse 1.6s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,183,101,.6)}70%{box-shadow:0 0 0 8px rgba(63,183,101,0)}100%{box-shadow:0 0 0 0 rgba(63,183,101,0)}}
-/* choose-your-bot cards */
-.botpick{display:flex;align-items:center;gap:13px;background:var(--bg2);border:1.5px solid var(--line);border-radius:16px;padding:15px;cursor:pointer;transition:.15s;text-align:right}
-.botpick:not(.dim):hover{border-color:var(--richgold);transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.45)}
+.up{color:var(--up)}.dn{color:var(--dn)}.wa{color:var(--warn)}
+.num{direction:ltr;font-variant-numeric:tabular-nums}
+
+/* ============================ THE TABLE ============================ */
+/* Full-bleed felt. No panels, no borders, no bottom bar - the brief was
+   "big, full screen, minimum buttons, the small numbers in the corners". */
+#table{position:relative;min-height:100svh;
+  background:
+    radial-gradient(ellipse 120% 78% at 50% 30%, #14513e 0%, var(--felt) 38%, var(--felt2) 72%, var(--felt3) 100%),
+    var(--felt3);
+  padding:calc(60px + env(safe-area-inset-top)) 14px 96px;
+  overflow:hidden}
+/* the brass rail that frames a real table */
+#table::before{content:"";position:absolute;inset:9px;border-radius:26px;
+  border:1px solid rgba(201,162,39,.22);pointer-events:none}
+#table::after{content:"";position:absolute;inset:14px;border-radius:22px;
+  border:1px solid rgba(255,255,255,.045);pointer-events:none}
+/* the felt weave, barely there */
+.weave{position:absolute;inset:0;pointer-events:none;opacity:.25;
+  background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.014) 0 2px,transparent 2px 4px),
+                   repeating-linear-gradient(-45deg,rgba(0,0,0,.05) 0 2px,transparent 2px 4px)}
+
+/* ---------------------------- top bar ---------------------------- */
+.top{position:fixed;top:0;right:0;left:0;z-index:44;display:flex;align-items:center;gap:10px;
+  padding:calc(9px + env(safe-area-inset-top)) 14px 9px;
+  background:linear-gradient(180deg,rgba(4,23,15,.94),rgba(4,23,15,0))}
+.burger{width:40px;height:40px;flex:none;background:rgba(255,255,255,.05);
+  border:1px solid var(--line2);border-radius:12px;color:var(--ink);font-size:17px;line-height:1}
+.burger:active{background:rgba(255,255,255,.12)}
+.brand{font-weight:900;font-size:14.5px;letter-spacing:.4px;color:var(--richgold);opacity:.92;white-space:nowrap}
+@media(max-width:430px){.brand{font-size:12.5px}}
+.topspace{flex:1}
+.topmini{display:flex;align-items:center;gap:9px;font-size:11.5px;color:var(--ink2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ink3);flex:none;display:inline-block}
+.dot.ok{background:var(--up);animation:pulse 2s infinite}
+.dot.wa{background:var(--warn)}
+.dot.dn{background:var(--dn)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(53,211,154,.55)}70%{box-shadow:0 0 0 7px rgba(53,211,154,0)}100%{box-shadow:0 0 0 0 rgba(53,211,154,0)}}
+.avatar{width:31px;height:31px;border-radius:50%;border:1.5px solid rgba(201,162,39,.6);object-fit:cover;flex:none}
+
+/* ------------------------- corner numbers ------------------------- */
+/* BALANCE / TOTAL BET in the reference photo. Small on purpose. */
+.corners{position:relative;z-index:2;display:flex;justify-content:space-between;
+  align-items:flex-start;gap:10px;max-width:1180px;margin:0 auto 6px}
+.cnr{min-width:104px}
+.cnr .k{font-size:9.5px;letter-spacing:1.6px;color:rgba(232,238,233,.45);text-transform:uppercase}
+.cnr .v{font-size:16px;font-weight:800;color:var(--richgold);margin-top:1px;direction:ltr}
+.cnr .s{font-size:10.5px;color:var(--ink2);margin-top:1px;unicode-bidi:plaintext}
+.cnr.l{text-align:left}
+.cnr.l .v,.cnr.l .s{text-align:left}
+
+/* ------------------------- the big number ------------------------- */
+.hero{position:relative;z-index:2;text-align:center;margin:14px auto 4px;max-width:1180px}
+.hero .lab{font-size:11px;letter-spacing:3px;color:rgba(232,238,233,.5);text-transform:uppercase}
+.hero .big{font-size:clamp(44px,13vw,104px);font-weight:900;line-height:1.02;letter-spacing:-1.5px;
+  text-shadow:0 4px 26px rgba(0,0,0,.6);margin:2px 0 0;direction:ltr}
+.hero .big.up{color:var(--up)}.hero .big.dn{color:var(--dn)}
+.hero .big.flat{color:var(--richgold)}
+.hero .side{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;
+  font-size:12.5px;color:rgba(232,238,233,.62);margin-top:5px}
+.hero .side b{font-weight:800}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(201,162,39,.3);
+  border-radius:999px;padding:3px 11px;font-size:11.5px;color:var(--ink2);background:rgba(0,0,0,.2)}
+.pill.up{border-color:rgba(53,211,154,.45);color:var(--up)}
+.pill.dn{border-color:rgba(255,107,125,.45);color:var(--dn)}
+.pill.wa{border-color:rgba(255,181,71,.5);color:var(--warn)}
+
+/* --------------------------- live rows --------------------------- */
+/* One open trade = one line. Symbol, side, size, entry, price now, gross. */
+.rows{position:relative;z-index:2;max-width:1180px;margin:16px auto 0;
+  display:flex;flex-direction:column;gap:7px}
+.lrow{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+  border:1px solid rgba(255,255,255,.07);border-inline-start:3px solid var(--brass);
+  border-radius:13px;padding:11px 13px;cursor:pointer;
+  animation:deal .4s cubic-bezier(.2,.8,.3,1.15) both;transition:.14s}
+.lrow:hover{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));transform:translateY(-1px)}
+@keyframes deal{from{transform:translateY(-14px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+.lrow.gold{border-inline-start-color:#e8b923}
+.lrow.ladder{border-inline-start-color:#7fd1c1}
+.lrow.swing{border-inline-start-color:#7aa7ff}
+.lrow .ic{font-size:19px;text-align:center}
+.lrow .mid{min-width:0}
+.lrow .sym{font-weight:900;font-size:16px;letter-spacing:.3px}
+.lrow .sym .sd{font-size:10px;font-weight:800;border-radius:5px;padding:1px 6px;margin-inline-start:7px;vertical-align:2px}
+.lrow .sd.b{background:rgba(53,211,154,.16);color:var(--up)}
+.lrow .sd.s{background:rgba(255,107,125,.16);color:var(--dn)}
+.lrow .det{font-size:11.5px;color:rgba(232,238,233,.55);margin-top:2px;direction:rtl}
+.lrow .det .px{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.lrow .pl{text-align:left;min-width:96px}
+.lrow .pl .g{font-size:20px;font-weight:900;direction:ltr;line-height:1.1}
+.lrow .pl .p{font-size:11px;color:rgba(232,238,233,.5);direction:ltr}
+.rows .empty{text-align:center;color:rgba(232,238,233,.45);font-size:13.5px;
+  padding:26px 12px;border:1px dashed rgba(255,255,255,.11);border-radius:14px}
+
+/* ---------------------------- bot chips ---------------------------- */
+.chips{position:relative;z-index:2;max-width:1180px;margin:18px auto 0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:9px}
+.chip{background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.16));
+  border:1px solid rgba(201,162,39,.24);border-radius:15px;padding:11px 13px;
+  text-align:right;color:var(--ink);cursor:pointer;transition:.15s;position:relative;overflow:hidden}
+.chip:hover{border-color:rgba(201,162,39,.6);transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.chip .ch{display:flex;align-items:center;gap:8px}
+.chip .ch .e{font-size:17px}
+.chip .ch b{font-size:13.5px}
+.chip .ch .st{margin-inline-start:auto}
+.chip .eq{font-size:19px;font-weight:900;color:var(--richgold);margin-top:5px;direction:ltr}
+.chip .dy{font-size:12px;font-weight:800;direction:ltr;margin-top:1px}
+.chip .sub{font-size:10.5px;color:var(--ink3);margin-top:3px}
+.chip.down{border-color:rgba(255,107,125,.55);background:linear-gradient(180deg,rgba(70,10,18,.55),rgba(0,0,0,.2))}
+.chip.down .sub{color:var(--dn)}
+
+/* ----------------------------- ticker ----------------------------- */
+/* the hand history along the bottom of a live table */
+.ticker{position:fixed;bottom:0;right:0;left:0;z-index:36;
+  background:linear-gradient(0deg,rgba(4,23,15,.97),rgba(4,23,15,.72));
+  border-top:1px solid rgba(201,162,39,.22);
+  padding:7px 12px calc(7px + env(safe-area-inset-bottom));overflow:hidden}
+.ticker{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.ticker::-webkit-scrollbar{display:none}
+.ticker .tk-in{display:flex;gap:18px;white-space:nowrap;font-size:11.5px;color:var(--ink2);
+  width:max-content;padding-inline-end:16px}
+.ticker .tk-in>span{animation:deal .35s both}
+.ticker i{font-style:normal;color:var(--ink3)}
+.ticker b{font-weight:800}
+
+/* ----------------------------- drawer ----------------------------- */
+.scrim{position:fixed;inset:0;background:rgba(2,10,7,.72);z-index:68;opacity:0;pointer-events:none;transition:.2s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;bottom:0;right:0;width:min(310px,86vw);z-index:69;
+  background:linear-gradient(180deg,#0e2419,#081711);border-inline-start:1px solid var(--line2);
+  transform:translateX(100%);transition:transform .24s cubic-bezier(.3,.8,.3,1);
+  display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top)) 0 16px;
+  box-shadow:-18px 0 44px rgba(0,0,0,.5)}
+.drawer.on{transform:none}
+.drawer .dhead{padding:0 18px 14px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.drawer .dhead b{font-size:16px;color:var(--richgold)}
+.drawer .dhead .m{font-size:11.5px;color:var(--ink3);margin-top:2px}
+.drawer .dnav{flex:1;overflow-y:auto;padding:0 10px}
+.drawer .dnav button{display:flex;align-items:center;gap:11px;width:100%;background:none;
+  color:var(--ink);font-size:15px;padding:12px 14px;border-radius:12px;text-align:right;font-weight:600}
+.drawer .dnav button .e{font-size:18px;width:24px;text-align:center}
+.drawer .dnav button:hover{background:rgba(255,255,255,.05)}
+.drawer .dnav button.on{background:rgba(201,162,39,.14);color:var(--richgold)}
+.drawer .dfoot{padding:12px 16px 0;border-top:1px solid var(--line)}
+.ebtn{width:100%;background:linear-gradient(160deg,#8d1b28,#5d0f18);color:#ffe9ec;
+  border:1px solid #b03040;font-weight:800;font-size:14px;padding:12px;border-radius:12px}
+.ebtn.armed{background:linear-gradient(160deg,#c22a3c,#8d1b28);animation:pulseRed 1.2s infinite}
+@keyframes pulseRed{0%,100%{box-shadow:0 0 0 0 rgba(194,42,60,.5)}50%{box-shadow:0 0 0 9px rgba(194,42,60,0)}}
+
+/* --------------------------- panel pages --------------------------- */
+/* everything that is not the table lives here, on a calm dark ground */
+#panels{position:fixed;inset:0;z-index:50;background:var(--bg);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:calc(58px + env(safe-area-inset-top)) 0 30px}
+.pbar{position:fixed;top:0;right:0;left:0;z-index:51;display:flex;align-items:center;gap:10px;
+  padding:calc(9px + env(safe-area-inset-top)) 14px 9px;background:rgba(10,20,16,.96);
+  border-bottom:1px solid var(--line)}
+.pbar b{font-size:16px;color:var(--richgold)}
+.pbar .x{margin-inline-start:auto;background:rgba(255,255,255,.06);border:1px solid var(--line2);
+  color:var(--ink);width:36px;height:36px;border-radius:11px;font-size:16px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 14px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0}
+.card h3{font-size:16px;margin-bottom:9px;color:var(--gold)}
+.mini{font-size:12.5px;color:var(--ink3);line-height:1.65}
+.btn{background:linear-gradient(135deg,#e6c25a,#b8912e);color:#0f1a14;font-weight:800;font-size:15.5px;
+  padding:12px 20px;border-radius:11px;box-shadow:0 3px 12px rgba(212,175,55,.2)}
+.btn.sec{background:rgba(255,255,255,.05);color:var(--ink);border:1px solid var(--line2);box-shadow:none}
+.btn:disabled{opacity:.45;cursor:default}
+.tag{display:inline-block;background:rgba(255,255,255,.05);border:1px solid var(--line2);
+  color:var(--ink2);border-radius:999px;padding:3px 10px;font-size:11.5px;margin:2px}
+.tag.up{color:var(--up);border-color:rgba(53,211,154,.4)}
+.tag.dn{color:var(--dn);border-color:rgba(255,107,125,.4)}
+.tag.wa{color:var(--warn);border-color:rgba(255,181,71,.4)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{color:var(--ink2);font-weight:400;font-size:12px;text-align:right;padding:7px 6px;border-bottom:1.5px solid var(--line)}
+td{padding:8px 6px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:none}
+input[type=text]{width:100%;background:#0a1712;border:1.5px solid var(--line2);border-radius:11px;
+  color:var(--ink);font-size:16px;padding:11px;font-family:inherit}
+select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-radius:9px;padding:6px 9px;font-family:inherit}
+
+/* ------------------------- the bot sheet ------------------------- */
+/* clicking a bot opens it and shows ALL of its commands, live */
+.sheet{position:fixed;inset:0;z-index:62;background:rgba(3,14,9,.86);
+  display:flex;align-items:flex-end;justify-content:center;padding:0}
+.sbox{background:linear-gradient(180deg,#0f2a20,#0a1a13);border:1px solid var(--line2);
+  border-radius:20px 20px 0 0;width:100%;max-width:820px;max-height:92svh;overflow-y:auto;
+  padding:14px 15px calc(20px + env(safe-area-inset-bottom));
+  animation:up .26s cubic-bezier(.2,.8,.3,1) both}
+@keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.sbox .grab{width:42px;height:4px;border-radius:3px;background:var(--line2);margin:0 auto 12px}
+.sbox .sh{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.sbox .sh .e{font-size:26px}
+.sbox .sh b{font-size:19px}
+.sbox .sh .x{margin-inline-start:auto;background:rgba(255,255,255,.06);border:1px solid var(--line2);
+  color:var(--ink);width:34px;height:34px;border-radius:10px;font-size:15px}
+.sbox .srole{font-size:12px;color:var(--ink3);margin-bottom:12px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;margin-bottom:12px}
+.kpi{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:12px;padding:9px 8px;text-align:center}
+.kpi .k{font-size:10px;color:var(--ink3)}
+.kpi .v{font-size:17px;font-weight:900;margin-top:2px;direction:ltr}
+.kpi.acc{border-color:rgba(201,162,39,.45);background:linear-gradient(160deg,rgba(201,162,39,.12),rgba(255,255,255,.03))}
+.kpi.acc .k{color:var(--gold)}
+.sect{margin-top:14px}
+.sect h4{font-size:13px;color:var(--gold);margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.sect h4 .n{font-size:10.5px;color:var(--ink3);font-weight:400}
+.ord{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.035);
+  border:1px solid var(--line);border-radius:11px;padding:9px 11px;margin-bottom:6px;font-size:13px}
+.ord .t{font-size:10px;font-weight:800;border-radius:6px;padding:2px 7px;flex:none}
+.ord .t.live{background:rgba(53,211,154,.15);color:var(--up)}
+.ord .t.wait{background:rgba(255,181,71,.15);color:var(--warn)}
+.ord .t.done{background:rgba(255,255,255,.07);color:var(--ink3)}
+.ord .t.stop{background:rgba(255,107,125,.15);color:var(--dn)}
+.ord .g{margin-inline-start:auto;font-weight:900;direction:ltr}
+.ord .sm{font-size:11px;color:var(--ink3);direction:rtl;unicode-bidi:plaintext}
+.emptyline{font-size:12.5px;color:var(--ink3);padding:11px;text-align:center;
+  border:1px dashed var(--line2);border-radius:11px}
+.logline{font-size:11.5px;color:var(--ink2);padding:6px 9px;border-inline-start:2px solid var(--line2);
+  margin-bottom:4px;line-height:1.5}
+
+/* ----------------------------- calendar ----------------------------- */
+.calhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.calhead b{font-size:17px}
+.calhead button{background:rgba(255,255,255,.05);color:var(--ink);border:1px solid var(--line2);
+  width:34px;height:34px;border-radius:10px;font-size:16px}
+.dow,.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.dow span{text-align:center;font-size:11px;color:var(--ink3);padding:3px 0}
+.cal .d{min-height:66px;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:11px;
+  padding:5px;font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
+.cal .d.off{opacity:.25;cursor:default}
+.cal .d .n{font-size:10.5px}
+.cal .d .p{font-weight:800;font-size:12.5px;direction:ltr;text-align:left}
+.cal .d .pc{font-size:10px;font-weight:700;direction:ltr;text-align:left;opacity:.8}
+.cal .d.g{background:rgba(53,211,154,.13);border-color:rgba(53,211,154,.42)}
+.cal .d.r{background:rgba(255,107,125,.11);border-color:rgba(255,107,125,.42)}
+.cal .d.today{box-shadow:0 0 0 1.5px var(--brass) inset}
+
+/* ------------------------------ misc ------------------------------ */
+.full{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:26px 20px;gap:14px;background:var(--bg)}
+.bigchip{width:96px;height:96px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#2fbf8f,var(--felt) 55%,#04170f);
+  border:7px dashed #04170f;box-shadow:0 0 0 5px var(--gold),0 14px 40px rgba(0,0,0,.55)}
+.title{font-size:30px;font-weight:900}
+.title small{display:block;font-size:14px;color:var(--ink2);font-weight:400;margin-top:5px}
+.gbtn{display:flex;align-items:center;gap:11px;background:#fff;color:#1f1f1f;font-weight:700;
+  font-size:16.5px;padding:13px 24px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.gbtn img{width:22px;height:22px}
+.contract{background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:12px;padding:14px;
+  font-size:13.5px;line-height:1.75;max-height:44svh;overflow-y:auto;text-align:right}
+.contract h4{color:var(--gold);margin:9px 0 3px}
+.chk{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin:11px 0;text-align:right}
+.chk input{width:19px;height:19px;flex:none;margin-top:1px}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line2)}
+.dots i.on{background:var(--gold)}
+.botpick{display:flex;align-items:center;gap:13px;background:var(--bg2);border:1.5px solid var(--line2);
+  border-radius:16px;padding:15px;cursor:pointer;transition:.15s;text-align:right}
+.botpick:not(.dim):hover{border-color:var(--richgold);transform:translateY(-2px)}
 .botpick.dim{opacity:.55;cursor:default}
-.botpick .bp-ic{font-size:34px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#262b38;border-radius:14px;flex:none}
+.botpick .bp-ic{font-size:34px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.05);border-radius:14px;flex:none}
 .botpick .bp-mid{flex:1;min-width:0}
 .botpick .bp-mid b{font-size:16.5px}
 .botpick .bp-go{flex:none;font-weight:900;color:var(--richgold);font-size:15px}
-.bp-tag{display:inline-block;font-size:10.5px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin-inline-start:7px;color:var(--ink2);vertical-align:2px}
+.bp-tag{display:inline-block;font-size:10.5px;border:1px solid var(--line2);border-radius:999px;
+  padding:2px 8px;margin-inline-start:7px;color:var(--ink2);vertical-align:2px}
 .bp-tag.rec{border-color:var(--richgold);color:var(--richgold)}
 .bp-tag.soon{color:var(--warn)}
-/* ---------- header ---------- */
-header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,#161311 78%,rgba(22,19,17,0));padding:12px 14px 8px}
-.hrow{max-width:1380px;margin:0 auto;display:flex;align-items:center;gap:10px}
-.logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:18px;letter-spacing:.3px}
-.logo .chip{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a7d,var(--gold) 58%,#7a1f1f);border:3px dashed #161311;box-shadow:0 0 0 2px var(--gold)}
-.hspace{flex:1}
-.wallet{background:var(--bg2);border:1.5px solid var(--line);border-radius:14px;padding:6px 13px;text-align:center}
-.wallet .v{font-size:17px;font-weight:900;color:var(--richgold)}
-.wallet .k{font-size:10.5px;color:var(--ink2)}
-.avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--gold);object-fit:cover}
-/* ---------- bottom nav ---------- */
-nav{position:fixed;bottom:0;right:0;left:0;z-index:40;background:#161a25;border-top:1.5px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(8px + env(safe-area-inset-bottom))}
-nav button{background:none;color:var(--ink3);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 8px;border-radius:10px}
-nav button .i{font-size:20px}
-nav button.on{color:var(--gold)}
-/* ---------- cards ---------- */
-.card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:15px;margin:12px 0}
-.card h3{font-size:16.5px;margin-bottom:9px;color:var(--gold)}
-.mini{font-size:12.5px;color:var(--ink3);line-height:1.6}
-.up{color:var(--up)}.dn{color:var(--dn)}.wa{color:var(--warn)}
-.btn{background:linear-gradient(135deg,#e6c25a,#b8912e);color:#141414;font-weight:800;font-size:16px;padding:13px 22px;border-radius:9px;box-shadow:0 3px 12px rgba(212,175,55,.25)}
-.btn.sec{background:var(--bg2);color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
-.btn:disabled{opacity:.45;cursor:default}
-.tag{display:inline-block;background:#2a2e39;border:1px solid var(--line);color:var(--ink2);border-radius:999px;padding:3px 10px;font-size:11.5px;margin:2px}
-.tag.up{color:var(--up)}.tag.dn{color:var(--dn)}.tag.wa{color:var(--warn)}
-/* ---------- login ---------- */
-.full{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 20px;gap:14px}
-.bigchip{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a7d,var(--gold) 58%,#7a1f1f);border:7px dashed #161311;box-shadow:0 0 0 5px var(--gold),0 14px 40px rgba(0,0,0,.55)}
-.title{font-size:30px;font-weight:900}.title small{display:block;font-size:14px;color:var(--ink2);font-weight:400;margin-top:5px}
-.gbtn{display:flex;align-items:center;gap:11px;background:#fff;color:#1f1f1f;font-weight:700;font-size:16.5px;padding:13px 24px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
-.gbtn img{width:22px;height:22px}
-/* ---------- seats ---------- */
-.pot{position:relative;background:radial-gradient(ellipse 120% 90% at 50% 18%,#6e2026,var(--felt) 45%,var(--felt2));border:2px solid #7a2a30;border-radius:100px/56px;padding:18px 18px 20px;text-align:center;margin:12px 0;box-shadow:inset 0 0 60px rgba(0,0,0,.5),0 6px 22px rgba(0,0,0,.45),0 0 0 2.5px rgba(212,175,55,.45)}
-.pot::before{content:"";position:absolute;inset:7px;border:1px solid rgba(212,175,55,.35);border-radius:92px/50px;pointer-events:none}
-.pot .lab{color:#f0c9c2;font-size:12px;letter-spacing:1.2px}
-.pot .amt{font-size:38px;font-weight:900;margin:2px 0;text-shadow:0 2px 8px rgba(0,0,0,.5)}
-.pot .sub{color:#f2d7d1;font-size:13px;line-height:1.6}
-/* live trades = playing cards on the felt */
-.board{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0 4px;min-height:10px}
-.pcard{width:82px;height:116px;background:linear-gradient(160deg,#fff,#eef3f8);border-radius:11px;box-shadow:0 6px 16px rgba(0,0,0,.45);position:relative;color:#14243a;padding:7px 8px;display:flex;flex-direction:column;justify-content:space-between;animation:deal .45s cubic-bezier(.2,.8,.3,1.2) both}
-@keyframes deal{from{transform:translateY(-26px) rotate(-8deg) scale(.9);opacity:0}to{transform:none;opacity:1}}
-.pcard .corner{font-weight:900;font-size:15px;line-height:1}
-.pcard .suit{position:absolute;top:6px;left:8px;font-size:15px}
-.pcard .suitbig{text-align:center;font-size:30px;margin:-4px 0}
-.pcard .tk{font-weight:900;font-size:15px;text-align:center;letter-spacing:.3px}
-.pcard .pl{text-align:center;font-weight:900;font-size:14px;border-radius:7px;padding:2px 0}
-.pcard.win .pl{background:rgba(35,180,120,.16);color:#0a7a4a}
-.pcard.loss .pl{background:rgba(220,60,80,.14);color:#c0293c}
-.pcard.red{color:#c0293c}
-.pcard .meta{font-size:10.5px;color:#5a7089;text-align:center}
-.board .empty{color:#f2d7d1;font-size:13.5px;padding:14px 8px;text-align:center;width:100%}
-#seats{display:grid;grid-template-columns:1fr;gap:10px;margin:9px 0}
-@media(min-width:560px){#seats.arena{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}}
-.seat{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:13px 14px;position:relative;overflow:hidden}
-.seat::after{content:"";position:absolute;top:0;right:0;left:0;height:2px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.7),transparent)}
-.seat.dim{opacity:.62}
-.seat .shead{display:flex;align-items:center;gap:9px;margin-bottom:8px}
-.seat .ic{font-size:20px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:#2a2e39;border-radius:8px;flex:none}
-.seat .nm{font-weight:800;font-size:14.5px}
-.seat .rl{font-size:11px;color:var(--ink3)}
-.seat .sbody{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.seat .sv{font-size:22px;font-weight:900;color:var(--richgold);letter-spacing:.2px;direction:ltr}
-.seat .sk{font-size:10px;color:var(--ink3)}
-.seat .sday{font-size:14.5px;font-weight:800;direction:ltr}
-.seat .sday small{font-weight:700;opacity:.85}
-.seat .tags{margin-top:7px}
-.lights{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
-/* ---------- fees ---------- */
+.modal{position:fixed;inset:0;background:rgba(3,14,9,.85);z-index:64;display:flex;align-items:center;
+  justify-content:center;padding:18px}
+.mbox{background:var(--bg2);border:1.5px solid var(--line2);border-radius:18px;padding:18px;
+  max-width:480px;width:100%;max-height:82svh;overflow-y:auto}
+.toast{position:fixed;bottom:74px;right:50%;transform:translateX(50%);background:var(--bg2);
+  border:1.5px solid var(--gold);color:var(--ink);border-radius:12px;padding:10px 18px;z-index:80;
+  font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.urow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.urow img{width:30px;height:30px;border-radius:50%}
+.sw{position:relative;width:40px;height:22px;background:#2b3a34;border-radius:999px;flex:none;transition:.15s}
+.sw.on{background:var(--up)}
+.sw::after{content:"";position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}
+.sw.on::after{transform:translateX(-18px)}
+.chatTab{flex:1;background:none;color:var(--ink3);font-size:14.5px;font-weight:700;padding:12px;border:none;cursor:pointer;font-family:inherit}
+.chatTab.on{color:var(--gold);box-shadow:inset 0 -2.5px 0 var(--gold)}
+.msg{max-width:82%;padding:8px 12px;border-radius:14px;font-size:14px;line-height:1.5;word-break:break-word}
+.msg .who{font-size:11px;color:var(--ink3);margin-bottom:2px}
+.msg.them{align-self:flex-start;background:rgba(255,255,255,.05);border:1px solid var(--line2);border-bottom-left-radius:4px}
+.msg.me{align-self:flex-end;background:linear-gradient(160deg,#14513e,#0d3b2e);border:1px solid var(--line2);border-bottom-right-radius:4px}
+.msg .t{font-size:10px;color:var(--ink3);margin-top:3px;text-align:left}
+.msg.profit{border-color:var(--up);background:linear-gradient(160deg,#123a22,#0f2a1a)}
+.dmrow{display:flex;align-items:center;gap:9px;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px}
+.dmrow img{width:28px;height:28px;border-radius:50%}
+.dmrow.on{background:rgba(255,255,255,.06)}
+.ctrlbtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.ctrlbtns button{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--line2);
+  background:rgba(255,255,255,.05);color:var(--ink)}
 .fee3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:10px 0}
-.feebox{background:#2a2e39;border:1.5px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center}
+.feebox{background:rgba(255,255,255,.04);border:1.5px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center}
 .feebox .k{font-size:11.5px;color:var(--ink2)}
-.feebox .v{font-size:20px;font-weight:900;margin-top:3px}
-.feebox.net{border-color:var(--richgold);background:linear-gradient(160deg,#2a2110,#2a2e39)}
+.feebox .v{font-size:20px;font-weight:900;margin-top:3px;direction:ltr}
+.feebox.net{border-color:var(--richgold);background:linear-gradient(160deg,rgba(201,162,39,.14),rgba(255,255,255,.03))}
 .feebox.net .k{color:var(--gold)}
-/* ---------- per-bot fee breakdown (2.3.0) ---------- */
-.fbot{background:#1a1e29;border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin-top:9px}
+.fbot{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin-top:9px}
 .fbot .fb-h{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .fbot .fb-h .e{font-size:17px}
 .fbot .fb-h b{font-size:14px}
 .fbot .fb-h .lot{margin-inline-start:auto;font-size:10.5px;color:var(--ink3)}
 .fbot .fb-g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;text-align:center}
-.fbot .fb-g div{background:#131722;border:1px solid var(--line);border-radius:8px;padding:7px 4px}
+.fbot .fb-g div{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:9px;padding:7px 4px}
 .fbot .fb-g .k{font-size:10px;color:var(--ink2);margin-bottom:2px}
 .fbot .fb-g .v{font-size:15px;font-weight:900;direction:ltr}
-.fbot .fb-g .pocket{border-color:rgba(212,175,55,.55);background:linear-gradient(160deg,#241f12,#131722)}
+.fbot .fb-g .pocket{border-color:rgba(201,162,39,.5);background:linear-gradient(160deg,rgba(201,162,39,.12),rgba(0,0,0,.2))}
 .fbot .fb-g .pocket .k{color:var(--gold)}
-.fbot .fb-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;margin-top:8px;background:#131722}
+.fbot .fb-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;margin-top:8px;background:rgba(0,0,0,.35)}
 .fbot .fb-bar i{display:block}
 .fbot .fb-note{font-size:10.5px;color:var(--ink3);margin-top:5px}
-/* ---------- calendar ---------- */
-.calhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.calhead b{font-size:17px}
-.calhead button{background:#2a2e39;color:var(--ink);border:1px solid var(--line);width:34px;height:34px;border-radius:10px;font-size:16px}
-.dow,.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.dow span{text-align:center;font-size:11px;color:var(--ink3);padding:3px 0}
-.cal .d{min-height:62px;background:#2a2e39;border:1px solid var(--line);border-radius:10px;padding:4px;font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
-.cal .d.off{opacity:.28;cursor:default}
-.cal .d .n{font-size:10.5px}
-.cal .d .p{font-weight:800;font-size:12.5px;direction:ltr;text-align:left}
-.cal .d.g{background:rgba(35,212,148,.14);border-color:rgba(35,212,148,.5)}
-.cal .d.r{background:rgba(255,107,125,.12);border-color:rgba(255,107,125,.5)}
-/* ---------- tables ---------- */
-table{width:100%;border-collapse:collapse;font-size:13.5px}
-th{color:var(--ink2);font-weight:400;font-size:12px;text-align:right;padding:7px 6px;border-bottom:1.5px solid var(--line)}
-td{padding:8px 6px;border-bottom:1px solid #2a2e39}
-tr:last-child td{border-bottom:none}
-/* ---------- modal ---------- */
-.modal{position:fixed;inset:0;background:rgba(5,12,20,.8);z-index:60;display:flex;align-items:center;justify-content:center;padding:18px}
-.mbox{background:var(--bg2);border:1.5px solid var(--line);border-radius:18px;padding:18px;max-width:480px;width:100%;max-height:82svh;overflow-y:auto}
-/* ---------- contract ---------- */
-.contract{background:#2a2e39;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px;line-height:1.75;max-height:44svh;overflow-y:auto;text-align:right}
-.contract h4{color:var(--gold);margin:9px 0 3px}
-input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);border-radius:11px;color:var(--ink);font-size:16px;padding:11px;font-family:inherit}
-.chk{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin:11px 0;text-align:right}
-.chk input{width:19px;height:19px;flex:none;margin-top:1px}
-/* ---------- tour ---------- */
-.dots{display:flex;gap:6px;justify-content:center;margin-top:8px}
-.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
-.dots i.on{background:var(--gold)}
-/* ---------- admin ---------- */
-.urow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #2a2e39;font-size:13px}
-.urow img{width:30px;height:30px;border-radius:50%}
-.sw{position:relative;width:40px;height:22px;background:#363a45;border-radius:999px;flex:none;transition:.15s}
-.sw.on{background:var(--up)}
-.sw::after{content:"";position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}
-.sw.on::after{transform:translateX(-18px)}
-.toast{position:fixed;bottom:84px;right:50%;transform:translateX(50%);background:var(--bg2);border:1.5px solid var(--gold);color:var(--ink);border-radius:12px;padding:10px 18px;z-index:80;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
-/* chat */
-.chatTab{flex:1;background:none;color:var(--ink3);font-size:14.5px;font-weight:700;padding:12px;border:none;cursor:pointer;font-family:inherit}
-.chatTab.on{color:var(--gold);box-shadow:inset 0 -2.5px 0 var(--gold)}
-.msg{max-width:82%;padding:8px 12px;border-radius:14px;font-size:14px;line-height:1.5;word-break:break-word}
-.msg .who{font-size:11px;color:var(--ink3);margin-bottom:2px}
-.msg.them{align-self:flex-start;background:var(--bg2);border:1px solid var(--line);border-bottom-left-radius:4px}
-.msg.me{align-self:flex-end;background:linear-gradient(160deg,#7a1f1f,#5a1414);border:1px solid #9a3030;border-bottom-right-radius:4px}
-.msg .t{font-size:10px;color:var(--ink3);margin-top:3px;text-align:left}
-.msg.profit{border-color:var(--up);background:linear-gradient(160deg,#123a22,#0f2a1a)}
-.dmrow{display:flex;align-items:center;gap:9px;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px}
-.dmrow img{width:28px;height:28px;border-radius:50%}
-.dmrow.on{background:#262b38}
-/* member bot control row */
-.ctrlbtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.ctrlbtns button{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:#262b38;color:var(--ink)}
-.navMore{}
-#installBtn{position:fixed;top:64px;left:12px;z-index:45;background:var(--felt);color:#ffe7e2;border:1.5px solid #9a3030;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+#installBtn{position:fixed;top:calc(58px + env(safe-area-inset-top));left:12px;z-index:45;
+  background:rgba(13,59,46,.9);color:#d8f0e5;border:1px solid var(--line2);font-size:12.5px;
+  font-weight:700;padding:8px 13px;border-radius:999px}
+.alertbar{position:fixed;top:calc(52px + env(safe-area-inset-top));right:12px;left:12px;z-index:46;
+  background:linear-gradient(160deg,#7d1524,#4d0d16);border:1px solid #b03040;color:#ffe1e5;
+  border-radius:12px;padding:9px 13px;font-size:12.5px;font-weight:700;
+  box-shadow:0 8px 22px rgba(0,0,0,.45);animation:deal .3s both}
+
+/* --------------------------- big screens --------------------------- */
+@media(min-width:920px){
+  #table{padding-top:calc(74px + env(safe-area-inset-top))}
+  .hero .big{font-size:96px}
+  .rows{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .cnr .v{font-size:20px}
+  .cal .d{min-height:96px;padding:8px}
+  .cal .d .p{font-size:16px}
+  .sheet{align-items:center}
+  .sbox{border-radius:20px;max-height:86svh}
+  #t-cal,#t-reports,#t-links,#t-admin{display:grid;grid-template-columns:repeat(2,1fr);gap:0 16px;align-items:start}
+  #t-cal>.card:first-child,#t-reports>.card:first-child,#t-links>.card:first-child{grid-column:1/-1}
+  #t-chat .card{max-width:900px;margin:0 auto}
+}
+@media(max-width:400px){
+  .lrow{grid-template-columns:26px 1fr auto;padding:9px 10px}
+  .lrow .sym{font-size:14.5px}
+  .lrow .pl .g{font-size:17px}
+}
+
 </style>
 </head>
 <body>
@@ -294,185 +462,259 @@ input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);bo
   <button class="btn sec" onclick="signOut()">התנתק בינתיים</button>
 </div>
 
-<!-- ======================= MAIN ======================= -->
+<!-- ======================= MAIN (v3) ======================= -->
 <div id="v-app" class="hidden">
-  <header><div class="hrow">
-    <div class="logo"><div class="chip"></div>Idan's Money Club</div>
-    <div class="hspace"></div>
-    <div class="wallet"><div class="v" id="hWallet">—</div><div class="k">הארנקים שלנו (דמו)</div></div>
+
+  <!-- thin floating bar: the only chrome on the table -->
+  <div class="top">
+    <button class="burger" onclick="toggleDrawer()" aria-label="תפריט">☰</button>
+    <div class="brand">Idan's Money Club</div>
+    <div class="topspace"></div>
+    <div class="topmini" id="topMini"></div>
     <img class="avatar" id="hAvatar" alt="" referrerpolicy="no-referrer">
-  </div></header>
-  <button id="installBtn" class="hidden">📥 התקן את האפליקציה</button>
+  </div>
+  <button id="installBtn" class="hidden">📥 התקן</button>
+  <div id="alertBar" class="alertbar hidden"></div>
 
-  <div class="wrap">
-    <!-- ===== table ===== -->
-    <section id="t-table">
-      <div class="pot">
-        <div class="lab" id="potLab">הקופה של היום · נטו לכיס אחרי עמלות</div>
-        <div class="amt" id="potNet">—</div>
-        <div class="sub" id="potSub">טוען נתונים…</div>
-        <div class="board" id="board"></div>
-      </div>
-      <div class="lights" id="lights"></div>
-      <div id="seats"></div>
-      <div class="card">
-        <h3>💰 כמה נשאר בכיס — מאז ההתחלה (13.8)</h3>
-        <div class="fee3">
-          <div class="feebox"><div class="k">הרווח בחשבונות</div><div class="v" id="fGross">—</div></div>
-          <div class="feebox"><div class="k">העמלות</div><div class="v wa" id="fFee">—</div></div>
-          <div class="feebox net"><div class="k">נשאר בכיס</div><div class="v" id="fNet">—</div></div>
-        </div>
-        <!-- 2.3.0 (Idan): every bot separately - profit, fees paid, net in pocket -->
-        <div id="feeBots"></div>
-        <div class="mini" id="fNote"></div>
-      </div>
-      <div class="card"><h3>🃏 העסקאות החיות</h3><div id="openPos" class="mini">—</div></div>
-    </section>
+  <!-- ===================== THE TABLE ===================== -->
+  <div id="table">
+    <div class="weave"></div>
 
-    <!-- ===== calendar ===== -->
-    <section id="t-cal" class="hidden">
-      <div class="card">
-        <div class="calhead">
-          <button id="calPrev">‹</button><b id="calTitle"></b><button id="calNext">›</button>
-          <div style="margin-inline-start:auto;text-align:left">
-            <div id="calSum" style="font-weight:900;font-size:17px">—</div>
-            <div class="mini" id="calSum2"></div>
-          </div>
-        </div>
-        <div class="dow"><span>א׳</span><span>ב׳</span><span>ג׳</span><span>ד׳</span><span>ה׳</span><span>ו׳</span><span>ש׳</span></div>
-        <div class="cal" id="calGrid"></div>
-        <div class="mini" style="margin-top:9px">כל יום מציג את <b>הנטו לכיס</b> של אותו יום בדולרים, אחרי עמלות לפי מחירון Vantage. לחיצה על יום — הפירוט המלא. ירוק = יום מרוויח, אדום = מפסיד.</div>
+    <div class="corners">
+      <div class="cnr">
+        <div class="k">BALANCE</div>
+        <div class="v" id="cnrBal">—</div>
+        <div class="s" id="cnrBalSub"></div>
       </div>
-    </section>
+      <div class="cnr l">
+        <div class="k">TODAY</div>
+        <div class="v" id="cnrDay">—</div>
+        <div class="s" id="cnrDaySub"></div>
+      </div>
+    </div>
 
-    <!-- ===== reports ===== -->
-    <section id="t-reports" class="hidden">
-      <div class="card">
-        <h3>📊 דוח ימי — הרווח נטו לכיס</h3>
-        <div style="overflow-x:auto"><table id="repTable"></table></div>
-        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-          <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareReportWhatsApp()">🟢 שתף דוח בוואטסאפ</button>
-          <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="copyReport()">📋 העתק דוח</button>
-        </div>
-        <div class="mini" style="margin-top:8px">העמלות מחושבות לפי ‎$28‎ ללוט — המחירון של Vantage (חשבון Standard), הברוקר שנבחר.</div>
-      </div>
-      <div class="card">
-        <h3>🚦 איפה זה עומד מול כסף אמיתי</h3>
-        <div class="mini" style="font-size:13.5px">
-        לפני שנכנס אפילו שקל אמיתי, בוט הזהב חייב לעבור <b>שער קבלה מספרי</b>: 100 עסקאות לפחות, רווח ממוצע של ‎+0.05R‎ ומעלה לעסקה, שפל של פחות מ-25%, לאורך 30 ימי מסחר. <b>עד שהשער לא עובר — הכול נשאר בדמו.</b> זה לא ביורוקרטיה, זו ההגנה מהונאה עצמית: מערכת שלא הוכיחה את עצמה בכסף מדומה לא נוגעת בכסף אמיתי. את המדידה הרשמית מריצה ביקורת לילה אוטומטית במחשב של עידן.</div>
-      </div>
-      <div class="card">
-        <h3>🕵️ כלל הדיווח הכן</h3>
-        <div class="mini" style="font-size:13.5px">כשיש שני מקורות שחלוקים על מספר — לא מדווחים אותו כרווח. תראה לפעמים תג ⚠️ "ספרים חלוקים" על שולחן המניות: זה בדיוק הכלל הזה עובד. עדיף אמת לא נוחה ממספר יפה ושקרי.</div>
-      </div>
-    </section>
+    <div class="hero">
+      <div class="lab" id="heroLab">הפעולות החיות · ברוטו</div>
+      <div class="big flat" id="heroBig">—</div>
+      <div class="side" id="heroSide"></div>
+    </div>
 
-    <!-- ===== strategies ===== -->
-    <section id="t-learn" class="hidden" ></section>
+    <div class="rows" id="liveRows"></div>
 
-    <!-- ===== connections ===== -->
-    <section id="t-links" class="hidden">
-      <div class="card"><h3>✅ בדיקת מערכת</h3>
-        <div class="mini">לחיצה אחת בודקת שהכל מחובר ועובד אצלך:</div>
-        <button class="btn" style="width:100%;margin-top:10px" onclick="runHealthCheck()">🔍 בדוק שהכל עובד</button>
-        <div id="healthOut" style="margin-top:11px"></div>
-      </div>
-      <div class="card"><h3>📱 פתח בטלפון</h3>
-        <div class="mini">סרוק את הקוד עם המצלמה בטלפון (אנדרואיד או אייפון) כדי לפתוח את המועדון שם, ולהתקין כאפליקציה:</div>
-        <div id="qrBox" style="display:flex;justify-content:center;margin:12px 0"></div>
-        <div id="qrMeWrap" class="hidden" style="margin-top:14px;border-top:1px solid rgba(212,175,55,.25);padding-top:12px">
-          <div class="mini" style="text-align:center;margin-bottom:4px">🔑 <b>ה-QR האישי שלך</b> — מי שסורק אותו נכנס ישר לחשבון <b>שלך</b>, בלי גוגל. שמור אותו לעצמך.</div>
-          <div id="qrBoxMe" style="display:flex;justify-content:center;margin:12px 0"></div>
-          <div style="display:flex;justify-content:center"><button class="btn sec" onclick="copyMyLink()">📋 העתק את הקישור האישי</button></div>
-        </div>
-        <button class="btn sec" style="width:100%" onclick="copyShare()">העתק את הקישור</button>
-      </div>
-      <div class="card"><h3>🔑 מפתח החיבור שלי</h3>
-        <div class="mini">המפתח מקשר בין הבוט שירוץ אצלך במחשב לבין המסך הזה. שומרים אותו לעצמך בלבד.</div>
-        <div id="feedKeyBox" style="margin-top:9px"></div>
-      </div>
-      <div class="card"><h3>🥇 חיבור בוט הזהב לחשבון הדמו שלך</h3>
-        <div class="mini" style="font-size:13.5px;line-height:1.9" id="mt5Wizard"></div>
-      </div>
-      <div class="card"><h3>🏦 חיבור אינטראקטיב (מניות · חשבון נייר)</h3>
-        <div class="mini" style="font-size:13.5px;line-height:1.9" id="ibkrWizard"></div>
-      </div>
-      <div class="card"><h3>🔗 מצב כללי</h3>
-        <div class="mini" style="font-size:14px;line-height:1.8" id="linksBody"></div>
-      </div>
-      <div class="card"><h3>📲 שתף את המועדון</h3>
-        <div class="mini">שלח לחבר את הקישור — הוא ייפתח, יתחבר עם גוגל, יחתום, יאושר על ידי עידן ויצטרף:</div>
-        <div style="display:flex;gap:8px;margin-top:9px">
-          <input type="text" id="shareUrl" readonly value="">
-          <button class="btn sec" style="flex:none" onclick="copyShare()">העתק</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== admin ===== -->
-    <section id="t-admin" class="hidden">
-      <div class="card"><h3>👑 מצב המועדון</h3>
-        <div style="display:flex;align-items:center;gap:11px;margin:8px 0">
-          <div class="sw" id="modeSw" onclick="toggleMode()"></div>
-          <div><b id="modeLbl">דמו</b><div class="mini" id="modeHint">כולם רואים. במעבר לאמיתי — רק מי שחיברת דרך הברוקר שלך ייכנס.</div></div>
-        </div>
-        <div class="mini" style="margin-top:10px">קישור ההפניה של הברוקר שלך (יוצג לחברים במסך הנעילה ובחיבורים):</div>
-        <div style="display:flex;gap:8px;margin-top:6px">
-          <input type="text" id="brokerLinkInp" placeholder="https://..." style="direction:ltr">
-          <button class="btn sec" style="flex:none" onclick="saveBrokerLink()">שמור</button>
-        </div>
-      </div>
-      <div class="card"><h3>🎛️ שליטה בבוטים של החברים</h3>
-        <div class="mini" style="margin-bottom:8px">שנה הגדרות, הדלק/כבה, או סנכרן את כולם להגדרות שלך. החבר רק עושה רענן — וזה חל אצלו.</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
-          <button class="btn" style="flex:1;min-width:150px" onclick="syncAll()">🔄 סנכרן את כולם להגדרות שלי</button>
-          <button class="btn sec" style="flex:1;min-width:120px" onclick="broadcastToggle(true)">▶️ הדלק לכולם</button>
-          <button class="btn sec" style="flex:1;min-width:120px" onclick="broadcastToggle(false)">⏸️ כבה לכולם</button>
-        </div>
-        <div class="mini">סיכון סטנדרטי לדחיפה:
-          <select id="riskPreset" style="background:#131722;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px">
-            <option value="36">כמו שלי — סולם 3-9% (v36)</option>
-            <option value="15">זהיר — 1.5% קבוע</option>
-            <option value="10">שמרני מאוד — 1.0% קבוע</option>
-          </select>
-        </div>
-      </div>
-      <div class="card"><h3>👥 החברים</h3>
-        <div class="mini" style="margin-bottom:6px">⏳ = ממתין לאישור (מתג ראשון מכניס) · 🤖 = בוט מחובר · לכל חבר: שליטה בבוט שלו</div>
-        <div id="usersList" class="mini">טוען…</div>
-      </div>
-    </section>
-
-    <!-- ===== chat ===== -->
-    <section id="t-chat" class="hidden">
-      <div class="card" style="padding:0;overflow:hidden">
-        <div style="display:flex;border-bottom:1.5px solid var(--line)">
-          <button id="chatTabGroup" class="chatTab on" onclick="openChannel('club')">👥 קבוצת המועדון</button>
-          <button id="chatTabDM" class="chatTab" onclick="showDMList()">💬 פרטי</button>
-        </div>
-        <div id="dmList" class="hidden" style="max-height:140px;overflow-y:auto"></div>
-        <div id="chatMsgs" style="height:46vh;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px"></div>
-        <div style="display:flex;gap:7px;padding:10px;border-top:1.5px solid var(--line)">
-          <input type="text" id="chatInput" placeholder="הודעה…" style="flex:1" onkeydown="if(event.key==='Enter')sendChat()">
-          <button class="btn" style="flex:none;padding:11px 16px" onclick="sendChat()">שלח</button>
-        </div>
-        <div style="padding:8px 10px 12px;border-top:1px solid var(--line);display:flex;gap:7px;flex-wrap:wrap">
-          <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareProfitToChat()">📈 שתף את הרווח שלי היום</button>
-          <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareProfitWhatsApp()">🟢 שתף בוואטסאפ</button>
-        </div>
-      </div>
-    </section>
+    <div class="chips" id="botChips"></div>
   </div>
 
-  <nav id="mainNav">
-    <button data-t="table" class="on"><span class="i">🃏</span>השולחן</button>
-    <button data-t="cal"><span class="i">📅</span>לוח שנה</button>
-    <button data-t="reports"><span class="i">📊</span>דוחות</button>
-    <button data-t="chat"><span class="i">💬</span>צ'אט</button>
-    <button data-t="links"><span class="i">🔗</span>חיבורים</button>
-    <button data-t="learn" class="navMore"><span class="i">📖</span>אסטרטגיות</button>
-    <button data-t="admin" id="navAdmin" class="hidden"><span class="i">👑</span>ניהול</button>
-  </nav>
+  <!-- the hand history -->
+  <div class="ticker" id="ticker"><div class="tk-in" id="tickerIn"></div></div>
+
+  <!-- ===================== DRAWER ===================== -->
+  <div class="scrim" id="scrim" onclick="closeDrawer()"></div>
+  <aside class="drawer" id="drawer">
+    <div class="dhead"><b id="drawerName">המועדון</b><div class="m" id="drawerSub"></div></div>
+    <div class="dnav" id="mainNav">
+      <button data-t="table" class="on" onclick="goTab('table')"><span class="e">🃏</span>השולחן החי</button>
+      <button data-t="swing" onclick="goTab('swing')"><span class="e">📈</span>הסווינג</button>
+      <button data-t="cal" onclick="goTab('cal')"><span class="e">📅</span>לוח שנה</button>
+      <button data-t="reports" onclick="goTab('reports')"><span class="e">📊</span>דוחות</button>
+      <button data-t="learn" onclick="goTab('learn')"><span class="e">📖</span>אסטרטגיות</button>
+      <button data-t="chat" onclick="goTab('chat')"><span class="e">💬</span>צ'אט</button>
+      <button data-t="links" onclick="goTab('links')"><span class="e">🔗</span>חיבורים</button>
+      <button data-t="admin" id="navAdmin" class="hidden" onclick="goTab('admin')"><span class="e">👑</span>ניהול</button>
+    </div>
+    <div class="dfoot">
+      <button class="ebtn" id="stopBtn" onclick="emergencyStop()">🛑 עצירת חירום</button>
+      <div class="mini" style="margin-top:7px;font-size:11px">עוצר כניסות חדשות בכל הבוטים. פוזיציות פתוחות נשארות ומנוהלות כרגיל.</div>
+      <button class="btn sec" style="width:100%;margin-top:9px;font-size:13px;padding:9px" onclick="signOut()">התנתק</button>
+    </div>
+  </aside>
+
+  <!-- ===================== PANELS ===================== -->
+  <div id="panels" class="hidden">
+    <div class="pbar">
+      <button class="burger" onclick="toggleDrawer()" aria-label="תפריט">☰</button>
+      <b id="panelTitle"></b>
+      <button class="x" onclick="goTab('table')" title="חזרה לשולחן">✕</button>
+    </div>
+    <div class="wrap">
+
+      <!-- ===== swing: its own room, never mixed with gold or the ladder ===== -->
+      <section id="t-swing" class="hidden">
+        <div class="card">
+          <h3>📈 הסווינג · Interactive Brokers</h3>
+          <div class="kpis" id="swKpis"></div>
+          <div class="mini" id="swNote"></div>
+        </div>
+        <div class="card">
+          <h3>🎯 פוזיציות פתוחות</h3>
+          <div id="swOpen"></div>
+        </div>
+        <div class="card">
+          <h3>⚡ סטופ-קנייה ממתין <span class="mini">(נכנס לבד ברגע שהמחיר פורץ)</span></h3>
+          <div id="swPending"></div>
+        </div>
+        <div class="card">
+          <h3>🔍 מה המנוע רואה עכשיו</h3>
+          <div id="swSignals"></div>
+        </div>
+        <div class="card">
+          <h3>🛡️ הגבולות שהמנוע עובד לפיהם</h3>
+          <div id="swGov" class="mini"></div>
+        </div>
+      </section>
+
+      <!-- ===== calendar ===== -->
+      <section id="t-cal" class="hidden">
+        <div class="card">
+          <div class="calhead">
+            <button id="calPrev">‹</button><b id="calTitle"></b><button id="calNext">›</button>
+            <div style="margin-inline-start:auto;text-align:left">
+              <div id="calSum" style="font-weight:900;font-size:17px">—</div>
+              <div class="mini" id="calSum2"></div>
+            </div>
+          </div>
+          <div class="dow"><span>א׳</span><span>ב׳</span><span>ג׳</span><span>ד׳</span><span>ה׳</span><span>ו׳</span><span>ש׳</span></div>
+          <div class="cal" id="calGrid"></div>
+          <div class="mini" style="margin-top:9px">כל יום מציג את <b>הנטו לכיס</b> בדולרים ואת <b>אחוז הרווח של התיק</b> באותו יום. לחיצה על יום — הפירוט המלא. ירוק = יום מרוויח, אדום = מפסיד.</div>
+        </div>
+      </section>
+
+      <!-- ===== reports ===== -->
+      <section id="t-reports" class="hidden">
+        <div class="card">
+          <h3>💰 כמה נשאר בכיס — מאז ההתחלה (13.8)</h3>
+          <div class="fee3">
+            <div class="feebox"><div class="k">הרווח בחשבונות</div><div class="v" id="fGross">—</div></div>
+            <div class="feebox"><div class="k">העמלות</div><div class="v wa" id="fFee">—</div></div>
+            <div class="feebox net"><div class="k">נשאר בכיס</div><div class="v" id="fNet">—</div></div>
+          </div>
+          <div id="feeBots"></div>
+          <div class="mini" id="fNote"></div>
+        </div>
+        <div class="card">
+          <h3>📊 דוח ימי — הרווח נטו לכיס</h3>
+          <div style="overflow-x:auto"><table id="repTable"></table></div>
+          <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+            <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareReportWhatsApp()">🟢 שתף דוח בוואטסאפ</button>
+            <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="copyReport()">📋 העתק דוח</button>
+          </div>
+          <div class="mini" style="margin-top:8px">העמלות מחושבות לפי ‎$28‎ ללוט — המחירון של Vantage (חשבון Standard), הברוקר שנבחר.</div>
+        </div>
+        <div class="card">
+          <h3>🃏 העסקאות החיות</h3><div id="openPos" class="mini">—</div>
+        </div>
+        <div class="card">
+          <h3>🚦 איפה זה עומד מול כסף אמיתי</h3>
+          <div class="mini" style="font-size:13.5px">לפני שנכנס אפילו שקל אמיתי, בוט הזהב חייב לעבור <b>שער קבלה מספרי</b>: 100 עסקאות לפחות, רווח ממוצע של ‎+0.05R‎ ומעלה לעסקה, שפל של פחות מ-25%, לאורך 30 ימי מסחר. <b>עד שהשער לא עובר — הכול נשאר בדמו.</b> זה לא ביורוקרטיה, זו ההגנה מהונאה עצמית.</div>
+        </div>
+        <div class="card">
+          <h3>🕵️ כלל הדיווח הכן</h3>
+          <div class="mini" style="font-size:13.5px">כשיש שני מקורות שחלוקים על מספר — לא מדווחים אותו כרווח. תראה לפעמים תג ⚠️ "ספרים חלוקים": זה בדיוק הכלל הזה עובד. עדיף אמת לא נוחה ממספר יפה ושקרי.</div>
+        </div>
+      </section>
+
+      <!-- ===== strategies ===== -->
+      <section id="t-learn" class="hidden"></section>
+
+      <!-- ===== connections ===== -->
+      <section id="t-links" class="hidden">
+        <div class="card"><h3>✅ בדיקת מערכת</h3>
+          <div class="mini">לחיצה אחת בודקת שהכל מחובר ועובד אצלך:</div>
+          <button class="btn" style="width:100%;margin-top:10px" onclick="runHealthCheck()">🔍 בדוק שהכל עובד</button>
+          <div id="healthOut" style="margin-top:11px"></div>
+        </div>
+        <div class="card"><h3>📱 פתח בטלפון</h3>
+          <div class="mini">סרוק את הקוד עם המצלמה בטלפון כדי לפתוח את המועדון שם, ולהתקין כאפליקציה:</div>
+          <div id="qrBox" style="display:flex;justify-content:center;margin:12px 0"></div>
+          <div id="qrMeWrap" class="hidden" style="margin-top:14px;border-top:1px solid rgba(212,175,55,.25);padding-top:12px">
+            <div class="mini" style="text-align:center;margin-bottom:4px">🔑 <b>ה-QR האישי שלך</b> — מי שסורק אותו נכנס ישר לחשבון <b>שלך</b>, בלי גוגל. שמור אותו לעצמך.</div>
+            <div id="qrBoxMe" style="display:flex;justify-content:center;margin:12px 0"></div>
+            <div style="display:flex;justify-content:center"><button class="btn sec" onclick="copyMyLink()">📋 העתק את הקישור האישי</button></div>
+          </div>
+          <button class="btn sec" style="width:100%" onclick="copyShare()">העתק את הקישור</button>
+        </div>
+        <div class="card"><h3>🔑 מפתח החיבור שלי</h3>
+          <div class="mini">המפתח מקשר בין הבוט שירוץ אצלך במחשב לבין המסך הזה. שומרים אותו לעצמך בלבד.</div>
+          <div id="feedKeyBox" style="margin-top:9px"></div>
+        </div>
+        <div class="card"><h3>🥇 חיבור בוט הזהב לחשבון הדמו שלך</h3>
+          <div class="mini" style="font-size:13.5px;line-height:1.9" id="mt5Wizard"></div>
+        </div>
+        <div class="card"><h3>🏦 חיבור אינטראקטיב (מניות · חשבון נייר)</h3>
+          <div class="mini" style="font-size:13.5px;line-height:1.9" id="ibkrWizard"></div>
+        </div>
+        <div class="card"><h3>🔗 מצב כללי</h3>
+          <div class="mini" style="font-size:14px;line-height:1.8" id="linksBody"></div>
+        </div>
+        <div class="card"><h3>📲 שתף את המועדון</h3>
+          <div class="mini">שלח לחבר את הקישור — הוא ייפתח, יתחבר עם גוגל, יחתום, יאושר על ידי עידן ויצטרף:</div>
+          <div style="display:flex;gap:8px;margin-top:9px">
+            <input type="text" id="shareUrl" readonly value="">
+            <button class="btn sec" style="flex:none" onclick="copyShare()">העתק</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== admin ===== -->
+      <section id="t-admin" class="hidden">
+        <div class="card"><h3>👑 מצב המועדון</h3>
+          <div style="display:flex;align-items:center;gap:11px;margin:8px 0">
+            <div class="sw" id="modeSw" onclick="toggleMode()"></div>
+            <div><b id="modeLbl">דמו</b><div class="mini" id="modeHint">כולם רואים. במעבר לאמיתי — רק מי שחיברת דרך הברוקר שלך ייכנס.</div></div>
+          </div>
+          <div class="mini" style="margin-top:10px">קישור ההפניה של הברוקר שלך:</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <input type="text" id="brokerLinkInp" placeholder="https://..." style="direction:ltr">
+            <button class="btn sec" style="flex:none" onclick="saveBrokerLink()">שמור</button>
+          </div>
+        </div>
+        <div class="card"><h3>🎛️ שליטה בבוטים של החברים</h3>
+          <div class="mini" style="margin-bottom:8px">שנה הגדרות, הדלק/כבה, או סנכרן את כולם להגדרות שלך. החבר רק עושה רענן — וזה חל אצלו.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+            <button class="btn" style="flex:1;min-width:150px" onclick="syncAll()">🔄 סנכרן את כולם להגדרות שלי</button>
+            <button class="btn sec" style="flex:1;min-width:120px" onclick="broadcastToggle(true)">▶️ הדלק לכולם</button>
+            <button class="btn sec" style="flex:1;min-width:120px" onclick="broadcastToggle(false)">⏸️ כבה לכולם</button>
+          </div>
+          <div class="mini">סיכון סטנדרטי לדחיפה:
+            <select id="riskPreset">
+              <option value="36">כמו שלי — סולם 3-9% (v36)</option>
+              <option value="15">זהיר — 1.5% קבוע</option>
+              <option value="10">שמרני מאוד — 1.0% קבוע</option>
+            </select>
+          </div>
+        </div>
+        <div class="card"><h3>👥 החברים</h3>
+          <div class="mini" style="margin-bottom:6px">⏳ = ממתין לאישור · 🤖 = בוט מחובר · לכל חבר: שליטה בבוט שלו</div>
+          <div id="usersList" class="mini">טוען…</div>
+        </div>
+      </section>
+
+      <!-- ===== chat ===== -->
+      <section id="t-chat" class="hidden">
+        <div class="card" style="padding:0;overflow:hidden">
+          <div style="display:flex;border-bottom:1.5px solid var(--line)">
+            <button id="chatTabGroup" class="chatTab on" onclick="openChannel('club')">👥 קבוצת המועדון</button>
+            <button id="chatTabDM" class="chatTab" onclick="showDMList()">💬 פרטי</button>
+          </div>
+          <div id="dmList" class="hidden" style="max-height:140px;overflow-y:auto"></div>
+          <div id="chatMsgs" style="height:52vh;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px"></div>
+          <div style="display:flex;gap:7px;padding:10px;border-top:1.5px solid var(--line)">
+            <input type="text" id="chatInput" placeholder="הודעה…" style="flex:1" onkeydown="if(event.key==='Enter')sendChat()">
+            <button class="btn" style="flex:none;padding:11px 16px" onclick="sendChat()">שלח</button>
+          </div>
+          <div style="padding:8px 10px 12px;border-top:1px solid var(--line);display:flex;gap:7px;flex-wrap:wrap">
+            <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareProfitToChat()">📈 שתף את הרווח שלי היום</button>
+            <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareProfitWhatsApp()">🟢 שתף בוואטסאפ</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- the bot sheet: opens on a click, shows every command that bot has -->
+  <div id="botSheet" class="sheet hidden" onclick="if(event.target===this)closeBot()">
+    <div class="sbox" id="botSheetBox"></div>
+  </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
@@ -486,7 +728,7 @@ input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "2.5.0";
+const APP_VERSION = "3.0.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 /* 2.5.0 — personal QR: ?feed=<key> opens that member's account directly */
@@ -1679,6 +1921,668 @@ if ("serviceWorker" in navigator && !window.__TEST_FIREBASE__){
       if (refreshed) return; refreshed = true; location.reload();
     });
   });
+}
+
+/* =====================================================================
+   v3 — THE LIVE TABLE                                        17.8.2026
+   Everything below REPLACES the v2 presentation layer. The auth, the
+   contract, the admin console, the chat and the QR flow above are
+   untouched on purpose: they work, and Idan's complaint was never about
+   them. He asked for one thing - "the main screen is the live actions in
+   gross, big, full screen, casino-live style, minimum buttons, the small
+   numbers in the corners" - so the screen was rebuilt around that and
+   the bottom bar was replaced by a side drawer.
+
+   Function declarations hoist, so re-declaring them here is what makes
+   the new versions win. Nothing above needed to be deleted.
+   ===================================================================== */
+const APP_V3 = "3.0.0";
+const BOT_META = {
+  gold:   {icon:"🪙", name:"בוט הזהב",         role:"XAUUSD · מטה-טריידר 5 · דמו"},
+  ladder: {icon:"🪜", name:"The Ladder",       role:"מעתיק את המורה 1:1 · דמו"},
+  swing:  {icon:"📈", name:"הסווינג",          role:"מניות ארה\"ב · Interactive · נייר"},
+  mine:   {icon:"🤖", name:"הבוט שלי",         role:"רץ על החשבון שלך · דמו"}
+};
+
+/* ---------------------------------------------------------------- data */
+/* The feed gained a normalised `live` block on 17.8. Idan's PC will not
+   have restarted the mirror the second this page ships, so the screen
+   must also be able to build the same shape out of the OLD feed. A page
+   that goes blank while waiting for a restart is a broken page. */
+function liveOf(P){
+  if (!P) return null;
+  if (P.live && Array.isArray(P.live.rows) && P.live.bots && P.live.bots.length) return P.live;
+  return legacyLive(P);
+}
+function legacyLive(P){
+  const g = P.gold||{}, sv = P.slave||{}, cp = P.copier||{}, sh = P.shadow_wallet||{}, eng = P.engine_wallet||{};
+  const rows = [], bots = [];
+  const gEq = +g.equity||0;
+  let gOpen = 0;
+  if (g.position && g.position.entry !== undefined && g.position.entry !== null){
+    const p = g.position, vol = +p.volume||0, pnl = (p.pnl!==undefined?+p.pnl:+p.profit)||0;
+    gOpen = pnl;
+    rows.push(mkRow("gold","XAUUSD",p.side||"BUY",vol,"lot",p.entry,p.price,pnl,vol*28,gEq,{sl:p.sl,tp:p.tp,ticket:p.ticket}));
+  }
+  bots.push({id:"gold",name:BOT_META.gold.name,icon:BOT_META.gold.icon,market:"XAUUSD",
+    equity:gEq,balance:+g.balance||0,day_gross:+g.day_pnl||0,
+    day_open_equity:+g.day_start_equity||0,
+    day_pct:pctOf(+g.day_pnl||0, +g.day_start_equity||0),
+    open_count:rows.length,open_gross:gOpen,trades_today:g.trades_today,
+    enabled:g.enabled!==false,note:g.last_decision,status:"unknown"});
+
+  const sEq = +(sv.equity!==undefined?sv.equity:sv.balance)||0, sBal = +sv.balance||0;
+  let lOpen = (sEq && sBal) ? +(sEq - sBal).toFixed(2) : 0;
+  const sRows = Array.isArray(sv.positions) ? sv.positions : null;
+  if (sRows && sRows.length){
+    lOpen = 0;
+    sRows.forEach(p=>{ const vol=+p.volume||0, pnl=(p.profit!==undefined?+p.profit:null);
+      if(pnl!==null) lOpen += pnl;
+      rows.push(mkRow("ladder",p.symbol||"XAUUSD",(p.side||"BUY").toUpperCase(),vol,"lot",p.entry,p.price,pnl,vol*28,sEq,{sl:p.sl,tp:p.tp,ticket:p.ticket})); });
+    lOpen = +lOpen.toFixed(2);
+  } else {
+    (cp.legs||[]).forEach(l=>{ const vol=+l.volume||0;
+      rows.push(mkRow("ladder",l.symbol||"XAUUSD",(l.side||"").toUpperCase(),vol,"lot",l.entry,null,null,vol*28,sEq,{ticket:l.ticket,price_unknown:true})); });
+  }
+  const sDayOpen = (sv.day_start_balance!==undefined) ? +sv.day_start_balance : (sBal - (+sv.day_pnl||0));
+  bots.push({id:"ladder",name:BOT_META.ladder.name,icon:BOT_META.ladder.icon,market:"XAUUSD",
+    equity:sEq,balance:sBal,day_gross:+sv.day_pnl||0,day_open_equity:sDayOpen,
+    day_pct:pctOf(+sv.day_pnl||0,sDayOpen),
+    open_count:+sv.open_positions||0,open_gross:lOpen,open_lots:sv.open_lots,
+    mode:sv.mode,teacher_equity:cp.equity,teacher_legs:(cp.legs||[]).length,
+    age_sec:sv.age_sec,status:"unknown"});
+
+  const swEq = +eng.equity||+sh.equity||0;
+  let swOpen = 0;
+  (P.positions||[]).forEach(p=>{ const qty=+p.qty||0, un=+p.unrealized||0; swOpen+=un;
+    rows.push(mkRow("swing",p.symbol,qty>=0?"BUY":"SELL",Math.abs(qty),"share",p.avg_cost,p.mark,un,2*Math.max(1,.005*Math.abs(qty)),swEq,{})); });
+  bots.push({id:"swing",name:BOT_META.swing.name,icon:BOT_META.swing.icon,market:"מניות ארה\"ב",
+    equity:swEq,balance:+eng.cash||0,day_gross:+sh.day_pnl||+swOpen.toFixed(2),
+    day_open_equity:swEq-(+sh.day_pnl||0),
+    day_pct:pctOf(+sh.day_pnl||0, swEq-(+sh.day_pnl||0)),
+    open_count:(P.positions||[]).length,open_gross:+swOpen.toFixed(2),
+    pending:(P.pending_entries||[]).length,scan:P.scan_universe,
+    broker_equity:sh.equity,status:P.tws_connected?"ok":"stale"});
+
+  const openGross = rows.reduce((a,r)=>a+(+r.gross||0),0);
+  const openFee = rows.reduce((a,r)=>a+(+r.fee_est||0),0);
+  const dayGross = bots.reduce((a,b)=>a+(+b.day_gross||0),0);
+  const eqTot = bots.reduce((a,b)=>a+(+b.equity||0),0);
+  const dayOpenTot = bots.reduce((a,b)=>a+(+b.day_open_equity||+b.equity||0),0);
+  const ss = ((P.fees||{}).since_start||{}).total||{};
+  return {updated_israel:P.updated_israel, bots, rows,
+    totals:{open_gross:+openGross.toFixed(2), open_fee_est:+openFee.toFixed(2),
+      open_net_est:+(openGross-openFee).toFixed(2), open_count:rows.length,
+      day_gross:+dayGross.toFixed(2), day_fee:0, day_net:+dayGross.toFixed(2),
+      day_pct:pctOf(dayGross,dayOpenTot), equity:+eqTot.toFixed(2),
+      day_open_equity:+dayOpenTot.toFixed(2),
+      pocket_since_start:ss.pocket, fee_since_start:ss.fee},
+    _legacy:true};
+}
+function pctOf(n,d){ if(!d||isNaN(d)||isNaN(n)) return null; return +(100*n/d).toFixed(2); }
+function mkRow(bot,symbol,side,size,unit,entry,price,gross,fee,botEq,extra){
+  const notional = (size!==undefined&&entry!==undefined&&entry!==null)
+    ? Math.abs(size*entry*(unit==="lot"?100:1)) : null;
+  const r = {bot,symbol,side,size,unit,entry,price,
+    gross:(gross===null||gross===undefined)?null:+(+gross).toFixed(2),
+    fee_est:(fee===null||fee===undefined)?null:+(+fee).toFixed(2),
+    notional:notional,
+    pct_pos:(gross===null||gross===undefined)?null:pctOf(gross,notional),
+    pct_acct:(gross===null||gross===undefined)?null:pctOf(gross,botEq)};
+  if (r.gross!==null && r.fee_est!==null) r.net_est = +(r.gross-r.fee_est).toFixed(2);
+  return Object.assign(r, extra||{});
+}
+/* a member sees ONLY their own account - the club's numbers stay Idan's */
+function memberLive(){
+  const mj = myData(); if (!mj) return null;
+  const start = (mj.start!==undefined)?+mj.start:10000;
+  const eq = (mj.equity!==undefined&&mj.equity!==null)?+mj.equity:(+mj.balance||start);
+  const day = +mj.day_pnl||0;
+  const rows = [];
+  let open = 0;
+  if (mj.position && mj.position.entry!==undefined && mj.position.entry!==null){
+    const p = mj.position, vol = +p.volume||0;
+    const pnl = (p.profit!==undefined?+p.profit:(p.pnl!==undefined?+p.pnl:0));
+    open = pnl;
+    rows.push(mkRow("mine","XAUUSD",(p.side||"BUY").toUpperCase(),vol,"lot",p.entry,
+      (p.price!==undefined?p.price:p.last),pnl,vol*28,eq,{sl:p.sl,tp:p.tp}));
+  }
+  let age = null;
+  if (MYFEED && MYFEED.t){ const t=new Date(MYFEED.t).getTime(); if(!isNaN(t)) age=Math.max(0,(Date.now()-t)/1000); }
+  return {updated_israel:null, mine:true, rows,
+    bots:[{id:"mine",name:BOT_META.mine.name,icon:BOT_META.mine.icon,market:"XAUUSD",
+      equity:eq,balance:+mj.balance||eq,day_gross:day,day_open_equity:eq-day,
+      day_pct:pctOf(day,eq-day),open_count:rows.length,open_gross:open,
+      trades_today:mj.trades_today,enabled:mj.enabled!==false,age_sec:age,
+      status:(age===null?"unknown":(age<=300?"ok":"stale")),
+      note:(mj.account?("חשבון "+mj.account):"")}],
+    totals:{open_gross:+open.toFixed(2),open_fee_est:0,open_net_est:+open.toFixed(2),
+      open_count:rows.length,day_gross:day,day_fee:0,day_net:day,
+      day_pct:pctOf(day,eq-day),equity:eq,day_open_equity:eq-day,
+      pocket_since_start:eq-start,fee_since_start:(+mj.lots_total||0)*28}};
+}
+
+/* --------------------------------------------------------- navigation */
+const TABS = ["table","swing","cal","reports","learn","links","admin","chat"];
+const TAB_TITLE = {swing:"📈 הסווינג", cal:"📅 לוח שנה", reports:"📊 דוחות",
+  learn:"📖 אסטרטגיות", links:"🔗 חיבורים", admin:"👑 ניהול", chat:"💬 צ'אט"};
+let CURTAB = "table";
+function toggleDrawer(){ const d=$("drawer"); const on=!d.classList.contains("on");
+  d.classList.toggle("on",on); $("scrim").classList.toggle("on",on); }
+function closeDrawer(){ $("drawer").classList.remove("on"); $("scrim").classList.remove("on"); }
+function goTab(tab){
+  CURTAB = tab; closeDrawer();
+  document.querySelectorAll("#mainNav button").forEach(b=>
+    b.classList.toggle("on", b.getAttribute("data-t")===tab));
+  const onTable = (tab==="table");
+  /* the table's own bar would sit under the panel bar and swallow taps on the
+     menu - found by the browser test, 17.8. One bar at a time. */
+  document.querySelector(".top").classList.toggle("hidden", !onTable);
+  $("table").classList.toggle("hidden", !onTable);
+  $("ticker").classList.toggle("hidden", !onTable);
+  $("panels").classList.toggle("hidden", onTable);
+  TABS.forEach(t=>{ const el=$("t-"+t); if(el) el.classList.toggle("hidden", t!==tab); });
+  if (!onTable) $("panelTitle").textContent = TAB_TITLE[tab]||"";
+  if (tab==="chat" && !CHAT_STARTED){ CHAT_STARTED=true; loadMembersForDM(); openChannel("club"); }
+  if (tab==="swing") renderSwing();
+  if (tab==="cal") renderCalendar();
+  if (tab==="reports"){ renderReports(); renderMoney(); }
+  if (!onTable) window.scrollTo(0,0);
+}
+function wireNav(){
+  $("calPrev").onclick = () => { calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth()-1, 1); renderCalendar(); };
+  $("calNext").onclick = () => { calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth()+1, 1); renderCalendar(); };
+  document.addEventListener("keydown", e => { if (e.key==="Escape"){ closeBot(); closeDrawer(); } });
+}
+
+/* ------------------------------------------------------ the live table */
+function statusDot(s){
+  const m = {ok:"ok", stale:"wa", off:"wa", unknown:""};
+  return '<span class="dot '+(m[s]!==undefined?m[s]:"")+'"></span>';
+}
+function rowHTML(r,i){
+  const g = r.gross;
+  const money0 = (v)=> (v===null||v===undefined||isNaN(v)) ? "—" : signed(v);
+  const sizeTxt = (r.unit==="lot") ? ((+r.size).toFixed(2)+" לוט") : ((+r.size)+" מניות");
+  const px = (v)=> (v===null||v===undefined||isNaN(v)) ? "—" : (+v).toFixed(r.unit==="lot"?2:2);
+  /* percent: a leveraged lot's "share of face value" is meaningless, so the
+     metal shows its share of that bot's account and says so. */
+  const pct = (r.unit==="lot") ? r.pct_acct : r.pct_pos;
+  const pctLab = (r.unit==="lot") ? "מהחשבון" : "מהעסקה";
+  return '<div class="lrow '+r.bot+'" style="animation-delay:'+(i*0.05).toFixed(2)+'s" onclick="openBot(\''+r.bot+'\')">'
+    + '<div class="ic">'+((BOT_META[r.bot]||{}).icon||"•")+'</div>'
+    + '<div class="mid"><div class="sym">'+(r.symbol||"?")
+    +   '<span class="sd '+(String(r.side).toUpperCase()==="SELL"?"s":"b")+'">'
+    +   (String(r.side).toUpperCase()==="SELL"?"מכירה":"קנייה")+'</span></div>'
+    + '<div class="det">'+sizeTxt+' &nbsp;·&nbsp; <span class="px">'
+    +   px(r.entry)+' → '+(r.price_unknown?"—":px(r.price))+'</span></div></div>'
+    + '<div class="pl"><div class="g '+(g===null?"":cls(g))+'">'+money0(g)+'</div>'
+    + '<div class="p">'+(pct===null||pct===undefined?"":((pct>0?"+":"")+pct+"% "+pctLab))+'</div></div></div>';
+}
+function botChipHTML(b){
+  const down = (b.status==="stale"||b.status==="dn");
+  const sub = [];
+  if (b.open_count) sub.push(b.open_count===1 ? "פוזיציה אחת פתוחה" : (b.open_count+" פתוחות"));
+  if (b.pending) sub.push(b.pending===1 ? "אחת ממתינה" : (b.pending+" ממתינות"));
+  if (b.status==="stale") sub.push("⚠️ לא מדווח "+ago(b.age_sec));
+  if (b.status==="off" || b.enabled===false) sub.push("מכובה");
+  if (!sub.length) sub.push("סורק ומחכה");
+  return '<button class="chip '+(down?"down":"")+'" onclick="openBot(\''+b.id+'\')">'
+    + '<div class="ch"><span class="e">'+b.icon+'</span><b>'+b.name+'</b>'
+    +   '<span class="st">'+statusDot(b.status)+'</span></div>'
+    + '<div class="eq">'+money(b.equity,0)+'</div>'
+    + '<div class="dy '+cls(b.day_gross)+'">'+signed(b.day_gross)
+    +   (b.day_pct!==null&&b.day_pct!==undefined?(' <span style="opacity:.75">('+(b.day_pct>0?"+":"")+b.day_pct+'%)</span>'):"")+'</div>'
+    + '<div class="sub">'+sub.join(" · ")+'</div></button>';
+}
+function renderLive(){
+  const P = PHONE;
+  const L = memberView() ? memberLive() : liveOf(P);
+  if (!L){
+    $("heroBig").textContent = "—";
+    $("liveRows").innerHTML = '<div class="empty">מחכה לשידור הראשון מהמחשב…</div>';
+    return;
+  }
+  LIVE_CACHE = L;
+  const T = L.totals||{};
+
+  /* a member who has not connected a bot yet sees a locked table, not the club's money */
+  if (!memberView() && !fullView()){
+    $("cnrBal").textContent = "🔒"; $("cnrBalSub").textContent = "";
+    $("cnrDay").textContent = "🔒"; $("cnrDaySub").textContent = "";
+    $("heroLab").textContent = "השולחן נפתח כשהבוט שלך משדר";
+    $("heroBig").textContent = "🔒"; $("heroBig").className = "big flat";
+    $("heroSide").innerHTML = '<span class="pill">מתחילים במסך <b>החיבורים</b> 🔗</span>';
+    $("liveRows").innerHTML = '<div class="empty">חבר את הבוט שלך — ואז כל פעולה חיה שלו תופיע כאן, בזמן אמת.</div>';
+    $("botChips").innerHTML = "";
+    $("tickerIn").innerHTML = "";
+    return;
+  }
+
+  /* corners - small, exactly like BALANCE / TOTAL BET on the reference table */
+  $("cnrBal").textContent = money(T.equity, 0);
+  $("cnrBalSub").textContent = (L.mine ? "הארנק שלי (דמו)" : "כל הארנקים (דמו)");
+  $("cnrDay").textContent = signed(T.day_gross);
+  $("cnrDay").className = "v " + cls(T.day_gross);
+  $("cnrDaySub").innerHTML = (T.day_pct!==null&&T.day_pct!==undefined)
+    ? ('<span dir="ltr">'+(T.day_pct>0?"+":"")+T.day_pct+'%</span> מהתיק היום') : "";
+
+  /* the one big number: what the open trades are worth right now, in GROSS */
+  const G = +T.open_gross||0;
+  $("heroLab").textContent = T.open_count
+    ? ("הפעולות החיות · ברוטו · "+T.open_count+(T.open_count===1?" פתוחה":" פתוחות"))
+    : "הפעולות החיות · ברוטו";
+  $("heroBig").textContent = signed(G);
+  $("heroBig").className = "big " + (Math.abs(G)<0.005 ? "flat" : cls(G));
+
+  const side = [];
+  side.push('<span class="pill '+cls(T.open_net_est)+'">נטו '+signed(T.open_net_est)+'</span>');
+  if (T.open_fee_est) side.push('<span class="pill wa">עמלות '+money(T.open_fee_est)+'</span>');
+  const portPct = pctOf(G, T.equity);
+  if (portPct!==null) side.push('<span class="pill">'+(portPct>0?"+":"")+portPct+'% מהתיק</span>');
+  if (T.pocket_since_start!==undefined && T.pocket_since_start!==null)
+    side.push('<span class="pill '+cls(T.pocket_since_start)+'">בכיס מאז ההתחלה '+signed(T.pocket_since_start)+'</span>');
+  $("heroSide").innerHTML = side.join("");
+
+  /* the rows */
+  const rows = (L.rows||[]).slice().sort((a,b)=>Math.abs(+b.gross||0)-Math.abs(+a.gross||0));
+  $("liveRows").innerHTML = rows.length
+    ? rows.map(rowHTML).join("")
+    : '<div class="empty">אין עסקאות פתוחות כרגע — הבוטים סורקים ומחכים להזדמנות 🂠</div>';
+
+  /* the bots */
+  $("botChips").innerHTML = (L.bots||[]).map(botChipHTML).join("");
+
+  /* top bar: connection + clock + market */
+  let updAge = null;
+  if (P && P.updated_utc){ const t=new Date(P.updated_utc).getTime(); if(!isNaN(t)) updAge=Math.max(0,(Date.now()-t)/1000); }
+  const closed = goldMarketClosedNow();
+  const usOpen = usMarketOpenNow();
+  const okLive = updAge!==null && updAge<240;
+  $("topMini").innerHTML =
+      statusDot(okLive?"ok":(updAge!==null&&updAge<1800?"stale":"dn"))
+    + '<span>'+(okLive?"חי":("עודכן "+ago(updAge)))+'</span>'
+    + '<span style="opacity:.5">·</span>'
+    + '<span>'+new Date().toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"})+'</span>'
+    + '<span style="opacity:.5">·</span>'
+    + '<span>'+(closed?"🌙 זהב סגור":(usOpen?"🇺🇸 שוק פתוח":"🕒 שוק סגור"))+'</span>';
+
+  /* the fallen-bot alarm (interview: "tell me loudly, do not show me stale numbers") */
+  const down = (L.bots||[]).filter(b=>b.status==="stale");
+  const bar = $("alertBar");
+  if (down.length && !closed){
+    bar.classList.remove("hidden");
+    bar.textContent = "⚠️ " + down.map(b=>b.name).join(" · ") +
+      (down.length===1?" הפסיק לדווח":" הפסיקו לדווח") + " — המספרים שמוצגים אינם עדכניים";
+  } else bar.classList.add("hidden");
+
+  renderTicker();
+  if (BOT_OPEN) renderBotSheet(BOT_OPEN);
+  if (CURTAB==="swing") renderSwing();
+}
+let LIVE_CACHE = null;
+
+/* ------------------------------------------------------------ ticker */
+function renderTicker(){
+  const P = PHONE || {};
+  let ev = (P.events||[]).slice(-24).reverse();
+  if (memberView()) ev = [];
+  const el = $("tickerIn");
+  if (!ev.length){
+    const L = LIVE_CACHE||{}; const T = L.totals||{};
+    el.innerHTML = '<span><i>היום</i> ' + signed(T.day_gross) +
+      (T.day_pct!==null&&T.day_pct!==undefined?(" ("+(T.day_pct>0?"+":"")+T.day_pct+"%)"):"") +
+      ' &nbsp;·&nbsp; <i>פתוחות</i> ' + (T.open_count||0) +
+      ' &nbsp;·&nbsp; <i>ברוטו חי</i> ' + signed(T.open_gross) + '</span>';
+    return;
+  }
+  el.innerHTML = ev.map(e=>{
+    const ic = (BOT_META[e.bot]||{}).icon||"•";
+    const what = e.kind==="open" ? "נפתחה" : "נסגרה";
+    const sz = e.unit==="lot" ? ((+e.size).toFixed(2)+" לוט") : ((+e.size)+" מניות");
+    const pl = (e.kind==="close" && e.gross!==undefined && e.gross!==null)
+      ? ' <b class="'+cls(e.gross)+'">'+signed(e.gross)+'</b>' : "";
+    return '<span><i>'+e.t+'</i> '+ic+' '+what+' <b>'+e.symbol+'</b> '+sz+pl+'</span>';
+  }).join("");
+}
+
+/* --------------------------------------------------------- bot sheet */
+/* "Clicking a bot opens it automatically and shows ALL of its commands,
+   updating live while it runs." That is this. */
+let BOT_OPEN = null;
+function openBot(id){ BOT_OPEN = id; $("botSheet").classList.remove("hidden"); renderBotSheet(id); }
+function closeBot(){ BOT_OPEN = null; $("botSheet").classList.add("hidden"); }
+function kpi(k,v,c,acc){ return '<div class="kpi '+(acc?"acc":"")+'"><div class="k">'+k+'</div>'
+  +'<div class="v '+(c||"")+'">'+v+'</div></div>'; }
+function ordHTML(tag,tagCls,title,sub,right,rightCls){
+  return '<div class="ord"><span class="t '+tagCls+'">'+tag+'</span>'
+    + '<div><b>'+title+'</b><div class="sm">'+(sub||"")+'</div></div>'
+    + (right!==undefined&&right!==null?('<span class="g '+(rightCls||"")+'">'+right+'</span>'):"")
+    + '</div>';
+}
+function renderBotSheet(id){
+  const L = LIVE_CACHE; if (!L) return;
+  const b = (L.bots||[]).find(x=>x.id===id); if (!b){ closeBot(); return; }
+  const P = PHONE||{};
+  const rows = (L.rows||[]).filter(r=>r.bot===id);
+  const meta = BOT_META[id]||{};
+  let h = '<div class="grab"></div><div class="sh"><span class="e">'+b.icon+'</span><b>'+b.name+'</b>'
+        + '<button class="x" onclick="closeBot()">✕</button></div>'
+        + '<div class="srole">'+(meta.role||b.market||"")+(b.mode?(" · "+b.mode):"")+'</div>';
+
+  /* the numbers */
+  h += '<div class="kpis">'
+    + kpi("הערימה", money(b.equity,0), "")
+    + kpi("היום", signed(b.day_gross), cls(b.day_gross))
+    + kpi("היום %", (b.day_pct!==null&&b.day_pct!==undefined?((b.day_pct>0?"+":"")+b.day_pct+"%"):"—"), cls(b.day_pct))
+    + kpi("ברוטו פתוח", signed(b.open_gross), cls(b.open_gross), true)
+    + '</div>';
+
+  /* every open command this bot is holding right now */
+  h += '<div class="sect"><h4>🎯 פקודות פתוחות <span class="n">'+rows.length+'</span></h4>';
+  if (rows.length){
+    h += rows.map(r=>{
+      const sizeTxt = r.unit==="lot" ? ((+r.size).toFixed(2)+" לוט") : ((+r.size)+" מניות");
+      const lvl = [];
+      lvl.push("כניסה "+(r.entry!==undefined&&r.entry!==null?(+r.entry).toFixed(2):"—"));
+      lvl.push("עכשיו "+(r.price_unknown||r.price===null||r.price===undefined?"—":(+r.price).toFixed(2)));
+      if (r.sl) lvl.push("סטופ "+(+r.sl).toFixed(2));
+      if (r.tp) lvl.push("יעד "+(+r.tp).toFixed(2));
+      if (r.net_est!==undefined) lvl.push("נטו "+signed(r.net_est));
+      return ordHTML(String(r.side).toUpperCase()==="SELL"?"מכירה":"קנייה",
+        String(r.side).toUpperCase()==="SELL"?"stop":"live",
+        r.symbol+" · "+sizeTxt, lvl.join(" · "),
+        r.gross===null?"—":signed(r.gross), cls(r.gross));
+    }).join("");
+  } else h += '<div class="emptyline">אין פקודה פתוחה — הבוט סורק ומחכה.</div>';
+  h += '</div>';
+
+  /* what it is waiting for */
+  if (id==="swing"){
+    const pend = P.pending_entries||[];
+    h += '<div class="sect"><h4>⚡ סטופ-קנייה מונח מראש <span class="n">'+pend.length+'</span></h4>';
+    h += pend.length ? pend.map(p=>ordHTML("ממתין","wait",p.ticker+" · "+p.qty+" מניות",
+        "נכנס אוטומטית בפריצת "+(+p.entry).toFixed(2)+" · סטופ "+(+p.stop).toFixed(2)+" · יעד "+(+p.t1).toFixed(2),
+        money(p.notional,0))).join("")
+      : '<div class="emptyline">אין מועמד שעומד בכל התנאים כרגע.</div>';
+    h += '</div>';
+    const sigs = P.signals_swing||[];
+    h += '<div class="sect"><h4>🔍 מה המנוע רואה <span class="n">'+sigs.length+'</span></h4>';
+    h += sigs.length ? sigs.slice(0,8).map(s=>ordHTML(
+        s.state==="BUY_NOW"?"פריצה":"מעקב", s.state==="BUY_NOW"?"live":"wait",
+        s.ticker, "מחיר "+(+s.price).toFixed(2)+" · כניסה "+(+s.entry).toFixed(2)
+        +" · RSI "+(s.rsi!==undefined?s.rsi:"—")+" · ציון "+(s.score!==undefined?s.score:"—"),
+        null)).join("")
+      : '<div class="emptyline">אין איתות פתוח כרגע.</div>';
+    h += '</div>';
+    if (b.scan) h += '<div class="mini" style="margin-top:10px">סורק <b>'+b.scan.total+'</b> מניות: '
+      + b.scan.universe_json+' מהיקום הפנימי + '+b.scan.watchlist_csv+' מרשימת המעקב שלך'
+      + (b.scan.ido_lists?(' + '+b.scan.ido_lists+' מרשימות השיעור'):"")
+      + (b.scan.file_ok===false?' <b class="dn">· ⚠️ קובץ רשימת המעקב לא נקרא</b>':"")+'.</div>';
+  }
+  if (id==="gold"){
+    const g = P.gold||{};
+    h += '<div class="sect"><h4>⚙️ איך הוא מחליט</h4>'
+      + '<div class="logline">כלל כניסה: <b>'+(g.entry_rule||"—")+'</b></div>'
+      + '<div class="logline">ניהול סיכון: <b>'+(g.risk_mode||"—")+'</b> · כרגע '+(g.risk_now_pct!==undefined?g.risk_now_pct+"%":"—")+'</div>'
+      + '<div class="logline">ההחלטה האחרונה: <b>'+(g.last_decision||"—")+'</b></div>'
+      + '<div class="logline">ידיים היום: <b>'+(g.trades_today!==undefined?g.trades_today:"—")+'</b>'
+      + ' · מרווח '+(g.spread_points!==undefined?g.spread_points+" נק׳":"—")
+      + ' · גרסת קוד '+(g.code_version!==undefined?g.code_version:"—")+'</div></div>';
+  }
+  if (id==="ladder"){
+    h += '<div class="sect"><h4>🔗 המורה</h4>'
+      + '<div class="logline">רגליים פתוחות אצל המורה: <b>'+(b.teacher_legs!==undefined?b.teacher_legs:"—")+'</b></div>'
+      + '<div class="logline">מצב העתקה: <b>'+(b.mode||"—")+'</b> · לוטים פתוחים '+(b.open_lots!==undefined?b.open_lots:"—")+'</div>'
+      + '<div class="logline">שומר-מחיר-כניסה פעיל: אם המחיר אצלך רחוק מהמחיר של המורה, מונחת פקודת לימיט במחיר שלו במקום כניסה במחיר גרוע.</div></div>';
+    if (L._legacy || !(P.slave&&Array.isArray(P.slave.positions)))
+      h += '<div class="mini" style="margin-top:9px">💡 הרווח של כל רגל בנפרד יופיע כאן ברגע שגרסה 2.01 של המעתיק תעלה במטה-טריידר. עד אז מוצג הרווח הצף של החשבון כולו.</div>';
+  }
+
+  /* health, always last */
+  const hl = ((P.health||{})[id==="ladder"?"gold":id])||null;
+  if (hl && hl.n) h += '<div class="mini" style="margin-top:12px">בריאות: '+hl.n+' עסקאות אחרונות'
+    + (hl.exp!==undefined?(' · תוחלת '+hl.exp):"")
+    + (hl.pf!==undefined?(' · PF '+hl.pf):"")+' · '+({ok:"תקין",na:"עוד אין מספיק עסקאות למדוד",warn:"מתחת לציפייה"}[hl.status]||hl.status)+'</div>';
+  if (b.note) h += '<div class="mini" style="margin-top:6px">'+b.note+'</div>';
+  if (b.status==="stale") h += '<div class="mini dn" style="margin-top:8px">⚠️ הבוט לא דיווח '+ago(b.age_sec)+' — המספרים למעלה אינם עדכניים.</div>';
+
+  $("botSheetBox").innerHTML = h;
+}
+
+/* --------------------------------------------------------- the swing */
+function renderSwing(){
+  const P = PHONE; if (!P) return;
+  if (memberView()){
+    $("swKpis").innerHTML = "";
+    $("swNote").innerHTML = "מסך הסווינג מציג את חשבון המניות של המועדון. החשבון שלך מוצג בשולחן החי.";
+    ["swOpen","swPending","swSignals","swGov"].forEach(i=>$(i).innerHTML='<div class="emptyline">🔒</div>');
+    return;
+  }
+  const L = liveOf(P)||{}; const b = (L.bots||[]).find(x=>x.id==="swing")||{};
+  const eng = P.engine_wallet||{}, sh = P.shadow_wallet||{};
+  const disputed = (+eng.equity>0 && +sh.equity>0 && Math.abs(+eng.equity-+sh.equity) > Math.max(5,.02*(+sh.equity)));
+  $("swKpis").innerHTML =
+      kpi("הערימה", money(b.equity,2))
+    + kpi("מזומן פנוי", money(eng.cash,0))
+    + kpi("היום", signed(b.day_gross), cls(b.day_gross))
+    + kpi("ברוטו פתוח", signed(b.open_gross), cls(b.open_gross), true)
+    + kpi("פוזיציות", (b.open_count||0))
+    + kpi("ממתינות", (b.pending||0));
+  $("swNote").innerHTML = (disputed
+    ? '<b class="wa">⚠️ שני ספרי החשבון חלוקים ('+money(eng.equity)+' מול '+money(sh.equity)+') — לפי כלל הדיווח הכן, לא מדווח כאן רווח עד שהסתירה תיושב.</b><br>'
+    : "")
+    + (b.scan ? ('סורק <b>'+b.scan.total+'</b> מניות — '+b.scan.universe_json+' מהיקום הפנימי, <b>'+b.scan.watchlist_csv+' מרשימת המעקב שלך</b>'
+        + (b.scan.ido_lists?(', '+b.scan.ido_lists+' מרשימות השיעור'):"")+'.') : "");
+
+  const rows = (L.rows||[]).filter(r=>r.bot==="swing");
+  $("swOpen").innerHTML = rows.length ? rows.map(r=>ordHTML("פתוחה","live",
+      r.symbol+" · "+r.size+" מניות",
+      "כניסה "+(+r.entry).toFixed(2)+" · עכשיו "+(r.price!==null&&r.price!==undefined?(+r.price).toFixed(2):"—")
+      +" · שווי "+money(r.notional,0)+" · נטו "+(r.net_est!==undefined?signed(r.net_est):"—"),
+      signed(r.gross), cls(r.gross))).join("")
+    : '<div class="emptyline">אין פוזיציה פתוחה.</div>';
+
+  const pend = P.pending_entries||[];
+  $("swPending").innerHTML = pend.length ? pend.map(p=>ordHTML("ממתין","wait",
+      p.ticker+" · "+p.qty+" מניות",
+      "נכנס לבד בפריצת "+(+p.entry).toFixed(2)+" · סטופ "+(+p.stop).toFixed(2)
+      +" · יעד "+(+p.t1).toFixed(2)+" · שווי "+money(p.notional,0),
+      null)).join("")
+    : '<div class="emptyline">אין כרגע מועמד שעומד בכל התנאים. פקודת סטופ-קנייה מונחת רק כשהאיתות עובר את כל המסננים.</div>';
+
+  const sigs = P.signals_swing||[];
+  $("swSignals").innerHTML = sigs.length ? sigs.map(s=>ordHTML(
+      s.state==="BUY_NOW"?"פריצה עכשיו":"מעקב", s.state==="BUY_NOW"?"live":"wait",
+      s.ticker,
+      "מחיר "+(+s.price).toFixed(2)+" · כניסה "+(+s.entry).toFixed(2)+" · סטופ "+(+s.stop).toFixed(2)
+      +" · יעד "+(+s.t1).toFixed(2)+" · RSI "+(s.rsi!==undefined?s.rsi:"—")+" · ציון "+(s.score!==undefined?s.score:"—"),
+      (s.notional?money(s.notional,0):null))).join("")
+    : '<div class="emptyline">המנוע סרק ולא מצא setup שעומד בתנאים.</div>';
+
+  const gv = P.governor||{};
+  $("swGov").innerHTML = Object.keys(gv).length ? (
+      '<div class="logline">עד <b>'+gv.max_open_positions+'</b> פוזיציות בו-זמנית · עד <b>'+gv.max_positions_per_sector+'</b> לסקטור</div>'
+    + '<div class="logline">מינימום <b>'+money(gv.min_position_notional_usd,0)+'</b> לעסקה — מתחת לזה עמלת הברוקר אוכלת את הרווח</div>'
+    + '<div class="logline">מחיר מניה מקסימלי <b>'+money(gv.max_price,0)+'</b> · פוזיציה בודדת עד <b>'+Math.round(gv.max_notional_frac_of_equity*100)+'%</b> מהתיק</div>'
+    + '<div class="logline">סיכון פתוח כולל עד <b>'+Math.round(gv.max_total_open_heat_pct*100)+'%</b> · רזרבת מזומן <b>'+money(gv.cash_reserve_usd,0)+'</b></div>'
+    + '<div class="logline">שורטים: <b>'+(gv.allow_shorts?"מופעל":"כבוי")+'</b></div>'
+  ) : "מחכה לעדכון מהמנוע…";
+}
+
+/* ------------------------------------------------------- the calendar */
+/* Idan asked for the percent next to the dollars, per day. */
+function renderCalendar(){
+  const P = PHONE; if (!P) return;
+  const H = memberView() ? memberHistory() : (P.history||{});
+  const eqBase = (function(){
+    const L = LIVE_CACHE || (memberView()?memberLive():liveOf(P)) || {};
+    return +(L.totals||{}).equity || 0;
+  })();
+  const y = calCursor.getFullYear(), m = calCursor.getMonth();
+  $("calTitle").textContent = calCursor.toLocaleDateString("he-IL",{month:"long",year:"numeric"});
+  const first = new Date(y,m,1), start = first.getDay(), days = new Date(y,m+1,0).getDate();
+  const todayKey = new Date().toISOString().slice(0,10);
+  let html = "", sum = 0, wins = 0, n = 0;
+  for (let i=0;i<start;i++) html += '<div class="d off"></div>';
+  for (let d=1; d<=days; d++){
+    const key = y+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+    const row = H[key];
+    const net = row ? (row.pocket!==undefined?+row.pocket:+row.net_demo||0) : null;
+    let cell = '<div class="d'+(net===null?"":(net>0?" g":(net<0?" r":"")))
+      + (key===todayKey?" today":"")+'" onclick="dayModal(\''+key+'\')">'
+      + '<div class="n">'+d+'</div>';
+    if (net!==null){
+      const pct = eqBase ? +(100*net/eqBase).toFixed(2) : null;
+      cell += '<div><div class="p '+cls(net)+'">'+signed(net,0)+'</div>'
+           + (pct!==null?('<div class="pc '+cls(net)+'">'+(pct>0?"+":"")+pct+'%</div>'):"")+'</div>';
+      sum += net; n++; if (net>0) wins++;
+    }
+    html += cell + '</div>';
+  }
+  $("calGrid").innerHTML = html;
+  $("calSum").textContent = signed(sum);
+  $("calSum").className = cls(sum);
+  const mPct = eqBase ? +(100*sum/eqBase).toFixed(2) : null;
+  $("calSum2").innerHTML = n ? (n+" ימי מסחר · "+wins+" ירוקים"
+    + (mPct!==null?(' · <b class="'+cls(sum)+'">'+(mPct>0?"+":"")+mPct+'%</b> מהתיק'):"")) : "אין נתונים לחודש הזה";
+}
+
+/* ------------------------------------------------------ emergency stop */
+/* Honest by construction. It does TWO real things:
+   1. every member bot that is connected gets a halt command (they already
+      listen for commands, so this genuinely stops them);
+   2. control/global is flipped in Firestore. The mirror on Idan's PC polls
+      that one document over the public REST endpoint every cycle and writes
+      data/control.json, which the engine and the bridge already obey.
+   Nothing here claims to have stopped anything it did not stop. */
+let STOP_ARMED = false;
+async function emergencyStop(){
+  const btn = $("stopBtn");
+  if (!STOP_ARMED){
+    STOP_ARMED = true; btn.classList.add("armed");
+    btn.textContent = "⚠️ ללחוץ שוב כדי לעצור באמת";
+    setTimeout(()=>{ if(STOP_ARMED){ STOP_ARMED=false; btn.classList.remove("armed");
+      btn.textContent="🛑 עצירת חירום"; } }, 6000);
+    return;
+  }
+  STOP_ARMED = false; btn.classList.remove("armed"); btn.textContent = "🛑 עצירת חירום";
+  try {
+    if (IS_OWNER){
+      await db.collection("control").doc("global").set(
+        {halt:true, close_all:false, by:(ME&&ME.email)||"owner", at:new Date().toISOString()}, {merge:true});
+      let n = 0;
+      (ADMIN_USERS||[]).forEach(u=>{ if(u.feedId){ writeCommand(u.feedId,
+        {action:"toggle", enabled:false, ts:Date.now()}); n++; } });
+      toast("🛑 נעצר. " + n + " בוטים של חברים כובו, והמחשב שלך יקבל את העצירה תוך דקה.");
+    } else if (MYDOC && MYDOC.feedId){
+      await writeCommand(MYDOC.feedId, {action:"toggle", enabled:false, ts:Date.now()});
+      toast("🛑 הבוט שלך כובה. רענן במחשב אם הוא לא מגיב תוך דקה.");
+    } else toast("אין בוט מחובר לעצור.");
+  } catch(e){ toast("העצירה נכשלה — נסה שוב"); }
+}
+async function resumeAll(){
+  try { await db.collection("control").doc("global").set(
+    {halt:false, close_all:false, by:(ME&&ME.email)||"owner", at:new Date().toISOString()}, {merge:true});
+    toast("▶️ המסחר שוחרר"); } catch(e){ toast("נכשל"); }
+}
+
+
+/* ------------------------------------------------------- the money page */
+/* The fee panel used to live inside renderTable. When the table became the
+   live-actions screen it had nowhere to go, so it moved to its own page and
+   got its own renderer. Same model as before: the profit the ACCOUNTS show,
+   minus Vantage's $28 a lot on the volume actually traded. */
+function feeLabels(a,b,c){
+  const ks = document.querySelectorAll("#t-reports .feebox .k");
+  if (ks[0]) ks[0].textContent = a; if (ks[1]) ks[1].textContent = b; if (ks[2]) ks[2].textContent = c;
+}
+function renderMoney(){
+  const P = PHONE; if (!P) return;
+  if (!$("fNet")) return;
+  const L = LIVE_CACHE || (memberView()?memberLive():liveOf(P)) || {rows:[]};
+
+  /* the open trades, listed plainly */
+  const rows = L.rows||[];
+  $("openPos").innerHTML = rows.length ? rows.map(function(r){
+      const sz = r.unit==="lot" ? ((+r.size).toFixed(2)+" לוט") : ((+r.size)+" מניות");
+      return '<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)">'
+        + '<b>'+((BOT_META[r.bot]||{}).icon||"")+' '+r.symbol+'</b>'
+        + '<span class="num">'+sz+' @ '+(r.entry!==undefined&&r.entry!==null?(+r.entry).toFixed(2):"—")+'</span>'
+        + '<b class="'+cls(r.gross)+'">'+(r.gross===null?"—":signed(r.gross))+'</b></div>';
+    }).join("")
+    : "אין עסקאות פתוחות כרגע — הבוטים סורקים ומחכים להזדמנות. 🂠";
+
+  /* a member sees their own three numbers and nothing else */
+  if (memberView()){
+    const mj = myData()||{};
+    const start = (mj.start!==undefined)?+mj.start:10000;
+    const eq = (mj.equity!==undefined&&mj.equity!==null)?+mj.equity:(+mj.balance||start);
+    const day = +mj.day_pnl||0, since = eq - start;
+    const lots = +mj.lots_total||0, fee = lots*28;
+    feeLabels("רווח היום","מאז ההתחלה","הערימה שלי");
+    $("fGross").textContent = signed(day);  $("fGross").className = "v "+cls(day);
+    $("fFee").textContent   = signed(since);$("fFee").className   = "v "+cls(since);
+    $("fNet").textContent   = money(eq,2);  $("fNet").className   = "v";
+    renderFeeBots([{name:"הבוט שלי", profit:since, fee:fee, pocket:since-fee,
+      lots: lots||undefined,
+      note: lots ? "" : "עמלת Vantage (‎$28‎ ללוט) תנוכה כאן ברגע שהבוט ידווח את הנפח שנסחר."}]);
+    $("fNote").innerHTML = "אלה המספרים של <b>החשבון שלך</b> בלבד (דמו). "
+      + (mj.trades_today!==undefined ? (mj.trades_today+" עסקאות היום · ") : "")
+      + "עמלת Vantage (‎$28‎ ללוט) היא מה שתשלם כשעוברים לכסף אמיתי.";
+    return;
+  }
+  if (!fullView()){
+    feeLabels("הרווח בחשבונות","העמלות","נשאר בכיס");
+    ["fGross","fFee","fNet"].forEach(function(i){ $(i).textContent="🔒"; $(i).className="v"; });
+    renderFeeBots([]);
+    $("fNote").innerHTML = "דוח העמלות נפתח אחרי שהבוט שלך מחובר ומשדר.";
+    return;
+  }
+
+  const fees = P.fees||{}, v2 = fees.schema===2;
+  const SS = v2 ? (fees.since_start||{}) : null;
+  const tot = v2 ? (SS.total||{}) : (fees.total||{});
+  const bProfit = v2 ? tot.profit : tot.gross;
+  const bFee    = v2 ? tot.fee    : tot.atrade_fee;
+  const bPocket = v2 ? tot.pocket : tot.net_atrade;
+  feeLabels("הרווח בחשבונות","העמלות","נשאר בכיס");
+  $("fGross").textContent = signed(bProfit); $("fGross").className = "v "+cls(bProfit);
+  $("fFee").textContent   = "-"+money(Math.abs(bFee||0));
+  $("fNet").textContent   = signed(bPocket); $("fNet").className = "v "+cls(bPocket);
+
+  const sh = P.shadow_wallet||{}, eng = P.engine_wallet||{};
+  const disputed = (+eng.equity>0 && +sh.equity>0 && Math.abs(+eng.equity-+sh.equity) > Math.max(5,.02*(+sh.equity)));
+  const botRows = [];
+  if (v2 && SS.rows) SS.rows.forEach(function(r){
+    botRows.push({name:r.name, profit:r.profit, fee:r.fee, pocket:r.pocket, lots:r.lots}); });
+  const swProfit = (+sh.equity||0) - (+sh.start||1000);
+  if (sh.equity!==undefined && !disputed){
+    botRows.push({name:"בוט המניות — סווינג", profit:swProfit, fee:0, pocket:swProfit,
+      note:"מניות בחשבון נייר — עמלות הברוקר על מניות אינן במחירון Vantage, לכן לא מנוכות כאן."});
+  } else if (sh.equity!==undefined && disputed){
+    botRows.push({name:"בוט המניות — סווינג", profit:0, fee:0, pocket:0,
+      note:"⚠️ שני ספרי החשבון חלוקים — לפי כלל הדיווח הכן, לא מדווח כאן רווח עד שהסתירה תיושב."});
+  }
+  renderFeeBots(botRows);
+  $("fNote").innerHTML = "הרווח כפי שהחשבונות מציגים, פחות עמלת Vantage (‎$28‎ ללוט) על הנפח שנסחר בפועל · מאז 13.8.2026"
+    + (bProfit>0 ? " · בסך הכל העמלות לוקחות <b class='wa'>"+Math.round(Math.abs(bFee||0)/bProfit*100)+"%</b> מהרווח" : "");
+}
+
+/* --------------------------------------------------------- the loop */
+function renderTable(){ renderLive(); }
+function renderMember(){ renderLive(); }
+async function pollPhone(){
+  try {
+    const r = await fetch(DATA_URL + "?t=" + Date.now(), {cache:"no-store"});
+    if (!r.ok) throw new Error("http " + r.status);
+    PHONE = await r.json();
+    renderLive(); renderCalendar(); renderReports(); renderMoney();
+    if (CURTAB==="swing") renderSwing();
+  } catch(e){
+    if (!PHONE && $("heroSide")) $("heroSide").innerHTML =
+      '<span class="pill wa">מחכה לשידור מהמחשב של עידן…</span>';
+  }
 }
 
 /* ---------- boot ---------- */
