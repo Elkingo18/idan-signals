@@ -380,6 +380,11 @@ input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);bo
       <div class="card"><h3>📱 פתח בטלפון</h3>
         <div class="mini">סרוק את הקוד עם המצלמה בטלפון (אנדרואיד או אייפון) כדי לפתוח את המועדון שם, ולהתקין כאפליקציה:</div>
         <div id="qrBox" style="display:flex;justify-content:center;margin:12px 0"></div>
+        <div id="qrMeWrap" class="hidden" style="margin-top:14px;border-top:1px solid rgba(212,175,55,.25);padding-top:12px">
+          <div class="mini" style="text-align:center;margin-bottom:4px">🔑 <b>ה-QR האישי שלך</b> — מי שסורק אותו נכנס ישר לחשבון <b>שלך</b>, בלי גוגל. שמור אותו לעצמך.</div>
+          <div id="qrBoxMe" style="display:flex;justify-content:center;margin:12px 0"></div>
+          <div style="display:flex;justify-content:center"><button class="btn sec" onclick="copyMyLink()">📋 העתק את הקישור האישי</button></div>
+        </div>
         <button class="btn sec" style="width:100%" onclick="copyShare()">העתק את הקישור</button>
       </div>
       <div class="card"><h3>🔑 מפתח החיבור שלי</h3>
@@ -481,9 +486,17 @@ input[type=text]{width:100%;background:#131722;border:1.5px solid var(--line);bo
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "2.4.0";
+const APP_VERSION = "2.5.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
+/* 2.5.0 — personal QR: ?feed=<key> opens that member's account directly */
+const QSP = new URLSearchParams(location.search);
+const PERSONAL_KEY  = (QSP.get("feed")||"").trim();
+const PERSONAL_NAME = (QSP.get("n")||"").trim();
+const PERSONAL = PERSONAL_KEY.length >= 24;
+function personalLink(key, name){
+  return APP_URL + "?feed=" + encodeURIComponent(key) + (name ? "&n=" + encodeURIComponent(name) : "");
+}
 
 const FB_CONFIG = {
   apiKey: "AIzaSyA0n2xr_xomM8L_Usqrq_qFHb-ZliDAN5M",
@@ -597,6 +610,27 @@ function enterApp(){
   if (!phoneTimer){ pollPhone(); phoneTimer = setInterval(pollPhone, 8000); }
 }
 
+/* 2.5.0: view-only entry via the personal QR link — no Google needed.
+   The feed key (24+ random chars) is the password; the feed doc holds only
+   this member's own numbers, so privacy is preserved. Chat/admin need a
+   real login and stay hidden. */
+function enterPersonal(){
+  ME = { uid: "qr_" + PERSONAL_KEY.slice(0,8), displayName: PERSONAL_NAME || "חבר מועדון", photoURL: "" };
+  MYDOC = { feedId: PERSONAL_KEY, name: PERSONAL_NAME, allowed: true, signedContract: true, tourDone: true };
+  IS_OWNER = false;
+  show("v-app");
+  subscribeFeed();
+  $("hAvatar").src = "icon-192.png";
+  $("navAdmin").classList.add("hidden");
+  const chatBtn = document.querySelector('#mainNav [data-t="chat"]');
+  if (chatBtn) chatBtn.classList.add("hidden");
+  if ($("shareUrl")) $("shareUrl").value = APP_URL;
+  renderLearn(); renderLinks(); renderQR();
+  try { watchMyCommands(); } catch(e){}
+  if (!phoneTimer){ pollPhone(); phoneTimer = setInterval(pollPhone, 8000); }
+  toast("🔑 נכנסת עם הקישור האישי" + (PERSONAL_NAME ? " — " + PERSONAL_NAME : ""));
+}
+
 /* ---------- auth ---------- */
 /* 2.1.0: the QR often opens inside a LIMITED in-app browser (camera app,
    WhatsApp, Instagram...) where the Google popup opens, you pick an email,
@@ -665,11 +699,11 @@ function completeRedirect(){
     }, 3500);
   }
 }
-function signOut(){ try{ auth.signOut(); }catch(e){} location.reload(); }
+function signOut(){ try{ auth.signOut(); }catch(e){} if (PERSONAL){ location.href = APP_URL; } else location.reload(); }
 
 async function onUser(user){
   if (unsubMe) { unsubMe(); unsubMe=null; }
-  if (!user){ ME=null; MYDOC=null; show("v-login"); return; }
+  if (!user){ if (PERSONAL){ enterPersonal(); return; } ME=null; MYDOC=null; show("v-login"); return; }
   ME = user;
   const uref = db.collection("users").doc(user.uid);
   try {
@@ -1284,6 +1318,45 @@ function renderQR(){
   img.referrerPolicy = "no-referrer";
   img.onerror = function(){ box.innerHTML = '<a class="btn sec" href="'+url+'" target="_blank" rel="noopener">פתח את הקישור</a>'; };
   box.innerHTML = ""; box.appendChild(img); img.src = src;
+  /* 2.5.0: the member's own personal QR (feed-key link, no login needed) */
+  const wrap = $("qrMeWrap"), meBox = $("qrBoxMe");
+  if (wrap && meBox){
+    if (MYDOC && MYDOC.feedId && !PERSONAL && !IS_OWNER){
+      wrap.classList.remove("hidden");
+      qrInto(meBox, personalLink(MYDOC.feedId, MYDOC.name || (ME&&ME.displayName) || ""));
+    } else wrap.classList.add("hidden");
+  }
+}
+function qrInto(box, url){
+  const src = "https://api.qrserver.com/v1/create-qr-code/?size=190x190&margin=8&data=" + encodeURIComponent(url);
+  const img = new Image();
+  img.width = 190; img.height = 190; img.alt = "QR";
+  img.style.cssText = "border-radius:12px;background:#fff;padding:6px";
+  img.referrerPolicy = "no-referrer";
+  img.onerror = function(){ box.innerHTML = '<a class="btn sec" href="'+url+'" target="_blank" rel="noopener">פתח את הקישור</a>'; };
+  box.innerHTML = ""; box.appendChild(img); img.src = src;
+}
+function copyMyLink(){
+  const url = personalLink(MYDOC.feedId, MYDOC.name || (ME&&ME.displayName) || "");
+  (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject())
+    .then(()=>toast("הקישור האישי הועתק ✓"))
+    .catch(()=>{ prompt("העתק את הקישור האישי:", url); });
+}
+/* owner: show a member's personal QR to print / send them */
+function qrMember(feedId, name){
+  const url = personalLink(feedId, name);
+  const box = document.createElement("div"); box.className = "modal";
+  box.innerHTML = `<div class="mbox">
+    <h3 style="color:var(--gold)">🔑 QR אישי — ${name}</h3>
+    <div class="mini" style="margin:6px 0">סריקה פותחת ישר את החשבון של ${name}, בלי התחברות גוגל. לשלוח רק לו.</div>
+    <div id="qrBoxAdm" style="display:flex;justify-content:center;margin:12px 0"></div>
+    <div style="display:flex;gap:8px;justify-content:center">
+      <button class="btn sec" onclick="navigator.clipboard&&navigator.clipboard.writeText('${url}').then(()=>toast('הועתק ✓'))">📋 העתק קישור</button>
+      <button class="btn sec" onclick="this.closest('.modal').remove()">סגור</button>
+    </div></div>`;
+  box.onclick = (e)=>{ if (e.target===box) box.remove(); };
+  document.body.appendChild(box);
+  qrInto(box.querySelector("#qrBoxAdm"), url);
 }
 
 /* one-click "does everything work?" for the member */
@@ -1370,6 +1443,7 @@ function initAdmin(){
         <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','off')">⏸️ כבה</button>
         <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','sync')">🔄 סנכרן להגדרות שלי</button>
         <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','restart')">↻ הפעל מחדש</button>
+        <button onclick="qrMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}')">🔑 QR אישי</button>
       </div>` : ''}`;
     });
     $("usersList").innerHTML = html || "עוד אין נרשמים.";
