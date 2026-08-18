@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-18 03:03",
+  "updated_israel": "2026-08-18 03:05",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "fail: order rejected 0",
-    "age_sec": 6.1,
+    "age_sec": 11.3,
     "status": "ok"
    },
    {
@@ -35,14 +35,14 @@
     "open_gross": -0.61,
     "open_lots": 0.0,
     "mode": "exact 1:1 v2",
-    "teacher_equity": 197690.53,
-    "teacher_legs": 0,
-    "age_sec": 94.9,
+    "teacher_equity": 197690.95,
+    "teacher_legs": 1,
+    "age_sec": 160.1,
     "status": "ok",
     "account": 25946715,
     "symbol": "XAUUSD",
     "blocked": null,
-    "not_copying": false,
+    "not_copying": true,
     "note": "מעתיק את המורה 1:1 עם שומר-מחיר-כניסה"
    },
    {
@@ -67,12 +67,28 @@
      "file_ok": true
     },
     "broker_equity": 945.73,
-    "age_sec": 181.1,
+    "age_sec": 246.3,
     "status": "stale",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
   "rows": [
+   {
+    "bot": "ladder",
+    "symbol": "XAUUSD",
+    "side": "BUY",
+    "size": 0.01,
+    "unit": "lot",
+    "entry": 4425.63,
+    "price": null,
+    "gross": null,
+    "fee_est": 0.28,
+    "notional": 4425.63,
+    "pct_pos": null,
+    "pct_acct": null,
+    "ticket": "471636033",
+    "price_unknown": true
+   },
    {
     "bot": "swing",
     "symbol": "LYFT",
@@ -91,9 +107,9 @@
   ],
   "totals": {
    "open_gross": 16.0,
-   "open_fee_est": 2.0,
-   "open_net_est": 14.0,
-   "open_count": 1,
+   "open_fee_est": 2.28,
+   "open_net_est": 13.72,
+   "open_count": 2,
    "day_gross": 361.85,
    "day_fee": 175.0,
    "day_net": 186.85,
@@ -644,14 +660,25 @@
    "unit": "lot",
    "price": 4423.66,
    "gross": -0.89
+  },
+  {
+   "t": "03:05",
+   "day": "2026-08-18",
+   "kind": "open",
+   "bot": "ladder",
+   "symbol": "XAUUSD",
+   "side": "BUY",
+   "size": 0.01,
+   "unit": "lot",
+   "price": 4425.63
   }
  ],
- "updated_utc": "2026-08-18T00:04:01.141774+00:00",
- "updated_israel": "2026-08-18 03:03",
+ "updated_utc": "2026-08-18T00:05:06.324436+00:00",
+ "updated_israel": "2026-08-18 03:05",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.18 03:03:55",
+  "updated": "2026.08.18 03:04:55",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -672,15 +699,23 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "fail: order rejected 0",
-  "spread_points": 52.0,
+  "spread_points": 31.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [],
-  "equity": 197690.53,
-  "stamp": "2026.08.18 03:04:00",
-  "age_sec": 0.5
+  "legs": [
+   {
+    "ticket": "471636033",
+    "symbol": "XAUUSD",
+    "side": "buy",
+    "volume": 0.01,
+    "entry": 4425.63
+   }
+  ],
+  "equity": 197690.95,
+  "stamp": "2026.08.18 03:05:05",
+  "age_sec": 0.7
  },
  "slave": {
   "ok": true,
@@ -701,7 +736,7 @@
   "is_demo": true,
   "mode": "exact 1:1 v2",
   "stamp": "2026.08.18 01:54:40",
-  "age_sec": 94.9
+  "age_sec": 160.1
  },
  "fees": {
   "model": "profit_minus_fee_v2",
