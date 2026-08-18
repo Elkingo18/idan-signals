@@ -676,7 +676,7 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
       <button data-t="pine" onclick="goTab('pine')"><span class="e">📊</span>האינדיקטור</button>
       <button data-t="updates" onclick="goTab('updates')"><span class="e">🔔</span>עדכונים<span id="updBadge" class="badge hidden">0</span></button>
       <button data-t="friends" onclick="goTab('friends')"><span class="e">👥</span>חברים<span id="frBadge" class="badge hidden">0</span></button>
-      <button data-t="shop" onclick="goTab('shop')"><span class="e">🤖</span>הוסף בוט</button>
+      <button data-t="shop" id="navShop" class="hidden" onclick="goTab('shop')"><span class="e">🤖</span>הוסף בוט</button>
       <button data-t="help" onclick="goTab('help')"><span class="e">🆘</span>תמיכה</button>
       <button data-t="cal" onclick="goTab('cal')"><span class="e">📅</span>לוח שנה</button>
       <button data-t="reports" onclick="goTab('reports')"><span class="e">📊</span>דוחות</button>
@@ -973,12 +973,15 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
                lives here is the link a member taps - and YOU confirm receipt
                by hand in the shop screen. That human step is also what makes
                a fake payment impossible from the client. -->
-          <div class="mini" style="margin-top:10px">קישור תשלום לבוט נוסף (פייבוקס / ביט / כל דבר):</div>
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <input type="text" id="payLinkInp" placeholder="https://payboxapp.page.link/..." style="direction:ltr">
-            <button class="btn sec" style="flex:none" onclick="savePayLink()">שמור</button>
-          </div>
-          <div class="mini" style="margin-top:5px">החבר לוחץ ומעביר. <b>אתה</b> מאשר קבלה במסך "הוסף בוט" — רק אז הבוט שלו נפתח.</div>
+          <div class="mini" style="margin-top:10px">איך מעבירים לך כסף. מלא רק את מה שרלוונטי — החבר יראה בדיוק את מה שמילאת, ויבחר.</div>
+          <div class="mini" style="margin-top:8px">פייבוקס — קישור:</div>
+          <input type="text" id="payLinkInp" placeholder="https://payboxapp.page.link/..." style="direction:ltr;margin-top:4px">
+          <div class="mini" style="margin-top:8px">ביט — קישור או מספר טלפון:</div>
+          <input type="text" id="payBitInp" placeholder="https://www.bitpay.co.il/... או 05x-xxxxxxx" style="direction:ltr;margin-top:4px">
+          <div class="mini" style="margin-top:8px">ארנקי קריפטו (Bybit) — <b>שורה לכל מטבע</b> בפורמט <code>מטבע|רשת|כתובת</code>:</div>
+          <textarea id="payCryptoInp" rows="4" placeholder="USDT|TRC20|TXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#10;USDT|BEP20|0x....&#10;BTC|Bitcoin|bc1....&#10;ETH|ERC20|0x...." style="direction:ltr;width:100%;margin-top:4px;font-family:monospace;font-size:12px"></textarea>
+          <div class="btnrow" style="margin-top:6px"><button class="btn sec" onclick="savePayAll()">שמור אמצעי תשלום</button></div>
+          <div class="mini" style="margin-top:5px">החבר בוחר מטבע ומקבל את הכתובת המדויקת עם כפתור העתקה. <b>אתה</b> מאשר קבלה במסך "הוסף בוט" — רק אז הבוט שלו נפתח. אין לפייבוקס, לביט ולבייביט ממשק שיודע להגיד לאפליקציה "הכסף הגיע", ולכן הלחיצה הזאת היא שלך — וזה גם מה שמונע זיוף תשלום.</div>
         </div>
         <div class="card"><h3>🎛️ שליטה בבוטים של החברים</h3>
           <div class="mini" style="margin-bottom:8px">שנה הגדרות, הדלק/כבה, או סנכרן את כולם להגדרות שלך. החבר רק עושה רענן — וזה חל אצלו.</div>
@@ -1050,9 +1053,9 @@ const OWNER_EMAIL = "idan2189@gmail.com";
 /* Idan asked for a title members address him by when the support desk
    cannot solve it. "המנהל" is a job; this is the person who signs off on
    money and on who gets in. */
-const BOSS_TITLE = "עידן · המנהל הראשי";
+const BOSS_TITLE = "The Gold Master · המנהל הראשי";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "3.2.0";
+const APP_VERSION = "3.3.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 /* 2.5.0 — personal QR: ?feed=<key> opens that member's account directly */
@@ -2012,6 +2015,8 @@ function reflectAdmin(){
   $("modeLbl").textContent = SETTINGS.mode==="real" ? "כסף אמיתי 🔴" : "דמו 🎓";
   if (document.activeElement !== $("brokerLinkInp")) $("brokerLinkInp").value = SETTINGS.brokerLink||"";
   if ($("payLinkInp") && document.activeElement !== $("payLinkInp")) $("payLinkInp").value = SETTINGS.payLink||"";
+  if ($("payBitInp") && document.activeElement !== $("payBitInp")) $("payBitInp").value = SETTINGS.payBit||"";
+  if ($("payCryptoInp") && document.activeElement !== $("payCryptoInp")) $("payCryptoInp").value = SETTINGS.payCrypto||"";
 }
 function initAdmin(){
   reflectAdmin();
@@ -2039,7 +2044,10 @@ function initAdmin(){
                aria-label="מאושר להיכנס למועדון" onclick="tglUser('${id}','allowed',${u.allowed===true})"></div></div>
         <div class="swwrap"><span class="swlab">ברוקר</span>
           <div class="sw ${u.brokerLinked?'on':''}" role="switch" tabindex="0" aria-checked="${!!u.brokerLinked}"
-               aria-label="נרשם דרך הברוקר, למצב כסף אמיתי" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div></div>`}
+               aria-label="נרשם דרך הברוקר, למצב כסף אמיתי" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div></div>
+        <div class="swwrap"><span class="swlab">חנות</span>
+          <div class="sw ${u.shopOpen===true?'on':''}" role="switch" tabindex="0" aria-checked="${u.shopOpen===true}"
+               aria-label="רשאי לקנות בוט נוסף" onclick="tglUser('${id}','shopOpen',${u.shopOpen===true})"></div></div>`}
       </div>
       ${(!isOwnerRow && u.feedId) ? `<div class="ctrlbtns" style="padding:0 6px 8px">
         <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','on')">▶️ הדלק בוט</button>
@@ -3693,10 +3701,7 @@ function renderShop(){
   h += shopStep(4, paid, asked && !paid,
     "התשלום — $" + BOT_PRICE.toLocaleString("en-US"),
     !asked ? "אחרי שהבקשה נשלחה." :
-    (payLink()
-      ? "העברה לעידן דרך הקישור. אחרי שהעברת, עידן רואה את זה אצלו ומאשר כאן — זה השלב היחיד שבו מחכים לבן אדם, וזה בכוונה." +
-        '<div class="btnrow"><button class="btn" onclick="openPay()">💳 לתשלום</button></div>'
-      : "עידן עוד לא הזין קישור תשלום. דבר איתו בצ'אט ותעבירו ישירות.") +
+    payWaysHtml() +
     '<div class="mini" style="margin-top:7px">סטטוס הבקשה: <b>' +
       esc(ord ? ({requested:"נשלחה, ממתינה לתשלום", paid:"שולם ואושר"})[ord.status] || ord.status : "לא נשלחה") + "</b></div>");
 
@@ -3912,6 +3917,142 @@ enterApp = function(){
     .catch(()=>{});
   refreshBadges();
 };
+
+/* =====================================================================
+   10. WHAT IDAN ASKED FOR AFTER v3.2.0 - 18.8.2026, from his own words
+   --------------------------------------------------------------------
+   1. "open the shop only to members I mark" - the shop is now a per-member
+      permission, off by default, owner-only to grant. The tab does not
+      exist for anyone else, and the rules deny a member writing the field
+      on their own card, so hiding it is not the only lock.
+   2. "let me put up my Bybit wallet too, and let him choose which coin -
+      and the right address appears by itself." Three ways to pay now,
+      each optional: Paybox, Bit, and any number of crypto addresses.
+      The member picks, gets the exact address, and copies it in one tap.
+      Still nobody but Idan can mark an order paid - no wallet in the
+      world can tell a browser "the money arrived", and pretending
+      otherwise is how a shop gets robbed.
+   3. "call my account The Gold Master" - claimed for him automatically
+      the first time he opens the app with no handle taken.
+   ===================================================================== */
+
+const OWNER_HANDLE = "thegoldmaster";
+const OWNER_TITLE  = "The Gold Master";
+
+/* ---- 10.1 who may see the shop ------------------------------------- */
+function shopAllowed(){ return !!(IS_OWNER || (MYDOC && MYDOC.shopOpen === true)); }
+function refreshShopNav(){
+  const b = $("navShop");
+  if (b) b.classList.toggle("hidden", !shopAllowed());
+}
+const _goTabShop = goTab;
+goTab = function(tab){
+  if (tab === "shop" && !shopAllowed()){
+    toast("החנות נפתחת אישית. בקש מעידן בתמיכה.");
+    return _goTabShop("help");
+  }
+  _goTabShop(tab);
+};
+
+/* ---- 10.2 the ways to pay ------------------------------------------
+   Parsed from what Idan typed, not from a fixed list, so adding a coin
+   is one line in a box and not a new version of the app. A line that
+   does not have three parts is skipped rather than shown broken. ----- */
+function payCryptoList(){
+  const raw = (SETTINGS && SETTINGS.payCrypto) || "";
+  return String(raw).split(/\r?\n/).map(l=>{
+    const p = l.split("|").map(s=>s.trim());
+    if (p.length < 3 || !p[0] || !p[2]) return null;
+    return { coin: p[0].slice(0,12), net: p[1].slice(0,18), addr: p[2].slice(0,120) };
+  }).filter(Boolean).slice(0, 12);
+}
+function payWays(){
+  const out = [];
+  const pb = (SETTINGS && SETTINGS.payLink) || "";
+  const bt = (SETTINGS && SETTINGS.payBit) || "";
+  if (pb) out.push({ kind:"link", id:"paybox", label:"פייבוקס", value:pb });
+  if (bt) out.push({ kind: /^https?:/i.test(bt) ? "link" : "text", id:"bit", label:"ביט", value:bt });
+  payCryptoList().forEach((c,i)=> out.push({
+    kind:"addr", id:"c"+i, label:c.coin + (c.net ? " · " + c.net : ""), value:c.addr }));
+  return out;
+}
+let PAY_PICK = null;
+function payWaysHtml(){
+  const ways = payWays();
+  if (!ways.length)
+    return "עידן עוד לא הזין אמצעי תשלום. דבר איתו בתמיכה ותסגרו ישירות.";
+  let h = "בחר איך נוח לך להעביר. אחרי שהעברת, עידן רואה את זה אצלו ומאשר כאן — " +
+          "זה השלב היחיד שבו מחכים לבן אדם, וזה בכוונה." +
+          '<div class="opts" style="margin-top:8px">' +
+          ways.map(w=>'<button onclick="pickPay(\'' + escJs(w.id) + '\')"' +
+                      (PAY_PICK===w.id ? ' class="on"' : '') + '>' + esc(w.label) + '</button>').join("") +
+          '</div>';
+  const w = ways.find(x=>x.id===PAY_PICK);
+  if (w){
+    if (w.kind === "link")
+      h += '<div class="btnrow"><button class="btn" onclick="openPayWay()">💳 פתח ' + esc(w.label) + '</button></div>';
+    else
+      h += '<div class="mini" style="margin-top:8px">' + esc(w.label) + ':</div>' +
+           '<div style="direction:ltr;font-family:monospace;font-size:12px;word-break:break-all;' +
+           'background:rgba(255,255,255,.05);border-radius:8px;padding:8px;margin-top:4px">' + esc(w.value) + '</div>' +
+           '<div class="btnrow"><button class="btn sec" onclick="copyPayWay()">📋 העתק</button></div>' +
+           (w.id.charAt(0)==="c"
+             ? '<div class="mini" style="margin-top:6px">⚠️ שלח <b>' + esc(w.label) +
+               '</b> בלבד, ובדיוק ברשת הזאת. מטבע או רשת אחרת — הכסף אובד ואי אפשר להחזיר אותו.</div>'
+             : "");
+  }
+  return h;
+}
+function pickPay(id){ PAY_PICK = (PAY_PICK===id ? null : id); renderShop(); }
+function curPayWay(){ return payWays().find(x=>x.id===PAY_PICK) || null; }
+function openPayWay(){
+  const w = curPayWay(); if (!w) return;
+  window.open(w.value, "_blank", "noopener");
+}
+function copyPayWay(){
+  const w = curPayWay(); if (!w) return;
+  (navigator.clipboard ? navigator.clipboard.writeText(w.value) : Promise.reject())
+    .then(()=>toast("הועתק ✓"))
+    .catch(()=>prompt("העתק:", w.value));
+}
+async function savePayAll(){
+  const pay = {
+    payLink:   ($("payLinkInp")   ? $("payLinkInp").value.trim()   : ""),
+    payBit:    ($("payBitInp")    ? $("payBitInp").value.trim()    : ""),
+    payCrypto: ($("payCryptoInp") ? $("payCryptoInp").value.trim() : "").slice(0, 2000)
+  };
+  try{ await db.collection("settings").doc("global").set(pay, {merge:true}); toast("נשמר ✓"); }
+  catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+
+/* ---- 10.3 The Gold Master ------------------------------------------
+   A handle is claimed once and never released, so the safe move is to
+   take his the first time he signs in without one - and to do nothing
+   at all if anybody already holds it. ------------------------------- */
+async function claimOwnerHandle(){
+  if (!IS_OWNER || !ME) return;
+  if (MYHANDLE) return;
+  try{
+    const ref = db.collection("handles").doc(OWNER_HANDLE);
+    const cur = await ref.get();
+    if (cur.exists) return;                       // already taken - leave it
+    await ref.set({ uid: ME.uid, name: OWNER_TITLE, t: Date.now() });
+    await db.collection("profiles").doc(ME.uid)
+            .set({ name: OWNER_TITLE, handle: OWNER_HANDLE, t: Date.now() }, {merge:true});
+    MYHANDLE = OWNER_HANDLE;
+    toast("הכינוי שלך נתפס: @" + OWNER_HANDLE + " · " + OWNER_TITLE);
+    if (CURTAB === "friends") renderFriends();
+  }catch(e){ /* a handle we could not take is not a reason to break the app */ }
+}
+
+/* ---- 10.4 hook the two into the places that already refresh --------- */
+const _refreshBadges10 = refreshBadges;
+refreshBadges = function(){
+  _refreshBadges10();
+  refreshShopNav();
+  claimOwnerHandle();
+};
+refreshShopNav();
 
 </script>
 </body>
