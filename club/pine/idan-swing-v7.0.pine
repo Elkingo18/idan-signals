@@ -1,0 +1,376 @@
+//@version=6
+// =====================================================================
+//  IDAN SWING  v7.0  -  ONE ENGINE, HUMAN ANSWERS
+//
+//  WHAT CHANGED FROM v6.6  (18.08.2026, at Idan's request):
+//
+//  1. THE GOLD ENGINE IS GONE FROM THE CHART. Not because it stopped
+//     working - the live robot still trades the burst rule - but because
+//     gold is traded by a machine on MetaTrader and nobody watches a
+//     TradingView chart to trade it by hand. What is left here is the one
+//     thing a human actually acts on: the swing breakout on stocks.
+//     One engine, one job, nothing on the screen that is not for you.
+//
+//  2. THE SIGNAL IS THE SAME ONE THE SWING ROBOT SCANS. Same pivot
+//     breakout, same 50-day trend filter, same volume factor, same
+//     1.6 ATR stop, same 2R / 3.5R targets. If the chart fires and the
+//     robot does not, the difference is the account rules (position caps,
+//     minimum ticket, cash), never the setup.
+//
+//  3. IT SAYS WHY IT DID *NOT* FIRE. v6.6 went quiet when nothing
+//     triggered. This one names the missing condition - the volume was
+//     1.1x and it needs 1.3x, the price is under the 50-day average, the
+//     stop would be too tight. Silence with a reason is information;
+//     silence without one is just silence.
+//
+//  4. IT WARNS WHEN A SETUP IS COOKING. A name inside 3% of its pivot,
+//     in an uptrend, with RSI above 50, is marked as WATCH - so you can
+//     put it on the list before it breaks instead of after.
+//
+//  How to hear the full story on an alert: create ONE alert on the chart
+//  with the condition "Any alert() function call". The message that reaches
+//  your phone is the complete human explanation, not a code.
+//
+//  No repainting: every signal evaluates on CLOSED bars only, and the
+//  pivot it breaks is a CONFIRMED pivot (pivLen bars either side).
+//  Built for Idan - 18.08.2026
+// =====================================================================
+indicator("Idan Swing v7.0", overlay = true, max_labels_count = 500, max_lines_count = 500)
+
+// ------------------------------------------------------------------
+// 1. Account and risk
+// ------------------------------------------------------------------
+gAcc      = "1. Account and risk"
+capital   = input.float(2500.0, "Account capital (USD)",              minval = 100, step = 100, group = gAcc)
+riskP     = input.float(2.0,    "Risk per trade (%)",                 minval = 0.1, maxval = 10, step = 0.5, group = gAcc)
+maxPosP   = input.float(35.0,   "Max single position (% of capital)", minval = 5,   maxval = 100, step = 5, group = gAcc)
+minTicket = input.float(100.0,  "Minimum position size (USD)",        minval = 0,   step = 25, group = gAcc, tooltip = "The live engine refuses anything under this - a 40 dollar trade cannot pay its own commission.")
+
+// ------------------------------------------------------------------
+// 2. Display
+// ------------------------------------------------------------------
+gVis      = "2. Display  (defaults keep the chart clean)"
+dotSize   = input.string("Small", "Signal dot size", options = ["Tiny", "Small", "Normal"], group = gVis, tooltip = "Tap or hover a dot to open the full explanation.")
+showPanel = input.bool(true,  "Corner panel", group = gVis)
+tblPos    = input.string("Bottom right", "Panel position", options = ["Top right", "Bottom right", "Top left", "Bottom left"], group = gVis)
+panelSize = input.string("Small", "Panel text size", options = ["Tiny", "Small", "Normal", "Large"], group = gVis)
+showLvl   = input.bool(true,  "Stop / target lines on the LATEST signal only", group = gVis)
+showLvlTx = input.bool(true,  "Price labels on those lines", group = gVis)
+hebrew    = input.bool(true,  "Hebrew explanations", group = gVis)
+showMA    = input.bool(false, "50-day trend average", group = gVis)
+showPiv   = input.bool(false, "The pivot being watched", group = gVis)
+showWatch = input.bool(true,  "WATCH markers (setup forming, not a signal)", group = gVis)
+sayWhyNot = input.bool(true,  "Panel says why it did NOT fire", group = gVis)
+
+// ------------------------------------------------------------------
+// 3. Strategy parameters  (the live swing engine's own numbers)
+// ------------------------------------------------------------------
+gPar      = "3. Strategy parameters"
+pivLen    = input.int(3,     "Pivot length",              minval = 2, maxval = 10, group = gPar, tooltip = "A pivot is confirmed only after this many bars on BOTH sides, which is why nothing here repaints.")
+trendLen  = input.int(50,    "Trend average length",      minval = 10, group = gPar)
+rsiLen    = input.int(14,    "RSI length",                minval = 5,  group = gPar)
+volFac    = input.float(1.3, "Volume factor (x average)", minval = 1,  step = 0.1, group = gPar)
+atrLen    = input.int(14,    "ATR length",                minval = 5,  group = gPar)
+atrStop   = input.float(1.6, "Stop (x ATR)",              minval = 0.5, step = 0.1, group = gPar)
+rrT1      = input.float(2.0, "Target 1 (R)",              minval = 1,  step = 0.5, group = gPar)
+rrT2      = input.float(3.5, "Target 2 (R)",              minval = 1,  step = 0.5, group = gPar)
+minStopP  = input.float(1.2, "Min stop distance (%)",     minval = 0.01, step = 0.05, group = gPar, tooltip = "A stop closer than this is noise, not structure.")
+maxStopP  = input.float(12.0,"Max stop distance (%)",     minval = 1,    step = 0.5, group = gPar)
+minRoomR  = input.float(1.5, "Minimum room above (R)",    minval = 0.5,  step = 0.5, group = gPar, tooltip = "Measured from the pivot to the projected move. Without room, target 1 is a fantasy.")
+
+// ------------------------------------------------------------------
+// COLORS
+// ------------------------------------------------------------------
+cBuy    = color.new(#0f9d63, 0)
+cSwing  = color.new(#0e7fa8, 0)
+cTxt    = color.new(#ffffff, 0)
+cInk    = color.new(#232a3b, 0)
+cCream  = color.new(#f7f4ec, 0)
+cWhite  = color.new(#ffffff, 0)
+cGrey   = color.new(#7c8296, 0)
+cWatch  = color.new(#7c8296, 40)
+cSell   = color.new(#d6405a, 0)
+
+// ------------------------------------------------------------------
+// This chart is for stocks on a daily-ish timeframe. Say so rather than
+// firing swing logic on a 5-minute gold chart and pretending it means
+// something - that was the whole reason the day engine was retired.
+// ------------------------------------------------------------------
+sym       = str.upper(syminfo.ticker)
+isGoldSym = str.contains(sym, "XAU") or str.contains(sym, "GOLD") or str.startswith(sym, "GC") or str.startswith(sym, "MGC")
+wrongHome = isGoldSym or timeframe.isintraday
+
+// ------------------------------------------------------------------
+// INDICATORS
+// ------------------------------------------------------------------
+atrV   = ta.atr(atrLen)
+rsiV   = ta.rsi(close, rsiLen)
+ma50   = ta.sma(close, trendLen)
+volMa  = ta.sma(volume, 20)
+relVol = volMa > 0 ? volume / volMa : 1.0
+
+phRaw = ta.pivothigh(high, pivLen, pivLen)
+plRaw = ta.pivotlow(low,  pivLen, pivLen)
+var float lastPH = na
+var float lastPL = na
+if not na(phRaw)
+    lastPH := phRaw
+if not na(plRaw)
+    lastPL := plRaw
+
+slopeUp = not na(ma50[10]) and ma50 > ma50[10]
+slopeDn = not na(ma50[10]) and ma50 < ma50[10]
+above   = close > ma50
+
+regimeHe = above and slopeUp   ? "מגמת עלייה - המחיר מעל ממוצע 50 והממוצע עולה"   :
+   above and not slopeUp       ? "מעל הממוצע אבל הוא שטוח - מגמה חלשה"            :
+   not above and slopeDn       ? "מגמת ירידה - מתחת לממוצע 50 והוא יורד"          :
+                                 "מתחת לממוצע - אין מגמת עלייה"
+regimeEn = above and slopeUp   ? "Uptrend - price above a rising 50-day average"  :
+   above and not slopeUp       ? "Above the average but it is flat - weak trend"  :
+   not above and slopeDn       ? "Downtrend - below a falling 50-day average"     :
+                                 "Below the average - no uptrend"
+regimeTxt = hebrew ? regimeHe : regimeEn
+
+// ------------------------------------------------------------------
+// SIZING  -  the same three caps the live engine applies, in the same order
+// ------------------------------------------------------------------
+riskDollars = capital * riskP / 100.0
+capNotional = capital * maxPosP / 100.0
+
+sizeStock(entry, stop) =>
+    perShare = math.abs(entry - stop)
+    q = 0.0
+    if perShare > 0 and entry > 0
+        byRisk = riskDollars / perShare
+        byCap  = capNotional / entry
+        byCash = (capital * 0.95) / entry
+        q := math.floor(math.min(byRisk, math.min(byCap, byCash)))
+    math.max(q, 0)
+
+// ------------------------------------------------------------------
+// SIGNAL STATE
+// ------------------------------------------------------------------
+var string sigWhy   = ""
+var string sigConf  = ""
+var string sigReg   = ""
+var float  sigEntry = na
+var float  sigStop  = na
+var float  sigT1    = na
+var float  sigT2    = na
+var float  sigQty   = na
+var float  sigRisk  = na
+var int    sigBar   = na
+
+fire   = false
+fWhy   = ""
+fEntry = 0.0
+fStop  = 0.0
+fT1    = 0.0
+fT2    = 0.0
+fQty   = 0.0
+whyNot = ""
+watchUp = false
+
+// ==================================================================
+// THE ENGINE - pivot breakout, exactly as the swing robot scans it.
+// Every condition that fails is remembered, so the panel can say which.
+// ==================================================================
+if not wrongHome and not na(lastPH) and not na(lastPL) and not na(ma50) and not na(atrV) and atrV > 0
+    trendUp = close > ma50
+    volOk   = relVol > volFac
+    rsiOk   = rsiV > 50
+    broke   = close > lastPH and close[1] <= lastPH
+    near    = lastPH > close and (lastPH - close) / close <= 0.03
+
+    e       = close
+    sPiv    = lastPL
+    sAtr    = e - atrStop * atrV
+    sRaw    = math.max(sPiv, sAtr)
+    s       = sRaw >= e * 0.995 ? e - math.max(atrV, e * 0.015) : sRaw
+    risk    = e - s
+    stopPct = risk > 0 ? risk / e * 100.0 : 0.0
+    room    = lastPH + (lastPH - lastPL)
+    roomOk  = risk > 0 and room >= e + minRoomR * risk
+    stopOk  = risk > 0 and stopPct >= math.max(minStopP, 1.2) and stopPct <= maxStopP
+    q       = (stopOk and roomOk) ? sizeStock(e, s) : 0.0
+    tickOk  = q * e >= minTicket
+
+    if broke and volOk and rsiOk and trendUp and stopOk and roomOk and q > 0 and tickOk
+        fire   := true
+        fWhy   := hebrew ?
+           "המניה סגרה הרגע מעל הפסגה המאושרת האחרונה שלה (" + str.tostring(lastPH, "#.##") +
+           ") - הנר הקודם עוד היה מתחתיה, כלומר זו הפריצה עצמה ולא רדיפה אחריה. הווליום גבוה פי " +
+           str.tostring(relVol, "#.#") + " מהרגיל, ה-RSI על " + str.tostring(rsiV, "#") +
+           ", המחיר מעל ממוצע 50 הימים, והסטופ יושב מתחת לשפל המבני האחרון (" + str.tostring(s, "#.##") +
+           ") - אם הפריצה אמיתית, המקום הזה לא אמור להיראות שוב." :
+           "The stock just closed above its last confirmed pivot high (" + str.tostring(lastPH, "#.##") +
+           ") - the previous bar was still below it, so this is the break itself, not a chase. Volume is " +
+           str.tostring(relVol, "#.#") + "x normal, RSI is " + str.tostring(rsiV, "#") +
+           ", price is above the 50-day average, and the stop sits under the last structural low (" +
+           str.tostring(s, "#.##") + ") - if the breakout is real, that level should not be seen again."
+        fEntry := e
+        fStop  := s
+        fT1    := e + rrT1 * risk
+        fT2    := e + rrT2 * risk
+        fQty   := q
+
+    // ---- silence with a reason ------------------------------------
+    if not fire
+        whyNot := not trendUp ? (hebrew ? "המחיר מתחת לממוצע 50 הימים - לא נכנסים נגד המגמה" : "price is under the 50-day average - no entries against the trend") :
+           not broke and near ? (hebrew ? "קרוב לפסגה (" + str.tostring(lastPH, "#.##") + ") אבל עוד לא פרץ אותה" : "close to the pivot (" + str.tostring(lastPH, "#.##") + ") but has not broken it") :
+           not broke          ? (hebrew ? "רחוק מהפסגה " + str.tostring(lastPH, "#.##") + " - אין מה לפרוץ כרגע" : "far from the pivot " + str.tostring(lastPH, "#.##") + " - nothing to break yet") :
+           not volOk          ? (hebrew ? "פרץ, אבל הווליום רק פי " + str.tostring(relVol, "#.#") + " וצריך פי " + str.tostring(volFac, "#.#") : "broke out, but volume is only " + str.tostring(relVol, "#.#") + "x and it needs " + str.tostring(volFac, "#.#") + "x") :
+           not rsiOk          ? (hebrew ? "פרץ בווליום, אבל ה-RSI " + str.tostring(rsiV, "#") + " עדיין מתחת ל-50" : "broke out on volume, but RSI " + str.tostring(rsiV, "#") + " is still under 50") :
+           not stopOk         ? (hebrew ? "הסטופ יוצא " + str.tostring(stopPct, "#.#") + "% - מחוץ לטווח המותר" : "the stop works out at " + str.tostring(stopPct, "#.#") + "% - outside the allowed range") :
+           not roomOk         ? (hebrew ? "אין מספיק מרווח עד היעד - התבנית קטנה מדי ביחס לסטופ" : "not enough room to target 1 - the pattern is small relative to the stop") :
+           q <= 0             ? (hebrew ? "הכמות יוצאת אפס בגודל החשבון והסיכון שהוגדרו" : "size comes out zero at this capital and risk") :
+           not tickOk         ? (hebrew ? "העסקה יוצאת " + str.tostring(q * e, "#") + "$ - מתחת למינימום של " + str.tostring(minTicket, "#") + "$" : "the trade comes to " + str.tostring(q * e, "#") + " USD - under the " + str.tostring(minTicket, "#") + " minimum") :
+                                (hebrew ? "ממתין לתנאים" : "waiting for conditions")
+
+    watchUp := not fire and trendUp and rsiOk and near
+
+if wrongHome
+    whyNot := hebrew ? "הגרף הזה הוא " + (isGoldSym ? "זהב" : "תוך-יומי") + " - מנוע הסווינג עובד על מניות בגרף יומי. הזהב נסחר על ידי הרובוט במטה-טריידר, לא מכאן." : "this chart is " + (isGoldSym ? "gold" : "intraday") + " - the swing engine works on stocks on a daily chart. Gold is traded by the robot on MetaTrader, not from here."
+
+// ==================================================================
+// THE CHECKS, written from the same values the logic used
+// ==================================================================
+confTxt = ""
+if fire
+    yes = "✔ "
+    no  = "✘ "
+    confTxt := yes + (hebrew ? "פריצה של פסגה מאושרת" : "confirmed pivot broken") + "\n" +
+       (close > ma50 ? yes : no) + (hebrew ? "מעל ממוצע 50 הימים" : "above the 50-day average") + "\n" +
+       (relVol >= volFac ? yes : no) + (hebrew ? "ווליום " : "volume ") + str.tostring(relVol, "#.##") + (hebrew ? " מהממוצע" : "x average") + "\n" +
+       (rsiV > 50 ? yes : no) + "RSI " + str.tostring(rsiV, "#.#") + "\n" +
+       (rsiV < 78 ? yes : no) + (hebrew ? "לא במצב קיצוני" : "not exhausted")
+
+// ------------------------------------------------------------------
+// STORE
+// ------------------------------------------------------------------
+if fire
+    sigWhy   := fWhy
+    sigConf  := confTxt
+    sigReg   := regimeTxt
+    sigEntry := fEntry
+    sigStop  := fStop
+    sigT1    := fT1
+    sigT2    := fT2
+    sigQty   := fQty
+    sigRisk  := math.abs(fEntry - fStop) * fQty
+    sigBar   := bar_index
+
+// ------------------------------------------------------------------
+// TEXT
+// ------------------------------------------------------------------
+f2(x) => str.tostring(x, "#.##")
+px(x) => str.tostring(x, "#.##")
+
+fullStory(why, reg, conf, e, s, t1, t2, q) =>
+    stopPct = math.abs(e - s) / e * 100.0
+    riskUsd = math.abs(e - s) * q
+    rr1     = math.abs(t1 - e) / math.abs(e - s)
+    L = "─────────────────────\n"
+    s1 = (hebrew ? "סווינג   קנייה   " : "SWING   BUY   ") + syminfo.ticker + "\n" + L
+    s2 = (hebrew ? "📈 קריאת המגמה\n" : "TREND READ\n") + reg + "\n\n"
+    s3 = (hebrew ? "⚡ למה עכשיו\n" : "WHY NOW\n") + (hebrew ? "פריצת פסגה\n" : "Pivot breakout\n") + why + "\n\n"
+    s4 = (hebrew ? "🔎 אישורים\n" : "CONFIRMATIONS\n") + conf + "\n\n"
+    s5 = L + (hebrew ? "כניסה : " : "ENTRY : ") + px(e) + "\n" +
+         (hebrew ? "סטופ  : " : "STOP  : ") + px(s) + "   (" + f2(stopPct) + "%)\n" +
+         (hebrew ? "יעד 1 : " : "TAKE 1: ") + px(t1) + (hebrew ? "   (חצי החוצה)" : "   (half out)") + "\n" +
+         (hebrew ? "יעד 2 : " : "TAKE 2: ") + px(t2) + "\n" +
+         (hebrew ? "כמות  : " : "QTY   : ") + str.tostring(q, "#") + (hebrew ? " מניות" : " sh") + "\n" +
+         (hebrew ? "סיכון : " : "RISK  : ") + f2(riskUsd) + " USD   R:R " + f2(rr1)
+    s1 + s2 + s3 + s4 + s5
+
+// ------------------------------------------------------------------
+// THE CHART: one dot. That is all.
+// ------------------------------------------------------------------
+dSz = dotSize == "Tiny" ? size.tiny : dotSize == "Normal" ? size.normal : size.small
+
+if fire
+    dot = label.new(bar_index, low - atrV * 0.55, "", color = cSwing, style = label.style_circle,
+                    size = dSz, textcolor = cTxt)
+    label.set_tooltip(dot, fullStory(fWhy, regimeTxt, confTxt, fEntry, fStop, fT1, fT2, fQty))
+
+plotshape(showWatch and watchUp and not fire, title = "Watch", style = shape.xcross,
+          location = location.belowbar, color = cWatch, size = size.tiny)
+
+var line  lnStop = na
+var line  lnT1   = na
+var line  lnT2   = na
+var label lbStop = na
+var label lbT1   = na
+var label lbT2   = na
+if showLvl and fire
+    line.delete(lnStop)
+    line.delete(lnT1)
+    line.delete(lnT2)
+    label.delete(lbStop)
+    label.delete(lbT1)
+    label.delete(lbT2)
+    ext = 22
+    lnStop := line.new(bar_index, fStop, bar_index + ext, fStop, color = color.new(#d6405a, 40), width = 1, style = line.style_dashed)
+    lnT1   := line.new(bar_index, fT1,   bar_index + ext, fT1,   color = color.new(#0f9d63, 40), width = 1, style = line.style_dotted)
+    lnT2   := line.new(bar_index, fT2,   bar_index + ext, fT2,   color = color.new(#0f9d63, 65), width = 1, style = line.style_dotted)
+    if showLvlTx
+        lbStop := label.new(bar_index + ext, fStop, "SL " + px(fStop), color = cSell, textcolor = cTxt, style = label.style_label_left, size = size.tiny)
+        lbT1   := label.new(bar_index + ext, fT1,   "TP1 " + px(fT1),  color = cBuy,  textcolor = cTxt, style = label.style_label_left, size = size.tiny)
+        lbT2   := label.new(bar_index + ext, fT2,   "TP2 " + px(fT2),  color = color.new(#0f9d63, 35), textcolor = cTxt, style = label.style_label_left, size = size.tiny)
+
+plot(showMA ? ma50 : na, "50-day average", color = color.new(#0e7fa8, 40), linewidth = 1)
+plot(showPiv and not na(lastPH) ? lastPH : na, "Pivot being watched", color = color.new(#c9911a, 45), style = plot.style_linebr, linewidth = 1)
+
+// ------------------------------------------------------------------
+// THE PANEL
+// ------------------------------------------------------------------
+tPos = tblPos == "Top right" ? position.top_right : tblPos == "Bottom right" ? position.bottom_right : tblPos == "Top left" ? position.top_left : position.bottom_left
+tSz  = panelSize == "Tiny" ? size.tiny : panelSize == "Normal" ? size.normal : panelSize == "Large" ? size.large : size.small
+
+var table pnl = table.new(tPos, 2, 7, border_width = 1, frame_width = 1, frame_color = color.new(#232a3b, 45))
+
+if showPanel and barstate.islast
+    hasSig = not na(sigEntry)
+    age    = hasSig ? bar_index - sigBar : 0
+    fresh  = hasSig and age <= 3
+
+    head = wrongHome ? (hebrew ? "לא הגרף הנכון" : "wrong chart for this engine") :
+       not hasSig ? (hebrew ? "אין איתות - במעקב" : "no signal - watching") :
+       (hebrew ? "סווינג  קנייה" : "SWING  BUY")
+    hCol = wrongHome or not hasSig ? cGrey : cBuy
+    table.cell(pnl, 0, 0, head, text_color = cTxt, bgcolor = hCol, text_size = tSz)
+    table.cell(pnl, 1, 0, not hasSig ? syminfo.ticker :
+       (fresh ? (hebrew ? "חדש  " : "NEW  ") + syminfo.ticker : str.tostring(age) + (hebrew ? " נרות אחורה" : " bars ago")),
+       text_color = cTxt, bgcolor = fresh ? cSwing : cInk, text_size = tSz)
+
+    table.cell(pnl, 0, 1, hebrew ? "מגמה" : "Trend", text_color = cInk, bgcolor = cCream, text_size = tSz)
+    table.cell(pnl, 1, 1, hasSig ? sigReg : regimeTxt, text_color = cInk, bgcolor = cWhite, text_size = tSz)
+
+    table.cell(pnl, 0, 2, hasSig ? (hebrew ? "למה" : "Why") : (hebrew ? "למה לא" : "Why not"), text_color = cInk, bgcolor = cCream, text_size = tSz)
+    table.cell(pnl, 1, 2, hasSig ? sigWhy : (sayWhyNot ? whyNot : (hebrew ? "ממתין לתנאים" : "waiting")), text_color = cInk, bgcolor = cWhite, text_size = tSz)
+
+    table.cell(pnl, 0, 3, hebrew ? "אישורים" : "Checks", text_color = cInk, bgcolor = cCream, text_size = tSz)
+    table.cell(pnl, 1, 3, hasSig ? sigConf : "-", text_color = cInk, bgcolor = cWhite, text_size = tSz)
+
+    table.cell(pnl, 0, 4, hebrew ? "כניסה / סטופ" : "Entry / Stop", text_color = cInk, bgcolor = cCream, text_size = tSz)
+    stopPctNow = hasSig ? math.abs(sigEntry - sigStop) / sigEntry * 100.0 : 0.0
+    table.cell(pnl, 1, 4, hasSig ? px(sigEntry) + "  /  " + px(sigStop) + "  (" + f2(stopPctNow) + "%)" : px(close),
+       text_color = cInk, bgcolor = cWhite, text_size = tSz)
+
+    table.cell(pnl, 0, 5, hebrew ? "יעדים" : "Targets", text_color = cTxt, bgcolor = cBuy, text_size = tSz)
+    table.cell(pnl, 1, 5, hasSig ? px(sigT1) + "  /  " + px(sigT2) : "-", text_color = cInk, bgcolor = cWhite, text_size = tSz)
+
+    table.cell(pnl, 0, 6, hasSig ? (hebrew ? "כמות / סיכון" : "Size / Risk") : (hebrew ? "שוק" : "Market"), text_color = cInk, bgcolor = cCream, text_size = tSz)
+    table.cell(pnl, 1, 6, hasSig ? str.tostring(sigQty, "#") + (hebrew ? " מניות   " : " sh   ") + f2(sigRisk) + " USD" :
+       "RSI " + f2(rsiV) + (hebrew ? "   ווליום x" : "   vol x") + f2(relVol),
+       text_color = cInk, bgcolor = cWhite, text_size = tSz)
+
+// ------------------------------------------------------------------
+// ALERTS - one alert() carries the whole human story.
+// ------------------------------------------------------------------
+if fire
+    alert(fullStory(fWhy, regimeTxt, confTxt, fEntry, fStop, fT1, fT2, fQty), alert.freq_once_per_bar_close)
+
+alertcondition(fire, title = "SWING BUY", message = "סווינג קנייה {{ticker}} @ {{close}} - הסיפור המלא מגיע בהתראת alert() ובנקודה על הגרף")
+alertcondition(watchUp and not fire, title = "SWING WATCH", message = "סווינג במעקב {{ticker}} @ {{close}} - קרוב לפסגה, עוד לא פרץ")
