@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "skip: no burst -0.78atr",
-    "age_sec": 6.8,
+    "age_sec": 12.5,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 199025.93,
     "teacher_legs": 0,
-    "age_sec": 0.1,
+    "age_sec": 0.0,
     "status": "ok",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -45,9 +45,9 @@
     "leverage": 500,
     "margin_free": 10980.05,
     "margin_used": 0.0,
-    "blocked": null,
-    "not_copying": false,
-    "note": "מעתיק את המורה 1:1 עם שומר-מחיר-כניסה"
+    "blocked": "the teacher's terminal is not connected - holding, not closing",
+    "not_copying": true,
+    "note": "the teacher's terminal is not connected - holding, not closing"
    },
    {
     "id": "swing",
@@ -71,7 +71,7 @@
      "file_ok": true
     },
     "broker_equity": 945.73,
-    "age_sec": 140.8,
+    "age_sec": 207.5,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -1031,12 +1031,12 @@
    "gross": -2.15
   }
  ],
- "updated_utc": "2026-08-18T20:50:20.849247+00:00",
- "updated_israel": "2026-08-18 23:50",
+ "updated_utc": "2026-08-18T20:51:27.494427+00:00",
+ "updated_israel": "2026-08-18 23:51",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.18 23:50:14",
+  "updated": "2026.08.18 23:51:15",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1064,8 +1064,8 @@
   "ok": true,
   "legs": [],
   "equity": 199025.93,
-  "stamp": "2026.08.18 23:50:20",
-  "age_sec": 0.3
+  "stamp": "2026.08.18 23:51:25",
+  "age_sec": 0.9
  },
  "slave": {
   "ok": true,
@@ -1080,7 +1080,7 @@
   "positions": [],
   "floating": 0.0,
   "code_version": 312,
-  "blocked": "",
+  "blocked": "the teacher's terminal is not connected - holding, not closing",
   "algo_allowed": true,
   "symbol": "XAUUSD+",
   "is_demo": true,
@@ -1089,8 +1089,8 @@
   "margin_used": 0.0,
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
-  "stamp": "2026.08.18 23:50:20",
-  "age_sec": 0.1
+  "stamp": "2026.08.18 23:51:25",
+  "age_sec": 0.0
  },
  "fees": {
   "model": "profit_minus_fee_v2",
