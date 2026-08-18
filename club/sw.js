@@ -1,11 +1,17 @@
-/* Idan's Money Club - service worker v3.0.0
+/* Idan's Money Club - service worker v3.1.0
    Network-first for the app itself so every publish reaches everyone
    automatically; cache fallback keeps it opening offline. */
-const VERSION = "imc-v3.0.0";
+const VERSION = "imc-v3.1.0";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
+/* 18.8: addAll() is atomic - one 404 in SHELL and the whole install rejects,
+   which means no offline cache at all, silently. Each file is cached on its
+   own now, so a missing icon costs an icon and not the feature. */
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  e.waitUntil(
+    caches.open(VERSION)
+      .then(c => Promise.all(SHELL.map(u => c.add(u).catch(() => {}))))
+      .then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", e => {
   e.waitUntil(
