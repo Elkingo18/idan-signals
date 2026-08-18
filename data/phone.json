@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "skip: no burst -0.78atr",
-    "age_sec": 19.1,
+    "age_sec": 1.2,
     "status": "ok"
    },
    {
@@ -61,7 +61,7 @@
     "day_pct": 1.5,
     "open_count": 1,
     "open_gross": 16.0,
-    "pending": 0,
+    "pending": 1,
     "scan": {
      "universe_json": 70,
      "ido_lists": 33,
@@ -71,7 +71,7 @@
      "file_ok": true
     },
     "broker_equity": 945.73,
-    "age_sec": 372.1,
+    "age_sec": 136.2,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -1031,12 +1031,12 @@
    "gross": -2.15
   }
  ],
- "updated_utc": "2026-08-18T21:54:12.084134+00:00",
- "updated_israel": "2026-08-19 00:54",
+ "updated_utc": "2026-08-18T21:55:16.193045+00:00",
+ "updated_israel": "2026-08-19 00:55",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.19 00:53:53",
+  "updated": "2026.08.19 00:55:15",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1064,8 +1064,8 @@
   "ok": true,
   "legs": [],
   "equity": 199025.93,
-  "stamp": "2026.08.19 00:54:10",
-  "age_sec": 0.7
+  "stamp": "2026.08.19 00:55:15",
+  "age_sec": 0.8
  },
  "slave": {
   "ok": true,
@@ -1089,7 +1089,7 @@
   "margin_used": 0.0,
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
-  "stamp": "2026.08.19 00:53:53",
+  "stamp": "2026.08.19 00:55:12",
   "age_sec": 0.1
  },
  "fees": {
@@ -1166,9 +1166,75 @@
   "return_pct": 6.48,
   "name": "UHTA"
  },
- "signals_swing": [],
+ "signals_swing": [
+  {
+   "kind": "swing",
+   "ticker": "TNDM",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 23.73,
+   "entry": 23.8,
+   "stop": 21.7244,
+   "t1": 27.9513,
+   "t2": 31.0647,
+   "rr1": 2.0,
+   "rsi": 71.0,
+   "rvol": 1.14,
+   "score": 64,
+   "shares": 15,
+   "notional": 357.0,
+   "risk_dollars": 31.13,
+   "room": 30.53,
+   "above_ma50_pct": 34.05,
+   "news": [
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "Tandem Diabetes Care Maps Growth Plan With Pharmacy Shift and Tubeless Mobi",
+     "src": "MarketBeat",
+     "time": "2026-08-18 06:02"
+    },
+    {
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": null,
+     "sources": 1,
+     "title": "TNDM Q2 Loss Narrower Than Expected, Revenues Miss, Stock Up",
+     "src": "Zacks",
+     "time": "2026-08-12 12:39"
+    },
+    {
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
+     "dir": "neu",
+     "tag": "דוחות",
+     "sources": 2,
+     "title": "5 Must-Read Analyst Questions From Tandem Diabetes’s Q2 Earnings Call",
+     "src": "StockStory",
+     "time": "2026-08-15 04:45"
+    }
+   ]
+  }
+ ],
  "signals_day": [],
- "pending_entries": [],
+ "pending_entries": [
+  {
+   "ticker": "TNDM",
+   "kind": "swing",
+   "side": "long",
+   "qty": 15,
+   "entry": 23.8,
+   "stop": 21.7244,
+   "t1": 27.9513,
+   "t2": 31.0647,
+   "notional": 357.0,
+   "score": 64,
+   "rsi": 71.0,
+   "rvol": 1.14,
+   "placed_for": "2026-08-19 00:48"
+  }
+ ],
  "scan_universe": {
   "universe_json": 70,
   "ido_lists": 33,
