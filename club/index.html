@@ -19,7 +19,10 @@
   --rail:#7a5c22; --brass:#c9a227;
   --gold:#d4af37; --richgold:#f0d478;
   --bg:#0a1410; --bg2:#10201a; --line:#1d3a30; --line2:#2a5245;
-  --ink:#e8eee9; --ink2:#9fb3a9; --ink3:#6d8378;
+  /* 18.8: --ink3 measured 3.7-4.2:1 on the felt - under the 4.5 minimum, at
+     10-12px, on a phone, outdoors. The chrome is meant to be quiet, not
+     unreadable: these are the smallest values that pass AA on this背景. */
+  --ink:#e8eee9; --ink2:#b3c5bb; --ink3:#93aca1;
   --up:#35d39a; --dn:#ff6b7d; --warn:#ffb547;
   --accent2:#d4af37; --bg-old:#131722;
 }
@@ -76,7 +79,7 @@ a{color:var(--gold)}
 .corners{position:relative;z-index:2;display:flex;justify-content:space-between;
   align-items:flex-start;gap:10px;max-width:1180px;margin:0 auto 6px}
 .cnr{min-width:104px}
-.cnr .k{font-size:9.5px;letter-spacing:1.6px;color:rgba(232,238,233,.45);text-transform:uppercase}
+.cnr .k{font-size:10.5px;letter-spacing:1.4px;color:rgba(232,238,233,.72);text-transform:uppercase}
 .cnr .v{font-size:16px;font-weight:800;color:var(--richgold);margin-top:1px;direction:ltr}
 .cnr .s{font-size:10.5px;color:var(--ink2);margin-top:1px;unicode-bidi:plaintext}
 .cnr.l{text-align:left}
@@ -84,13 +87,13 @@ a{color:var(--gold)}
 
 /* ------------------------- the big number ------------------------- */
 .hero{position:relative;z-index:2;text-align:center;margin:14px auto 4px;max-width:1180px}
-.hero .lab{font-size:11px;letter-spacing:3px;color:rgba(232,238,233,.5);text-transform:uppercase}
+.hero .lab{font-size:11.5px;letter-spacing:3px;color:rgba(232,238,233,.74);text-transform:uppercase}
 .hero .big{font-size:clamp(44px,13vw,104px);font-weight:900;line-height:1.02;letter-spacing:-1.5px;
   text-shadow:0 4px 26px rgba(0,0,0,.6);margin:2px 0 0;direction:ltr}
 .hero .big.up{color:var(--up)}.hero .big.dn{color:var(--dn)}
 .hero .big.flat{color:var(--richgold)}
 .hero .side{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;
-  font-size:12.5px;color:rgba(232,238,233,.62);margin-top:5px}
+  font-size:12.5px;color:rgba(232,238,233,.78);margin-top:5px}
 .hero .side b{font-weight:800}
 .pill{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(201,162,39,.3);
   border-radius:999px;padding:3px 11px;font-size:11.5px;color:var(--ink2);background:rgba(0,0,0,.2)}
@@ -118,12 +121,12 @@ a{color:var(--gold)}
 .lrow .sym .sd{font-size:10px;font-weight:800;border-radius:5px;padding:1px 6px;margin-inline-start:7px;vertical-align:2px}
 .lrow .sd.b{background:rgba(53,211,154,.16);color:var(--up)}
 .lrow .sd.s{background:rgba(255,107,125,.16);color:var(--dn)}
-.lrow .det{font-size:11.5px;color:rgba(232,238,233,.55);margin-top:2px;direction:rtl}
+.lrow .det{font-size:12px;color:rgba(232,238,233,.74);margin-top:2px;direction:rtl}
 .lrow .det .px{direction:ltr;unicode-bidi:isolate;display:inline-block}
 .lrow .pl{text-align:left;min-width:96px}
 .lrow .pl .g{font-size:20px;font-weight:900;direction:ltr;line-height:1.1}
-.lrow .pl .p{font-size:11px;color:rgba(232,238,233,.5);direction:ltr}
-.rows .empty{text-align:center;color:rgba(232,238,233,.45);font-size:13.5px;
+.lrow .pl .p{font-size:11.5px;color:rgba(232,238,233,.74);direction:ltr}
+.rows .empty{text-align:center;color:rgba(232,238,233,.72);font-size:13.5px;
   padding:26px 12px;border:1px dashed rgba(255,255,255,.11);border-radius:14px}
 
 /* ---------------------------- bot chips ---------------------------- */
@@ -311,9 +314,9 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
   font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
 .urow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
 .urow img{width:30px;height:30px;border-radius:50%}
-.sw{position:relative;width:40px;height:22px;background:#2b3a34;border-radius:999px;flex:none;transition:.15s}
+.sw{position:relative;width:44px;height:26px;background:#2b3a34;border-radius:999px;flex:none;transition:.15s}
 .sw.on{background:var(--up)}
-.sw::after{content:"";position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}
+.sw::after{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.15s}
 .sw.on::after{transform:translateX(-18px)}
 .chatTab{flex:1;background:none;color:var(--ink3);font-size:14.5px;font-weight:700;padding:12px;border:none;cursor:pointer;font-family:inherit}
 .chatTab.on{color:var(--gold);box-shadow:inset 0 -2.5px 0 var(--gold)}
@@ -349,6 +352,138 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
 .fbot .fb-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;margin-top:8px;background:rgba(0,0,0,.35)}
 .fbot .fb-bar i{display:block}
 .fbot .fb-note{font-size:10.5px;color:var(--ink3);margin-top:5px}
+/* 18.8: there was not a single :focus rule in 2,600 lines, and
+   -webkit-tap-highlight-color:transparent removed the only feedback a phone
+   gives. Every control is reachable and visibly reachable now. */
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+.sw:focus-visible,.dmrow:focus-visible,.botpick:focus-visible{outline:2px solid var(--gold)}
+button:active,.sw:active,.dmrow:active,.botpick:active,.chip:active{filter:brightness(1.18)}
+/* the approval switch is the control Idan uses most and it was 40x22 */
+.swwrap{display:flex;flex-direction:column;align-items:center;gap:3px;
+  min-width:52px;min-height:44px;justify-content:center}
+.swlab{font-size:9.5px;color:var(--ink3);letter-spacing:.3px}
+.badge{display:inline-block;min-width:18px;padding:1px 5px;border-radius:999px;
+  background:var(--warn);color:#1a1205;font-size:10.5px;font-weight:800;margin-inline-start:5px}
+.tag.dn2{color:var(--warn);border-color:rgba(255,181,71,.5);background:rgba(255,181,71,.12)}
+.ioshint{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));
+  z-index:47;display:flex;align-items:center;gap:8px;padding:11px 12px;border-radius:13px;
+  background:linear-gradient(180deg,#123c30,#0d2f26);border:1px solid var(--brass);
+  color:var(--ink);font-size:12.5px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.ioshint button{background:none;border:none;color:var(--ink2);font-size:16px;
+  min-width:44px;min-height:44px}
+/* ===================================================================
+   v3.2.0 — the rooms Idan asked for on 18.8: the indicator, the update
+   feed, the Monopoly money room, the personal plan, handles and friend
+   requests, the second-bot shop, and the support desk.
+   =================================================================== */
+.sec2{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+  border:1px solid var(--line2);border-radius:15px;padding:13px;margin-bottom:11px}
+.sec2 h3{margin:0 0 8px;font-size:14.5px;display:flex;align-items:center;gap:7px}
+.sec2 h3 .n{font-size:11px;color:var(--ink3);font-weight:400;margin-inline-start:auto}
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11px;
+  border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--ink2)}
+.pill.go{color:var(--up);border-color:rgba(53,211,154,.45)}
+.pill.no{color:var(--dn);border-color:rgba(255,107,125,.45)}
+.pill.wa2{color:var(--warn);border-color:rgba(255,181,71,.45)}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.btnrow button{flex:1;min-width:120px;min-height:44px;font-size:13px}
+.codebox{background:#07130f;border:1px solid var(--line2);border-radius:11px;
+  padding:11px;font:11.5px/1.55 ui-monospace,Menlo,Consolas,monospace;color:#cfe3d8;
+  direction:ltr;text-align:left;max-height:290px;overflow:auto;white-space:pre;
+  -webkit-overflow-scrolling:touch}
+.fld{display:block;width:100%;margin:7px 0;padding:12px;border-radius:11px;
+  background:rgba(0,0,0,.28);border:1px solid var(--line2);color:var(--ink);
+  font-size:15px;font-family:inherit;min-height:46px}
+.fld:focus{border-color:var(--gold);outline:none}
+label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
+.opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}
+.opts button{padding:10px 13px;min-height:44px;border-radius:11px;font-size:13px;
+  background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--ink)}
+.opts button.on{background:var(--gold);color:#1a1205;border-color:var(--gold);font-weight:700}
+
+/* -------- the Monopoly room -------- */
+.board{position:relative;width:100%;aspect-ratio:1/1;max-width:520px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);
+  gap:4px;background:linear-gradient(160deg,#0e3a2e,#0a2b22);
+  border:2px solid var(--brass);border-radius:16px;padding:6px}
+.tile{border-radius:8px;background:linear-gradient(180deg,#f7f4ec,#e9e4d6);color:#1c2a24;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:3px;font-size:9px;line-height:1.15;text-align:center;cursor:pointer;
+  border-top:5px solid var(--brass);min-height:0;overflow:hidden;position:relative}
+.tile .ic{font-size:15px}
+.tile .nm{font-weight:800;font-size:8.5px;margin-top:1px}
+.tile.here{outline:3px solid var(--gold);outline-offset:-1px;transform:scale(1.04);
+  z-index:2;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.tile.done{opacity:.55}
+.tile.done::after{content:"✓";position:absolute;top:2px;inset-inline-end:4px;
+  font-size:9px;color:var(--up);font-weight:900}
+.tile.c1{border-top-color:#e05a6b}.tile.c2{border-top-color:#e0a13a}
+.tile.c3{border-top-color:#35d39a}.tile.c4{border-top-color:#4b9fe0}
+.tile.c5{border-top-color:#a97ae0}
+.center{grid-column:2/7;grid-row:2/7;border-radius:12px;
+  background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.2));
+  border:1px solid var(--line2);padding:10px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:7px;overflow:auto}
+.center .big2{font-size:clamp(20px,7vw,34px);font-weight:900;letter-spacing:-1px;
+  direction:ltr;font-variant-numeric:tabular-nums}
+.dice{font-size:34px;min-height:44px;min-width:44px;background:none;border:none;
+  cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.3,1.4)}
+.dice:active{transform:rotate(-22deg) scale(1.16)}
+.newsitem{border-inline-start:3px solid var(--gold);padding:8px 10px;margin-bottom:8px;
+  background:rgba(255,255,255,.04);border-radius:0 11px 11px 0}
+.newsitem b{font-size:13.5px}
+.newsitem .w{font-size:11px;color:var(--ink3);margin-top:2px}
+
+/* -------- the update feed -------- */
+.upd{display:flex;gap:10px;padding:11px;border-radius:12px;margin-bottom:8px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line2)}
+.upd.new{border-color:var(--gold);background:rgba(214,178,90,.09)}
+.upd .ic2{font-size:20px;flex:none}
+.upd b{font-size:13.5px}
+.upd .w{font-size:11.5px;color:var(--ink3);margin-top:3px}
+
+/* -------- friends -------- */
+.frow{display:flex;align-items:center;gap:9px;padding:9px 4px;border-bottom:1px solid var(--line)}
+.frow img{width:36px;height:36px;border-radius:50%;flex:none;background:#123}
+.frow .h{font-size:11.5px;color:var(--gold);direction:ltr}
+.frow button{min-height:40px;padding:0 12px;font-size:12.5px}
+
+/* -------- the shop -------- */
+.step{display:flex;gap:10px;padding:11px;border-radius:12px;margin-bottom:8px;
+  background:rgba(255,255,255,.035);border:1px solid var(--line2)}
+.step.on2{border-color:var(--gold);background:rgba(214,178,90,.08)}
+.step.ok2{opacity:.6}
+.step .num{width:26px;height:26px;border-radius:50%;background:var(--brass);color:#1a1205;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex:none}
+.step.ok2 .num{background:var(--up);color:#04180f}
+.price{font-size:clamp(26px,9vw,40px);font-weight:900;color:var(--gold);direction:ltr}
+
+/* -------- support -------- */
+.chatline{padding:10px 12px;border-radius:14px;margin-bottom:8px;max-width:88%;
+  font-size:13.5px;line-height:1.6}
+.chatline.bot{background:rgba(255,255,255,.06);border:1px solid var(--line2);
+  margin-inline-end:auto;border-bottom-inline-start-radius:4px}
+.chatline.me2{background:linear-gradient(180deg,#14513e,#0d3b2e);border:1px solid var(--brass);
+  margin-inline-start:auto;border-bottom-inline-end-radius:4px}
+.chatline.esc{background:rgba(214,178,90,.12);border:1px solid var(--gold)}
+.qbtn{display:block;width:100%;text-align:start;margin:6px 0;padding:12px;min-height:46px;
+  border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line2);
+  color:var(--ink);font-size:13.5px}
+.qbtn:hover{border-color:var(--gold)}
+
+/* -------- plan -------- */
+.planrow{display:flex;justify-content:space-between;gap:10px;padding:9px 0;
+  border-bottom:1px solid var(--line);font-size:13.5px}
+.planrow b{direction:ltr;font-variant-numeric:tabular-nums}
+.bar2{height:9px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:7px}
+.bar2 i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--up))}
+.bootbrand{font-weight:800;letter-spacing:.4px;color:var(--gold);font-size:15px}
+.bootdots{display:flex;gap:7px;margin-top:14px}
+.bootdots i{width:8px;height:8px;border-radius:999px;background:var(--gold);
+  opacity:.35;animation:bd 1.1s ease-in-out infinite}
+.bootdots i:nth-child(2){animation-delay:.15s}
+.bootdots i:nth-child(3){animation-delay:.3s}
+@keyframes bd{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
 #installBtn{position:fixed;top:calc(58px + env(safe-area-inset-top));left:12px;z-index:45;
   background:rgba(13,59,46,.9);color:#d8f0e5;border:1px solid var(--line2);font-size:12.5px;
   font-weight:700;padding:8px 13px;border-radius:999px}
@@ -382,6 +517,16 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
 <body>
 
 <!-- ======================= LOGIN ======================= -->
+<!-- 18.8: the first paint. Every view used to start hidden and only JS
+     un-hid one, so a phone on a cold cache showed a black rectangle until
+     three Firebase scripts had downloaded. This one is visible in the markup,
+     so the browser paints something the moment the HTML arrives, and it is
+     in the VIEWS list so the router hides it like any other screen. -->
+<div id="v-boot" class="full">
+  <div class="bootbrand">Idan's Money Club</div>
+  <div class="title" style="font-size:20px">רגע…</div>
+  <div class="bootdots" aria-hidden="true"><i></i><i></i><i></i></div>
+</div>
 <div id="v-login" class="full hidden">
   <div class="bigchip"></div>
   <div class="title">Idan's Money Club<small>מועדון ניהול הכסף של עידן · הבוטים, המספרים, והאמת</small></div>
@@ -416,9 +561,10 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
     </div>
     <div class="botpick" data-bot="swing" onclick="pickBot('swing')">
       <div class="bp-ic">📈</div>
-      <div class="bp-mid"><b>בוט המניות — סווינג</b><span class="bp-tag">חשבון נייר</span>
-        <div class="mini">גלים של ימים-שבועות על מניות אמריקאיות · אינטראקטיב ברוקרס בחשבון נייר (מדומה)</div></div>
-      <div class="bp-go">בחר ›</div>
+      <div class="bp-mid"><b>בוט המניות — סווינג</b><span class="bp-tag">בבנייה</span>
+        <div class="mini">גלים של ימים-שבועות על מניות אמריקאיות · אינטראקטיב ברוקרס בחשבון נייר.
+        <b>עוד לא פתוח לחברים</b> — בחירה בו תשאיר אותך עם מסך נעול, אז אפשר לבחור זהב עכשיו ולהחליף אחר כך.</div></div>
+      <div class="bp-go">בקרוב</div>
     </div>
     <div class="botpick dim" data-bot="ladder">
       <div class="bp-ic">🪜</div>
@@ -458,7 +604,12 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
 <div id="v-pending" class="full hidden">
   <div style="font-size:56px">⏳</div>
   <div class="title" style="font-size:22px">מחכה לאישור של עידן</div>
-  <div class="mini" style="max-width:340px;font-size:14px">נרשמת וחתמת — נשאר רק שעידן יאשר את הכניסה שלך. תקבל גישה ברגע שהוא מאשר, בדרך כלל תוך זמן קצר. אפשר לסגור ולחזור מאוחר יותר.</div>
+  <div class="mini" style="max-width:340px;font-size:14px">נרשמת וחתמת — נשאר רק שעידן יאשר את הכניסה שלך. תקבל גישה ברגע שהוא מאשר, והמסך הזה יתחלף מעצמו.</div>
+  <!-- 18.8: this screen used to be a dead end. Nobody was told anybody was
+       waiting - not Idan, not the member - and the only button was "sign
+       out". Now one tap raises a hand, and Idan sees it on his own screen. -->
+  <button class="btn" id="pingBtn" onclick="pingOwner()" style="max-width:320px">📣 תגיד לעידן שאני מחכה</button>
+  <div class="mini" id="pingMsg" style="font-size:12px"></div>
   <button class="btn sec" onclick="signOut()">התנתק בינתיים</button>
 </div>
 
@@ -474,6 +625,12 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
     <img class="avatar" id="hAvatar" alt="" referrerpolicy="no-referrer">
   </div>
   <button id="installBtn" class="hidden">📥 התקן</button>
+  <!-- the iPhone equivalent of the install button: Safari has no API for it,
+       only a sentence and an arrow -->
+  <div id="iosHint" class="ioshint hidden">
+    <div style="flex:1">להוסיף למסך הבית: הקש <b>שיתוף</b> <span style="font-size:15px">􀈂</span> ואז <b>הוסף למסך הבית</b></div>
+    <button onclick="dismissIOSHint()" aria-label="סגור">✕</button>
+  </div>
   <div id="alertBar" class="alertbar hidden"></div>
 
   <!-- ===================== THE TABLE ===================== -->
@@ -514,6 +671,13 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
     <div class="dnav" id="mainNav">
       <button data-t="table" class="on" onclick="goTab('table')"><span class="e">🃏</span>השולחן החי</button>
       <button data-t="swing" onclick="goTab('swing')"><span class="e">📈</span>הסווינג</button>
+      <button data-t="money" onclick="goTab('money')"><span class="e">🎩</span>חדר הכסף</button>
+      <button data-t="plan" onclick="goTab('plan')"><span class="e">🎯</span>התוכנית שלי</button>
+      <button data-t="pine" onclick="goTab('pine')"><span class="e">📊</span>האינדיקטור</button>
+      <button data-t="updates" onclick="goTab('updates')"><span class="e">🔔</span>עדכונים<span id="updBadge" class="badge hidden">0</span></button>
+      <button data-t="friends" onclick="goTab('friends')"><span class="e">👥</span>חברים<span id="frBadge" class="badge hidden">0</span></button>
+      <button data-t="shop" onclick="goTab('shop')"><span class="e">🤖</span>הוסף בוט</button>
+      <button data-t="help" onclick="goTab('help')"><span class="e">🆘</span>תמיכה</button>
       <button data-t="cal" onclick="goTab('cal')"><span class="e">📅</span>לוח שנה</button>
       <button data-t="reports" onclick="goTab('reports')"><span class="e">📊</span>דוחות</button>
       <button data-t="learn" onclick="goTab('learn')"><span class="e">📖</span>אסטרטגיות</button>
@@ -523,6 +687,7 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
     </div>
     <div class="dfoot">
       <button class="ebtn" id="stopBtn" onclick="emergencyStop()">🛑 עצירת חירום</button>
+      <button class="btn sec hidden" id="resumeBtn" onclick="resumeAll()">▶️ שחרר את המסחר</button>
       <div class="mini" style="margin-top:7px;font-size:11px">עוצר כניסות חדשות בכל הבוטים. פוזיציות פתוחות נשארות ומנוהלות כרגיל.</div>
       <button class="btn sec" style="width:100%;margin-top:9px;font-size:13px;padding:9px" onclick="signOut()">התנתק</button>
     </div>
@@ -536,6 +701,143 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
       <button class="x" onclick="goTab('table')" title="חזרה לשולחן">✕</button>
     </div>
     <div class="wrap">
+
+      <!-- ============ v3.2.0 · the new rooms ============ -->
+
+      <!-- 🎩 חדר הכסף — the Monopoly board + the news room -->
+      <section id="t-money" class="hidden">
+        <div class="sec2">
+          <h3>🎩 לוח הכסף<span class="n" id="mbPos"></span></h3>
+          <div class="mini">כל משבצת היא כלל אחד בניהול כסף, לפי הסדר שבו הוא באמת נבנה. גלגל את הקובייה או לחץ ישירות על משבצת. מה שסימנת כ"עשיתי" נשמר.</div>
+          <div class="board" id="mBoard"></div>
+          <div class="btnrow">
+            <button class="btn" onclick="rollDice()"><span id="diceFace">🎲</span> גלגל</button>
+            <button class="btn sec" onclick="mbGo(0)">↺ להתחלה</button>
+          </div>
+        </div>
+        <div class="sec2" id="mTileBox"></div>
+        <div class="sec2">
+          <h3>📰 חדר החדשות<span class="n" id="newsN"></span></h3>
+          <div id="newsAdmin" class="hidden">
+            <input class="fld" id="newsTitle" placeholder="כותרת" maxlength="90">
+            <textarea class="fld" id="newsBody" rows="3" placeholder="מה קרה, ולמה זה משנה לנו" maxlength="1500"></textarea>
+            <div class="opts" id="newsTags"></div>
+            <div class="btnrow"><button class="btn" onclick="publishNews()">📢 פרסם לכל החברים</button></div>
+          </div>
+          <div id="newsList"><div class="emptyline">אין עדיין חדשות.</div></div>
+        </div>
+      </section>
+
+      <!-- 🎯 התוכנית שלי -->
+      <section id="t-plan" class="hidden">
+        <div class="sec2" id="planIntro">
+          <h3>🎯 בוא נכיר אותך</h3>
+          <div class="mini">עשר שאלות. המטרה שהאפליקציה תדע מי אתה, כמה אתה מבין, ואיפה אתה רוצה להיות — ותדבר איתך בהתאם. הכל נשאר אצלך ואצל עידן בלבד, ואפשר לשנות בכל רגע.</div>
+          <div class="btnrow"><button class="btn" onclick="planStart()">מתחילים ›</button></div>
+        </div>
+        <div class="sec2 hidden" id="planQ">
+          <h3 id="planQTitle"></h3>
+          <div id="planQBody"></div>
+          <div class="bar2"><i id="planBar" style="width:0%"></i></div>
+          <div class="btnrow">
+            <button class="btn sec" onclick="planBack()">‹ אחורה</button>
+            <button class="btn" id="planNext" onclick="planNext()">הבא ›</button>
+          </div>
+        </div>
+        <div class="hidden" id="planOut"></div>
+      </section>
+
+      <!-- 📊 האינדיקטור -->
+      <section id="t-pine" class="hidden">
+        <div class="sec2">
+          <h3>📊 האינדיקטור<span class="n" id="pineVer">—</span></h3>
+          <div class="mini" id="pineNotes">טוען…</div>
+          <div class="btnrow">
+            <button class="btn" onclick="copyPine()">📋 העתק את הקוד</button>
+            <button class="btn sec" onclick="dlPine()">⬇️ הורד קובץ</button>
+            <button class="btn sec" onclick="togglePineCode()">👁️ הצג / הסתר</button>
+          </div>
+          <div class="codebox hidden" id="pineCode"></div>
+        </div>
+        <div class="sec2">
+          <h3>איך מתקינים אותו</h3>
+          <div class="mini">1. פותחים TradingView ‹ Pine Editor ‹ Open ‹ New indicator.<br>
+          2. מוחקים את מה שיש, מדביקים את הקוד, Save, ואז Add to chart.<br>
+          3. יוצרים <b>התראה אחת</b> על הגרף עם התנאי <b>Any alert() function call</b> — וההסבר המלא מגיע לטלפון.</div>
+        </div>
+        <div class="sec2 hidden" id="pineAdmin">
+          <h3>👑 פרסום גרסה חדשה</h3>
+          <div class="mini">הדבק את הקוד החדש ולחץ פרסם. כל חבר יקבל התראה והגרסה תתחלף אצלו מיד — גם בטלפון.</div>
+          <input class="fld" id="pineNewVer" placeholder="מספר גרסה, למשל 7.1" maxlength="12">
+          <input class="fld" id="pineNewNotes" placeholder="מה השתנה — משפט אחד" maxlength="200">
+          <textarea class="fld" id="pineNewCode" rows="6" placeholder="הדבק כאן את קוד ה-Pine"></textarea>
+          <div class="btnrow">
+            <button class="btn sec" onclick="importPineFromSite()">⬇️ קח את הקובץ מהאתר</button>
+            <button class="btn" onclick="publishPine()">📢 פרסם לכולם</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🔔 עדכונים -->
+      <section id="t-updates" class="hidden">
+        <div class="sec2">
+          <h3>🔔 מה חדש<span class="n"><button class="pill" onclick="markUpdatesRead()">סמן הכל כנקרא</button></span></h3>
+          <div id="updList"><div class="emptyline">אין עדיין עדכונים.</div></div>
+        </div>
+        <div class="sec2 hidden" id="updAdmin">
+          <h3>👑 שלח עדכון לכולם</h3>
+          <input class="fld" id="updTitle" placeholder="כותרת" maxlength="90">
+          <textarea class="fld" id="updBody" rows="3" placeholder="הטקסט שיגיע לכל חבר" maxlength="1500"></textarea>
+          <div class="btnrow"><button class="btn" onclick="publishUpdate()">📢 שלח</button></div>
+        </div>
+      </section>
+
+      <!-- 👥 חברים -->
+      <section id="t-friends" class="hidden">
+        <div class="sec2">
+          <h3>👥 השם שלך במועדון</h3>
+          <div class="mini">כינוי אחד, שלך לתמיד, ובו חברים מוצאים אותך. אותיות אנגליות קטנות, ספרות וקו תחתון, 3 עד 20 תווים.</div>
+          <div id="handleBox"></div>
+        </div>
+        <div class="sec2">
+          <h3>➕ הוסף חבר</h3>
+          <div class="mini">הקלד את הכינוי של מי שאתה מחפש, בלי ה-@.</div>
+          <input class="fld" id="frSearch" placeholder="idan" maxlength="20" oninput="frFind()">
+          <div id="frFound"></div>
+        </div>
+        <div class="sec2">
+          <h3>בקשות שממתינות לך<span class="n" id="frInN"></span></h3>
+          <div id="frIn"><div class="emptyline">אין בקשות.</div></div>
+        </div>
+        <div class="sec2">
+          <h3>החברים שלך</h3>
+          <div id="frList"><div class="emptyline">עוד אין חברים.</div></div>
+        </div>
+      </section>
+
+      <!-- 🤖 הוסף בוט -->
+      <section id="t-shop" class="hidden">
+        <div class="sec2">
+          <h3>🤖 בוט נוסף<span class="n" id="slotsNow"></span></h3>
+          <div class="mini">כל בוט נוסף רץ על טרמינל נפרד במחשב שלך ועל חשבון נפרד. הסדר קבוע ואי אפשר לדלג עליו: קודם הטרמינל, אחר כך התשלום, ורק אז הבוט נדלק.</div>
+          <div class="price" id="shopPrice">$5,000</div>
+          <div class="mini">לבוט, תשלום חד-פעמי.</div>
+        </div>
+        <div id="shopSteps"></div>
+        <div class="sec2 hidden" id="shopAdmin">
+          <h3>👑 הזמנות</h3>
+          <div id="ordersList"><div class="emptyline">אין הזמנות.</div></div>
+        </div>
+      </section>
+
+      <!-- 🆘 תמיכה -->
+      <section id="t-help" class="hidden">
+        <div class="sec2">
+          <h3>🆘 העוזר הטכני<span class="n" id="helpMode"></span></h3>
+          <div id="helpChat"></div>
+          <div id="helpOpts"></div>
+        </div>
+      </section>
 
       <!-- ===== swing: its own room, never mixed with gold or the ladder ===== -->
       <section id="t-swing" class="hidden">
@@ -666,6 +968,17 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
             <input type="text" id="brokerLinkInp" placeholder="https://..." style="direction:ltr">
             <button class="btn sec" style="flex:none" onclick="saveBrokerLink()">שמור</button>
           </div>
+          <!-- 18.8: the payment link for a second bot. Paybox and Bit have no
+               merchant API that can tell the app the money arrived, so what
+               lives here is the link a member taps - and YOU confirm receipt
+               by hand in the shop screen. That human step is also what makes
+               a fake payment impossible from the client. -->
+          <div class="mini" style="margin-top:10px">קישור תשלום לבוט נוסף (פייבוקס / ביט / כל דבר):</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <input type="text" id="payLinkInp" placeholder="https://payboxapp.page.link/..." style="direction:ltr">
+            <button class="btn sec" style="flex:none" onclick="savePayLink()">שמור</button>
+          </div>
+          <div class="mini" style="margin-top:5px">החבר לוחץ ומעביר. <b>אתה</b> מאשר קבלה במסך "הוסף בוט" — רק אז הבוט שלו נפתח.</div>
         </div>
         <div class="card"><h3>🎛️ שליטה בבוטים של החברים</h3>
           <div class="mini" style="margin-bottom:8px">שנה הגדרות, הדלק/כבה, או סנכרן את כולם להגדרות שלך. החבר רק עושה רענן — וזה חל אצלו.</div>
@@ -717,6 +1030,13 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
   </div>
 </div>
 
+<!-- 18.8: NOT deferred, on purpose. The inline block below calls
+     firebase.initializeApp at the top level, so deferring these three and
+     not that one loads the app before its own library and nothing boots at
+     all (found by the browser tests, which is what they are for). The blank
+     first screen is fixed the other way: #v-login starts VISIBLE in the
+     markup above, so the phone paints a real login screen from HTML while
+     these are still downloading. -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
@@ -727,8 +1047,12 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
    התחברות גוגל · חוזה דיגיטלי · הדרכה · נעילת "כסף אמיתי" לפי אישור עידן. */
 
 const OWNER_EMAIL = "idan2189@gmail.com";
+/* Idan asked for a title members address him by when the support desk
+   cannot solve it. "המנהל" is a job; this is the person who signs off on
+   money and on who gets in. */
+const BOSS_TITLE = "עידן · המנהל הראשי";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "3.0.0";
+const APP_VERSION = "3.2.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 /* 2.5.0 — personal QR: ?feed=<key> opens that member's account directly */
@@ -819,7 +1143,7 @@ function initFirebase(){
 }
 
 /* ---------- views ---------- */
-const VIEWS = ["v-login","v-contract","v-choosebot","v-tour","v-locked","v-blocked","v-pending","v-app"];
+const VIEWS = ["v-boot","v-login","v-contract","v-choosebot","v-tour","v-locked","v-blocked","v-pending","v-app"];
 function show(id){ VIEWS.forEach(v => $(v).classList.toggle("hidden", v!==id)); }
 
 function route(){
@@ -842,6 +1166,7 @@ function route(){
 
 function enterApp(){
   show("v-app");
+  maybeOfferIOSInstall();
   subscribeFeed();
   $("hAvatar").src = ME.photoURL || "icon-192.png";
   $("navAdmin").classList.toggle("hidden", !IS_OWNER);
@@ -897,17 +1222,16 @@ async function signIn(){
   }
   const prov = new firebase.auth.GoogleAuthProvider();
   prov.setCustomParameters({prompt:"select_account"});
-  if (isMobileUA()){
-    try {
-      sessionStorage.setItem("imc_login_pending","1");
-      await auth.signInWithRedirect(prov);
-      return;
-    } catch(e){ /* fall through to popup */ }
-  }
+  /* 18.8: this used to force signInWithRedirect on EVERY phone. Firebase
+     documents redirect as broken on Safari when the page and the authDomain
+     are different origins - which is exactly this setup (github.io page,
+     firebaseapp.com authDomain). The popup works there; redirect is the
+     fallback, not the default. */
   try {
     await auth.signInWithPopup(prov);
   } catch(e){
-    if (e && (e.code === "auth/popup-blocked" || e.code === "auth/cancelled-popup-request")){
+    if (e && (e.code === "auth/popup-blocked" || e.code === "auth/cancelled-popup-request"
+              || e.code === "auth/operation-not-supported-in-this-environment")){
       try { sessionStorage.setItem("imc_login_pending","1"); await auth.signInWithRedirect(prov); return; } catch(e2){}
       loginErrHTML("הדפדפן חסם את חלון ההתחברות — אשר חלונות קופצים לאתר הזה ונסה שוב.");
     } else if (e && e.code === "auth/popup-closed-by-user"){
@@ -958,6 +1282,14 @@ async function onUser(user){
         signedContract:false, contractVersion:0, tourDone:false, appVersion:APP_VERSION });
     }
   } catch(e){ $("loginErr").textContent = "שגיאת הרשאות מסד: " + (e.code||e.message); show("v-login"); return; }
+  /* 18.8: the chat used to build its member list by reading every user card -
+     and a user card carries feedId, which is the password to that member's
+     numbers. Names live in their own collection now, holding a name and a
+     photo and nothing else. */
+  try {
+    await db.collection("profiles").doc(user.uid).set(
+      {name:user.displayName||"", photo:user.photoURL||"", t:Date.now()}, {merge:true});
+  } catch(e){}
   unsubMe = uref.onSnapshot(s => { MYDOC = s.data()||{}; route(); });
   if (unsubSet) unsubSet();
   const sref = db.collection("settings").doc("global");
@@ -970,6 +1302,21 @@ async function onUser(user){
     } else SETTINGS = s.data();
     route(); if (IS_OWNER) reflectAdmin();
   }, err => { SETTINGS = {mode:"demo", brokerLink:""}; route(); });
+}
+
+/* one tap that turns "waiting forever" into something Idan can see */
+async function pingOwner(){
+  try {
+    await db.collection("users").doc(ME.uid).update({
+      pingedAt: new Date().toISOString(), pingCount: ((MYDOC&&MYDOC.pingCount)||0)+1 });
+    $("pingMsg").textContent = "נשלח ✓ עידן רואה עכשיו שאתה מחכה.";
+    $("pingBtn").disabled = true;
+  } catch(e){ $("pingMsg").textContent = "לא נשלח (" + ((e&&e.code)||e) + ")"; }
+  try {
+    if (navigator.share) await navigator.share({
+      title:"Idan's Money Club",
+      text:"נרשמתי למועדון וחתמתי — אשמח שתאשר אותי 🙏" });
+  } catch(e){}
 }
 
 /* ---------- contract ---------- */
@@ -994,6 +1341,12 @@ function wireContract(){
 
 /* ---------- choose your bot ---------- */
 async function pickBot(which){
+  /* 18.8: picking swing used to lead to a screen with four padlocks and no
+     way forward - a dead end reached by tapping the second of two buttons.
+     It now says so before it happens instead of after. */
+  if (which === "swing" && !IS_OWNER){
+    if (!confirm("חדר הסווינג עוד לא פתוח לחברים — תישאר עם מסך נעול עד שנפתח אותו.\n\nלהמשיך בכל זאת?")) return;
+  }
   try {
     await db.collection("users").doc(ME.uid).update({botChoice: which, botChosenAt: new Date().toISOString()});
     toast(which==="gold" ? "💰 בוט הזהב נבחר!" : "📈 בוט הסווינג נבחר!");
@@ -1658,6 +2011,7 @@ function reflectAdmin(){
   $("modeSw").classList.toggle("on", SETTINGS.mode==="real");
   $("modeLbl").textContent = SETTINGS.mode==="real" ? "כסף אמיתי 🔴" : "דמו 🎓";
   if (document.activeElement !== $("brokerLinkInp")) $("brokerLinkInp").value = SETTINGS.brokerLink||"";
+  if ($("payLinkInp") && document.activeElement !== $("payLinkInp")) $("payLinkInp").value = SETTINGS.payLink||"";
 }
 function initAdmin(){
   reflectAdmin();
@@ -1667,7 +2021,9 @@ function initAdmin(){
     qs.forEach(doc => rows.push({id: doc.id, u: doc.data()||{}}));
     rows.sort((a,b) => {
       const pa = a.u.allowed===true?1:0, pb = b.u.allowed===true?1:0;
-      return pa - pb; /* pending first */
+      if (pa !== pb) return pa - pb;                 /* pending first */
+      /* and among those, whoever actually raised a hand */
+      return ((b.u.pingedAt||"") > (a.u.pingedAt||"")) ? 1 : -1;
     });
     let html = "";
     rows.forEach(({id,u})=>{
@@ -1675,11 +2031,15 @@ function initAdmin(){
       const pending = !isOwnerRow && u.allowed!==true;
       html += `<div class="urow" style="${pending?'background:rgba(255,180,84,.07);border-radius:10px;padding-inline:6px':''}">
         <img src="${u.photo||'icon-192.png'}" referrerpolicy="no-referrer" alt="">
-        <div style="flex:1;min-width:0"><b>${u.name||u.email}</b>${pending?' <span class="tag wa">⏳ ממתין לאישור</span>':''}
+        <div style="flex:1;min-width:0"><b>${u.name||u.email}</b>${pending?' <span class="tag wa">⏳ ממתין לאישור</span>':''}${(pending&&u.pingedAt)?' <span class="tag dn2">📣 ביקש שתאשר</span>':''}
           <div class="mini">${u.email}${u.signedContract?` · ✍️ חתם${u.signedAt?" "+String(u.signedAt).slice(0,10):""}`:" · ⚠️ לא חתם"}${u.feedId?` · 🤖 בוט מחובר`:""}</div></div>
         ${isOwnerRow ? `<span class="tag up">👑 בעלים</span>` : `
-        <div class="sw ${u.allowed===true?'on':''}" title="מאושר להיכנס" onclick="tglUser('${id}','allowed',${u.allowed===true})"></div>
-        <div class="sw ${u.brokerLinked?'on':''}" title="דרך הברוקר (למצב אמיתי)" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div>`}
+        <div class="swwrap"><span class="swlab">כניסה</span>
+          <div class="sw ${u.allowed===true?'on':''}" role="switch" tabindex="0" aria-checked="${u.allowed===true}"
+               aria-label="מאושר להיכנס למועדון" onclick="tglUser('${id}','allowed',${u.allowed===true})"></div></div>
+        <div class="swwrap"><span class="swlab">ברוקר</span>
+          <div class="sw ${u.brokerLinked?'on':''}" role="switch" tabindex="0" aria-checked="${!!u.brokerLinked}"
+               aria-label="נרשם דרך הברוקר, למצב כסף אמיתי" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div></div>`}
       </div>
       ${(!isOwnerRow && u.feedId) ? `<div class="ctrlbtns" style="padding:0 6px 8px">
         <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','on')">▶️ הדלק בוט</button>
@@ -1690,6 +2050,12 @@ function initAdmin(){
       </div>` : ''}`;
     });
     $("usersList").innerHTML = html || "עוד אין נרשמים.";
+    /* the badge on the menu, so a waiting member is visible without opening
+       the admin page at all */
+    const waiting = rows.filter(r => (r.u.email||"")!==OWNER_EMAIL && r.u.allowed!==true).length;
+    const nb = $("navAdmin");
+    if (nb) nb.innerHTML = '<span class="e">👑</span>ניהול' +
+      (waiting ? ' <span class="badge">'+waiting+'</span>' : '');
     ADMIN_USERS = rows;
   }, err => { $("usersList").textContent = "שגיאה בטעינת משתמשים: " + err.code; });
 }
@@ -1753,6 +2119,12 @@ async function toggleMode(){
   try{ await db.collection("settings").doc("global").set({...SETTINGS, mode:to}, {merge:true}); toast(to==="real"?"המועדון במצב אמיתי":"המועדון חזר לדמו"); }
   catch(e){ toast("שגיאה: "+(e.code||e.message)); }
 }
+async function savePayLink(){
+  const v = $("payLinkInp").value.trim();
+  if (v && !/^https?:\/\//i.test(v)) return toast("הקישור צריך להתחיל ב-https://");
+  try{ await db.collection("settings").doc("global").set({payLink:v}, {merge:true}); toast("נשמר ✓"); }
+  catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
 async function saveBrokerLink(){
   try{ await db.collection("settings").doc("global").set({...SETTINGS, brokerLink:$("brokerLinkInp").value.trim()}, {merge:true}); toast("נשמר ✓"); }
   catch(e){ toast("שגיאה: "+(e.code||e.message)); }
@@ -1762,10 +2134,14 @@ async function saveBrokerLink(){
 let CHAN = "club", unsubChat = null, MEMBERS = {}, CHAT_STARTED = false;
 function dmChannel(uidA, uidB){ return "dm_" + [uidA,uidB].sort().join("_"); }
 function loadMembersForDM(){
-  db.collection("users").onSnapshot(qs=>{
-    MEMBERS = {}; qs.forEach(d=>{ const u=d.data()||{}; if (d.id!==ME.uid && u.allowed===true) MEMBERS[d.id]={name:u.name||u.email, photo:u.photo}; });
+  db.collection("profiles").onSnapshot(qs=>{
+    MEMBERS = {};
+    qs.forEach(d=>{ const u=d.data()||{}; if (d.id!==ME.uid && (u.name||"").trim())
+      MEMBERS[d.id]={name:u.name, photo:u.photo}; });
     if (!$("dmList").classList.contains("hidden")) renderDMList();
-  }, ()=>{});
+  }, e=>{ $("dmList").innerHTML =
+      '<div class="mini" style="padding:12px">לא הצלחתי לטעון את רשימת החברים (' +
+      ((e&&e.code)||"") + ').</div>'; });
 }
 function showDMList(){
   $("chatTabGroup").classList.remove("on"); $("chatTabDM").classList.add("on");
@@ -1903,6 +2279,23 @@ function wireNav(){
 
 /* ---------- PWA install + update ---------- */
 let deferredPrompt = null;
+/* 18.8: iOS never fires beforeinstallprompt, so #installBtn stayed hidden
+   forever on an iPhone and there was no instruction anywhere. Idan's members
+   are on phones; half of them are on iPhones. */
+function isIOS(){ return /iPhone|iPad|iPod/i.test(navigator.userAgent); }
+function isStandalone(){
+  return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+}
+function maybeOfferIOSInstall(){
+  if (!isIOS() || isStandalone()) return;
+  if (localStorage.getItem("imc_ios_hint") === "off") return;
+  const b = $("iosHint"); if (!b) return;
+  b.classList.remove("hidden");
+}
+function dismissIOSHint(){
+  try{ localStorage.setItem("imc_ios_hint","off"); }catch(e){}
+  $("iosHint").classList.add("hidden");
+}
 window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault(); deferredPrompt = e;
   $("installBtn").classList.remove("hidden");
@@ -2055,7 +2448,7 @@ function memberLive(){
       equity:eq,balance:+mj.balance||eq,day_gross:day,day_open_equity:eq-day,
       day_pct:pctOf(day,eq-day),open_count:rows.length,open_gross:open,
       trades_today:mj.trades_today,enabled:mj.enabled!==false,age_sec:age,
-      status:(age===null?"unknown":(age<=300?"ok":"stale")),
+      status:(age===null?"unknown":(age<=600?"ok":"stale")),
       note:(mj.account?("חשבון "+mj.account):"")}],
     totals:{open_gross:+open.toFixed(2),open_fee_est:0,open_net_est:+open.toFixed(2),
       open_count:rows.length,day_gross:day,day_fee:0,day_net:day,
@@ -2214,8 +2607,16 @@ function renderLive(){
 
   /* the fallen-bot alarm (interview: "tell me loudly, do not show me stale numbers") */
   const down = (L.bots||[]).filter(b=>b.status==="stale");
+  /* A bot that is RUNNING but not doing its job is worse than one that fell
+     over, because it looks healthy. 18.8: the copier moved to a new account,
+     the teacher had a leg open, and it copied nothing - silently. */
+  const idle = (L.bots||[]).filter(b=>b.not_copying);
   const bar = $("alertBar");
-  if (down.length && !closed){
+  if (idle.length){
+    bar.classList.remove("hidden");
+    bar.innerHTML = "🔴 " + idle.map(b=>b.name).join(" · ") + " לא מעתיק" +
+      (idle[0].blocked ? (" — " + idle[0].blocked) : " — למורה יש פוזיציה פתוחה ולך אין");
+  } else if (down.length && !closed){
     bar.classList.remove("hidden");
     bar.textContent = "⚠️ " + down.map(b=>b.name).join(" · ") +
       (down.length===1?" הפסיק לדווח":" הפסיקו לדווח") + " — המספרים שמוצגים אינם עדכניים";
@@ -2338,6 +2739,11 @@ function renderBotSheet(id){
     h += '<div class="sect"><h4>🔗 המורה</h4>'
       + '<div class="logline">רגליים פתוחות אצל המורה: <b>'+(b.teacher_legs!==undefined?b.teacher_legs:"—")+'</b></div>'
       + '<div class="logline">מצב העתקה: <b>'+(b.mode||"—")+'</b> · לוטים פתוחים '+(b.open_lots!==undefined?b.open_lots:"—")+'</div>'
+      + '<div class="logline">חשבון <b>'+(b.account||"—")+'</b>'
+      +   (b.server?(' · '+b.server):'')+' · סימבול <b>'+(b.symbol||"—")+'</b></div>'
+      + (b.margin_free!==undefined&&b.margin_free!==null
+          ? '<div class="logline">מרווח פנוי <b>'+money(b.margin_free,0)+'</b> · בשימוש '
+            +money(b.margin_used,0)+(b.leverage?(' · מינוף 1:'+b.leverage):'')+'</div>' : '')
       + '<div class="logline">שומר-מחיר-כניסה פעיל: אם המחיר אצלך רחוק מהמחיר של המורה, מונחת פקודת לימיט במחיר שלו במקום כניסה במחיר גרוע.</div></div>';
     if (L._legacy || !(P.slave&&Array.isArray(P.slave.positions)))
       h += '<div class="mini" style="margin-top:9px">💡 הרווח של כל רגל בנפרד יופיע כאן ברגע שגרסה 2.01 של המעתיק תעלה במטה-טריידר. עד אז מוצג הרווח הצף של החשבון כולו.</div>';
@@ -2492,12 +2898,31 @@ async function emergencyStop(){
       await writeCommand(MYDOC.feedId, {action:"toggle", enabled:false, ts:Date.now()});
       toast("🛑 הבוט שלך כובה. רענן במחשב אם הוא לא מגיב תוך דקה.");
     } else toast("אין בוט מחובר לעצור.");
-  } catch(e){ toast("העצירה נכשלה — נסה שוב"); }
+    $("resumeBtn").classList.remove("hidden");
+  } catch(e){
+    /* 18.8: this used to fail EVERY time for a member - the rules allowed
+       only Idan to write a command - and the button just said "try again".
+       The rules were the bug; this now reports what actually happened. */
+    toast("העצירה נכשלה (" + ((e&&e.code)||e) + ")");
+  }
 }
+/* 18.8: this existed and was called from nowhere. Once the club was halted
+   there was no way to un-halt it from the app. */
 async function resumeAll(){
-  try { await db.collection("control").doc("global").set(
-    {halt:false, close_all:false, by:(ME&&ME.email)||"owner", at:new Date().toISOString()}, {merge:true});
-    toast("▶️ המסחר שוחרר"); } catch(e){ toast("נכשל"); }
+  try {
+    if (IS_OWNER){
+      await db.collection("control").doc("global").set(
+        {halt:false, close_all:false, by:(ME&&ME.email)||"owner", at:new Date().toISOString()}, {merge:true});
+      let n = 0;
+      (ADMIN_USERS||[]).forEach(u=>{ if(u.feedId){ writeCommand(u.feedId,
+        {action:"toggle", enabled:true, ts:Date.now()}); n++; } });
+      toast("▶️ המסחר שוחרר. " + n + " בוטים של חברים הודלקו חזרה.");
+    } else if (MYDOC && MYDOC.feedId){
+      await writeCommand(MYDOC.feedId, {action:"toggle", enabled:true, ts:Date.now()});
+      toast("▶️ הבוט שלך הודלק חזרה.");
+    } else toast("אין בוט מחובר להדליק.");
+    $("resumeBtn").classList.add("hidden");
+  } catch(e){ toast("ההדלקה נכשלה (" + ((e&&e.code)||e) + ")"); }
 }
 
 
@@ -2607,6 +3032,887 @@ function boot(){
   completeRedirect();
 }
 boot();
+/* =====================================================================
+   v3.2.0 · 18.8.2026 — the rooms Idan asked for.
+   Written as one appended block, the same way v3 was, so nothing above
+   has to be re-read to understand what is new.
+   ===================================================================== */
+
+/* ---- 0. escaping. The audit found member names interpolated straight
+   into onclick="…" and into innerHTML. A member called  o'); alert(1)//
+   was a scripting hole in a page that shows other people's money. Every
+   string that came from a human goes through one of these two now. ---- */
+function esc(v){
+  return String(v == null ? "" : v)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function escJs(v){ return esc(v).replace(/\\/g,"\\\\"); }
+/* a handle is the one string we can validate rather than escape */
+function cleanHandle(h){
+  return String(h||"").toLowerCase().replace(/[^a-z0-9_]/g,"").slice(0,20);
+}
+
+/* ---- 1. the new tabs ------------------------------------------------ */
+["money","plan","pine","updates","friends","shop","help"].forEach(t=>{
+  if (TABS.indexOf(t) < 0) TABS.push(t);
+});
+Object.assign(TAB_TITLE, {
+  money:"🎩 חדר הכסף", plan:"🎯 התוכנית שלי", pine:"📊 האינדיקטור",
+  updates:"🔔 עדכונים", friends:"👥 חברים", shop:"🤖 הוסף בוט", help:"🆘 תמיכה"});
+
+const _goTabBase = goTab;
+goTab = function(tab){
+  _goTabBase(tab);
+  if (tab==="money")   { renderBoard(); renderNews(); }
+  if (tab==="plan")    renderPlanTab();
+  if (tab==="pine")    renderPine();
+  if (tab==="updates") { renderUpdates(); markUpdatesRead(); }
+  if (tab==="friends") renderFriends();
+  if (tab==="shop")    renderShop();
+  if (tab==="help")    helpStart();
+};
+
+/* ---- 2. state ------------------------------------------------------- */
+let PUB_PINE = null, UPDATES = [], NEWS = [], MYHANDLE = null,
+    FRIENDS = [], ORDERS = [], PLAN = null, PROFILES = {};
+let _unsubPub = [], _social = false;
+
+const LS = {
+  get(k, d){ try{ const v = localStorage.getItem("imc_"+k); return v==null?d:JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem("imc_"+k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* ---- 3. what Idan publishes: the indicator, the updates, the news ---
+   Public documents, world-readable on purpose, owner-write only. The
+   personal-QR viewer has no login and still needs to see them. -------- */
+function subscribePub(){
+  if (_unsubPub.length) return;
+  _unsubPub.push(db.collection("pub").doc("pine").onSnapshot(d=>{
+    PUB_PINE = d.exists ? d.data() : null;
+    if (CURTAB==="pine") renderPine();
+    refreshBadges();
+  }, ()=>{}));
+  _unsubPub.push(db.collection("updates").orderBy("t","desc").limit(40).onSnapshot(qs=>{
+    UPDATES = []; qs.forEach(d=>UPDATES.push(Object.assign({id:d.id}, d.data())));
+    if (CURTAB==="updates") renderUpdates();
+    refreshBadges();
+  }, ()=>{}));
+  _unsubPub.push(db.collection("news").orderBy("t","desc").limit(30).onSnapshot(qs=>{
+    NEWS = []; qs.forEach(d=>NEWS.push(Object.assign({id:d.id}, d.data())));
+    if (CURTAB==="money") renderNews();
+  }, ()=>{}));
+}
+
+function refreshBadges(){
+  const seen = LS.get("updSeen", 0);
+  let n = UPDATES.filter(u => (u.t||0) > seen).length;
+  if (PUB_PINE && (PUB_PINE.t||0) > seen) n++;
+  const b = $("updBadge");
+  if (b){ b.textContent = n; b.classList.toggle("hidden", n<=0); }
+  const fb = $("frBadge"), pend = FRIENDS.filter(f=>f.status==="pending" && f.to===(ME&&ME.uid)).length;
+  if (fb){ fb.textContent = pend; fb.classList.toggle("hidden", pend<=0); }
+}
+function markUpdatesRead(){ LS.set("updSeen", Date.now()); refreshBadges(); }
+
+/* ---- 4. the indicator ---------------------------------------------- */
+const PINE_FALLBACK_URL = "pine/idan-swing-v7.0.pine";
+let PINE_LOCAL = null;
+
+function pineData(){
+  if (PUB_PINE && PUB_PINE.code) return PUB_PINE;
+  if (PINE_LOCAL) return PINE_LOCAL;
+  return null;
+}
+async function loadLocalPine(){
+  if (PINE_LOCAL) return PINE_LOCAL;
+  try {
+    const r = await fetch(PINE_FALLBACK_URL, {cache:"no-store"});
+    if (!r.ok) return null;
+    const code = await r.text();
+    PINE_LOCAL = {v:"7.0", code, notes:"סווינג בלבד — מנוע הזהב ירד מהגרף, והאינדיקטור אומר גם למה הוא לא ירה.", t:0, src:"site"};
+    return PINE_LOCAL;
+  } catch(e){ return null; }
+}
+async function renderPine(){
+  $("pineAdmin").classList.toggle("hidden", !IS_OWNER);
+  let p = pineData();
+  if (!p){ p = await loadLocalPine(); }
+  if (!p){ $("pineNotes").textContent = "לא הצלחתי לטעון את האינדיקטור. נסה לרענן."; return; }
+  $("pineVer").textContent = "v" + esc(p.v||"?") + (p.src==="site" ? " · מהאתר" : "");
+  $("pineNotes").innerHTML = "<b>מה חדש:</b> " + esc(p.notes||"—") +
+    (p.t ? '<div class="mini" style="margin-top:5px">פורסם ' + esc(new Date(p.t).toLocaleString("he-IL")) + "</div>" : "");
+  $("pineCode").textContent = p.code || "";
+}
+function togglePineCode(){ $("pineCode").classList.toggle("hidden"); }
+function copyPine(){
+  const p = pineData(); if (!p) return toast("עוד לא נטען");
+  (navigator.clipboard ? navigator.clipboard.writeText(p.code) : Promise.reject())
+    .then(()=>toast("הקוד הועתק ✓ הדבק ב-Pine Editor"))
+    .catch(()=>{ $("pineCode").classList.remove("hidden"); toast("סמן והעתק ידנית"); });
+}
+function dlPine(){
+  const p = pineData(); if (!p) return;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([p.code], {type:"text/plain"}));
+  a.download = "idan-swing-v" + (p.v||"7") + ".pine";
+  a.click(); URL.revokeObjectURL(a.href);
+}
+async function importPineFromSite(){
+  const p = await loadLocalPine();
+  if (!p) return toast("לא נמצא קובץ באתר");
+  $("pineNewVer").value = p.v; $("pineNewCode").value = p.code;
+  $("pineNewNotes").value = p.notes;
+  toast("נטען מהאתר ✓ עכשיו לחץ פרסם");
+}
+async function publishPine(){
+  if (!IS_OWNER) return;
+  const v = $("pineNewVer").value.trim(), code = $("pineNewCode").value;
+  const notes = $("pineNewNotes").value.trim();
+  if (!v || code.length < 200) return toast("צריך מספר גרסה וקוד מלא");
+  if (code.length > 180000) return toast("הקוד ארוך מדי");
+  try {
+    const t = Date.now();
+    await db.collection("pub").doc("pine").set({v, code, notes, t, by:(ME&&ME.email)||""});
+    await db.collection("updates").add({
+      kind:"pine", title:"אינדיקטור חדש · v"+v, body:notes||"גרסה חדשה של האינדיקטור זמינה.", t});
+    toast("פורסם ✓ כל חבר יראה את זה מיד");
+    $("pineNewCode").value = "";
+  } catch(e){ toast("הפרסום נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+
+/* ---- 5. the update feed -------------------------------------------- */
+const UPD_ICON = {pine:"📊", news:"📰", bot:"🤖", app:"✨", stop:"🛑"};
+function renderUpdates(){
+  $("updAdmin").classList.toggle("hidden", !IS_OWNER);
+  const seen = LS.get("updSeen", 0);
+  if (!UPDATES.length){
+    $("updList").innerHTML = '<div class="emptyline">אין עדיין עדכונים.</div>'; return;
+  }
+  $("updList").innerHTML = UPDATES.map(u=>
+    '<div class="upd' + ((u.t||0) > seen ? " new" : "") + '">' +
+      '<div class="ic2">' + (UPD_ICON[u.kind]||"🔔") + '</div>' +
+      '<div style="flex:1;min-width:0"><b>' + esc(u.title||"") + '</b>' +
+        '<div class="mini">' + esc(u.body||"") + '</div>' +
+        '<div class="w">' + esc(u.t ? new Date(u.t).toLocaleString("he-IL") : "") + '</div>' +
+      '</div></div>').join("");
+}
+async function publishUpdate(){
+  if (!IS_OWNER) return;
+  const title = $("updTitle").value.trim(), body = $("updBody").value.trim();
+  if (!title) return toast("צריך כותרת");
+  try {
+    await db.collection("updates").add({kind:"app", title, body, t:Date.now()});
+    $("updTitle").value = ""; $("updBody").value = "";
+    toast("נשלח ✓");
+  } catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+
+
+/* ---- 6. THE MONOPOLY ROOM ------------------------------------------
+   Idan asked for the money-management room to be the fun part - the
+   thing the club is actually for. A board is the right shape for it,
+   because money management IS an order of operations: you do not buy
+   the hotel before you have paid the rent. Sixteen tiles, in the order
+   the pieces really get built, each one a rule with a number in it.  */
+const MB = [
+  {ic:"🏁", nm:"התחלה",      c:1, ttl:"נקודת ההתחלה",
+   txt:"לפני כל דבר אחר: תדע כמה נכנס וכמה יוצא בחודש. לא בערך — מספר. אי אפשר לנהל מה שלא נמדד, וכל שאר הלוח בנוי על המספר הזה.",
+   act:"פתח את התוכנית שלי ומלא הכנסה והוצאה"},
+  {ic:"💵", nm:"ההכנסה",     c:1, ttl:"ההכנסה היא הבסיס, לא הרווח מהבורסה",
+   txt:"רוב האנשים מנסים לפתור בעיית הכנסה בעזרת השקעות. זה לא עובד: 10% על 10,000₪ זה 1,000₪ בשנה. 10% תוספת בשכר זה יותר, בוודאות, ובלי סיכון.",
+   act:"מה הצעד הכי זול שיעלה את ההכנסה שלך ב-10%?"},
+  {ic:"🧾", nm:"הוצאות",     c:1, ttl:"קודם ההוצאות הקבועות",
+   txt:"מנוי, ביטוח, סלולר, כבלים — אלה מספרים שמוכפלים ב-12. חיסכון של 100₪ בחודש בהוצאה קבועה שווה 1,200₪ בשנה, כל שנה, בלי לעשות כלום.",
+   act:"עבור על שלוש הוראות קבע ותבטל אחת"},
+  {ic:"🛟", nm:"קרן חירום",  c:2, ttl:"שלושה חודשי הוצאות, במזומן",
+   txt:"זה החלק הכי משעמם ובלעדיו כל השאר מתפרק: בלי כרית, כל תקלה קטנה הופכת לחוב או לפדיון של השקעה בדיוק בזמן הכי גרוע. שלושה חודשים זה המינימום, שישה זה שקט.",
+   act:"כמה חודשי הוצאה יש לך בצד עכשיו?"},
+  {ic:"⛓️", nm:"חוב יקר",    c:2, ttl:"חוב מעל 8% קודם להכל",
+   txt:"אין השקעה שמנצחת ריבית של 12% על מינוס או על כרטיס אשראי. סגירת חוב יקר היא תשואה מובטחת בגובה הריבית — הדבר היחיד בעולם הזה שהוא גם בטוח וגם גבוה.",
+   act:"רשום את החוב היקר ביותר ואת הריבית עליו"},
+  {ic:"🎯", nm:"המטרה",      c:2, ttl:"מטרה עם מספר ותאריך",
+   txt:"\"להיות עשיר\" זו לא מטרה. \"400,000₪ תוך 6 שנים\" זו מטרה, כי אפשר לחשב ממנה כמה צריך להפריש כל חודש — וזה בדיוק מה שהאפליקציה עושה לך בתוכנית.",
+   act:"קבע סכום ותאריך בתוכנית שלי"},
+  {ic:"📥", nm:"הפרשה",      c:3, ttl:"תשלם לעצמך ראשון",
+   txt:"הוראת קבע ליום שאחרי המשכורת, לחשבון נפרד. מי שמחסוך את מה שנשאר בסוף החודש — לא נשאר לו. הסדר הפוך: קודם מפרישים, אחר כך חיים מהשאר.",
+   act:"הגדר הוראת קבע ביום ה-2 לחודש"},
+  {ic:"🧮", nm:"ריבית דריבית",c:3, ttl:"הזמן עושה את העבודה, לא הגאונות",
+   txt:"1,000₪ בחודש ב-7% שנתי: אחרי 10 שנים ≈ 173,000₪, מתוכם 53,000₪ תשואה. אחרי 20 שנה ≈ 521,000₪, מתוכם 281,000₪ תשואה. אותה הפרשה בדיוק — הזמן הכפיל את התרומה של השוק פי חמישה.",
+   act:"תראה את החישוב על המספרים שלך בתוכנית"},
+  {ic:"🧺", nm:"פיזור",      c:3, ttl:"לא לשים הכל במקום אחד",
+   txt:"כל האסטרטגיות שלנו יושבות על נכס אחד או שניים. זה בסדר כשזה חלק קטן מהתיק, וזה מסוכן כשזה כל התיק. הכלל הפשוט: שום רעיון בודד לא יותר מ-10% מההון.",
+   act:"כמה אחוז מההון שלך בבוט אחד?"},
+  {ic:"⚖️", nm:"סיכון",      c:4, ttl:"הסיכון נמדד ביום הגרוע, לא ביום הטוב",
+   txt:"תשואה מודדים בסוף; סיכון מודדים ביום הכי גרוע. הבוט שאנחנו מעתיקים ממנו עשה 1.5% לחודש — ויום אחד לקח לו 3.9% מהחשבון. תשאל תמיד: כמה אני מוכן להפסיד ביום אחד?",
+   act:"קבע לעצמך מספר: כמה % ביום זה יותר מדי"},
+  {ic:"🏦", nm:"מס",         c:4, ttl:"25% על הרווח הריאלי",
+   txt:"בישראל רווחי הון ממוסים ב-25% על הרווח הריאלי. תרוויח 10,000₪ — 2,500₪ אינם שלך. מי שמתכנן לפי המספר לפני מס מתכנן לפי מספר שלא קיים.",
+   act:"חשב את המטרה שלך אחרי מס"},
+  {ic:"🧑‍💼", nm:"עוסק",      c:4, ttl:"עוסק פטור או מורשה — חובה אצלנו",
+   txt:"כל מי שמריץ אצלנו בוט חייב לפתוח עוסק. לא בגלל בירוקרטיה: זה מה שמפריד בין תחביב לפעילות מדווחת, מאפשר לקזז הוצאות, ומונע שיחה לא נעימה עם רשות המסים בעוד שנתיים.",
+   act:"פתח עוסק פטור — 20 דקות באתר רשות המסים"},
+  {ic:"📈", nm:"השקעה",      c:5, ttl:"רק כסף שאתה לא צריך 5 שנים",
+   txt:"כסף שאתה עלול להזדקק לו בשנה הקרובה לא נכנס לשוק. לא כי השוק רע — כי הוא לא שואל מתי אתה צריך אותו, והוא ירד בדיוק אז.",
+   act:"הפרד: כסף לחמש שנים מול כסף לחודש"},
+  {ic:"🤖", nm:"אוטומציה",   c:5, ttl:"בוט הוא כלי, לא הכנסה",
+   txt:"הבוטים כאן רצים על דמו. הם כלי מדידה: הם מראים אם שיטה עובדת, כמה היא עולה בעמלות, ומה קורה ביום רע. מי שמתייחס אליהם כאל משכורת — יגלה את היום הרע עם כסף אמיתי.",
+   act:"תסתכל בדוחות: כמה מהרווח הלך לעמלות"},
+  {ic:"📊", nm:"מדידה",      c:5, ttl:"פעם בחודש, אותם מספרים",
+   txt:"תשואה, הפסד יומי גרוע, עמלות, ושיעור ההפרשה. ארבעה מספרים, פעם בחודש, באותו יום. מי שבודק כל יום — סוחר לפי רגש. מי שלא בודק בכלל — מגלה מאוחר.",
+   act:"קבע תזכורת חודשית קבועה"},
+  {ic:"🏆", nm:"החופש",      c:1, ttl:"היעד האמיתי",
+   txt:"עצמאות כלכלית היא לא סכום — היא היחס בין ההכנסה הפסיבית להוצאה החודשית. ברגע שהיחס הזה עובר 1, אתה עובד כי אתה רוצה. זה המספר היחיד שבאמת סוגר את הלוח.",
+   act:"חשב: כמה הכנסה פסיבית בחודש תסגור לך את זה"}
+];
+/* the perimeter of a 7x7 grid, clockwise from the top-inline-start corner */
+const MB_CELLS = [[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[7,6],[7,5],[7,4]];
+let MBPOS = 0;
+
+function mbDoneSet(){ return LS.get("mbDone", []); }
+function renderBoard(){
+  MBPOS = LS.get("mbPos", 0);
+  const done = mbDoneSet();
+  let h = "";
+  MB.forEach((t,i)=>{
+    const [r,c] = MB_CELLS[i];
+    h += '<div class="tile c'+t.c+(i===MBPOS?" here":"")+(done.indexOf(i)>=0?" done":"")+'"' +
+         ' style="grid-row:'+r+';grid-column:'+c+'" onclick="mbGo('+i+')" role="button" tabindex="0">' +
+         '<span class="ic">'+t.ic+'</span><span class="nm">'+esc(t.nm)+'</span></div>';
+  });
+  h += '<div class="center" id="mCenter"></div>';
+  $("mBoard").innerHTML = h;
+  $("mbPos").textContent = "משבצת " + (MBPOS+1) + " מתוך " + MB.length;
+  renderCenter(); renderTile();
+}
+function renderCenter(){
+  const done = mbDoneSet().length, pct = Math.round(done/MB.length*100);
+  const p = PLAN && PLAN.calc;
+  let mid = '<div class="mini">התקדמות בלוח</div><div class="big2">'+pct+'%</div>' +
+            '<div class="bar2" style="width:82%"><i style="width:'+pct+'%"></i></div>' +
+            '<div class="mini">'+done+' מתוך '+MB.length+' כללים סומנו כבוצעו</div>';
+  if (p) mid += '<div class="mini" style="margin-top:6px">עודף חודשי <b dir="ltr">'+fmtIls(p.surplus)+'</b> · ' +
+                'ליעד <b dir="ltr">'+(p.months>=1200?"—":p.months+" ח׳")+'</b></div>';
+  const c = $("mCenter"); if (c) c.innerHTML = mid;
+}
+function renderTile(){
+  const t = MB[MBPOS], done = mbDoneSet(), isDone = done.indexOf(MBPOS)>=0;
+  $("mTileBox").innerHTML =
+    '<h3>'+t.ic+' '+esc(t.ttl)+'<span class="n">'+esc(t.nm)+'</span></h3>' +
+    '<div class="mini" style="font-size:13.5px;line-height:1.75">'+esc(t.txt)+'</div>' +
+    '<div class="pill wa2" style="margin-top:9px">✍️ '+esc(t.act)+'</div>' +
+    '<div class="btnrow">' +
+      '<button class="btn '+(isDone?"sec":"")+'" onclick="mbToggle()">'+(isDone?"✓ סומן כבוצע":"סמן כבוצע")+'</button>' +
+      '<button class="btn sec" onclick="mbGo('+((MBPOS+1)%MB.length)+')">המשבצת הבאה ›</button>' +
+    '</div>';
+}
+function mbGo(i){
+  MBPOS = ((i%MB.length)+MB.length)%MB.length;
+  LS.set("mbPos", MBPOS); renderBoard();
+  const box = $("mTileBox"); if (box) box.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+function mbToggle(){
+  const d = mbDoneSet(), i = d.indexOf(MBPOS);
+  if (i>=0) d.splice(i,1); else d.push(MBPOS);
+  LS.set("mbDone", d); renderBoard();
+}
+const DICE = ["⚀","⚁","⚂","⚃","⚄","⚅"];
+function rollDice(){
+  const n = 1 + Math.floor(Math.random()*6);
+  const f = $("diceFace"); if (f) f.textContent = DICE[n-1];
+  mbGo(MBPOS + n);
+  toast("יצא " + n + " — קדימה " + n + " משבצות");
+}
+
+/* ---- the news room -------------------------------------------------- */
+const NEWS_TAGS = ["שוק","המועדון","בוטים","רגולציה","הזדמנות"];
+function renderNews(){
+  $("newsAdmin").classList.toggle("hidden", !IS_OWNER);
+  if (IS_OWNER && !$("newsTags").dataset.built){
+    $("newsTags").dataset.built = "1";
+    $("newsTags").innerHTML = NEWS_TAGS.map((t,i)=>
+      '<button onclick="pickNewsTag(this)"'+(i===0?' class="on"':'')+'>'+esc(t)+'</button>').join("");
+  }
+  $("newsN").textContent = NEWS.length ? NEWS.length + " ידיעות" : "";
+  $("newsList").innerHTML = NEWS.length ? NEWS.map(n=>
+    '<div class="newsitem"><b>'+esc(n.title||"")+'</b>' +
+    (n.tag?' <span class="pill">'+esc(n.tag)+'</span>':'') +
+    '<div class="mini">'+esc(n.body||"")+'</div>' +
+    '<div class="w">'+esc(n.t?new Date(n.t).toLocaleString("he-IL"):"")+'</div>' +
+    (IS_OWNER?'<div class="btnrow"><button class="btn sec" onclick="delNews(\''+escJs(n.id)+'\')">מחק</button></div>':'') +
+    '</div>').join("") : '<div class="emptyline">אין עדיין חדשות.</div>';
+}
+function pickNewsTag(btn){
+  document.querySelectorAll("#newsTags button").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on");
+}
+async function publishNews(){
+  if (!IS_OWNER) return;
+  const title = $("newsTitle").value.trim(), body = $("newsBody").value.trim();
+  const tagEl = document.querySelector("#newsTags button.on");
+  if (!title) return toast("צריך כותרת");
+  try {
+    const t = Date.now();
+    await db.collection("news").add({title, body, tag:(tagEl?tagEl.textContent:""), t});
+    await db.collection("updates").add({kind:"news", title:"חדשות · "+title, body:body.slice(0,200), t});
+    $("newsTitle").value = ""; $("newsBody").value = "";
+    toast("פורסם ✓");
+  } catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+async function delNews(id){
+  if (!IS_OWNER) return;
+  try { await db.collection("news").doc(id).delete(); } catch(e){ toast("נכשל"); }
+}
+function fmtIls(n){
+  const v = Math.round(Number(n)||0);
+  return v.toLocaleString("en-US") + " ₪";
+}
+
+
+/* ---- 7. THE PERSONAL PLAN -------------------------------------------
+   Ten questions. Two of them are not about money at all - how well the
+   member knows markets, and how well they know computers - because the
+   support desk and every explanation in the app read those two numbers
+   and change their tone. The rest is arithmetic, and the arithmetic is
+   shown rather than asserted.
+   This is a budgeting and goal calculator, NOT investment advice: it
+   never tells anyone what to buy, and it says so on the result page. */
+const PLAN_Q = [
+  {k:"name",  t:"איך קוראים לך?", type:"text", ph:"שם מלא"},
+  {k:"age",   t:"בן כמה אתה?", type:"num", ph:"למשל 34", suf:"שנים"},
+  {k:"exp",   t:"כמה זמן אתה בשוק?", type:"pick",
+   opts:["בכלל לא התחלתי","פחות משנה","1–3 שנים","3–10 שנים","יותר מ-10"]},
+  {k:"mkt",   t:"כמה אתה מבין בשווקים?", type:"pick",
+   opts:["בכלל לא","קצת, שמעתי מושגים","מבין ויודע לקרוא גרף","מקצועי"]},
+  {k:"pc",    t:"וכמה אתה מבין במחשבים?", type:"pick",
+   opts:["בכלל לא — תסביר לי הכל","בסיסי","מסתדר לבד","טכני"],
+   note:"זה משנה איך כל האפליקציה מדברת איתך. אין תשובה מביכה."},
+  {k:"biz",   t:"יש לך עוסק פטור או מורשה?", type:"pick",
+   opts:["עוד לא","עוסק פטור","עוסק מורשה","חברה בע\"מ"],
+   note:"חובה אצלנו לפני שמריצים בוט. אם עוד לא — נסביר בדיוק איך, זה 20 דקות."},
+  {k:"income",t:"כמה נכנס לך בחודש, נטו?", type:"num", ph:"12000", suf:"₪"},
+  {k:"spend", t:"וכמה יוצא בחודש, בממוצע?", type:"num", ph:"9000", suf:"₪"},
+  {k:"saved", t:"כמה יש לך בצד היום?", type:"num", ph:"20000", suf:"₪",
+   note:"מזומן והשקעות נזילות. לא דירה, לא פנסיה."},
+  {k:"goal",  t:"לאן אתה רוצה להגיע, ותוך כמה שנים?", type:"goal"}
+];
+let PQ = 0, PANS = {};
+
+function renderPlanTab(){
+  if (PLAN && PLAN.ans && !PQ){ PANS = Object.assign({}, PLAN.ans); showPlanOut(); return; }
+  $("planIntro").classList.toggle("hidden", !!PLAN);
+  if (PLAN) showPlanOut();
+}
+function planStart(){ PQ = 0; PANS = Object.assign({}, (PLAN&&PLAN.ans)||{});
+  $("planIntro").classList.add("hidden"); $("planOut").classList.add("hidden");
+  $("planQ").classList.remove("hidden"); planRender(); }
+function planBack(){ if (PQ>0){ PQ--; planRender(); } else { $("planQ").classList.add("hidden"); $("planIntro").classList.remove("hidden"); } }
+function planRender(){
+  const q = PLAN_Q[PQ];
+  $("planQTitle").textContent = (PQ+1) + ". " + q.t;
+  $("planBar").style.width = Math.round(PQ/PLAN_Q.length*100) + "%";
+  let h = "";
+  if (q.type==="text" || q.type==="num")
+    h = '<input class="fld" id="pIn" type="'+(q.type==="num"?"number":"text")+'" placeholder="'+esc(q.ph||"")+'" value="'+esc(PANS[q.k]==null?"":PANS[q.k])+'">';
+  else if (q.type==="pick")
+    h = '<div class="opts">' + q.opts.map((o,i)=>
+        '<button onclick="planPick('+i+')"'+(PANS[q.k]===i?' class="on"':'')+'>'+esc(o)+'</button>').join("") + '</div>';
+  else if (q.type==="goal")
+    h = '<label class="lbl">כמה כסף?</label><input class="fld" id="pGoal" type="number" placeholder="400000" value="'+esc(PANS.goalAmt||"")+'">' +
+        '<label class="lbl">תוך כמה שנים?</label><input class="fld" id="pYears" type="number" placeholder="6" value="'+esc(PANS.goalYears||"")+'">';
+  if (q.note) h += '<div class="mini" style="margin-top:8px">'+esc(q.note)+'</div>';
+  $("planQBody").innerHTML = h;
+  const inp = $("pIn"); if (inp) setTimeout(()=>inp.focus(), 60);
+}
+function planPick(i){ PANS[PLAN_Q[PQ].k] = i; planRender(); setTimeout(planNext, 160); }
+function planNext(){
+  const q = PLAN_Q[PQ];
+  if (q.type==="text" || q.type==="num"){
+    const v = ($("pIn")||{}).value;
+    if (v==null || String(v).trim()==="") return toast("צריך תשובה כדי להמשיך");
+    PANS[q.k] = q.type==="num" ? Number(v) : String(v).slice(0,60);
+  } else if (q.type==="pick"){
+    if (PANS[q.k]==null) return toast("בחר תשובה");
+  } else if (q.type==="goal"){
+    const a = Number(($("pGoal")||{}).value), y = Number(($("pYears")||{}).value);
+    if (!(a>0) || !(y>0)) return toast("צריך סכום ומספר שנים");
+    PANS.goalAmt = a; PANS.goalYears = y;
+  }
+  if (PQ < PLAN_Q.length-1){ PQ++; planRender(); return; }
+  savePlan();
+}
+function planCalc(a){
+  const income = Number(a.income)||0, spend = Number(a.spend)||0;
+  const saved = Number(a.saved)||0, goal = Number(a.goalAmt)||0, yrs = Number(a.goalYears)||0;
+  const surplus = income - spend;
+  const emMonths = spend > 0 ? saved/spend : 0;
+  const rate = 0.07;                         /* a plain, conservative long-run number */
+  const i = Math.pow(1+rate, 1/12) - 1;
+  /* how long the goal takes at the CURRENT saving rate */
+  let n = 0, v = saved;
+  while (v < goal && n < 1200){ v = v*(1+i) + Math.max(surplus,0); n++; }
+  const months = (surplus <= 0 && saved < goal) ? 1200 : n;
+  /* and what it would take to hit the chosen date */
+  const N = Math.max(1, Math.round(yrs*12));
+  const grown = saved * Math.pow(1+i, N);
+  const need = Math.max(0, (goal - grown) * i / (Math.pow(1+i, N) - 1));
+  const contrib = Math.max(surplus,0) * N;
+  const fromMkt = Math.max(0, v - saved - contrib);
+  return {surplus, emMonths, months, need, rate, afterTax: goal - Math.max(0,(goal-saved))*0.25,
+          onTrack: surplus > 0 && months <= N, N, fromMkt};
+}
+async function savePlan(){
+  const calc = planCalc(PANS);
+  PLAN = {ans:PANS, calc, t:Date.now(), v:1};
+  try {
+    if (ME) await db.collection("interviews").doc(ME.uid).set(PLAN);
+    if (ME) await db.collection("users").doc(ME.uid).update({
+      pcLevel: PANS.pc==null?1:PANS.pc, mktLevel: PANS.mkt==null?1:PANS.mkt,
+      bizStatus: PANS.biz==null?0:PANS.biz });
+  } catch(e){}
+  $("planQ").classList.add("hidden");
+  showPlanOut();
+}
+function showPlanOut(){
+  const out = $("planOut"); if (!out) return;
+  $("planIntro").classList.add("hidden");
+  out.classList.remove("hidden");
+  if (!PLAN || !PLAN.calc){ out.innerHTML = ""; return; }
+  const a = PLAN.ans, c = PLAN.calc;
+  const lvlTxt = ["בכלל לא","קצת","מבין","מקצועי"][a.mkt||0];
+  const pcTxt  = ["בכלל לא","בסיסי","מסתדר לבד","טכני"][a.pc||0];
+  const bizTxt = ["עוד לא","עוסק פטור","עוסק מורשה","חברה בע\"מ"][a.biz||0];
+  const emOk = c.emMonths >= 3;
+  let h = '<div class="sec2"><h3>👋 ' + esc(a.name||"") + '<span class="n">' + esc(a.age||"") + '</span></h3>' +
+    '<div class="mini">שווקים: <b>'+esc(lvlTxt)+'</b> · מחשבים: <b>'+esc(pcTxt)+'</b> · '+esc(bizTxt)+
+    '<br>האפליקציה תסביר לך דברים ברמה הזאת. אם זה יותר מדי או פחות מדי — תעדכן ותשתנה.</div></div>';
+
+  h += '<div class="sec2"><h3>💰 המצב היום</h3>' +
+    planRow("נכנס בחודש", fmtIls(a.income)) +
+    planRow("יוצא בחודש", fmtIls(a.spend)) +
+    planRow("<b>נשאר לך</b>", '<b style="color:'+(c.surplus>0?"var(--up)":"var(--dn)")+'">'+fmtIls(c.surplus)+"</b>") +
+    planRow("בצד עכשיו", fmtIls(a.saved)) +
+    planRow("קרן חירום", (c.emMonths>=99?"99+":c.emMonths.toFixed(1))+" חודשי הוצאה " +
+      (emOk?'<span class="pill go">מספיק</span>':'<span class="pill no">פחות מ-3</span>')) +
+    '</div>';
+
+  h += '<div class="sec2"><h3>🎯 היעד</h3>' +
+    planRow("רוצה להגיע ל", fmtIls(a.goalAmt) + " תוך " + esc(a.goalYears) + " שנים") +
+    planRow("בקצב הנוכחי תגיע בעוד", c.months>=1200 ? '<span class="pill no">לא תגיע בקצב הזה</span>'
+        : Math.floor(c.months/12) + " שנים ו-" + (c.months%12) + " חודשים") +
+    planRow("צריך להפריש בחודש", fmtIls(c.need) +
+        (c.need > Math.max(c.surplus,0) ? ' <span class="pill wa2">יותר ממה שנשאר לך</span>' : ' <span class="pill go">בהישג יד</span>')) +
+    '<div class="bar2"><i style="width:'+Math.min(100, Math.round((Math.max(c.surplus,0)/Math.max(c.need,1))*100))+'%"></i></div>' +
+    '<div class="mini" style="margin-top:8px">החישוב לפי ' + Math.round(c.rate*100) + '% בשנה, ריבית דריבית חודשית. ' +
+    'מזה בערך <b dir="ltr">'+fmtIls(c.fromMkt)+'</b> מגיעים מהתשואה ולא מההפרשה שלך — זה מה שהזמן עושה.<br>' +
+    '<b>לפני מס.</b> על רווח הון בישראל משלמים 25% על הרווח הריאלי, אז המספר שבאמת יגיע אליך קטן יותר.</div></div>';
+
+  h += '<div class="sec2"><h3>👉 מה הייתי עושה קודם</h3>' + planSteps(a, c) + '</div>';
+
+  h += '<div class="sec2"><div class="mini"><b>שורה אחת חשובה:</b> זה מחשבון תקציב ויעד, לא ייעוץ השקעות. ' +
+    'אני לא יועץ מורשה ואף אחד כאן לא. הוא לא אומר לך מה לקנות — הוא מראה לך מה המספרים שלך אומרים. ' +
+    'להחלטות על כסף אמיתי, תתייעץ עם מישהו עם רישיון.</div>' +
+    '<div class="btnrow"><button class="btn sec" onclick="planStart()">✏️ עדכן תשובות</button></div></div>';
+  out.innerHTML = h;
+}
+function planRow(k,v){ return '<div class="planrow"><span>'+k+'</span><b dir="ltr">'+v+'</b></div>'; }
+function planSteps(a,c){
+  const st = [];
+  if ((a.biz||0)===0) st.push(["🧑‍💼","תפתח עוסק פטור","זה תנאי להרצת בוט אצלנו, וזה 20 דקות באתר רשות המסים. בלי זה אי אפשר להתקדם."]);
+  if (c.surplus <= 0) st.push(["🧾","העודף החודשי שלילי","לפני כל השקעה — כאן נמצא הכסף. שלוש הוצאות קבועות, אחת מהן מבוטלת."]);
+  if (c.emMonths < 3) st.push(["🛟","קרן חירום קודם","יש לך "+c.emMonths.toFixed(1)+" חודשי הוצאה בצד. עד 3 חודשים, כל שקל פנוי הולך לשם ולא לשוק."]);
+  if (c.surplus > 0 && c.need > c.surplus) st.push(["🎯","היעד גדול מהקצב","או להאריך את התאריך, או להוריד את הסכום, או להעלות את ההפרשה. אין דרך רביעית."]);
+  if (c.surplus > 0 && c.emMonths >= 3 && c.need <= c.surplus) st.push(["📥","הוראת קבע ביום ה-2","אתה בקצב. הדבר היחיד שנשאר הוא להפוך את זה לאוטומטי, לפני שהחודש אוכל את העודף."]);
+  if ((a.mkt||0) <= 1) st.push(["📖","קרא את פרק האסטרטגיות","לפני שאתה מריץ בוט, כדאי שתדע מה הוא עושה. זה בתפריט תחת אסטרטגיות."]);
+  st.push(["⚖️","קבע לעצמך יום רע","כמה אחוז ביום אחד זה יותר מדי בשבילך? רשום מספר עכשיו, לא באמצע יום אדום."]);
+  return st.map(s=>'<div class="step"><div class="num">'+s[0]+'</div><div style="flex:1;min-width:0">' +
+    '<b>'+esc(s[1])+'</b><div class="mini">'+esc(s[2])+'</div></div></div>').join("");
+}
+
+/* ---- 8. HANDLES AND FRIENDS ----------------------------------------- */
+function subscribeSocial(){
+  if (_social || !ME) return;
+  _social = true;
+  db.collection("profiles").onSnapshot(qs=>{
+    PROFILES = {}; qs.forEach(d=>PROFILES[d.id] = d.data()||{});
+    if (CURTAB==="friends") renderFriends();
+  }, ()=>{});
+  db.collection("friends").onSnapshot(qs=>{
+    FRIENDS = []; qs.forEach(d=>{
+      const f = Object.assign({id:d.id}, d.data());
+      if (f.from===ME.uid || f.to===ME.uid) FRIENDS.push(f);
+    });
+    if (CURTAB==="friends") renderFriends();
+    refreshBadges();
+  }, ()=>{});
+}
+function pairId(a,b){ return [a,b].sort().join("__"); }
+function renderFriends(){
+  const me = (MYDOC&&MYDOC.handle) || null;
+  MYHANDLE = me;
+  $("handleBox").innerHTML = me
+    ? '<div class="frow"><img src="'+esc((ME&&ME.photoURL)||"icon-192.png")+'" referrerpolicy="no-referrer" alt="">' +
+      '<div style="flex:1"><b>'+esc((ME&&ME.displayName)||"")+'</b><div class="h">@'+esc(me)+'</div></div>' +
+      '<span class="pill go">שלך</span></div>' +
+      '<div class="mini" style="margin-top:8px">שלח לחברים את הכינוי הזה — הם מוצאים אותך לפיו.</div>'
+    : '<input class="fld" id="hIn" placeholder="idan" maxlength="20" oninput="this.value=cleanHandle(this.value)">' +
+      '<div class="btnrow"><button class="btn" onclick="claimHandle()">קבע את הכינוי שלי</button></div>' +
+      '<div class="mini">אחרי שנקבע — הוא לא ניתן לשינוי.</div>';
+
+  const inbox = FRIENDS.filter(f=>f.status==="pending" && f.to===ME.uid);
+  $("frInN").textContent = inbox.length ? inbox.length : "";
+  $("frIn").innerHTML = inbox.length ? inbox.map(f=>
+    '<div class="frow"><img src="'+esc((PROFILES[f.from]||{}).photo||"icon-192.png")+'" referrerpolicy="no-referrer" alt="">' +
+    '<div style="flex:1"><b>'+esc(f.fromName||(PROFILES[f.from]||{}).name||"חבר")+'</b>' +
+    '<div class="h">@'+esc((PROFILES[f.from]||{}).handle||"")+'</div></div>' +
+    '<button class="btn" onclick="frAnswer(\''+escJs(f.id)+'\',\'accepted\')">אשר</button>' +
+    '<button class="btn sec" onclick="frAnswer(\''+escJs(f.id)+'\',\'declined\')">לא</button></div>').join("")
+    : '<div class="emptyline">אין בקשות.</div>';
+
+  const mine = FRIENDS.filter(f=>f.status==="accepted");
+  $("frList").innerHTML = mine.length ? mine.map(f=>{
+    const other = f.from===ME.uid ? f.to : f.from;
+    const p = PROFILES[other]||{};
+    return '<div class="frow"><img src="'+esc(p.photo||"icon-192.png")+'" referrerpolicy="no-referrer" alt="">' +
+      '<div style="flex:1"><b>'+esc(p.name||"חבר")+'</b><div class="h">@'+esc(p.handle||"")+'</div></div>' +
+      '<span class="pill">'+esc((p.bots||1))+' בוטים</span></div>';
+  }).join("") : '<div class="emptyline">עוד אין חברים.</div>';
+}
+async function claimHandle(){
+  const h = cleanHandle(($("hIn")||{}).value||"");
+  if (h.length < 3) return toast("לפחות 3 תווים");
+  try {
+    const ref = db.collection("handles").doc(h);
+    const snap = await ref.get();
+    if (snap.exists) return toast("הכינוי @"+h+" כבר תפוס");
+    await ref.set({uid:ME.uid, name:(ME.displayName||"").slice(0,40), t:Date.now()});
+    await db.collection("profiles").doc(ME.uid).set({handle:h}, {merge:true});
+    toast("@"+h+" שלך ✓");
+    /* the handle on the user card is owner-only by design; the profile is
+       the copy members read, and Idan mirrors it when he approves. */
+    renderFriends();
+  } catch(e){ toast("לא נתפס (" + ((e&&e.code)||e) + ")"); }
+}
+let _frTimer = null;
+function frFind(){
+  clearTimeout(_frTimer);
+  _frTimer = setTimeout(async ()=>{
+    const h = cleanHandle(($("frSearch")||{}).value||"");
+    const box = $("frFound");
+    if (h.length < 3){ box.innerHTML = ""; return; }
+    try {
+      const d = await db.collection("handles").doc(h).get();
+      if (!d.exists){ box.innerHTML = '<div class="emptyline">אין אף אחד עם @'+esc(h)+'</div>'; return; }
+      const uid = d.data().uid;
+      if (uid === ME.uid){ box.innerHTML = '<div class="emptyline">זה אתה 🙂</div>'; return; }
+      const p = PROFILES[uid]||{};
+      const ex = FRIENDS.find(f=>f.id===pairId(ME.uid,uid));
+      box.innerHTML = '<div class="frow"><img src="'+esc(p.photo||"icon-192.png")+'" referrerpolicy="no-referrer" alt="">' +
+        '<div style="flex:1"><b>'+esc(p.name||d.data().name||"חבר")+'</b><div class="h">@'+esc(h)+'</div></div>' +
+        (ex ? '<span class="pill">'+(ex.status==="accepted"?"כבר חברים":"נשלחה בקשה")+'</span>'
+            : '<button class="btn" onclick="frSend(\''+escJs(uid)+'\',\''+escJs(p.name||"")+'\')">שלח בקשה</button>') +
+        '</div>';
+    } catch(e){ box.innerHTML = '<div class="emptyline">החיפוש נכשל.</div>'; }
+  }, 260);
+}
+async function frSend(uid, name){
+  try {
+    await db.collection("friends").doc(pairId(ME.uid, uid)).set({
+      from:ME.uid, to:uid, status:"pending", t:Date.now(),
+      fromName:(ME.displayName||"").slice(0,40), toName:String(name||"").slice(0,40)});
+    toast("הבקשה נשלחה ✓"); frFind();
+  } catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+async function frAnswer(id, status){
+  try { await db.collection("friends").doc(id).update({status, at:Date.now()}); }
+  catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+
+
+/* ---- 9. THE SHOP: a second bot -------------------------------------
+   The order Idan set, enforced as a state machine rather than as a
+   sentence anyone can skip: terminal first, then payment, then Idan's
+   confirmation, and only then does the bot turn on.
+   One honest note that belongs in the code and not only in a document:
+   Paybox and Bit are person-to-person apps. They have no merchant API
+   that can tell this app "the money arrived", so the confirmation step
+   is Idan pressing a button after he sees it in his own app. Everything
+   else is automatic; that one step is a human on purpose, and it is
+   also the step that makes it impossible to fake a payment from here. */
+const BOT_PRICE = 5000;
+function mySlots(){ return Math.max(1, Number((MYDOC&&MYDOC.slots)||1)); }
+function myOrder(){
+  return ORDERS.find(o => o.uid===(ME&&ME.uid) && ["requested","paid"].indexOf(o.status)>=0) || null;
+}
+function subscribeOrders(){
+  if (!ME) return;
+  const q = IS_OWNER ? db.collection("orders") : db.collection("orders").where("uid","==",ME.uid);
+  q.onSnapshot(qs=>{
+    ORDERS = []; qs.forEach(d=>ORDERS.push(Object.assign({id:d.id}, d.data())));
+    if (CURTAB==="shop") renderShop();
+  }, ()=>{});
+}
+function payLink(){ return (SETTINGS && SETTINGS.payLink) || ""; }
+
+let SHOP_TERM = Number(LS.get("shopTerm", 0)) || 0;
+function renderShop(){
+  const slots = mySlots(), next = slots + 1, ord = myOrder();
+  $("slotsNow").textContent = "יש לך " + slots + (slots===1 ? " בוט" : " בוטים");
+  $("shopPrice").textContent = "$" + BOT_PRICE.toLocaleString("en-US");
+  $("shopAdmin").classList.toggle("hidden", !IS_OWNER);
+  if (IS_OWNER) renderOrders();
+
+  const termOk = SHOP_TERM >= 2;
+  const installed = LS.get("termInstalled_" + SHOP_TERM, false);
+  const paid = ord && ord.status === "paid";
+  const asked = !!ord;
+
+  let h = "";
+  h += shopStep(1, termOk, !termOk,
+    "איזה טרמינל זה יהיה אצלך במחשב?",
+    "לכל בוט טרמינל משלו. אם יש לך אחד — הבא הוא מספר 2. אם יש לך שניים — מספר 3. בחר את המספר, וההורדה תתאים את עצמה אליו." +
+    '<div class="opts" style="margin-top:8px">' +
+      [2,3,4,5].map(n=>'<button onclick="pickTerm('+n+')"'+(SHOP_TERM===n?' class="on"':'')+'>טרמינל '+n+'</button>').join("") +
+    '</div>');
+
+  h += shopStep(2, installed, termOk && !installed,
+    "הורד והתקן את הטרמינל" + (termOk ? " מספר " + SHOP_TERM : ""),
+    !termOk ? "קודם בחר מספר." :
+    "לחיצה אחת מורידה את MetaTrader 5 נוסף לתיקייה נפרדת, כדי שהוא לא ידרוס את הקיים. אחרי ההתקנה — תפתח חשבון דמו חדש בתוכו וסמן כאן שסיימת." +
+    '<div class="btnrow">' +
+      '<button class="btn" onclick="copyTermCmd()">📋 העתק את פקודת ההתקנה</button>' +
+      '<button class="btn sec" onclick="markTermInstalled()">✅ התקנתי, יש לי טרמינל ' + (SHOP_TERM||"") + '</button>' +
+    '</div>');
+
+  h += shopStep(3, asked, installed && !asked,
+    "בקש את הבוט",
+    !installed ? "אחרי שהטרמינל מותקן." :
+    "הבקשה נרשמת על שמך, עם מספר הטרמינל, ועידן רואה אותה. עוד לא שילמת בשלב הזה." +
+    '<div class="btnrow"><button class="btn" onclick="requestBot()">שלח בקשה לבוט מספר ' + next + '</button></div>');
+
+  h += shopStep(4, paid, asked && !paid,
+    "התשלום — $" + BOT_PRICE.toLocaleString("en-US"),
+    !asked ? "אחרי שהבקשה נשלחה." :
+    (payLink()
+      ? "העברה לעידן דרך הקישור. אחרי שהעברת, עידן רואה את זה אצלו ומאשר כאן — זה השלב היחיד שבו מחכים לבן אדם, וזה בכוונה." +
+        '<div class="btnrow"><button class="btn" onclick="openPay()">💳 לתשלום</button></div>'
+      : "עידן עוד לא הזין קישור תשלום. דבר איתו בצ'אט ותעבירו ישירות.") +
+    '<div class="mini" style="margin-top:7px">סטטוס הבקשה: <b>' +
+      esc(ord ? ({requested:"נשלחה, ממתינה לתשלום", paid:"שולם ואושר"})[ord.status] || ord.status : "לא נשלחה") + "</b></div>");
+
+  h += shopStep(5, slots >= next, paid,
+    "הפעל את הבוט",
+    !paid ? "נפתח אחרי שעידן מאשר שהתשלום התקבל." :
+    "הכל מוכן. לחיצה אחת מדליקה את הבוט על החשבון שחיברת בטרמינל " + (ord ? ord.terminal : "") + "." +
+    '<div class="btnrow"><button class="btn" onclick="activateBot()">🚀 עדכן בוט — הפעל</button></div>');
+
+  $("shopSteps").innerHTML = h;
+}
+function shopStep(n, done, active, title, body){
+  return '<div class="step ' + (done ? "ok2" : (active ? "on2" : "")) + '">' +
+    '<div class="num">' + (done ? "✓" : n) + '</div>' +
+    '<div style="flex:1;min-width:0"><b>' + esc(title) + '</b>' +
+    '<div class="mini">' + body + '</div></div></div>';
+}
+function pickTerm(n){ SHOP_TERM = n; LS.set("shopTerm", n); renderShop(); }
+function markTermInstalled(){
+  if (SHOP_TERM < 2) return toast("קודם בחר מספר טרמינל");
+  LS.set("termInstalled_" + SHOP_TERM, true); renderShop(); toast("נרשם ✓");
+}
+function copyTermCmd(){
+  if (SHOP_TERM < 2) return toast("קודם בחר מספר טרמינל");
+  const cmd = 'powershell -NoProfile -ExecutionPolicy Bypass -Command "iwr https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5setup.exe -OutFile $env:TEMP\\mt5setup.exe; Start-Process $env:TEMP\\mt5setup.exe -ArgumentList \'/auto\',\'/portable\' -Wait; New-Item -ItemType Directory -Force -Path $env:USERPROFILE\\MT5-Bot' + SHOP_TERM + '"';
+  (navigator.clipboard ? navigator.clipboard.writeText(cmd) : Promise.reject())
+    .then(()=>toast("הועתק ✓ הדבק ב-PowerShell במחשב"))
+    .catch(()=>prompt("העתק את הפקודה:", cmd));
+}
+function openPay(){
+  const l = payLink(); if (!l) return toast("אין קישור תשלום");
+  window.open(l, "_blank", "noopener");
+}
+async function requestBot(){
+  if (SHOP_TERM < 2) return toast("קודם בחר מספר טרמינל");
+  if (myOrder()) return toast("כבר יש בקשה פתוחה");
+  try {
+    await db.collection("orders").add({
+      uid:ME.uid, name:(ME.displayName||"").slice(0,40),
+      handle:String((MYDOC&&MYDOC.handle)||"").slice(0,20),
+      slot: mySlots()+1, terminal: SHOP_TERM, amount: BOT_PRICE, currency:"USD",
+      status:"requested", t:Date.now(), note:""});
+    toast("הבקשה נשלחה ✓ עידן רואה אותה");
+  } catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+async function activateBot(){
+  const ord = myOrder();
+  if (!ord || ord.status!=="paid") return toast("עוד לא אושר תשלום");
+  if (!(MYDOC && MYDOC.feedId)) return toast("אין בוט מחובר להפעיל");
+  try {
+    await writeCommand(MYDOC.feedId, {action:"toggle", enabled:true, slot:ord.slot, ts:Date.now()});
+    toast("🚀 נשלחה פקודת הפעלה. תוך דקה הבוט יעלה על החשבון החדש.");
+  } catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+function renderOrders(){
+  const box = $("ordersList"); if (!box) return;
+  const open = ORDERS.filter(o=>o.status!=="cancelled");
+  box.innerHTML = open.length ? open.map(o=>
+    '<div class="frow"><div style="flex:1"><b>'+esc(o.name||"")+'</b> ' +
+    (o.handle?'<span class="h">@'+esc(o.handle)+'</span>':'') +
+    '<div class="mini">בוט מס\' '+esc(o.slot)+' · טרמינל '+esc(o.terminal)+' · $'+esc(o.amount)+
+    ' · '+esc(o.status)+'</div></div>' +
+    (o.status==="requested"
+      ? '<button class="btn" onclick="markPaid(\''+escJs(o.id)+'\',\''+escJs(o.uid)+'\','+Number(o.slot)+')">✅ קיבלתי תשלום</button>'
+      : '<span class="pill go">שולם</span>') +
+    '</div>').join("") : '<div class="emptyline">אין הזמנות.</div>';
+}
+async function markPaid(id, uid, slot){
+  if (!IS_OWNER) return;
+  if (!confirm("לאשר שקיבלת את התשלום? זה יפתח לחבר בוט נוסף.")) return;
+  try {
+    await db.collection("orders").doc(id).update({status:"paid", paidAt:Date.now()});
+    await db.collection("users").doc(uid).update({slots: Number(slot)||2});
+    await db.collection("updates").add({kind:"bot", title:"בוט נוסף אושר",
+      body:"התשלום התקבל ובוט מספר "+slot+" נפתח. אפשר להפעיל אותו במסך 'הוסף בוט'.", t:Date.now()});
+    toast("אושר ✓");
+  } catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+
+/* ---- 10. THE SUPPORT DESK ------------------------------------------
+   Not a language model - a guided diagnostic that reads the member's
+   OWN live state and answers from it. For "my bot is not reporting"
+   that is strictly better than a chatbot: it knows the feed age, the
+   symbol, whether algo trading is on, and the exact reason string the
+   EA published. Every branch ends either in a fix or in Idan. --------- */
+function pcLevel(){ return Number((MYDOC&&MYDOC.pcLevel)!=null ? MYDOC.pcLevel : ((PLAN&&PLAN.ans&&PLAN.ans.pc)||1)); }
+function simple(){ return pcLevel() <= 1; }
+
+function helpSay(txt, cls){
+  const c = $("helpChat");
+  c.innerHTML += '<div class="chatline ' + (cls||"bot") + '">' + txt + '</div>';
+  c.scrollTop = c.scrollHeight;
+}
+function helpOpts(opts){
+  $("helpOpts").innerHTML = opts.map(o =>
+    '<button class="qbtn" onclick="' + o[1] + '">' + esc(o[0]) + '</button>').join("");
+}
+function helpStart(){
+  $("helpChat").innerHTML = ""; $("helpOpts").innerHTML = "";
+  $("helpMode").textContent = simple() ? "מסביר בפשטות" : "מצב טכני";
+  const nm = (ME && ME.displayName) ? ME.displayName.split(" ")[0] : "";
+  helpSay("שלום" + (nm ? " " + esc(nm) : "") + " 👋 אני העוזר של המועדון. אני רואה את המצב של הבוט שלך בזמן אמת, אז בוא נתחיל ממה שמפריע.");
+  helpOpts([
+    ["🤖 הבוט שלי לא משדר / לא מופיע", "helpBot()"],
+    ["📉 הבוט משדר אבל לא עושה עסקאות", "helpNoTrade()"],
+    ["🔢 המספרים נראים לי לא נכונים", "helpNumbers()"],
+    ["➕ איך מוסיפים עוד בוט", "helpAddBot()"],
+    ["📊 האינדיקטור — איך מתקינים", "helpPine()"],
+    ["🧑‍💼 עוסק פטור — למה ואיך", "helpBiz()"],
+    ["🙋 אני רוצה לדבר עם " + esc(BOSS_TITLE), "helpEscalate()"]
+  ]);
+}
+function myFeedAge(){
+  if (!MYFEED || !MYFEED.t) return null;
+  const t = new Date(MYFEED.t).getTime();
+  return isNaN(t) ? null : (Date.now()-t)/1000;
+}
+function helpBot(){
+  const age = myFeedAge(), j = (typeof myData==="function") ? myData() : null;
+  helpSay("בודק אצלך…", "me2");
+  if (!(MYDOC && MYDOC.feedId)){
+    helpSay("<b>מצאתי:</b> עוד לא חיברת בוט בכלל — אין מפתח על החשבון שלך.<br>" +
+      (simple() ? "זה בסדר גמור, פשוט עוד לא הגעת לשלב הזה. במסך <b>חיבורים</b> יש שלושה צעדים בסדר הנכון: מוריד מטה-טריידר, מריץ קובץ אחד, ומדביק כאן מפתח."
+                : "לך ל'חיבורים', הרץ את IdanGold-Setup, והדבק את המפתח שהוא מדפיס בשדה כאן."));
+    return helpOpts([["🔗 קח אותי לחיבורים","goTab('links')"],["↩︎ חזרה","helpStart()"],["🙋 " + esc(BOSS_TITLE),"helpEscalate()"]]);
+  }
+  if (age === null){
+    helpSay("<b>מצאתי:</b> יש לך מפתח, אבל מעולם לא הגיעה ממנו שידור אחד.<br>" +
+      "כמעט תמיד זה אחד משניים: המשדר במחשב לא רץ, או שהוא רץ ומטה-טריידר סגור.<br>" +
+      (simple() ? "תפתח את המחשב, תוודא שמטה-טריידר פתוח, ואז תלחץ על הכפתור למטה — הוא מעתיק לך פקודה, ואתה רק מדביק אותה בחלון הכחול ולוחץ Enter."
+                : "בדוק ש-feed_publish.ps1 רץ בלולאה ושה-EA על גרף הזהב."));
+    return helpOpts([["📋 העתק פקודה שמפעילה מחדש","copyRestart()"],["🔍 הרץ בדיקה מלאה","goTab('links');runHealthCheck&&runHealthCheck()"],["🙋 " + esc(BOSS_TITLE),"helpEscalate()"]]);
+  }
+  if (age > 600){
+    helpSay("<b>מצאתי:</b> השידור האחרון היה לפני " + Math.round(age/60) + " דקות — כלומר משהו נעצר.<br>" +
+      "הסדר הנכון לבדוק: (1) המחשב דלוק ולא ישן, (2) מטה-טריידר פתוח, (3) כפתור <b>Algo Trading</b> ירוק, (4) המשדר רץ.");
+    return helpOpts([["📋 העתק פקודה שמפעילה מחדש","copyRestart()"],["🔍 בדיקה מלאה","goTab('links')"],["🙋 " + esc(BOSS_TITLE),"helpEscalate()"]]);
+  }
+  helpSay("<b>הבוט שלך משדר עכשיו</b> (לפני " + Math.round(age) + " שניות). מבחינת החיבור הכל תקין.<br>" +
+    "אם אתה לא רואה מספרים במסך — זה כבר עניין אחר.");
+  helpOpts([["📉 הוא משדר אבל לא סוחר","helpNoTrade()"],["🔢 המספרים לא נכונים","helpNumbers()"],["↩︎ חזרה","helpStart()"]]);
+}
+function helpNoTrade(){
+  const j = (typeof myData==="function") ? myData() : null;
+  const blocked = j && j.blocked;
+  helpSay("בודק למה הוא לא נכנס…", "me2");
+  if (blocked){
+    helpSay("<b>הבוט עצמו כתב את הסיבה:</b><br><span class='pill no'>" + esc(String(blocked).slice(0,300)) + "</span><br>" +
+      "זה לא ניחוש שלי — זו השורה שה-EA פרסם ברגע זה.");
+    return helpOpts([["🙋 תשלח את זה ל" + esc(BOSS_TITLE),"helpEscalate()"],["↩︎ חזרה","helpStart()"]]);
+  }
+  if (j && j.enabled === false){
+    helpSay("<b>מצאתי:</b> הבוט מכובה. במטה-טריידר, כפתור <b>Algo Trading</b> חייב להיות ירוק. תלחץ עליו פעם אחת.");
+    return helpOpts([["↩︎ חזרה","helpStart()"],["🙋 " + esc(BOSS_TITLE),"helpEscalate()"]]);
+  }
+  helpSay("לא מצאתי שום חסימה — כלומר <b>הבוט פשוט לא מצא הזדמנות</b>. זה המצב הנורמלי שלו רוב הזמן.<br>" +
+    "בוט הזהב נכנס רק כשיש תנועה חדה (2 ATR בשעה). ימים שלמים יכולים לעבור בלי כניסה אחת, וזה בכוונה — " +
+    "בוט שנכנס כל הזמן זה בוט שמשלם עמלות כל הזמן.");
+  helpOpts([["📊 תראה לי את העמלות","goTab('reports')"],["↩︎ חזרה","helpStart()"]]);
+}
+function helpNumbers(){
+  helpSay("שלושה דברים מבלבלים כאן, ושווה להכיר את שלושתם:<br><br>" +
+    "<b>1. ברוטו מול נטו.</b> המספר הגדול במסך הוא ברוטו — לפני עמלות. במסך הדוחות יש את הפס שמראה כמה מזה נשאר בכיס.<br>" +
+    "<b>2. יתרה מול הון.</b> יתרה היא כסף שנסגר. הון כולל גם פוזיציות פתוחות, אז הוא זז כל שנייה.<br>" +
+    "<b>3. מאז ההתחלה.</b> נמדד מהיום שהחשבון נפתח, לא מהיום שהתחברת לאפליקציה.");
+  helpOpts([["📊 פתח את הדוחות","goTab('reports')"],["🙋 עדיין לא מסתדר","helpEscalate()"],["↩︎ חזרה","helpStart()"]]);
+}
+function helpAddBot(){
+  helpSay("בוט נוסף עולה <b>$" + BOT_PRICE.toLocaleString("en-US") + "</b>, והסדר קבוע:<br>" +
+    "1. בוחרים איזה מספר טרמינל זה יהיה אצלך במחשב.<br>2. מתקינים את הטרמינל הזה (כפתור אחד).<br>" +
+    "3. שולחים בקשה.<br>4. משלמים.<br>5. עידן מאשר שקיבל.<br>6. רק אז נפתח לך כפתור 'עדכן בוט' והוא נדלק.<br><br>" +
+    "אי אפשר לדלג על שלב, וזה גם מה שמונע ממישהו להפעיל בוט בלי לשלם.");
+  helpOpts([["🤖 קח אותי לשם","goTab('shop')"],["↩︎ חזרה","helpStart()"]]);
+}
+function helpPine(){
+  helpSay("האינדיקטור הוא לטריידינגויו, לא למטה-טריידר — הוא לעיניים שלך, לא לבוט.<br>" +
+    "1. מסך <b>האינדיקטור</b> ‹ העתק את הקוד.<br>2. TradingView ‹ Pine Editor ‹ Open ‹ New indicator ‹ מוחקים ‹ מדביקים ‹ Save ‹ Add to chart.<br>" +
+    "3. התראה אחת עם התנאי <b>Any alert() function call</b> — וההסבר המלא מגיע לטלפון.");
+  helpOpts([["📊 קח אותי לאינדיקטור","goTab('pine')"],["↩︎ חזרה","helpStart()"]]);
+}
+function helpBiz(){
+  helpSay("<b>למה חובה:</b> ברגע שאתה מריץ פעילות מסחר, רשות המסים רואה בזה פעילות מדווחת. " +
+    "עוסק פטור הוא הדרך הזולה והפשוטה לעשות את זה נכון — הוא מאפשר לקזז הוצאות ומונע שיחה לא נעימה בעוד שנתיים.<br><br>" +
+    "<b>איך:</b> אתר רשות המסים ‹ פתיחת תיק עוסק ‹ עוסק פטור. צריך תעודת זהות וחשבון בנק. בערך 20 דקות.<br><br>" +
+    "<b>שורה אחת של אמת:</b> אני לא רואה חשבון. לפני שאתה מחליט בין פטור למורשה — תשאל רואה חשבון, זו שיחה של רבע שעה שחוסכת הרבה.");
+  helpOpts([["🎯 עדכן את זה בתוכנית שלי","goTab('plan')"],["↩︎ חזרה","helpStart()"]]);
+}
+async function helpEscalate(){
+  helpSay("שולח ל" + esc(BOSS_TITLE) + "…", "me2");
+  const snapshot = {
+    feedAge: myFeedAge(), hasFeed: !!(MYDOC&&MYDOC.feedId),
+    blocked: (typeof myData==="function" && myData()) ? (myData().blocked||null) : null,
+    pcLevel: pcLevel(), app: APP_VERSION, ua: navigator.userAgent.slice(0,120)
+  };
+  try {
+    if (ME) await db.collection("support").doc(ME.uid).collection("msgs").add({
+      text: "בקשת עזרה. מצב: " + JSON.stringify(snapshot), by: ME.uid, kind:"escalate", t: Date.now()});
+    helpSay("נשלח ✓ <b>" + esc(BOSS_TITLE) + "</b> מקבל את זה עם תמונת מצב מלאה של הבוט שלך, " +
+      "כך שהוא לא צריך לשאול אותך שאלות טכניות. אפשר גם לכתוב לו ישירות בצ'אט.", "esc");
+  } catch(e){
+    helpSay("לא הצלחתי לשלוח (" + esc((e&&e.code)||"") + "). תכתוב לו בצ'אט ואני אצרף את המצב:", "esc");
+  }
+  helpOpts([["💬 פתח צ'אט עם " + esc(BOSS_TITLE),"goTab('chat')"],["↩︎ חזרה","helpStart()"]]);
+}
+
+/* ---- 11. wiring ----------------------------------------------------- */
+const _enterAppBase = enterApp;
+enterApp = function(){
+  _enterAppBase();
+  subscribePub(); subscribeSocial(); subscribeOrders();
+  if (ME) db.collection("interviews").doc(ME.uid).get()
+    .then(d=>{ if (d.exists){ PLAN = d.data(); if (CURTAB==="plan") showPlanOut(); } })
+    .catch(()=>{});
+  refreshBadges();
+};
+
 </script>
 </body>
 </html>
