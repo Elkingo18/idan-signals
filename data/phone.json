@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-18 03:05",
+  "updated_israel": "2026-08-18 03:06",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "fail: order rejected 0",
-    "age_sec": 8.3,
+    "age_sec": 16.0,
     "status": "ok"
    },
    {
@@ -35,16 +35,12 @@
     "open_gross": -0.61,
     "open_lots": 0.0,
     "mode": "exact 1:1 v2",
-    "teacher_equity": 197691.69,
+    "teacher_equity": 197692.02,
     "teacher_legs": 1,
-    "age_sec": 217.1,
+    "age_sec": 224.8,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD",
-    "server": null,
-    "leverage": null,
-    "margin_free": null,
-    "margin_used": null,
     "blocked": null,
     "not_copying": true,
     "note": "מעתיק את המורה 1:1 עם שומר-מחיר-כניסה"
@@ -71,8 +67,8 @@
      "file_ok": true
     },
     "broker_equity": 945.73,
-    "age_sec": 303.3,
-    "status": "ok",
+    "age_sec": 311.0,
+    "status": "stale",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
@@ -120,8 +116,8 @@
    "day_pct": 1.51,
    "equity": 24274.21,
    "day_open_equity": 23907.29,
-   "pocket_since_start": -482.8,
-   "fee_since_start": 184.24
+   "pocket_since_start": -614.96,
+   "fee_since_start": 316.4
   }
  },
  "events": [
@@ -700,7 +696,7 @@
    "gross": null
   }
  ],
- "updated_utc": "2026-08-18T00:06:03.348562+00:00",
+ "updated_utc": "2026-08-18T00:06:11.032671+00:00",
  "updated_israel": "2026-08-18 03:06",
  "gold": {
   "schema": 1,
@@ -740,9 +736,9 @@
     "entry": 4423.83
    }
   ],
-  "equity": 197691.69,
-  "stamp": "2026.08.18 03:06:02",
-  "age_sec": 0.7
+  "equity": 197692.02,
+  "stamp": "2026.08.18 03:06:10",
+  "age_sec": 0.4
  },
  "slave": {
   "ok": true,
@@ -761,47 +757,48 @@
   "algo_allowed": true,
   "symbol": "XAUUSD",
   "is_demo": true,
-  "leverage": null,
-  "margin_free": null,
-  "margin_used": null,
-  "server": null,
   "mode": "exact 1:1 v2",
   "stamp": "2026.08.18 01:54:40",
-  "age_sec": 217.1
+  "age_sec": 224.8
  },
  "fees": {
+  "model": "profit_minus_fee_v2",
+  "schema": 2,
   "rate_atrade_per_oz": 0.28,
-  "rate_demo_per_oz": 0.285,
-  "day": "2026/08/14",
-  "is_today": false,
-  "rows": [
-   {
-    "name": "בוט הזהב",
-    "lots": 6.23,
-    "gross": 1179.54,
-    "demo_fee": 177.55,
-    "atrade_fee": 174.44,
-    "net_atrade": 1005.1,
-    "net_demo": 1001.98
-   },
-   {
-    "name": "המעתיק",
-    "lots": 40.43,
-    "gross": 2762.56,
-    "demo_fee": 1152.25,
-    "atrade_fee": 1132.04,
-    "net_atrade": 1630.52,
-    "net_demo": 1610.31
+  "start": {
+   "gold": 10000.0,
+   "copier": 10000.0
+  },
+  "since_start": {
+   "rows": [
+    {
+     "name": "בוט הזהב",
+     "profit": -298.56,
+     "lots": 6.58,
+     "fee": 184.24,
+     "pocket": -482.8
+    },
+    {
+     "name": "The Ladder",
+     "profit": 0.0,
+     "lots": 4.72,
+     "fee": 132.16,
+     "pocket": -132.16
+    }
+   ],
+   "total": {
+    "name": "סה\"כ",
+    "profit": -298.56,
+    "lots": 11.3,
+    "fee": 316.4,
+    "pocket": -614.96
    }
-  ],
-  "total": {
-   "name": "סה\"כ",
-   "lots": 46.66,
-   "gross": 3942.1,
-   "demo_fee": 1329.8,
-   "atrade_fee": 1306.48,
-   "net_atrade": 2635.62,
-   "net_demo": 2612.29
+  },
+  "last_day": {
+   "day": "2026.08.14",
+   "is_today": false,
+   "rows": [],
+   "total": {}
   }
  },
  "shadow_wallet": {
@@ -1099,21 +1096,19 @@
    "pocket": 1305.81
   },
   "2026-08-18": {
-   "copier_net_demo": 0.0,
-   "copier_lots": 1.53,
-   "copier_gross": 43.6,
-   "copier_net_atrade": 0.76,
-   "net_atrade": 0.76,
-   "net_demo": 0.0,
-   "gross": 43.6,
-   "fees_atrade": 42.84,
-   "lots": 1.53,
-   "fee": 42.84,
-   "pocket": -42.84
+   "copier_net_demo": 769.84,
+   "copier_lots": 6.25,
+   "copier_gross": 947.97,
+   "copier_net_atrade": 772.97,
+   "net_atrade": 772.97,
+   "net_demo": 769.84,
+   "gross": 947.97,
+   "fees_atrade": 175.0,
+   "lots": 6.25,
+   "fee": 175.0,
+   "pocket": 594.84
   }
  },
  "tws_connected": true,
- "stocks_stale": false,
- "stocks_as_of": "2026-08-18 03:05",
- "published_by": "publish_phone.py"
+ "stocks_stale": false
 }
