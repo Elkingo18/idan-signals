@@ -19,10 +19,7 @@
   --rail:#7a5c22; --brass:#c9a227;
   --gold:#d4af37; --richgold:#f0d478;
   --bg:#0a1410; --bg2:#10201a; --line:#1d3a30; --line2:#2a5245;
-  /* 18.8: --ink3 measured 3.7-4.2:1 on the felt - under the 4.5 minimum, at
-     10-12px, on a phone, outdoors. The chrome is meant to be quiet, not
-     unreadable: these are the smallest values that pass AA on this背景. */
-  --ink:#e8eee9; --ink2:#b3c5bb; --ink3:#93aca1;
+  --ink:#e8eee9; --ink2:#9fb3a9; --ink3:#6d8378;
   --up:#35d39a; --dn:#ff6b7d; --warn:#ffb547;
   --accent2:#d4af37; --bg-old:#131722;
 }
@@ -79,7 +76,7 @@ a{color:var(--gold)}
 .corners{position:relative;z-index:2;display:flex;justify-content:space-between;
   align-items:flex-start;gap:10px;max-width:1180px;margin:0 auto 6px}
 .cnr{min-width:104px}
-.cnr .k{font-size:10.5px;letter-spacing:1.4px;color:rgba(232,238,233,.72);text-transform:uppercase}
+.cnr .k{font-size:9.5px;letter-spacing:1.6px;color:rgba(232,238,233,.45);text-transform:uppercase}
 .cnr .v{font-size:16px;font-weight:800;color:var(--richgold);margin-top:1px;direction:ltr}
 .cnr .s{font-size:10.5px;color:var(--ink2);margin-top:1px;unicode-bidi:plaintext}
 .cnr.l{text-align:left}
@@ -87,13 +84,13 @@ a{color:var(--gold)}
 
 /* ------------------------- the big number ------------------------- */
 .hero{position:relative;z-index:2;text-align:center;margin:14px auto 4px;max-width:1180px}
-.hero .lab{font-size:11.5px;letter-spacing:3px;color:rgba(232,238,233,.74);text-transform:uppercase}
+.hero .lab{font-size:11px;letter-spacing:3px;color:rgba(232,238,233,.5);text-transform:uppercase}
 .hero .big{font-size:clamp(44px,13vw,104px);font-weight:900;line-height:1.02;letter-spacing:-1.5px;
   text-shadow:0 4px 26px rgba(0,0,0,.6);margin:2px 0 0;direction:ltr}
 .hero .big.up{color:var(--up)}.hero .big.dn{color:var(--dn)}
 .hero .big.flat{color:var(--richgold)}
 .hero .side{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;
-  font-size:12.5px;color:rgba(232,238,233,.78);margin-top:5px}
+  font-size:12.5px;color:rgba(232,238,233,.62);margin-top:5px}
 .hero .side b{font-weight:800}
 .pill{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(201,162,39,.3);
   border-radius:999px;padding:3px 11px;font-size:11.5px;color:var(--ink2);background:rgba(0,0,0,.2)}
@@ -121,12 +118,12 @@ a{color:var(--gold)}
 .lrow .sym .sd{font-size:10px;font-weight:800;border-radius:5px;padding:1px 6px;margin-inline-start:7px;vertical-align:2px}
 .lrow .sd.b{background:rgba(53,211,154,.16);color:var(--up)}
 .lrow .sd.s{background:rgba(255,107,125,.16);color:var(--dn)}
-.lrow .det{font-size:12px;color:rgba(232,238,233,.74);margin-top:2px;direction:rtl}
+.lrow .det{font-size:11.5px;color:rgba(232,238,233,.55);margin-top:2px;direction:rtl}
 .lrow .det .px{direction:ltr;unicode-bidi:isolate;display:inline-block}
 .lrow .pl{text-align:left;min-width:96px}
 .lrow .pl .g{font-size:20px;font-weight:900;direction:ltr;line-height:1.1}
-.lrow .pl .p{font-size:11.5px;color:rgba(232,238,233,.74);direction:ltr}
-.rows .empty{text-align:center;color:rgba(232,238,233,.72);font-size:13.5px;
+.lrow .pl .p{font-size:11px;color:rgba(232,238,233,.5);direction:ltr}
+.rows .empty{text-align:center;color:rgba(232,238,233,.45);font-size:13.5px;
   padding:26px 12px;border:1px dashed rgba(255,255,255,.11);border-radius:14px}
 
 /* ---------------------------- bot chips ---------------------------- */
@@ -314,9 +311,9 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
   font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
 .urow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
 .urow img{width:30px;height:30px;border-radius:50%}
-.sw{position:relative;width:44px;height:26px;background:#2b3a34;border-radius:999px;flex:none;transition:.15s}
+.sw{position:relative;width:40px;height:22px;background:#2b3a34;border-radius:999px;flex:none;transition:.15s}
 .sw.on{background:var(--up)}
-.sw::after{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.15s}
+.sw::after{content:"";position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}
 .sw.on::after{transform:translateX(-18px)}
 .chatTab{flex:1;background:none;color:var(--ink3);font-size:14.5px;font-weight:700;padding:12px;border:none;cursor:pointer;font-family:inherit}
 .chatTab.on{color:var(--gold);box-shadow:inset 0 -2.5px 0 var(--gold)}
@@ -352,32 +349,6 @@ select{background:#0a1712;color:var(--ink);border:1px solid var(--line2);border-
 .fbot .fb-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;margin-top:8px;background:rgba(0,0,0,.35)}
 .fbot .fb-bar i{display:block}
 .fbot .fb-note{font-size:10.5px;color:var(--ink3);margin-top:5px}
-/* 18.8: there was not a single :focus rule in 2,600 lines, and
-   -webkit-tap-highlight-color:transparent removed the only feedback a phone
-   gives. Every control is reachable and visibly reachable now. */
-:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
-.sw:focus-visible,.dmrow:focus-visible,.botpick:focus-visible{outline:2px solid var(--gold)}
-button:active,.sw:active,.dmrow:active,.botpick:active,.chip:active{filter:brightness(1.18)}
-/* the approval switch is the control Idan uses most and it was 40x22 */
-.swwrap{display:flex;flex-direction:column;align-items:center;gap:3px;
-  min-width:52px;min-height:44px;justify-content:center}
-.swlab{font-size:9.5px;color:var(--ink3);letter-spacing:.3px}
-.badge{display:inline-block;min-width:18px;padding:1px 5px;border-radius:999px;
-  background:var(--warn);color:#1a1205;font-size:10.5px;font-weight:800;margin-inline-start:5px}
-.tag.dn2{color:var(--warn);border-color:rgba(255,181,71,.5);background:rgba(255,181,71,.12)}
-.ioshint{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));
-  z-index:47;display:flex;align-items:center;gap:8px;padding:11px 12px;border-radius:13px;
-  background:linear-gradient(180deg,#123c30,#0d2f26);border:1px solid var(--brass);
-  color:var(--ink);font-size:12.5px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
-.ioshint button{background:none;border:none;color:var(--ink2);font-size:16px;
-  min-width:44px;min-height:44px}
-.bootbrand{font-weight:800;letter-spacing:.4px;color:var(--gold);font-size:15px}
-.bootdots{display:flex;gap:7px;margin-top:14px}
-.bootdots i{width:8px;height:8px;border-radius:999px;background:var(--gold);
-  opacity:.35;animation:bd 1.1s ease-in-out infinite}
-.bootdots i:nth-child(2){animation-delay:.15s}
-.bootdots i:nth-child(3){animation-delay:.3s}
-@keyframes bd{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
 #installBtn{position:fixed;top:calc(58px + env(safe-area-inset-top));left:12px;z-index:45;
   background:rgba(13,59,46,.9);color:#d8f0e5;border:1px solid var(--line2);font-size:12.5px;
   font-weight:700;padding:8px 13px;border-radius:999px}
@@ -411,16 +382,6 @@ button:active,.sw:active,.dmrow:active,.botpick:active,.chip:active{filter:brigh
 <body>
 
 <!-- ======================= LOGIN ======================= -->
-<!-- 18.8: the first paint. Every view used to start hidden and only JS
-     un-hid one, so a phone on a cold cache showed a black rectangle until
-     three Firebase scripts had downloaded. This one is visible in the markup,
-     so the browser paints something the moment the HTML arrives, and it is
-     in the VIEWS list so the router hides it like any other screen. -->
-<div id="v-boot" class="full">
-  <div class="bootbrand">Idan's Money Club</div>
-  <div class="title" style="font-size:20px">רגע…</div>
-  <div class="bootdots" aria-hidden="true"><i></i><i></i><i></i></div>
-</div>
 <div id="v-login" class="full hidden">
   <div class="bigchip"></div>
   <div class="title">Idan's Money Club<small>מועדון ניהול הכסף של עידן · הבוטים, המספרים, והאמת</small></div>
@@ -455,10 +416,9 @@ button:active,.sw:active,.dmrow:active,.botpick:active,.chip:active{filter:brigh
     </div>
     <div class="botpick" data-bot="swing" onclick="pickBot('swing')">
       <div class="bp-ic">📈</div>
-      <div class="bp-mid"><b>בוט המניות — סווינג</b><span class="bp-tag">בבנייה</span>
-        <div class="mini">גלים של ימים-שבועות על מניות אמריקאיות · אינטראקטיב ברוקרס בחשבון נייר.
-        <b>עוד לא פתוח לחברים</b> — בחירה בו תשאיר אותך עם מסך נעול, אז אפשר לבחור זהב עכשיו ולהחליף אחר כך.</div></div>
-      <div class="bp-go">בקרוב</div>
+      <div class="bp-mid"><b>בוט המניות — סווינג</b><span class="bp-tag">חשבון נייר</span>
+        <div class="mini">גלים של ימים-שבועות על מניות אמריקאיות · אינטראקטיב ברוקרס בחשבון נייר (מדומה)</div></div>
+      <div class="bp-go">בחר ›</div>
     </div>
     <div class="botpick dim" data-bot="ladder">
       <div class="bp-ic">🪜</div>
@@ -498,12 +458,7 @@ button:active,.sw:active,.dmrow:active,.botpick:active,.chip:active{filter:brigh
 <div id="v-pending" class="full hidden">
   <div style="font-size:56px">⏳</div>
   <div class="title" style="font-size:22px">מחכה לאישור של עידן</div>
-  <div class="mini" style="max-width:340px;font-size:14px">נרשמת וחתמת — נשאר רק שעידן יאשר את הכניסה שלך. תקבל גישה ברגע שהוא מאשר, והמסך הזה יתחלף מעצמו.</div>
-  <!-- 18.8: this screen used to be a dead end. Nobody was told anybody was
-       waiting - not Idan, not the member - and the only button was "sign
-       out". Now one tap raises a hand, and Idan sees it on his own screen. -->
-  <button class="btn" id="pingBtn" onclick="pingOwner()" style="max-width:320px">📣 תגיד לעידן שאני מחכה</button>
-  <div class="mini" id="pingMsg" style="font-size:12px"></div>
+  <div class="mini" style="max-width:340px;font-size:14px">נרשמת וחתמת — נשאר רק שעידן יאשר את הכניסה שלך. תקבל גישה ברגע שהוא מאשר, בדרך כלל תוך זמן קצר. אפשר לסגור ולחזור מאוחר יותר.</div>
   <button class="btn sec" onclick="signOut()">התנתק בינתיים</button>
 </div>
 
@@ -519,12 +474,6 @@ button:active,.sw:active,.dmrow:active,.botpick:active,.chip:active{filter:brigh
     <img class="avatar" id="hAvatar" alt="" referrerpolicy="no-referrer">
   </div>
   <button id="installBtn" class="hidden">📥 התקן</button>
-  <!-- the iPhone equivalent of the install button: Safari has no API for it,
-       only a sentence and an arrow -->
-  <div id="iosHint" class="ioshint hidden">
-    <div style="flex:1">להוסיף למסך הבית: הקש <b>שיתוף</b> <span style="font-size:15px">􀈂</span> ואז <b>הוסף למסך הבית</b></div>
-    <button onclick="dismissIOSHint()" aria-label="סגור">✕</button>
-  </div>
   <div id="alertBar" class="alertbar hidden"></div>
 
   <!-- ===================== THE TABLE ===================== -->
@@ -574,7 +523,6 @@ button:active,.sw:active,.dmrow:active,.botpick:active,.chip:active{filter:brigh
     </div>
     <div class="dfoot">
       <button class="ebtn" id="stopBtn" onclick="emergencyStop()">🛑 עצירת חירום</button>
-      <button class="btn sec hidden" id="resumeBtn" onclick="resumeAll()">▶️ שחרר את המסחר</button>
       <div class="mini" style="margin-top:7px;font-size:11px">עוצר כניסות חדשות בכל הבוטים. פוזיציות פתוחות נשארות ומנוהלות כרגיל.</div>
       <button class="btn sec" style="width:100%;margin-top:9px;font-size:13px;padding:9px" onclick="signOut()">התנתק</button>
     </div>
@@ -769,13 +717,6 @@ button:active,.sw:active,.dmrow:active,.botpick:active,.chip:active{filter:brigh
   </div>
 </div>
 
-<!-- 18.8: NOT deferred, on purpose. The inline block below calls
-     firebase.initializeApp at the top level, so deferring these three and
-     not that one loads the app before its own library and nothing boots at
-     all (found by the browser tests, which is what they are for). The blank
-     first screen is fixed the other way: #v-login starts VISIBLE in the
-     markup above, so the phone paints a real login screen from HTML while
-     these are still downloading. -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
@@ -787,7 +728,7 @@ button:active,.sw:active,.dmrow:active,.botpick:active,.chip:active{filter:brigh
 
 const OWNER_EMAIL = "idan2189@gmail.com";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "3.1.0";
+const APP_VERSION = "3.0.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 /* 2.5.0 — personal QR: ?feed=<key> opens that member's account directly */
@@ -878,7 +819,7 @@ function initFirebase(){
 }
 
 /* ---------- views ---------- */
-const VIEWS = ["v-boot","v-login","v-contract","v-choosebot","v-tour","v-locked","v-blocked","v-pending","v-app"];
+const VIEWS = ["v-login","v-contract","v-choosebot","v-tour","v-locked","v-blocked","v-pending","v-app"];
 function show(id){ VIEWS.forEach(v => $(v).classList.toggle("hidden", v!==id)); }
 
 function route(){
@@ -901,7 +842,6 @@ function route(){
 
 function enterApp(){
   show("v-app");
-  maybeOfferIOSInstall();
   subscribeFeed();
   $("hAvatar").src = ME.photoURL || "icon-192.png";
   $("navAdmin").classList.toggle("hidden", !IS_OWNER);
@@ -957,16 +897,17 @@ async function signIn(){
   }
   const prov = new firebase.auth.GoogleAuthProvider();
   prov.setCustomParameters({prompt:"select_account"});
-  /* 18.8: this used to force signInWithRedirect on EVERY phone. Firebase
-     documents redirect as broken on Safari when the page and the authDomain
-     are different origins - which is exactly this setup (github.io page,
-     firebaseapp.com authDomain). The popup works there; redirect is the
-     fallback, not the default. */
+  if (isMobileUA()){
+    try {
+      sessionStorage.setItem("imc_login_pending","1");
+      await auth.signInWithRedirect(prov);
+      return;
+    } catch(e){ /* fall through to popup */ }
+  }
   try {
     await auth.signInWithPopup(prov);
   } catch(e){
-    if (e && (e.code === "auth/popup-blocked" || e.code === "auth/cancelled-popup-request"
-              || e.code === "auth/operation-not-supported-in-this-environment")){
+    if (e && (e.code === "auth/popup-blocked" || e.code === "auth/cancelled-popup-request")){
       try { sessionStorage.setItem("imc_login_pending","1"); await auth.signInWithRedirect(prov); return; } catch(e2){}
       loginErrHTML("הדפדפן חסם את חלון ההתחברות — אשר חלונות קופצים לאתר הזה ונסה שוב.");
     } else if (e && e.code === "auth/popup-closed-by-user"){
@@ -1017,14 +958,6 @@ async function onUser(user){
         signedContract:false, contractVersion:0, tourDone:false, appVersion:APP_VERSION });
     }
   } catch(e){ $("loginErr").textContent = "שגיאת הרשאות מסד: " + (e.code||e.message); show("v-login"); return; }
-  /* 18.8: the chat used to build its member list by reading every user card -
-     and a user card carries feedId, which is the password to that member's
-     numbers. Names live in their own collection now, holding a name and a
-     photo and nothing else. */
-  try {
-    await db.collection("profiles").doc(user.uid).set(
-      {name:user.displayName||"", photo:user.photoURL||"", t:Date.now()}, {merge:true});
-  } catch(e){}
   unsubMe = uref.onSnapshot(s => { MYDOC = s.data()||{}; route(); });
   if (unsubSet) unsubSet();
   const sref = db.collection("settings").doc("global");
@@ -1037,21 +970,6 @@ async function onUser(user){
     } else SETTINGS = s.data();
     route(); if (IS_OWNER) reflectAdmin();
   }, err => { SETTINGS = {mode:"demo", brokerLink:""}; route(); });
-}
-
-/* one tap that turns "waiting forever" into something Idan can see */
-async function pingOwner(){
-  try {
-    await db.collection("users").doc(ME.uid).update({
-      pingedAt: new Date().toISOString(), pingCount: ((MYDOC&&MYDOC.pingCount)||0)+1 });
-    $("pingMsg").textContent = "נשלח ✓ עידן רואה עכשיו שאתה מחכה.";
-    $("pingBtn").disabled = true;
-  } catch(e){ $("pingMsg").textContent = "לא נשלח (" + ((e&&e.code)||e) + ")"; }
-  try {
-    if (navigator.share) await navigator.share({
-      title:"Idan's Money Club",
-      text:"נרשמתי למועדון וחתמתי — אשמח שתאשר אותי 🙏" });
-  } catch(e){}
 }
 
 /* ---------- contract ---------- */
@@ -1076,12 +994,6 @@ function wireContract(){
 
 /* ---------- choose your bot ---------- */
 async function pickBot(which){
-  /* 18.8: picking swing used to lead to a screen with four padlocks and no
-     way forward - a dead end reached by tapping the second of two buttons.
-     It now says so before it happens instead of after. */
-  if (which === "swing" && !IS_OWNER){
-    if (!confirm("חדר הסווינג עוד לא פתוח לחברים — תישאר עם מסך נעול עד שנפתח אותו.\n\nלהמשיך בכל זאת?")) return;
-  }
   try {
     await db.collection("users").doc(ME.uid).update({botChoice: which, botChosenAt: new Date().toISOString()});
     toast(which==="gold" ? "💰 בוט הזהב נבחר!" : "📈 בוט הסווינג נבחר!");
@@ -1755,9 +1667,7 @@ function initAdmin(){
     qs.forEach(doc => rows.push({id: doc.id, u: doc.data()||{}}));
     rows.sort((a,b) => {
       const pa = a.u.allowed===true?1:0, pb = b.u.allowed===true?1:0;
-      if (pa !== pb) return pa - pb;                 /* pending first */
-      /* and among those, whoever actually raised a hand */
-      return ((b.u.pingedAt||"") > (a.u.pingedAt||"")) ? 1 : -1;
+      return pa - pb; /* pending first */
     });
     let html = "";
     rows.forEach(({id,u})=>{
@@ -1765,15 +1675,11 @@ function initAdmin(){
       const pending = !isOwnerRow && u.allowed!==true;
       html += `<div class="urow" style="${pending?'background:rgba(255,180,84,.07);border-radius:10px;padding-inline:6px':''}">
         <img src="${u.photo||'icon-192.png'}" referrerpolicy="no-referrer" alt="">
-        <div style="flex:1;min-width:0"><b>${u.name||u.email}</b>${pending?' <span class="tag wa">⏳ ממתין לאישור</span>':''}${(pending&&u.pingedAt)?' <span class="tag dn2">📣 ביקש שתאשר</span>':''}
+        <div style="flex:1;min-width:0"><b>${u.name||u.email}</b>${pending?' <span class="tag wa">⏳ ממתין לאישור</span>':''}
           <div class="mini">${u.email}${u.signedContract?` · ✍️ חתם${u.signedAt?" "+String(u.signedAt).slice(0,10):""}`:" · ⚠️ לא חתם"}${u.feedId?` · 🤖 בוט מחובר`:""}</div></div>
         ${isOwnerRow ? `<span class="tag up">👑 בעלים</span>` : `
-        <div class="swwrap"><span class="swlab">כניסה</span>
-          <div class="sw ${u.allowed===true?'on':''}" role="switch" tabindex="0" aria-checked="${u.allowed===true}"
-               aria-label="מאושר להיכנס למועדון" onclick="tglUser('${id}','allowed',${u.allowed===true})"></div></div>
-        <div class="swwrap"><span class="swlab">ברוקר</span>
-          <div class="sw ${u.brokerLinked?'on':''}" role="switch" tabindex="0" aria-checked="${!!u.brokerLinked}"
-               aria-label="נרשם דרך הברוקר, למצב כסף אמיתי" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div></div>`}
+        <div class="sw ${u.allowed===true?'on':''}" title="מאושר להיכנס" onclick="tglUser('${id}','allowed',${u.allowed===true})"></div>
+        <div class="sw ${u.brokerLinked?'on':''}" title="דרך הברוקר (למצב אמיתי)" onclick="tglUser('${id}','brokerLinked',${!!u.brokerLinked})"></div>`}
       </div>
       ${(!isOwnerRow && u.feedId) ? `<div class="ctrlbtns" style="padding:0 6px 8px">
         <button onclick="cmdMember('${u.feedId}','${(u.name||u.email).replace(/'/g,'')}','on')">▶️ הדלק בוט</button>
@@ -1784,12 +1690,6 @@ function initAdmin(){
       </div>` : ''}`;
     });
     $("usersList").innerHTML = html || "עוד אין נרשמים.";
-    /* the badge on the menu, so a waiting member is visible without opening
-       the admin page at all */
-    const waiting = rows.filter(r => (r.u.email||"")!==OWNER_EMAIL && r.u.allowed!==true).length;
-    const nb = $("navAdmin");
-    if (nb) nb.innerHTML = '<span class="e">👑</span>ניהול' +
-      (waiting ? ' <span class="badge">'+waiting+'</span>' : '');
     ADMIN_USERS = rows;
   }, err => { $("usersList").textContent = "שגיאה בטעינת משתמשים: " + err.code; });
 }
@@ -1862,14 +1762,10 @@ async function saveBrokerLink(){
 let CHAN = "club", unsubChat = null, MEMBERS = {}, CHAT_STARTED = false;
 function dmChannel(uidA, uidB){ return "dm_" + [uidA,uidB].sort().join("_"); }
 function loadMembersForDM(){
-  db.collection("profiles").onSnapshot(qs=>{
-    MEMBERS = {};
-    qs.forEach(d=>{ const u=d.data()||{}; if (d.id!==ME.uid && (u.name||"").trim())
-      MEMBERS[d.id]={name:u.name, photo:u.photo}; });
+  db.collection("users").onSnapshot(qs=>{
+    MEMBERS = {}; qs.forEach(d=>{ const u=d.data()||{}; if (d.id!==ME.uid && u.allowed===true) MEMBERS[d.id]={name:u.name||u.email, photo:u.photo}; });
     if (!$("dmList").classList.contains("hidden")) renderDMList();
-  }, e=>{ $("dmList").innerHTML =
-      '<div class="mini" style="padding:12px">לא הצלחתי לטעון את רשימת החברים (' +
-      ((e&&e.code)||"") + ').</div>'; });
+  }, ()=>{});
 }
 function showDMList(){
   $("chatTabGroup").classList.remove("on"); $("chatTabDM").classList.add("on");
@@ -2007,23 +1903,6 @@ function wireNav(){
 
 /* ---------- PWA install + update ---------- */
 let deferredPrompt = null;
-/* 18.8: iOS never fires beforeinstallprompt, so #installBtn stayed hidden
-   forever on an iPhone and there was no instruction anywhere. Idan's members
-   are on phones; half of them are on iPhones. */
-function isIOS(){ return /iPhone|iPad|iPod/i.test(navigator.userAgent); }
-function isStandalone(){
-  return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
-}
-function maybeOfferIOSInstall(){
-  if (!isIOS() || isStandalone()) return;
-  if (localStorage.getItem("imc_ios_hint") === "off") return;
-  const b = $("iosHint"); if (!b) return;
-  b.classList.remove("hidden");
-}
-function dismissIOSHint(){
-  try{ localStorage.setItem("imc_ios_hint","off"); }catch(e){}
-  $("iosHint").classList.add("hidden");
-}
 window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault(); deferredPrompt = e;
   $("installBtn").classList.remove("hidden");
@@ -2176,7 +2055,7 @@ function memberLive(){
       equity:eq,balance:+mj.balance||eq,day_gross:day,day_open_equity:eq-day,
       day_pct:pctOf(day,eq-day),open_count:rows.length,open_gross:open,
       trades_today:mj.trades_today,enabled:mj.enabled!==false,age_sec:age,
-      status:(age===null?"unknown":(age<=600?"ok":"stale")),
+      status:(age===null?"unknown":(age<=300?"ok":"stale")),
       note:(mj.account?("חשבון "+mj.account):"")}],
     totals:{open_gross:+open.toFixed(2),open_fee_est:0,open_net_est:+open.toFixed(2),
       open_count:rows.length,day_gross:day,day_fee:0,day_net:day,
@@ -2335,16 +2214,8 @@ function renderLive(){
 
   /* the fallen-bot alarm (interview: "tell me loudly, do not show me stale numbers") */
   const down = (L.bots||[]).filter(b=>b.status==="stale");
-  /* A bot that is RUNNING but not doing its job is worse than one that fell
-     over, because it looks healthy. 18.8: the copier moved to a new account,
-     the teacher had a leg open, and it copied nothing - silently. */
-  const idle = (L.bots||[]).filter(b=>b.not_copying);
   const bar = $("alertBar");
-  if (idle.length){
-    bar.classList.remove("hidden");
-    bar.innerHTML = "🔴 " + idle.map(b=>b.name).join(" · ") + " לא מעתיק" +
-      (idle[0].blocked ? (" — " + idle[0].blocked) : " — למורה יש פוזיציה פתוחה ולך אין");
-  } else if (down.length && !closed){
+  if (down.length && !closed){
     bar.classList.remove("hidden");
     bar.textContent = "⚠️ " + down.map(b=>b.name).join(" · ") +
       (down.length===1?" הפסיק לדווח":" הפסיקו לדווח") + " — המספרים שמוצגים אינם עדכניים";
@@ -2467,11 +2338,6 @@ function renderBotSheet(id){
     h += '<div class="sect"><h4>🔗 המורה</h4>'
       + '<div class="logline">רגליים פתוחות אצל המורה: <b>'+(b.teacher_legs!==undefined?b.teacher_legs:"—")+'</b></div>'
       + '<div class="logline">מצב העתקה: <b>'+(b.mode||"—")+'</b> · לוטים פתוחים '+(b.open_lots!==undefined?b.open_lots:"—")+'</div>'
-      + '<div class="logline">חשבון <b>'+(b.account||"—")+'</b>'
-      +   (b.server?(' · '+b.server):'')+' · סימבול <b>'+(b.symbol||"—")+'</b></div>'
-      + (b.margin_free!==undefined&&b.margin_free!==null
-          ? '<div class="logline">מרווח פנוי <b>'+money(b.margin_free,0)+'</b> · בשימוש '
-            +money(b.margin_used,0)+(b.leverage?(' · מינוף 1:'+b.leverage):'')+'</div>' : '')
       + '<div class="logline">שומר-מחיר-כניסה פעיל: אם המחיר אצלך רחוק מהמחיר של המורה, מונחת פקודת לימיט במחיר שלו במקום כניסה במחיר גרוע.</div></div>';
     if (L._legacy || !(P.slave&&Array.isArray(P.slave.positions)))
       h += '<div class="mini" style="margin-top:9px">💡 הרווח של כל רגל בנפרד יופיע כאן ברגע שגרסה 2.01 של המעתיק תעלה במטה-טריידר. עד אז מוצג הרווח הצף של החשבון כולו.</div>';
@@ -2626,31 +2492,12 @@ async function emergencyStop(){
       await writeCommand(MYDOC.feedId, {action:"toggle", enabled:false, ts:Date.now()});
       toast("🛑 הבוט שלך כובה. רענן במחשב אם הוא לא מגיב תוך דקה.");
     } else toast("אין בוט מחובר לעצור.");
-    $("resumeBtn").classList.remove("hidden");
-  } catch(e){
-    /* 18.8: this used to fail EVERY time for a member - the rules allowed
-       only Idan to write a command - and the button just said "try again".
-       The rules were the bug; this now reports what actually happened. */
-    toast("העצירה נכשלה (" + ((e&&e.code)||e) + ")");
-  }
+  } catch(e){ toast("העצירה נכשלה — נסה שוב"); }
 }
-/* 18.8: this existed and was called from nowhere. Once the club was halted
-   there was no way to un-halt it from the app. */
 async function resumeAll(){
-  try {
-    if (IS_OWNER){
-      await db.collection("control").doc("global").set(
-        {halt:false, close_all:false, by:(ME&&ME.email)||"owner", at:new Date().toISOString()}, {merge:true});
-      let n = 0;
-      (ADMIN_USERS||[]).forEach(u=>{ if(u.feedId){ writeCommand(u.feedId,
-        {action:"toggle", enabled:true, ts:Date.now()}); n++; } });
-      toast("▶️ המסחר שוחרר. " + n + " בוטים של חברים הודלקו חזרה.");
-    } else if (MYDOC && MYDOC.feedId){
-      await writeCommand(MYDOC.feedId, {action:"toggle", enabled:true, ts:Date.now()});
-      toast("▶️ הבוט שלך הודלק חזרה.");
-    } else toast("אין בוט מחובר להדליק.");
-    $("resumeBtn").classList.add("hidden");
-  } catch(e){ toast("ההדלקה נכשלה (" + ((e&&e.code)||e) + ")"); }
+  try { await db.collection("control").doc("global").set(
+    {halt:false, close_all:false, by:(ME&&ME.email)||"owner", at:new Date().toISOString()}, {merge:true});
+    toast("▶️ המסחר שוחרר"); } catch(e){ toast("נכשל"); }
 }
 
 
