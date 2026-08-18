@@ -16,8 +16,34 @@ rules_version = '2';
 //      It runs under Constrained Language Mode with no login, so it can only
 //      use the public API key. It writes feeds/<key> and reads commands/<key>.
 //
-//  Everything else is closed. Nothing here ever exposes one member's account
-//  to another member.
+//  v4 · 18.8.2026 — THREE HOLES CLOSED. The v3 header claimed "nothing here
+//  ever exposes one member's account to another member". That was not true,
+//  and the correction belongs at the top of the file rather than buried:
+//
+//   1. SELF-APPROVAL. `users/{uid}` update was `isMe(uid) || owner()` with no
+//      field list, so any signed-in member could set their own allowed:true
+//      and walk past the approval gate. A member may now change only their
+//      own cosmetic fields; allowed, brokerLinked and role are owner-only.
+//   2. EVERY MEMBER'S FEED KEY WAS READABLE BY EVERY MEMBER. `users` read was
+//      `signedIn()` because the chat needed names for the private-message
+//      list - and the user card also carries feedId, which IS the password to
+//      that member's numbers. Names now live in `profiles/{uid}`, which holds
+//      a display name and a photo and nothing else; `users` is readable by
+//      its owner and by Idan only.
+//   3. THE MEMBER'S EMERGENCY STOP COULD NEVER WORK. The button wrote
+//      `commands/<their key>` and this file said owner-only, so a member
+//      pressing the big red button got an error every single time. A member
+//      may now write the command document whose key is the feedId on their
+//      own user card - and only that one.
+//
+//  What is still true, and is a deliberate trade rather than an oversight:
+//  a feed key is a bearer token. Anyone holding a member's 24+ character key
+//  can read that member's demo numbers and post to that feed, because the
+//  publisher on their PC runs with no login and cannot hold a credential.
+//  The keys are no longer handed out to other members, which was the actual
+//  leak. Do not print a key anywhere it can be photographed.
+//
+//  Everything else is closed.
 // ===========================================================================
 
 service cloud.firestore {
@@ -33,13 +59,35 @@ service cloud.firestore {
     function longKey(k) { return k.size() >= 24; }
 
     // ---------------------------------------------------------------- users
-    // A member reads and updates their own card. The whole list is readable
-    // by any signed-in member because the club chat needs names and avatars
-    // to build the private-message list; nothing financial lives here.
+    // A member reads and updates their OWN card, and nobody else's. The card
+    // carries feedId, which is the password to that member's numbers, so
+    // "readable by any signed-in member" was a leak, not a convenience.
+    // A deny list, not an allow list: the app writes a dozen harmless fields
+    // (the contract, the tour, the bot choice, the feed key) and adding a new
+    // one must never silently start failing. Only the three that decide
+    // PRIVILEGE are closed, and they are closed to everyone but Idan.
+    function notPrivilege() {
+      return !request.resource.data.diff(resource.data).affectedKeys()
+              .hasAny(['allowed','brokerLinked','role','admin','owner']);
+    }
     match /users/{uid} {
-      allow read:   if signedIn();
+      allow read:   if isMe(uid) || owner();
       allow create: if isMe(uid) || owner();
-      allow update: if isMe(uid) || owner();
+      // a member may not promote themselves past the approval gate
+      allow update: if owner() || (isMe(uid) && notPrivilege());
+      allow delete: if owner();
+    }
+
+    // ------------------------------------------------------------- profiles
+    // Just a display name and a photo, so the chat can build a member list
+    // without handing out anybody's feed key. Written by the member, read by
+    // signed-in members. Nothing financial is allowed in here - the field
+    // list is the guarantee, not a promise in a comment.
+    match /profiles/{uid} {
+      allow read:   if signedIn();
+      allow create, update: if isMe(uid)
+                            && request.resource.data.keys()
+                               .hasOnly(['name','photo','t']);
       allow delete: if owner();
     }
 
@@ -91,14 +139,22 @@ service cloud.firestore {
     // this document and applies it locally. Public read, owner-only write.
     match /commands/{key} {
       allow read:  if longKey(key);
-      allow write: if owner();
+      // Idan commands anyone's bot. A member may command exactly one bot:
+      // the one whose key is written on their own user card. Without this,
+      // the member's emergency stop button was decoration.
+      allow write: if owner()
+                   || (signedIn() && longKey(key)
+                       && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+                       && get(/databases/$(database)/documents/users/$(request.auth.uid))
+                          .data.feedId == key);
     }
 
     // ----------------------------------------------------------------- chat
     // The club room is for signed-in members. A private thread is named
     // dm_<uidA>_<uidB>, so membership of the thread is checkable from the id.
     match /chat/{chan} {
-      allow read, write: if signedIn();
+      allow read: if signedIn();
+      allow write: if signedIn();
       match /messages/{msg} {
         allow read: if signedIn()
                     && (chan == 'club' || !chan.matches('dm_.*')
