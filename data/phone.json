@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-18 03:06",
+  "updated_israel": "2026-08-18 03:07",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "fail: order rejected 0",
-    "age_sec": 13.4,
+    "age_sec": 6.0,
     "status": "ok"
    },
    {
@@ -35,9 +35,9 @@
     "open_gross": -0.61,
     "open_lots": 0.0,
     "mode": "exact 1:1 v2",
-    "teacher_equity": 197691.97,
-    "teacher_legs": 1,
-    "age_sec": 242.2,
+    "teacher_equity": 197693.57,
+    "teacher_legs": 0,
+    "age_sec": 314.8,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD",
@@ -46,7 +46,7 @@
     "margin_free": null,
     "margin_used": null,
     "blocked": null,
-    "not_copying": true,
+    "not_copying": false,
     "note": "מעתיק את המורה 1:1 עם שומר-מחיר-כניסה"
    },
    {
@@ -54,7 +54,7 @@
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1130.53,
+    "equity": 1130.09,
     "balance": 583.58,
     "day_gross": -2.39,
     "day_open_equity": 1127.24,
@@ -71,28 +71,12 @@
      "file_ok": true
     },
     "broker_equity": 945.73,
-    "age_sec": 328.4,
+    "age_sec": 101.0,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
   "rows": [
-   {
-    "bot": "ladder",
-    "symbol": "XAUUSD",
-    "side": "SELL",
-    "size": 0.01,
-    "unit": "lot",
-    "entry": 4423.62,
-    "price": null,
-    "gross": null,
-    "fee_est": 0.28,
-    "notional": 4423.62,
-    "pct_pos": null,
-    "pct_acct": null,
-    "ticket": "471636356",
-    "price_unknown": true
-   },
    {
     "bot": "swing",
     "symbol": "LYFT",
@@ -111,14 +95,14 @@
   ],
   "totals": {
    "open_gross": 16.0,
-   "open_fee_est": 2.28,
-   "open_net_est": 13.72,
-   "open_count": 2,
+   "open_fee_est": 2.0,
+   "open_net_est": 14.0,
+   "open_count": 1,
    "day_gross": 361.85,
    "day_fee": 175.0,
    "day_net": 186.85,
    "day_pct": 1.51,
-   "equity": 24274.21,
+   "equity": 24273.77,
    "day_open_equity": 23907.29,
    "pocket_since_start": -614.96,
    "fee_since_start": 316.4
@@ -721,14 +705,26 @@
    "unit": "lot",
    "price": null,
    "gross": null
+  },
+  {
+   "t": "03:07",
+   "day": "2026-08-18",
+   "kind": "close",
+   "bot": "ladder",
+   "symbol": "XAUUSD",
+   "side": "SELL",
+   "size": 0.01,
+   "unit": "lot",
+   "price": null,
+   "gross": null
   }
  ],
- "updated_utc": "2026-08-18T00:06:28.407470+00:00",
- "updated_israel": "2026-08-18 03:06",
+ "updated_utc": "2026-08-18T00:07:41.044510+00:00",
+ "updated_israel": "2026-08-18 03:07",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.18 03:06:15",
+  "updated": "2026.08.18 03:07:35",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -749,23 +745,15 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "fail: order rejected 0",
-  "spread_points": 36.0,
+  "spread_points": 30.0,
   "position": null
  },
  "copier": {
   "ok": true,
-  "legs": [
-   {
-    "ticket": "471636356",
-    "symbol": "XAUUSD",
-    "side": "sell",
-    "volume": 0.01,
-    "entry": 4423.62
-   }
-  ],
-  "equity": 197691.97,
-  "stamp": "2026.08.18 03:06:26",
-  "age_sec": 0.7
+  "legs": [],
+  "equity": 197693.57,
+  "stamp": "2026.08.18 03:07:40",
+  "age_sec": 0.4
  },
  "slave": {
   "ok": true,
@@ -790,7 +778,7 @@
   "server": null,
   "mode": "exact 1:1 v2",
   "stamp": "2026.08.18 01:54:40",
-  "age_sec": 242.2
+  "age_sec": 314.8
  },
  "fees": {
   "model": "profit_minus_fee_v2",
@@ -858,12 +846,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 583.5814141873284,
-  "equity": 1130.53,
+  "equity": 1130.09,
   "realized_pnl": 135.3,
-  "open_pnl": 0.7,
+  "open_pnl": 0.26,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.05,
+  "return_pct": 13.01,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -932,7 +920,7 @@
    "score": 78,
    "rsi": 62.1,
    "rvol": 0.64,
-   "placed_for": "2026-08-18 02:56"
+   "placed_for": "2026-08-18 03:01"
   }
  ],
  "scan_universe": {
@@ -1063,9 +1051,9 @@
    "name": "👹 בוס היום",
    "target": 90.18,
    "legend": 225.45,
-   "done": 3.29,
+   "done": 2.85,
    "base": 1127.24,
-   "pct": 4,
+   "pct": 3,
    "pct_legend": 1,
    "beaten": false,
    "legendary": false
