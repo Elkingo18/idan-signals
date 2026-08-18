@@ -43,6 +43,10 @@ rules_version = '2';
 //  The keys are no longer handed out to other members, which was the actual
 //  leak. Do not print a key anywhere it can be photographed.
 //
+//  v6 · 18.8.2026 - 'shopOpen' joins the privilege deny list. Idan opens the
+//  shop to one member at a time, so a member writing that field on their own
+//  card would BE the purchase. Hiding the tab is the courtesy; this is the lock.
+//
 //  v5 · 18.8.2026 — the club grew a handle, a shop and a support desk, and
 //  every one of them is a way in if it is written lazily. The rules for the
 //  new collections follow three fixed ideas:
@@ -92,7 +96,7 @@ service cloud.firestore {
     function notPrivilege() {
       return !request.resource.data.diff(resource.data).affectedKeys()
               .hasAny(['allowed','brokerLinked','role','admin','owner',
-                       'slots','paid','handle','handleLower']);
+                       'slots','paid','handle','handleLower','shopOpen']);
     }
     match /users/{uid} {
       allow read:   if isMe(uid) || owner();
