@@ -1,24 +1,24 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-19 02:37",
+  "updated_israel": "2026-08-19 02:38",
   "bots": [
    {
     "id": "gold",
     "name": "בוט הזהב",
     "icon": "🪙",
     "market": "XAUUSD",
-    "equity": 9773.63,
+    "equity": 9783.78,
     "balance": 9503.64,
-    "day_gross": -258.67,
+    "day_gross": -248.52,
     "day_open_equity": 10032.3,
-    "day_pct": -2.58,
+    "day_pct": -2.48,
     "open_count": 0,
     "open_gross": 0.0,
     "trades_today": 0,
     "enabled": true,
     "note": "skip: no burst -0.69atr",
-    "age_sec": 5.5,
+    "age_sec": 15.5,
     "status": "ok"
    },
    {
@@ -35,9 +35,9 @@
     "open_gross": 0.0,
     "open_lots": 0.0,
     "mode": "exact 1:1 v3.11 full book",
-    "teacher_equity": 199069.19,
+    "teacher_equity": 199070.2,
     "teacher_legs": 0,
-    "age_sec": 0.1,
+    "age_sec": 0.0,
     "status": "ok",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -45,9 +45,9 @@
     "leverage": 500,
     "margin_free": 10994.63,
     "margin_used": 0.0,
-    "blocked": "1 of his legs have no copy here (a copy was closed by something other than him) - not re-entering at a price he never took",
-    "not_copying": true,
-    "note": "1 of his legs have no copy here (a copy was closed by something other than him) - not re-entering at a price he never took"
+    "blocked": null,
+    "not_copying": false,
+    "note": "מעתיק את המורה 1:1 עם שומר-מחיר-כניסה"
    },
    {
     "id": "swing",
@@ -71,7 +71,7 @@
      "file_ok": true
     },
     "broker_equity": 939.53,
-    "age_sec": 260.5,
+    "age_sec": 330.5,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -98,11 +98,11 @@
    "open_fee_est": 2.0,
    "open_net_est": 7.8,
    "open_count": 1,
-   "day_gross": -234.29,
+   "day_gross": -224.14,
    "day_fee": 17.08,
-   "day_net": -251.37,
-   "day_pct": -1.06,
-   "equity": 21840.26,
+   "day_net": -241.22,
+   "day_pct": -1.02,
+   "equity": 21850.41,
    "day_open_equity": 22077.17,
    "pocket_since_start": 49.15,
    "fee_since_start": 449.12
@@ -1030,21 +1030,21 @@
    "gross": 0.04
   }
  ],
- "updated_utc": "2026-08-18T23:37:20.484745+00:00",
- "updated_israel": "2026-08-19 02:37",
+ "updated_utc": "2026-08-18T23:38:30.533359+00:00",
+ "updated_israel": "2026-08-19 02:38",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.19 02:37:15",
+  "updated": "2026.08.19 02:38:15",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 9503.64,
-  "equity": 9773.63,
+  "equity": 9783.78,
   "day_start_equity": 10032.3,
-  "day_pnl": -258.67,
+  "day_pnl": -248.52,
   "trades_today": 0,
   "cooldown_bars": 0,
   "enabled": true,
@@ -1056,16 +1056,16 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst -0.69atr",
-  "spread_points": 43.0,
+  "spread_points": 41.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [],
-  "equity": 199069.19,
-  "stamp": "2026.08.19 02:37:19",
+  "equity": 199070.2,
+  "stamp": "2026.08.19 02:38:27",
   "age_sec": 0.6,
-  "error": "could not convert string to float: 'sell'"
+  "error": "could not convert string to float: 'sellstop'"
  },
  "slave": {
   "ok": true,
@@ -1080,7 +1080,7 @@
   "positions": [],
   "floating": 0.0,
   "code_version": 312,
-  "blocked": "1 of his legs have no copy here (a copy was closed by something other than him) - not re-entering at a price he never took",
+  "blocked": "",
   "algo_allowed": true,
   "symbol": "XAUUSD+",
   "is_demo": true,
@@ -1089,8 +1089,8 @@
   "margin_used": 0.0,
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
-  "stamp": "2026.08.19 02:37:19",
-  "age_sec": 0.1
+  "stamp": "2026.08.19 02:38:30",
+  "age_sec": 0.0
  },
  "fees": {
   "model": "profit_minus_fee_v2",
