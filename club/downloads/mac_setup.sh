@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Idans Money Club - setup for macOS
-#  Installs the club's gold bot into the member's own MetaTrader 5 DEMO
+#  Installs the club's black-day bot into the member's own MetaTrader 5 DEMO
 #  account (the Mac build of MT5 runs inside a wine bottle) and starts
 #  the feed so the member sees their own stack in the app.
 #  DEMO MONEY ONLY. No passwords are asked for or stored.
@@ -14,7 +14,7 @@ say(){ printf '%s\n' "$1"; printf '%s  %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$1"
 
 say ""
 say "============================================================"
-say "        Idans Money Club  -  Gold Bot setup (macOS)"
+say "        Idans Money Club  -  Black-Day Bot setup (macOS)"
 say "        Demo money only. Nothing here touches real funds."
 say "============================================================"
 say ""
@@ -67,26 +67,38 @@ say "   $MQL5"
 # 3. install the bot + the exact settings Idan runs
 # ---------------------------------------------------------------------
 say "STEP 3 of 4 - installing the bot ..."
-if curl -fsSL "$BASEURL/IdanGold.ex5" -o "$EXPERTS/IdanGold.ex5"; then
+if curl -fsSL "$BASEURL/IdanDrawerGold.ex5" -o "$EXPERTS/IdanDrawerGold.ex5"; then
   say "   Bot installed (ready-to-run build, nothing to compile)."
 else
-  say "   Could not download the bot. Check your internet and run this again."
-  exit 1
+  # 19.8.2026 - this used to "exit 1" and it cost us a live install on the
+  # Windows twin: the bot file was briefly missing, the script stopped, and
+  # the member never reached the step that creates the feed. The bot is the
+  # least urgent part of this script; the key and the feed are what connect
+  # the account at all. Carry on.
+  say "   Could not download the bot right now. That is NOT fatal -"
+  say "   your key and your connection are set up below."
+  say "   Run this installer again in a few minutes and the bot will land."
 fi
 
-FILESDIR="$MQL5/Files/IdanGold"
-mkdir -p "$FILESDIR"
-cat > "$FILESDIR/params.json" <<'PARAMS'
-{ "version":36,"enabled":true,"risk_pct":5.0,"h1_fast":34,"h1_slow":89,
-"ema_fast":20,"ema_slow":600,"atr_period":14,"sl_atr":1.0,"tp1_r":1.5,"tp2_r":5.0,
-"tp1_close_frac":0.0,"be_at_r":0.5,"trail_atr":2.0,"max_spread_frac":0.1,
-"atr_min_points":60.0,"atr_max_points":1600,"max_trades_day":999,
-"daily_loss_stop_pct":6.0,"max_consec_losses":3,"cooldown_bars":8,"tf_minutes":15,
-"lock_at_r":0.3,"lock_give_r":0.15,"fixed_lots":0.0,"max_stake_pct":9.0,
-"entry_mode":1,"burst_bars":4,"burst_atr":2.0,"risk_mode":1,
-"rp_peak":5.0,"rp_norm":4.0,"rp_dd1":2.5,"rp_dd2":1.5,"dd1_pct":15.0,"dd2_pct":30.0 }
-PARAMS
-say "   Settings written (same as Idans: burst entry, risk ladder 3-9%)."
+# The bot ships DISARMED in its source on purpose. Arming lives in this one
+# named file, which you can read and delete. Two numbers matter most:
+#   InpMaxLegs=8       the deepest ladder a ~$10,000 demo can carry. The bot
+#                      this one replicates ran 13 rungs on $201,000 and lost
+#                      $197,000 of it in six hours on 19.8.2026.
+#   InpDailyTargetUsd  the day closes itself at +$1,200 and opens nothing new.
+# If your balance cannot carry 8 rungs the bot REFUSES TO START and prints
+# the numbers. That refusal is the whole point of this build.
+PRESETS="$MQL5/Presets"
+mkdir -p "$PRESETS"
+cat > "$PRESETS/drawer.set" <<'SETEOF'
+InpArmed=true
+InpDemoOnly=true
+InpWorstDayPctCap=10.0
+InpMaxLegs=8
+InpDailyTargetUsd=1200.0
+InpMagic=770118
+SETEOF
+say "   Settings written: 8 rungs max, stops the day at +\$1,200, demo only."
 
 # ---------------------------------------------------------------------
 # 4. the feed - so the member sees their own account in the app
@@ -125,7 +137,7 @@ say "============================================================"
 say "  DONE. Three small things you do by hand in MetaTrader:"
 say ""
 say "  1) Open a GOLD chart (XAUUSD)."
-say "  2) From the Navigator on the left, drag 'IdanGold' onto"
+say "  2) From the Navigator on the left, drag 'IdanDrawerGold' onto"
 say "     that chart and click OK."
 say "  3) The 'Algo Trading' button at the top must be GREEN."
 say ""
