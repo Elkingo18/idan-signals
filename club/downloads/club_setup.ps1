@@ -98,37 +98,56 @@ Say ('   Gold symbol:                ' + $SYM)
 # ---------------------------------------------------------------------
 Say 'STEP 3 of 5 - installing the bot ...'
 $exp = Join-Path $Tdata 'MQL5\Experts'
-$mq  = Join-Path $exp 'IdanGold.mq5'
-$ex5 = Join-Path $exp 'IdanGold.ex5'
+$mq  = Join-Path $exp 'IdanDrawerGold.mq5'
+$ex5 = Join-Path $exp 'IdanDrawerGold.ex5'
 $gotBot = $false
 try {
     # (no TLS tweak here on purpose: setting it is a .NET static call, which
     #  Smart App Control blocks. Windows 11 already negotiates TLS 1.2+.)
     # the ready-to-run build - no compiling needed on the member's machine
-    Invoke-WebRequest -Uri ($BASEURL + 'IdanGold.ex5') -OutFile $ex5 -UseBasicParsing -TimeoutSec 90
+    Invoke-WebRequest -Uri ($BASEURL + 'IdanDrawerGold.ex5') -OutFile $ex5 -UseBasicParsing -TimeoutSec 90
     if ((Get-Item -LiteralPath $ex5 -ErrorAction SilentlyContinue).Length -gt 10000) { $gotBot = $true; Say '   Bot installed (ready-to-run build, nothing to compile).' }
 } catch { Say ('   Ready-made build not available: ' + $_.Exception.Message) }
 if (-not $gotBot) {
     try {
-        Invoke-WebRequest -Uri ($BASEURL + 'IdanGold.mq5') -OutFile $mq -UseBasicParsing -TimeoutSec 60
+        Invoke-WebRequest -Uri ($BASEURL + 'IdanDrawerGold.mq5') -OutFile $mq -UseBasicParsing -TimeoutSec 60
         Say '   Bot source downloaded (will be compiled below).'
-    } catch { Say ('   Could not download the bot: ' + $_.Exception.Message); return }
+    } catch {
+        # 19.8.2026 - THIS LINE USED TO SAY 'return', AND IT COST US A LIVE
+        # INSTALL. The bot file was briefly missing from the site, the
+        # download threw, the whole script stopped here - and the member
+        # never reached step 5, so no feed task was created and no key was
+        # printed at the end. A wall of red, and nothing connected.
+        #
+        # The bot is the LEAST urgent part of this script. The key and the
+        # feed are what let Idan see the account at all, and a missing
+        # download must never take them down with it. Carry on, and say
+        # plainly what is missing.
+        Say ('   Could not download the bot right now: ' + $_.Exception.Message)
+        Say '   That is not fatal - your key and your connection are set up below.'
+        Say '   Run this installer again in a few minutes and the bot will land.'
+    }
 }
 
-$filesDir = Join-Path $Tdata 'MQL5\Files\IdanGold'
-if (-not (Test-Path -LiteralPath $filesDir)) { New-Item -ItemType Directory -Path $filesDir -Force | Out-Null }
-$params = @'
-{ "version":36,"enabled":true,"risk_pct":5.0,"h1_fast":34,"h1_slow":89,
-"ema_fast":20,"ema_slow":600,"atr_period":14,"sl_atr":1.0,"tp1_r":1.5,"tp2_r":5.0,
-"tp1_close_frac":0.0,"be_at_r":0.5,"trail_atr":2.0,"max_spread_frac":0.1,
-"atr_min_points":60.0,"atr_max_points":1600,"max_trades_day":999,
-"daily_loss_stop_pct":6.0,"max_consec_losses":3,"cooldown_bars":8,"tf_minutes":15,
-"lock_at_r":0.3,"lock_give_r":0.15,"fixed_lots":0.0,"max_stake_pct":9.0,
-"entry_mode":1,"burst_bars":4,"burst_atr":2.0,"risk_mode":1,
-"rp_peak":5.0,"rp_norm":4.0,"rp_dd1":2.5,"rp_dd2":1.5,"dd1_pct":15.0,"dd2_pct":30.0 }
-'@
-Set-Content -LiteralPath (Join-Path $filesDir 'params.json') -Value $params -Encoding ASCII
-Say '   Settings written (same as Idans: burst entry, risk ladder 3-9%).'
+$preDir = Join-Path $Tdata 'MQL5\Presets'
+if (-not (Test-Path -LiteralPath $preDir)) { New-Item -ItemType Directory -Path $preDir -Force | Out-Null }
+#  The bot ships DISARMED in its source on purpose. Arming lives here, in one
+#  named file you can read and delete. Two numbers matter more than the rest:
+#    InpMaxLegs=8        - the deepest ladder a ~$10,000 demo can carry. The
+#                          bot this one replicates ran 13 rungs on $201,000
+#                          and lost $197,000 of it in six hours on 19.8.2026.
+#    InpWorstDayPctCap   - and if your balance cannot even carry 8, the bot
+#                          REFUSES TO START and tells you the numbers. That
+#                          refusal is the whole point of this build.
+@(
+  'InpArmed=true',
+  'InpDemoOnly=true',
+  'InpWorstDayPctCap=10.0',
+  'InpMaxLegs=8',
+  'InpDailyTargetUsd=1200.0',
+  'InpMagic=770118'
+) | Set-Content -LiteralPath (Join-Path $preDir 'drawer.set') -Encoding ASCII
+Say '   Settings written: 8 rungs max, stops the day at +$1,200, demo only.'
 
 # compile - only needed if the ready-to-run build was unavailable
 $me = $null
@@ -154,15 +173,18 @@ if (-not $gotBot) {
             if (Test-Path -LiteralPath $ex5) { $compiled = $true; Say '   Compiled the bot.' }
         } catch { Say ('   Automatic compile did not run: ' + $_.Exception.Message) }
     } else {
-        Say '   MetaEditor not found - open MetaEditor once, select IdanGold and press F7.'
+        Say '   MetaEditor not found - open MetaEditor once, select IdanDrawerGold and press F7.'
     }
-    if (-not $compiled) { Say '   NOTE: if the bot is missing from the Navigator, open MetaEditor, select IdanGold, press F7.' }
+    if (-not $compiled) { Say '   NOTE: if the bot is missing from the Navigator, open MetaEditor, select IdanDrawerGold, press F7.' }
 }
 
 # ---------------------------------------------------------------------
 # 4. attach it to a gold chart automatically and start the terminal
 # ---------------------------------------------------------------------
 Say 'STEP 4 of 5 - putting the bot on a gold chart ...'
+if (-not (Test-Path -LiteralPath $ex5)) {
+    Say '   No bot file yet - skipping the chart step. Everything below still runs.'
+} else {
 $ini = Join-Path $root 'idan_club.ini'
 $iniText = @"
 [Common]
@@ -178,7 +200,8 @@ Account=0
 Profile=0
 
 [StartUp]
-Expert=IdanGold
+Expert=IdanDrawerGold
+ExpertParameters=drawer.set
 Symbol=$SYM
 Period=M15
 "@
@@ -192,11 +215,14 @@ if ($Texe) {
         Say '   MetaTrader restarted with the bot on a gold chart.'
     } catch { Say ('   Could not restart MetaTrader automatically: ' + $_.Exception.Message) }
 } else {
-    Say '   Open MetaTrader, open a ' + $SYM + ' chart, and drag IdanGold onto it.'
+    Say '   Open MetaTrader, open a ' + $SYM + ' chart, and drag IdanDrawerGold onto it.'
+}
+
 }
 
 # ---------------------------------------------------------------------
 # 5. the feed - so the member sees their own account in the app
+#    THIS ALWAYS RUNS. Nothing above it is allowed to skip it.
 # ---------------------------------------------------------------------
 Say 'STEP 5 of 5 - connecting your account to the app ...'
 $feed = Join-Path $root 'feed_publish.ps1'
