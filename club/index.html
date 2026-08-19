@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Idan's Money Club</title>
-<meta name="theme-color" content="#0a1410">
+<meta name="theme-color" content="#08140a">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -512,6 +512,141 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
   .lrow .pl .g{font-size:17px}
 }
 
+/* ===================================================================
+   v4.0.0 — MONOPOLY EDITION · 19.8.2026, the night GoldTrap died.
+   Idan: "תעשה את זה בדיוק בעיצוב המשחק של מונופול". This block RESTYLES
+   the whole app in the language of the board game — board greens, cream
+   property cards with their colour bands, game-money tones — without
+   copying a single Hasbro asset: the crown-coin mark is ours, the tile
+   art is ours, and no imitation of their logotype or mascot appears.
+   It is appended, the way v3 and v3.2 were: the cascade wins, and not
+   one selector or id above had to move, so the 170 browser tests keep
+   meaning what they meant.
+   =================================================================== */
+:root{
+  --bg:#08140a; --bg2:#0f2212; --line:#1e3b22; --line2:#2f5a35;
+  --felt:#0f4423; --felt2:#0a2f18; --felt3:#06170c;
+  --rail:#7a5c22; --brass:#c9a227;
+  --gold:#dfb440; --richgold:#f3d878;
+  --ink:#eef4ea; --ink2:#bcd0b8; --ink3:#96b195;
+  --up:#3ddc84; --dn:#ff6f61; --warn:#ffc24b;
+  /* the classic property colours, straight off the board */
+  --p-brown:#955436; --p-lblue:#aae0fa; --p-pink:#d93a96; --p-orange:#f7941d;
+  --p-red:#ed1b24; --p-yellow:#f4cf0c; --p-green:#1fb25a; --p-dblue:#0072bb;
+  --cream:#f6f1e1; --cream2:#efe7cf; --creamInk:#1e2b18;
+}
+/* the table becomes the board: cream playing field, double frame, GO corner */
+#table{background:
+  radial-gradient(ellipse 130% 82% at 50% 28%, #145c2e 0%, var(--felt) 40%, var(--felt2) 74%, var(--felt3) 100%),
+  var(--felt3)}
+#table::before{border:3px solid rgba(223,180,64,.35);border-radius:24px;inset:8px}
+#table::after{border:1.5px dashed rgba(246,241,225,.14);border-radius:19px;inset:15px}
+.weave{opacity:.32;background-image:
+  repeating-linear-gradient(0deg,rgba(246,241,225,.012) 0 1px,transparent 1px 26px),
+  repeating-linear-gradient(90deg,rgba(246,241,225,.012) 0 1px,transparent 1px 26px)}
+/* a quiet GO corner on the board — ours, not theirs */
+.gocorner{position:absolute;bottom:74px;inset-inline-start:16px;z-index:1;
+  width:64px;height:64px;border-radius:12px;border:2px solid rgba(223,180,64,.4);
+  background:linear-gradient(160deg,rgba(237,27,36,.16),rgba(0,0,0,.25));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--richgold);font-weight:900;pointer-events:none;transform:rotate(-6deg)}
+.gocorner .goarrow{font-size:20px;line-height:1}
+.gocorner .gotxt{font-size:15px;letter-spacing:2px}
+@media(max-width:520px){.gocorner{display:none}}
+/* the brand carries the crown-coin mark */
+.brand{display:flex;align-items:center;gap:7px}
+.brand svg{width:24px;height:24px;flex:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5))}
+/* live rows as little property cards: colour band per bot */
+.lrow{border-inline-start-width:5px;border-radius:11px;
+  background:linear-gradient(180deg,rgba(246,241,225,.085),rgba(246,241,225,.025))}
+.lrow.gold{border-inline-start-color:var(--p-yellow)}
+.lrow.ladder{border-inline-start-color:var(--p-orange)}
+.lrow.swing{border-inline-start-color:var(--p-dblue)}
+.lrow.mine{border-inline-start-color:var(--p-green)}
+.lrow.drawer{border-inline-start-color:var(--p-red)}
+/* bot chips as property title-deed cards: cream face, colour band, dark ink */
+.chip{background:linear-gradient(180deg,var(--cream),var(--cream2));
+  border:1.5px solid #d9cfae;border-radius:13px;color:var(--creamInk);
+  padding:0 0 10px;overflow:hidden}
+.chip .band{display:block;padding:6px 12px 5px;font-size:11px;font-weight:900;
+  letter-spacing:.6px;color:#fff;background:var(--p-green);
+  border-bottom:2px solid rgba(0,0,0,.25);text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.chip.gold .band{background:var(--p-yellow);color:#3a3000;text-shadow:none}
+.chip.ladder .band{background:var(--p-orange);color:#3a2200;text-shadow:none}
+.chip.swing .band{background:var(--p-dblue)}
+.chip.drawer .band{background:var(--p-red)}
+.chip.mine .band{background:var(--p-green)}
+.chip .ch{padding:8px 12px 0}
+.chip .ch b{color:var(--creamInk)}
+.chip .eq{color:#6b5310;padding:0 12px;margin-top:4px}
+.chip .dy{padding:0 12px}
+.chip .dy.up{color:#0c7a3e}.chip .dy.dn{color:#b3261e}
+.chip .sub{color:#5d6b52;padding:0 12px;margin-top:3px}
+.chip:hover{border-color:var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.chip.down{background:linear-gradient(180deg,#f3d9d4,#ecc8c2);border-color:#d98a80}
+.chip.down .sub{color:#a1281d}
+.chip .targetbar{margin:7px 12px 0;height:7px;border-radius:99px;background:rgba(0,0,0,.14);overflow:hidden}
+.chip .targetbar i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--p-green),var(--p-yellow));transition:width .8s ease}
+.chip .targetlab{padding:2px 12px 0;font-size:10px;color:#5d6b52}
+/* buttons in game-money gold */
+.btn{background:linear-gradient(135deg,#efc65a,#c3982f);color:#241c04}
+/* dice that actually rolls */
+@keyframes diceroll{0%{transform:rotate(0) scale(1)}35%{transform:rotate(-160deg) scale(1.25)}70%{transform:rotate(-320deg) scale(1.05)}100%{transform:rotate(-360deg) scale(1)}}
+.dice.rolling{animation:diceroll .7s cubic-bezier(.2,.8,.3,1.1)}
+/* flying game money on a winning close */
+.mfly{position:fixed;z-index:96;font-size:22px;pointer-events:none;
+  animation:mfly 1.5s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes mfly{0%{opacity:0;transform:translateY(6px) scale(.7) rotate(0)}
+  15%{opacity:1}100%{opacity:0;transform:translateY(-130px) scale(1.25) rotate(24deg)}}
+/* the GO banner: the day-target celebration */
+.gobanner{position:fixed;top:calc(56px + env(safe-area-inset-top));right:12px;left:12px;z-index:95;
+  display:flex;align-items:center;gap:11px;padding:13px 15px;border-radius:15px;
+  background:linear-gradient(160deg,#0d5c30,#083d1f);border:2px solid var(--gold);
+  color:var(--ink);font-weight:800;font-size:14px;box-shadow:0 14px 40px rgba(0,0,0,.55);
+  animation:deal .4s cubic-bezier(.2,.8,.3,1.2) both}
+.gobanner .big3{font-size:26px}
+/* the hero counts up instead of jumping */
+.hero .big{transition:color .3s}
+.hero .big.bump{animation:bump .5s cubic-bezier(.2,.8,.3,1.3)}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.045)}100%{transform:scale(1)}}
+/* coach marks: a spotlight and a property-card tooltip */
+.coach{position:fixed;inset:0;z-index:120}
+.coach .veil{position:absolute;inset:0;background:rgba(3,10,5,.78)}
+.coach .spot{position:absolute;border-radius:14px;box-shadow:0 0 0 4px var(--gold),0 0 0 9999px rgba(3,10,5,.78);
+  transition:all .35s cubic-bezier(.2,.8,.3,1);pointer-events:none}
+.coach .tip{position:absolute;max-width:330px;background:linear-gradient(180deg,var(--cream),var(--cream2));
+  color:var(--creamInk);border-radius:14px;padding:0 0 12px;overflow:hidden;
+  box-shadow:0 18px 50px rgba(0,0,0,.6);animation:up .3s both}
+.coach .tip .band2{padding:7px 13px;font-weight:900;color:#fff;background:var(--p-red);font-size:13px}
+.coach .tip .txt{padding:10px 13px 0;font-size:13.5px;line-height:1.65}
+.coach .tip .row{display:flex;gap:8px;padding:11px 13px 0;align-items:center}
+.coach .tip .row .n2{font-size:11px;color:#5d6b52;margin-inline-start:auto}
+.coach .tip button{min-height:40px;border-radius:10px;font-weight:800;padding:8px 14px;font-size:13px}
+.coach .tip .cnext{background:linear-gradient(135deg,#efc65a,#c3982f);color:#241c04}
+.coach .tip .cskip{background:rgba(0,0,0,.07);color:#37452f}
+/* the locked shop: a title deed behind glass */
+.lockshop{text-align:center;padding:26px 16px;border:2px dashed var(--line2);border-radius:16px}
+.lockshop .lk{font-size:44px}
+/* the profit-card modal */
+.pcwrap{display:flex;justify-content:center;margin:10px 0}
+.pcwrap canvas{width:100%;max-width:340px;border-radius:14px;border:1.5px solid var(--line2);
+  box-shadow:0 14px 44px rgba(0,0,0,.5)}
+/* facebook button on the login screen */
+.fbbtn{display:flex;align-items:center;gap:11px;background:#1877F2;color:#fff;font-weight:700;
+  font-size:16.5px;padding:13px 24px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.fbbtn .f{width:22px;height:22px;border-radius:50%;background:#fff;color:#1877F2;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px}
+/* the watch filter pill under the hero */
+.watchpill{display:inline-flex;align-items:center;gap:7px;margin-top:7px;
+  border:1.5px solid var(--gold);border-radius:999px;padding:5px 13px;font-size:12.5px;
+  color:var(--richgold);background:rgba(0,0,0,.3);cursor:pointer;min-height:34px}
+/* respect people who asked the OS for less motion */
+@media(prefers-reduced-motion:reduce){
+  .mfly,.dice.rolling,.hero .big.bump,.gobanner{animation:none}
+  .coach .spot{transition:none}
+}
+
 </style>
 </head>
 <body>
@@ -533,6 +668,10 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
   <button class="gbtn" id="btnGoogle">
     <img alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHBhdGggZmlsbD0iI0VBNDMzNSIgZD0iTTI0IDkuNWMzLjU0IDAgNi43MSAxLjIyIDkuMjEgMy42bDYuODUtNi44NUMzNS45IDIuMzggMzAuNDcgMCAyNCAwIDE0LjYyIDAgNi41MSA1LjM4IDIuNTYgMTMuMjJsNy45OCA2LjE5QzEyLjQzIDEzLjcyIDE3Ljc0IDkuNSAyNCA5LjV6Ii8+PHBhdGggZmlsbD0iIzQyODVGNCIgZD0iTTQ2LjU4IDI0LjVjMC0xLjU3LS4xNS0zLjA5LS40Mi00LjVIMjR2OS4wMWgxMi43Yy0uNTUgMi45Ni0yLjIzIDUuNDgtNC43OCA3LjE4bDcuNzMgNmM0LjUxLTQuMTggNy4wOS0xMC4zNiA3LjA5LTE3LjY5eiIvPjxwYXRoIGZpbGw9IiNGQkJDMDUiIGQ9Ik0xMC41MyAyOC41OWMtLjQ4LTEuNDUtLjc2LTIuOTktLjc2LTQuNTlzLjI3LTMuMTQuNzYtNC41OWwtNy45OC02LjE5QzEuMjIgMTYuNDYgMCAyMC4xMiAwIDI0YzAgMy44OCAxLjIyIDcuNTQgMi41NiAxMC43OGw3Ljk3LTYuMTl6Ii8+PHBhdGggZmlsbD0iIzM0QTg1MyIgZD0iTTI0IDQ4YzYuNDggMCAxMS45My0yLjEzIDE1Ljg5LTUuODFsLTcuNzMtNmMtMi4xNSAxLjQ1LTQuOTIgMi4zLTguMTYgMi4zLTYuMjYgMC0xMS41Ny00LjIyLTEzLjQ3LTkuOTFsLTcuOTggNi4xOUM2LjUxIDQyLjYyIDE0LjYyIDQ4IDI0IDQ4eiIvPjwvc3ZnPg==">
     התחברות עם חשבון Google
+  </button>
+  <button class="fbbtn" id="btnFacebook" onclick="signInFacebook()">
+    <span class="f">f</span>
+    התחברות עם חשבון Facebook
   </button>
   <div class="mini" style="max-width:330px">כל המספרים כאן הם חשבונות <b>דמו</b> (כסף מדומה) ואינם ייעוץ השקעות. הכניסה לחברים שהוזמנו על ידי עידן.</div>
   <div id="loginErr" class="mini dn"></div>
@@ -619,7 +758,7 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
   <!-- thin floating bar: the only chrome on the table -->
   <div class="top">
     <button class="burger" onclick="toggleDrawer()" aria-label="תפריט">☰</button>
-    <div class="brand">Idan's Money Club</div>
+    <div class="brand"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="28" r="17" fill="#dfb440"/><circle cx="24" cy="28" r="13.5" fill="none" stroke="#8a6a14" stroke-width="1.6" stroke-dasharray="2.6 2.2"/><text x="24" y="34" font-size="14" font-weight="900" text-anchor="middle" fill="#5a4407" font-family="Georgia,serif">IMC</text><path d="M11 14 L15 5 L20 11 L24 3 L28 11 L33 5 L37 14 Z" fill="#f3d878" stroke="#8a6a14" stroke-width="1.4" stroke-linejoin="round"/><rect x="11" y="14" width="26" height="3.4" rx="1.6" fill="#dfb440" stroke="#8a6a14" stroke-width="1"/><circle cx="15.5" cy="4.6" r="1.7" fill="#ed1b24"/><circle cx="24" cy="2.6" r="1.7" fill="#1fb25a"/><circle cx="32.5" cy="4.6" r="1.7" fill="#0072bb"/></svg>Idan's Money Club</div>
     <div class="topspace"></div>
     <div class="topmini" id="topMini"></div>
     <img class="avatar" id="hAvatar" alt="" referrerpolicy="no-referrer">
@@ -636,6 +775,7 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
   <!-- ===================== THE TABLE ===================== -->
   <div id="table">
     <div class="weave"></div>
+    <div class="gocorner" aria-hidden="true"><span class="goarrow">⇦</span><span class="gotxt">GO</span></div>
 
     <div class="corners">
       <div class="cnr">
@@ -689,6 +829,7 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
       <button class="ebtn" id="stopBtn" onclick="emergencyStop()">🛑 עצירת חירום</button>
       <button class="btn sec hidden" id="resumeBtn" onclick="resumeAll()">▶️ שחרר את המסחר</button>
       <div class="mini" style="margin-top:7px;font-size:11px">עוצר כניסות חדשות בכל הבוטים. פוזיציות פתוחות נשארות ומנוהלות כרגיל.</div>
+      <button class="btn sec" style="width:100%;margin-top:9px;font-size:13px;padding:9px" onclick="startCoach(true)">🎓 הדרכה מודרכת — צעד אחר צעד</button>
       <button class="btn sec" style="width:100%;margin-top:9px;font-size:13px;padding:9px" onclick="signOut()">התנתק</button>
     </div>
   </aside>
@@ -898,6 +1039,7 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
           <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
             <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareReportWhatsApp()">🟢 שתף דוח בוואטסאפ</button>
             <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="copyReport()">📋 העתק דוח</button>
+            <button class="btn" style="flex:1;font-size:13px;padding:9px" onclick="openProfitCard()">🖼️ תמונת רווח ממותגת</button>
           </div>
           <div class="mini" style="margin-top:8px">העמלות מחושבות לפי ‎$28‎ ללוט — המחירון של Vantage (חשבון Standard), הברוקר שנבחר.</div>
         </div>
@@ -1002,6 +1144,14 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
           <div class="mini" style="margin-bottom:6px">⏳ = ממתין לאישור · 🤖 = בוט מחובר · לכל חבר: שליטה בבוט שלו</div>
           <div id="usersList" class="mini">טוען…</div>
         </div>
+        <div class="card"><h3>📘 כניסה עם פייסבוק — הגדרה חד-פעמית</h3>
+          <div class="mini" style="line-height:1.9">הכפתור כבר קיים במסך הכניסה. כדי שהוא יעבוד, יש שלב שרק אתה יכול לעשות (אתה מקליד, לא אני):<br>
+          <b>1.</b> developers.facebook.com ‹ My Apps ‹ Create App ‹ סוג "Authenticate and request data from users with Facebook Login" ‹ תן שם (Idan's Money Club).<br>
+          <b>2.</b> בתוך האפליקציה: Use cases ‹ Authentication ‹ Settings ‹ העתק את <b>App ID</b> ואת <b>App Secret</b>.<br>
+          <b>3.</b> console.firebase.google.com ‹ idan-money-club ‹ Authentication ‹ Sign-in method ‹ Facebook ‹ Enable ‹ הדבק את השניים ‹ העתק משם את כתובת ה-OAuth redirect ‹ הדבק אותה בפייסבוק תחת Facebook Login ‹ Settings ‹ Valid OAuth Redirect URIs.<br>
+          <b>4.</b> בפייסבוק: App Review ‹ עד שהאפליקציה במצב Live, רק אתה ומי שתוסיף כ-Tester יכולים להתחבר — הוסף את רובי והחברים תחת Roles ‹ Testers לבינתיים.<br>
+          עד שתסיים — הכפתור יגיד לחבר בעברית שההגדרה עוד לא הושלמה, וכניסת גוגל ממשיכה לעבוד כרגיל.</div>
+        </div>
       </section>
 
       <!-- ===== chat ===== -->
@@ -1020,6 +1170,7 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
           <div style="padding:8px 10px 12px;border-top:1px solid var(--line);display:flex;gap:7px;flex-wrap:wrap">
             <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareProfitToChat()">📈 שתף את הרווח שלי היום</button>
             <button class="btn sec" style="flex:1;font-size:13px;padding:9px" onclick="shareProfitWhatsApp()">🟢 שתף בוואטסאפ</button>
+            <button class="btn" style="flex:1;font-size:13px;padding:9px" onclick="openProfitCard()">🖼️ תמונת רווח ממותגת</button>
           </div>
         </div>
       </section>
@@ -2039,7 +2190,7 @@ function initAdmin(){
       const pending = !isOwnerRow && u.allowed!==true;
       html += `<div class="urow" style="${pending?'background:rgba(255,180,84,.07);border-radius:10px;padding-inline:6px':''}">
         <img src="${u.photo||'icon-192.png'}" referrerpolicy="no-referrer" alt="">
-        <div style="flex:1;min-width:0"><b>${u.name||u.email}</b>${pending?' <span class="tag wa">⏳ ממתין לאישור</span>':''}${(pending&&u.pingedAt)?' <span class="tag dn2">📣 ביקש שתאשר</span>':''}
+        <div style="flex:1;min-width:0"><b>${u.name||u.email}</b>${pending?' <span class="tag wa">⏳ ממתין לאישור</span>':''}${(pending&&u.pingedAt)?' <span class="tag dn2">📣 ביקש שתאשר</span>':''}${(!isOwnerRow&&u.shopAskedAt&&u.shopOpen!==true)?' <span class="tag dn2">🛍️ מבקש בוט נוסף — פתח לו במתג "חנות"</span>':''}
           <div class="mini">${u.email}${u.signedContract?` · ✍️ חתם${u.signedAt?" "+String(u.signedAt).slice(0,10):""}`:" · ⚠️ לא חתם"}${u.feedId?` · 🤖 בוט מחובר`:""}</div></div>
         ${isOwnerRow ? `<span class="tag up">👑 בעלים</span>` : `
         <div class="swwrap"><span class="swlab">כניסה</span>
@@ -4057,6 +4208,512 @@ refreshBadges = function(){
 };
 refreshShopNav();
 
+/* =====================================================================
+   v4.0.0 — MONOPOLY EDITION · 19.8.2026, night. From Idan's own words:
+   "בדיוק בעיצוב המשחק של מונופול" · "הדרכה על כל צעד וצעד" · "שכולם
+   יראו את האופציה להוסיף עוד בוט אבל שתיפתח רק כשאני מאשר" · "אנימציות
+   חיות לכל דבר בנפרד" · "סמל מיוחד ואישי" · "תיוג מעוצב על תמונות
+   רווחים" · "חברים דרך הפייסבוק" · "כל אחד יבחר באיזה בוט לצפות, בלי
+   קופה של כולם ביחד, אבל עם סה\"כ בצד".
+   Appended like every layer before it. Nothing above was deleted.
+   ===================================================================== */
+const APP_V4 = "4.0.0";
+
+/* ---- 11.1 the mark: one crown-coin, drawn by us, used everywhere ----- */
+const LOGO_SVG = '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="28" r="17" fill="#dfb440"/><circle cx="24" cy="28" r="13.5" fill="none" stroke="#8a6a14" stroke-width="1.6" stroke-dasharray="2.6 2.2"/><text x="24" y="34" font-size="14" font-weight="900" text-anchor="middle" fill="#5a4407" font-family="Georgia,serif">IMC</text><path d="M11 14 L15 5 L20 11 L24 3 L28 11 L33 5 L37 14 Z" fill="#f3d878" stroke="#8a6a14" stroke-width="1.4" stroke-linejoin="round"/><rect x="11" y="14" width="26" height="3.4" rx="1.6" fill="#dfb440" stroke="#8a6a14" stroke-width="1"/></svg>';
+
+/* ---- 11.2 Facebook login ---------------------------------------------
+   The button exists for everyone; until Idan finishes the one-time Meta +
+   Firebase setup (instructions in the admin room - he types, nobody else),
+   the error is explained in Hebrew instead of dying silently. ---------- */
+async function signInFacebook(){
+  $("loginErr").textContent = "";
+  if (isInAppBrowser()){
+    loginErrHTML("⚠️ נראה שהאפליקציה נפתחה בתוך דפדפן מוגבל (מצלמה / וואטסאפ).<br><b>פתח את הקישור בכרום או בספארי</b> ואז ההתחברות תעבוד:<br>" +
+      "<button class='btn sec' style='margin-top:8px' onclick='copyAppLink()'>📋 העתק את הקישור</button>");
+    return;
+  }
+  let prov;
+  try { prov = new firebase.auth.FacebookAuthProvider(); }
+  catch(e){ loginErrHTML("פייסבוק עוד לא זמין כאן — היכנס עם גוגל בינתיים."); return; }
+  try {
+    await auth.signInWithPopup(prov);
+  } catch(e){
+    const code = (e && e.code) || "";
+    if (code === "auth/operation-not-allowed"){
+      loginErrHTML("כניסת פייסבוק עוד לא הופעלה — עידן באמצע ההגדרה מול Meta. עד אז היכנס עם גוגל למעלה — זה אותו חשבון מועדון.");
+    } else if (code === "auth/account-exists-with-different-credential"){
+      loginErrHTML("האימייל הזה כבר רשום דרך גוגל — היכנס עם גוגל, ואז שני החשבונות יתאחדו.");
+    } else if (code === "auth/popup-blocked" || code === "auth/cancelled-popup-request"){
+      try { await auth.signInWithRedirect(prov); return; } catch(e2){}
+      loginErrHTML("הדפדפן חסם את חלון ההתחברות — אשר חלונות קופצים ונסה שוב.");
+    } else if (code === "auth/popup-closed-by-user"){
+      loginErrHTML("החלון נסגר לפני שאישרת — נסה שוב.");
+    } else {
+      loginErrHTML("ההתחברות עם פייסבוק נכשלה (" + esc(code || e) + ") — אפשר תמיד להיכנס עם גוגל.");
+    }
+  }
+}
+
+/* ---- 11.3 the shop everyone can SEE, and only Idan can OPEN ----------
+   19.8, the interview: "שכולם יוכלו לראות את האופציה להוסיף עוד בוט,
+   אבל שתוכל להיפתח רק כשאני מאשר" - per member. The v3.2 design hid the
+   tab; now the tab is always there, the PRICE is always there, and what
+   approval opens is the payment-and-activate half. The permission model
+   underneath is unchanged: shopOpen is still owner-only in the rules. */
+function refreshShopNav(){
+  const b = $("navShop");
+  if (!b) return;
+  b.classList.remove("hidden");
+  b.innerHTML = '<span class="e">🤖</span>הוסף בוט' + (shopAllowed() ? "" : ' <span class="e" style="font-size:13px">🔒</span>');
+}
+const _goTab4 = goTab;
+goTab = function(tab){
+  if (tab === "shop" && !shopAllowed()){
+    /* enter the shop room anyway - locked, not redirected */
+    CURTAB = "shop"; closeDrawer();
+    document.querySelectorAll("#mainNav button").forEach(b=>
+      b.classList.toggle("on", b.getAttribute("data-t")==="shop"));
+    document.querySelector(".top").classList.add("hidden");
+    $("table").classList.add("hidden");
+    $("ticker").classList.add("hidden");
+    $("panels").classList.remove("hidden");
+    TABS.forEach(t=>{ const el=$("t-"+t); if(el) el.classList.toggle("hidden", t!=="shop"); });
+    $("panelTitle").textContent = TAB_TITLE.shop || "🤖 הוסף בוט";
+    renderShop();
+    window.scrollTo(0,0);
+    return;
+  }
+  _goTab4(tab);
+};
+const _renderShop4 = renderShop;
+renderShop = function(){
+  if (!shopAllowed()){
+    $("slotsNow").textContent = "";
+    $("shopPrice").textContent = "$" + BOT_PRICE.toLocaleString("en-US");
+    $("shopAdmin").classList.add("hidden");
+    const asked = !!(MYDOC && MYDOC.shopAskedAt);
+    $("shopSteps").innerHTML =
+      '<div class="lockshop"><div class="lk">🔒</div>' +
+      '<b>בוט נוסף נפתח באישור אישי של עידן</b>' +
+      '<div class="mini" style="margin:8px 0 12px">כל בוט נוסף רץ על טרמינל נפרד וחשבון נפרד. המחיר למעלה — תשלום חד-פעמי. ' +
+      'לחיצה על הכפתור מודיעה לעידן שאתה רוצה, והוא פותח לך אישית.</div>' +
+      (asked
+        ? '<div class="pill wa2" style="font-size:13px;padding:8px 14px">📨 הבקשה אצל עידן — תקבל עדכון ברגע שיאשר</div>'
+        : '<button class="btn" onclick="askShop()" style="min-width:220px">🙋 בקש מעידן לפתוח לי</button>') +
+      '</div>';
+    return;
+  }
+  _renderShop4();
+  /* the crypto address the member picked also gets a QR - a phone wallet
+     scans it instead of a human re-typing 34 characters of address. */
+  const w = curPayWay();
+  if (w && w.kind === "addr"){
+    const box = document.createElement("div");
+    box.id = "payQr"; box.style.cssText = "display:flex;justify-content:center;margin-top:10px";
+    const host = $("shopSteps");
+    if (host && !$("payQr")){ host.appendChild(box); qrInto(box, w.value); }
+  }
+};
+async function askShop(){
+  try {
+    await db.collection("users").doc(ME.uid).update({
+      shopAskedAt: new Date().toISOString(),
+      shopAskCount: ((MYDOC && MYDOC.shopAskCount) || 0) + 1 });
+    toast("📨 נשלח — עידן רואה את הבקשה שלך");
+    renderShop();
+  } catch(e){ toast("לא נשלח (" + ((e&&e.code)||e) + ")"); }
+}
+
+/* ---- 11.4 property-card bot chips + the drawer's daily-target bar ---- */
+const BAND_LABEL = {gold:"XAUUSD · GOLD", ladder:"THE LADDER", swing:"US STOCKS",
+                    mine:"MY BOT", drawer:"BLACK-DAY BOT"};
+function botChipHTML(b){
+  const down = (b.status==="stale"||b.status==="dn");
+  const sub = [];
+  if (b.open_count) sub.push(b.open_count===1 ? "פוזיציה אחת פתוחה" : (b.open_count+" פתוחות"));
+  if (b.pending) sub.push(b.pending===1 ? "אחת ממתינה" : (b.pending+" ממתינות"));
+  if (b.status==="stale") sub.push("⚠️ לא מדווח "+ago(b.age_sec));
+  if (b.status==="off" || b.enabled===false) sub.push("מכובה");
+  if (!sub.length) sub.push("סורק ומחכה");
+  /* the drawer bot carries its daily target as a filling money bar */
+  let bar = "";
+  const dw = (PHONE && PHONE.drawer) || null;
+  if (b.id === "drawer" && dw && +dw.day_target > 0){
+    const pct = Math.max(0, Math.min(100, (+dw.day||0) / +dw.day_target * 100));
+    bar = '<div class="targetbar" aria-hidden="true"><i style="width:'+pct.toFixed(1)+'%"></i></div>' +
+          '<div class="targetlab">יעד יומי: '+signed(+dw.day||0,0)+' מתוך +'+money(+dw.day_target,0).replace("$","$")+
+          (dw.day_stop ? ' · ✅ נעצר על היעד' : "")+'</div>';
+  }
+  return '<button class="chip '+esc(b.id)+' '+(down?"down":"")+'" onclick="openBot(\''+escJs(b.id)+'\')">'
+    + '<span class="band">'+esc(BAND_LABEL[b.id]||b.market||"")+'</span>'
+    + '<div class="ch"><span class="e">'+b.icon+'</span><b>'+esc(b.name)+'</b>'
+    +   '<span class="st">'+statusDot(b.status)+'</span></div>'
+    + '<div class="eq">'+money(b.equity,0)+'</div>'
+    + '<div class="dy '+cls(b.day_gross)+'">'+signed(b.day_gross)
+    +   (b.day_pct!==null&&b.day_pct!==undefined?(' <span style="opacity:.75">('+(b.day_pct>0?"+":"")+b.day_pct+'%)</span>'):"")+'</div>'
+    + bar
+    + '<div class="sub">'+sub.join(" · ")+'</div></button>';
+}
+/* the drawer's sheet says the loaded numbers out loud, from the heartbeat */
+const _renderBotSheet4 = renderBotSheet;
+renderBotSheet = function(id){
+  _renderBotSheet4(id);
+  if (id !== "drawer") return;
+  const dw = (PHONE && PHONE.drawer) || null; if (!dw) return;
+  const box = $("botSheetBox"); if (!box) return;
+  const tgt = +dw.day_target > 0 ? signed(+dw.day_target,0) : "כבוי";
+  const stp = +dw.day_loss_stop > 0 ? signed(-dw.day_loss_stop,0) : "כבוי";
+  box.innerHTML += '<div class="sect"><h4>🎯 גבולות היום — כפי שהבוט עצמו מדווח</h4>'
+    + '<div class="logline">יעד רווח יומי: <b>'+esc(tgt)+'</b>'
+    + (dw.day_target!==undefined ? "" : " · <i>יופיע אחרי עדכון 1.14</i>")+'</div>'
+    + '<div class="logline">עצירת הפסד יומית: <b>'+esc(stp)+'</b> (החלטת עידן 19.8: כבויה)</div>'
+    + '<div class="logline">היום עד עכשיו: <b class="'+cls(+dw.day||0)+'">'+signed(+dw.day||0)+'</b>'
+    + (dw.day_stop ? ' · <b>היום נסגר</b>'+(dw.day_reason?(' — '+esc(dw.day_reason)):'') : '')+'</div>'
+    + '<div class="logline">עומק מותר: <b>'+esc(dw.max_legs||"—")+' שלבים</b> · חשבון '
+    + (dw.is_demo ? '<b class="up">דמו</b>' : '<b class="dn">אמיתי</b>')+'</div></div>';
+};
+
+/* ---- 11.5 watch ONE bot, with the total kept aside --------------------
+   "שכל אחד יבחר באיזה בוט לצפות כל פעם מחדש, בלי קופה של כולם ביחד,
+   אבל עם סה\"כ בצד." Session-only on purpose: closing the app clears the
+   choice, so every visit starts with the question fresh. The corners stay
+   the all-bots total - that IS the total kept aside. */
+let WATCH = null;   /* null = all bots */
+function watchBot(id){ WATCH = (WATCH===id ? null : id); closeBot(); renderLive(); }
+const _renderLive4 = renderLive;
+renderLive = function(){
+  _renderLive4();
+  try { applyWatch(); animateHero(); } catch(e){}
+};
+function applyWatch(){
+  const L = LIVE_CACHE;
+  if (!L) return;
+  /* the button inside the bot sheet is added by renderBotSheet below */
+  if (!WATCH || L.mine) { const p=$("watchPill"); if(p) p.remove(); return; }
+  const b = (L.bots||[]).find(x=>x.id===WATCH);
+  if (!b){ WATCH = null; return; }
+  /* hide the other bots' rows */
+  document.querySelectorAll("#liveRows .lrow").forEach(el=>{
+    el.style.display = el.classList.contains(WATCH) ? "" : "none";
+  });
+  /* the big number becomes THIS bot's open gross; the corners stay total */
+  const rows = (L.rows||[]).filter(r=>r.bot===WATCH);
+  const G = rows.reduce((a,r)=>a+(+r.gross||0),0);
+  $("heroLab").textContent = "צופה רק ב" + b.name + " · ברוטו · " + rows.length + (rows.length===1?" פתוחה":" פתוחות");
+  $("heroBig").textContent = signed(G);
+  $("heroBig").className = "big " + (Math.abs(G)<0.005 ? "flat" : cls(G));
+  $("heroSide").innerHTML =
+    '<span class="pill '+cls(b.day_gross)+'">היום '+signed(b.day_gross)+'</span>' +
+    '<span class="pill">הערימה '+money(b.equity,0)+'</span>' +
+    '<span class="pill">סה"כ המועדון נשאר בפינות למעלה ⬆</span>';
+  document.querySelectorAll("#botChips .chip").forEach(el=>{
+    el.style.opacity = el.classList.contains(WATCH) ? "1" : ".45";
+  });
+  if (!$("watchPill")){
+    const p = document.createElement("button");
+    p.id = "watchPill"; p.className = "watchpill";
+    p.onclick = ()=>watchBot(WATCH);
+    $("heroSide").after(p);
+  }
+  $("watchPill").innerHTML = "👁️ צופה רק ב<b>" + esc(b.name) + "</b> · לחץ לחזרה לכל הבוטים";
+}
+const _rbsWatch = renderBotSheet;
+renderBotSheet = function(id){
+  _rbsWatch(id);
+  const L = LIVE_CACHE;
+  if (!L || L.mine) return;
+  const box = $("botSheetBox"); if (!box) return;
+  box.innerHTML += '<div class="btnrow" style="margin-top:12px"><button class="btn" ' +
+    'onclick="watchBot(\''+escJs(id)+'\')">'+(WATCH===id?"👁️ חזור לכל הבוטים":"👁️ צפה רק בבוט הזה")+'</button></div>';
+};
+
+/* ---- 11.6 live animations: every event, its own little moment --------
+   The feed already carries the events (the ticker reads them); this walks
+   the NEW ones since the last poll and gives each a physical reaction:
+   money flies on a winning close, a die spins on an open, the day-target
+   gets a GO banner. Respects prefers-reduced-motion via CSS. ----------- */
+let _seenEv = null, _goShown = "";
+function evKey(e){ return (e.t||"")+"|"+(e.bot||"")+"|"+(e.kind||"")+"|"+(e.symbol||"")+"|"+(e.size||""); }
+function spawnMoney(n, emo){
+  const H = $("heroBig"); if (!H) return;
+  const r = H.getBoundingClientRect();
+  for (let i=0;i<n;i++){
+    const s = document.createElement("div");
+    s.className = "mfly"; s.textContent = emo;
+    s.style.left = (r.left + r.width*(0.15+0.7*Math.random())) + "px";
+    s.style.top  = (r.top + r.height*0.5) + "px";
+    s.style.animationDelay = (i*0.09)+"s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(), 1900);
+  }
+}
+function animateEvents(){
+  const P = PHONE || {};
+  const ev = (P.events||[]);
+  if (_seenEv === null){ _seenEv = new Set(ev.map(evKey)); }
+  else {
+    ev.forEach(e=>{
+      const k = evKey(e);
+      if (_seenEv.has(k)) return;
+      _seenEv.add(k);
+      if (e.kind === "close" && +e.gross > 0) spawnMoney(6, "💵");
+      else if (e.kind === "close" && +e.gross < 0) spawnMoney(3, "🧾");
+      else if (e.kind === "open") spawnMoney(2, "🎲");
+    });
+    if (_seenEv.size > 400) _seenEv = new Set(ev.map(evKey));
+  }
+  /* the drawer reached the daily target - say it like passing GO */
+  const dw = P.drawer || null;
+  const today = new Date().toISOString().slice(0,10);
+  if (dw && dw.day_stop && String(dw.day_reason||"").indexOf("target") >= 0 && _goShown !== today){
+    _goShown = today;
+    const g = document.createElement("div");
+    g.className = "gobanner";
+    g.innerHTML = '<span class="big3">🎩</span><div><b>הבוט עבר את ה-GO!</b>' +
+      '<div class="mini" style="font-size:12px">יעד יומי '+signed(+dw.day_target||0,0)+' הושג — היום נסגר, הכסף נשמר. חוזרים מחר.</div></div>';
+    g.onclick = ()=>g.remove();
+    document.body.appendChild(g);
+    spawnMoney(12, "💵");
+    setTimeout(()=>g.remove(), 12000);
+  }
+}
+let _lastHero = "";
+function animateHero(){
+  const H = $("heroBig"); if (!H) return;
+  if (H.textContent !== _lastHero){
+    _lastHero = H.textContent;
+    H.classList.remove("bump"); void H.offsetWidth; H.classList.add("bump");
+  }
+}
+const _pollPhone4 = pollPhone;
+pollPhone = async function(){
+  await _pollPhone4();
+  try { animateEvents(); } catch(e){}
+};
+
+/* ---- 11.7 the branded profit card -------------------------------------
+   A picture, not a text message: the crown-coin mark, the member's name,
+   every bot's day on its own property row, the total, the date - and an
+   honesty stamp that says DEMO when the numbers are demo. That stamp is
+   drawn into the pixels on purpose: a shared image with no context should
+   still tell the truth about itself. ----------------------------------- */
+function profitCardData(){
+  const who = (ME && (ME.displayName || (ME.email||"").split("@")[0])) || "";
+  const rows = []; let total = 0; let demo = true;
+  if (!IS_OWNER){
+    const mj = myData()||{};
+    const p = +mj.day_pnl||0; total = p;
+    rows.push({icon:"🤖", name:"הבוט שלי — בוט היום השחור", val:p});
+  } else {
+    const L = LIVE_CACHE || liveOf(PHONE) || {};
+    (L.bots||[]).forEach(b=>{
+      rows.push({icon:b.icon||"🤖", name:b.name, val:+b.day_gross||0});
+      total += +b.day_gross||0;
+    });
+    const dw = (PHONE||{}).drawer;
+    if (dw && dw.is_demo === false) demo = false;
+  }
+  if (SETTINGS && SETTINGS.mode === "real") demo = false;
+  return {who, rows, total, demo, date:new Date().toLocaleDateString("he-IL",{day:"2-digit",month:"2-digit",year:"numeric"})};
+}
+function drawProfitCard(cv){
+  const d = profitCardData();
+  const W = 1080, H = 1350; cv.width = W; cv.height = H;
+  const x = cv.getContext("2d");
+  /* board-green field */
+  const bg = x.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,"#0f4423"); bg.addColorStop(1,"#06170c");
+  x.fillStyle = bg; x.fillRect(0,0,W,H);
+  /* double frame like the board's edge */
+  x.strokeStyle = "rgba(223,180,64,.9)"; x.lineWidth = 10; x.strokeRect(36,36,W-72,H-72);
+  x.strokeStyle = "rgba(246,241,225,.25)"; x.lineWidth = 3; x.setLineDash([14,10]); x.strokeRect(58,58,W-116,H-116); x.setLineDash([]);
+  /* watermark crowns */
+  x.save(); x.globalAlpha = .05; x.font = "64px serif"; x.fillStyle = "#f3d878";
+  for (let r=0;r<7;r++) for (let c=0;c<5;c++){ x.save();
+    x.translate(120+c*210, 200+r*170); x.rotate(-0.4); x.fillText("♛",0,0); x.restore(); }
+  x.restore();
+  /* the mark: coin + crown */
+  x.fillStyle = "#dfb440"; x.beginPath(); x.arc(W/2, 210, 92, 0, 7); x.fill();
+  x.strokeStyle = "#8a6a14"; x.lineWidth = 5; x.setLineDash([12,9]);
+  x.beginPath(); x.arc(W/2, 210, 72, 0, 7); x.stroke(); x.setLineDash([]);
+  x.fillStyle = "#5a4407"; x.font = "900 64px Georgia, serif"; x.textAlign = "center";
+  x.fillText("IMC", W/2, 234);
+  x.fillStyle = "#f3d878"; x.strokeStyle = "#8a6a14"; x.lineWidth = 5;
+  x.beginPath();
+  x.moveTo(W/2-88, 96); x.lineTo(W/2-62, 44); x.lineTo(W/2-30, 78); x.lineTo(W/2, 30);
+  x.lineTo(W/2+30, 78); x.lineTo(W/2+62, 44); x.lineTo(W/2+88, 96); x.closePath();
+  x.fill(); x.stroke();
+  /* title + name */
+  x.fillStyle = "#f3d878"; x.font = "900 56px -apple-system, Segoe UI, sans-serif";
+  x.fillText("Idan's Money Club", W/2, 372);
+  x.fillStyle = "#eef4ea"; x.font = "700 44px -apple-system, Segoe UI, sans-serif";
+  x.fillText(d.who, W/2, 438);
+  /* per-bot property rows. ‎ forces the sign to stay LEFT of the number
+     inside a Hebrew canvas context - without it "-$865" renders as "$865-"
+     and a loss reads like a win. Rows are capped at four so the stamp and
+     the footer never collide; the rest are counted honestly. */
+  const ltr = (v)=>"‎" + (v>0?"+":(v<0?"-":"")) + "$" +
+    Math.abs(v).toLocaleString("en-US",{maximumFractionDigits:0}) + "‎";
+  const colors = ["#f4cf0c","#f7941d","#0072bb","#1fb25a","#ed1b24","#d93a96"];
+  let y = 492;
+  const shown = d.rows.slice(0,4);
+  shown.forEach((r,i)=>{
+    x.fillStyle = "#f6f1e1";
+    roundRect(x, 110, y, W-220, 88, 16); x.fill();
+    x.fillStyle = colors[i%colors.length];
+    roundRect(x, 110, y, W-220, 24, {tl:16,tr:16,br:0,bl:0}); x.fill();
+    x.fillStyle = "#1e2b18"; x.textAlign = "right"; x.font = "700 36px -apple-system, Segoe UI, sans-serif";
+    x.fillText(r.icon + " " + r.name, W-140, y+64);
+    x.textAlign = "left"; x.font = "900 40px -apple-system, Segoe UI, sans-serif";
+    x.fillStyle = r.val >= 0 ? "#0c7a3e" : "#b3261e";
+    x.fillText(ltr(r.val), 140, y+64);
+    y += 104;
+  });
+  if (d.rows.length > shown.length){
+    x.textAlign = "center"; x.fillStyle = "#bcd0b8"; x.font = "600 28px -apple-system, Segoe UI, sans-serif";
+    x.fillText("ועוד " + (d.rows.length - shown.length) + " בוטים בפנים", W/2, y+6);
+    y += 40;
+  }
+  /* the total */
+  y += 20;
+  x.textAlign = "center"; x.fillStyle = "#bcd0b8"; x.font = "600 34px -apple-system, Segoe UI, sans-serif";
+  x.fillText('סה"כ היום', W/2, y);
+  x.fillStyle = d.total >= 0 ? "#3ddc84" : "#ff6f61";
+  x.font = "900 108px -apple-system, Segoe UI, sans-serif";
+  x.fillText(ltr(d.total), W/2, y+118);
+  /* the honesty stamp - always BELOW the number, always ABOVE the footer */
+  x.save(); x.translate(W/2, Math.min(y+196, H-200)); x.rotate(-0.06);
+  x.strokeStyle = d.demo ? "#3ddc84" : "#ff6f61"; x.lineWidth = 6;
+  x.fillStyle = "rgba(0,0,0,.25)";
+  roundRect(x, -190, -40, 380, 76, 14); x.fill(); x.stroke();
+  x.fillStyle = d.demo ? "#3ddc84" : "#ff6f61"; x.font = "900 44px -apple-system, Segoe UI, sans-serif";
+  x.fillText(d.demo ? "חשבון דמו · כסף מדומה" : "חשבון אמיתי", 0, 14);
+  x.restore();
+  /* footer */
+  x.fillStyle = "#96b195"; x.font = "600 30px -apple-system, Segoe UI, sans-serif";
+  x.fillText("📅 " + d.date + " · המספרים כוללים גם הפסדים וגם עמלות", W/2, H-120);
+  x.fillStyle = "#dfb440"; x.font = "700 30px -apple-system, Segoe UI, sans-serif";
+  x.fillText("♛ " + APP_URL.replace("https://",""), W/2, H-76);
+}
+function roundRect(x, a, b, w, h, r){
+  const R = typeof r === "number" ? {tl:r,tr:r,br:r,bl:r} : r;
+  x.beginPath();
+  x.moveTo(a+R.tl, b);
+  x.lineTo(a+w-R.tr, b); x.arcTo(a+w, b, a+w, b+R.tr, R.tr);
+  x.lineTo(a+w, b+h-R.br); x.arcTo(a+w, b+h, a+w-R.br, b+h, R.br);
+  x.lineTo(a+R.bl, b+h); x.arcTo(a, b+h, a, b+h-R.bl, R.bl);
+  x.lineTo(a, b+R.tl); x.arcTo(a, b, a+R.tl, b, R.tl);
+  x.closePath();
+}
+function openProfitCard(){
+  const box = document.createElement("div"); box.className = "modal";
+  box.innerHTML = '<div class="mbox"><h3 style="color:var(--gold)">🖼️ תמונת הרווח שלך — עם החותמת של המועדון</h3>' +
+    '<div class="pcwrap"><canvas id="pcCanvas"></canvas></div>' +
+    '<div class="mini">התמונה כוללת את הסמל, את השם שלך, את התאריך ואת חותמת הדמו — שכל מי שרואה אותה יידע בדיוק מאיפה היא ומה היא.</div>' +
+    '<div class="btnrow">' +
+      '<button class="btn" onclick="shareProfitCard()">📤 שתף</button>' +
+      '<button class="btn sec" onclick="downloadProfitCard()">⬇️ הורד תמונה</button>' +
+      '<button class="btn sec" onclick="this.closest(\'.modal\').remove()">סגור</button>' +
+    '</div></div>';
+  box.onclick = e => { if (e.target===box) box.remove(); };
+  document.body.appendChild(box);
+  drawProfitCard($("pcCanvas"));
+}
+function profitCardBlob(cb){
+  const cv = $("pcCanvas"); if (!cv) return;
+  cv.toBlob(b => cb(b), "image/png");
+}
+function shareProfitCard(){
+  profitCardBlob(async b => {
+    const f = new File([b], "idan-money-club-profit.png", {type:"image/png"});
+    if (navigator.canShare && navigator.canShare({files:[f]})){
+      try { await navigator.share({files:[f], title:"Idan's Money Club"}); return; } catch(e){}
+    }
+    downloadProfitCard();
+    toast("הדפדפן לא תומך בשיתוף ישיר — התמונה ירדה, שתף אותה מהגלריה");
+  });
+}
+function downloadProfitCard(){
+  profitCardBlob(b => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(b);
+    a.download = "idan-money-club-profit.png";
+    a.click(); URL.revokeObjectURL(a.href);
+  });
+}
+
+/* ---- 11.8 coach marks: a guided hand on the REAL screen ---------------
+   "שיהיה בהתחלה למשתמשים חדשים הדרכה על כל צעד וצעד". The v1 tour was
+   six cards ABOUT the app; this walks the app itself - a spotlight on the
+   actual element, one sentence, next. Runs once for a new member after
+   their first entry, and lives forever under 🎓 in the menu. ----------- */
+const COACH = [
+  {sel:".brand",     band:"ברוך הבא", txt:"זה המועדון שלך. הסמל — כתר על מטבע — מופיע על כל דבר רשמי שיוצא מכאן, כולל תמונות הרווח."},
+  {sel:"#heroBig",   band:"המספר הגדול", txt:"מה שהעסקאות הפתוחות שוות ברגע זה, ברוטו. ירוק = פלוס, אדום = מינוס. הוא זז לבד — אתה לא צריך לרענן כלום."},
+  {sel:".corners",   band:'הסה"כ בצד', txt:"שתי הפינות: כל הכסף (BALANCE) והיום (TODAY). גם כשצופים בבוט אחד — הסך הכולל תמיד נשאר כאן למעלה."},
+  {sel:"#liveRows",  band:"הפעולות החיות", txt:"כל שורה היא עסקה פתוחה: כניסה, מחיר עכשיו, ורווח. לחיצה על שורה פותחת את הבוט שלה עם כל הפקודות."},
+  {sel:"#botChips",  band:"כרטיסי הבוטים", txt:"כל בוט הוא כרטיס נכס בצבע משלו. לחיצה פותחת אותו — ובפנים אפשר לבחור 👁️ לצפות רק בו. הבחירה מתאפסת בכל כניסה — בוחרים מחדש כל פעם."},
+  {sel:"#ticker",    band:"היסטוריית הידיים", txt:"הסרט למטה: כל פתיחה וסגירה, עם התוצאה. מה שקרה — כתוב, כולל ההפסדים."},
+  {sel:".burger",    band:"התפריט", txt:"מכאן נכנסים לכל החדרים: לוח הכסף, התוכנית שלך, הדוחות, הצ'אט, החיבורים — והדרכה הזאת שוב, בכל רגע, תחת 🎓.", open:true},
+  {sel:"#stopBtn",   band:"עצירת חירום", txt:"הכפתור האדום עוצר כניסות חדשות בכל הבוטים. פוזיציות פתוחות מנוהלות החוצה כרגיל — לא ננטשות.", drawer:true},
+  {sel:'#mainNav [data-t="shop"]', band:"הוסף בוט", txt:"כולם רואים את האופציה; עידן פותח אותה אישית למי שמבקש. המחיר והשלבים — בפנים.", drawer:true}
+];
+let COACH_I = -1;
+function startCoach(force){
+  if (!force && LS.get("coachDone", false)) return;
+  if (window.__TEST_FIREBASE__ && !force) return;
+  closeDrawer(); goTab("table");
+  COACH_I = -1;
+  if (!$("coachBox")){
+    const c = document.createElement("div");
+    c.id = "coachBox"; c.className = "coach hidden";
+    c.innerHTML = '<div class="veil" onclick="coachNext()"></div><div class="spot" id="coachSpot"></div><div class="tip" id="coachTip"></div>';
+    document.body.appendChild(c);
+  }
+  $("coachBox").classList.remove("hidden");
+  coachNext();
+}
+function coachNext(){
+  COACH_I++;
+  if (COACH_I >= COACH.length) return endCoach(true);
+  const s = COACH[COACH_I];
+  if (s.drawer && !$("drawer").classList.contains("on")) toggleDrawer();
+  if (!s.drawer && $("drawer").classList.contains("on") && !s.open) closeDrawer();
+  const el = document.querySelector(s.sel);
+  if (!el){ return coachNext(); }
+  const r = el.getBoundingClientRect();
+  if (r.width === 0 && r.height === 0){ return coachNext(); }
+  const sp = $("coachSpot");
+  sp.style.left = (r.left-7)+"px"; sp.style.top = (r.top-7)+"px";
+  sp.style.width = (r.width+14)+"px"; sp.style.height = (r.height+14)+"px";
+  const tip = $("coachTip");
+  tip.innerHTML = '<div class="band2">'+esc(s.band)+'</div><div class="txt">'+esc(s.txt)+'</div>' +
+    '<div class="row"><button class="cnext" onclick="coachNext()">'+(COACH_I===COACH.length-1?"🎉 סיימנו":"הבא ›")+'</button>' +
+    '<button class="cskip" onclick="endCoach(false)">דלג</button>' +
+    '<span class="n2">'+(COACH_I+1)+' / '+COACH.length+'</span></div>';
+  const below = r.bottom + 190 < innerHeight;
+  tip.style.top = below ? (r.bottom+14)+"px" : "";
+  tip.style.bottom = below ? "" : (innerHeight-r.top+14)+"px";
+  tip.style.left = Math.max(10, Math.min(innerWidth-350, r.left))+"px";
+  if (s.open && !$("drawer").classList.contains("on")) toggleDrawer();
+}
+function endCoach(done){
+  const c = $("coachBox"); if (c) c.classList.add("hidden");
+  closeDrawer();
+  LS.set("coachDone", true);
+  if (done) toast("🎩 עברת את ההדרכה — הלוח שלך");
+}
+
+/* ---- 11.9 wiring -------------------------------------------------------*/
+const _enterApp4 = enterApp;
+enterApp = function(){
+  _enterApp4();
+  refreshShopNav();
+  /* a brand-new member gets the guided hand once, after the screen settles */
+  if (!PERSONAL && !window.__TEST_FIREBASE__ && !LS.get("coachDone", false))
+    setTimeout(()=>startCoach(false), 1600);
+};
 </script>
 </body>
 </html>
