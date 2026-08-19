@@ -17,8 +17,8 @@
     "open_gross": 0.0,
     "trades_today": 5,
     "enabled": true,
-    "note": "skip: atr too high",
-    "age_sec": 18.3,
+    "note": "skip: no burst 0.51atr",
+    "age_sec": 17.7,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 1776.0,
+    "age_sec": 3575.5,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,19 +67,19 @@
     "vwap": 0.0,
     "enabled": false,
     "day_stop": false,
-    "age_sec": 0.2,
+    "age_sec": 0.0,
     "status": "off",
     "symbol": "XAUUSD+",
     "margin_free": 11714.65,
-    "blocked": "DISARMED - opens nothing. Anything already open is still managed out.",
-    "note": "DISARMED - opens nothing. Anything already open is still managed out."
+    "blocked": "Balance 11715 is under the 46656 that 11 rungs (4.32 lots) needs: a bad day here costs about 4666, which is 40% of this account. The deepest ladder this balance carries is InpMaxLegs=8.",
+    "note": "Balance 11715 is under the 46656 that 11 rungs (4.32 lots) needs: a bad day here costs about 4666, which is 40% of this account. The deepest ladder this balance carries is InpMaxLegs=8."
    },
    {
     "id": "swing",
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1098.91,
+    "equity": 1099.21,
     "balance": 749.31,
     "day_gross": 23.08,
     "day_open_equity": 1064.82,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 939.53,
-    "age_sec": 302.3,
+    "age_sec": 301.7,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -127,7 +127,7 @@
    "day_fee": 705.6,
    "day_net": 11032.13,
    "day_pct": 34.77,
-   "equity": 33787.88,
+   "equity": 33788.18,
    "day_open_equity": 33753.79,
    "pocket_since_start": -163.6,
    "fee_since_start": 1137.92
@@ -1057,12 +1057,12 @@
    "gross": -8.87
   }
  ],
- "updated_utc": "2026-08-19T16:06:02.307900+00:00",
- "updated_israel": "2026-08-19 19:06",
+ "updated_utc": "2026-08-19T16:36:01.738672+00:00",
+ "updated_israel": "2026-08-19 19:36",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.19 19:05:44",
+  "updated": "2026.08.19 19:35:44",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1082,16 +1082,16 @@
   "high_water": 12392.36,
   "risk_pct": 5.0,
   "tf_minutes": 15,
-  "last_decision": "skip: atr too high",
-  "spread_points": 26.0,
+  "last_decision": "skip: no burst 0.51atr",
+  "spread_points": 27.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [],
   "equity": 3861.56,
-  "stamp": "2026.08.19 19:06:00",
-  "age_sec": 0.1
+  "stamp": "2026.08.19 19:36:00",
+  "age_sec": 0.0
  },
  "slave": {
   "ok": false,
@@ -1116,14 +1116,14 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 1776.0
+  "age_sec": 3575.5
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.12",
-  "t": 1787166360,
+  "t": 1787168160,
   "armed": false,
-  "why": "DISARMED - opens nothing. Anything already open is still managed out.",
+  "why": "Balance 11715 is under the 46656 that 11 rungs (4.32 lots) needs: a bad day here costs about 4666, which is 40% of this account. The deepest ladder this balance carries is InpMaxLegs=8.",
   "symbol": "XAUUSD+",
   "legs": 0,
   "max_legs": 11,
@@ -1141,9 +1141,9 @@
   "equity": 11714.65,
   "margin_free": 11714.65,
   "is_demo": true,
-  "age_sec": 0.2,
+  "age_sec": 0.0,
   "ok": true,
-  "blocked": "DISARMED - opens nothing. Anything already open is still managed out."
+  "blocked": "Balance 11715 is under the 46656 that 11 rungs (4.32 lots) needs: a bad day here costs about 4666, which is 40% of this account. The deepest ladder this balance carries is InpMaxLegs=8."
  },
  "fees": {
   "rate_atrade_per_oz": 0.28,
@@ -1206,12 +1206,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 749.3144036159026,
-  "equity": 1098.91,
+  "equity": 1099.21,
   "realized_pnl": 104.16,
-  "open_pnl": 0.23,
+  "open_pnl": 0.53,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 9.89,
+  "return_pct": 9.92,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1220,20 +1220,20 @@
    "ticker": "DNLI",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 24.93,
+   "price": 25.08,
    "entry": 25.64,
    "stop": 24.0549,
    "t1": 28.8102,
    "t2": 31.1878,
    "rr1": 2.0,
-   "rsi": 55.3,
-   "rvol": 0.23,
+   "rsi": 56.3,
+   "rvol": 0.25,
    "score": 83,
    "shares": 15,
    "notional": 384.6,
    "risk_dollars": 23.78,
    "room": 28.652,
-   "above_ma50_pct": 3.93,
+   "above_ma50_pct": 4.54,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-5 מקורות שונים",
@@ -1248,23 +1248,121 @@
   },
   {
    "kind": "swing",
+   "ticker": "ALT",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 3.115,
+   "entry": 3.2,
+   "stop": 2.9637,
+   "t1": 3.6727,
+   "t2": 4.0272,
+   "rr1": 2.0,
+   "rsi": 58.4,
+   "rvol": 1.03,
+   "score": 83,
+   "shares": 120,
+   "notional": 384.0,
+   "risk_dollars": 28.36,
+   "room": 3.56,
+   "above_ma50_pct": 6.93,
+   "news": [
+    {
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": null,
+     "sources": 1,
+     "title": "Is Altimmune Worth Buying as Cash Rises but Execution Risks Linger?",
+     "src": "Zacks",
+     "time": "2026-08-19 14:55"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Altimmune's Phase III MASH Study Puts 2029 Data in Investor Focus",
+     "src": "Zacks",
+     "time": "2026-08-19 14:54"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Kodiak's Q2 Loss Wider Than Expected, Pipeline Development in Focus",
+     "src": "Zacks",
+     "time": "2026-08-14 14:14"
+    }
+   ]
+  },
+  {
+   "kind": "swing",
+   "ticker": "RXRX",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 3.325,
+   "entry": 3.42,
+   "stop": 3.1405,
+   "t1": 3.979,
+   "t2": 4.3983,
+   "rr1": 2.0,
+   "rsi": 54.7,
+   "rvol": 0.94,
+   "score": 77,
+   "shares": 112,
+   "notional": 383.04,
+   "risk_dollars": 31.31,
+   "room": 3.98,
+   "above_ma50_pct": 1.77,
+   "news": [
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "These Are the Stocks Wall Street Is Betting Against the Most",
+     "src": "GuruFocus.com",
+     "time": "2026-08-12 19:30"
+    },
+    {
+     "summary": "דיווח ניטרלי · הוצלב ב-2 מקורות שונים",
+     "dir": "neu",
+     "tag": null,
+     "sources": 2,
+     "title": "The Zacks Analyst Blog Highlights Recursion Pharmaceuticals, Schrodinger, Relay Therapeutics and Absci",
+     "src": "Zacks",
+     "time": "2026-08-18 07:43"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Contineum, Disc Medicine, Recursion Advance Pipelines Ahead of Catalysts, Morgan Stanley Says",
+     "src": "MT Newswires",
+     "time": "2026-08-17 15:01"
+    }
+   ]
+  },
+  {
+   "kind": "swing",
    "ticker": "PRCH",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 17.29,
+   "price": 17.13,
    "entry": 17.47,
    "stop": 16.0402,
    "t1": 20.3297,
    "t2": 22.4745,
    "rr1": 2.0,
-   "rsi": 65.5,
-   "rvol": 0.13,
+   "rsi": 64.7,
+   "rvol": 0.16,
    "score": 70,
    "shares": 22,
    "notional": 384.34,
    "risk_dollars": 31.46,
    "room": 19.72,
-   "above_ma50_pct": 26.56,
+   "above_ma50_pct": 25.42,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
@@ -1288,50 +1386,50 @@
   },
   {
    "kind": "swing",
-   "ticker": "IBTA",
+   "ticker": "TNDM",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 38.14,
-   "entry": 39.01,
-   "stop": 34.837,
-   "t1": 47.3559,
-   "t2": 53.6153,
+   "price": 23.76,
+   "entry": 23.8,
+   "stop": 21.6899,
+   "t1": 28.0202,
+   "t2": 31.1853,
    "rr1": 2.0,
-   "rsi": 60.1,
-   "rvol": 0.05,
-   "score": 57,
-   "shares": 9,
-   "notional": 351.09,
-   "risk_dollars": 37.56,
-   "room": 54.175,
-   "above_ma50_pct": 18.49,
+   "rsi": 70.5,
+   "rvol": 0.32,
+   "score": 64,
+   "shares": 16,
+   "notional": 380.8,
+   "risk_dollars": 33.76,
+   "room": 30.53,
+   "above_ma50_pct": 32.94,
    "news": [
     {
-     "summary": "דיווח חיובי · שיתוף פעולה חדש · מקור יחיד — לקחת בזהירות",
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
      "dir": "pos",
-     "tag": "שיתוף פעולה",
+     "tag": null,
      "sources": 1,
-     "title": "7-Eleven announces new promotions partnership",
-     "src": "C-Store Dive",
-     "time": "2026-08-06 08:53"
+     "title": "Tandem Diabetes Care Maps Growth Plan With Pharmacy Shift and Tubeless Mobi",
+     "src": "MarketBeat",
+     "time": "2026-08-18 06:02"
+    },
+    {
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": null,
+     "sources": 1,
+     "title": "TNDM Q2 Loss Narrower Than Expected, Revenues Miss, Stock Up",
+     "src": "Zacks",
+     "time": "2026-08-12 12:39"
     },
     {
      "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
      "dir": "neu",
      "tag": "דוחות",
      "sources": 2,
-     "title": "Ibotta’s Q2 Earnings Call: Our Top 5 Analyst Questions",
+     "title": "5 Must-Read Analyst Questions From Tandem Diabetes’s Q2 Earnings Call",
      "src": "StockStory",
-     "time": "2026-08-12 00:45"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "1 Stock Under $50 for Long-Term Investors and 2 We Ignore",
-     "src": "StockStory",
-     "time": "2026-08-17 22:22"
+     "time": "2026-08-15 04:45"
     }
    ]
   }
@@ -1349,9 +1447,9 @@
    "t2": 31.1878,
    "notional": 384.6,
    "score": 83,
-   "rsi": 55.3,
-   "rvol": 0.23,
-   "placed_for": "2026-08-19 18:56"
+   "rsi": 56.3,
+   "rvol": 0.25,
+   "placed_for": "2026-08-19 19:26"
   }
  ],
  "scan_universe": {
@@ -1482,7 +1580,7 @@
    "name": "👹 בוס היום",
    "target": 85.19,
    "legend": 212.96,
-   "done": 34.09,
+   "done": 34.39,
    "base": 1064.82,
    "pct": 40,
    "pct_legend": 16,
