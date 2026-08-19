@@ -18,7 +18,7 @@
     "trades_today": 5,
     "enabled": true,
     "note": "skip: atr too high",
-    "age_sec": 20.5,
+    "age_sec": 18.3,
     "status": "ok"
    },
    {
@@ -37,8 +37,8 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 0.0,
-    "status": "ok",
+    "age_sec": 1776.0,
+    "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
     "server": "VantageMarkets-Demo",
@@ -54,32 +54,32 @@
     "name": "בוט המגירה",
     "icon": "🗄️",
     "market": "XAUUSD",
-    "equity": 0.0,
-    "balance": 0.0,
-    "day_gross": null,
-    "day_open_equity": null,
-    "day_pct": null,
+    "equity": 11714.65,
+    "balance": 11714.65,
+    "day_gross": 0.0,
+    "day_open_equity": 11714.65,
+    "day_pct": 0.0,
     "open_count": 0,
     "open_gross": 0.0,
-    "open_lots": null,
+    "open_lots": 0.0,
     "legs": 0,
-    "max_legs": null,
-    "vwap": null,
+    "max_legs": 11,
+    "vwap": 0.0,
     "enabled": false,
     "day_stop": false,
-    "age_sec": null,
+    "age_sec": 0.2,
     "status": "off",
-    "symbol": null,
-    "margin_free": null,
-    "blocked": "the drawer bot has never reported",
-    "note": "the drawer bot has never reported"
+    "symbol": "XAUUSD+",
+    "margin_free": 11714.65,
+    "blocked": "DISARMED - opens nothing. Anything already open is still managed out.",
+    "note": "DISARMED - opens nothing. Anything already open is still managed out."
    },
    {
     "id": "swing",
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1095.21,
+    "equity": 1098.91,
     "balance": 749.31,
     "day_gross": 23.08,
     "day_open_equity": 1064.82,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 939.53,
-    "age_sec": 304.6,
+    "age_sec": 302.3,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -126,9 +126,9 @@
    "day_gross": 11737.73,
    "day_fee": 705.6,
    "day_net": 11032.13,
-   "day_pct": 53.26,
-   "equity": 22069.53,
-   "day_open_equity": 22039.14,
+   "day_pct": 34.77,
+   "equity": 33787.88,
+   "day_open_equity": 33753.79,
    "pocket_since_start": -163.6,
    "fee_since_start": 1137.92
   }
@@ -1057,12 +1057,12 @@
    "gross": -8.87
   }
  ],
- "updated_utc": "2026-08-19T15:36:04.610076+00:00",
- "updated_israel": "2026-08-19 18:36",
+ "updated_utc": "2026-08-19T16:06:02.307900+00:00",
+ "updated_israel": "2026-08-19 19:06",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.19 18:35:44",
+  "updated": "2026.08.19 19:05:44",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1083,18 +1083,18 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: atr too high",
-  "spread_points": 28.0,
+  "spread_points": 26.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [],
   "equity": 3861.56,
-  "stamp": "2026.08.19 18:36:03",
-  "age_sec": 0.0
+  "stamp": "2026.08.19 19:06:00",
+  "age_sec": 0.1
  },
  "slave": {
-  "ok": true,
+  "ok": false,
   "account": 25946715,
   "balance": 11714.65,
   "equity": 11714.65,
@@ -1115,12 +1115,35 @@
   "margin_used": 0.0,
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
-  "stamp": "2026.08.19 18:36:03",
-  "age_sec": 0.0
+  "stamp": "2026.08.19 18:36:24",
+  "age_sec": 1776.0
  },
  "drawer": {
-  "ok": false,
-  "blocked": "the drawer bot has never reported"
+  "bot": "drawer_gold",
+  "v": "1.12",
+  "t": 1787166360,
+  "armed": false,
+  "why": "DISARMED - opens nothing. Anything already open is still managed out.",
+  "symbol": "XAUUSD+",
+  "legs": 0,
+  "max_legs": 11,
+  "dir": 0,
+  "lots": 0.0,
+  "vwap": 0.0,
+  "price": 0.0,
+  "move": 0.0,
+  "float": 0.0,
+  "day": 0.0,
+  "day_stop": false,
+  "mixed": false,
+  "closing": false,
+  "balance": 11714.65,
+  "equity": 11714.65,
+  "margin_free": 11714.65,
+  "is_demo": true,
+  "age_sec": 0.2,
+  "ok": true,
+  "blocked": "DISARMED - opens nothing. Anything already open is still managed out."
  },
  "fees": {
   "rate_atrade_per_oz": 0.28,
@@ -1183,12 +1206,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 749.3144036159026,
-  "equity": 1095.21,
+  "equity": 1098.91,
   "realized_pnl": 104.16,
-  "open_pnl": -3.47,
+  "open_pnl": 0.23,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 9.52,
+  "return_pct": 9.89,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1197,20 +1220,20 @@
    "ticker": "DNLI",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 25.22,
+   "price": 24.93,
    "entry": 25.64,
-   "stop": 24.1122,
-   "t1": 28.6957,
-   "t2": 30.9874,
+   "stop": 24.0549,
+   "t1": 28.8102,
+   "t2": 31.1878,
    "rr1": 2.0,
-   "rsi": 57.8,
-   "rvol": 0.2,
+   "rsi": 55.3,
+   "rvol": 0.23,
    "score": 83,
-   "shares": 14,
-   "notional": 358.96,
-   "risk_dollars": 21.39,
+   "shares": 15,
+   "notional": 384.6,
+   "risk_dollars": 23.78,
    "room": 28.652,
-   "above_ma50_pct": 4.45,
+   "above_ma50_pct": 3.93,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-5 מקורות שונים",
@@ -1225,72 +1248,23 @@
   },
   {
    "kind": "swing",
-   "ticker": "NEO",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 16.495,
-   "entry": 16.92,
-   "stop": 15.8033,
-   "t1": 19.1533,
-   "t2": 20.8284,
-   "rr1": 2.0,
-   "rsi": 62.9,
-   "rvol": 0.18,
-   "score": 78,
-   "shares": 22,
-   "notional": 372.24,
-   "risk_dollars": 24.57,
-   "room": 20.79,
-   "above_ma50_pct": 17.89,
-   "news": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "NeoGenomics (NEO) Is Up 8.4% After Q2 Profit Return And Raised 2026 Outlook – Has The Bull Case Changed?",
-     "src": "Simply Wall St.",
-     "time": "2026-08-08 00:15"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "3 Stocks Under $50 with Open Questions",
-     "src": "StockStory",
-     "time": "2026-08-09 21:17"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "NeoGenomics, Inc. (NEO) Hit a 52 Week High, Can the Run Continue?",
-     "src": "Zacks",
-     "time": "2026-08-04 13:15"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
    "ticker": "PRCH",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 17.18,
+   "price": 17.29,
    "entry": 17.47,
-   "stop": 16.0785,
-   "t1": 20.253,
-   "t2": 22.3402,
+   "stop": 16.0402,
+   "t1": 20.3297,
+   "t2": 22.4745,
    "rr1": 2.0,
-   "rsi": 65.4,
-   "rvol": 0.09,
+   "rsi": 65.5,
+   "rvol": 0.13,
    "score": 70,
-   "shares": 21,
-   "notional": 366.87,
-   "risk_dollars": 29.22,
+   "shares": 22,
+   "notional": 384.34,
+   "risk_dollars": 31.46,
    "room": 19.72,
-   "above_ma50_pct": 23.72,
+   "above_ma50_pct": 26.56,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
@@ -1317,20 +1291,20 @@
    "ticker": "IBTA",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 38.03,
+   "price": 38.14,
    "entry": 39.01,
    "stop": 34.837,
    "t1": 47.3559,
    "t2": 53.6153,
    "rr1": 2.0,
-   "rsi": 59.9,
+   "rsi": 60.1,
    "rvol": 0.05,
    "score": 57,
    "shares": 9,
    "notional": 351.09,
    "risk_dollars": 37.56,
    "room": 54.175,
-   "above_ma50_pct": 18.16,
+   "above_ma50_pct": 18.49,
    "news": [
     {
      "summary": "דיווח חיובי · שיתוף פעולה חדש · מקור יחיד — לקחת בזהירות",
@@ -1362,72 +1336,22 @@
    ]
   }
  ],
- "signals_day": [
-  {
-   "kind": "day",
-   "ticker": "ALT",
-   "side": "long",
-   "state": "BUY_NOW",
-   "price": 3.095,
-   "entry": 3.095,
-   "stop": 3.035,
-   "t1": 3.215,
-   "t2": 3.275,
-   "rr1": 2.0,
-   "rsi": 57.5,
-   "rvol": 3.43,
-   "score": 77,
-   "shares": 123,
-   "notional": 380.69,
-   "risk_dollars": 7.38,
-   "room": null,
-   "above_ma50_pct": null,
-   "news": [
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 2,
-     "title": "Altimmune Inc (ALT) (Q2 2026) Earnings Call Highlights: Advancing MASH and AUD Pipelines with ...",
-     "src": "GuruFocus.com",
-     "time": "2026-08-12 23:03"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Kodiak's Q2 Loss Wider Than Expected, Pipeline Development in Focus",
-     "src": "Zacks",
-     "time": "2026-08-14 14:14"
-    },
-    {
-     "summary": "דיווח ניטרלי · התפתחות רגולטורית — יכולה להזיז את המניה בחדות · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": "רגולציה",
-     "sources": 1,
-     "title": "BLTE Stock Rises as FDA Grants Priority Review to Tinlarebant NDA",
-     "src": "Zacks",
-     "time": "2026-08-12 12:54"
-    }
-   ]
-  }
- ],
+ "signals_day": [],
  "pending_entries": [
   {
    "ticker": "DNLI",
    "kind": "swing",
    "side": "long",
-   "qty": 14,
+   "qty": 15,
    "entry": 25.64,
-   "stop": 24.1122,
-   "t1": 28.6957,
-   "t2": 30.9874,
-   "notional": 358.96,
+   "stop": 24.0549,
+   "t1": 28.8102,
+   "t2": 31.1878,
+   "notional": 384.6,
    "score": 83,
-   "rsi": 57.8,
-   "rvol": 0.2,
-   "placed_for": "2026-08-19 18:26"
+   "rsi": 55.3,
+   "rvol": 0.23,
+   "placed_for": "2026-08-19 18:56"
   }
  ],
  "scan_universe": {
@@ -1448,13 +1372,7 @@
   "max_price": 130.0,
   "cash_reserve_usd": 75.0
  },
- "rejected": [
-  {
-   "ticker": "ALT",
-   "kind": "day",
-   "why": "measurement_only"
-  }
- ],
+ "rejected": [],
  "game": {
   "xp": 4315,
   "level": 9,
@@ -1564,10 +1482,10 @@
    "name": "👹 בוס היום",
    "target": 85.19,
    "legend": 212.96,
-   "done": 30.39,
+   "done": 34.09,
    "base": 1064.82,
-   "pct": 36,
-   "pct_legend": 14,
+   "pct": 40,
+   "pct_legend": 16,
    "beaten": false,
    "legendary": false
   },
