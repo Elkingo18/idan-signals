@@ -114,9 +114,21 @@
 //|  is worse than managing it out.  From cold, with nothing open,    |
 //|  it is completely inert.                                          |
 //+------------------------------------------------------------------+
+//|  v1.14 - the day can be REOPENED, on the side that is safe to.    |
+//|    Idan, 19.8 night: "and I can turn it back on at any moment -   |
+//|    it is just the daily profit it reaches and stops at."  The day |
+//|    file now remembers WHY it closed (target / loss).  A day closed|
+//|    by the PROFIT TARGET follows the input: raise InpDailyTargetUsd|
+//|    or set it to 0, press OK, and the day reopens until the new    |
+//|    number.  A day closed by the LOSS stop stays closed - restarts |
+//|    and input changes were never allowed to clear that one, and    |
+//|    still are not.  The heartbeat now also reports the LOADED      |
+//|    day_target and day_loss_stop, so "armed but running without    |
+//|    the target" can be seen on the club screen instead of guessed. |
+//+------------------------------------------------------------------+
 #property copyright "Idan Trader"
 #property link      "idan money club"
-#property version   "1.13"
+#property version   "1.14"
 #property description "Drawer replica of the copied gold bot. Disarmed until InpArmed=true."
 
 #include <Trade/Trade.mqh>
@@ -207,6 +219,7 @@ double   g_dayStartBal = 0.0;
 string   g_dayKey      = "";
 bool     g_dayStop     = false;
 string   g_dayWhy      = "";       // why the day closed: target or loss
+string   g_dayKind     = "";       // what the day file remembers: "" / "target" / "loss"
 
 bool     g_closing   = false;      // a close is unfinished: finish it, never build on it
 double   g_lastLevel = 0.0;        // price level of the leg we last SENT
@@ -340,7 +353,7 @@ void SaveDay()
 {
    int h = FileOpen(DayFile(), FILE_WRITE | FILE_TXT | FILE_ANSI | FILE_COMMON);
    if(h == INVALID_HANDLE) return;
-   FileWriteString(h, StringFormat("%s|%.2f|%d", g_dayKey, g_dayStartBal, (g_dayStop ? 1 : 0)));
+   FileWriteString(h, StringFormat("%s|%.2f|%d|%s", g_dayKey, g_dayStartBal, (g_dayStop ? 1 : 0), g_dayKind));
    FileClose(h);
 }
 
@@ -356,18 +369,41 @@ void LoadDay()
       string s = FileReadString(h);
       FileClose(h);
       string p[];
-      if(StringSplit(s, '|', p) == 3 && p[0] == g_dayKey)
+      int n = StringSplit(s, '|', p);
+      if(n >= 3 && p[0] == g_dayKey)
       {
          double b = StringToDouble(p[1]);
          if(b > 0)                       // a truncated or garbled file must not
          {                               // silently re-anchor the day at zero
             g_dayStartBal = b;
             g_dayStop     = (p[2] == "1");
+            // v1.14: the file remembers WHY the day closed.  An old 3-field
+            // file cannot say, so a stop it carries is treated as the sticky
+            // kind - guessing "target" would let a restart reopen a day the
+            // loss stop closed.
+            g_dayKind     = (n >= 4) ? p[3] : (g_dayStop ? "loss" : "");
          }
          else
             Print("IdanDrawerGold: the day file is unreadable - starting the day from the current balance");
       }
    }
+   // v1.14 - "I can turn it back on at any moment."  A day closed by the
+   // PROFIT TARGET follows the input: if the target was raised past today's
+   // profit, or switched off, the day reopens.  A day closed by the LOSS
+   // stop does not follow the input - that one was made restart-proof on
+   // purpose and stays that way.
+   if(g_dayStop && g_dayKind == "target" &&
+      (InpDailyTargetUsd <= 0 ||
+       AccountInfoDouble(ACCOUNT_BALANCE) - g_dayStartBal < InpDailyTargetUsd))
+   {
+      g_dayStop = false;
+      g_dayKind = "";
+      Print("IdanDrawerGold: the day reopened - the profit target moved past today's profit");
+   }
+   if(g_dayStop && g_dayWhy == "")
+      g_dayWhy = (g_dayKind == "target")
+                 ? "daily target reached - no new ladders today (restored from the day file)"
+                 : "daily stop restored from the day file";
    SaveDay();
 }
 
@@ -393,6 +429,7 @@ bool DayEdgeHit()
    if(InpDailyTargetUsd > 0 && p >= InpDailyTargetUsd)
    {
       g_dayStop = true;
+      g_dayKind = "target";
       g_dayWhy  = StringFormat("daily target reached: +%.2f of %.2f - no new ladders today",
                                p, InpDailyTargetUsd);
       PrintFormat("IdanDrawerGold: %s", g_dayWhy);
@@ -402,6 +439,7 @@ bool DayEdgeHit()
    if(InpDailyStopUsd > 0 && p <= -InpDailyStopUsd)
    {
       g_dayStop = true;
+      g_dayKind = "loss";
       g_dayWhy  = StringFormat("daily loss stop: %.2f - flat for the rest of the day", p);
       PrintFormat("IdanDrawerGold: %s", g_dayWhy);
       SaveDay();
@@ -418,6 +456,7 @@ void RollDay()
    g_dayStartBal = AccountInfoDouble(ACCOUNT_BALANCE);
    g_dayStop     = false;
    g_dayWhy      = "";
+   g_dayKind     = "";
    SaveDay();
 }
 
@@ -514,8 +553,10 @@ int OnInit()
 
    if(g_legsCap < 8)
       Print("IdanDrawerGold: WARNING - below 8 rungs the ladder is cut so often that the bad days stack. On the master's own record 7 rungs lost $6,898 over three months and its worst day was 14.6x its worst basket, so the account-size gate understates the risk at this depth.");
-   PrintFormat("IdanDrawerGold v1.12 %s | sym=%s depth=%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | %s",
+   PrintFormat("IdanDrawerGold v1.14 %s | sym=%s depth=%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
                (g_ok ? "READY" : "HELD"), g_sym, g_legsCap, full, LadderReach(), g_contract, g_minBal,
+               (InpDailyTargetUsd > 0 ? StringFormat("+$%.0f", InpDailyTargetUsd) : "off"),
+               (InpDailyStopUsd   > 0 ? StringFormat("-$%.0f", InpDailyStopUsd)   : "off"),
                (g_why == "" ? "ok" : g_why));
    EventSetTimer(5);
    Beat();
@@ -913,13 +954,15 @@ void Beat()
    double px = (have && QuoteOk()) ? ExitPrice(dir) : 0;
    double mv = (have && px > 0) ? (px - vwap) * dir : 0;
    string j = StringFormat(
-      "{\"bot\":\"drawer_gold\",\"v\":\"1.13\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
+      "{\"bot\":\"drawer_gold\",\"v\":\"1.14\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
       "\"symbol\":\"%s\",\"legs\":%d,\"max_legs\":%d,\"dir\":%d,\"lots\":%.2f,"
       "\"vwap\":%.2f,\"price\":%.2f,\"move\":%.3f,\"float\":%.2f,\"day\":%.2f,"
+      "\"day_target\":%.2f,\"day_loss_stop\":%.2f,"
       "\"day_stop\":%s,\"day_reason\":\"%s\",\"mixed\":%s,\"closing\":%s,"
       "\"balance\":%.2f,\"equity\":%.2f,\"margin_free\":%.2f,\"is_demo\":%s}",
       IntegerToString((long)TimeCurrent()), (g_ok ? "true" : "false"), g_why, g_sym,
       legs, g_legsCap, dir, vol, vwap, px, mv, mv * vol * g_contract, DayPnl(),
+      InpDailyTargetUsd, InpDailyStopUsd,
       (g_dayStop ? "true" : "false"), g_dayWhy, (mixed ? "true" : "false"), (g_closing ? "true" : "false"),
       AccountInfoDouble(ACCOUNT_BALANCE), AccountInfoDouble(ACCOUNT_EQUITY),
       AccountInfoDouble(ACCOUNT_MARGIN_FREE),
