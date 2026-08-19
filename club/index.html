@@ -1888,7 +1888,10 @@ function renderLinks(){
   $("mt5Wizard").innerHTML = `
     הבוט ירוץ <b>אצלך במחשב, על חשבון הדמו שלך</b> (כסף מדומה). שלושה שלבים:
     <br><b>1.</b> צריך <a href="https://www.metatrader5.com/he/download" target="_blank" rel="noopener">MetaTrader 5</a> מותקן עם חשבון דמו (קובץ ← פתח חשבון ← MetaQuotes Demo ← 10,000$). יש לך כבר? עבור לשלב 2.
-    <br><b>2.</b> הורד והפעל את <a href="${DL}IdanGold-Setup.bat" download><b>קובץ ההתקנה</b></a> — הוא מתקין את הבוט, מכניס את ההגדרות של עידן, פותח גרף זהב עם הבוט עליו, ונותן לך <b>מפתח חיבור</b>.
+    <br><b>2.</b> <b>ווינדוס:</b> הורד והפעל את <a href="${DL}IdanGold-Setup.bat" download><b>קובץ ההתקנה</b></a>. &nbsp;<b>מאק:</b> פתח Terminal והדבק:
+    <div style="direction:ltr;font-family:monospace;font-size:11px;background:rgba(255,255,255,.06);border-radius:8px;padding:7px;margin:5px 0;word-break:break-all">curl -fsSL ${DL}mac_setup.sh | bash</div>
+    ההתקנה מורידה את <b>בוט היום השחור</b>, מכניסה את ההגדרות הבטוחות, פותחת גרף זהב עם הבוט עליו, ונותנת לך <b>מפתח חיבור</b>.
+    <div class="mini" style="margin-top:5px">ההגדרות שנכנסות אליך: <b>8 שלבים לכל היותר</b> · <b>עוצר את היום ב-‎+$1,200</b> · <b>דמו בלבד</b>. אם היתרה שלך לא נושאת 8 שלבים — <b>הבוט מסרב להידלק ואומר לך את המספרים</b>. זו לא תקלה, זו כל המטרה של הבנייה הזאת.</div>
     <br><b>3.</b> העתק את המפתח מחלון ההתקנה והדבק אותו למעלה ⬆ — וזהו. תוך כדקותיים הערימה שלך מופיעה במסך השולחן.
     <br><span style="color:var(--warn)">אם ווינדוס מציג "SmartScreen" — לחץ "מידע נוסף" ואז "הפעל בכל זאת". הקובץ לא חתום דיגיטלית, זו התראה רגילה.</span>
     <br><span style="color:var(--warn)">במטה-טריידר: כפתור "Algo Trading" בסרגל העליון חייב להיות ירוק.</span>
