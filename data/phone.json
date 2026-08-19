@@ -18,7 +18,7 @@
     "trades_today": 5,
     "enabled": true,
     "note": "skip: atr too high",
-    "age_sec": 16.5,
+    "age_sec": 20.5,
     "status": "ok"
    },
    {
@@ -50,11 +50,36 @@
     "note": "מעתיק את המורה 1:1 עם שומר-מחיר-כניסה"
    },
    {
+    "id": "drawer",
+    "name": "בוט המגירה",
+    "icon": "🗄️",
+    "market": "XAUUSD",
+    "equity": 0.0,
+    "balance": 0.0,
+    "day_gross": null,
+    "day_open_equity": null,
+    "day_pct": null,
+    "open_count": 0,
+    "open_gross": 0.0,
+    "open_lots": null,
+    "legs": 0,
+    "max_legs": null,
+    "vwap": null,
+    "enabled": false,
+    "day_stop": false,
+    "age_sec": null,
+    "status": "off",
+    "symbol": null,
+    "margin_free": null,
+    "blocked": "the drawer bot has never reported",
+    "note": "the drawer bot has never reported"
+   },
+   {
     "id": "swing",
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1099.51,
+    "equity": 1095.21,
     "balance": 749.31,
     "day_gross": 23.08,
     "day_open_equity": 1064.82,
@@ -71,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 939.53,
-    "age_sec": 300.5,
+    "age_sec": 304.6,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -102,10 +127,10 @@
    "day_fee": 705.6,
    "day_net": 11032.13,
    "day_pct": 53.26,
-   "equity": 22073.83,
+   "equity": 22069.53,
    "day_open_equity": 22039.14,
-   "pocket_since_start": -107.6,
-   "fee_since_start": 1081.92
+   "pocket_since_start": -163.6,
+   "fee_since_start": 1137.92
   }
  },
  "events": [
@@ -1032,12 +1057,12 @@
    "gross": -8.87
   }
  ],
- "updated_utc": "2026-08-19T15:06:00.574489+00:00",
- "updated_israel": "2026-08-19 18:06",
+ "updated_utc": "2026-08-19T15:36:04.610076+00:00",
+ "updated_israel": "2026-08-19 18:36",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.19 18:05:44",
+  "updated": "2026.08.19 18:35:44",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1058,15 +1083,15 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: atr too high",
-  "spread_points": 12.0,
+  "spread_points": 28.0,
   "position": null
  },
  "copier": {
   "ok": true,
   "legs": [],
   "equity": 3861.56,
-  "stamp": "2026.08.19 18:05:59",
-  "age_sec": 0.1
+  "stamp": "2026.08.19 18:36:03",
+  "age_sec": 0.0
  },
  "slave": {
   "ok": true,
@@ -1090,8 +1115,12 @@
   "margin_used": 0.0,
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
-  "stamp": "2026.08.19 18:05:59",
+  "stamp": "2026.08.19 18:36:03",
   "age_sec": 0.0
+ },
+ "drawer": {
+  "ok": false,
+  "blocked": "the drawer bot has never reported"
  },
  "fees": {
   "rate_atrade_per_oz": 0.28,
@@ -1154,83 +1183,34 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 749.3144036159026,
-  "equity": 1099.51,
+  "equity": 1095.21,
   "realized_pnl": 104.16,
-  "open_pnl": 0.83,
+  "open_pnl": -3.47,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 9.95,
+  "return_pct": 9.52,
   "name": "UHTA"
  },
  "signals_swing": [
   {
    "kind": "swing",
-   "ticker": "RXRX",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 3.3486,
-   "entry": 3.42,
-   "stop": 3.1416,
-   "t1": 3.9767,
-   "t2": 4.3943,
-   "rr1": 2.0,
-   "rsi": 55.5,
-   "rvol": 0.62,
-   "score": 83,
-   "shares": 112,
-   "notional": 383.04,
-   "risk_dollars": 31.18,
-   "room": 3.98,
-   "above_ma50_pct": 2.48,
-   "news": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "These Are the Stocks Wall Street Is Betting Against the Most",
-     "src": "GuruFocus.com",
-     "time": "2026-08-12 19:30"
-    },
-    {
-     "summary": "דיווח ניטרלי · הוצלב ב-2 מקורות שונים",
-     "dir": "neu",
-     "tag": null,
-     "sources": 2,
-     "title": "The Zacks Analyst Blog Highlights Recursion Pharmaceuticals, Schrodinger, Relay Therapeutics and Absci",
-     "src": "Zacks",
-     "time": "2026-08-18 07:43"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Contineum, Disc Medicine, Recursion Advance Pipelines Ahead of Catalysts, Morgan Stanley Says",
-     "src": "MT Newswires",
-     "time": "2026-08-17 15:01"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
    "ticker": "DNLI",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 25.16,
+   "price": 25.22,
    "entry": 25.64,
-   "stop": 24.1133,
-   "t1": 28.6934,
-   "t2": 30.9834,
+   "stop": 24.1122,
+   "t1": 28.6957,
+   "t2": 30.9874,
    "rr1": 2.0,
-   "rsi": 57.4,
-   "rvol": 0.16,
+   "rsi": 57.8,
+   "rvol": 0.2,
    "score": 83,
-   "shares": 15,
-   "notional": 384.6,
-   "risk_dollars": 22.9,
+   "shares": 14,
+   "notional": 358.96,
+   "risk_dollars": 21.39,
    "room": 28.652,
-   "above_ma50_pct": 4.21,
+   "above_ma50_pct": 4.45,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-5 מקורות שונים",
@@ -1248,20 +1228,20 @@
    "ticker": "NEO",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 16.44,
+   "price": 16.495,
    "entry": 16.92,
-   "stop": 15.8052,
-   "t1": 19.1495,
-   "t2": 20.8216,
+   "stop": 15.8033,
+   "t1": 19.1533,
+   "t2": 20.8284,
    "rr1": 2.0,
-   "rsi": 61.0,
-   "rvol": 0.15,
+   "rsi": 62.9,
+   "rvol": 0.18,
    "score": 78,
    "shares": 22,
    "notional": 372.24,
-   "risk_dollars": 24.52,
+   "risk_dollars": 24.57,
    "room": 20.79,
-   "above_ma50_pct": 15.76,
+   "above_ma50_pct": 17.89,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -1294,121 +1274,23 @@
   },
   {
    "kind": "swing",
-   "ticker": "WEN",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 8.765,
-   "entry": 8.8,
-   "stop": 8.1119,
-   "t1": 10.1763,
-   "t2": 11.2085,
-   "rr1": 2.0,
-   "rsi": 62.6,
-   "rvol": 0.26,
-   "score": 78,
-   "shares": 43,
-   "notional": 378.4,
-   "risk_dollars": 29.59,
-   "room": 10.54,
-   "above_ma50_pct": 15.51,
-   "news": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Nelson Peltz might take Wendy’s private following six straight quarterly sales declines as customers flee its poor franchise models and bad marketing",
-     "src": "Fortune",
-     "time": "2026-08-19 07:00"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Wendy’s revives COO position",
-     "src": "Restaurant Dive",
-     "time": "2026-08-19 10:38"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Wendy's Stock is Flashing Multiple Bearish Signals",
-     "src": "Schaeffer's Investment Research",
-     "time": "2026-08-18 19:03"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
-   "ticker": "LI",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 12.735,
-   "entry": 13.015,
-   "stop": 12.3983,
-   "t1": 14.2484,
-   "t2": 15.1734,
-   "rr1": 2.0,
-   "rsi": 50.3,
-   "rvol": 0.37,
-   "score": 77,
-   "shares": 29,
-   "notional": 377.44,
-   "risk_dollars": 17.88,
-   "room": 13.97,
-   "above_ma50_pct": 0.17,
-   "news": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Li Auto Inc. Sponsored ADR (LI) Stock Drops Despite Market Gains: Important Facts to Note",
-     "src": "Zacks",
-     "time": "2026-08-13 21:45"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "After Plunging 40% This Year, XPeng Bets on Physical AI to Help Turn the Tide",
-     "src": "Barchart",
-     "time": "2026-08-12 14:59"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Tesla's Model Y Loses China's Top Spot to Geely",
-     "src": "GuruFocus.com",
-     "time": "2026-08-12 13:14"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
    "ticker": "PRCH",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 17.11,
+   "price": 17.18,
    "entry": 17.47,
    "stop": 16.0785,
    "t1": 20.253,
    "t2": 22.3402,
    "rr1": 2.0,
-   "rsi": 65.1,
-   "rvol": 0.07,
+   "rsi": 65.4,
+   "rvol": 0.09,
    "score": 70,
-   "shares": 22,
-   "notional": 384.34,
-   "risk_dollars": 30.61,
+   "shares": 21,
+   "notional": 366.87,
+   "risk_dollars": 29.22,
    "room": 19.72,
-   "above_ma50_pct": 23.23,
+   "above_ma50_pct": 23.72,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
@@ -1435,20 +1317,20 @@
    "ticker": "IBTA",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 38.11,
+   "price": 38.03,
    "entry": 39.01,
-   "stop": 34.8428,
-   "t1": 47.3445,
-   "t2": 53.5953,
+   "stop": 34.837,
+   "t1": 47.3559,
+   "t2": 53.6153,
    "rr1": 2.0,
-   "rsi": 60.1,
-   "rvol": 0.04,
+   "rsi": 59.9,
+   "rvol": 0.05,
    "score": 57,
    "shares": 9,
    "notional": 351.09,
-   "risk_dollars": 37.51,
+   "risk_dollars": 37.56,
    "room": 54.175,
-   "above_ma50_pct": 18.4,
+   "above_ma50_pct": 18.16,
    "news": [
     {
      "summary": "דיווח חיובי · שיתוף פעולה חדש · מקור יחיד — לקחת בזהירות",
@@ -1483,110 +1365,21 @@
  "signals_day": [
   {
    "kind": "day",
-   "ticker": "CLF",
-   "side": "long",
-   "state": "BUY_NOW",
-   "price": 12.25,
-   "entry": 12.25,
-   "stop": 11.92,
-   "t1": 12.91,
-   "t2": 13.24,
-   "rr1": 2.0,
-   "rsi": 60.7,
-   "rvol": 1.46,
-   "score": 78,
-   "shares": 31,
-   "notional": 379.75,
-   "risk_dollars": 10.23,
-   "room": null,
-   "above_ma50_pct": null,
-   "news": [
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 1,
-     "title": "L.B. Foster's Earnings and Revenues Surpass Estimates in Q2",
-     "src": "Zacks",
-     "time": "2026-08-13 12:06"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Cleveland-Cliffs (CLF)'s Technical Outlook is Bright After Key Golden Cross",
-     "src": "Zacks",
-     "time": "2026-07-31 13:55"
-    }
-   ]
-  },
-  {
-   "kind": "day",
-   "ticker": "PLUG",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 2.22,
-   "entry": 2.22,
-   "stop": 2.15,
-   "t1": 2.36,
-   "t2": 2.43,
-   "rr1": 2.0,
-   "rsi": 69.1,
-   "rvol": 1.61,
-   "score": 65,
-   "shares": 173,
-   "notional": 384.06,
-   "risk_dollars": 12.11,
-   "room": null,
-   "above_ma50_pct": null,
-   "news": [
-    {
-     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-     "dir": "neg",
-     "tag": null,
-     "sources": 1,
-     "title": "Plug Power Falls 5%, Bloom Energy Sinks 8% With the 10-Year Yield Near a 52-Week High",
-     "src": "24/7 Wall St.",
-     "time": "2026-08-18 14:35"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 2,
-     "title": "Plug Power (PLUG) Q2 2026 Earnings Call Transcript",
-     "src": "Motley Fool",
-     "time": "2026-08-17 23:29"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Plug Power Tested a Backup Power System With Microsoft. Here's Why the CEO Says That's Not a Real Pivot Yet.",
-     "src": "Motley Fool",
-     "time": "2026-08-16 11:14"
-    }
-   ]
-  },
-  {
-   "kind": "day",
    "ticker": "ALT",
    "side": "long",
-   "state": "WATCH_BUY",
-   "price": 3.1055,
-   "entry": 3.1055,
+   "state": "BUY_NOW",
+   "price": 3.095,
+   "entry": 3.095,
    "stop": 3.035,
-   "t1": 3.2465,
-   "t2": 3.317,
+   "t1": 3.215,
+   "t2": 3.275,
    "rr1": 2.0,
-   "rsi": 61.5,
-   "rvol": 14.96,
-   "score": 62,
+   "rsi": 57.5,
+   "rvol": 3.43,
+   "score": 77,
    "shares": 123,
-   "notional": 381.98,
-   "risk_dollars": 8.67,
+   "notional": 380.69,
+   "risk_dollars": 7.38,
    "room": null,
    "above_ma50_pct": null,
    "news": [
@@ -1622,19 +1415,19 @@
  ],
  "pending_entries": [
   {
-   "ticker": "RXRX",
+   "ticker": "DNLI",
    "kind": "swing",
    "side": "long",
-   "qty": 112,
-   "entry": 3.42,
-   "stop": 3.1416,
-   "t1": 3.9767,
-   "t2": 4.3943,
-   "notional": 383.04,
+   "qty": 14,
+   "entry": 25.64,
+   "stop": 24.1122,
+   "t1": 28.6957,
+   "t2": 30.9874,
+   "notional": 358.96,
    "score": 83,
-   "rsi": 55.5,
-   "rvol": 0.62,
-   "placed_for": "2026-08-19 17:56"
+   "rsi": 57.8,
+   "rvol": 0.2,
+   "placed_for": "2026-08-19 18:26"
   }
  ],
  "scan_universe": {
@@ -1656,16 +1449,6 @@
   "cash_reserve_usd": 75.0
  },
  "rejected": [
-  {
-   "ticker": "CLF",
-   "kind": "day",
-   "why": "measurement_only"
-  },
-  {
-   "ticker": "PLUG",
-   "kind": "day",
-   "why": "measurement_only"
-  },
   {
    "ticker": "ALT",
    "kind": "day",
@@ -1781,10 +1564,10 @@
    "name": "👹 בוס היום",
    "target": 85.19,
    "legend": 212.96,
-   "done": 34.69,
+   "done": 30.39,
    "base": 1064.82,
-   "pct": 41,
-   "pct_legend": 16,
+   "pct": 36,
+   "pct_legend": 14,
    "beaten": false,
    "legendary": false
   },
@@ -1849,17 +1632,17 @@
    "gold_lots": 0.98,
    "gold_gross": 20.6,
    "gold_net_atrade": -6.84,
-   "copier_net_demo": 10138.65,
-   "copier_lots": 22.22,
-   "copier_gross": 10771.92,
-   "copier_net_atrade": 10149.76,
-   "net_atrade": 10142.92,
-   "net_demo": 10131.32,
-   "gross": 10792.52,
-   "fees_atrade": 649.6,
-   "lots": 23.2,
-   "fee": 649.6,
-   "pocket": 9481.72
+   "copier_net_demo": 11714.65,
+   "copier_lots": 24.22,
+   "copier_gross": 12404.92,
+   "copier_net_atrade": 11726.76,
+   "net_atrade": 11719.92,
+   "net_demo": 11707.32,
+   "gross": 12425.52,
+   "fees_atrade": 705.6,
+   "lots": 25.2,
+   "fee": 705.6,
+   "pocket": 11001.72
   },
   "2026-08-18": {
    "copier_net_demo": 980.05,
