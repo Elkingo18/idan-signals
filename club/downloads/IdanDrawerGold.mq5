@@ -206,7 +206,6 @@ double   g_stopsLvl  = 0.0;
 double   g_dayStartBal = 0.0;
 string   g_dayKey      = "";
 bool     g_dayStop     = false;
-   g_dayWhy      = "";
 string   g_dayWhy      = "";       // why the day closed: target or loss
 
 bool     g_closing   = false;      // a close is unfinished: finish it, never build on it
