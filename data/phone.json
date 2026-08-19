@@ -18,7 +18,7 @@
     "trades_today": 6,
     "enabled": true,
     "note": "skip: no burst 1.84atr",
-    "age_sec": 12.3,
+    "age_sec": 17.3,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 20009.1,
+    "age_sec": 21575.1,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,7 +67,7 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 3.5,
+    "age_sec": 9.5,
     "status": "ok",
     "symbol": "XAUUSD+",
     "margin_free": 11816.16,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 929.73,
-    "age_sec": 235.3,
+    "age_sec": 301.3,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -1041,12 +1041,12 @@
    "gross": 0.7
   }
  ],
- "updated_utc": "2026-08-19T21:09:55.329721+00:00",
- "updated_israel": "2026-08-20 00:09",
+ "updated_utc": "2026-08-19T21:36:01.331323+00:00",
+ "updated_israel": "2026-08-20 00:36",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.20 00:09:43",
+  "updated": "2026.08.20 00:35:44",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1100,12 +1100,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 20009.1
+  "age_sec": 21575.1
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.14",
-  "t": 1787184590,
+  "t": 1787186150,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1128,48 +1128,43 @@
   "equity": 11816.16,
   "margin_free": 11816.16,
   "is_demo": true,
-  "age_sec": 3.5,
+  "age_sec": 9.5,
   "ok": true,
   "blocked": ""
  },
  "fees": {
-  "model": "profit_minus_fee_v2",
-  "schema": 2,
   "rate_atrade_per_oz": 0.28,
-  "start": {
-   "gold": 10000.0,
-   "copier": 10000.0
-  },
-  "since_start": {
-   "rows": [
-    {
-     "name": "בוט הזהב",
-     "profit": -704.08,
-     "lots": 7.81,
-     "fee": 218.68,
-     "pocket": -922.76
-    },
-    {
-     "name": "The Ladder",
-     "profit": 1714.65,
-     "lots": 57.3,
-     "fee": 1604.4,
-     "pocket": 110.25
-    }
-   ],
-   "total": {
-    "name": "סה\"כ",
-    "profit": 1010.57,
-    "lots": 65.11,
-    "fee": 1823.08,
-    "pocket": -812.51
+  "rate_demo_per_oz": 0.285,
+  "day": "2026/08/19",
+  "is_today": false,
+  "rows": [
+   {
+    "name": "בוט הזהב",
+    "lots": 1.23,
+    "gross": 63.97,
+    "demo_fee": 35.05,
+    "atrade_fee": 34.44,
+    "net_atrade": 29.53,
+    "net_demo": 28.92
+   },
+   {
+    "name": "המעתיק",
+    "lots": 24.22,
+    "gross": 12404.92,
+    "demo_fee": 690.27,
+    "atrade_fee": 678.16,
+    "net_atrade": 11726.76,
+    "net_demo": 11714.65
    }
-  },
-  "last_day": {
-   "day": "2026.08.19",
-   "is_today": false,
-   "rows": [],
-   "total": {}
+  ],
+  "total": {
+   "name": "סה\"כ",
+   "lots": 25.45,
+   "gross": 12468.89,
+   "demo_fee": 725.32,
+   "atrade_fee": 712.6,
+   "net_atrade": 11756.29,
+   "net_demo": 11743.57
   }
  },
  "shadow_wallet": {
@@ -1731,5 +1726,5 @@
  "tws_connected": false,
  "stocks_stale": true,
  "stocks_as_of": "2026-08-19 23:45",
- "tws_note": "TWS not reachable - stocks data is stale"
+ "published_by": "publish_phone.py"
 }
