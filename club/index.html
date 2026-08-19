@@ -401,39 +401,6 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
   background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--ink)}
 .opts button.on{background:var(--gold);color:#1a1205;border-color:var(--gold);font-weight:700}
 
-/* -------- the Monopoly room -------- */
-.board{position:relative;width:100%;aspect-ratio:1/1;max-width:520px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);
-  gap:4px;background:linear-gradient(160deg,#0e3a2e,#0a2b22);
-  border:2px solid var(--brass);border-radius:16px;padding:6px}
-.tile{border-radius:8px;background:linear-gradient(180deg,#f7f4ec,#e9e4d6);color:#1c2a24;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:3px;font-size:9px;line-height:1.15;text-align:center;cursor:pointer;
-  border-top:5px solid var(--brass);min-height:0;overflow:hidden;position:relative}
-.tile .ic{font-size:15px}
-.tile .nm{font-weight:800;font-size:8.5px;margin-top:1px}
-.tile.here{outline:3px solid var(--gold);outline-offset:-1px;transform:scale(1.04);
-  z-index:2;box-shadow:0 6px 18px rgba(0,0,0,.5)}
-.tile.done{opacity:.55}
-.tile.done::after{content:"✓";position:absolute;top:2px;inset-inline-end:4px;
-  font-size:9px;color:var(--up);font-weight:900}
-.tile.c1{border-top-color:#e05a6b}.tile.c2{border-top-color:#e0a13a}
-.tile.c3{border-top-color:#35d39a}.tile.c4{border-top-color:#4b9fe0}
-.tile.c5{border-top-color:#a97ae0}
-.center{grid-column:2/7;grid-row:2/7;border-radius:12px;
-  background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.2));
-  border:1px solid var(--line2);padding:10px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:7px;overflow:auto}
-.center .big2{font-size:clamp(20px,7vw,34px);font-weight:900;letter-spacing:-1px;
-  direction:ltr;font-variant-numeric:tabular-nums}
-.dice{font-size:34px;min-height:44px;min-width:44px;background:none;border:none;
-  cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.3,1.4)}
-.dice:active{transform:rotate(-22deg) scale(1.16)}
-.newsitem{border-inline-start:3px solid var(--gold);padding:8px 10px;margin-bottom:8px;
-  background:rgba(255,255,255,.04);border-radius:0 11px 11px 0}
-.newsitem b{font-size:13.5px}
-.newsitem .w{font-size:11px;color:var(--ink3);margin-top:2px}
-
 /* -------- the update feed -------- */
 .upd{display:flex;gap:10px;padding:11px;border-radius:12px;margin-bottom:8px;
   background:rgba(255,255,255,.04);border:1px solid var(--line2)}
@@ -643,9 +610,102 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
   color:var(--richgold);background:rgba(0,0,0,.3);cursor:pointer;min-height:34px}
 /* respect people who asked the OS for less motion */
 @media(prefers-reduced-motion:reduce){
-  .mfly,.dice.rolling,.hero .big.bump,.gobanner{animation:none}
+  .mfly,.hero .big.bump,.gobanner{animation:none}
   .coach .spot{transition:none}
 }
+
+/* ===================================================================
+   v4.1.0 — 20.8.2026, the second night build, from Idan at the keyboard:
+   the gold table splits from the swing, the news wire goes 24/7, the
+   money room is reborn as a path, and money can reach Idan any way a
+   member prefers - PayPal, bank, Bit, Paybox, or four coins with XRP's
+   tag handled properly.
+   =================================================================== */
+/* ---- the path to freedom (the money room, rebuilt from zero) ---- */
+.pathhead{display:flex;align-items:center;gap:16px}
+.ringwrap{position:relative;flex:none;width:104px;height:104px}
+.ringmid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ringmid b{font-size:22px;color:var(--richgold)}
+.ringmid span{font-size:10px;color:var(--ink3)}
+.pathintro{flex:1;min-width:0}
+#pathRingArc{transition:stroke-dashoffset .9s cubic-bezier(.2,.8,.3,1)}
+.deed{background:linear-gradient(180deg,var(--cream),var(--cream2));border:1.5px solid #d9cfae;
+  border-radius:16px;margin:0 0 12px;overflow:hidden;color:var(--creamInk);
+  box-shadow:0 6px 18px rgba(0,0,0,.28);transition:.18s}
+.deed .dband{display:flex;align-items:center;gap:8px;padding:7px 14px;color:#fff;
+  font-size:11px;font-weight:900;letter-spacing:.8px;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.deed .dband .dnum{margin-inline-start:auto;font-size:11px;opacity:.9}
+.deed.g1 .dband{background:var(--p-brown)}
+.deed.g2 .dband{background:var(--p-lblue);color:#0d2b3a;text-shadow:none}
+.deed.g3 .dband{background:var(--p-pink)}
+.deed.g4 .dband{background:var(--p-orange);color:#3a2200;text-shadow:none}
+.deed.g5 .dband{background:var(--p-green)}
+.deed .dbody{display:flex;gap:13px;padding:13px 14px 12px;align-items:flex-start}
+.deed .dic{font-size:32px;flex:none;width:46px;text-align:center;filter:drop-shadow(0 2px 3px rgba(0,0,0,.18))}
+.deed .dmain{flex:1;min-width:0}
+.deed .dttl{font-size:15.5px;font-weight:900;margin-bottom:4px}
+.deed .dtxt{font-size:13px;line-height:1.7;color:#33402c}
+.deed .dact{display:inline-block;margin-top:9px;border:1.5px dashed #b3a670;border-radius:999px;
+  padding:4px 12px;font-size:12px;color:#6b5310;background:rgba(223,180,64,.12)}
+.deed .dfoot{display:flex;align-items:center;gap:9px;padding:0 14px 13px}
+.deed .dbtn{min-height:42px;border-radius:11px;font-weight:800;font-size:13px;padding:9px 16px;
+  background:linear-gradient(135deg,#efc65a,#c3982f);color:#241c04;border:none}
+.deed.done{opacity:.78}
+.deed.done .dbtn{background:rgba(0,0,0,.08);color:#37452f}
+.deed .dstamp{display:none;margin-inline-start:auto;transform:rotate(-5deg);border:2.5px solid #0c7a3e;
+  color:#0c7a3e;border-radius:9px;padding:2px 11px;font-weight:900;font-size:13px}
+.deed.done .dstamp{display:inline-block;animation:stamp .35s cubic-bezier(.2,.8,.3,1.4)}
+@keyframes stamp{from{transform:rotate(-5deg) scale(1.7);opacity:0}to{transform:rotate(-5deg) scale(1);opacity:1}}
+.deed.next{border-color:var(--gold);box-shadow:0 0 0 2.5px rgba(223,180,64,.55),0 10px 26px rgba(0,0,0,.34)}
+.deed .dnext{display:none;font-size:11px;font-weight:900;color:#8a6a14;letter-spacing:.5px}
+.deed.next .dnext{display:inline-block}
+/* ---- the news room ---- */
+.newshead h3{margin-bottom:8px}
+.sigbar{display:flex;align-items:center;gap:12px}
+.wireitem{display:flex;gap:11px;padding:12px 13px;border-radius:13px;margin-bottom:9px;
+  background:linear-gradient(180deg,rgba(246,241,225,.07),rgba(246,241,225,.025));
+  border:1px solid var(--line2);border-inline-start:4px solid var(--line2);cursor:pointer;transition:.14s}
+.wireitem:hover{transform:translateY(-1px);border-color:var(--gold)}
+.wireitem .wsrc{flex:none;width:44px;height:44px;border-radius:11px;display:flex;align-items:center;
+  justify-content:center;font-size:10px;font-weight:900;color:#fff;text-align:center;line-height:1.15;padding:2px}
+.wireitem.globes{border-inline-start-color:#00a1a1}.wireitem.globes .wsrc{background:#00807f}
+.wireitem.calcalist{border-inline-start-color:#c6007e}.wireitem.calcalist .wsrc{background:#c6007e}
+.wireitem.yahoo{border-inline-start-color:#7e57c2}.wireitem.yahoo .wsrc{background:#5f3dc4}
+.wireitem.marketwatch{border-inline-start-color:#2f9e44}.wireitem.marketwatch .wsrc{background:#087f5b}
+.wireitem.bloomberg{border-inline-start-color:#94a3b8}.wireitem.bloomberg .wsrc{background:#1e293b}
+.wireitem.walla{border-inline-start-color:#ffb02e}.wireitem.walla .wsrc{background:#b96b00}
+.wireitem.themarker{border-inline-start-color:#00c800}.wireitem.themarker .wsrc{background:#0a7d0a}
+.wireitem .wmain{flex:1;min-width:0}
+.wireitem .wt{font-size:13.5px;font-weight:700;line-height:1.55}
+.wireitem .wm{font-size:11px;color:var(--ink3);margin-top:3px}
+.wireitem[data-lang="en"] .wt{direction:ltr;text-align:left}
+.pinned{border:1.5px solid var(--gold);border-radius:14px;padding:12px 14px;margin-bottom:10px;
+  background:linear-gradient(160deg,rgba(223,180,64,.14),rgba(0,0,0,.18))}
+.pinned b{color:var(--richgold)}
+.pinned .w{font-size:11px;color:var(--ink3);margin-top:4px}
+.sigitem{display:flex;gap:11px;padding:11px 13px;border-radius:13px;margin-bottom:9px;
+  background:linear-gradient(160deg,rgba(0,114,187,.14),rgba(0,0,0,.2));border:1.5px solid rgba(0,114,187,.5)}
+.sigitem .semo{font-size:22px;flex:none}
+.sigitem .st2{font-size:13.5px;line-height:1.6}
+.sigitem .sw2{font-size:11px;color:var(--ink3);margin-top:3px}
+.sigitem.long{border-color:rgba(61,220,132,.55);background:linear-gradient(160deg,rgba(61,220,132,.12),rgba(0,0,0,.2))}
+.sigitem.short{border-color:rgba(255,111,97,.55);background:linear-gradient(160deg,rgba(255,111,97,.12),rgba(0,0,0,.2))}
+/* ---- the swing felt: the same table, in the stocks' blue ---- */
+.swfelt{position:relative;border-radius:20px;overflow:hidden;margin:12px 0;
+  padding:16px 14px 18px;border:2.5px solid rgba(0,114,187,.5);
+  background:radial-gradient(ellipse 130% 90% at 50% 20%, #0d3a5c 0%, #092b45 45%, #051a2b 100%)}
+.swfelt::after{content:"";position:absolute;inset:7px;border-radius:15px;
+  border:1.5px dashed rgba(170,224,250,.16);pointer-events:none}
+.swfelt .corners .v{color:#9fd4ff}
+.swfelt .hero .big.flat{color:#9fd4ff}
+.swfelt .lrow{border-inline-start-color:var(--p-dblue)}
+/* ---- payment details ---- */
+.paybox2{direction:ltr;font-family:monospace;font-size:12px;word-break:break-all;
+  background:rgba(255,255,255,.05);border-radius:8px;padding:8px;margin-top:4px}
+.tagbox{border:1.5px solid var(--warn);border-radius:8px;padding:8px;margin-top:6px;
+  direction:ltr;font-family:monospace;font-size:13px;font-weight:800;text-align:center;color:var(--warn)}
+.banklines{white-space:pre-wrap;font-size:13.5px;line-height:1.8;background:rgba(255,255,255,.05);
+  border-radius:8px;padding:9px;margin-top:4px}
 
 </style>
 </head>
@@ -811,7 +871,8 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
     <div class="dnav" id="mainNav">
       <button data-t="table" class="on" onclick="goTab('table')"><span class="e">🃏</span>השולחן החי</button>
       <button data-t="swing" onclick="goTab('swing')"><span class="e">📈</span>הסווינג</button>
-      <button data-t="money" onclick="goTab('money')"><span class="e">🎩</span>חדר הכסף</button>
+      <button data-t="news" onclick="goTab('news')"><span class="e">📰</span>חדשות</button>
+      <button data-t="money" onclick="goTab('money')"><span class="e">🎩</span>המסלול לחופש</button>
       <button data-t="plan" onclick="goTab('plan')"><span class="e">🎯</span>התוכנית שלי</button>
       <button data-t="pine" onclick="goTab('pine')"><span class="e">📊</span>האינדיקטור</button>
       <button data-t="updates" onclick="goTab('updates')"><span class="e">🔔</span>עדכונים<span id="updBadge" class="badge hidden">0</span></button>
@@ -845,28 +906,58 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
 
       <!-- ============ v3.2.0 · the new rooms ============ -->
 
-      <!-- 🎩 חדר הכסף — the Monopoly board + the news room -->
+      <!-- 🎩 חדר הכסף — rebuilt from zero, 20.8.2026. Idan: the old board
+           was "מזעזע" - build it again, beautiful, with no trace of what
+           was. Same sixteen rules (the content he cares about), now a
+           path of full-size title-deed cards, one after the other. -->
       <section id="t-money" class="hidden">
-        <div class="sec2">
-          <h3>🎩 לוח הכסף<span class="n" id="mbPos"></span></h3>
-          <div class="mini">כל משבצת היא כלל אחד בניהול כסף, לפי הסדר שבו הוא באמת נבנה. גלגל את הקובייה או לחץ ישירות על משבצת. מה שסימנת כ"עשיתי" נשמר.</div>
-          <div class="board" id="mBoard"></div>
-          <div class="btnrow">
-            <button class="btn" onclick="rollDice()"><span id="diceFace">🎲</span> גלגל</button>
-            <button class="btn sec" onclick="mbGo(0)">↺ להתחלה</button>
+        <div class="sec2 pathhead">
+          <div class="ringwrap" aria-hidden="true">
+            <svg viewBox="0 0 120 120" width="104" height="104">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="10"/>
+              <circle id="pathRingArc" cx="60" cy="60" r="52" fill="none" stroke="url(#pathGrad)"
+                      stroke-width="10" stroke-linecap="round" stroke-dasharray="326.7"
+                      stroke-dashoffset="326.7" transform="rotate(-90 60 60)"/>
+              <defs><linearGradient id="pathGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1fb25a"/><stop offset="1" stop-color="#f3d878"/>
+              </linearGradient></defs>
+            </svg>
+            <div class="ringmid"><b id="pathPct">0%</b><span id="pathN"></span></div>
+          </div>
+          <div class="pathintro">
+            <h3>🎩 המסלול לחופש כלכלי</h3>
+            <div class="mini">שישה-עשר כללים, בסדר שבו כסף באמת נבנה — מהמספר הראשון ועד היום שבו אתה עובד כי בא לך. סמן ✓ על מה שכבר עשית; הצעד הבא מחכה לך מודגש.</div>
+            <div id="pathPlan" class="mini" style="margin-top:7px"></div>
           </div>
         </div>
-        <div class="sec2" id="mTileBox"></div>
-        <div class="sec2">
-          <h3>📰 חדר החדשות<span class="n" id="newsN"></span></h3>
-          <div id="newsAdmin" class="hidden">
-            <input class="fld" id="newsTitle" placeholder="כותרת" maxlength="90">
-            <textarea class="fld" id="newsBody" rows="3" placeholder="מה קרה, ולמה זה משנה לנו" maxlength="1500"></textarea>
-            <div class="opts" id="newsTags"></div>
-            <div class="btnrow"><button class="btn" onclick="publishNews()">📢 פרסם לכל החברים</button></div>
+        <div id="pathList"></div>
+      </section>
+
+      <!-- 📰 חדשות — the 24/7 wire + Idan's pinned news + member signals -->
+      <section id="t-news" class="hidden">
+        <div class="sec2 newshead">
+          <h3>📰 חדר החדשות<span class="n" id="wireAge"></span></h3>
+          <div class="opts" id="wireFilters">
+            <button class="on" data-f="all" onclick="wireFilter(this)">הכל</button>
+            <button data-f="he" onclick="wireFilter(this)">עברית</button>
+            <button data-f="en" onclick="wireFilter(this)">English</button>
+            <button data-f="sig" onclick="wireFilter(this)">📣 איתותים</button>
           </div>
-          <div id="newsList"><div class="emptyline">אין עדיין חדשות.</div></div>
         </div>
+        <div id="newsAdmin" class="hidden sec2">
+          <h3>👑 חדשות מעידן</h3>
+          <input class="fld" id="newsTitle" placeholder="כותרת" maxlength="90">
+          <textarea class="fld" id="newsBody" rows="3" placeholder="מה קרה, ולמה זה משנה לנו" maxlength="1500"></textarea>
+          <div class="opts" id="newsTags"></div>
+          <div class="btnrow"><button class="btn" onclick="publishNews()">📢 פרסם לכל החברים</button></div>
+        </div>
+        <div class="sec2 sigbar">
+          <div style="flex:1"><b>יש לך עין על משהו?</b><div class="mini">שדר איתות לכל המועדון — סימבול, כיוון, ומשפט למה.</div></div>
+          <button class="btn" onclick="openSignal()">📣 שדר איתות</button>
+        </div>
+        <div id="pinnedNews"></div>
+        <div id="sigList"></div>
+        <div id="newsWire"><div class="emptyline">החוט נטען…</div></div>
       </section>
 
       <!-- 🎯 התוכנית שלי -->
@@ -980,8 +1071,23 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
         </div>
       </section>
 
-      <!-- ===== swing: its own room, never mixed with gold or the ladder ===== -->
+      <!-- ===== swing: its own room, never mixed with gold or the ladder =====
+           20.8 (Idan): "שהסווינג יראה בדיוק את אותו מסך רק איך הסווינג
+           במקום הזהב" - so the top of this room is the SAME live table,
+           in the stocks' blue, and the gold table no longer shows swing. -->
       <section id="t-swing" class="hidden">
+        <div class="swfelt" id="swFelt">
+          <div class="corners">
+            <div class="cnr"><div class="k">BALANCE</div><div class="v" id="swCnrBal">—</div><div class="s" id="swCnrBalSub"></div></div>
+            <div class="cnr l"><div class="k">TODAY</div><div class="v" id="swCnrDay">—</div><div class="s" id="swCnrDaySub"></div></div>
+          </div>
+          <div class="hero">
+            <div class="lab" id="swHeroLab">הפעולות החיות · מניות · ברוטו</div>
+            <div class="big flat" id="swHeroBig">—</div>
+            <div class="side" id="swHeroSide"></div>
+          </div>
+          <div class="rows" id="swRows"></div>
+        </div>
         <div class="card">
           <h3>📈 הסווינג · Interactive Brokers</h3>
           <div class="kpis" id="swKpis"></div>
@@ -1116,12 +1222,16 @@ label.lbl{display:block;font-size:12.5px;color:var(--ink2);margin-top:11px}
                by hand in the shop screen. That human step is also what makes
                a fake payment impossible from the client. -->
           <div class="mini" style="margin-top:10px">איך מעבירים לך כסף. מלא רק את מה שרלוונטי — החבר יראה בדיוק את מה שמילאת, ויבחר.</div>
+          <div class="mini" style="margin-top:8px">PayPal — קישור (paypal.me/שם או קישור תשלום):</div>
+          <input type="text" id="payPalInp" placeholder="https://paypal.me/idan" style="direction:ltr;margin-top:4px">
           <div class="mini" style="margin-top:8px">פייבוקס — קישור:</div>
           <input type="text" id="payLinkInp" placeholder="https://payboxapp.page.link/..." style="direction:ltr;margin-top:4px">
           <div class="mini" style="margin-top:8px">ביט — קישור או מספר טלפון:</div>
           <input type="text" id="payBitInp" placeholder="https://www.bitpay.co.il/... או 05x-xxxxxxx" style="direction:ltr;margin-top:4px">
-          <div class="mini" style="margin-top:8px">ארנקי קריפטו (Bybit) — <b>שורה לכל מטבע</b> בפורמט <code>מטבע|רשת|כתובת</code>:</div>
-          <textarea id="payCryptoInp" rows="4" placeholder="USDT|TRC20|TXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#10;USDT|BEP20|0x....&#10;BTC|Bitcoin|bc1....&#10;ETH|ERC20|0x...." style="direction:ltr;width:100%;margin-top:4px;font-family:monospace;font-size:12px"></textarea>
+          <div class="mini" style="margin-top:8px">העברה בנקאית — הפרטים כפי שהחבר יראה אותם (בנק, סניף, חשבון, על שם):</div>
+          <textarea id="payBankInp" rows="3" placeholder="בנק: ...&#10;סניף: ... חשבון: ...&#10;על שם: ..." style="width:100%;margin-top:4px;font-size:13px"></textarea>
+          <div class="mini" style="margin-top:8px">ארנקי קריפטו — <b>שורה לכל מטבע</b> בפורמט <code>מטבע|רשת|כתובת|תג</code> (התג רק למטבעות שחייבים Memo/Tag כמו XRP):</div>
+          <textarea id="payCryptoInp" rows="5" placeholder="USDT|TRC20|TXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#10;BTC|Bitcoin|bc1....&#10;ETH|ERC20|0x....&#10;XRP|XRP|rXXXXXXXXXXXXXXXXXXXXXXX|12345678" style="direction:ltr;width:100%;margin-top:4px;font-family:monospace;font-size:12px"></textarea>
           <div class="btnrow" style="margin-top:6px"><button class="btn sec" onclick="savePayAll()">שמור אמצעי תשלום</button></div>
           <div class="mini" style="margin-top:5px">החבר בוחר מטבע ומקבל את הכתובת המדויקת עם כפתור העתקה. <b>אתה</b> מאשר קבלה במסך "הוסף בוט" — רק אז הבוט שלו נפתח. אין לפייבוקס, לביט ולבייביט ממשק שיודע להגיד לאפליקציה "הכסף הגיע", ולכן הלחיצה הזאת היא שלך — וזה גם מה שמונע זיוף תשלום.</div>
         </div>
@@ -1523,18 +1633,6 @@ function wireTour(){
   };
 }
 
-/* ---------- data polling ---------- */
-async function pollPhone(){
-  try {
-    const r = await fetch(DATA_URL + "?t=" + Date.now(), {cache:"no-store"});
-    if (!r.ok) throw new Error("http " + r.status);
-    PHONE = await r.json();
-    renderTable(); renderCalendar(); renderReports();
-  } catch(e){
-    if (!PHONE) $("potSub").textContent = "מחכה לשידור מהמחשב של עידן…";
-  }
-}
-
 /* ---------- my connected bot (the feed a friend's terminal posts) ------ */
 let MYFEED = null, unsubFeed = null;
 function subscribeFeed(){
@@ -1546,81 +1644,6 @@ function subscribeFeed(){
       renderTable(); renderCalendar(); renderReports(); renderLinks();
     }, () => {});
   } catch(e){}
-}
-function myBotSeatHTML(closed){
-  if (!MYDOC || !MYDOC.feedId) return "";
-  if (!MYFEED || !MYFEED.j){
-    return seatHTML({icon:"🤖", name:"הבוט שלי", role:"מחכה לשידור הראשון מהמחשב שלך",
-      dim:true, stack:"—", stackLab:"הערימה שלך",
-      tags:[{t:"עקוב אחרי שלבי החיבור במסך החיבורים", tone:"wa"}]});
-  }
-  let j = {};
-  try { j = JSON.parse(MYFEED.j) || {}; } catch(e){}
-  let age = null;
-  if (MYFEED.t){ const t = new Date(MYFEED.t).getTime(); if(!isNaN(t)) age = Math.max(0,(Date.now()-t)/1000); }
-  const day = +j.day_pnl||0;
-  const meEq = +(j.equity!==undefined?j.equity:j.balance)||0;
-  return seatHTML({icon:"🤖", name:"הבוט שלי — בוט הזהב", role:"רץ על החשבון שלך · דמו · " + (j.account||MYFEED.acct||""),
-    dim: !closed && age!==null && age>600,
-    stack:money(meEq), stackLab:"הערימה שלך", day:day, eq:meEq,
-    tags:[{t:(j.trades_today||0)+" ידיים"},
-          (j.enabled===false)?{t:"מכובה", tone:"wa"}:{t:"פעיל", tone:"up"},
-          closed?{t:"🌙 שוק סגור"}:((age!==null&&age>600)?{t:"⚠️ שקט "+ago(age), tone:"wa"}:{t:"עודכן "+ago(age)})]});
-}
-
-/* ---------- live trades rendered as playing cards on the felt ---------- */
-function normPos(p){
-  const sym = p.ticker||p.symbol||"?";
-  const qty = (p.qty!==undefined&&p.qty!==null)?p.qty:(p.qty_left!==undefined?p.qty_left:0);
-  const entry = (p.entry!==undefined&&p.entry!==null)?p.entry:p.avg_cost;
-  const last = (p.last!==undefined&&p.last!==null)?p.last:p.mark;
-  const side = p.side || ((p.kind==="gold")? "long" : "long");
-  const pl = (p.unrealized!==undefined&&p.unrealized!==null) ? +p.unrealized :
-             ((last!==undefined&&entry!==undefined)?((+last-+entry)*(+qty||0)*(side==="short"?-1:1)):null);
-  const kind = p.kind || (sym==="XAUUSD"?"gold":"swing");
-  return {sym, qty, entry, last, side, pl, kind};
-}
-function cardHTML(p, i){
-  const n = normPos(p);
-  const SUIT = { gold:"♦", swing:"♠", day:"♣", copier:"♥" };
-  const suit = SUIT[n.kind] || "♠";
-  const red = (suit==="♦"||suit==="♥");
-  const win = (n.pl||0) >= 0;
-  return `<div class="pcard ${win?'win':'loss'} ${red?'red':''}" style="animation-delay:${i*0.06}s">
-    <div class="corner">${n.side==="short"?"S":"B"}<span style="font-size:12px"> ${suit}</span></div>
-    <div class="suitbig">${suit}</div>
-    <div class="tk">${n.sym}</div>
-    <div class="meta">${n.qty||0} יח׳ @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</div>
-    <div class="pl">${n.pl===null?"–":signed(n.pl)}</div>
-  </div>`;
-}
-function renderBoard(positions){
-  const board = $("board"); if (!board) return;
-  const pos = (positions||[]).slice(0,6);
-  if (!pos.length){
-    board.innerHTML = '<div class="empty">אין קלפים על השולחן כרגע — הבוטים סורקים ומחכים לעסקה 🂠</div>';
-  } else {
-    board.innerHTML = pos.map(cardHTML).join("");
-  }
-}
-
-/* ---------- the table ---------- */
-function seatHTML(o){
-  /* TV-style player pod. o.day (today's P&L $) + o.eq (account base) add
-     the day line in dollars AND percent of the account. */
-  let dayLine = "";
-  if (o.day !== undefined && o.day !== null){
-    const base = (o.eq && Math.abs(o.eq - o.day) > 1) ? (o.eq - o.day) : o.eq;
-    const pct = (base && base > 0) ? (o.day / base * 100) : null;
-    dayLine = `<div class="sday ${cls(o.day)}">${signed(o.day)}` +
-      (pct!==null ? ` <small>(${pct>0?"+":""}${pct.toFixed(2)}%)</small>` : "") + `</div>`;
-  }
-  return `<div class="seat ${o.dim?'dim':''}">
-    <div class="shead"><div class="ic">${o.icon}</div>
-      <div><div class="nm">${o.name}</div><div class="rl">${o.role}</div></div></div>
-    <div class="sbody"><div><div class="sv">${o.stack}</div><div class="sk">${o.stackLab||""}</div></div>${dayLine}</div>
-    <div class="tags">${o.tags.map(t=>`<span class="tag ${t.tone||''}">${t.t}</span>`).join("")}</div>
-  </div>`;
 }
 /* 16.8 (בקשת עידן): חבר שעוד לא חיבר בוט משלו רואה 0 ומסכים נעולים —
    לא את המספרים של המועדון. הכל נפתח ברגע שהבוט שלו משדר. */
@@ -1657,241 +1680,6 @@ function renderFeeBots(rows){
   const box = $("feeBots"); if (!box) return;
   box.innerHTML = (rows||[]).map(feeBotCard).join("");
 }
-function feeLabels(a,b,c){
-  const ks = document.querySelectorAll('#t-table .feebox .k');
-  if (ks[0]) ks[0].textContent = a; if (ks[1]) ks[1].textContent = b; if (ks[2]) ks[2].textContent = c;
-}
-function renderMember(){
-  const closed = goldMarketClosedNow();
-  const mj = myData() || {};
-  const start = (mj.start!==undefined) ? +mj.start : 10000;
-  const equity = (mj.equity!==undefined && mj.equity!==null) ? +mj.equity : (+mj.balance||start);
-  const day = +mj.day_pnl||0;
-  const since = equity - start;
-  let age = null;
-  if (MYFEED.t){ const t=new Date(MYFEED.t).getTime(); if(!isNaN(t)) age=Math.max(0,(Date.now()-t)/1000); }
-
-  $("hWallet").textContent = money(equity,0);
-  const wl = document.querySelector(".wallet .k"); if (wl) wl.textContent = "הארנק שלי (דמו)";
-
-  /* pot = MY day P&L */
-  $("potNet").textContent = signed(day); $("potNet").className = "amt " + cls(day);
-  $("potLab").innerHTML = (age!==null&&age<300&&!closed?'<span class="livedot"></span>LIVE · ':'') + "הקופה שלי היום · דמו";
-  $("potSub").innerHTML = "הרווח שלי היום · מאז ההתחלה <b class='"+cls(since)+"'>"+signed(since)+"</b>" +
-    (closed ? " · 🌙 שוק הזהב סגור, חוזרים שני 01:00" : "");
-
-  /* lights - my connection health */
-  let L = [];
-  const light=(ok,warn,txt)=>L.push(`<span class="tag ${ok?'up':(warn?'wa':'dn')}">● ${txt}</span>`);
-  light(age!==null&&age<300, age!==null&&age<1200, "הבוט שלי משדר " + (age!==null?ago(age):"—"));
-  light(mj.enabled!==false, mj.enabled===false, mj.enabled===false?"הבוט מכובה":"הבוט פעיל");
-  light(closed||true, false, closed?"זהב · שוק סגור 🌙":"זהב חי");
-  $("lights").innerHTML = L.join("");
-
-  /* seats - ONLY my bot; the Ladder shown as coming-soon with no numbers */
-  let s = myBotSeatHTML(closed);
-  if (!s) s = seatHTML({icon:"🤖", name:"הבוט שלי", role:"מחכה לשידור הראשון", dim:true,
-    stack:money(equity,0), stackLab:"הערימה שלי", tags:[{t:"ודא Algo Trading ירוק", tone:"wa"}]});
-  s += seatHTML({icon:"🪜", name:"The Ladder", role:"בוט רשת · בקרוב לחברים", dim:true,
-    stack:"בקרוב", stackLab:"", tags:[{t:"יתווסף כטרמינל שני", tone:"wa"}]});
-  $("seats").className = "";
-  $("seats").innerHTML = s;
-
-  /* my three numbers */
-  feeLabels("רווח היום","מאז ההתחלה","הערימה שלי");
-  $("fGross").textContent = signed(day); $("fGross").className = "v "+cls(day);
-  $("fFee").textContent = signed(since); $("fFee").className = "v "+cls(since);
-  $("fNet").textContent = money(equity,2); $("fNet").className = "v";
-  /* 2.3.0: my own bot's profit -> fees -> pocket, so I see the real number */
-  const myLots = +mj.lots_total||0;
-  const myFee = myLots * 28;
-  renderFeeBots([{name:"הבוט שלי", profit:since, fee:myFee, pocket:since - myFee,
-    lots: myLots||undefined,
-    note: myLots ? "" : "עמלת Vantage (‎$28‎ ללוט) תנוכה כאן ברגע שהבוט ידווח את הנפח שנסחר."}]);
-  $("fNote").innerHTML = "אלה המספרים של <b>החשבון שלך</b> בלבד (דמו). " +
-    (mj.trades_today!==undefined ? (mj.trades_today+" עסקאות היום · ") : "") +
-    "עמלת Vantage (‎$28‎ ללוט) היא מה שתשלם כשעוברים לכסף אמיתי.";
-
-  /* my live position as a card */
-  const live = [];
-  if (mj.position && (mj.position.entry!==undefined && mj.position.entry!==null)){
-    const p = mj.position;
-    live.push({kind:"gold", ticker:"XAUUSD", side:p.side||"long", qty:p.volume,
-               entry:p.entry, last:p.last, unrealized:p.profit});
-  }
-  renderBoard(live);
-  $("openPos").innerHTML = live.length
-    ? live.map(p=>{ const n=normPos(p);
-        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #2a2e39">
-          <b>${n.sym}</b><span>${n.qty||0} לוט @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</span>
-          <b class="${(n.pl||0)>=0?'up':'dn'}">${n.pl===null?"—":signed(n.pl)}</b></div>`; }).join("")
-    : "אין כרגע עסקה פתוחה אצלך — הבוט סורק ומחכה 🂠";
-}
-function renderTable(){
-  const P = PHONE; if (!P) return;
-  const closed = goldMarketClosedNow();
-  if (memberView()){ renderMember(); return; }
-  if (!fullView()){
-    $("hWallet").textContent = money(0,0);
-    const wl0 = document.querySelector(".wallet .k"); if (wl0) wl0.textContent = "הארנק שלי (דמו)";
-    $("potNet").textContent = "🔒"; $("potNet").className = "amt";
-    $("potSub").innerHTML = "שולחן המועדון נפתח ברגע שהבוט שלך מחובר ומשדר — התחל במסך <b>החיבורים</b> 🔗";
-    $("lights").innerHTML = "";
-    let s = myBotSeatHTML(closed);
-    if (!s) s = seatHTML({icon:"🤖", name:"הבוט שלי", role:"עוד לא חובר לחשבון דמו", dim:true,
-      stack:money(0,0), stackLab:"הערימה שלך", tags:[{t:"מתחילים במסך החיבורים 🔗", tone:"wa"}]});
-    s += seatHTML({icon:"💰", name:"בוט הזהב", role:"נפתח אחרי שתתחבר", dim:true,
-      stack:"🔒", stackLab:"", tags:[{t:"מתחברים — ורואים הכל", tone:"wa"}]});
-    s += seatHTML({icon:"🪜", name:"The Ladder", role:"נפתח אחרי שתתחבר", dim:true,
-      stack:"🔒", stackLab:"", tags:[{t:"מתחברים — ורואים הכל", tone:"wa"}]});
-    $("seats").className = "";
-    $("seats").innerHTML = s;
-    $("fGross").textContent = "🔒"; $("fGross").className = "v";
-    $("fFee").textContent = "🔒";
-    $("fNet").textContent = "🔒"; $("fNet").className = "v";
-    renderFeeBots([]);
-    $("fNote").innerHTML = "דוח העמלות נפתח אחרי שהבוט שלך מחובר ומשדר.";
-    $("openPos").innerHTML = "🔒 נפתח אחרי חיבור הבוט שלך.";
-    renderBoard([]);
-    return;
-  }
-  const g = P.gold||{}, slv = P.slave||{}, sh = P.shadow_wallet||{}, eng = P.engine_wallet||{};
-  let updAge = null;
-  if (P.updated_utc){ const t = new Date(P.updated_utc).getTime(); if(!isNaN(t)) updAge = Math.max(0,(Date.now()-t)/1000); }
-
-  /* wallet: a connected member sees THEIR account; otherwise the club's */
-  const clubWallet = (+g.equity||0) + (+slv.equity||+slv.balance||0) + (+sh.equity||0);
-  let walletShown = clubWallet, walletLab = "הארנקים של המועדון (דמו)";
-  if (MYFEED && MYFEED.j){
-    try { const mj = JSON.parse(MYFEED.j)||{};
-      if (mj.equity!==undefined || mj.balance!==undefined){
-        walletShown = +(mj.equity!==undefined?mj.equity:mj.balance)||0;
-        walletLab = "הארנק שלי (דמו)";
-      }
-    } catch(e){}
-  }
-  $("hWallet").textContent = money(walletShown, 0);
-  const wl = document.querySelector(".wallet .k"); if (wl) wl.textContent = walletLab;
-
-  /* pot: Idan's model (16.8) - the profit the accounts SHOW, minus the
-     Vantage fee on the recorded volume, cumulative since the start */
-  const fees = P.fees||{};
-  const v2 = fees.schema === 2;
-  const SS = v2 ? (fees.since_start||{}) : null;
-  const LD = v2 ? (fees.last_day||{}) : null;
-  const tot = v2 ? (SS.total||{}) : (fees.total||{});
-  /* 2.1.0 (Idan): the pot shows TODAY ONLY - live now - not the running total.
-     The since-start numbers live in the fee card below. */
-  const ldTot = (LD && LD.total) || {};
-  /* 2.2.0: the pot is the LIVE sum of the three players' profit TODAY */
-  const _gD = +(g.day_pnl)||0;
-  const _lD = +(slv.day_pnl)||0;
-  const _dispute = (+eng.equity>0 && +sh.equity>0 && Math.abs(+eng.equity - +sh.equity) > Math.max(5,.02*(+sh.equity)));
-  const _sD = (!_dispute && sh.day_pnl!==undefined) ? (+sh.day_pnl||0) : 0;
-  const liveSum = _gD + _lD + _sD;
-  const liveNow = updAge!==null && updAge<240;
-  let potVal, potLabTxt;
-  if (Math.abs(liveSum) >= 0.005 || !v2 || ldTot.pocket===undefined){
-    potVal = v2 ? liveSum : tot.net_atrade;
-    potLabTxt = "הקופה של היום · שלושת הבוטים";
-  } else {
-    potVal = ldTot.pocket;
-    potLabTxt = "יום המסחר האחרון" + (LD&&LD.day?(" · "+String(LD.day).split(/[-.]/).reverse().join(".")):"") + " · נטו לכיס";
-  }
-  $("potLab").innerHTML = (liveNow?'<span class="livedot"></span>LIVE · ':'') + potLabTxt;
-  $("potNet").textContent = signed(potVal);
-  $("potNet").className = "amt " + cls(potVal);
-  $("potSub").innerHTML = v2
-    ? ("💰 " + signed(_gD) + " · 🪜 " + signed(_lD) + (sh.day_pnl!==undefined&&!_dispute?(" · 📈 " + signed(_sD)):"") +
-       " · מאז ההתחלה <b class='"+cls(tot.pocket)+"'>" + signed(tot.pocket) + "</b> בכיס אחרי עמלות" +
-       (closed ? " · 🌙 שוק הזהב סגור, חוזרים שני 01:00" : ""))
-    : ((fees.is_today ? "היום" : "יום המסחר האחרון — " + (fees.day||"")) +
-       " · עמלות -" + money(Math.abs(tot.atrade_fee||0)) +
-       (closed ? " · 🌙 שוק הזהב סגור" : ""));
-
-  /* lights */
-  let L = [];
-  const light = (ok, warn, txt) => L.push(`<span class="tag ${ok?'up':(warn?'wa':'dn')}">● ${txt}</span>`);
-  light(updAge!==null && updAge<240, updAge!==null && updAge<1800, "שידור מהמחשב " + (updAge!==null?ago(updAge):"—"));
-  light(closed || true, false, closed ? "זהב · שוק סגור 🌙" : "זהב חי");
-  light(!!P.tws_connected, !P.tws_connected && !usMarketOpenNow(), P.tws_connected ? "מניות מחוברות" : (usMarketOpenNow() ? "מניות מנותקות" : "מניות · שוק סגור"));
-  $("lights").innerHTML = L.join("");
-
-  /* seats */
-  const gDay = +g.day_pnl||0;
-  const engEq = +eng.equity||0, shEq = +sh.equity||0;
-  const disputed = engEq>0 && shEq>0 && Math.abs(engEq-shEq) > Math.max(5, .02*shEq);
-  /* 2.2.0 (Idan): THREE PLAYERS at the table - gold, Ladder, swing -
-     each with today's profit in DOLLARS and PERCENT of the account. */
-  let seats = "";
-  seats += myBotSeatHTML(closed);
-  const gEq = +g.equity||0;
-  seats += seatHTML({icon:"💰", name:"בוט הזהב", role:"XAUUSD · מטה-טריידר · דמו",
-    stack:money(gEq), stackLab:"הערימה", day:gDay, eq:gEq,
-    tags:[{t:(g.trades_today||0)+" ידיים"}, closed?{t:"🌙 שוק סגור"}:{t:"חי", tone:"up"}]});
-  /* the source account is not shown here at all */
-  let sDay = null, lEq = 0;
-  if (slv.balance!==undefined && slv.balance!==null){
-    sDay = +slv.day_pnl||0;
-    lEq = +(slv.equity!==undefined&&slv.equity!==null?slv.equity:slv.balance)||0;
-    seats += seatHTML({icon:"🪜", name:"The Ladder", role:"בוט רשת בסולם · דמו · צפייה",
-      stack:money(lEq), stackLab:"הערימה", day:sDay, eq:lEq,
-      tags:[{t:((+slv.day_lots||0).toFixed(2))+" לוט"},
-            {t:(slv.open_positions||0)+" פתוחות"}, closed?{t:"🌙 שוק סגור"}:{t:"חי", tone:"up"}]});
-  }
-  const stTags = [{t:(P.positions||[]).length+" פוזיציות"}];
-  if (disputed) stTags.push({t:"⚠️ ספרים חלוקים — לא מדווח רווח", tone:"wa"});
-  if (P.stocks_stale && P.stocks_as_of) stTags.push({t:"נכון ל-"+P.stocks_as_of, tone:"wa"});
-  const shDay = (!disputed && sh.day_pnl!==undefined) ? (+sh.day_pnl||0) : undefined;
-  seats += seatHTML({icon:"📈", name:"בוט המניות — סווינג", role:"אינטראקטיב ברוקרס · חשבון נייר",
-    dim:!P.tws_connected && usMarketOpenNow(),
-    stack:money(shEq), stackLab:"לפי הברוקר", day:shDay, eq:shEq, tags:stTags});
-  $("seats").className = "arena";
-  $("seats").innerHTML = seats;
-
-  /* fee boxes - v2: profit / fee / pocket, since the start */
-  const bProfit = v2 ? tot.profit : tot.gross;
-  const bFee = v2 ? tot.fee : tot.atrade_fee;
-  const bPocket = v2 ? tot.pocket : tot.net_atrade;
-  $("fGross").textContent = signed(bProfit); $("fGross").className = "v "+cls(bProfit);
-  $("fFee").textContent = "-"+money(Math.abs(bFee||0));
-  $("fNet").textContent = signed(bPocket); $("fNet").className = "v "+cls(bPocket);
-  /* 2.3.0: a full card per bot - profit, fees paid, net in pocket */
-  const botRows = [];
-  if (v2 && SS.rows) SS.rows.forEach(r => botRows.push({
-    name:r.name, profit:r.profit, fee:r.fee, pocket:r.pocket, lots:r.lots }));
-  /* the swing bot trades stocks at IBKR - no per-lot gold fee model */
-  const swProfit = (+sh.equity||0) - (+sh.start||10000);
-  if (sh.equity!==undefined && !disputed){
-    botRows.push({name:"בוט המניות — סווינג", profit:swProfit, fee:0, pocket:swProfit,
-      note:"מניות בחשבון נייר — עמלות הברוקר על מניות אינן במחירון Vantage, לכן לא מנוכות כאן."});
-  } else if (sh.equity!==undefined && disputed){
-    botRows.push({name:"בוט המניות — סווינג", profit:0, fee:0, pocket:0,
-      note:"⚠️ שני ספרי החשבון חלוקים — לפי כלל הדיווח הכן, לא מדווח כאן רווח עד שהסתירה תיושב."});
-  }
-  renderFeeBots(botRows);
-  $("fNote").innerHTML =
-    "הרווח כפי שהחשבונות מציגים, פחות עמלת Vantage (‎$28‎ ללוט) על הנפח שנסחר בפועל · מאז 13.8.2026" +
-    (bProfit>0 ? " · בסך הכל העמלות לוקחות <b class='wa'>"+Math.round(Math.abs(bFee||0)/bProfit*100)+"%</b> מהרווח" : "");
-
-  /* live trades: the gold bot's open position + the stock positions,
-     shown as playing cards on the felt above */
-  const live = [];
-  if (g.position && (g.position.entry!==undefined || g.position.avg_cost!==undefined || g.position.price!==undefined)){
-    const gp = g.position;
-    live.push({kind:"gold", ticker:"XAUUSD", side:gp.side||gp.type||"long",
-      qty:gp.volume||gp.qty||gp.lots, entry:gp.entry||gp.price||gp.avg_cost,
-      last:gp.last||gp.current||gp.price, unrealized:gp.profit!==undefined?gp.profit:gp.pl});
-  }
-  (P.positions||[]).forEach(p => live.push(Object.assign({kind:p.kind||"swing"}, p)));
-  renderBoard(live);
-  $("openPos").innerHTML = live.length
-    ? live.map(p=>{ const n=normPos(p);
-        return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #2a2e39">
-          <b>${n.sym}</b><span>${n.qty||0} יח׳ @ ${n.entry!==undefined?(+n.entry).toFixed(2):"—"}</span>
-          <b class="${(n.pl||0)>=0?'up':'dn'}">${n.pl===null?"—":signed(n.pl)}</b></div>`; }).join("")
-    : "אין עסקאות פתוחות כרגע — הבוטים סורקים ומחכים להזדמנות. 🂠";
-}
 
 /* ---------- calendar ---------- */
 function memberHistory(){
@@ -1900,35 +1688,6 @@ function memberHistory(){
     mj.hist.forEach(x => { if (x && x.d) H[x.d] = {net_demo:+x.pnl||0, pocket:+x.pnl||0, lots:0, fee:0, gold_net_demo:+x.pnl||0, gold_lots:0}; });
   }
   return H;
-}
-function renderCalendar(){
-  const P = PHONE; if (!P) return;
-  if (!fullView()){
-    $("calTitle").textContent = "לוח הרווח היומי";
-    $("calGrid").innerHTML = '<div style="grid-column:1/-1;padding:24px 12px;text-align:center;color:var(--ink3);font-size:14px">🔒 לוח השנה נפתח אחרי שהבוט שלך מחובר ומשדר.<br>עבור למסך <b>החיבורים</b> כדי להתחבר.</div>';
-    $("calSum").textContent = "—"; $("calSum").className = ""; $("calSum2").textContent = "";
-    return;
-  }
-  const H = memberView() ? memberHistory() : (P.history||{});
-  const y = calCursor.getFullYear(), m = calCursor.getMonth();
-  const monthName = calCursor.toLocaleDateString("he-IL",{month:"long", year:"numeric"});
-  $("calTitle").textContent = monthName;
-  const first = new Date(y,m,1), startDow = first.getDay(), days = new Date(y,m+1,0).getDate();
-  let html = "", mSum = 0, mDays = 0;
-  for (let i=0;i<startDow;i++) html += `<div class="d off"></div>`;
-  for (let d=1;d<=days;d++){
-    const key = y+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
-    const e = H[key];
-    const dayVal = e ? (e.pocket!==undefined ? e.pocket : e.net_atrade) : undefined;
-    if (e && dayVal!==undefined){
-      mSum += dayVal; mDays++;
-      html += `<div class="d ${dayVal>0.004?'g':(dayVal<-0.004?'r':'')}" onclick="dayModal('${key}')">
-        <span class="n">${d}</span><span class="p ${cls(dayVal)}">${signed(dayVal,0)}</span></div>`;
-    } else html += `<div class="d off"><span class="n">${d}</span></div>`;
-  }
-  $("calGrid").innerHTML = html;
-  $("calSum").textContent = signed(mSum); $("calSum").className = cls(mSum);
-  $("calSum2").textContent = mDays + " ימי מסחר החודש";
 }
 function dayModal(key){
   if (!fullView()) return;                       /* three-state gate, 17.8 */
@@ -3226,7 +2985,7 @@ Object.assign(TAB_TITLE, {
 const _goTabBase = goTab;
 goTab = function(tab){
   _goTabBase(tab);
-  if (tab==="money")   { renderBoard(); renderNews(); }
+  if (tab==="money")   renderPath();
   if (tab==="plan")    renderPlanTab();
   if (tab==="pine")    renderPine();
   if (tab==="updates") { renderUpdates(); markUpdatesRead(); }
@@ -3427,64 +3186,11 @@ const MB = [
    txt:"עצמאות כלכלית היא לא סכום — היא היחס בין ההכנסה הפסיבית להוצאה החודשית. ברגע שהיחס הזה עובר 1, אתה עובד כי אתה רוצה. זה המספר היחיד שבאמת סוגר את הלוח.",
    act:"חשב: כמה הכנסה פסיבית בחודש תסגור לך את זה"}
 ];
-/* the perimeter of a 7x7 grid, clockwise from the top-inline-start corner */
-const MB_CELLS = [[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[7,6],[7,5],[7,4]];
-let MBPOS = 0;
-
+/* 20.8.2026: the 7x7 board, the dice and the tile box are gone - Idan's
+   words about that screen were unambiguous. The sixteen rules above are
+   the content he kept; renderPath() in the v4.1 block is their new home.
+   The done-set is the same store, so nobody loses their progress. */
 function mbDoneSet(){ return LS.get("mbDone", []); }
-function renderBoard(){
-  MBPOS = LS.get("mbPos", 0);
-  const done = mbDoneSet();
-  let h = "";
-  MB.forEach((t,i)=>{
-    const [r,c] = MB_CELLS[i];
-    h += '<div class="tile c'+t.c+(i===MBPOS?" here":"")+(done.indexOf(i)>=0?" done":"")+'"' +
-         ' style="grid-row:'+r+';grid-column:'+c+'" onclick="mbGo('+i+')" role="button" tabindex="0">' +
-         '<span class="ic">'+t.ic+'</span><span class="nm">'+esc(t.nm)+'</span></div>';
-  });
-  h += '<div class="center" id="mCenter"></div>';
-  $("mBoard").innerHTML = h;
-  $("mbPos").textContent = "משבצת " + (MBPOS+1) + " מתוך " + MB.length;
-  renderCenter(); renderTile();
-}
-function renderCenter(){
-  const done = mbDoneSet().length, pct = Math.round(done/MB.length*100);
-  const p = PLAN && PLAN.calc;
-  let mid = '<div class="mini">התקדמות בלוח</div><div class="big2">'+pct+'%</div>' +
-            '<div class="bar2" style="width:82%"><i style="width:'+pct+'%"></i></div>' +
-            '<div class="mini">'+done+' מתוך '+MB.length+' כללים סומנו כבוצעו</div>';
-  if (p) mid += '<div class="mini" style="margin-top:6px">עודף חודשי <b dir="ltr">'+fmtIls(p.surplus)+'</b> · ' +
-                'ליעד <b dir="ltr">'+(p.months>=1200?"—":p.months+" ח׳")+'</b></div>';
-  const c = $("mCenter"); if (c) c.innerHTML = mid;
-}
-function renderTile(){
-  const t = MB[MBPOS], done = mbDoneSet(), isDone = done.indexOf(MBPOS)>=0;
-  $("mTileBox").innerHTML =
-    '<h3>'+t.ic+' '+esc(t.ttl)+'<span class="n">'+esc(t.nm)+'</span></h3>' +
-    '<div class="mini" style="font-size:13.5px;line-height:1.75">'+esc(t.txt)+'</div>' +
-    '<div class="pill wa2" style="margin-top:9px">✍️ '+esc(t.act)+'</div>' +
-    '<div class="btnrow">' +
-      '<button class="btn '+(isDone?"sec":"")+'" onclick="mbToggle()">'+(isDone?"✓ סומן כבוצע":"סמן כבוצע")+'</button>' +
-      '<button class="btn sec" onclick="mbGo('+((MBPOS+1)%MB.length)+')">המשבצת הבאה ›</button>' +
-    '</div>';
-}
-function mbGo(i){
-  MBPOS = ((i%MB.length)+MB.length)%MB.length;
-  LS.set("mbPos", MBPOS); renderBoard();
-  const box = $("mTileBox"); if (box) box.scrollIntoView({behavior:"smooth", block:"nearest"});
-}
-function mbToggle(){
-  const d = mbDoneSet(), i = d.indexOf(MBPOS);
-  if (i>=0) d.splice(i,1); else d.push(MBPOS);
-  LS.set("mbDone", d); renderBoard();
-}
-const DICE = ["⚀","⚁","⚂","⚃","⚄","⚅"];
-function rollDice(){
-  const n = 1 + Math.floor(Math.random()*6);
-  const f = $("diceFace"); if (f) f.textContent = DICE[n-1];
-  mbGo(MBPOS + n);
-  toast("יצא " + n + " — קדימה " + n + " משבצות");
-}
 
 /* ---- the news room -------------------------------------------------- */
 const NEWS_TAGS = ["שוק","המועדון","בוטים","רגולציה","הזדמנות"];
@@ -4217,7 +3923,7 @@ refreshShopNav();
    קופה של כולם ביחד, אבל עם סה\"כ בצד".
    Appended like every layer before it. Nothing above was deleted.
    ===================================================================== */
-const APP_V4 = "4.0.0";
+const APP_V4 = "4.1.0";
 
 /* ---- 11.1 the mark: one crown-coin, drawn by us, used everywhere ----- */
 const LOGO_SVG = '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="28" r="17" fill="#dfb440"/><circle cx="24" cy="28" r="13.5" fill="none" stroke="#8a6a14" stroke-width="1.6" stroke-dasharray="2.6 2.2"/><text x="24" y="34" font-size="14" font-weight="900" text-anchor="middle" fill="#5a4407" font-family="Georgia,serif">IMC</text><path d="M11 14 L15 5 L20 11 L24 3 L28 11 L33 5 L37 14 Z" fill="#f3d878" stroke="#8a6a14" stroke-width="1.4" stroke-linejoin="round"/><rect x="11" y="14" width="26" height="3.4" rx="1.6" fill="#dfb440" stroke="#8a6a14" stroke-width="1"/></svg>';
@@ -4406,7 +4112,7 @@ function applyWatch(){
   $("heroSide").innerHTML =
     '<span class="pill '+cls(b.day_gross)+'">היום '+signed(b.day_gross)+'</span>' +
     '<span class="pill">הערימה '+money(b.equity,0)+'</span>' +
-    '<span class="pill">סה"כ המועדון נשאר בפינות למעלה ⬆</span>';
+    '<span class="pill">סה"כ שולחן הזהב נשאר בפינות למעלה ⬆</span>';
   document.querySelectorAll("#botChips .chip").forEach(el=>{
     el.style.opacity = el.classList.contains(WATCH) ? "1" : ".45";
   });
@@ -4713,6 +4419,511 @@ enterApp = function(){
   /* a brand-new member gets the guided hand once, after the screen settles */
   if (!PERSONAL && !window.__TEST_FIREBASE__ && !LS.get("coachDone", false))
     setTimeout(()=>startCoach(false), 1600);
+};
+
+/* =====================================================================
+   v4.1.0 — 20.8.2026, Idan at the keyboard, in his own words:
+   "השולחן החי יראה רק את הבוטים שמתעסקים בזהב, והסווינג יראה בדיוק את
+   אותו מסך" · "חדשות מעודכנות 24/7... חדר חדשות מגניב ויפה" · "חדר הכסף
+   מזעזע - תיצור אותו מחדש" · "תשלום לעידן: פייפל או העברה דיגיטלית,
+   ושהם יוכלו לבחור מטבע דיגיטלי" · "אם מישהו רוצה לאותת - שתהיה לו
+   האופציה" · "יתריע בקול חמוד כזה וכיפי שנגמר היעד היומי".
+   ===================================================================== */
+const APP_V41 = "4.1.0";
+
+/* ---- 12.1 the gold table and the swing table part ways ---------------
+   The live table is the GOLD room now: gold, the ladder, the drawer and
+   the member's own bot. The swing gets the same table, in blue, in its
+   own room. Reports, the calendar and the money page still see the whole
+   club - only the two TABLES are split. */
+const GOLD_FAMILY = {gold:1, ladder:1, drawer:1, mine:1};
+let TABLE_GOLD = false;      /* true only while the gold table is rendering */
+let LIVE_FULL = null;        /* the unstripped picture, for the swing room  */
+function stripSwing(L){
+  if (!L || L.mine) return L;
+  const rows = (L.rows||[]).filter(r=>GOLD_FAMILY[r.bot]);
+  const bots = (L.bots||[]).filter(b=>GOLD_FAMILY[b.id]);
+  const og = rows.reduce((a,r)=>a+(+r.gross||0),0);
+  const of_ = rows.reduce((a,r)=>a+(+r.fee_est||0),0);
+  const dg = bots.reduce((a,b)=>a+(+b.day_gross||0),0);
+  const eq = bots.reduce((a,b)=>a+(+b.equity||0),0);
+  const dOpen = bots.reduce((a,b)=>a+(+b.day_open_equity||+b.equity||0),0);
+  const T = Object.assign({}, L.totals||{});
+  T.open_gross = +og.toFixed(2); T.open_fee_est = +of_.toFixed(2);
+  T.open_net_est = +(og-of_).toFixed(2); T.open_count = rows.length;
+  T.day_gross = +dg.toFixed(2); T.equity = +eq.toFixed(2);
+  T.day_open_equity = +dOpen.toFixed(2); T.day_pct = pctOf(dg, dOpen);
+  return Object.assign({}, L, {rows, bots, totals: T, _gold_room: true});
+}
+const _liveOf41 = liveOf;
+liveOf = function(P){
+  const L = _liveOf41(P);
+  if (L && !L.mine) LIVE_FULL = L;
+  return (TABLE_GOLD && L && !L.mine) ? stripSwing(L) : L;
+};
+const _renderLive41 = renderLive;
+renderLive = function(){
+  TABLE_GOLD = true;
+  try { _renderLive41(); } finally { TABLE_GOLD = false; }
+  try { memberQuietAlert(); renderSwingFelt(); } catch(e){}
+};
+/* the gold room's label says what it is */
+const _applyWatch41 = applyWatch;
+applyWatch = function(){
+  _applyWatch41();
+  const L = LIVE_CACHE;
+  if (L && L._gold_room && !WATCH){
+    const lab = $("heroLab");
+    if (lab && lab.textContent.indexOf("זהב") < 0)
+      lab.textContent = lab.textContent.replace("הפעולות החיות", "שולחן הזהב · הפעולות החיות");
+  }
+};
+/* the ticker on the gold table carries gold events only */
+const _renderTicker41 = renderTicker;
+renderTicker = function(){
+  const P = PHONE;
+  if (P && Array.isArray(P.events)){
+    const keep = P.events;
+    P.events = keep.filter(e=>GOLD_FAMILY[e.bot]);
+    try { _renderTicker41(); } finally { P.events = keep; }
+  } else _renderTicker41();
+};
+/* the swing sheet needs the FULL picture, not the gold room's */
+const _rbs41 = renderBotSheet;
+renderBotSheet = function(id){
+  if (id === "swing" && LIVE_FULL){
+    const save = LIVE_CACHE; LIVE_CACHE = LIVE_FULL;
+    try { _rbs41(id); } finally { LIVE_CACHE = save; }
+    return;
+  }
+  _rbs41(id);
+};
+
+/* ---- 12.2 the swing room: the same table, in the stocks' blue -------- */
+function renderSwingFelt(){
+  const felt = $("swFelt"); if (!felt) return;
+  if (!IS_OWNER){ felt.innerHTML = '<div class="emptyline" style="margin:8px">🔒 מסך הסווינג מציג את חשבון המניות של המועדון.</div>'; return; }
+  const L = LIVE_FULL || liveOf(PHONE); if (!L) return;
+  const b = (L.bots||[]).find(x=>x.id==="swing"); if (!b) return;
+  const rows = (L.rows||[]).filter(r=>r.bot==="swing")
+    .slice().sort((a,c)=>Math.abs(+c.gross||0)-Math.abs(+a.gross||0));
+  $("swCnrBal").textContent = money(b.equity, 0);
+  $("swCnrBalSub").textContent = "חשבון המניות (נייר)";
+  $("swCnrDay").textContent = signed(b.day_gross);
+  $("swCnrDay").className = "v " + cls(b.day_gross);
+  $("swCnrDaySub").innerHTML = (b.day_pct!==null&&b.day_pct!==undefined)
+    ? ('<span dir="ltr">'+(b.day_pct>0?"+":"")+b.day_pct+'%</span> מהתיק היום') : "";
+  const G = +b.open_gross||0;
+  $("swHeroLab").textContent = rows.length
+    ? ("שולחן המניות · ברוטו · " + rows.length + (rows.length===1?" פתוחה":" פתוחות"))
+    : "שולחן המניות · ברוטו";
+  $("swHeroBig").textContent = signed(G);
+  $("swHeroBig").className = "big " + (Math.abs(G)<0.005 ? "flat" : cls(G));
+  const side = [];
+  side.push('<span class="pill '+cls(b.day_gross)+'">היום '+signed(b.day_gross)+'</span>');
+  if (b.pending) side.push('<span class="pill wa">'+b.pending+' ממתינות לפריצה</span>');
+  if (b.scan && b.scan.total) side.push('<span class="pill">סורק '+b.scan.total+' מניות</span>');
+  $("swHeroSide").innerHTML = side.join("");
+  $("swRows").innerHTML = rows.length
+    ? rows.map(rowHTML).join("")
+    : '<div class="empty">אין פוזיציית מניות פתוחה — המנוע סורק ומחכה לפריצה 🂠</div>';
+}
+const _renderSwing41 = renderSwing;
+renderSwing = function(){
+  _renderSwing41();
+  renderSwingFelt();
+  /* Idan, 20.8: "שאראה את כל המניות הממתינות לפריצה או במעקב או בכלל מה
+     שהוא מתעניין בהן" - so the signals card shows EVERYTHING the engine
+     published, each with its state, none sliced away. */
+  if (IS_OWNER){
+    const sigs = (PHONE||{}).signals_swing||[];
+    if (sigs.length){
+      $("swSignals").innerHTML = sigs.map(s=>ordHTML(
+        s.state==="BUY_NOW"?"פריצה עכשיו":(s.state==="WATCH_BUY"?"במעקב":esc(s.state||"עניין")),
+        s.state==="BUY_NOW"?"live":"wait",
+        esc(s.ticker),
+        "מחיר "+(+s.price).toFixed(2)+" · כניסה "+(+s.entry).toFixed(2)
+        +(s.stop!==undefined?(" · סטופ "+(+s.stop).toFixed(2)):"")
+        +(s.t1!==undefined?(" · יעד "+(+s.t1).toFixed(2)):"")
+        +(s.rsi!==undefined?(" · RSI "+s.rsi):"")+(s.score!==undefined?(" · ציון "+s.score):""),
+        (s.notional?money(s.notional,0):null))).join("");
+    }
+  }
+};
+
+/* ---- 12.3 money reaches Idan any way the member prefers -------------- */
+function payCryptoList(){
+  const raw = (SETTINGS && SETTINGS.payCrypto) || "";
+  return String(raw).split(/\r?\n/).map(l=>{
+    const p = l.split("|").map(s=>s.trim());
+    if (p.length < 3 || !p[0] || !p[2]) return null;
+    return { coin: p[0].slice(0,12), net: p[1].slice(0,18), addr: p[2].slice(0,120),
+             tag: (p[3]||"").slice(0,40) };
+  }).filter(Boolean).slice(0, 12);
+}
+function payWays(){
+  const out = [];
+  const pp = (SETTINGS && SETTINGS.payPal) || "";
+  const pb = (SETTINGS && SETTINGS.payLink) || "";
+  const bt = (SETTINGS && SETTINGS.payBit) || "";
+  const bk = (SETTINGS && SETTINGS.payBank) || "";
+  if (pp) out.push({ kind:"link", id:"paypal", label:"PayPal", value:pp });
+  if (pb) out.push({ kind:"link", id:"paybox", label:"פייבוקס", value:pb });
+  if (bt) out.push({ kind: /^https?:/i.test(bt) ? "link" : "text", id:"bit", label:"ביט", value:bt });
+  if (bk) out.push({ kind:"bank", id:"bank", label:"העברה בנקאית", value:bk });
+  payCryptoList().forEach((c,i)=> out.push({
+    kind:"addr", id:"c"+i, label:c.coin + (c.net ? " · " + c.net : ""), value:c.addr, tag:c.tag }));
+  return out;
+}
+function payWaysHtml(){
+  const ways = payWays();
+  if (!ways.length)
+    return "עידן עוד לא הזין אמצעי תשלום. דבר איתו בתמיכה ותסגרו ישירות.";
+  let h = "בחר איך נוח לך להעביר. אחרי שהעברת, עידן רואה את זה אצלו ומאשר כאן — " +
+          "זה השלב היחיד שבו מחכים לבן אדם, וזה בכוונה." +
+          '<div class="opts" style="margin-top:8px">' +
+          ways.map(w=>'<button onclick="pickPay(\'' + escJs(w.id) + '\')"' +
+                      (PAY_PICK===w.id ? ' class="on"' : '') + '>' + esc(w.label) + '</button>').join("") +
+          '</div>';
+  const w = ways.find(x=>x.id===PAY_PICK);
+  if (w){
+    if (w.kind === "link")
+      h += '<div class="btnrow"><button class="btn" onclick="openPayWay()">💳 פתח ' + esc(w.label) + '</button></div>';
+    else if (w.kind === "bank")
+      h += '<div class="banklines">' + esc(w.value) + '</div>' +
+           '<div class="btnrow"><button class="btn sec" onclick="copyPayWay()">📋 העתק את הפרטים</button></div>';
+    else {
+      h += '<div class="mini" style="margin-top:8px">' + esc(w.label) + ':</div>' +
+           '<div class="paybox2">' + esc(w.value) + '</div>' +
+           '<div class="btnrow"><button class="btn sec" onclick="copyPayWay()">📋 העתק כתובת</button>' +
+           (w.tag ? '<button class="btn sec" onclick="copyPayTag()">📋 העתק תג</button>' : '') + '</div>';
+      if (w.tag)
+        h += '<div class="tagbox">Tag / Memo: ' + esc(w.tag) + '</div>' +
+             '<div class="mini dn" style="margin-top:6px"><b>חובה להזין גם את התג</b> — העברה בלי Tag/Memo למטבע כמו ' + esc(w.label.split(" ")[0]) + ' <b>אובדת ואי אפשר להחזיר אותה</b>.</div>';
+      if (w.id.charAt(0)==="c")
+        h += '<div class="mini" style="margin-top:6px">⚠️ שלח <b>' + esc(w.label) +
+             '</b> בלבד, ובדיוק ברשת הזאת. מטבע או רשת אחרת — הכסף אובד ואי אפשר להחזיר אותו.</div>';
+    }
+  }
+  return h;
+}
+function copyPayTag(){
+  const w = curPayWay(); if (!w || !w.tag) return;
+  (navigator.clipboard ? navigator.clipboard.writeText(w.tag) : Promise.reject())
+    .then(()=>toast("התג הועתק ✓ אל תשכח להדביק אותו"))
+    .catch(()=>prompt("העתק את התג:", w.tag));
+}
+async function savePayAll(){
+  const pay = {
+    payPal:    ($("payPalInp")    ? $("payPalInp").value.trim()    : ""),
+    payLink:   ($("payLinkInp")   ? $("payLinkInp").value.trim()   : ""),
+    payBit:    ($("payBitInp")    ? $("payBitInp").value.trim()    : ""),
+    payBank:   ($("payBankInp")   ? $("payBankInp").value.trim()   : "").slice(0, 500),
+    payCrypto: ($("payCryptoInp") ? $("payCryptoInp").value.trim() : "").slice(0, 2000)
+  };
+  if (pay.payPal && !/^https?:\/\//i.test(pay.payPal)) return toast("קישור PayPal צריך להתחיל ב-https://");
+  try{ await db.collection("settings").doc("global").set(pay, {merge:true}); toast("נשמר ✓ החברים רואים את זה מיד"); }
+  catch(e){ toast("נכשל (" + ((e&&e.code)||e) + ")"); }
+}
+const _reflectAdmin41 = reflectAdmin;
+reflectAdmin = function(){
+  _reflectAdmin41();
+  if (!IS_OWNER) return;
+  if ($("payPalInp")  && document.activeElement !== $("payPalInp"))  $("payPalInp").value  = SETTINGS.payPal||"";
+  if ($("payBankInp") && document.activeElement !== $("payBankInp")) $("payBankInp").value = SETTINGS.payBank||"";
+};
+
+/* ---- 12.4 the path to freedom (the money room, from zero) ------------ */
+const PATH_CHAPTERS = [
+  {g:"g1", n:"היסודות",        from:0,  to:2},
+  {g:"g2", n:"רשת הביטחון",    from:3,  to:5},
+  {g:"g3", n:"ההרגלים",        from:6,  to:8},
+  {g:"g4", n:"אחריות",         from:9,  to:11},
+  {g:"g5", n:"צמיחה וחופש",    from:12, to:15}
+];
+function pathChapter(i){
+  for (const c of PATH_CHAPTERS) if (i>=c.from && i<=c.to) return c;
+  return PATH_CHAPTERS[PATH_CHAPTERS.length-1];
+}
+function renderPath(){
+  const list = $("pathList"); if (!list) return;
+  const done = mbDoneSet();
+  const next = MB.findIndex((_,i)=>done.indexOf(i)<0);
+  let h = "";
+  MB.forEach((t,i)=>{
+    const c = pathChapter(i), isDone = done.indexOf(i)>=0, isNext = (i===next);
+    h += '<div class="deed '+c.g+(isDone?' done':'')+(isNext?' next':'')+'">' +
+      '<div class="dband">'+esc(c.n)+'<span class="dnext">⭐ הצעד הבא שלך</span><span class="dnum">'+(i+1)+' / '+MB.length+'</span></div>' +
+      '<div class="dbody"><div class="dic">'+t.ic+'</div><div class="dmain">' +
+        '<div class="dttl">'+esc(t.ttl)+'</div>' +
+        '<div class="dtxt">'+esc(t.txt)+'</div>' +
+        '<span class="dact">✍️ '+esc(t.act)+'</span>' +
+      '</div></div>' +
+      '<div class="dfoot"><button class="dbtn" onclick="pathToggle('+i+')">'+(isDone?"↩︎ בטל סימון":"✓ עשיתי את זה")+'</button>' +
+      '<span class="dstamp">בוצע ✓</span></div></div>';
+  });
+  list.innerHTML = h;
+  const pct = Math.round(done.length/MB.length*100);
+  $("pathPct").textContent = pct + "%";
+  $("pathN").textContent = done.length + " מ-" + MB.length;
+  const arc = $("pathRingArc");
+  if (arc) arc.style.strokeDashoffset = (326.7 * (1 - done.length/MB.length)).toFixed(1);
+  const pp = $("pathPlan");
+  if (pp) pp.innerHTML = (PLAN && PLAN.calc)
+    ? ('המספרים שלך מהתוכנית: נשאר לך <b dir="ltr">'+fmtIls(PLAN.calc.surplus)+'</b> בחודש · ' +
+       (PLAN.calc.months>=1200 ? 'בקצב הזה היעד לא נסגר — תתחיל מהקלפים הראשונים.' :
+        'בקצב הזה תגיע ליעד בעוד <b>'+Math.floor(PLAN.calc.months/12)+' שנים ו-'+(PLAN.calc.months%12)+' חודשים</b>.'))
+    : 'מלא את <a href="#" onclick="goTab(\'plan\');return false">התוכנית שלי</a> — והמספרים האישיים שלך יופיעו כאן, בתוך המסלול.';
+}
+function pathToggle(i){
+  const d = mbDoneSet(), j = d.indexOf(i);
+  if (j>=0) d.splice(j,1); else d.push(i);
+  LS.set("mbDone", d); renderPath();
+}
+
+/* ---- 12.5 the news room: the 24/7 wire + Idan + member signals ------- */
+const NEWS_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/news.json";
+let WIRE = null, WFILTER = "all", _wireTimer = null, SIGS = [], _sigSub = false;
+async function fetchWire(){
+  try {
+    const r = await fetch(NEWS_URL + "?t=" + Date.now(), {cache:"no-store"});
+    if (!r.ok) throw 0;
+    WIRE = await r.json();
+  } catch(e){}
+  renderWire();
+}
+function wireFilter(btn){
+  WFILTER = btn.getAttribute("data-f");
+  document.querySelectorAll("#wireFilters button").forEach(b=>b.classList.toggle("on", b===btn));
+  renderWire();
+}
+function agoTs(ts){ return ago(Math.max(0, Date.now()/1000 - (+ts||0))); }
+function renderWire(){
+  const box = $("newsWire"); if (!box) return;
+  const items = (WIRE && WIRE.items) || [];
+  if ($("wireAge")) $("wireAge").textContent = WIRE && WIRE.updated_utc
+    ? ("עודכן " + ago(Math.max(0,(Date.now()-new Date(WIRE.updated_utc).getTime())/1000)))
+    : "";
+  if (WFILTER === "sig"){ box.innerHTML = ""; renderSigs(); return; }
+  renderSigs();
+  const show = items.filter(it => WFILTER==="all" || it.lang === WFILTER);
+  box.innerHTML = show.length ? show.map(it =>
+    '<div class="wireitem '+esc(it.src||"")+'" data-lang="'+esc(it.lang||"")+'"' +
+    (it.link ? ' onclick="window.open(\''+escJs(it.link)+'\',\'_blank\',\'noopener\')"' : '') + '>' +
+      '<div class="wsrc">'+esc(it.name||it.src||"")+'</div>' +
+      '<div class="wmain"><div class="wt">'+esc(it.t||"")+'</div>' +
+      '<div class="wm">'+esc(it.name||"")+' · לפני '+agoTs(it.ts)+'</div></div></div>').join("")
+    : '<div class="emptyline">' + (WIRE ? "אין כתבות בסינון הזה." :
+      "החוט עוד לא שודר מהמחשב — הוא מתעדכן בכל סבב של השומר.") + '</div>';
+}
+function renderNews(){
+  /* Idan's own news are PINNED above the wire, in gold */
+  const adminBox = $("newsAdmin");
+  if (adminBox) adminBox.classList.toggle("hidden", !IS_OWNER);
+  if (IS_OWNER && $("newsTags") && !$("newsTags").dataset.built){
+    $("newsTags").dataset.built = "1";
+    $("newsTags").innerHTML = NEWS_TAGS.map((t,i)=>
+      '<button onclick="pickNewsTag(this)"'+(i===0?' class="on"':'')+'>'+esc(t)+'</button>').join("");
+  }
+  const pin = $("pinnedNews"); if (!pin) return;
+  pin.innerHTML = NEWS.slice(0,6).map(n=>
+    '<div class="pinned">👑 <b>'+esc(n.title||"")+'</b>' +
+    (n.tag?' <span class="pill">'+esc(n.tag)+'</span>':'') +
+    '<div class="mini" style="margin-top:4px">'+esc(n.body||"")+'</div>' +
+    '<div class="w">עידן · '+esc(n.t?new Date(n.t).toLocaleString("he-IL"):"")+'</div>' +
+    (IS_OWNER?'<div class="btnrow"><button class="btn sec" onclick="delNews(\''+escJs(n.id)+'\')">מחק</button></div>':'') +
+    '</div>').join("");
+}
+function subscribeSignals(){
+  if (_sigSub || !ME || PERSONAL) return;
+  _sigSub = true;
+  try {
+    db.collection("chat").doc("club").collection("messages")
+      .orderBy("ts").limitToLast(60).onSnapshot(qs=>{
+        SIGS = [];
+        qs.forEach(d=>{ const m=d.data()||{}; if (m.kind==="signal") SIGS.push(m); });
+        SIGS.reverse();
+        if (CURTAB==="news") renderSigs();
+      }, ()=>{});
+  } catch(e){}
+}
+function renderSigs(){
+  const box = $("sigList"); if (!box) return;
+  const show = (WFILTER==="all"||WFILTER==="sig") ? SIGS.slice(0, WFILTER==="sig"?30:5) : [];
+  box.innerHTML = show.map(m=>{
+    const p = String(m.text||"").split("|");
+    const sym = esc(m.sym || p[1] || "?"), side = m.side || p[2] || "watch";
+    const note = esc(m.note !== undefined ? m.note : (p.slice(3).join("|")||""));
+    const emo = side==="long" ? "📈" : (side==="short" ? "📉" : "👀");
+    const word = side==="long" ? "לונג" : (side==="short" ? "שורט" : "מעקב");
+    return '<div class="sigitem '+esc(side)+'"><div class="semo">'+emo+'</div>' +
+      '<div style="flex:1;min-width:0"><div class="st2">📣 <b>'+sym+'</b> · '+word+
+      (note?(' — '+note):'')+'</div>' +
+      '<div class="sw2">'+esc(m.name||"חבר")+' · '+esc(m.ts?new Date(m.ts).toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"}):"")+'</div></div></div>';
+  }).join("");
+}
+function openSignal(){
+  const box = document.createElement("div"); box.className = "modal";
+  box.innerHTML = '<div class="mbox"><h3 style="color:var(--gold)">📣 שדר איתות למועדון</h3>' +
+    '<div class="mini">כולם יראו אותו בחדר החדשות ובצ\'אט, עם השם שלך.</div>' +
+    '<label class="lbl">סימבול</label><input class="fld" id="sigSym" placeholder="XAUUSD / TSLA / BTC" maxlength="14" style="direction:ltr">' +
+    '<label class="lbl">כיוון</label><div class="opts" id="sigSide">' +
+      '<button data-s="long" onclick="sigPick(this)">📈 לונג</button>' +
+      '<button data-s="short" onclick="sigPick(this)">📉 שורט</button>' +
+      '<button data-s="watch" class="on" onclick="sigPick(this)">👀 מעקב</button></div>' +
+    '<label class="lbl">למה? (משפט אחד)</label><input class="fld" id="sigNote" placeholder="פריצה מעל התנגדות שבועית..." maxlength="140">' +
+    '<div class="btnrow"><button class="btn" onclick="sendSignal()">📣 שדר</button>' +
+    '<button class="btn sec" onclick="this.closest(\'.modal\').remove()">בטל</button></div></div>';
+  box.onclick = e => { if (e.target===box) box.remove(); };
+  document.body.appendChild(box);
+}
+function sigPick(b){ document.querySelectorAll("#sigSide button").forEach(x=>x.classList.toggle("on", x===b)); }
+async function sendSignal(){
+  const sym = (($("sigSym")||{}).value||"").trim().toUpperCase().slice(0,14);
+  const note = (($("sigNote")||{}).value||"").trim().slice(0,140);
+  const sideEl = document.querySelector("#sigSide button.on");
+  const side = sideEl ? sideEl.getAttribute("data-s") : "watch";
+  if (sym.length < 2) return toast("צריך סימבול");
+  try {
+    await db.collection("chat").doc("club").collection("messages").add({
+      uid: ME.uid, name: ME.displayName || (ME.email||"").split("@")[0],
+      text: "SIG|" + sym + "|" + side + "|" + note,
+      kind: "signal", sym, side, note, ts: new Date().toISOString() });
+    toast("האיתות שודר 📣");
+    const m = document.querySelector(".modal"); if (m) m.remove();
+  } catch(e){ toast("לא שודר (" + ((e&&e.code)||e) + ")"); }
+}
+function renderNewsTab(){
+  renderNews(); renderSigs(); renderWire();
+  if (!WIRE) fetchWire();
+  clearInterval(_wireTimer);
+  _wireTimer = setInterval(()=>{ if (CURTAB==="news") fetchWire(); else clearInterval(_wireTimer); }, 120000);
+}
+
+/* ---- 12.6 the cute sound when the day banks its $1,200 --------------- */
+let _audioCtx = null;
+function coinChime(){
+  try {
+    _audioCtx = _audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+    const c = _audioCtx, t0 = c.currentTime;
+    [659.25, 783.99, 987.77, 1318.51].forEach((f,i)=>{
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = "triangle"; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t0 + i*0.13);
+      g.gain.exponentialRampToValueAtTime(0.22, t0 + i*0.13 + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + i*0.13 + 0.55);
+      o.connect(g); g.connect(c.destination);
+      o.start(t0 + i*0.13); o.stop(t0 + i*0.13 + 0.6);
+    });
+  } catch(e){}
+}
+/* animateEvents, retold: the same money and dice, plus the chime and the
+   "you can withdraw and keep going" line, for the owner AND for a member
+   whose own bot banked its day. */
+function animateEvents(){
+  const P = PHONE || {};
+  const ev = (P.events||[]);
+  if (_seenEv === null){ _seenEv = new Set(ev.map(evKey)); }
+  else {
+    ev.forEach(e=>{
+      const k = evKey(e);
+      if (_seenEv.has(k)) return;
+      _seenEv.add(k);
+      if (e.kind === "close" && +e.gross > 0) spawnMoney(6, "💵");
+      else if (e.kind === "close" && +e.gross < 0) spawnMoney(3, "🧾");
+      else if (e.kind === "open") spawnMoney(2, "🎲");
+    });
+    if (_seenEv.size > 400) _seenEv = new Set(ev.map(evKey));
+  }
+  const today = new Date().toISOString().slice(0,10);
+  let hit = null;
+  const dw = P.drawer || null;
+  if (IS_OWNER && dw && dw.day_stop && String(dw.day_reason||"").indexOf("target") >= 0)
+    hit = {day: +dw.day||0, target: +dw.day_target||0};
+  if (!hit && typeof memberView === "function" && memberView()){
+    const mj = myData()||{};
+    if (mj.day_stop && String(mj.day_reason||"").indexOf("target") >= 0)
+      hit = {day: +mj.day_pnl||0, target: +mj.day_target||1200};
+  }
+  if (hit && _goShown !== today){
+    _goShown = today;
+    coinChime();
+    const g = document.createElement("div");
+    g.className = "gobanner";
+    g.innerHTML = '<span class="big3">🎩</span><div><b>היעד היומי הושג! עברת את ה-GO 🎉</b>' +
+      '<div class="mini" style="font-size:12px">'+signed(hit.day,0)+' נכנסו היום והדלת לסולמות חדשים נסגרה. ' +
+      'אפשר <b>למשוך את הרווח</b> — ואם רוצים להמשיך היום: הגדרות הבוט ‹ מעלים את היעד או שמים 0 ‹ OK.</div></div>';
+    g.onclick = ()=>g.remove();
+    document.body.appendChild(g);
+    spawnMoney(14, "💵");
+    setTimeout(()=>g.remove(), 16000);
+  }
+}
+
+/* ---- 12.7 "שיראו שהמערכת עובדת" -------------------------------------- */
+function memberQuietAlert(){
+  if (!(typeof memberView === "function" && memberView())) return;
+  let age = null;
+  if (MYFEED && MYFEED.t){ const t=new Date(MYFEED.t).getTime(); if(!isNaN(t)) age=Math.max(0,(Date.now()-t)/1000); }
+  const bar = $("alertBar");
+  if (!bar || bar.dataset.busy) return;
+  if (age !== null && age > 1200 && !goldMarketClosedNow()){
+    bar.classList.remove("hidden");
+    bar.innerHTML = '⚠️ הבוט שלך שקט כבר ' + ago(age) + ' — ' +
+      '<a href="#" style="color:#ffe1e5;text-decoration:underline" onclick="goTab(\'links\');setTimeout(runHealthCheck,400);return false">בדוק מה קרה</a> או ' +
+      '<a href="#" style="color:#ffe1e5;text-decoration:underline" onclick="goTab(\'help\');setTimeout(helpEscalate,400);return false">כתוב לעידן</a> והוא יתחבר ויסדר לך.';
+  }
+}
+const _runHealth41 = runHealthCheck;
+runHealthCheck = async function(){
+  if (!IS_OWNER) return _runHealth41();
+  const out = $("healthOut"); if (!out) return;
+  out.innerHTML = '<div class="mini">בודק את המערכת של המועדון…</div>';
+  const rows = [];
+  const P = PHONE||{};
+  let feedAge = null;
+  if (P.updated_utc){ const t=new Date(P.updated_utc).getTime(); if(!isNaN(t)) feedAge=(Date.now()-t)/1000; }
+  rows.push({ok: feedAge!==null && feedAge<240, warn: feedAge!==null && feedAge<1800,
+             label: "שידור מהמחשב " + (feedAge!==null?ago(feedAge):"—"),
+             fix: feedAge!==null&&feedAge<240?"":"בדוק שהמחשב ער ושהמראה רצה."});
+  const dw = P.drawer||{};
+  rows.push({ok: dw.armed===true, warn:false,
+             label: dw.armed===true ? ("בוט היום השחור חמוש · v"+esc(dw.v||"?")+" · היום "+signed(+dw.day||0)) : "בוט היום השחור לא חמוש",
+             fix: dw.armed===true?"":"בדוק את הגרף ב-T3 — אמור להיות ARMED."});
+  rows.push({ok: +dw.day_target>0, warn:false,
+             label: +dw.day_target>0 ? ("היעד היומי טעון: +"+money(+dw.day_target,0)) : "אין יעד יומי טעון",
+             fix: +dw.day_target>0?"":"בדוק את drawer.set — אמור להיות InpDailyTargetUsd=1200."});
+  let wireAge = null;
+  if (WIRE && WIRE.updated_utc){ const t=new Date(WIRE.updated_utc).getTime(); if(!isNaN(t)) wireAge=(Date.now()-t)/1000; }
+  rows.push({ok: wireAge!==null && wireAge<3600, warn: wireAge===null,
+             label: wireAge!==null ? ("חוט החדשות עודכן "+ago(wireAge)) : "חוט החדשות עוד לא נטען",
+             fix: wireAge!==null&&wireAge<3600?"":"מתעדכן בכל סבב של השומר (:06/:36)."});
+  out.innerHTML = rows.map(r =>
+    '<div class="urow" style="border:none;padding:6px 0">' +
+      '<span style="font-size:18px">'+(r.ok?'✅':(r.warn?'⏳':'❌'))+'</span>' +
+      '<div style="flex:1;min-width:0"><b style="font-size:14px">'+r.label+'</b>' +
+      (r.fix?('<div class="mini">'+r.fix+'</div>'):'')+'</div></div>').join("");
+};
+
+/* ---- 12.8 wiring ------------------------------------------------------ */
+["news"].forEach(t=>{ if (TABS.indexOf(t) < 0) TABS.push(t); });
+TAB_TITLE.news = "📰 חדשות";
+TAB_TITLE.money = "🎩 המסלול לחופש";
+const _goTab41 = goTab;
+goTab = function(tab){
+  _goTab41(tab);
+  if (tab === "news") renderNewsTab();
+  if (tab === "swing") renderSwingFelt();
+};
+COACH.push(
+  {sel:'#mainNav [data-t="news"]',  band:"חדר החדשות", txt:"חדשות שוק חיות 24/7 מגלובס, כלכליסט, יאהו, מרקטווטש ובלומברג — ולידן איתותים של חברי המועדון. גם אתה יכול לשדר איתות משלך.", drawer:true},
+  {sel:'#mainNav [data-t="money"]', band:"המסלול לחופש", txt:"שישה-עשר כללים של התנהלות נכונה עם כסף, ככרטיסי נכס שאתה אוסף אחד-אחד. סמן מה שעשית — ההתקדמות נשמרת.", drawer:true}
+);
+const _enterApp41 = enterApp;
+enterApp = function(){
+  _enterApp41();
+  subscribeSignals();
+  fetchWire();
 };
 </script>
 </body>
