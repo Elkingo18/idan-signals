@@ -1316,7 +1316,7 @@ const OWNER_EMAIL = "idan2189@gmail.com";
    money and on who gets in. */
 const BOSS_TITLE = "The Gold Master · המנהל הראשי";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "3.3.0";
+const APP_VERSION = "4.2.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 /* 2.5.0 — personal QR: ?feed=<key> opens that member's account directly */
@@ -1801,7 +1801,7 @@ function renderLinks(){
     <br><b>2.</b> <b>ווינדוס:</b> הורד והפעל את <a href="${DL}IdanGold-Setup.bat" download><b>קובץ ההתקנה</b></a>. &nbsp;<b>מאק:</b> פתח Terminal והדבק:
     <div style="direction:ltr;font-family:monospace;font-size:11px;background:rgba(255,255,255,.06);border-radius:8px;padding:7px;margin:5px 0;word-break:break-all">curl -fsSL ${DL}mac_setup.sh | bash</div>
     ההתקנה מורידה את <b>בוט היום השחור</b>, מכניסה את ההגדרות הבטוחות, פותחת גרף זהב עם הבוט עליו, ונותנת לך <b>מפתח חיבור</b>.
-    <div class="mini" style="margin-top:5px">ההגדרות שנכנסות אליך: <b>8 שלבים לכל היותר</b> · <b>עוצר את היום ב-‎+$1,200</b> · <b>דמו בלבד</b>. אם היתרה שלך לא נושאת 8 שלבים — <b>הבוט מסרב להידלק ואומר לך את המספרים</b>. זו לא תקלה, זו כל המטרה של הבנייה הזאת.</div>
+    <div class="mini" style="margin-top:5px">ההגדרות שנכנסות אליך: <b>8 שלבים לכל היותר</b> · <b>עוצר את היום ב-‎+$1,350</b> · <b>דמו בלבד</b>. אם היתרה שלך לא נושאת 8 שלבים — <b>הבוט מסרב להידלק ואומר לך את המספרים</b>. זו לא תקלה, זו כל המטרה של הבנייה הזאת.</div>
     <br><b>3.</b> העתק את המפתח מחלון ההתקנה והדבק אותו למעלה ⬆ — וזהו. תוך כדקותיים הערימה שלך מופיעה במסך השולחן.
     <br><span style="color:var(--warn)">אם ווינדוס מציג "SmartScreen" — לחץ "מידע נוסף" ואז "הפעל בכל זאת". הקובץ לא חתום דיגיטלית, זו התראה רגילה.</span>
     <br><span style="color:var(--warn)">במטה-טריידר: כפתור "Algo Trading" בסרגל העליון חייב להיות ירוק.</span>
@@ -4843,7 +4843,7 @@ function animateEvents(){
   if (!hit && typeof memberView === "function" && memberView()){
     const mj = myData()||{};
     if (mj.day_stop && String(mj.day_reason||"").indexOf("target") >= 0)
-      hit = {day: +mj.day_pnl||0, target: +mj.day_target||1200};
+      hit = {day: +mj.day_pnl||0, target: +mj.day_target||1350};
   }
   if (hit && _goShown !== today){
     _goShown = today;
@@ -4892,7 +4892,7 @@ runHealthCheck = async function(){
              fix: dw.armed===true?"":"בדוק את הגרף ב-T3 — אמור להיות ARMED."});
   rows.push({ok: +dw.day_target>0, warn:false,
              label: +dw.day_target>0 ? ("היעד היומי טעון: +"+money(+dw.day_target,0)) : "אין יעד יומי טעון",
-             fix: +dw.day_target>0?"":"בדוק את drawer.set — אמור להיות InpDailyTargetUsd=1200."});
+             fix: +dw.day_target>0?"":"בדוק את drawer.set — אמור להיות InpDailyTargetUsd=1350."});
   let wireAge = null;
   if (WIRE && WIRE.updated_utc){ const t=new Date(WIRE.updated_utc).getTime(); if(!isNaN(t)) wireAge=(Date.now()-t)/1000; }
   rows.push({ok: wireAge!==null && wireAge<3600, warn: wireAge===null,
@@ -4925,6 +4925,1325 @@ enterApp = function(){
   subscribeSignals();
   fetchWire();
 };
+</script>
+
+<style id="v42css">
+/* =====================================================================
+   v4.2 — "היום החדש" · 20.8.2026 · APP_V42 · yomhadash
+   הראיון של עידן: "שהכל יהיה פחות רובוטי ויותר ממשק שכיף להסתכל עליו,
+   עם הנפשה ועם בלונים" — שכבת שמחה על כל האפליקציה, מסך בוקר יומי,
+   דוקטור חיבורים עם תיקון בלחיצה, קהילה כמו דיסקורד, רשימות מעקב,
+   קופונים, ואשף התקנה שמדבר כמו לילד בן 5.
+   ===================================================================== */
+
+/* ---- 13.0 the joy pass: rounder, softer, springier ------------------- */
+.card, .sec2 { border-radius: 22px; }
+.btn { border-radius: 15px; transition: transform .12s cubic-bezier(.34,1.56,.64,1), filter .12s; }
+.btn:active { transform: scale(.95); }
+.fld, input[type=text], textarea, select { border-radius: 13px; }
+.chips .chip, .pill { border-radius: 999px; }
+@keyframes v42pop { 0%{transform:scale(.6);opacity:0} 60%{transform:scale(1.08)} 100%{transform:scale(1);opacity:1} }
+@keyframes v42bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@keyframes v42wiggle { 0%,100%{transform:rotate(-3deg)} 50%{transform:rotate(3deg)} }
+@keyframes v42fall { 0%{transform:translateY(-8vh) rotate(0);opacity:1} 100%{transform:translateY(105vh) rotate(720deg);opacity:.85} }
+@keyframes v42glowp { 0%,100%{box-shadow:0 0 0 rgba(243,216,120,.0)} 50%{box-shadow:0 0 22px rgba(243,216,120,.45)} }
+@keyframes v42ringfill { from{stroke-dashoffset:326.7} }
+
+/* ---- 13.1 the daily welcome ("ברוכים הבאים ליום N") ------------------ */
+#v42Welcome { position:fixed; inset:0; z-index:1200; display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(120% 120% at 50% 0%, #143820 0%, #0b1f13 55%, #081710 100%); }
+#v42Welcome .wbox { width:min(430px, 92vw); text-align:center; padding:28px 22px;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1.5px solid rgba(243,216,120,.4); border-radius:28px; animation:v42pop .5s cubic-bezier(.34,1.56,.64,1); }
+#v42Welcome .sun { font-size:64px; display:inline-block; animation:v42bounce 2.6s ease-in-out infinite; }
+#v42Welcome h2 { margin:10px 0 2px; font-size:24px; color:#f3d878; }
+#v42Welcome .dayn { font-size:15px; color:#cfe3d3; margin-bottom:14px; }
+#v42Welcome .nums { display:flex; gap:10px; margin:14px 0; }
+#v42Welcome .nb { flex:1; padding:13px 8px; border-radius:18px; background:rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.09); }
+#v42Welcome .nb .k { font-size:12px; color:#9db8a5; margin-bottom:4px; }
+#v42Welcome .nb .v { font-size:21px; font-weight:900; }
+#v42Welcome .nb .v.up { color:#43d97b; } #v42Welcome .nb .v.dn { color:#ff7a8a; }
+#v42Welcome .streak { display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:999px;
+  background:rgba(255,140,0,.14); border:1px solid rgba(255,160,60,.45); color:#ffcf99; font-weight:800; font-size:14px; margin-bottom:6px; }
+#v42Welcome .gobtn { width:100%; margin-top:12px; padding:16px; font-size:19px; font-weight:900; border:none; border-radius:18px;
+  background:linear-gradient(135deg,#2ecc71,#27ae60); color:#08130c; cursor:pointer;
+  transition:transform .12s cubic-bezier(.34,1.56,.64,1); animation:v42glowp 2.4s ease-in-out infinite; }
+#v42Welcome .gobtn:active { transform:scale(.95); }
+#v42Welcome .skip { margin-top:10px; background:none; border:none; color:#88a891; font-size:13px; cursor:pointer; text-decoration:underline; }
+
+/* ---- 13.2 the connection doctor -------------------------------------- */
+#v42Doctor .drow { display:flex; align-items:center; gap:11px; padding:11px 6px; border-bottom:1px dashed rgba(255,255,255,.08); }
+#v42Doctor .drow:last-child { border-bottom:none; }
+#v42Doctor .dic { font-size:22px; width:30px; text-align:center; flex:none; }
+#v42Doctor .dic.spin { animation:v42wiggle .5s ease-in-out infinite; }
+#v42Doctor .dtx { flex:1; min-width:0; font-size:14.5px; }
+#v42Doctor .dfix { margin-top:6px; padding:9px 11px; border-radius:14px; background:rgba(255,120,130,.09);
+  border:1px solid rgba(255,120,130,.3); font-size:13px; line-height:1.7; }
+#v42Doctor .dfix .btn { margin-top:7px; font-size:13px; padding:8px 12px; }
+.v42allgood { text-align:center; padding:14px; font-size:16.5px; font-weight:800; color:#43d97b; animation:v42pop .45s; }
+
+/* ---- 13.3 balloons (speech bubbles) + mascot -------------------------- */
+.v42balloon { position:absolute; z-index:60; max-width:230px; padding:10px 13px; font-size:13px; line-height:1.65;
+  background:#fffef2; color:#22301f; border-radius:16px; border:2px solid #f3d878;
+  box-shadow:0 6px 22px rgba(0,0,0,.35); animation:v42pop .3s; }
+.v42balloon:after { content:""; position:absolute; bottom:-9px; right:22px; border:9px solid transparent; border-top-color:#f3d878; border-bottom:none; }
+#v42Mascot { position:fixed; z-index:900; bottom:76px; inset-inline-start:12px; display:flex; flex-direction:column; align-items:flex-start; gap:7px; pointer-events:none; }
+#v42Mascot .coin { font-size:40px; filter:drop-shadow(0 4px 8px rgba(0,0,0,.45)); animation:v42bounce 3s ease-in-out infinite; pointer-events:auto; cursor:pointer; }
+#v42Mascot .say { pointer-events:auto; max-width:225px; padding:9px 12px; font-size:12.5px; line-height:1.6; background:#fffef2; color:#22301f;
+  border-radius:15px; border:2px solid #f3d878; box-shadow:0 6px 18px rgba(0,0,0,.4); animation:v42pop .35s; cursor:pointer; }
+
+/* ---- 13.4 discord-style community ------------------------------------ */
+#t-chat .v42chatwrap { display:flex; height:66vh; border-radius:22px; overflow:hidden; border:1.5px solid var(--line); background:rgba(0,0,0,.16); }
+#v42Rail { width:148px; flex:none; background:rgba(0,0,0,.34); padding:10px 7px; overflow-y:auto; border-inline-end:1.5px solid rgba(255,255,255,.07); }
+#v42Rail .rh { font-size:10.5px; letter-spacing:.6px; color:#8fa896; margin:10px 6px 5px; font-weight:800; }
+#v42Rail .chbtn { display:flex; align-items:center; gap:7px; width:100%; padding:8px 9px; margin-bottom:3px; border:none; border-radius:12px;
+  background:none; color:#c9dccd; font-size:13.5px; cursor:pointer; text-align:start; transition:background .12s, transform .12s; }
+#v42Rail .chbtn:hover { background:rgba(255,255,255,.07); }
+#v42Rail .chbtn.on { background:rgba(243,216,120,.14); color:#f3d878; font-weight:800; }
+#v42Rail .chbtn .dot { width:8px; height:8px; border-radius:50%; background:#ff5f6e; margin-inline-start:auto; flex:none; }
+#v42Rail .dmrow { display:flex; align-items:center; gap:7px; padding:6px 8px; border-radius:11px; cursor:pointer; }
+#v42Rail .dmrow:hover { background:rgba(255,255,255,.07); }
+#v42Rail .dmrow img { width:22px; height:22px; border-radius:50%; }
+#v42Rail .dmrow span { font-size:12.5px; color:#c9dccd; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+#v42ChatMain { flex:1; display:flex; flex-direction:column; min-width:0; }
+#v42ChatHead { padding:10px 14px; border-bottom:1.5px solid rgba(255,255,255,.07); font-weight:800; font-size:14.5px; color:#eef6ef; display:flex; align-items:center; gap:8px; }
+.v42msgrow { display:flex; gap:9px; padding:2px 0; }
+.v42msgrow img.av { width:34px; height:34px; border-radius:50%; flex:none; margin-top:2px; }
+.v42msgrow .mb { min-width:0; }
+.v42msgrow .who { font-size:12.5px; font-weight:800; color:#f3d878; margin-bottom:1px; }
+.v42msgrow .who .tt { color:#8fa896; font-weight:400; font-size:11px; margin-inline-start:6px; }
+.v42msgrow .txt { font-size:14.5px; line-height:1.65; color:#e9f2ea; word-break:break-word; white-space:pre-wrap; }
+.v42msgrow .txt.profit { border:1.5px solid rgba(67,217,123,.4); background:rgba(67,217,123,.08); padding:8px 11px; border-radius:14px; }
+.v42msgrow img.pic { max-width:min(260px,72%); border-radius:14px; margin-top:5px; cursor:zoom-in; display:block; }
+.v42sig { border:1.5px solid rgba(90,170,255,.45); background:rgba(90,170,255,.09); padding:9px 12px; border-radius:15px; margin-top:3px; }
+.v42sig b.sym { direction:ltr; display:inline-block; }
+#v42ChatInputBar { display:flex; gap:7px; padding:10px; border-top:1.5px solid rgba(255,255,255,.07); align-items:center; }
+#v42ChatInputBar .imgbtn { flex:none; width:42px; height:42px; border-radius:13px; border:1.5px dashed rgba(255,255,255,.25); background:none; color:#c9dccd; font-size:19px; cursor:pointer; }
+#v42ImgPrev { display:none; align-items:center; gap:9px; padding:7px 10px; border-top:1px dashed rgba(255,255,255,.12); }
+#v42ImgPrev img { height:46px; border-radius:9px; }
+#v42ImgPrev.on { display:flex; }
+@media (max-width:560px){ #v42Rail{width:118px} #v42Rail .chbtn{font-size:12.5px;padding:7px 7px} }
+
+/* ---- 13.5 important news + swing sync -------------------------------- */
+.v42imp { border:1.5px solid rgba(255,90,90,.55) !important; background:linear-gradient(180deg, rgba(255,90,90,.10), rgba(255,90,90,.03)) !important; animation:v42glowp 3s ease-in-out infinite; }
+.v42imptag { display:inline-block; padding:2px 9px; border-radius:999px; background:#ff5f6e; color:#fff; font-size:11px; font-weight:900; margin-inline-end:7px; }
+#v42AimBanner { border-radius:20px; border:1.5px solid rgba(90,170,255,.5); background:linear-gradient(135deg, rgba(90,170,255,.13), rgba(90,170,255,.04));
+  padding:13px 15px; margin-bottom:12px; font-size:14px; line-height:1.75; }
+#v42AimBanner b.h { color:#9ecbff; }
+
+/* ---- 13.6 watchlists -------------------------------------------------- */
+.v42wl { display:flex; flex-wrap:wrap; gap:7px; margin-top:9px; }
+.v42wl .sym { display:inline-flex; align-items:center; gap:6px; padding:7px 12px; border-radius:999px; direction:ltr;
+  background:rgba(90,170,255,.12); border:1.5px solid rgba(90,170,255,.4); color:#cfe6ff; font-weight:800; font-size:13.5px; animation:v42pop .25s; }
+.v42wl .sym button { border:none; background:none; color:#ff9aa5; font-size:14px; cursor:pointer; padding:0; }
+.v42addrow { display:flex; gap:8px; margin-top:10px; }
+.v42addrow input { flex:1; direction:ltr; text-transform:uppercase; }
+.v42lock { text-align:center; padding:18px 14px; }
+.v42lock .big { font-size:40px; }
+.v42price { font-size:26px; font-weight:900; color:#f3d878; margin:6px 0; }
+
+/* ---- 13.7 the two day-popups ------------------------------------------ */
+.v42daypop { position:fixed; inset:0; z-index:1100; display:flex; align-items:center; justify-content:center; background:rgba(4,10,6,.72); }
+.v42daypop .box { width:min(400px,90vw); text-align:center; padding:26px 20px; border-radius:26px;
+  background:linear-gradient(180deg,#12301c,#0b2113); border:2px solid rgba(243,216,120,.5); animation:v42pop .5s cubic-bezier(.34,1.56,.64,1); }
+.v42daypop .big { font-size:56px; animation:v42bounce 2.2s infinite; }
+.v42daypop h3 { color:#f3d878; font-size:21px; margin:8px 0 4px; }
+.v42daypop .sum { font-size:30px; font-weight:900; margin:8px 0; }
+.v42daypop .sum.up{color:#43d97b} .v42daypop .sum.dn{color:#ff7a8a}
+.v42daypop .bal { font-size:14.5px; color:#cfe3d3; }
+.v42daypop .bal b { color:#fff; font-size:17px; }
+
+/* ---- 13.8 setup wizard ------------------------------------------------ */
+#v42Wiz .steps { display:flex; gap:6px; margin:12px 0 16px; }
+#v42Wiz .stp { flex:1; height:8px; border-radius:99px; background:rgba(255,255,255,.1); }
+#v42Wiz .stp.done { background:#2ecc71; }
+#v42Wiz .stp.cur { background:#f3d878; animation:v42glowp 2s infinite; }
+#v42Wiz .wbig { font-size:52px; text-align:center; animation:v42bounce 2.8s infinite; }
+#v42Wiz h3 { text-align:center; font-size:20px; color:#f3d878; }
+#v42Wiz .wtxt { font-size:15px; line-height:1.9; }
+#v42Wiz .wchk { margin-top:12px; padding:11px; border-radius:16px; background:rgba(0,0,0,.22); border:1px dashed rgba(255,255,255,.16); font-size:13.5px; }
+
+/* ---- 13.9 coupons ----------------------------------------------------- */
+.v42coupon { display:flex; gap:8px; margin-top:9px; }
+.v42coupon input { flex:1; direction:ltr; text-transform:uppercase; letter-spacing:1px; }
+.v42couponok { margin-top:8px; padding:9px 12px; border-radius:14px; background:rgba(67,217,123,.1); border:1.5px solid rgba(67,217,123,.45); font-size:13.5px; animation:v42pop .3s; }
+.v42strike { text-decoration:line-through; opacity:.55; margin-inline-end:7px; font-size:.8em; }
+
+/* ---- streak chip in the top bar --------------------------------------- */
+#v42Streak { display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:999px; background:rgba(255,140,0,.15);
+  border:1px solid rgba(255,160,60,.5); color:#ffcf99; font-weight:800; font-size:12.5px; cursor:pointer; }
+
+/* ---- confetti pieces -------------------------------------------------- */
+.v42conf { position:fixed; top:-6vh; z-index:1300; font-size:0; width:10px; height:14px; border-radius:3px; pointer-events:none; animation:v42fall linear forwards; }
+
+/* ---- motion respect: every v4.2 animation stops here ------------------ */
+@media (prefers-reduced-motion: reduce){
+  .btn, #v42Welcome .wbox, #v42Welcome .sun, #v42Welcome .gobtn, .v42daypop .box, .v42daypop .big,
+  #v42Doctor .dic.spin, .v42balloon, #v42Mascot .coin, #v42Mascot .say, .v42conf, .v42imp,
+  #v42Wiz .wbig, #v42Wiz .stp.cur, .v42allgood, .v42wl .sym { animation:none !important; transition:none !important; }
+}
+</style>
+
+<script>
+"use strict";
+/* =====================================================================
+   v4.2 — "היום החדש" · חלק ב' · 20.8.2026 · APP_V42 · yomhadash
+   13.10 כניסת טלפון שלא בועטת · 13.11 מסך הבוקר · 13.12 דוקטור החיבורים
+   13.13 שני חלונות היום (סוף יום + יעד) · 13.14 רצף ירוק
+   ===================================================================== */
+
+/* ---- 13.10 the phone login that stopped kicking people out ----------
+   Idan, on his own phone: "מתחבר עם גוגל ואז כשזה אמור לחזור למסך של
+   האפליקציה זה בועט אותי חזרה לעמוד הקודם". That is signInWithRedirect
+   doing exactly what Firebase documents it does when the page (github.io)
+   and the authDomain (firebaseapp.com) are different origins on a modern
+   phone browser: the state is partitioned away and the return never lands.
+   So: the popup is the ONLY automatic path now. When it fails we do not
+   silently fall into the broken redirect - we show three honest doors:
+   try again, opt into full-screen login knowingly, or enter with the
+   personal key. */
+const _signIn41 = signIn;
+signIn = async function(){
+  $("loginErr").textContent = "";
+  if (isInAppBrowser()){ return _signIn41(); }   /* the in-app advice is right */
+  const prov = new firebase.auth.GoogleAuthProvider();
+  prov.setCustomParameters({prompt:"select_account"});
+  try {
+    await auth.signInWithPopup(prov);
+  } catch(e){
+    const code = (e && (e.code||e.message)) || "unknown";
+    loginErrHTML(
+      '⚠️ החלון של גוגל לא הצליח להיפתח או נסגר (<span dir="ltr">' + esc(code) + '</span>).<br>' +
+      'ככה נכנסים בכל זאת — בחר דלת:<br>' +
+      '<div style="display:flex;flex-direction:column;gap:8px;margin-top:9px">' +
+      '<button class="btn" onclick="signIn()">🔁 נסה שוב (הכי מומלץ)</button>' +
+      '<button class="btn sec" onclick="v42RedirectLogin()">📱 התחברות במסך מלא</button>' +
+      '<button class="btn sec" onclick="v42KeyLogin()">🔑 כניסה עם המפתח האישי שלי</button>' +
+      '</div>');
+  }
+};
+async function v42RedirectLogin(){
+  const prov = new firebase.auth.GoogleAuthProvider();
+  prov.setCustomParameters({prompt:"select_account"});
+  try { sessionStorage.setItem("imc_login_pending","1"); await auth.signInWithRedirect(prov); }
+  catch(e){ loginErrHTML("גם המסך המלא נכשל ("+esc(e.code||e.message||e)+") — נסה את הכניסה עם המפתח."); }
+}
+function v42KeyLogin(){
+  const box = document.createElement("div"); box.className = "modal";
+  box.innerHTML = '<div class="mbox"><h3>🔑 כניסה עם המפתח האישי</h3>' +
+    '<div class="mini" style="line-height:1.8">המפתח הוא השורה הארוכה שקיבלת כשהבוט הותקן אצלך (היא גם שמורה במחשב שלך במסך "חיבורים"). הדבק אותה כאן — ותיכנס ישר לחשבון שלך, בלי גוגל.</div>' +
+    '<input class="fld" id="v42KeyInp" placeholder="הדבק כאן את המפתח…" style="direction:ltr;margin-top:10px">' +
+    '<div class="btnrow"><button class="btn" onclick="v42KeyGo()">כניסה ›</button>' +
+    '<button class="btn sec" onclick="this.closest(\'.modal\').remove()">ביטול</button></div></div>';
+  box.onclick = ev => { if (ev.target===box) box.remove(); };
+  document.body.appendChild(box);
+}
+function v42KeyGo(){
+  const k = ($("v42KeyInp").value||"").trim();
+  if (k.length < 24) return toast("המפתח קצר מדי — צריך את כל השורה");
+  location.href = APP_URL + "?feed=" + encodeURIComponent(k);
+}
+
+/* ---- 13.14 the green streak ----------------------------------------- */
+function v42HistDays(){
+  /* [{d:'YYYY-MM-DD', p:number}] oldest→newest, from whichever book this
+     viewer owns: the owner reads the machine, a member reads their feed. */
+  const out = [];
+  if (IS_OWNER){
+    const H = (PHONE && PHONE.history) || {};
+    Object.keys(H).sort().forEach(d => {
+      const e = H[d] || {};
+      const p = (e.pocket !== undefined) ? +e.pocket : +(e.net_demo || 0);
+      out.push({d, p});
+    });
+  } else {
+    const mj = myData() || {};
+    (Array.isArray(mj.hist) ? mj.hist : []).slice().sort((a,b)=>String(a.d).localeCompare(String(b.d)))
+      .forEach(x => { if (x && x.d) out.push({d:String(x.d), p:+x.pnl||0}); });
+  }
+  return out;
+}
+function v42TodayPnl(){
+  if (IS_OWNER){
+    const L = (PHONE && PHONE.live) || {};
+    if (L.totals && L.totals.day !== undefined) return +L.totals.day || 0;
+    return (L.bots||[]).reduce((s,b)=> s + (+b.day_gross||0), 0);
+  }
+  const mj = myData() || {}; return +mj.day_pnl || 0;
+}
+function v42Equity(){
+  if (IS_OWNER){
+    const L = (PHONE && PHONE.live) || {};
+    if (L.totals && L.totals.equity !== undefined) return +L.totals.equity || null;
+    const s = (L.bots||[]).reduce((a,b)=> a + (+b.equity||0), 0);
+    return s || null;
+  }
+  const mj = myData() || {};
+  if (mj.balance !== undefined) return +mj.balance;
+  if (mj.equity  !== undefined) return +mj.equity;
+  return null;
+}
+function v42DayKey(off){
+  const d = new Date(Date.now() + (off||0)*86400000);
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function v42Streak(){
+  /* consecutive green days, counting back from the newest recorded day,
+     plus today if today is already green. Honest: a red day resets it. */
+  const hist = v42HistDays();
+  let n = 0;
+  for (let i = hist.length-1; i >= 0; i--){
+    if (hist[i].p > 0) n++; else break;
+  }
+  if (v42TodayPnl() > 0) n++;
+  return n;
+}
+function v42DayNumber(){
+  if (IS_OWNER){
+    const hist = v42HistDays();
+    const first = hist.length ? hist[0].d : "2026-08-13";
+    return Math.max(1, Math.round((Date.now() - new Date(first+"T00:00:00").getTime())/86400000) + 1);
+  }
+  const c = MYDOC && MYDOC.created ? new Date(MYDOC.created).getTime() : Date.now();
+  return Math.max(1, Math.floor((Date.now() - c)/86400000) + 1);
+}
+
+/* ---- confetti + a small happy pop ------------------------------------ */
+function v42Confetti(n){
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const colors = ["#f3d878","#43d97b","#5aaaff","#ff7a8a","#ffb35a","#c792ea"];
+  for (let i = 0; i < (n||40); i++){
+    const c = document.createElement("div");
+    c.className = "v42conf";
+    c.style.left = (Math.random()*100) + "vw";
+    c.style.background = colors[i % colors.length];
+    c.style.animationDuration = (2.2 + Math.random()*2.4) + "s";
+    c.style.animationDelay = (Math.random()*0.9) + "s";
+    c.style.transform = "rotate(" + (Math.random()*360) + "deg)";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 6200);
+  }
+}
+function v42PopSound(){
+  try {
+    _audioCtx = _audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+    const c = _audioCtx, o = c.createOscillator(), g = c.createGain(), t0 = c.currentTime;
+    o.type = "sine"; o.frequency.setValueAtTime(880, t0);
+    o.frequency.exponentialRampToValueAtTime(1320, t0+0.09);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.14, t0+0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0+0.22);
+    o.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0+0.25);
+  } catch(e){}
+}
+
+/* ---- 13.11 the morning screen: "ברוכים הבאים ליום N" ------------------ */
+let _v42WelcomeUp = false;
+const APP_V42 = "4.2.0";   /* yomhadash — the new-day edition */
+function v42ShowWelcome(force){
+  if (window.__TEST_FIREBASE__ && !force) return;   /* the suite drives clicks; the morning screen waits its turn */
+  const today = v42DayKey(0);
+  if (!force && LS.get("v42day","") === today) return;
+  if (_v42WelcomeUp) return;
+  _v42WelcomeUp = true;
+  const hist = v42HistDays();
+  const ykey = v42DayKey(-1);
+  const yEntry = hist.find(h => h.d === ykey);
+  const yTxt = yEntry ? signed(yEntry.p, 0) : "—";
+  const yCls = yEntry ? cls(yEntry.p) : "";
+  const total = hist.reduce((s,h)=> s + h.p, 0) + v42TodayPnl();
+  const streak = v42Streak();
+  const name = (ME && (ME.displayName||"").split(" ")[0]) || "אלוף";
+  const w = document.createElement("div");
+  w.id = "v42Welcome";
+  w.innerHTML =
+    '<div class="wbox">' +
+      '<span class="sun">☀️</span>' +
+      '<h2>בוקר טוב, ' + esc(name) + '!</h2>' +
+      '<div class="dayn">ברוך הבא ל<b>יום ' + v42DayNumber() + '</b> שלך במועדון 🎩</div>' +
+      (streak >= 2 ? '<div class="streak">🔥 רצף ירוק: ' + streak + ' ימים!</div>' : '') +
+      '<div class="nums">' +
+        '<div class="nb"><div class="k">אתמול ' + (yEntry ? (yEntry.p>0?'הרווחת':'היה') : '') + '</div><div class="v ' + yCls + '">' + yTxt + '</div></div>' +
+        '<div class="nb"><div class="k">סה״כ מאז שהתחלת</div><div class="v ' + cls(total) + '">' + signed(total,0) + '</div></div>' +
+      '</div>' +
+      '<button class="gobtn" onclick="v42WelcomeReady(this)">💪 מוכן להתחיל את היום!</button>' +
+      '<button class="skip" onclick="v42WelcomeClose()">דלג הפעם</button>' +
+    '</div>';
+  document.body.appendChild(w);
+}
+function v42WelcomeClose(){
+  LS.set("v42day", v42DayKey(0));
+  const w = $("v42Welcome"); if (w) w.remove();
+  _v42WelcomeUp = false;
+}
+function v42WelcomeReady(btn){
+  /* "מוכן" = the doctor checks everything is connected, live, in front of
+     you - and whatever is broken says WHY and gives you the fixing button. */
+  const box = btn.closest(".wbox");
+  box.innerHTML = '<span class="sun">🩺</span><h2>בודק שהכל מחובר…</h2>' +
+    '<div id="v42Doctor" style="text-align:right;margin-top:10px"></div>' +
+    '<div id="v42DocDone"></div>';
+  v42PopSound();
+  v42RunDoctor($("v42Doctor"), (allGood) => {
+    const d = $("v42DocDone");
+    if (!d) return;
+    if (allGood){
+      d.innerHTML = '<div class="v42allgood">✅ הכל מחובר ועובד — יום ירוק! 🍀</div>' +
+        '<button class="gobtn" onclick="v42WelcomeClose()">🚀 יאללה, למסחר!</button>';
+      v42Confetti(46); coinChime();
+    } else {
+      d.innerHTML = '<div class="mini" style="margin:8px 0">יש דברים לתקן למעלה — כל אחד עם כפתור. כשתסיים:</div>' +
+        '<button class="gobtn" onclick="v42WelcomeClose()">הבנתי, ממשיך בכל זאת ›</button>';
+    }
+  });
+}
+
+/* ---- 13.12 the connection doctor ------------------------------------- */
+function v42Checks(){
+  /* every check: {icon, label, test():{ok, why, fixHtml}} — the words are
+     for a five-year-old on purpose. */
+  const marketOpen = !goldMarketClosedNow();
+  const checks = [];
+  checks.push({ic:"🌐", label:"אינטרנט", test:()=>({
+    ok: navigator.onLine !== false,
+    why: "המכשיר שלך לא מחובר לאינטרנט.",
+    fix: 'בדוק וויי-פיי או נתונים סלולריים, ואז <button class="btn" onclick="location.reload()">רענן את האפליקציה</button>'})});
+  checks.push({ic:"🔑", label:"מחובר לחשבון", test:()=>({
+    ok: !!ME,
+    why: "אתה לא מחובר.",
+    fix: 'צא והיכנס שוב עם גוגל.'})});
+  if (IS_OWNER){
+    const P = PHONE || {};
+    let feedAge = null;
+    if (P.updated_utc){ const t = new Date(P.updated_utc).getTime(); if (!isNaN(t)) feedAge = (Date.now()-t)/1000; }
+    checks.push({ic:"🖥️", label:"שידור מהמחשב שלך", test:()=>({
+      ok: feedAge !== null && feedAge < 240,
+      why: "המחשב לא שידר כבר " + (feedAge===null ? "המון זמן" : ago(feedAge)) + ". כנראה כבוי או שהמראה נפלה.",
+      fix: 'תדליק את המחשב (או חבר לחשמל). ברגע שהוא ער — הכל חוזר לבד תוך דקה-שתיים.'})});
+    const dw = P.drawer || {};
+    checks.push({ic:"🗄️", label:"בוט המגירה חמוש", test:()=>({
+      ok: dw.armed === true,
+      why: "הבוט טעון אבל לא חמוש — הוא לא יפתח עסקאות.",
+      fix: 'פתח את MT5 במחשב ותוודא שכתוב ARMED. אם לא — <b>כתוב לי כאן ואני אפרוס אותו מחדש</b>.'})});
+    checks.push({ic:"🎯", label:"היעד היומי טעון", test:()=>({
+      ok: +dw.day_target > 0,
+      why: "אין יעד יומי טעון בבוט.",
+      fix: 'אמור להיות +$1,350 (עדכנו ב-20.8). אם זה לא מסתדר לבד בסבב הקרוב — כתוב לי.'})});
+    let wireAge = null;
+    if (typeof WIRE !== "undefined" && WIRE && WIRE.updated_utc){ const t = new Date(WIRE.updated_utc).getTime(); if (!isNaN(t)) wireAge = (Date.now()-t)/1000; }
+    checks.push({ic:"📰", label:"חוט החדשות", test:()=>({
+      ok: wireAge !== null ? wireAge < 3600 : true,
+      why: "החדשות לא התעדכנו כבר " + (wireAge===null?"—":ago(wireAge)) + ".",
+      fix: 'מתעדכן בכל סבב (:06/:36) כשהמחשב דולק.'})});
+  } else if (memberView()){
+    const mj = myData() || {};
+    let age = null;
+    if (MYFEED && MYFEED.t){ const t = new Date(MYFEED.t).getTime(); if (!isNaN(t)) age = Math.max(0,(Date.now()-t)/1000); }
+    checks.push({ic:"🤖", label:"הבוט שלך משדר", test:()=>({
+      ok: (age !== null && age < 1200) || !marketOpen,
+      why: "הבוט שלך שקט כבר " + (age===null?"—":ago(age)) + ".",
+      fix: 'כנראה המחשב שלך כבוי או ש-MT5 סגור.<br>1) תדליק את המחשב.<br>2) תפתח את MetaTrader 5.<br>3) תוודא שהכפתור <b>Algo Trading</b> למעלה ירוק.<br>' +
+           '<button class="btn" onclick="v42AskFix()">🧑‍🔧 שעידן יתקן לי</button>'})});
+    checks.push({ic:"🎯", label:"היעד היומי", test:()=>({
+      ok: mj.day_target === undefined || +mj.day_target > 0,
+      why: "לבוט שלך אין יעד יומי.",
+      fix: '<button class="btn" onclick="v42AskFix()">🧑‍🔧 שעידן יסדר לי את ההגדרות</button>'})});
+  } else if (ME){
+    checks.push({ic:"🤖", label:"בוט מחובר", test:()=>({
+      ok: false,
+      why: "עוד לא חיברת בוט — לכן אין לך עדיין מספרים משלך.",
+      fix: '<button class="btn" onclick="v42WelcomeClose();goTab(\'links\')">🔗 בוא נחבר אותך עכשיו</button>'})});
+  }
+  return checks;
+}
+function v42RunDoctor(host, done){
+  const checks = v42Checks();
+  host.innerHTML = "";
+  let i = 0, bad = 0;
+  function step(){
+    if (i >= checks.length){ if (done) done(bad === 0); return; }
+    const c = checks[i];
+    const row = document.createElement("div");
+    row.className = "drow";
+    row.innerHTML = '<span class="dic spin">🔄</span><div class="dtx"><b>' + c.label + '</b><div class="dres mini"></div></div>';
+    host.appendChild(row);
+    setTimeout(()=>{
+      const r = c.test();
+      const ic = row.querySelector(".dic");
+      ic.classList.remove("spin");
+      ic.textContent = r.ok ? "✅" : "❌";
+      if (!r.ok){
+        bad++;
+        row.querySelector(".dres").innerHTML = '<div class="dfix"><b>מה קרה?</b> ' + r.why + '<br><b>איך מתקנים?</b> ' + r.fix + '</div>';
+      } else {
+        v42PopSound();
+      }
+      i++; step();
+    }, 420);
+  }
+  step();
+}
+async function v42AskFix(){
+  /* one tap: a support message reaches Idan AND a flag rises on the user
+     card, so the admin room shows a wrench next to this member. */
+  try {
+    if (ME && db){
+      await db.collection("support").doc(ME.uid).collection("msgs").add({
+        text: "🧑‍🔧 ביקשתי תיקון מהדוקטור: הבוט שלי לא משדר / ההגדרות לא טעונות. אפשר להשתלט ולסדר לי הכל?",
+        by: "member", t: Date.now(), kind: "fixme"});
+      await db.collection("users").doc(ME.uid).update({fixAsk: new Date().toISOString()});
+    }
+    toast("📨 הבקשה נשלחה לעידן — הוא יתקן לך מרחוק ✓");
+  } catch(e){ toast("לא נשלח (" + (e.code||e.message) + ")"); }
+}
+
+/* ---- 13.13 the two day windows --------------------------------------- */
+function v42DayPop(kind){
+  /* kind: 'target' | 'eod' — two different notes, as Idan asked. */
+  const today = v42DayKey(0);
+  const lsk = kind === "target" ? "v42tgt" : "v42eod";
+  if (LS.get(lsk,"") === today) return;
+  LS.set(lsk, today);
+  const p = v42TodayPnl(), eq = v42Equity();
+  const box = document.createElement("div");
+  box.className = "v42daypop";
+  const inner =
+    kind === "target"
+    ? '<div class="big">🏆</div><h3>עברת את היעד של היום!</h3>' +
+      '<div class="sum ' + cls(p) + '">' + signed(p,0) + '</div>' +
+      '<div class="bal">נכנסו היום' + (eq!==null ? ' · היתרה שלך עכשיו: <b>' + money(eq,0) + '</b>' : '') + '</div>' +
+      '<div class="mini" style="margin-top:7px">הדלת לסולמות חדשים נסגרה להיום. אפשר למשוך את הרווח — ומחר מתחילים יום חדש 💪</div>'
+    : '<div class="big">🌙</div><h3>יום המסחר הסתיים</h3>' +
+      '<div class="sum ' + cls(p) + '">' + signed(p,0) + '</div>' +
+      '<div class="bal">' + (p>0 ? 'הרווחת היום' : (p<0 ? 'ירד היום' : 'יום שקט')) +
+      (eq!==null ? ' · היתרה שלך עכשיו: <b>' + money(eq,0) + '</b>' : '') + '</div>' +
+      '<div class="mini" style="margin-top:7px">לילה טוב — מחר בבוקר מחכה לך מסך הפתיחה של יום חדש ☀️</div>';
+  box.innerHTML = '<div class="box">' + inner +
+    '<button class="btn" style="width:100%;margin-top:13px" onclick="this.closest(\'.v42daypop\').remove()">סגור</button></div>';
+  box.onclick = ev => { if (ev.target === box) box.remove(); };
+  document.body.appendChild(box);
+  if (p > 0){ v42Confetti(kind==="target" ? 60 : 30); coinChime(); }
+}
+function v42DayWatch(){
+  if (window.__TEST_FIREBASE__) return;
+  /* target: piggyback on the moment the machine says the day closed on
+     target (same signal the gobanner uses). eod: 23:55 local, once. */
+  try {
+    const dw = IS_OWNER ? ((PHONE||{}).drawer||null) : null;
+    if (dw && dw.day_stop && String(dw.day_reason||"").indexOf("target") >= 0) v42DayPop("target");
+    if (!IS_OWNER && memberView()){
+      const mj = myData()||{};
+      if (mj.day_stop && String(mj.day_reason||"").indexOf("target") >= 0) v42DayPop("target");
+    }
+    const n = new Date();
+    if (n.getHours() === 23 && n.getMinutes() >= 55 && fullView()) v42DayPop("eod");
+  } catch(e){}
+}
+setInterval(v42DayWatch, 30000);
+</script>
+
+<script>
+"use strict";
+/* =====================================================================
+   v4.2 — "היום החדש" · חלק ג' · הקהילה בסגנון דיסקורד
+   13.15 ערוצים כמו דיסקורד: רשימת ערוצים בצד, # לכל ערוץ, הודעות עם
+   תמונת פרופיל, העלאת תמונה, נקודת "לא נקרא". אותו מסד, אותם חוקים —
+   ערוץ הוא אוסף הודעות תחת chat/<שם>, והחוקים כבר מתירים את זה.
+   ===================================================================== */
+const V42_CHANNELS = [
+  {id:"club",    icon:"💬", name:"המועדון",   desc:"הצ'אט הכללי של כולם"},
+  {id:"signals", icon:"📣", name:"איתותים",   desc:"סימבול, כיוון, ולמה"},
+  {id:"wins",    icon:"🏆", name:"הישגים",    desc:"יעדים שהושגו וימים ירוקים"}
+];
+let V42_LASTTS = {}, _v42ChanSubs = [], V42_IMG = null;
+
+function v42BuildChat(){
+  const sec = $("t-chat"); if (!sec || sec.dataset.v42) return;
+  sec.dataset.v42 = "1";
+  sec.innerHTML =
+  '<div class="v42chatwrap">' +
+    '<div id="v42Rail">' +
+      '<div class="rh">ערוצים</div>' +
+      V42_CHANNELS.map(c =>
+        '<button class="chbtn" id="chbtn-' + c.id + '" onclick="openChannel(\'' + c.id + '\')">' +
+        '<span>' + c.icon + '</span><span># ' + c.name + '</span><span class="dot hidden"></span></button>').join("") +
+      '<div class="rh">הודעות פרטיות</div>' +
+      '<div id="v42DMs"><div class="mini" style="padding:4px 6px">טוען חברים…</div></div>' +
+    '</div>' +
+    '<div id="v42ChatMain">' +
+      '<div id="v42ChatHead">💬 # המועדון</div>' +
+      '<div id="chatMsgs" style="flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:7px"></div>' +
+      '<div id="v42ImgPrev"><img id="v42ImgPrevIm"><span class="mini">התמונה מוכנה לשליחה</span>' +
+        '<button class="btn sec" style="padding:6px 10px;font-size:12px;margin-inline-start:auto" onclick="v42ImgClear()">✕ בטל</button></div>' +
+      '<div id="v42ChatInputBar">' +
+        '<button class="imgbtn" title="צרף תמונה" onclick="$(\'v42ImgFile\').click()">📷</button>' +
+        '<input type="file" id="v42ImgFile" accept="image/*" style="display:none" onchange="v42ImgPick(this)">' +
+        '<input type="text" id="chatInput" placeholder="הודעה…" style="flex:1" onkeydown="if(event.key===\'Enter\')sendChat()">' +
+        '<button class="btn" style="flex:none;padding:11px 16px" onclick="sendChat()">שלח</button>' +
+      '</div>' +
+      '<div style="padding:7px 10px 11px;display:flex;gap:7px;flex-wrap:wrap">' +
+        '<button class="btn sec" style="flex:1;font-size:12.5px;padding:8px" onclick="shareProfitToChat()">📈 שתף את הרווח שלי</button>' +
+        '<button class="btn sec" style="flex:1;font-size:12.5px;padding:8px" onclick="openSignal()">📣 שדר איתות</button>' +
+        '<button class="btn" style="flex:1;font-size:12.5px;padding:8px" onclick="openProfitCard()">🖼️ תמונת רווח</button>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+  v42WatchUnread();
+  loadMembersForDM();
+}
+
+/* the members list now lives in the rail */
+const _renderDMList41 = renderDMList;
+renderDMList = function(){
+  const host = $("v42DMs");
+  if (!host) return _renderDMList41();
+  const ids = Object.keys(MEMBERS);
+  host.innerHTML = ids.length
+    ? ids.map(id => '<div class="dmrow" onclick="openDM(\'' + id + '\',\'' + (MEMBERS[id].name||'').replace(/'/g,'') + '\')">' +
+        '<img src="' + (MEMBERS[id].photo||'icon-192.png') + '" referrerpolicy="no-referrer"><span>' + esc(MEMBERS[id].name) + '</span></div>').join("")
+    : '<div class="mini" style="padding:4px 6px">אין עוד חברים מאושרים.</div>';
+};
+const _loadMembers41 = loadMembersForDM;
+loadMembersForDM = function(){
+  db.collection("profiles").onSnapshot(qs => {
+    MEMBERS = {};
+    qs.forEach(d => { const u = d.data()||{}; if (ME && d.id !== ME.uid && (u.name||"").trim())
+      MEMBERS[d.id] = {name:u.name, photo:u.photo}; });
+    renderDMList();
+  }, () => { const h = $("v42DMs"); if (h) h.innerHTML = '<div class="mini" style="padding:4px 6px">לא נטען.</div>'; });
+};
+function showDMList(){ /* the rail shows them always now */ }
+
+function v42ChanLabel(chan){
+  const c = V42_CHANNELS.find(x => x.id === chan);
+  if (c) return c.icon + " # " + c.name;
+  return "💬 שיחה פרטית";
+}
+function v42MsgHTML(m, prev){
+  const mine = ME && m.uid === ME.uid;
+  const samePrev = prev && prev.uid === m.uid &&
+    (new Date(m.ts||0) - new Date(prev.ts||0)) < 5*60000;
+  const av = mine ? (ME.photoURL||"icon-192.png")
+    : ((MEMBERS[m.uid]&&MEMBERS[m.uid].photo) || "icon-192.png");
+  const time = m.ts ? new Date(m.ts).toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"}) : "";
+  let body = "";
+  if (m.kind === "signal"){
+    const p = String(m.text||"").split("|");
+    const sym = esc(m.sym||p[1]||"?"), side = m.side||p[2]||"watch";
+    const emo = side==="long"?"📈":(side==="short"?"📉":"👀");
+    const word = side==="long"?"לונג":(side==="short"?"שורט":"מעקב");
+    body = '<div class="v42sig">' + emo + ' <b class="sym">' + sym + '</b> · ' + word +
+      (m.note ? ' — ' + esc(m.note) : '') + '</div>';
+  } else {
+    body = '<div class="txt' + (m.kind==="profit"?" profit":"") + '">' + esc(m.text||"") + '</div>';
+  }
+  if (m.img) body += '<img class="pic" src="' + m.img + '" onclick="v42ImgFull(this.src)" alt="תמונה">';
+  return '<div class="v42msgrow">' +
+    (samePrev ? '<span style="width:34px;flex:none"></span>'
+              : '<img class="av" src="' + av + '" referrerpolicy="no-referrer" alt="">') +
+    '<div class="mb">' +
+    (samePrev ? '' : '<div class="who">' + esc(m.name||"חבר") + '<span class="tt">' + time + '</span></div>') +
+    body + '</div></div>';
+}
+openChannel = function(chan, label){
+  CHAN = chan;
+  V42_CHANNELS.forEach(c => { const b = $("chbtn-"+c.id); if (b) b.classList.toggle("on", c.id===chan); });
+  const head = $("v42ChatHead"); if (head) head.textContent = label || v42ChanLabel(chan);
+  LS.set("v42read_" + chan, new Date().toISOString());
+  const dot = $("chbtn-"+chan) && $("chbtn-"+chan).querySelector(".dot");
+  if (dot) dot.classList.add("hidden");
+  if (unsubChat) unsubChat();
+  unsubChat = db.collection("chat").doc(chan).collection("messages")
+    .orderBy("ts").limitToLast(80).onSnapshot(qs => {
+      const box = $("chatMsgs"); if (!box) return;
+      const list = [];
+      qs.forEach(d => list.push(d.data()||{}));
+      box.innerHTML = list.length
+        ? list.map((m,i) => v42MsgHTML(m, list[i-1])).join("")
+        : '<div style="margin:auto;text-align:center;color:var(--ink3);font-size:14px;line-height:2">' +
+          '<div style="font-size:44px">🎰</div>אין עוד הודעות כאן —<br>תהיה הראשון! 👋</div>';
+      box.scrollTop = box.scrollHeight;
+      if (list.length){ LS.set("v42read_" + chan, list[list.length-1].ts || new Date().toISOString()); }
+    }, () => { const box = $("chatMsgs"); if (box) box.innerHTML = '<div class="mini" style="padding:16px;text-align:center">לא ניתן לטעון הודעות.</div>'; });
+};
+function v42WatchUnread(){
+  _v42ChanSubs.forEach(u => { try{u();}catch(e){} });
+  _v42ChanSubs = [];
+  V42_CHANNELS.forEach(c => {
+    try {
+      _v42ChanSubs.push(db.collection("chat").doc(c.id).collection("messages")
+        .orderBy("ts").limitToLast(1).onSnapshot(qs => {
+          qs.forEach(d => {
+            const m = d.data()||{};
+            V42_LASTTS[c.id] = m.ts || "";
+            const seen = LS.get("v42read_" + c.id, "");
+            const btn = $("chbtn-" + c.id);
+            if (btn) btn.querySelector(".dot").classList.toggle("hidden",
+              !(m.ts && m.ts > seen) || CHAN === c.id || (ME && m.uid === ME.uid));
+          });
+        }, ()=>{}));
+    } catch(e){}
+  });
+}
+
+/* image attach: compressed hard so a message stays a message ------------ */
+function v42ImgPick(inp){
+  const f = inp.files && inp.files[0];
+  inp.value = "";
+  if (!f) return;
+  const img = new Image();
+  img.onload = () => {
+    let w = img.width, h = img.height;
+    const cap = 1100;
+    if (Math.max(w,h) > cap){ const k = cap/Math.max(w,h); w = Math.round(w*k); h = Math.round(h*k); }
+    const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+    cv.getContext("2d").drawImage(img, 0, 0, w, h);
+    let q = 0.72, out = cv.toDataURL("image/jpeg", q);
+    while (out.length > 160000 && q > 0.3){ q -= 0.12; out = cv.toDataURL("image/jpeg", q); }
+    if (out.length > 200000){ toast("התמונה גדולה מדי גם אחרי כיווץ 😅"); return; }
+    V42_IMG = out;
+    $("v42ImgPrevIm").src = out;
+    $("v42ImgPrev").classList.add("on");
+    URL.revokeObjectURL(img.src);
+  };
+  img.onerror = () => toast("לא הצלחתי לקרוא את התמונה");
+  img.src = URL.createObjectURL(f);
+}
+function v42ImgClear(){ V42_IMG = null; $("v42ImgPrev").classList.remove("on"); }
+function v42ImgFull(src){
+  const d = document.createElement("div");
+  d.className = "modal";
+  d.style.cssText = "display:flex;align-items:center;justify-content:center";
+  d.innerHTML = '<img src="' + src + '" style="max-width:94vw;max-height:88vh;border-radius:16px">';
+  d.onclick = () => d.remove();
+  document.body.appendChild(d);
+}
+postMsg = async function(text, kind, extra){
+  const img = V42_IMG;
+  if ((!text || !text.trim()) && !img) return;
+  try {
+    const doc = {
+      uid: ME.uid, name: ME.displayName || (ME.email||"").split("@")[0],
+      text: (text||"").trim().slice(0,600), kind: kind||"text", ts: new Date().toISOString() };
+    if (img) doc.img = img;
+    if (extra) Object.assign(doc, extra);
+    await db.collection("chat").doc(CHAN).collection("messages").add(doc);
+    v42ImgClear();
+  } catch(e){ toast("שגיאה בשליחה: " + (e.code||e.message)); }
+};
+sendChat = function(){ const v = $("chatInput").value; $("chatInput").value = ""; postMsg(v); };
+
+/* signals now live in their own channel, and the news room reads both */
+sendSignal = async function(){
+  const sym = (($("sigSym")||{}).value||"").trim().toUpperCase().slice(0,14);
+  const note = (($("sigNote")||{}).value||"").trim().slice(0,140);
+  const sideEl = document.querySelector("#sigSide button.on");
+  const side = sideEl ? sideEl.getAttribute("data-s") : "watch";
+  if (sym.length < 2) return toast("צריך סימבול");
+  try {
+    await db.collection("chat").doc("signals").collection("messages").add({
+      uid: ME.uid, name: ME.displayName || (ME.email||"").split("@")[0],
+      text: "SIG|" + sym + "|" + side + "|" + note,
+      kind: "signal", sym, side, note, ts: new Date().toISOString() });
+    toast("האיתות שודר 📣"); v42PopSound();
+    const m = document.querySelector(".modal"); if (m) m.remove();
+  } catch(e){ toast("לא שודר (" + ((e&&e.code)||e) + ")"); }
+};
+subscribeSignals = function(){
+  if (_sigSub || !ME || PERSONAL) return;
+  _sigSub = true;
+  let A = [], B = [];
+  const put = () => {
+    SIGS = A.concat(B).sort((a,b) => String(b.ts||"").localeCompare(String(a.ts||"")));
+    if (CURTAB === "news") renderSigs();
+  };
+  try {
+    db.collection("chat").doc("signals").collection("messages")
+      .orderBy("ts").limitToLast(40).onSnapshot(qs => {
+        A = []; qs.forEach(d => { const m = d.data()||{}; if (m.kind === "signal") A.push(m); });
+        put();
+      }, ()=>{});
+    db.collection("chat").doc("club").collection("messages")
+      .orderBy("ts").limitToLast(60).onSnapshot(qs => {
+        B = []; qs.forEach(d => { const m = d.data()||{}; if (m.kind === "signal") B.push(m); });
+        put();
+      }, ()=>{});
+  } catch(e){}
+};
+/* a day banked on target celebrates itself in # הישגים, once ----------- */
+async function v42PostWin(pnl){
+  try {
+    if (!ME || PERSONAL) return;
+    const today = v42DayKey(0);
+    if (LS.get("v42win","") === today) return;
+    LS.set("v42win", today);
+    await db.collection("chat").doc("wins").collection("messages").add({
+      uid: ME.uid, name: ME.displayName || (ME.email||"").split("@")[0],
+      text: "🏆 עברתי את היעד היומי! " + signed(pnl,0) + " נכנסו היום 🎉",
+      kind: "profit", ts: new Date().toISOString() });
+  } catch(e){}
+}
+</script>
+
+<script>
+"use strict";
+/* =====================================================================
+   v4.2 — "היום החדש" · חלק ד' · 20.8.2026
+   13.16 חדשות חשובות ↔ הסווינג · 13.17 רשימות מעקב + הרשימה של עידן
+   13.18 קופונים · 13.19 אשף ההתקנה · 13.20 המסקוט · 13.21 ניהול · חיווט
+   ===================================================================== */
+
+/* ---- 13.16 what matters today: rates, jobs, earnings ------------------ */
+const V42_IMP_RE = /ריבית|הפד\b|פד\b|פדרל|אינפלצי|מדד המחירים|תעסוקה|אבטלה|שכר|דוח(ות)? (רבעון|כספי)|תוצאות רבעון|צמיחה|תמ"ג|FOMC|Fed\b|rate (cut|hike|decision)|interest rate|inflation|CPI\b|PPI\b|jobs report|payrolls|nonfarm|NFP\b|unemployment|earnings|GDP\b|Powell|central bank/i;
+function v42Important(items){
+  return (items||[]).filter(it => V42_IMP_RE.test(String(it.t||"")));
+}
+renderWire = function(){
+  const box = $("newsWire"); if (!box) return;
+  const items = (WIRE && WIRE.items) || [];
+  if ($("wireAge")) $("wireAge").textContent = WIRE && WIRE.updated_utc
+    ? ("עודכן " + ago(Math.max(0,(Date.now()-new Date(WIRE.updated_utc).getTime())/1000)))
+    : "";
+  if (WFILTER === "sig"){ box.innerHTML = ""; renderSigs(); return; }
+  renderSigs();
+  const show = items.filter(it => WFILTER==="all" || it.lang === WFILTER);
+  const imp = v42Important(show).slice(0,3);
+  const strip = imp.length
+    ? '<div class="sec2 v42imp" style="margin-bottom:10px"><b>🚨 חשוב היום — הדוחות והעדכונים שמזיזים את השוק:</b>' +
+      imp.map(it => '<div class="mini" style="margin-top:6px;cursor:pointer" ' +
+        (it.link?('onclick="window.open(\''+escJs(it.link)+'\',\'_blank\',\'noopener\')"'):'') + '>• ' + esc(it.t||"") + '</div>').join("") +
+      '</div>'
+    : '';
+  box.innerHTML = strip + (show.length ? show.map(it => {
+    const im = V42_IMP_RE.test(String(it.t||""));
+    return '<div class="wireitem ' + esc(it.src||"") + (im ? ' v42imp' : '') + '" data-lang="' + esc(it.lang||"") + '"' +
+    (it.link ? ' onclick="window.open(\'' + escJs(it.link) + '\',\'_blank\',\'noopener\')"' : '') + '>' +
+      '<div class="wsrc">' + esc(it.name||it.src||"") + '</div>' +
+      '<div class="wmain"><div class="wt">' + (im ? '<span class="v42imptag">חשוב</span>' : '') + esc(it.t||"") + '</div>' +
+      '<div class="wm">' + esc(it.name||"") + ' · לפני ' + agoTs(it.ts) + '</div></div></div>';
+  }).join("")
+    : '<div class="emptyline">' + (WIRE ? "אין כתבות בסינון הזה." :
+      "החוט עוד לא שודר מהמחשב — הוא מתעדכן בכל סבב של השומר.") + '</div>');
+  v42AimRefresh();
+};
+function v42AimRefresh(){
+  /* the same important items, shown INSIDE the swing room: "שנדע בדיוק
+     למה לכוון" (interview 20.8). Hebrew first, then English. */
+  let host = $("v42AimBanner");
+  const sec = $("t-swing");
+  if (!sec) return;
+  if (!host){
+    host = document.createElement("div");
+    host.id = "v42AimBanner";
+    sec.insertBefore(host, sec.firstChild);
+  }
+  const items = (WIRE && WIRE.items) || [];
+  const imp = v42Important(items);
+  imp.sort((a,b) => (a.lang==="he"?-1:1) - (b.lang==="he"?-1:1) || (+b.ts||0)-(+a.ts||0));
+  if (!imp.length){ host.style.display = "none"; return; }
+  host.style.display = "";
+  host.innerHTML = '<b class="h">🎯 למה לכוון היום</b> — האירועים שמזיזים את השוק עכשיו:' +
+    imp.slice(0,3).map(it => '<div style="margin-top:5px;cursor:pointer"' +
+      (it.link?(' onclick="window.open(\''+escJs(it.link)+'\',\'_blank\',\'noopener\')"'):'') + '>• ' + esc(it.t||"") +
+      ' <span class="mini">(' + esc(it.name||it.src||"") + ')</span></div>').join("");
+}
+
+/* ---- 13.17 my watchlist + Idan's weekly list -------------------------- */
+let V42_IDANLIST = null, _v42IdanSub = false;
+function v42MyList(){ return (MYDOC && Array.isArray(MYDOC.watchlist)) ? MYDOC.watchlist : []; }
+function v42WatchCards(){
+  const sec = $("t-swing"); if (!sec) return;
+  let host = $("v42WatchCard");
+  if (!host){
+    host = document.createElement("div");
+    host.id = "v42WatchCard";
+    const felt = $("swFelt");
+    if (felt && felt.nextSibling) sec.insertBefore(host, felt.nextSibling);
+    else sec.appendChild(host);
+  }
+  const mine = v42MyList();
+  const engineEyes = new Set(((PHONE||{}).signals_swing||[]).map(s => String(s.ticker||"").toUpperCase()));
+  const chip = s => '<span class="sym">' + esc(s) + (engineEyes.has(s) ? ' <span title="המנוע עוקב עכשיו">🔭</span>' : '') +
+      '<button onclick="v42WlDel(\'' + escJs(s) + '\')" title="הסר">✕</button></span>';
+  const hasIdan = !!(MYDOC && MYDOC.idanList === true) || IS_OWNER;
+  const idanBox = hasIdan
+    ? (V42_IDANLIST && Array.isArray(V42_IDANLIST.syms) && V42_IDANLIST.syms.length
+        ? '<div class="v42wl">' + V42_IDANLIST.syms.map(s => '<span class="sym">👑 ' + esc(String(s)) + '</span>').join("") + '</div>' +
+          '<div class="mini" style="margin-top:7px">' + esc(V42_IDANLIST.note||"") +
+          (V42_IDANLIST.updated ? ' · עודכן ' + esc(String(V42_IDANLIST.updated).slice(0,10)) : '') + '</div>'
+        : '<div class="mini">עידן עוד לא פרסם את הרשימה השבועית — היא תופיע כאן ברגע שיפרסם.</div>')
+    : '<div class="v42lock"><div class="big">🔒</div>' +
+      '<b>הרשימה השבועית של עידן</b>' +
+      '<div class="mini" style="margin:5px 0">המניות שעידן עצמו עוקב אחריהן, מתעדכנת כל שבוע. תשלום חד-פעמי, שלך לתמיד.</div>' +
+      '<div class="v42price"><span id="v42IdanPrice">$350</span></div>' +
+      v42CouponHTML(350, "idanlist") +
+      '<button class="btn" style="width:100%;margin-top:9px" onclick="v42AskBuy()">👑 אני רוצה את הרשימה</button></div>';
+  host.innerHTML =
+    '<div class="card"><h3>⭐ רשימת המעקב שלי</h3>' +
+    '<div class="mini">המניות שאתה רוצה שהמערכת תעקוב עליהן בשבילך. הוסף עם ➕ — סמל 🔭 אומר שהמנוע רואה אותה ממש עכשיו.</div>' +
+    (mine.length ? '<div class="v42wl">' + mine.map(chip).join("") + '</div>'
+                 : '<div class="mini" style="margin-top:8px">עוד אין מניות ברשימה — הוסף את הראשונה! 👇</div>') +
+    '<div class="v42addrow"><input class="fld" id="v42WlInp" placeholder="TSLA / NVDA / AAPL…" maxlength="8" ' +
+    'onkeydown="if(event.key===\'Enter\')v42WlAdd()"><button class="btn" style="flex:none" onclick="v42WlAdd()">➕ הוסף</button></div></div>' +
+    '<div class="card"><h3>👑 הרשימה של עידן <span class="n">מתעדכנת כל שבוע</span></h3>' + idanBox + '</div>';
+}
+async function v42WlAdd(){
+  const inp = $("v42WlInp");
+  const s = (inp.value||"").trim().toUpperCase().replace(/[^A-Z0-9.\-]/g,"").slice(0,8);
+  if (s.length < 1) return toast("כתוב סימבול, למשל TSLA");
+  const cur = v42MyList();
+  if (cur.includes(s)){ inp.value=""; return toast(s + " כבר ברשימה"); }
+  if (cur.length >= 40) return toast("עד 40 מניות ברשימה");
+  try {
+    await db.collection("users").doc(ME.uid).update({watchlist: cur.concat([s])});
+    inp.value = ""; v42PopSound(); toast("⭐ " + s + " נוספה למעקב");
+  } catch(e){ toast("לא נשמר (" + (e.code||e.message) + ")"); }
+}
+async function v42WlDel(s){
+  try { await db.collection("users").doc(ME.uid).update({watchlist: v42MyList().filter(x => x !== s)}); }
+  catch(e){ toast("לא נמחק (" + (e.code||e.message) + ")"); }
+}
+async function v42AskBuy(){
+  const c = v42CouponState(350, "idanlist");
+  try {
+    await db.collection("support").doc(ME.uid).collection("msgs").add({
+      text: "👑 אני רוצה לקנות את הרשימה השבועית של עידן ($350)" +
+            (c ? " — עם קוד הנחה " + c.code + ", לתשלום: $" + c.price : "") + ". איך משלמים?",
+      by: "member", t: Date.now(), kind: "buy"});
+    await db.collection("users").doc(ME.uid).update({fixAsk: new Date().toISOString()});
+    toast("📨 הבקשה הגיעה לעידן — הוא יפתח לך אחרי התשלום ✓");
+  } catch(e){ toast("לא נשלח (" + (e.code||e.message) + ")"); }
+}
+function v42SubIdanList(){
+  if (_v42IdanSub) return;
+  _v42IdanSub = true;
+  try {
+    db.collection("pub").doc("idanlist").onSnapshot(d => {
+      V42_IDANLIST = d.exists ? d.data() : null;
+      if (CURTAB === "swing") v42WatchCards();
+    }, ()=>{});
+  } catch(e){}
+}
+
+/* ---- 13.18 coupons ----------------------------------------------------
+   Idan mints a code in 👑; it lives in settings/global.coupons (owner-only
+   write, world read - the same doc the app already listens to), and every
+   price box grows a small "יש לי קוד" field. The discount only DISPLAYS -
+   the money still moves person-to-person, and Idan confirms by hand, so a
+   made-up code buys nothing. */
+function v42Coupons(){ return (SETTINGS && SETTINGS.coupons) || {}; }
+let V42_COUPON = LS.get("v42coupon", null);
+function v42CouponHTML(base, ctx){
+  const st = v42CouponState(base, ctx);
+  return '<div class="v42coupon"><input class="fld" id="v42CpInp-' + ctx + '" placeholder="יש לי קוד הנחה…" ' +
+    'value="' + (V42_COUPON ? esc(V42_COUPON) : '') + '">' +
+    '<button class="btn sec" style="flex:none" onclick="v42CouponApply(' + base + ',\'' + ctx + '\')">בדוק</button></div>' +
+    (st ? '<div class="v42couponok">🎟️ קוד <b>' + esc(st.code) + '</b> תקף — ' + st.offTxt +
+          '! המחיר שלך: <b>$' + st.price + '</b></div>' : '');
+}
+function v42CouponState(base, ctx){
+  if (!V42_COUPON) return null;
+  const c = v42Coupons()[String(V42_COUPON).toUpperCase()];
+  if (!c || c.active === false) return null;
+  const off = c.kind === "pct" ? Math.round(base * (+c.val||0) / 100) : Math.min(base, Math.round(+c.val||0));
+  if (off <= 0) return null;
+  return { code: String(V42_COUPON).toUpperCase(), price: base - off,
+           offTxt: c.kind === "pct" ? ((+c.val) + "% הנחה") : ("$" + off + " הנחה") };
+}
+function v42CouponApply(base, ctx){
+  const v = (($("v42CpInp-" + ctx)||{}).value||"").trim().toUpperCase();
+  if (!v){ V42_COUPON = null; LS.set("v42coupon", null); toast("הקוד נוקה"); }
+  else {
+    const c = v42Coupons()[v];
+    if (!c || c.active === false){ toast("הקוד לא מוכר 🤔 בדוק את האיות"); return; }
+    V42_COUPON = v; LS.set("v42coupon", v);
+    v42Confetti(18); v42PopSound(); toast("🎟️ הקוד נתפס!");
+  }
+  if (CURTAB === "swing") v42WatchCards();
+  if (CURTAB === "shop" && typeof renderShop === "function") renderShop();
+}
+/* the shop's price box grows the same field */
+const _renderShop41 = (typeof renderShop === "function") ? renderShop : null;
+if (_renderShop41) renderShop = function(){
+  _renderShop41();
+  const priceEl = $("shopPrice");
+  if (priceEl && !$("v42CpInp-shop")){
+    const d = document.createElement("div");
+    d.innerHTML = v42CouponHTML(5000, "shop");
+    priceEl.parentNode.appendChild(d);
+    const st = v42CouponState(5000, "shop");
+    if (st) priceEl.innerHTML = '<span class="v42strike">$5,000</span>$' + st.price.toLocaleString("en-US");
+  }
+};
+
+/* ---- 13.19 the setup wizard: before the tour, hand in hand ------------ */
+const V42_CMD_WIN = "irm https://elkingo18.github.io/idan-signals/club/downloads/club_setup.ps1 | iex";
+const V42_CMD_MAC = "curl -fsSL https://elkingo18.github.io/idan-signals/club/downloads/mac_setup.sh | bash";
+let V42_WIZ_STEP = 0, _v42WizUp = false, _v42WizWait = null;
+function v42ShowWizard(){
+  if (_v42WizUp){ v42WizRender(); return; }
+  _v42WizUp = true;
+  show("v-boot");
+  const w = document.createElement("div");
+  w.id = "v42WizOv";
+  w.style.cssText = "position:fixed;inset:0;z-index:1150;overflow-y:auto;background:radial-gradient(120% 120% at 50% 0%, #143820 0%, #0b1f13 55%, #081710 100%);padding:22px 14px;";
+  w.innerHTML = '<div id="v42Wiz" style="max-width:440px;margin:0 auto"></div>';
+  document.body.appendChild(w);
+  subscribeFeed();
+  v42WizRender();
+}
+function v42WizClose(noRoute){
+  const w = $("v42WizOv"); if (w) w.remove();
+  _v42WizUp = false;
+  if (_v42WizWait){ clearInterval(_v42WizWait); _v42WizWait = null; }
+  /* the wizard borrowed the stage (v-boot); give the app back its screen */
+  if (!noRoute && ME && MYDOC) _route42();
+}
+async function v42WizDone(){
+  try { await db.collection("users").doc(ME.uid).update({setupDone:true}); } catch(e){}
+  v42WizClose();
+}
+function v42WizRender(){
+  const host = $("v42Wiz"); if (!host) return;
+  const isMac = /Mac|iPhone|iPad/i.test(navigator.userAgent);
+  const cmd = isMac ? V42_CMD_MAC : V42_CMD_WIN;
+  const steps = [
+    { big:"👋", h:"בוא נתקין לך את הבוט!",
+      t:"נעבור יחד 4 צעדים קטנים — כמו מתכון לעוגה 🍰. בכל צעד אני אגיד לך בדיוק מה ללחוץ, ובסוף נבדוק יחד שהכל עובד. זה לוקח בערך 10 דקות.",
+      chk:"", btn:"יאללה, מתחילים! ›" },
+    { big:"🏦", h:"צעד 1: חשבון דמו + MetaTrader 5",
+      t:"<b>מה זה?</b> חשבון עם כסף מדומה — אי אפשר להפסיד בו כסף אמיתי.<br><b>מה עושים?</b><br>" +
+        "1. נכנסים לקישור של הברוקר (למטה) ופותחים חשבון <b>דמו</b>.<br>" +
+        "2. מורידים משם את התוכנה <b>MetaTrader 5</b> ומתחברים עם הפרטים שקיבלתם במייל.<br>" +
+        ((SETTINGS && SETTINGS.brokerLink) ? '<a class="btn sec" style="display:inline-block;margin-top:8px" target="_blank" rel="noopener" href="' + esc(SETTINGS.brokerLink) + '">🏦 פתח את הקישור לברוקר</a>' : '<span class="mini">קישור לברוקר — אצל עידן בצ\'אט.</span>'),
+      chk:"פתחתי חשבון דמו ו-MT5 מותקן אצלי ✓", btn:"הצעד הבא ›" },
+    { big:"⚡", h:"צעד 2: התקנה בפקודה אחת",
+      t:"<b>מה עושים?</b><br>1. לוחצים על הכפתור למטה — הפקודה מועתקת.<br>" +
+        (isMac ? "2. פותחים <b>Terminal</b> (מחפשים Terminal בזכוכית המגדלת)." :
+                 "2. פותחים <b>PowerShell</b> (מקש חלונות ⊞, כותבים powershell, אנטר).") +
+        "<br>3. מדביקים (Ctrl+V) ולוחצים אנטר.<br>4. מחכים שההתקנה תגיד שהיא סיימה — היא גם מעתיקה לך את <b>המפתח</b> לבד!" +
+        '<div style="margin-top:9px"><button class="btn" onclick="navigator.clipboard.writeText(\'' + cmd + '\').then(()=>toast(\'הפקודה הועתקה ✓ עכשיו הדבק בחלון\'))">📋 העתק את פקודת ההתקנה</button></div>' +
+        '<div class="mini" dir="ltr" style="margin-top:7px;word-break:break-all;background:rgba(0,0,0,.25);padding:8px;border-radius:10px">' + cmd + '</div>',
+      chk:"ההתקנה רצה וסיימה ✓", btn:"הצעד הבא ›" },
+    { big:"🟢", h:"צעד 3: הכפתור הירוק",
+      t:"ב-MetaTrader 5, למעלה באמצע, יש כפתור שכתוב עליו <b>Algo Trading</b> ▶️.<br>" +
+        "<b>אם הוא ירוק — מצוין!</b> הבוט מורשה לעבוד.<br>אם הוא אפור/אדום — לוחצים עליו פעם אחת והוא נהיה ירוק.<br>" +
+        "<span class='mini'>זה הדבר היחיד שהמחשב לא יכול ללחוץ בשבילך 😊</span>",
+      chk:"Algo Trading ירוק אצלי ✓", btn:"הצעד הבא ›" },
+    { big:"🔑", h:"צעד 4: המפתח שלך",
+      t:"ההתקנה העתיקה לך את המפתח (שורה ארוכה של אותיות ומספרים).<br><b>הדבק אותו כאן</b> — והמסך שלך יתחבר לבוט:" +
+        '<input class="fld" id="v42WizKey" placeholder="הדבק את המפתח…" style="direction:ltr;margin-top:9px">' +
+        '<button class="btn" style="width:100%;margin-top:8px" onclick="v42WizKey()">🔗 חבר אותי!</button>' +
+        '<div class="wchk" id="v42WizWait" style="display:none">⏳ מחכה לשידור הראשון מהבוט שלך… (עד 2 דק\')</div>',
+      chk:"", btn:"" },
+    { big:"🩺", h:"בדיקה אחרונה — שהכל באמת עובד",
+      t:'<div id="v42WizDoc" style="text-align:right"></div>',
+      chk:"", btn:"" }
+  ];
+  const s = steps[V42_WIZ_STEP];
+  host.innerHTML =
+    '<div class="steps">' + steps.map((x,i) =>
+      '<div class="stp ' + (i < V42_WIZ_STEP ? 'done' : (i === V42_WIZ_STEP ? 'cur' : '')) + '"></div>').join("") + '</div>' +
+    '<div class="sec2" style="border-radius:24px">' +
+      '<div class="wbig">' + s.big + '</div><h3>' + s.h + '</h3>' +
+      '<div class="wtxt" style="margin-top:9px">' + s.t + '</div>' +
+      (s.chk ? '<button class="gobtn" style="width:100%;margin-top:14px;padding:14px;font-size:16px;border:none;border-radius:16px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:#08130c;font-weight:900;cursor:pointer" onclick="v42WizNext()">' + s.chk + '</button>' : '') +
+    '</div>' +
+    '<div style="text-align:center;margin-top:11px"><button class="skip" style="background:none;border:none;color:#88a891;text-decoration:underline;cursor:pointer" onclick="v42WizDone()">אני מסתדר לבד — דלג על האשף</button></div>';
+  if (V42_WIZ_STEP === 5){
+    v42RunDoctor($("v42WizDoc"), (ok) => {
+      const d = $("v42WizDoc");
+      d.insertAdjacentHTML("beforeend", ok
+        ? '<div class="v42allgood">🎉 הכל עובד! ברוך הבא למועדון!</div><button class="gobtn" style="width:100%;margin-top:10px;padding:14px;border:none;border-radius:16px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:#08130c;font-weight:900;font-size:17px;cursor:pointer" onclick="v42WizDone()">🚀 קדימה, להתחיל!</button>'
+        : '<div class="mini" style="margin:9px 0">יש משהו לתקן למעלה — ואם לא הולך, עידן כאן.</div><button class="gobtn" style="width:100%;padding:14px;border:none;border-radius:16px;background:linear-gradient(135deg,#f3d878,#d4af37);color:#221c07;font-weight:900;font-size:15px;cursor:pointer" onclick="v42WizDone()">אמשיך בכל זאת — אשלים אחר-כך ›</button>');
+      if (ok){ v42Confetti(50); coinChime(); }
+    });
+  }
+}
+function v42WizNext(){ V42_WIZ_STEP = Math.min(5, V42_WIZ_STEP + 1); v42PopSound(); v42WizRender(); }
+async function v42WizKey(){
+  const k = (($("v42WizKey")||{}).value||"").trim();
+  if (k.length < 24) return toast("המפתח קצר מדי — צריך את כל השורה שההתקנה העתיקה");
+  try {
+    await db.collection("users").doc(ME.uid).update({feedId: k});
+    $("v42WizWait").style.display = "";
+    if (unsubFeed){ unsubFeed(); unsubFeed = null; }
+    MYFEED = null; subscribeFeed();
+    if (_v42WizWait) clearInterval(_v42WizWait);
+    _v42WizWait = setInterval(() => {
+      if (MYFEED && MYFEED.j){
+        clearInterval(_v42WizWait); _v42WizWait = null;
+        v42Confetti(40); coinChime();
+        V42_WIZ_STEP = 5; v42WizRender();
+      }
+    }, 1500);
+  } catch(e){ toast("לא נשמר (" + (e.code||e.message) + ")"); }
+}
+
+/* ---- 13.20 the mascot: the crown-coin says hello ---------------------- */
+let _v42MascotTimer = null;
+function v42MascotTips(){
+  const tips = [];
+  const st = v42Streak();
+  if (st >= 2) tips.push("🔥 רצף של " + st + " ימים ירוקים — תשמור עליו!");
+  const p = v42TodayPnl();
+  if (IS_OWNER && PHONE && PHONE.drawer && +PHONE.drawer.day_target > 0 && p > 0 && p < +PHONE.drawer.day_target)
+    tips.push("עוד " + money(+PHONE.drawer.day_target - p, 0) + " ליעד של היום 🎯");
+  const imp = v42Important((WIRE && WIRE.items) || []);
+  if (imp.length) tips.push("🚨 יש היום " + imp.length + " ידיעות חשובות — שווה הצצה בחדר החדשות");
+  if (!IS_OWNER && !v42MyList().length) tips.push("⭐ עוד לא בנית רשימת מעקב — קפוץ לחדר הסווינג");
+  tips.push("💡 טיפ: לחיצה על כל בוט בשולחן פותחת את כל הקלפים שלו");
+  tips.push("📸 עכשיו אפשר לצרף תמונות בצ'אט — כמו בדיסקורד");
+  return tips;
+}
+function v42Mascot(){
+  if (window.__TEST_FIREBASE__) return;
+  if (LS.get("v42mascotOff", false)) return;
+  if ($("v42Mascot")) return;
+  const m = document.createElement("div");
+  m.id = "v42Mascot";
+  m.innerHTML = '<div class="say" id="v42MascotSay" style="display:none" onclick="v42MascotNext()"></div>' +
+    '<div class="coin" onclick="v42MascotNext()" title="לחיצה ארוכה מסתירה אותי">🪙</div>';
+  document.body.appendChild(m);
+  let press;
+  m.querySelector(".coin").addEventListener("pointerdown", () => {
+    press = setTimeout(() => { LS.set("v42mascotOff", true); m.remove(); toast("המטבע הלך לישון 😴 (יחזור אם תנקה נתוני אתר)"); }, 1200);
+  });
+  m.querySelector(".coin").addEventListener("pointerup", () => clearTimeout(press));
+  _v42MascotTimer = setInterval(v42MascotNext, 50000);
+  setTimeout(v42MascotNext, 7000);
+}
+let _v42TipI = 0;
+function v42MascotNext(){
+  const el = $("v42MascotSay"); if (!el) return;
+  const tips = v42MascotTips();
+  if (el.style.display === "" && _v42TipI % 2 === 1){ el.style.display = "none"; _v42TipI++; return; }
+  el.textContent = tips[Math.floor(_v42TipI/2) % tips.length];
+  el.style.display = ""; _v42TipI++;
+}
+
+/* ---- 13.21 the admin room grows three cards --------------------------- */
+function v42AdminCards(){
+  if (!IS_OWNER) return;
+  const sec = $("t-admin"); if (!sec || $("v42AdmFix")) return;
+  const d = document.createElement("div");
+  d.innerHTML =
+    '<div class="card" id="v42AdmFix"><h3>🧰 בקשות תיקון והשתלטות</h3>' +
+    '<div class="mini">חבר שלחץ "שעידן יתקן לי" מופיע כאן. כפתור אחד שולח לבוט שלו: הדלקה + ההגדרות שלך + הפעלה מחדש.</div>' +
+    '<div id="v42FixList" class="mini" style="margin-top:8px">טוען…</div></div>' +
+    '<div class="card"><h3>🎟️ קודי הנחה</h3>' +
+    '<div class="mini">צור קוד — ותן אותו למי שמגיע לו. הוא יוזן אצלם בכל מסך מחיר, והמחיר המוזל יוצג להם מיד.</div>' +
+    '<div style="display:flex;gap:7px;margin-top:9px;flex-wrap:wrap">' +
+      '<input class="fld" id="v42CpCode" placeholder="קוד (למשל FRIEND50)" style="flex:2;direction:ltr;text-transform:uppercase">' +
+      '<select id="v42CpKind" class="fld" style="flex:1"><option value="pct">% הנחה</option><option value="usd">$ הנחה</option></select>' +
+      '<input class="fld" id="v42CpVal" type="number" placeholder="כמה" style="flex:1;direction:ltr">' +
+    '</div>' +
+    '<div class="btnrow"><button class="btn" onclick="v42CpCreate()">➕ צור קוד</button></div>' +
+    '<div id="v42CpList" class="mini" style="margin-top:8px"></div></div>' +
+    '<div class="card"><h3>👑 הרשימה השבועית שלך ($350)</h3>' +
+    '<div class="mini">שורה לכל מניה (או מופרד בפסיקים). מי ששילם — אתה מדליק לו את המתג ברשימת התיקונים למטה, והרשימה נפתחת אצלו.</div>' +
+    '<textarea class="fld" id="v42IlSyms" rows="3" placeholder="TSLA, NVDA, AAPL…" style="direction:ltr;margin-top:8px"></textarea>' +
+    '<input class="fld" id="v42IlNote" placeholder="משפט על הרשימה של השבוע (לא חובה)" style="margin-top:6px">' +
+    '<div class="btnrow"><button class="btn" onclick="v42IlPublish()">📢 פרסם את הרשימה</button></div></div>';
+  sec.appendChild(d);
+  v42FixListRender();
+  v42CpListRender();
+  if (V42_IDANLIST){
+    $("v42IlSyms").value = (V42_IDANLIST.syms||[]).join(", ");
+    $("v42IlNote").value = V42_IDANLIST.note || "";
+  }
+  setInterval(v42FixListRender, 9000);
+}
+function v42FixListRender(){
+  const host = $("v42FixList"); if (!host) return;
+  const rows = (ADMIN_USERS||[]).filter(({u}) => (u.email||"") !== OWNER_EMAIL);
+  if (!rows.length){ host.innerHTML = "אין עדיין חברים."; return; }
+  host.innerHTML = rows.map(({id,u}) => {
+    const ask = u.fixAsk ? (Date.now() - new Date(u.fixAsk).getTime() < 48*3600000) : false;
+    return '<div class="urow" style="border:none;padding:7px 0' + (ask ? ';background:rgba(255,180,84,.08);border-radius:12px;padding-inline:8px' : '') + '">' +
+      '<span style="font-size:17px">' + (ask ? '🆘' : '🙂') + '</span>' +
+      '<div style="flex:1;min-width:0"><b>' + esc(u.name||u.email||"") + '</b>' +
+      (ask ? ' <span class="tag wa">ביקש תיקון</span>' : '') +
+      '<div class="mini">' + (u.feedId ? '🤖 בוט מחובר' : '⚠️ אין בוט') + ' · רשימת עידן: ' + (u.idanList===true?'✅':'—') + '</div></div>' +
+      (u.feedId ? '<button class="btn" style="font-size:12px;padding:8px 10px" onclick="v42FixAll(\'' + escJs(u.feedId) + '\',\'' + escJs(id) + '\',\'' + escJs(u.name||u.email||"") + '\')">🔧 תקן לו הכל</button>' : '') +
+      '<button class="btn sec" style="font-size:12px;padding:8px 10px" onclick="tglUser(\'' + escJs(id) + '\',\'idanList\',' + (u.idanList===true) + ')">👑 רשימה</button>' +
+      '</div>';
+  }).join("");
+}
+async function v42FixAll(feedId, uid, name){
+  try {
+    await writeCommand(feedId, {enabled:true, params:riskParams(($("riskPreset")||{value:"36"}).value), restart:true,
+      note:"עידן השתלט ותיקן לך הכל: הבוט הודלק, ההגדרות סונכרנו והופעל מחדש 🧑‍🔧"});
+    await db.collection("users").doc(uid).update({fixAsk: ""});
+    toast("🔧 נשלח תיקון מלא ל" + name);
+  } catch(e){ toast("שגיאה: " + (e.code||e.message)); }
+}
+async function v42CpCreate(){
+  const code = ($("v42CpCode").value||"").trim().toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,16);
+  const kind = $("v42CpKind").value, val = +$("v42CpVal").value;
+  if (code.length < 3) return toast("קוד של 3 תווים לפחות");
+  if (!(val > 0)) return toast("כמה הנחה?");
+  if (kind === "pct" && val > 100) return toast("אחוז עד 100");
+  const cur = v42Coupons();
+  cur[code] = {kind, val, active:true, t:Date.now()};
+  try {
+    await db.collection("settings").doc("global").set({coupons:cur}, {merge:true});
+    $("v42CpCode").value = ""; $("v42CpVal").value = "";
+    v42Confetti(16); toast("🎟️ הקוד " + code + " נוצר — שלח אותו למי שמגיע לו");
+    v42CpListRender();
+  } catch(e){ toast("לא נשמר (" + (e.code||e.message) + ")"); }
+}
+async function v42CpToggle(code){
+  const cur = v42Coupons();
+  if (!cur[code]) return;
+  cur[code].active = cur[code].active === false;
+  try { await db.collection("settings").doc("global").set({coupons:cur}, {merge:true}); v42CpListRender(); } catch(e){}
+}
+function v42CpListRender(){
+  const host = $("v42CpList"); if (!host) return;
+  const cur = v42Coupons(); const keys = Object.keys(cur);
+  host.innerHTML = keys.length ? keys.map(k => {
+    const c = cur[k];
+    return '<div class="urow" style="border:none;padding:5px 0"><b dir="ltr">' + esc(k) + '</b>' +
+      '<span class="mini" style="flex:1">' + (c.kind==="pct" ? (c.val+"%") : ("$"+c.val)) + ' הנחה</span>' +
+      '<button class="btn sec" style="font-size:11.5px;padding:6px 9px" onclick="v42CpToggle(\'' + escJs(k) + '\')">' +
+      (c.active === false ? 'הפעל' : 'כבה') + '</button></div>';
+  }).join("") : "אין עדיין קודים.";
+}
+async function v42IlPublish(){
+  const syms = ($("v42IlSyms").value||"").split(/[\s,;\n]+/).map(s => s.trim().toUpperCase().replace(/[^A-Z0-9.\-]/g,"")).filter(s => s.length >= 1 && s.length <= 8);
+  if (!syms.length) return toast("צריך לפחות מניה אחת");
+  try {
+    await db.collection("pub").doc("idanlist").set({syms: syms.slice(0,60), note: ($("v42IlNote").value||"").slice(0,200), updated: new Date().toISOString()});
+    v42Confetti(24); toast("👑 הרשימה פורסמה — " + syms.length + " מניות");
+  } catch(e){ toast("לא פורסם (" + (e.code||e.message) + ")"); }
+}
+
+/* ---- 13.22 wiring ----------------------------------------------------- */
+/* the win post rides the target popup, once a day */
+const _v42DayPopD = v42DayPop;
+v42DayPop = function(kind){
+  const fresh = LS.get(kind === "target" ? "v42tgt" : "v42eod", "") !== v42DayKey(0);
+  _v42DayPopD(kind);
+  if (kind === "target" && fresh) v42PostWin(v42TodayPnl());
+};
+/* streak chip near the avatar */
+function v42StreakChip(){
+  const bar = document.querySelector(".pbar") || document.body;
+  let chip = $("v42Streak");
+  const n = v42Streak();
+  if (n < 2){ if (chip) chip.remove(); return; }
+  if (!chip){
+    chip = document.createElement("span");
+    chip.id = "v42Streak";
+    chip.onclick = () => toast("🔥 " + n + " ימים ירוקים ברצף — המשך כך!");
+    const host = $("hAvatar") && $("hAvatar").parentNode ? $("hAvatar").parentNode : bar;
+    host.insertBefore(chip, host.firstChild);
+  }
+  chip.textContent = "🔥 " + n;
+}
+/* the wizard slots in before the tour */
+const _route42 = route;
+route = function(){
+  if (ME && MYDOC && !PERSONAL){
+    const isOwn = (ME.email||"").toLowerCase() === OWNER_EMAIL;
+    if (!isOwn && MYDOC.signedContract && (MYDOC.contractVersion||0) >= CONTRACT_VERSION
+        && MYDOC.allowed === true && MYDOC.botChoice
+        && !(SETTINGS.mode === "real" && !MYDOC.brokerLinked)
+        && !MYDOC.tourDone && !MYDOC.setupDone && !(MYFEED && MYFEED.j)){
+      v42ShowWizard(); return;
+    }
+  }
+  if (_v42WizUp) v42WizClose(true);
+  _route42();
+};
+const _goTab42 = goTab;
+goTab = function(tab){
+  _goTab42(tab);
+  if (tab === "swing"){ v42WatchCards(); v42AimRefresh(); }
+  if (tab === "admin") v42AdminCards();
+};
+const _enterApp42 = enterApp;
+enterApp = function(){
+  _enterApp42();
+  v42FetchVps();
+  if (!_vpsTimer) _vpsTimer = setInterval(v42FetchVps, 30000);
+  v42BuildChat();
+  v42SubIdanList();
+  v42Mascot();
+  setTimeout(v42StreakChip, 1500);
+  setInterval(v42StreakChip, 60000);
+  /* the morning screen waits for first numbers, up to ~4s, then shows */
+  let tries = 0;
+  const t = setInterval(() => {
+    tries++;
+    const ready = IS_OWNER ? !!PHONE : (!MYDOC || !MYDOC.feedId || !!MYFEED);
+    if (ready || tries > 13){ clearInterval(t); v42ShowWelcome(); }
+  }, 320);
+};
+/* the login screen grows the key door for everyone */
+(function(){
+  const lg = document.getElementById("v-login");
+  if (lg && !document.getElementById("v42KeyDoor")){
+    const b = document.createElement("button");
+    b.id = "v42KeyDoor";
+    b.className = "fbbtn";
+    b.style.marginTop = "8px";
+    b.innerHTML = '🔑 כניסה עם המפתח האישי (בלי גוגל)';
+    b.onclick = v42KeyLogin;
+    const err = document.getElementById("loginErr");
+    lg.insertBefore(b, err);
+  }
+})();
+/* ---- 13.23 the server's bots join the table --------------------------
+   Interview 20.8: "עוברים לשרת". The server's mirror pushes
+   data/vps_bots.json once a minute; when it is FRESH these cards replace
+   the single home drawer on the live table, and the morning screen, the
+   doctor and the GO banner follow the server. When it is absent or stale
+   (no server yet, or the server slept) nothing changes - the home
+   phone.json keeps the stage. Freshness decides, never wishful thinking. */
+const VPS_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/vps_bots.json";
+let VPSB = null, _vpsTimer = null;
+async function v42FetchVps(){
+  try {
+    const r = await fetch(VPS_URL + "?t=" + Date.now(), {cache:"no-store"});
+    if (r.ok) VPSB = await r.json();
+  } catch(e){}
+}
+function v42VpsFresh(){
+  if (!VPSB || !VPSB.updated_utc || !Array.isArray(VPSB.bots) || !VPSB.bots.length) return false;
+  const t = new Date(VPSB.updated_utc).getTime();
+  return !isNaN(t) && (Date.now() - t) / 1000 < 180;
+}
+function v42MergeVps(){
+  if (!v42VpsFresh() || !PHONE || !PHONE.live) return false;
+  const others = (PHONE.live.bots || []).filter(b => b.id !== "drawer" && !/^drawer\d/.test(String(b.id)));
+  const cards = VPSB.bots.map(b => ({
+    id: b.id, name: b.name, icon: b.icon || "🗄️", market: "XAUUSD",
+    equity: b.equity, balance: b.balance, day_gross: b.day_gross,
+    day_open_equity: (b.equity||0) - (b.day_gross||0),
+    open_count: b.legs || 0, open_gross: 0, trades_today: undefined,
+    enabled: b.status === "ok", age_sec: b.age_sec, status: b.status,
+    note: (b.armed ? "שרת · ARMED · יעד " + money(b.day_target || 0, 0)
+                   : "שרת · לא חמוש") + (b.note ? " · " + b.note : "")
+  }));
+  PHONE.live.bots = cards.concat(others);
+  const first = VPSB.bots[0];
+  PHONE.drawer = Object.assign({}, PHONE.drawer || {}, {
+    v: first.v, armed: first.armed === true, day: (VPSB.totals && VPSB.totals.day) || first.day_gross || 0,
+    day_target: first.day_target, legs: first.legs, max_legs: first.max_legs,
+    day_stop: first.day_stop === true, day_reason: first.day_reason || "", from_vps: true });
+  return true;
+}
+const _pollPhone42 = pollPhone;
+pollPhone = async function(){
+  await _pollPhone42();
+  if (v42MergeVps()) { renderTable(); if (CURTAB === "swing") renderSwing(); }
+};
+COACH.push(
+  {sel:'#mainNav [data-t="chat"]', band:"הקהילה", txt:"הצ'אט נהיה דיסקורד: ערוצים בצד — המועדון, איתותים והישגים — הודעות פרטיות, ואפשר לצרף תמונות 📸.", drawer:true},
+  {sel:'#mainNav [data-t="swing"]', band:"רשימת המעקב שלך", txt:"בחדר הסווינג יש עכשיו רשימת מעקב אישית — הוסף מניות עם ➕ והמערכת תעקוב בשבילך. ויש גם את הרשימה השבועית של עידן 👑.", drawer:true}
+);
 </script>
 </body>
 </html>
