@@ -126,6 +126,14 @@
 //|    day_target and day_loss_stop, so "armed but running without    |
 //|    the target" can be seen on the club screen instead of guessed. |
 //+------------------------------------------------------------------+
+//|  v1.17 - the wallet decides the depth (Idan, 20.8: "עד 5 לוט,     |
+//|    לפי נפח הארנק").  A ceiling the balance cannot carry no longer |
+//|    refuses to arm: it BENDS to the deepest rung the balance does  |
+//|    carry (same 10% worst-day rule), then re-fits once an hour,    |
+//|    between baskets, as the wallet grows or shrinks.  A typed      |
+//|    InpMinBalance floor still refuses - the bot does not argue     |
+//|    with typed floors.  The heartbeat reports both depths:         |
+//|    max_legs (working) and max_legs_ask (the ceiling asked for).   |
 //|  v1.16 - the heartbeat learns its own name: each instance also    |
 //|    writes idan_drawer_gold_<magic>.json, so three drawers on one  |
 //|    server (the 20.8 plan) stop overwriting each other's pulse.    |
@@ -139,7 +147,7 @@
 //+------------------------------------------------------------------+
 #property copyright "Idan Trader"
 #property link      "idan money club"
-#property version   "1.16"
+#property version   "1.17"
 #property description "Drawer replica of the copied gold bot. Disarmed until InpArmed=true."
 
 #include <Trade/Trade.mqh>
@@ -220,7 +228,9 @@ string   g_why       = "";
 string   g_sym       = "";
 double   g_lots[MAX_RUNGS];
 int      g_nlots     = 0;
-int      g_legsCap   = 0;          // validated copy of InpMaxLegs
+int      g_legsCap   = 0;          // WORKING depth: the wallet-fitted cap
+int      g_legsAsk   = 0;          // the ceiling the preset asked for
+datetime g_lastDepthChk = 0;       // hourly wallet re-fit, between baskets
 int      g_lastDir   = 1;
 double   g_contract  = 100.0;      // ounces per lot, read from the symbol
 double   g_point     = 0.01;
@@ -302,6 +312,21 @@ int DeepestAffordable(double bal)
       if(bal >= need) best = n; else break;
    }
    return best;
+}
+
+//+------------------------------------------------------------------+
+//| v1.17: one place sets the working depth and re-derives every      |
+//| number that hangs off it - ladder, worst basket, worst day, floor.|
+//+------------------------------------------------------------------+
+void ApplyDepth(int cap)
+{
+   g_legsCap = cap;
+   BuildLadder();
+   double full   = LadderSum(g_legsCap);
+   g_worstBasket = InpGiveUpUsd * full * g_contract;
+   g_worstDay    = g_worstBasket * WORST_DAY_MULT;
+   g_minBal      = (InpMinBalance > 0) ? InpMinBalance
+                                       : g_worstDay * (100.0 / MathMax(InpWorstDayPctCap, 0.5));
 }
 
 //+------------------------------------------------------------------+
@@ -543,6 +568,8 @@ int OnInit()
 {
    g_sym    = (InpSymbolOverride != "") ? InpSymbolOverride : _Symbol;
    g_legsCap = (InpMaxLegs >= 1 && InpMaxLegs <= MAX_RUNGS) ? InpMaxLegs : 1;
+   g_legsAsk = g_legsCap;
+   g_lastDepthChk = TimeCurrent();
    BuildLadder();
 
    g_contract = SymbolInfoDouble(g_sym, SYMBOL_TRADE_CONTRACT_SIZE);
@@ -557,20 +584,31 @@ int OnInit()
    trade.SetTypeFillingBySymbol(g_sym);
    MathSrand((int)(GetTickCount() ^ (uint)TimeLocal()));
 
-   double full = LadderSum(g_legsCap);
    // A normal bad basket is the give-up: -InpGiveUpUsd per ounce on the whole
    // ladder.  How many of those land on one day is not a guess - the master's
    // own 46,498 baskets were re-run at every depth cap, and the worst day came
    // out between 6.6x and 8.8x the worst basket at every one of them.  8x is
    // the middle of that.  (Worked example at 11 rungs: 1.35 x 4.32 x 100 =
    // $583 a basket, x8 = $4,664 a day.  The measured worst day was $4,486.)
-   g_worstBasket = InpGiveUpUsd * full * g_contract;
-   g_worstDay    = g_worstBasket * WORST_DAY_MULT;
-   g_minBal      = (InpMinBalance > 0) ? InpMinBalance
-                                       : g_worstDay * (100.0 / MathMax(InpWorstDayPctCap, 0.5));
+   ApplyDepth(g_legsCap);
    LoadDay();
 
    string bad = ValidateInputs();
+
+   // v1.17: bend, don't refuse - and do it BEFORE the guard chain, so the
+   // balance gate passes at the bent depth and the lock still gets claimed.
+   // Only the derived floor bends; a typed InpMinBalance still refuses.
+   if(bad == "" && InpMinBalance <= 0 &&
+      AccountInfoDouble(ACCOUNT_BALANCE) < g_minBal)
+   {
+      int deepNow = DeepestAffordable(AccountInfoDouble(ACCOUNT_BALANCE));
+      if(deepNow >= 1 && deepNow < g_legsCap)
+      {
+         ApplyDepth(deepNow);
+         PrintFormat("IdanDrawerGold: depth bent to the wallet - %d rungs (%.2f lots full) of the %d asked; it grows back by itself as the balance does.",
+                     g_legsCap, LadderSum(g_legsCap), g_legsAsk);
+      }
+   }
    double vmin = SymbolInfoDouble(g_sym, SYMBOL_VOLUME_MIN);
    double vstp = SymbolInfoDouble(g_sym, SYMBOL_VOLUME_STEP);
 
@@ -593,7 +631,7 @@ int OnInit()
    else if(AccountInfoDouble(ACCOUNT_BALANCE) < g_minBal)
       { g_ok = false;
         g_why = StringFormat("Balance %.0f is under the %.0f that %d rungs (%.2f lots) needs: a bad day here costs about %.0f, which is %.0f%% of this account. The deepest ladder this balance carries is InpMaxLegs=%d.",
-                             AccountInfoDouble(ACCOUNT_BALANCE), g_minBal, g_legsCap, full,
+                             AccountInfoDouble(ACCOUNT_BALANCE), g_minBal, g_legsCap, LadderSum(g_legsCap),
                              g_worstDay, g_worstDay / MathMax(AccountInfoDouble(ACCOUNT_BALANCE), 1.0) * 100.0,
                              DeepestAffordable(AccountInfoDouble(ACCOUNT_BALANCE))); }
    else if(!ClaimLock())
@@ -602,8 +640,8 @@ int OnInit()
 
    if(g_legsCap < 8)
       Print("IdanDrawerGold: WARNING - below 8 rungs the ladder is cut so often that the bad days stack. On the master's own record 7 rungs lost $6,898 over three months and its worst day was 14.6x its worst basket, so the account-size gate understates the risk at this depth.");
-   PrintFormat("IdanDrawerGold v1.16 %s | sym=%s depth=%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
-               (g_ok ? "READY" : "HELD"), g_sym, g_legsCap, full, LadderReach(), g_contract, g_minBal,
+   PrintFormat("IdanDrawerGold v1.17 %s | sym=%s depth=%d/%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
+               (g_ok ? "READY" : "HELD"), g_sym, g_legsCap, g_legsAsk, LadderSum(g_legsCap), LadderReach(), g_contract, g_minBal,
                (InpDailyTargetUsd > 0 ? StringFormat("+$%.0f", InpDailyTargetUsd) : "off"),
                (InpDailyStopUsd   > 0 ? StringFormat("-$%.0f", InpDailyStopUsd)   : "off"),
                (g_why == "" ? "ok" : g_why));
@@ -966,6 +1004,23 @@ void OnTimer()
    Beat();
    int legs, dir; double vol, vwap, we; bool mixed;
    bool have = ReadBasket(legs, dir, vol, vwap, we, mixed);
+   // v1.17: the wallet grows, the depth follows - re-fit to the wallet once
+   // an hour, and only between baskets: a ladder is never resized under an
+   // open basket.  Shrinks too, honestly, if the balance fell.
+   if(g_ok && !have && !g_closing && InpMinBalance <= 0 &&
+      TimeCurrent() - g_lastDepthChk >= 3600)
+   {
+      g_lastDepthChk = TimeCurrent();
+      int want = (InpMaxLegs >= 1 && InpMaxLegs <= MAX_RUNGS) ? InpMaxLegs : 1;
+      int deep = DeepestAffordable(AccountInfoDouble(ACCOUNT_BALANCE));
+      int use  = MathMin(want, MathMax(deep, 1));
+      if(deep >= 1 && use != g_legsCap)
+      {
+         ApplyDepth(use);
+         PrintFormat("IdanDrawerGold: depth re-fit to the wallet - now %d rungs (%.2f lots full) of the %d asked.",
+                     use, LadderSum(use), want);
+      }
+   }
    // the timer is the only thing that fires without ticks.  If the basket
    // must come off - a Friday flat, an unfinished close - it happens here
    // too, not only when the market decides to print a price.
@@ -1004,14 +1059,14 @@ void Beat()
    double px = (have && QuoteOk()) ? ExitPrice(dir) : 0;
    double mv = (have && px > 0) ? (px - vwap) * dir : 0;
    string j = StringFormat(
-      "{\"bot\":\"drawer_gold\",\"v\":\"1.16\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
-      "\"symbol\":\"%s\",\"legs\":%d,\"max_legs\":%d,\"dir\":%d,\"lots\":%.2f,"
+      "{\"bot\":\"drawer_gold\",\"v\":\"1.17\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
+      "\"symbol\":\"%s\",\"legs\":%d,\"max_legs\":%d,\"max_legs_ask\":%d,\"dir\":%d,\"lots\":%.2f,"
       "\"vwap\":%.2f,\"price\":%.2f,\"move\":%.3f,\"float\":%.2f,\"day\":%.2f,"
       "\"day_target\":%.2f,\"day_loss_stop\":%.2f,\"day_deposits\":%.2f,"
       "\"day_stop\":%s,\"day_reason\":\"%s\",\"mixed\":%s,\"closing\":%s,"
       "\"balance\":%.2f,\"equity\":%.2f,\"margin_free\":%.2f,\"is_demo\":%s}",
       IntegerToString((long)TimeCurrent()), (g_ok ? "true" : "false"), g_why, g_sym,
-      legs, g_legsCap, dir, vol, vwap, px, mv, mv * vol * g_contract, DayPnl(),
+      legs, g_legsCap, g_legsAsk, dir, vol, vwap, px, mv, mv * vol * g_contract, DayPnl(),
       InpDailyTargetUsd, InpDailyStopUsd, g_dayDeposits,
       (g_dayStop ? "true" : "false"), g_dayWhy, (mixed ? "true" : "false"), (g_closing ? "true" : "false"),
       AccountInfoDouble(ACCOUNT_BALANCE), AccountInfoDouble(ACCOUNT_EQUITY),
