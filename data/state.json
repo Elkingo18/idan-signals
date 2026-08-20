@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 153.4372467643836,
-  "equity": 995.2,
-  "realized_pnl": -5.76,
-  "open_pnl": 3.95,
+  "cash": 491.6042467643844,
+  "equity": 986.09,
+  "realized_pnl": -15.09,
+  "open_pnl": 4.18,
   "peak_equity": 1021.75,
   "max_dd_pct": -8.47,
-  "return_pct": -0.48,
+  "return_pct": -1.39,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -76,27 +76,13 @@
    },
    "last": 19.73,
    "margin": 0.0
-  },
+  }
+ ],
+ "closed": [
   {
-   "id": "XAUUSD-1787219245",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "short",
-   "sector": "other",
-   "qty": 1.53,
-   "qty_left": 1.53,
-   "entry": 4542.45,
-   "stop": 4548.4,
-   "orig_stop": 4548.4,
-   "t1": 4533.91,
-   "t2": 4525.22,
-   "opened": "2026-08-20T12:47:25.425734+03:00",
-   "opened_day": "2026-08-20",
-   "risk_open": 8.87,
-   "fees": 0.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 62,
    "pattern": "פולבק לגל ↓",
    "snap": {
     "rsi": 39.8,
@@ -106,11 +92,22 @@
     "regime_ok": true,
     "notional": 6950.18
    },
-   "last": 4542.6001,
-   "margin": 347.5
-  }
- ],
- "closed": [
+   "stop": 4548.4,
+   "t1": 4533.91,
+   "t2": 4525.22,
+   "fees": 0.0,
+   "qty": 1.53,
+   "entry": 4542.45,
+   "exit": 4548.55,
+   "pnl": -9.33,
+   "r": -1.03,
+   "reason": "stop",
+   "opened": "2026-08-20T12:47:25.425734+03:00",
+   "closed": "2026-08-20T13:42:13.999228+03:00",
+   "day": "2026-08-20",
+   "held_days": 0,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -967,10 +964,10 @@
     "pivot_high": 3.42,
     "rvol": 1.91,
     "above_ma50_pct": 7.01,
-    "shares": 67,
-    "notional": 234.5,
-    "risk_dollars": 19.8,
-    "risk_pct_actual": 1.99,
+    "shares": 66,
+    "notional": 231.0,
+    "risk_dollars": 19.5,
+    "risk_pct_actual": 1.98,
     "stretch_target": 4.2,
     "score": 91,
     "news": [
@@ -1029,7 +1026,7 @@
     "shares": 13,
     "notional": 256.49,
     "risk_dollars": 18.89,
-    "risk_pct_actual": 1.9,
+    "risk_pct_actual": 1.92,
     "stretch_target": 23.68,
     "score": 80,
     "news": [
@@ -1088,7 +1085,7 @@
     "shares": 17,
     "notional": 287.64,
     "risk_dollars": 19.08,
-    "risk_pct_actual": 1.92,
+    "risk_pct_actual": 1.93,
     "stretch_target": 20.3,
     "score": 70,
     "news": [
@@ -1131,31 +1128,44 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "short",
-    "state": "SELL_NOW",
-    "pattern": "פולבק לגל ↓",
-    "price": 4542.6,
-    "entry": 4542.6,
-    "stop": 4548.4,
-    "t1": 4533.91,
-    "t2": 4525.22,
+    "side": "long",
+    "state": "BUY_NOW",
+    "pattern": "חציית ממוצעים",
+    "price": 4550.4,
+    "entry": 4550.4,
+    "stop": 4544.5,
+    "t1": 4559.31,
+    "t2": 4568.23,
     "rr1": 1.5,
-    "atr": 3.86,
-    "rsi": 39.8,
-    "vwap": 4547.29,
+    "atr": 3.96,
+    "rsi": 57.8,
+    "vwap": 4546.81,
     "stop_pct": 0.13,
-    "ounces": 1.53,
-    "notional": 6950.18,
-    "margin": 347.51,
-    "risk_dollars": 8.87,
-    "shares": 1.53,
-    "score": 62,
+    "ounces": 1.51,
+    "notional": 6871.1,
+    "margin": 343.56,
+    "risk_dollars": 8.91,
+    "shares": 1.51,
+    "score": 63,
     "news": [],
     "regime_ok": true
    }
   ]
  },
  "calendar": {
+  "2026-08-20": {
+   "pnl": -9.33,
+   "trades": 1,
+   "wins": 0,
+   "losses": 1,
+   "r": -1.03,
+   "tickers": [
+    "XAUUSD"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "red"
+  },
   "2026-08-19": {
    "pnl": 7.11,
    "trades": 3,
@@ -1398,14 +1408,16 @@
   ],
   [
    "2026-08-20",
-   995.2
+   986.09
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 3
+ },
  "game": {
-  "xp": 1170,
+  "xp": 1200,
   "level": 4,
-  "streak": 2,
+  "streak": 0,
   "best_streak": 4,
   "badges": [
    {
@@ -1476,7 +1488,7 @@
    {
     "id": "no_rule_break",
     "name": "🧘 30 עסקאות בכללים",
-    "earned": false
+    "earned": true
    },
    {
     "id": "gold_win",
@@ -1511,7 +1523,7 @@
    "name": "👹 בוס היום",
    "target": 79.63,
    "legend": 199.08,
-   "done": -0.22,
+   "done": -9.33,
    "base": 995.42,
    "pct": 0,
    "pct_legend": 0,
@@ -1519,18 +1531,22 @@
    "legendary": false
   },
   "level_name": "⚔️ סוחר",
-  "xp_this_level": 68,
+  "xp_this_level": 98,
   "xp_next_level": 473
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 0.0,
-  "week_pnl": 29.61,
-  "daily_limit": -59.71,
-  "weekly_limit": -119.42
+  "day_pnl": -9.33,
+  "week_pnl": 20.28,
+  "daily_limit": -59.17,
+  "weekly_limit": -118.33
  },
  "log": [
+  {
+   "t": "2026-08-20 13:42",
+   "m": "EXIT XAUUSD x1.53 @ 4548.5500 (stop) P/L $-9.33 / -1.03R"
+  },
   {
    "t": "2026-08-20 12:47",
    "m": "OPEN GOLD SHORT XAUUSD x1.53 @ 4542.4500 stop 4548.4 T1 4533.91"
@@ -1788,15 +1804,15 @@
   "spy": 769.06
  },
  "periods": {
-  "day": 0,
-  "week": 25.65,
-  "month": -5.76,
-  "quarter": -5.76,
-  "half": -5.76,
-  "year": -5.76,
-  "two_year": -5.76,
-  "all": -5.76,
-  "all_pct": -0.58
+  "day": -9.33,
+  "week": 16.32,
+  "month": -15.09,
+  "quarter": -15.09,
+  "half": -15.09,
+  "year": -15.09,
+  "two_year": -15.09,
+  "all": -15.09,
+  "all_pct": -1.51
  },
  "rejected": [
   {
@@ -1808,21 +1824,26 @@
    "ticker": "SRPT",
    "kind": "swing",
    "why": "already_open"
+  },
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "cooldown_after_loss"
   }
  ],
- "updated_utc": "2026-08-20T09:47:25.425734+00:00",
- "updated_israel": "2026-08-20 12:47",
+ "updated_utc": "2026-08-20T10:42:13.999228+00:00",
+ "updated_israel": "2026-08-20 13:42",
  "market": {
   "open": false,
-  "et": "05:47",
-  "il": "12:47"
+  "et": "06:42",
+  "il": "13:42"
  },
  "stats": {
-  "trades": 29,
-  "win_rate": 55.2,
-  "pf": 0.96,
-  "avg_r": 0.01,
-  "expectancy": -0.2,
+  "trades": 30,
+  "win_rate": 53.3,
+  "pf": 0.91,
+  "avg_r": -0.03,
+  "expectancy": -0.5,
   "best": 25.41,
   "worst": -22.5
  },
@@ -2219,8 +2240,8 @@
    "t": "ULCC",
    "sec": "travel",
    "px": 5.99,
-   "trend": -12.4,
-   "rsi": 40,
+   "trend": -12.2,
+   "rsi": 39,
    "rvol": 0.6,
    "df": 0,
    "state": "none"
@@ -2289,7 +2310,7 @@
    "t": "GT",
    "sec": "consumer",
    "px": 5.99,
-   "trend": -9.3,
+   "trend": -8.1,
    "rsi": 37,
    "rvol": 0.7,
    "df": 1,
@@ -2299,7 +2320,7 @@
    "t": "UAA",
    "sec": "consumer",
    "px": 5.25,
-   "trend": -17.3,
+   "trend": -16.9,
    "rsi": 32,
    "rvol": 1.1,
    "df": 0,
@@ -2686,7 +2707,7 @@
    "t": "DE",
    "sec": "premium",
    "px": 580.63,
-   "trend": -3.7,
+   "trend": -3.5,
    "state": "premium"
   },
   {
@@ -2721,7 +2742,7 @@
    "t": "TGT",
    "sec": "premium",
    "px": 159.0,
-   "trend": 13.9,
+   "trend": 14.4,
    "state": "premium"
   },
   {
@@ -2854,7 +2875,7 @@
    "t": "IIPR",
    "sec": "premium",
    "px": 56.2,
-   "trend": -7.1,
+   "trend": -7.4,
    "state": "premium"
   },
   {
@@ -2875,7 +2896,7 @@
    "t": "AWK",
    "sec": "premium",
    "px": 138.71,
-   "trend": 5.3,
+   "trend": 4.8,
    "state": "premium"
   },
   {
@@ -2896,7 +2917,7 @@
    "t": "ECL",
    "sec": "premium",
    "px": 285.62,
-   "trend": 3.8,
+   "trend": 3.9,
    "state": "premium"
   },
   {
@@ -2943,10 +2964,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 965,
+   "bars": 976,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4542.6,
+   "last_price": 4550.4,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -2958,21 +2979,21 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 0,
-    "pnl": 0
+    "trades": 1,
+    "pnl": -9.33
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 3,
-   "heat": 51.89,
+   "open": 2,
+   "heat": 43.02,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 2
+    "blocked": 3
    }
   },
   "news": {
@@ -2981,7 +3002,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 19,
    "covered": 3,
-   "updated": "2026-08-20 12:47"
+   "updated": "2026-08-20 13:42"
   }
  },
  "gold_today": {
@@ -2995,10 +3016,10 @@
   },
   "gold": {
    "n": 20,
-   "exp": 0.54,
-   "pf": 1.11,
-   "avg_r": 0.07,
-   "status": "ok"
+   "exp": -0.5,
+   "pf": 0.91,
+   "avg_r": -0.02,
+   "status": "warn"
   },
   "day": {
    "n": 0,
@@ -3121,7 +3142,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 21.53,
-   "trend": 5.0,
+   "trend": 4.1,
    "rsi": 51,
    "rvol": 1.1,
    "near": false
@@ -3131,9 +3152,9 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 3.41,
-   "trend": -35.7,
+   "trend": -37.0,
    "rsi": 34,
-   "rvol": 0.5,
+   "rvol": 0.4,
    "near": false
   },
   {
@@ -3191,9 +3212,9 @@
    "list": "מעניינות",
    "grp": "07/26",
    "px": 17.04,
-   "trend": 24.8,
-   "rsi": 64,
-   "rvol": 0.6,
+   "trend": 22.7,
+   "rsi": 65,
+   "rvol": 0.5,
    "near": true
   },
   {
@@ -3201,7 +3222,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 1.22,
-   "trend": -21.8,
+   "trend": -21.6,
    "rsi": 39,
    "rvol": 0.3,
    "near": false
@@ -3211,7 +3232,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 4.46,
-   "trend": -6.1,
+   "trend": -6.7,
    "rsi": 43,
    "rvol": 0.7,
    "near": false
@@ -3371,9 +3392,9 @@
    "list": "לפני פריצה",
    "grp": "07/26",
    "px": 17.04,
-   "trend": 24.8,
-   "rsi": 64,
-   "rvol": 0.6,
+   "trend": 22.7,
+   "rsi": 65,
+   "rvol": 0.5,
    "near": true
   }
  ],
@@ -3575,10 +3596,10 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+    "summary": "דיווח שלילי · הוצלב ב-2 מקורות שונים",
     "dir": "neg",
     "tag": null,
-    "sources": 1,
+    "sources": 2,
     "title": "Silver prices today, Wednesday, August 19, 2026:  Silver rises in early trading on lower rate-hike expectations",
     "url": "https://finance.yahoo.com/personal-finance/investing/article/silver-prices-today-wednesday-august-19-2026-silver-rises-in-early-trading-on-lower-rate-hike-expectations-161336926.html",
     "src": "Yahoo Personal Finance",
@@ -3586,6 +3607,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-20 12:47"
+  "updated": "2026-08-20 13:42"
  }
 }
