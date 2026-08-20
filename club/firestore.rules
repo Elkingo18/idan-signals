@@ -43,6 +43,14 @@ rules_version = '2';
 //  The keys are no longer handed out to other members, which was the actual
 //  leak. Do not print a key anywhere it can be photographed.
 //
+//  v7 · 20.8.2026 - 'idanList' joins the privilege deny list: the weekly
+//  watchlist is a 350$ purchase, so a member writing that field on their own
+//  card would BE the purchase. And the list itself moves behind a gate: the
+//  new /premium collection is readable only by members whose card carries
+//  idanList:true - set by Idan's hand after the money arrived. (The interim
+//  v4.2 location, pub/idanlist, was world-readable by the pub collection's
+//  nature; the app reads premium first and falls back until this is pasted.)
+//
 //  v6 · 18.8.2026 - 'shopOpen' joins the privilege deny list. Idan opens the
 //  shop to one member at a time, so a member writing that field on their own
 //  card would BE the purchase. Hiding the tab is the courtesy; this is the lock.
@@ -96,7 +104,7 @@ service cloud.firestore {
     function notPrivilege() {
       return !request.resource.data.diff(resource.data).affectedKeys()
               .hasAny(['allowed','brokerLinked','role','admin','owner',
-                       'slots','paid','handle','handleLower','shopOpen']);
+                       'slots','paid','handle','handleLower','shopOpen','idanList']);
     }
     match /users/{uid} {
       allow read:   if isMe(uid) || owner();
@@ -168,6 +176,16 @@ service cloud.firestore {
     // screen, so nobody else gets to speak on it.
     match /pub/{doc} {
       allow read:  if true;
+      allow write: if owner();
+    }
+    // v7: what was PAID FOR is not world-readable. Idan's weekly list lives
+    // here; the read gate is the idanList flag on the reader's own card,
+    // which only Idan can set (see the deny list above).
+    match /premium/{doc} {
+      allow read:  if owner()
+                   || (signedIn()
+                       && get(/databases/$(database)/documents/users/$(request.auth.uid))
+                          .data.idanList == true);
       allow write: if owner();
     }
     match /updates/{id} {
