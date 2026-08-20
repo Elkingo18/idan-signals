@@ -126,6 +126,9 @@
 //|    day_target and day_loss_stop, so "armed but running without    |
 //|    the target" can be seen on the club screen instead of guessed. |
 //+------------------------------------------------------------------+
+//|  v1.16 - the heartbeat learns its own name: each instance also    |
+//|    writes idan_drawer_gold_<magic>.json, so three drawers on one  |
+//|    server (the 20.8 plan) stop overwriting each other's pulse.    |
 //|  v1.15 - a deposit is money MOVED, not money MADE.  The day's     |
 //|    P&L now subtracts every DEAL_TYPE_BALANCE operation since the  |
 //|    day's anchor (kept in the day file), refreshed every 5s.  So a |
@@ -136,7 +139,7 @@
 //+------------------------------------------------------------------+
 #property copyright "Idan Trader"
 #property link      "idan money club"
-#property version   "1.15"
+#property version   "1.16"
 #property description "Drawer replica of the copied gold bot. Disarmed until InpArmed=true."
 
 #include <Trade/Trade.mqh>
@@ -599,7 +602,7 @@ int OnInit()
 
    if(g_legsCap < 8)
       Print("IdanDrawerGold: WARNING - below 8 rungs the ladder is cut so often that the bad days stack. On the master's own record 7 rungs lost $6,898 over three months and its worst day was 14.6x its worst basket, so the account-size gate understates the risk at this depth.");
-   PrintFormat("IdanDrawerGold v1.15 %s | sym=%s depth=%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
+   PrintFormat("IdanDrawerGold v1.16 %s | sym=%s depth=%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
                (g_ok ? "READY" : "HELD"), g_sym, g_legsCap, full, LadderReach(), g_contract, g_minBal,
                (InpDailyTargetUsd > 0 ? StringFormat("+$%.0f", InpDailyTargetUsd) : "off"),
                (InpDailyStopUsd   > 0 ? StringFormat("-$%.0f", InpDailyStopUsd)   : "off"),
@@ -1001,7 +1004,7 @@ void Beat()
    double px = (have && QuoteOk()) ? ExitPrice(dir) : 0;
    double mv = (have && px > 0) ? (px - vwap) * dir : 0;
    string j = StringFormat(
-      "{\"bot\":\"drawer_gold\",\"v\":\"1.15\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
+      "{\"bot\":\"drawer_gold\",\"v\":\"1.16\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
       "\"symbol\":\"%s\",\"legs\":%d,\"max_legs\":%d,\"dir\":%d,\"lots\":%.2f,"
       "\"vwap\":%.2f,\"price\":%.2f,\"move\":%.3f,\"float\":%.2f,\"day\":%.2f,"
       "\"day_target\":%.2f,\"day_loss_stop\":%.2f,\"day_deposits\":%.2f,"
@@ -1015,6 +1018,13 @@ void Beat()
       AccountInfoDouble(ACCOUNT_MARGIN_FREE),
       (AccountInfoInteger(ACCOUNT_TRADE_MODE) == ACCOUNT_TRADE_MODE_DEMO ? "true" : "false"));
    int h = FileOpen("idan_drawer_gold.json", FILE_WRITE | FILE_TXT | FILE_ANSI | FILE_COMMON);
+   if(h != INVALID_HANDLE) { FileWriteString(h, j); FileClose(h); }
+   // 1.16: three drawers on one machine cannot share one heartbeat file.
+   // Each instance also writes its own, keyed by the magic - the same key
+   // that already separates the day files and the baskets. The fixed name
+   // stays so the mirror that watches a single drawer keeps working.
+   h = FileOpen("idan_drawer_gold_" + IntegerToString((long)InpMagic) + ".json",
+                FILE_WRITE | FILE_TXT | FILE_ANSI | FILE_COMMON);
    if(h != INVALID_HANDLE) { FileWriteString(h, j); FileClose(h); }
 }
 //+------------------------------------------------------------------+
