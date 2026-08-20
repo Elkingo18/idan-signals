@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-20 17:36",
+  "updated_israel": "2026-08-20 17:38",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "skip: no burst 1.66atr",
-    "age_sec": 13.9,
+    "age_sec": 7.9,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 82830.7,
+    "age_sec": 82904.7,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,7 +67,7 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 4.8,
+    "age_sec": 3.9,
     "status": "ok",
     "symbol": "XAUUSD+",
     "margin_free": 12062.88,
@@ -79,13 +79,13 @@
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1119.24,
-    "balance": 10.71,
-    "day_gross": -3.91,
+    "equity": 1054.31,
+    "balance": 86.7,
+    "day_gross": -6.92,
     "day_open_equity": 1121.3,
-    "day_pct": -0.35,
-    "open_count": 3,
-    "open_gross": -20.96,
+    "day_pct": -0.62,
+    "open_count": 4,
+    "open_gross": -19.67,
     "pending": 0,
     "scan": {
      "universe_json": 70,
@@ -95,9 +95,9 @@
      "file": "IBKR-swing.csv",
      "file_ok": true
     },
-    "broker_equity": 908.77,
-    "age_sec": 8337.0,
-    "status": "stale",
+    "broker_equity": 910.06,
+    "age_sec": 70.9,
+    "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
@@ -109,13 +109,13 @@
     "size": 45,
     "unit": "share",
     "entry": 8.6622,
-    "price": 8.1961,
-    "gross": -20.98,
+    "price": 8.186,
+    "gross": -21.43,
     "fee_est": 2.0,
     "notional": 389.8,
-    "pct_pos": -5.38,
-    "pct_acct": -1.87,
-    "net_est": -22.98
+    "pct_pos": -5.5,
+    "pct_acct": -2.03,
+    "net_est": -23.43
    },
    {
     "bot": "swing",
@@ -124,13 +124,13 @@
     "size": 85,
     "unit": "share",
     "entry": 3.4318,
-    "price": 3.28,
-    "gross": -12.9,
+    "price": 3.304,
+    "gross": -10.86,
     "fee_est": 2.0,
     "notional": 291.7,
-    "pct_pos": -4.42,
-    "pct_acct": -1.15,
-    "net_est": -14.9
+    "pct_pos": -3.72,
+    "pct_acct": -1.03,
+    "net_est": -12.86
    },
    {
     "bot": "swing",
@@ -139,43 +139,46 @@
     "size": 20,
     "unit": "share",
     "entry": 16.44,
-    "price": 17.0862,
-    "gross": 12.92,
+    "price": 17.126,
+    "gross": 13.72,
     "fee_est": 2.0,
     "notional": 328.8,
-    "pct_pos": 3.93,
-    "pct_acct": 1.15,
-    "net_est": 10.92
+    "pct_pos": 4.17,
+    "pct_acct": 1.3,
+    "net_est": 11.72
+   },
+   {
+    "bot": "swing",
+    "symbol": "SRPT",
+    "side": "BUY",
+    "size": 17,
+    "unit": "share",
+    "entry": 18.7788,
+    "price": 18.7141,
+    "gross": -1.1,
+    "fee_est": 2.0,
+    "notional": 319.24,
+    "pct_pos": -0.34,
+    "pct_acct": -0.1,
+    "net_est": -3.1
    }
   ],
   "totals": {
-   "open_gross": -20.96,
-   "open_fee_est": 6.0,
-   "open_net_est": -26.96,
-   "open_count": 3,
-   "day_gross": 11957.46,
+   "open_gross": -19.67,
+   "open_fee_est": 8.0,
+   "open_net_est": -27.67,
+   "open_count": 4,
+   "day_gross": 11954.45,
    "day_fee": 714.04,
-   "day_net": 11243.42,
-   "day_pct": 35.62,
-   "equity": 33813.1,
+   "day_net": 11240.41,
+   "day_pct": 35.61,
+   "equity": 33748.17,
    "day_open_equity": 33568.44,
    "pocket_since_start": -1225.98,
    "fee_since_start": 1856.96
   }
  },
  "events": [
-  {
-   "t": "21:57",
-   "day": "2026-08-19",
-   "kind": "close",
-   "bot": "drawer",
-   "symbol": "XAUUSD+",
-   "side": "BUY",
-   "size": 0.01,
-   "unit": "lot",
-   "price": 4494.88,
-   "gross": -0.25
-  },
   {
    "t": "21:59",
    "day": "2026-08-19",
@@ -1084,14 +1087,25 @@
    "size": 20,
    "unit": "share",
    "price": 16.44
+  },
+  {
+   "t": "17:38",
+   "day": "2026-08-20",
+   "kind": "open",
+   "bot": "swing",
+   "symbol": "SRPT",
+   "side": "BUY",
+   "size": 17,
+   "unit": "share",
+   "price": 18.7788
   }
  ],
- "updated_utc": "2026-08-20T14:36:57.444260+00:00",
- "updated_israel": "2026-08-20 17:36",
+ "updated_utc": "2026-08-20T14:38:10.969962+00:00",
+ "updated_israel": "2026-08-20 17:38",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.20 17:36:43",
+  "updated": "2026.08.20 17:38:03",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1112,7 +1126,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst 1.66atr",
-  "spread_points": 26.0,
+  "spread_points": 37.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1134,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 8202.5
+  "age_sec": 8276.5
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1159,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 82830.7
+  "age_sec": 82904.7
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.15",
-  "t": 1787247412,
+  "t": 1787247487,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1174,7 +1188,7 @@
   "equity": 12062.88,
   "margin_free": 12062.88,
   "is_demo": true,
-  "age_sec": 4.8,
+  "age_sec": 3.9,
   "ok": true,
   "blocked": ""
  },
@@ -1221,10 +1235,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 908.77,
+  "equity": 910.06,
   "realized_pnl": -70.27,
-  "open_pnl": -20.96,
-  "return_pct": -9.12
+  "open_pnl": -19.67,
+  "return_pct": -8.99
  },
  "positions": [
   {
@@ -1233,9 +1247,9 @@
    "currency": "USD",
    "qty": 45.0,
    "avg_cost": 8.6622,
-   "mark": 8.1961,
-   "value": 368.82,
-   "unrealized": -20.98,
+   "mark": 8.186,
+   "value": 368.37,
+   "unrealized": -21.43,
    "realized": 0.0,
    "source": "engine"
   },
@@ -1245,9 +1259,9 @@
    "currency": "USD",
    "qty": 85.0,
    "avg_cost": 3.4318,
-   "mark": 3.28,
-   "value": 278.8,
-   "unrealized": -12.9,
+   "mark": 3.304,
+   "value": 280.84,
+   "unrealized": -10.86,
    "realized": 0.0,
    "source": "engine"
   },
@@ -1257,9 +1271,21 @@
    "currency": "USD",
    "qty": 20.0,
    "avg_cost": 16.44,
-   "mark": 17.0862,
-   "value": 341.72,
-   "unrealized": 12.92,
+   "mark": 17.126,
+   "value": 342.52,
+   "unrealized": 13.72,
+   "realized": 0.0,
+   "source": "engine"
+  },
+  {
+   "symbol": "SRPT",
+   "sec_type": "STK",
+   "currency": "USD",
+   "qty": 17.0,
+   "avg_cost": 18.7788,
+   "mark": 18.7141,
+   "value": 318.14,
+   "unrealized": -1.1,
    "realized": 0.0,
    "source": "engine"
   }
@@ -1267,84 +1293,35 @@
  "fills_today": [],
  "engine_wallet": {
   "start": 1000.0,
-  "cash": 10.707685216367324,
-  "equity": 1119.24,
-  "realized_pnl": 105.57,
-  "open_pnl": 21.13,
+  "cash": 86.69768521636752,
+  "equity": 1054.31,
+  "realized_pnl": 102.56,
+  "open_pnl": -40.78,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 11.92,
+  "return_pct": 5.43,
   "name": "UHTA"
  },
  "signals_swing": [
   {
    "kind": "swing",
-   "ticker": "RXRX",
-   "side": "long",
-   "state": "BUY_NOW",
-   "price": 3.5,
-   "entry": 3.5,
-   "stop": 3.2045,
-   "t1": 4.091,
-   "t2": 4.5343,
-   "rr1": 2.0,
-   "rsi": 60.2,
-   "rvol": 1.91,
-   "score": 91,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": 3.98,
-   "above_ma50_pct": 7.01,
-   "news": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "These Are the Stocks Wall Street Is Betting Against the Most",
-     "src": "GuruFocus.com",
-     "time": "2026-08-12 19:30"
-    },
-    {
-     "summary": "דיווח ניטרלי · הוצלב ב-2 מקורות שונים",
-     "dir": "neu",
-     "tag": null,
-     "sources": 2,
-     "title": "The Zacks Analyst Blog Highlights Recursion Pharmaceuticals, Schrodinger, Relay Therapeutics and Absci",
-     "src": "Zacks",
-     "time": "2026-08-18 07:43"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Contineum, Disc Medicine, Recursion Advance Pipelines Ahead of Catalysts, Morgan Stanley Says",
-     "src": "MT Newswires",
-     "time": "2026-08-17 15:01"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
    "ticker": "SRPT",
    "side": "long",
-   "state": "BUY_NOW",
-   "price": 19.73,
-   "entry": 19.73,
-   "stop": 18.2769,
-   "t1": 22.6362,
-   "t2": 24.8158,
+   "state": "WATCH_BUY",
+   "price": 18.6879,
+   "entry": 18.73,
+   "stop": 17.241,
+   "t1": 21.7079,
+   "t2": 23.9414,
    "rr1": 2.0,
-   "rsi": 68.8,
-   "rvol": 1.65,
-   "score": 80,
+   "rsi": 58.9,
+   "rvol": 0.12,
+   "score": 78,
    "shares": 0,
    "notional": 0.0,
    "risk_dollars": 0.0,
    "room": 22.71,
-   "above_ma50_pct": 15.05,
+   "above_ma50_pct": 8.62,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-3 מקורות שונים",
@@ -1377,50 +1354,50 @@
   },
   {
    "kind": "swing",
-   "ticker": "NEO",
+   "ticker": "WEN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 16.66,
-   "entry": 16.92,
-   "stop": 15.7995,
-   "t1": 19.1609,
-   "t2": 20.8416,
+   "price": 8.745,
+   "entry": 8.8,
+   "stop": 8.1231,
+   "t1": 10.1537,
+   "t2": 11.169,
    "rr1": 2.0,
-   "rsi": 62.6,
-   "rvol": 0.66,
+   "rsi": 61.0,
+   "rvol": 0.1,
    "score": 78,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": 20.79,
-   "above_ma50_pct": 17.27,
+   "shares": 1,
+   "notional": 8.8,
+   "risk_dollars": 0.68,
+   "room": 10.54,
+   "above_ma50_pct": 14.58,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
      "dir": "pos",
      "tag": null,
      "sources": 1,
-     "title": "NeoGenomics (NEO) Is Up 8.4% After Q2 Profit Return And Raised 2026 Outlook – Has The Bull Case Changed?",
-     "src": "Simply Wall St.",
-     "time": "2026-08-08 00:15"
+     "title": "Wendy’s Jumps 5% on Nelson Peltz Take-Private Report, COO Role Revival",
+     "src": "24/7 Wall St.",
+     "time": "2026-08-19 17:53"
     },
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": null,
      "sources": 1,
-     "title": "3 Stocks Under $50 with Open Questions",
+     "title": "What worked for Wendy's five years ago isn't working for consumers today",
+     "src": "Yahoo Finance Video",
+     "time": "2026-08-19 20:54"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Why Wendy's (WEN) Stock Is Up Today",
      "src": "StockStory",
-     "time": "2026-08-09 21:17"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "NeoGenomics, Inc. (NEO) Hit a 52 Week High, Can the Run Continue?",
-     "src": "Zacks",
-     "time": "2026-08-04 13:15"
+     "time": "2026-08-19 22:22"
     }
    ]
   },
@@ -1429,20 +1406,20 @@
    "ticker": "PRCH",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 17.04,
+   "price": 17.03,
    "entry": 17.47,
-   "stop": 16.0099,
-   "t1": 20.3903,
-   "t2": 22.5805,
+   "stop": 16.0456,
+   "t1": 20.3188,
+   "t2": 22.4555,
    "rr1": 2.0,
-   "rsi": 64.6,
-   "rvol": 0.49,
+   "rsi": 64.5,
+   "rvol": 0.05,
    "score": 70,
    "shares": 0,
    "notional": 0.0,
    "risk_dollars": 0.0,
    "room": 19.72,
-   "above_ma50_pct": 23.85,
+   "above_ma50_pct": 22.44,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
@@ -1461,104 +1438,6 @@
      "title": "American Express, Biogen upgraded: Wall Street's top analyst calls",
      "src": "The Fly",
      "time": "2026-07-13 13:41"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
-   "ticker": "TNDM",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 23.46,
-   "entry": 23.605,
-   "stop": 21.5095,
-   "t1": 27.796,
-   "t2": 30.9393,
-   "rr1": 2.0,
-   "rsi": 69.2,
-   "rvol": 0.74,
-   "score": 64,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": 30.14,
-   "above_ma50_pct": 32.52,
-   "news": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Tandem Diabetes Care Maps Growth Plan With Pharmacy Shift and Tubeless Mobi",
-     "src": "MarketBeat",
-     "time": "2026-08-18 06:02"
-    },
-    {
-     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-     "dir": "neg",
-     "tag": null,
-     "sources": 1,
-     "title": "TNDM Q2 Loss Narrower Than Expected, Revenues Miss, Stock Up",
-     "src": "Zacks",
-     "time": "2026-08-12 12:39"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 2,
-     "title": "5 Must-Read Analyst Questions From Tandem Diabetes’s Q2 Earnings Call",
-     "src": "StockStory",
-     "time": "2026-08-15 04:45"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
-   "ticker": "IBTA",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 37.9,
-   "entry": 39.01,
-   "stop": 34.7042,
-   "t1": 47.6216,
-   "t2": 54.0803,
-   "rr1": 2.0,
-   "rsi": 60.1,
-   "rvol": 0.36,
-   "score": 57,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": 54.175,
-   "above_ma50_pct": 18.11,
-   "news": [
-    {
-     "summary": "דיווח חיובי · שיתוף פעולה חדש · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": "שיתוף פעולה",
-     "sources": 1,
-     "title": "7-Eleven announces new promotions partnership",
-     "src": "C-Store Dive",
-     "time": "2026-08-06 08:53"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 2,
-     "title": "Ibotta’s Q2 Earnings Call: Our Top 5 Analyst Questions",
-     "src": "StockStory",
-     "time": "2026-08-12 00:45"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "1 Stock Under $50 for Long-Term Investors and 2 We Ignore",
-     "src": "StockStory",
-     "time": "2026-08-17 22:22"
     }
    ]
   }
@@ -1583,25 +1462,9 @@
   "max_price": 130.0,
   "cash_reserve_usd": 75.0
  },
- "rejected": [
-  {
-   "ticker": "RXRX",
-   "kind": "swing",
-   "why": "size_zero"
-  },
-  {
-   "ticker": "SRPT",
-   "kind": "swing",
-   "why": "size_zero"
-  },
-  {
-   "ticker": "XAUUSD",
-   "kind": "gold",
-   "why": "already_open"
-  }
- ],
+ "rejected": [],
  "game": {
-  "xp": 4645,
+  "xp": 4660,
   "level": 9,
   "streak": 0,
   "best_streak": 4,
@@ -1709,7 +1572,7 @@
    "name": "👹 בוס היום",
    "target": 89.7,
    "legend": 224.26,
-   "done": -2.06,
+   "done": -66.99,
    "base": 1121.3,
    "pct": 0,
    "pct_legend": 0,
@@ -1717,7 +1580,7 @@
    "legendary": false
   },
   "level_name": "🌠 אגדה",
-  "xp_this_level": 609,
+  "xp_this_level": 624,
   "xp_next_level": 741
  },
  "health": {
@@ -1727,8 +1590,8 @@
   },
   "gold": {
    "n": 20,
-   "exp": -1.07,
-   "pf": 0.68,
+   "exp": -0.74,
+   "pf": 0.75,
    "avg_r": -0.06,
    "status": "warn"
   },
