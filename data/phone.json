@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-20 19:07",
+  "updated_israel": "2026-08-20 19:08",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 3,
     "enabled": true,
     "note": "skip: no burst 0.40atr",
-    "age_sec": 15.7,
+    "age_sec": 20.6,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 88272.5,
+    "age_sec": 88337.4,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -54,32 +54,32 @@
     "name": "בוט המגירה",
     "icon": "🗄️",
     "market": "XAUUSD",
-    "equity": 11716.81,
-    "balance": 11716.81,
-    "day_gross": -99.35,
+    "equity": 11716.47,
+    "balance": 11716.78,
+    "day_gross": -99.38,
     "day_open_equity": 11816.16,
     "day_pct": -0.84,
-    "open_count": 0,
-    "open_gross": 0.0,
-    "open_lots": 0.0,
-    "legs": 0,
+    "open_count": 1,
+    "open_gross": -0.31,
+    "open_lots": 0.01,
+    "legs": 1,
     "max_legs": 8,
-    "vwap": 0.0,
+    "vwap": 4520.36,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 3.2,
+    "age_sec": 3.1,
     "status": "ok",
     "symbol": "XAUUSD+",
-    "margin_free": 11716.81,
+    "margin_free": 11707.43,
     "blocked": null,
-    "note": "הרפליקה של גולדטראפ - עומק 0 מתוך 8 מותרים"
+    "note": "הרפליקה של גולדטראפ - עומק 1 מתוך 8 מותרים"
    },
    {
     "id": "swing",
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1057.57,
+    "equity": 1061.66,
     "balance": 82.25,
     "day_gross": -11.37,
     "day_open_equity": 1121.3,
@@ -96,12 +96,27 @@
      "file_ok": true
     },
     "broker_equity": 907.85,
-    "age_sec": 338.7,
+    "age_sec": 103.6,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
   "rows": [
+   {
+    "bot": "drawer",
+    "symbol": "XAUUSD+",
+    "side": "BUY",
+    "size": 0.01,
+    "unit": "lot",
+    "entry": 4520.36,
+    "price": 4520.05,
+    "gross": -0.31,
+    "fee_est": 0.28,
+    "notional": 4520.36,
+    "pct_pos": -0.01,
+    "pct_acct": -0.0,
+    "net_est": -0.59
+   },
    {
     "bot": "swing",
     "symbol": "NVAX",
@@ -114,7 +129,7 @@
     "fee_est": 2.0,
     "notional": 389.8,
     "pct_pos": -3.79,
-    "pct_acct": -1.4,
+    "pct_acct": -1.39,
     "net_est": -16.77
    },
    {
@@ -129,7 +144,7 @@
     "fee_est": 2.0,
     "notional": 291.7,
     "pct_pos": -2.67,
-    "pct_acct": -0.74,
+    "pct_acct": -0.73,
     "net_est": -9.8
    },
    {
@@ -144,38 +159,26 @@
     "fee_est": 2.0,
     "notional": 319.24,
     "pct_pos": 0.22,
-    "pct_acct": 0.07,
+    "pct_acct": 0.06,
     "net_est": -1.31
    }
   ],
   "totals": {
-   "open_gross": -21.88,
-   "open_fee_est": 6.0,
-   "open_net_est": -27.88,
-   "open_count": 3,
-   "day_gross": 11503.06,
+   "open_gross": -22.19,
+   "open_fee_est": 6.28,
+   "open_net_est": -28.47,
+   "open_count": 4,
+   "day_gross": 11503.03,
    "day_fee": 727.76,
-   "day_net": 10775.3,
+   "day_net": 10775.27,
    "day_pct": 34.27,
-   "equity": 33304.49,
+   "equity": 33308.24,
    "day_open_equity": 33568.44,
    "pocket_since_start": -1340.57,
    "fee_since_start": 1870.68
   }
  },
  "events": [
-  {
-   "t": "18:18",
-   "day": "2026-08-20",
-   "kind": "close",
-   "bot": "gold",
-   "symbol": "XAUUSD",
-   "side": "BUY",
-   "size": 0.16,
-   "unit": "lot",
-   "price": 4535.11,
-   "gross": 2.08
-  },
   {
    "t": "18:18",
    "day": "2026-08-20",
@@ -1084,14 +1087,25 @@
    "unit": "lot",
    "price": 4519.97,
    "gross": 0.9
+  },
+  {
+   "t": "19:08",
+   "day": "2026-08-20",
+   "kind": "open",
+   "bot": "drawer",
+   "symbol": "XAUUSD+",
+   "side": "BUY",
+   "size": 0.01,
+   "unit": "lot",
+   "price": 4520.36
   }
  ],
- "updated_utc": "2026-08-20T16:07:38.694555+00:00",
- "updated_israel": "2026-08-20 19:07",
+ "updated_utc": "2026-08-20T16:08:43.672684+00:00",
+ "updated_israel": "2026-08-20 19:08",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.20 19:07:23",
+  "updated": "2026.08.20 19:08:23",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1112,7 +1126,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst 0.40atr",
-  "spread_points": 24.0,
+  "spread_points": 13.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1134,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 13644.3
+  "age_sec": 13709.2
  },
  "slave": {
   "ok": false,
@@ -1145,24 +1159,24 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 88272.5
+  "age_sec": 88337.4
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.15",
-  "t": 1787252855,
+  "t": 1787252920,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
-  "legs": 0,
+  "legs": 1,
   "max_legs": 8,
-  "dir": 0,
-  "lots": 0.0,
-  "vwap": 0.0,
-  "price": 0.0,
-  "move": 0.0,
-  "float": 0.0,
-  "day": -99.35,
+  "dir": 1,
+  "lots": 0.01,
+  "vwap": 4520.36,
+  "price": 4520.05,
+  "move": -0.31,
+  "float": -0.31,
+  "day": -99.38,
   "day_target": 1200.0,
   "day_loss_stop": 0.0,
   "day_deposits": 0.0,
@@ -1170,11 +1184,11 @@
   "day_reason": "",
   "mixed": false,
   "closing": false,
-  "balance": 11716.81,
-  "equity": 11716.81,
-  "margin_free": 11716.81,
+  "balance": 11716.78,
+  "equity": 11716.47,
+  "margin_free": 11707.43,
   "is_demo": true,
-  "age_sec": 3.2,
+  "age_sec": 3.1,
   "ok": true,
   "blocked": ""
  },
@@ -1268,12 +1282,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 82.24853521636771,
-  "equity": 1057.57,
+  "equity": 1061.66,
   "realized_pnl": 98.11,
-  "open_pnl": -33.08,
+  "open_pnl": -28.98,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 5.76,
+  "return_pct": 6.17,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1282,20 +1296,20 @@
    "ticker": "WEN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 8.735,
+   "price": 8.74,
    "entry": 8.8,
    "stop": 8.1186,
    "t1": 10.1628,
    "t2": 11.1848,
    "rr1": 2.0,
-   "rsi": 60.8,
+   "rsi": 60.9,
    "rvol": 0.17,
    "score": 78,
    "shares": 0,
    "notional": 0.0,
    "risk_dollars": 0.0,
    "room": 10.54,
-   "above_ma50_pct": 14.46,
+   "above_ma50_pct": 14.52,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -1331,20 +1345,20 @@
    "ticker": "RXRX",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 3.3301,
+   "price": 3.3399,
    "entry": 3.42,
    "stop": 3.1193,
    "t1": 4.0214,
    "t2": 4.4724,
    "rr1": 2.0,
-   "rsi": 53.4,
+   "rsi": 53.8,
    "rvol": 0.86,
    "score": 77,
    "shares": 2,
    "notional": 6.84,
    "risk_dollars": 0.6,
    "room": 3.98,
-   "above_ma50_pct": 1.75,
+   "above_ma50_pct": 2.04,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -1380,20 +1394,20 @@
    "ticker": "LI",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 12.855,
+   "price": 12.86,
    "entry": 13.015,
    "stop": 12.4074,
    "t1": 14.2302,
    "t2": 15.1417,
    "rr1": 2.0,
-   "rsi": 52.0,
+   "rsi": 52.1,
    "rvol": 0.3,
    "score": 77,
    "shares": 0,
    "notional": 0.0,
    "risk_dollars": 0.0,
    "room": 13.97,
-   "above_ma50_pct": 1.32,
+   "above_ma50_pct": 1.36,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -1426,63 +1440,23 @@
   },
   {
    "kind": "swing",
-   "ticker": "DNLI",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 24.94,
-   "entry": 25.64,
-   "stop": 24.0694,
-   "t1": 28.7812,
-   "t2": 31.1372,
-   "rr1": 2.0,
-   "rsi": 54.3,
-   "rvol": 0.2,
-   "score": 77,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": 28.652,
-   "above_ma50_pct": 2.9,
-   "news": [
-    {
-     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
-     "dir": "pos",
-     "tag": "דוחות",
-     "sources": 4,
-     "title": "Denali Therapeutics (DNLI) Q2 2026 Earnings Call Transcript",
-     "src": "Motley Fool",
-     "time": "2026-08-13 22:32"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Should You Buy, Sell or Hold Biogen Stock After a 9% Rise in a Month?",
-     "src": "Zacks",
-     "time": "2026-08-20 14:12"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
    "ticker": "PRCH",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 17.18,
+   "price": 17.21,
    "entry": 17.47,
    "stop": 16.0456,
    "t1": 20.3188,
    "t2": 22.4555,
    "rr1": 2.0,
-   "rsi": 65.3,
+   "rsi": 65.4,
    "rvol": 0.1,
    "score": 70,
    "shares": 0,
    "notional": 0.0,
    "risk_dollars": 0.0,
    "room": 19.72,
-   "above_ma50_pct": 23.49,
+   "above_ma50_pct": 23.7,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
@@ -1509,20 +1483,20 @@
    "ticker": "HIMS",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 32.16,
+   "price": 32.15,
    "entry": 32.415,
    "stop": 28.6962,
    "t1": 39.8525,
    "t2": 45.4306,
    "rr1": 2.0,
    "rsi": 54.4,
-   "rvol": 0.72,
+   "rvol": 0.74,
    "score": 64,
    "shares": 0,
    "notional": 0.0,
    "risk_dollars": 0.0,
    "room": 40.59,
-   "above_ma50_pct": 0.76,
+   "above_ma50_pct": 0.73,
    "news": [
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -1536,57 +1510,7 @@
    ]
   }
  ],
- "signals_day": [
-  {
-   "kind": "day",
-   "ticker": "PATH",
-   "side": "long",
-   "state": "BUY_NOW",
-   "price": 15.825,
-   "entry": 15.825,
-   "stop": 15.4,
-   "t1": 16.675,
-   "t2": 17.1,
-   "rr1": 2.0,
-   "rsi": 59.0,
-   "rvol": 2.44,
-   "score": 90,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": null,
-   "above_ma50_pct": null,
-   "news": [
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "UiPath Stock Rises 44% in 6 Months: Should You Buy, Hold or Sell?",
-     "src": "Zacks",
-     "time": "2026-08-19 17:18"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "UiPath (PATH) Stock Could Trade Below Fair Value On Its 75% Five Year Fall",
-     "src": "Simply Wall St.",
-     "time": "2026-08-19 01:15"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "uCloudlink Group Inc. Sponsored ADR (UCL) Reports Q2 Loss, Lags Revenue Estimates",
-     "src": "Zacks",
-     "time": "2026-08-18 11:05"
-    }
-   ]
-  }
- ],
+ "signals_day": [],
  "pending_entries": [],
  "scan_universe": {
   "universe_json": 70,
@@ -1608,9 +1532,9 @@
  },
  "rejected": [
   {
-   "ticker": "PATH",
-   "kind": "day",
-   "why": "measurement_only"
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "gold_daily_cap"
   }
  ],
  "game": {
@@ -1722,7 +1646,7 @@
    "name": "👹 בוס היום",
    "target": 89.7,
    "legend": 224.26,
-   "done": -63.73,
+   "done": -59.64,
    "base": 1121.3,
    "pct": 0,
    "pct_legend": 0,
