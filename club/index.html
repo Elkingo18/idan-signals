@@ -5814,12 +5814,23 @@ async function v42AskBuy(){
     toast("📨 הבקשה הגיעה לעידן — הוא יפתח לך אחרי התשלום ✓");
   } catch(e){ toast("לא נשלח (" + (e.code||e.message) + ")"); }
 }
+let V42_IDANLIST_PREM = null;
 function v42SubIdanList(){
   if (_v42IdanSub) return;
   _v42IdanSub = true;
+  /* rules v7: the paid list lives in /premium behind the idanList gate.
+     Until Idan pastes v7 (and for anyone unpaid) that read is DENIED - the
+     error path is the expected path - and the pub copy keeps working. */
+  try {
+    db.collection("premium").doc("idanlist").onSnapshot(d => {
+      V42_IDANLIST_PREM = d.exists ? d.data() : null;
+      if (V42_IDANLIST_PREM) V42_IDANLIST = V42_IDANLIST_PREM;
+      if (CURTAB === "swing") v42WatchCards();
+    }, ()=>{ /* permission denied = not a payer, or v7 not pasted yet */ });
+  } catch(e){}
   try {
     db.collection("pub").doc("idanlist").onSnapshot(d => {
-      V42_IDANLIST = d.exists ? d.data() : null;
+      if (!V42_IDANLIST_PREM) V42_IDANLIST = d.exists ? d.data() : null;
       if (CURTAB === "swing") v42WatchCards();
     }, ()=>{});
   } catch(e){}
@@ -6044,7 +6055,9 @@ function v42AdminCards(){
     '<div class="mini">שורה לכל מניה (או מופרד בפסיקים). מי ששילם — אתה מדליק לו את המתג ברשימת התיקונים למטה, והרשימה נפתחת אצלו.</div>' +
     '<textarea class="fld" id="v42IlSyms" rows="3" placeholder="TSLA, NVDA, AAPL…" style="direction:ltr;margin-top:8px"></textarea>' +
     '<input class="fld" id="v42IlNote" placeholder="משפט על הרשימה של השבוע (לא חובה)" style="margin-top:6px">' +
-    '<div class="btnrow"><button class="btn" onclick="v42IlPublish()">📢 פרסם את הרשימה</button></div></div>';
+    '<div class="btnrow"><button class="btn" onclick="v42IlPublish()">📢 פרסם את הרשימה</button></div>' +
+    '<div class="mini" style="margin-top:8px;line-height:1.8">🛡️ <b>חד-פעמי, כשנוח לך:</b> כדי שהרשימה תהיה חסויה באמת (רק למי ששילם), הדבק את חוקי v7:' +
+    ' console.firebase.google.com ‹ idan-money-club ‹ Firestore ‹ Rules ‹ מחק הכל ‹ הדבק מ-<a href="firestore.rules" target="_blank" style="color:var(--gold)">הקובץ הזה</a> ‹ Publish. עד אז הרשימה עובדת רגיל.</div></div>';
   sec.appendChild(d);
   v42FixListRender();
   v42CpListRender();
@@ -6113,8 +6126,12 @@ function v42CpListRender(){
 async function v42IlPublish(){
   const syms = ($("v42IlSyms").value||"").split(/[\s,;\n]+/).map(s => s.trim().toUpperCase().replace(/[^A-Z0-9.\-]/g,"")).filter(s => s.length >= 1 && s.length <= 8);
   if (!syms.length) return toast("צריך לפחות מניה אחת");
+  const doc = {syms: syms.slice(0,60), note: ($("v42IlNote").value||"").slice(0,200), updated: new Date().toISOString()};
   try {
-    await db.collection("pub").doc("idanlist").set({syms: syms.slice(0,60), note: ($("v42IlNote").value||"").slice(0,200), updated: new Date().toISOString()});
+    /* both homes: /premium is the gated one (rules v7), /pub keeps members
+       working until v7 is pasted - then it can be emptied from the console */
+    await db.collection("premium").doc("idanlist").set(doc).catch(()=>{});
+    await db.collection("pub").doc("idanlist").set(doc);
     v42Confetti(24); toast("👑 הרשימה פורסמה — " + syms.length + " מניות");
   } catch(e){ toast("לא פורסם (" + (e.code||e.message) + ")"); }
 }
