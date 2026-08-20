@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-20 21:09",
+  "updated_israel": "2026-08-20 21:10",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 3,
     "enabled": true,
     "note": "skip: no burst 0.83atr",
-    "age_sec": 7.9,
+    "age_sec": 13.3,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 95584.7,
+    "age_sec": 95650.1,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,7 +67,7 @@
     "vwap": 0.0,
     "enabled": false,
     "day_stop": false,
-    "age_sec": 4.1,
+    "age_sec": 4.6,
     "status": "off",
     "symbol": "XAUUSD+",
     "margin_free": 11613.24,
@@ -85,7 +85,7 @@
     "day_open_equity": 1121.3,
     "day_pct": -1.01,
     "open_count": 3,
-    "open_gross": -28.82,
+    "open_gross": -28.46,
     "pending": 0,
     "scan": {
      "universe_json": 70,
@@ -95,8 +95,8 @@
      "file": "IBKR-swing.csv",
      "file_ok": true
     },
-    "broker_equity": 900.91,
-    "age_sec": 150.9,
+    "broker_equity": 901.27,
+    "age_sec": 216.3,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -109,13 +109,13 @@
     "size": 45,
     "unit": "share",
     "entry": 8.6622,
-    "price": 8.2461,
-    "gross": -18.73,
+    "price": 8.254,
+    "gross": -18.37,
     "fee_est": 2.0,
     "notional": 389.8,
-    "pct_pos": -4.81,
-    "pct_acct": -1.78,
-    "net_est": -20.73
+    "pct_pos": -4.71,
+    "pct_acct": -1.74,
+    "net_est": -20.37
    },
    {
     "bot": "swing",
@@ -149,9 +149,9 @@
    }
   ],
   "totals": {
-   "open_gross": -28.82,
+   "open_gross": -28.46,
    "open_fee_est": 6.0,
-   "open_net_est": -34.82,
+   "open_net_est": -34.46,
    "open_count": 3,
    "day_gross": 11399.49,
    "day_fee": 727.76,
@@ -1086,12 +1086,12 @@
    "gross": -0.63
   }
  ],
- "updated_utc": "2026-08-20T18:09:30.930697+00:00",
- "updated_israel": "2026-08-20 21:09",
+ "updated_utc": "2026-08-20T18:10:36.375798+00:00",
+ "updated_israel": "2026-08-20 21:10",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.20 21:09:23",
+  "updated": "2026.08.20 21:10:23",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1112,7 +1112,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst 0.83atr",
-  "spread_points": 27.0,
+  "spread_points": 21.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 20956.5
+  "age_sec": 21021.9
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1145,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 95584.7
+  "age_sec": 95650.1
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.16",
-  "t": 1787260166,
+  "t": 1787260231,
   "armed": false,
   "why": "Balance 11613 is under the 131760 that 13 rungs (12.20 lots) needs: a bad day here costs about 13176, which is 113% of this account. The deepest ladder this balance carries is InpMaxLegs=8.",
   "symbol": "XAUUSD+",
@@ -1174,7 +1174,7 @@
   "equity": 11613.24,
   "margin_free": 11613.24,
   "is_demo": true,
-  "age_sec": 4.1,
+  "age_sec": 4.6,
   "ok": true,
   "blocked": "Balance 11613 is under the 131760 that 13 rungs (12.20 lots) needs: a bad day here costs about 13176, which is 113% of this account. The deepest ladder this balance carries is InpMaxLegs=8."
  },
@@ -1221,10 +1221,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 900.91,
+  "equity": 901.27,
   "realized_pnl": -70.27,
-  "open_pnl": -28.82,
-  "return_pct": -9.91
+  "open_pnl": -28.46,
+  "return_pct": -9.87
  },
  "positions": [
   {
@@ -1233,9 +1233,9 @@
    "currency": "USD",
    "qty": 45.0,
    "avg_cost": 8.6622,
-   "mark": 8.2461,
-   "value": 371.07,
-   "unrealized": -18.73,
+   "mark": 8.254,
+   "value": 371.43,
+   "unrealized": -18.37,
    "realized": 0.0,
    "source": "engine"
   },
