@@ -1,23 +1,23 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-19T20:42:16Z",
- "updated_israel": "2026-08-19 23:42",
+ "updated_utc": "2026-08-20T14:36:55Z",
+ "updated_israel": "2026-08-20 17:36",
  "mode": "paper",
  "read_only": true,
  "broker": {
-  "net_liquidation": 1001474.82,
+  "net_liquidation": 1001509.21,
   "total_cash": 998970.85,
-  "buying_power": 3996741.94,
+  "buying_power": 3996724.04,
   "currency": "USD",
   "note": "IB paper starts around 1,000,000 virtual dollars. Ignored on purpose."
  },
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 960.43,
+  "equity": 908.77,
   "realized_pnl": -70.27,
-  "open_pnl": 30.7,
-  "return_pct": -3.96
+  "open_pnl": -20.96,
+  "return_pct": -9.12
  },
  "positions": [
   {
@@ -26,21 +26,9 @@
    "currency": "USD",
    "qty": 45.0,
    "avg_cost": 8.6622,
-   "mark": 8.88,
-   "value": 399.6,
-   "unrealized": 9.8,
-   "realized": 0.0,
-   "source": "engine"
-  },
-  {
-   "symbol": "LYFT",
-   "sec_type": "STK",
-   "currency": "USD",
-   "qty": 20.0,
-   "avg_cost": 16.44,
-   "mark": 17.45,
-   "value": 349.0,
-   "unrealized": 20.2,
+   "mark": 8.1961,
+   "value": 368.82,
+   "unrealized": -20.98,
    "realized": 0.0,
    "source": "engine"
   },
@@ -50,26 +38,28 @@
    "currency": "USD",
    "qty": 85.0,
    "avg_cost": 3.4318,
-   "mark": 3.44,
-   "value": 292.4,
-   "unrealized": 0.7,
+   "mark": 3.28,
+   "value": 278.8,
+   "unrealized": -12.9,
+   "realized": 0.0,
+   "source": "engine"
+  },
+  {
+   "symbol": "LYFT",
+   "sec_type": "STK",
+   "currency": "USD",
+   "qty": 20.0,
+   "avg_cost": 16.44,
+   "mark": 17.0862,
+   "value": 341.72,
+   "unrealized": 12.92,
    "realized": 0.0,
    "source": "engine"
   }
  ],
  "manual_positions": [],
  "open_orders": [],
- "fills_today": [
-  {
-   "symbol": "NVAX",
-   "side": "BOT",
-   "qty": 45.0,
-   "price": 8.64,
-   "time": "2026-08-19 17:00:28+00:00",
-   "commission": 1.0001,
-   "realized": 0.0
-  }
- ],
+ "fills_today": [],
  "counts": {
   "engine_positions": 3,
   "manual_positions": 0,
