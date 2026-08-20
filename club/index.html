@@ -1316,7 +1316,7 @@ const OWNER_EMAIL = "idan2189@gmail.com";
    money and on who gets in. */
 const BOSS_TITLE = "The Gold Master · המנהל הראשי";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "4.2.0";
+const APP_VERSION = "4.3.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 /* 2.5.0 — personal QR: ?feed=<key> opens that member's account directly */
@@ -6261,6 +6261,232 @@ COACH.push(
   {sel:'#mainNav [data-t="chat"]', band:"הקהילה", txt:"הצ'אט נהיה דיסקורד: ערוצים בצד — המועדון, איתותים והישגים — הודעות פרטיות, ואפשר לצרף תמונות 📸.", drawer:true},
   {sel:'#mainNav [data-t="swing"]', band:"רשימת המעקב שלך", txt:"בחדר הסווינג יש עכשיו רשימת מעקב אישית — הוסף מניות עם ➕ והמערכת תעקוב בשבילך. ויש גם את הרשימה השבועית של עידן 👑.", drawer:true}
 );
+</script>
+<style id="v43css">
+/* v4.3 — השמות והחברים הקטנים · 20.8.2026 · APP_V43 · shemot */
+.v43fab { position:absolute; z-index:40; border:none; border-radius:50%; width:52px; height:52px; font-size:22px;
+  background:linear-gradient(135deg,#f3d878,#d4af37); color:#221c07; box-shadow:0 6px 18px rgba(0,0,0,.45);
+  cursor:pointer; transition:transform .12s cubic-bezier(.34,1.56,.64,1); animation:v42bounce 3.4s ease-in-out infinite; }
+.v43fab:active { transform:scale(.92); }
+#v43Shop { top:64px; inset-inline-end:12px; }
+#v43Support { position:fixed; bottom:18px; inset-inline-end:14px; z-index:920; width:56px; height:56px; font-size:24px;
+  background:linear-gradient(135deg,#5aaaff,#3d7fd4); color:#fff; border:none; border-radius:50%;
+  box-shadow:0 8px 22px rgba(0,0,0,.5); cursor:pointer; transition:transform .12s; }
+#v43Support:active { transform:scale(.92); }
+#v43MiniCal, #v43Closes { margin:10px 12px 0; border-radius:18px; background:rgba(0,0,0,.22);
+  border:1px solid rgba(255,255,255,.09); padding:10px 12px; }
+#v43MiniCal .h, #v43Closes .h { font-size:12.5px; font-weight:800; color:#cfe3d3; display:flex; align-items:center; gap:6px; }
+#v43MiniCal .h .more, #v43Closes .h .more { margin-inline-start:auto; font-size:11px; color:#f3d878; background:none; border:none; cursor:pointer; text-decoration:underline; }
+#v43MiniCal .days { display:flex; gap:5px; margin-top:8px; overflow-x:auto; padding-bottom:2px; }
+#v43MiniCal .d { flex:none; width:38px; text-align:center; border-radius:11px; padding:5px 0 6px; cursor:pointer;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.07); }
+#v43MiniCal .d b { display:block; font-size:12px; color:#e9f2ea; }
+#v43MiniCal .d span { display:block; font-size:9.5px; margin-top:2px; font-weight:800; }
+#v43MiniCal .d.up { background:rgba(67,217,123,.13); border-color:rgba(67,217,123,.4); }
+#v43MiniCal .d.up span { color:#43d97b; }
+#v43MiniCal .d.dn { background:rgba(255,122,138,.12); border-color:rgba(255,122,138,.4); }
+#v43MiniCal .d.dn span { color:#ff8a97; }
+#v43Closes .row { display:flex; align-items:center; gap:8px; padding:5px 0; border-bottom:1px dashed rgba(255,255,255,.07); font-size:12.5px; }
+#v43Closes .row:last-child { border-bottom:none; }
+#v43Closes .row .t { color:#8fa896; font-size:11px; flex:none; }
+#v43Closes .row .g { margin-inline-start:auto; font-weight:800; direction:ltr; }
+#v43Closes .row .g.up { color:#43d97b; } #v43Closes .row .g.dn { color:#ff8a97; }
+.v43icons { display:flex; gap:9px; padding:9px 12px 3px; }
+.v43icons button { width:44px; height:44px; border-radius:50%; border:1.5px solid rgba(243,216,120,.4);
+  background:rgba(243,216,120,.09); font-size:19px; cursor:pointer; transition:transform .12s; }
+.v43icons button:active { transform:scale(.9); }
+@media (prefers-reduced-motion: reduce){ .v43fab { animation:none } }
+</style>
+<script>
+"use strict";
+/* =====================================================================
+   v4.3 — "השמות והחברים הקטנים" · 20.8.2026 21:00 · APP_V43 · shemot
+   הראיון של הערב: בוט הזהב נקרא ClaudeBot 🤖 · בוט המגירה נקרא EL CHAPO
+   (עידן: "אחד-לאחד ל-1050 שהיה, רק עם השיפורים שלנו") · חנות ותמיכה
+   כאייקונים חמודים · לוח-שנה מוקטן במסך הראשי במקום עמוד ·
+   אסטרטגיות/דוחות מוחבאים באייקונים · הסגירות מ-MT5 מוצגות כל הזמן ·
+   והמלווה האישי מדבר מהתוכנית: ריאלי — ומותר לחלום.
+   ===================================================================== */
+const APP_V43 = "4.3.0";   /* shemot */
+
+/* ---- 14.1 the names ------------------------------------------------- */
+const V43_NAMES = { "בוט הזהב": "ClaudeBot", "בוט המגירה": "EL CHAPO" };
+function v43BotLabel(id){
+  if (id === "gold") return "ClaudeBot";
+  if (id === "drawer") return "EL CHAPO";
+  if (/^drawer(\d)/.test(String(id))) return "EL CHAPO " + String(id).replace("drawer","");
+  if (id === "ladder") return "The Ladder";
+  if (id === "swing") return "בוט המניות";
+  return String(id||"");
+}
+function v43Rename(){
+  const P = PHONE; if (!P) return;
+  try {
+    ((P.live && P.live.bots) || []).forEach(b => {
+      if (b.id === "gold"){ b.name = "ClaudeBot"; b.icon = "🤖"; }
+      else if (b.id === "drawer"){ b.name = "EL CHAPO"; }
+      else if (/^drawer\d/.test(String(b.id))){ b.name = "EL CHAPO " + String(b.id).replace("drawer",""); }
+      else if (V43_NAMES[b.name]) b.name = V43_NAMES[b.name];
+    });
+    const f = P.fees || {};
+    [f.since_start, f.last_day].forEach(x => {
+      if (x && Array.isArray(x.rows)) x.rows.forEach(r => { if (V43_NAMES[r.name]) r.name = V43_NAMES[r.name]; });
+    });
+  } catch(e){}
+}
+
+/* ---- 14.2 the little friends: shop fab + support bubble --------------- */
+function v43Fabs(){
+  const t = $("table");
+  if (t && !$("v43Shop")){
+    const b = document.createElement("button");
+    b.id = "v43Shop"; b.className = "v43fab";
+    b.title = "הוסף בוט 🤖"; b.textContent = "🤖";
+    b.onclick = () => goTab("shop");
+    t.appendChild(b);
+  }
+  if (!$("v43Support")){
+    const s = document.createElement("button");
+    s.id = "v43Support";
+    s.title = "תמיכה — אני כאן 🆘"; s.textContent = "💬";
+    s.onclick = () => goTab("help");
+    document.body.appendChild(s);
+  }
+}
+
+/* ---- 14.3 the calendar shrinks onto the main screen ------------------- */
+function v43MiniCal(){
+  const t = $("table"); if (!t) return;
+  let host = $("v43MiniCal");
+  if (!host){
+    host = document.createElement("div");
+    host.id = "v43MiniCal";
+    const chips = $("botChips");
+    if (chips && chips.parentNode === t) t.insertBefore(host, chips.nextSibling);
+    else t.appendChild(host);
+  }
+  const hist = v42HistDays().slice(-14);
+  const today = { d: v42DayKey(0), p: v42TodayPnl(), live: true };
+  const days = hist.filter(x => x.d !== today.d).concat([today]);
+  host.innerHTML = '<div class="h">📅 הימים האחרונים' +
+    '<button class="more" onclick="goTab(\'cal\')">הלוח המלא ›</button></div>' +
+    '<div class="days">' + days.map(x => {
+      const dd = String(x.d).slice(8, 10) + "." + String(x.d).slice(5, 7);
+      const c = x.p > 0.004 ? "up" : (x.p < -0.004 ? "dn" : "");
+      return '<div class="d ' + c + '" onclick="dayModal(\'' + x.d + '\')" title="' + x.d + '">' +
+        '<b>' + dd + (x.live ? " ⏳" : "") + '</b><span dir="ltr">' + signed(x.p, 0) + '</span></div>';
+    }).join("") + '</div>';
+}
+
+/* ---- 14.4 every MT5 close, on the main screen, all the time ----------- */
+function v43Closes(){
+  const t = $("table"); if (!t) return;
+  let host = $("v43Closes");
+  if (!host){
+    host = document.createElement("div");
+    host.id = "v43Closes";
+    const mc = $("v43MiniCal");
+    if (mc) t.insertBefore(host, mc); else t.appendChild(host);
+  }
+  const ev = ((PHONE || {}).events || []).filter(e => e.kind === "close").slice(-8).reverse();
+  host.innerHTML = '<div class="h">🧾 הסגירות האחרונות מ-MT5 <span class="mini">(מתעדכן כל הזמן)</span></div>' +
+    (ev.length ? ev.map(e => {
+      const g = +e.gross || 0;
+      return '<div class="row"><span class="t">' + esc(e.t || "") + '</span>' +
+        '<span>' + esc(v43BotLabel(e.bot)) + '</span>' +
+        '<span class="mini">' + (e.side === "SELL" ? "מכירה" : "קנייה") + " " + (+e.size || 0) + '</span>' +
+        '<span class="g ' + cls(g) + '">' + signed(g) + '</span></div>';
+    }).join("") : '<div class="mini" style="margin-top:6px">עוד אין סגירות היום — הבוטים על זה 🫡</div>');
+}
+
+/* ---- 14.5 strategies + reports fold into little icons ----------------- */
+function v43NavIcons(){
+  const nav = $("mainNav"); if (!nav || $("v43NavIcons")) return;
+  ["cal", "learn", "reports"].forEach(x => {
+    const b = nav.querySelector('[data-t="' + x + '"]'); if (b) b.classList.add("hidden");
+  });
+  const row = document.createElement("div");
+  row.id = "v43NavIcons"; row.className = "v43icons";
+  row.innerHTML =
+    '<button title="לוח שנה" onclick="goTab(\'cal\')">📅</button>' +
+    '<button title="אסטרטגיות" onclick="goTab(\'learn\')">📖</button>' +
+    '<button title="דוחות" onclick="goTab(\'reports\')">📊</button>';
+  nav.insertBefore(row, nav.firstChild);
+}
+
+/* ---- 14.6 the personal companion speaks from the plan ----------------- */
+function v43PlanTips(){
+  const out = [];
+  try {
+    const p = (typeof PLAN !== "undefined" && PLAN) ? PLAN : null;
+    if (!p || !p.calc){
+      out.push("🎯 מלא את 'התוכנית שלי' — ומכאן אלווה אותך לפי המספרים שלך, בכל מסך.");
+      return out;
+    }
+    const day = v42TodayPnl();
+    const months = +((p.calc || {}).months) || 0;
+    if (day > 0)
+      out.push("📈 יום ירוק! לפי התוכנית שלך — הצעד הריאלי: להפריש חלק מהרווח לקרן לפני הכל. זה מה שבונה חופש.");
+    if (months && months < 1200)
+      out.push("🎩 בקצב של התוכנית שלך אתה בדרך ליעד בעוד ~" + Math.round(months / 12 * 10) / 10 + " שנים. תישאר ריאלי — ומותר גם לחלום קדימה 🚀");
+    const st = v42Streak();
+    if (st >= 3)
+      out.push("🔥 " + st + " ימים ירוקים — התוכנית שלך אוהבת עקביות יותר מיום ענק אחד.");
+  } catch(e){}
+  return out;
+}
+const _v42MascotTips43 = v42MascotTips;
+v42MascotTips = function(){ return v43PlanTips().concat(_v42MascotTips43()); };
+const _v42DayPop43 = v42DayPop;
+v42DayPop = function(kind){
+  _v42DayPop43(kind);
+  try {
+    if (kind === "target"){
+      const tip = v43PlanTips()[0];
+      if (tip) setTimeout(() => toast(tip), 2600);
+    }
+  } catch(e){}
+};
+
+/* ---- 14.7 wiring ------------------------------------------------------ */
+const _pollPhone43 = pollPhone;
+pollPhone = async function(){
+  await _pollPhone43();
+  v43Rename();
+  renderTable();
+  v43MiniCal();
+  v43Closes();
+  if (typeof BOT_OPEN !== "undefined" && BOT_OPEN && !$("botSheet").classList.contains("hidden")){
+    try { renderBotSheet(BOT_OPEN); } catch(e){}
+  }
+};
+const _enterApp43 = enterApp;
+enterApp = function(){
+  _enterApp43();
+  v43Fabs();
+  v43NavIcons();
+  setTimeout(() => { v43Rename(); renderTable(); v43MiniCal(); v43Closes(); }, 900);
+};
+/* the bot sheet always ends with today's closed trades for that bot */
+const _renderBotSheet43 = renderBotSheet;
+renderBotSheet = function(id){
+  _renderBotSheet43(id);
+  try {
+    const box = $("botSheetBox"); if (!box) return;
+    const closes = ((PHONE || {}).events || [])
+      .filter(e => e.kind === "close" && e.bot === id).slice(-10).reverse();
+    const html = '<div class="sec2" style="margin-top:10px"><h3 style="font-size:14px">🧾 העסקאות שנסגרו היום — ' +
+      esc(v43BotLabel(id)) + '</h3>' +
+      (closes.length ? closes.map(e => {
+        const g = +e.gross || 0;
+        return '<div style="display:flex;gap:8px;font-size:12.5px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.08)">' +
+          '<span style="color:#8fa896">' + esc(e.t || "") + '</span>' +
+          '<span>' + (e.side === "SELL" ? "מכירה" : "קנייה") + " " + (+e.size || 0) + '</span>' +
+          '<span dir="ltr" style="margin-inline-start:auto;font-weight:800" class="' + cls(g) + '">' + signed(g) + '</span></div>';
+      }).join("") : '<div class="mini">אין סגירות היום עדיין.</div>') + '</div>';
+    box.insertAdjacentHTML("beforeend", html);
+  } catch(e){}
+};
 </script>
 </body>
 </html>
