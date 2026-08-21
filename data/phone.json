@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-21 04:46",
+  "updated_israel": "2026-08-21 04:48",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 1,
     "enabled": true,
     "note": "skip: no burst 1.48atr",
-    "age_sec": 1.1,
+    "age_sec": 6.0,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 123032.9,
+    "age_sec": 123097.8,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,7 +67,7 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 0.9,
+    "age_sec": 0.8,
     "status": "ok",
     "symbol": "XAUUSD+",
     "margin_free": 11613.9,
@@ -79,11 +79,11 @@
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1075.68,
-    "balance": 10.36,
-    "day_gross": 1.42,
+    "equity": 1076.57,
+    "balance": 48.66,
+    "day_gross": 3.07,
     "day_open_equity": 1071.79,
-    "day_pct": 0.13,
+    "day_pct": 0.29,
     "open_count": 3,
     "open_gross": -12.38,
     "pending": 0,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 917.35,
-    "age_sec": 359.1,
+    "age_sec": 124.0,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -144,7 +144,7 @@
     "fee_est": 2.0,
     "notional": 291.7,
     "pct_pos": -2.67,
-    "pct_acct": -0.73,
+    "pct_acct": -0.72,
     "net_est": -9.8
    }
   ],
@@ -153,11 +153,11 @@
    "open_fee_est": 6.0,
    "open_net_est": -18.38,
    "open_count": 3,
-   "day_gross": 11483.38,
+   "day_gross": 11485.03,
    "day_fee": 686.0,
-   "day_net": 10797.38,
-   "day_pct": 34.57,
-   "equity": 32986.73,
+   "day_net": 10799.03,
+   "day_pct": 34.58,
+   "equity": 32987.62,
    "day_open_equity": 33215.53,
    "pocket_since_start": -2259.53,
    "fee_since_start": 2556.68
@@ -1086,12 +1086,12 @@
    "gross": -89.6
   }
  ],
- "updated_utc": "2026-08-21T01:46:59.110059+00:00",
- "updated_israel": "2026-08-21 04:46",
+ "updated_utc": "2026-08-21T01:48:04.060036+00:00",
+ "updated_israel": "2026-08-21 04:48",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.21 04:46:58",
+  "updated": "2026.08.21 04:47:58",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1112,7 +1112,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: no burst 1.48atr",
-  "spread_points": 47.0,
+  "spread_points": 56.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 48404.7
+  "age_sec": 48469.6
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1145,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 123032.9
+  "age_sec": 123097.8
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.17",
-  "t": 1787287617,
+  "t": 1787287683,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1175,7 +1175,7 @@
   "equity": 11613.9,
   "margin_free": 11613.9,
   "is_demo": true,
-  "age_sec": 0.9,
+  "age_sec": 0.8,
   "ok": true,
   "blocked": ""
  },
@@ -1268,13 +1268,13 @@
  "fills_today": [],
  "engine_wallet": {
   "start": 1000.0,
-  "cash": 10.36136721636791,
-  "equity": 1075.68,
-  "realized_pnl": 99.53,
-  "open_pnl": -16.38,
+  "cash": 48.66256721636801,
+  "equity": 1076.57,
+  "realized_pnl": 101.18,
+  "open_pnl": -17.14,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 7.57,
+  "return_pct": 7.66,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1477,15 +1477,9 @@
   "max_price": 130.0,
   "cash_reserve_usd": 75.0
  },
- "rejected": [
-  {
-   "ticker": "XAUUSD",
-   "kind": "gold",
-   "why": "already_open"
-  }
- ],
+ "rejected": [],
  "game": {
-  "xp": 4790,
+  "xp": 4830,
   "level": 10,
   "streak": 1,
   "best_streak": 4,
@@ -1593,15 +1587,15 @@
    "name": "👹 בוס היום",
    "target": 85.74,
    "legend": 214.36,
-   "done": 3.89,
+   "done": 4.78,
    "base": 1071.79,
-   "pct": 5,
+   "pct": 6,
    "pct_legend": 2,
    "beaten": false,
    "legendary": false
   },
   "level_name": "🌌 מיתולוגי",
-  "xp_this_level": 13,
+  "xp_this_level": 53,
   "xp_next_level": 0
  },
  "health": {
@@ -1611,9 +1605,9 @@
   },
   "gold": {
    "n": 20,
-   "exp": 0.48,
-   "pf": 1.25,
-   "avg_r": 0.09,
+   "exp": 1.1,
+   "pf": 1.83,
+   "avg_r": 0.18,
    "status": "ok"
   },
   "day": {
