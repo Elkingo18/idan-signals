@@ -6307,14 +6307,18 @@ COACH.push(
    אסטרטגיות/דוחות מוחבאים באייקונים · הסגירות מ-MT5 מוצגות כל הזמן ·
    והמלווה האישי מדבר מהתוכנית: ריאלי — ומותר לחלום.
    ===================================================================== */
-const APP_V43 = "4.3.0";   /* shemot */
+const APP_V43 = "4.3.1";   /* shemot; 21.8 ערב: הסולם ירד מהמסך (המעתיק בגמלאות), סכמת השמות של עידן: ClaudeBot 4/5 + זהב/מט"ח מפוקח-4 / לא-מפוקח-5 */
 
 /* ---- 14.1 the names ------------------------------------------------- */
-const V43_NAMES = { "בוט הזהב": "ClaudeBot", "בוט המגירה": "EL CHAPO" };
+const V43_NAMES = { "בוט הזהב": "ClaudeBot 5", "בוט המגירה": "זהב לא מפוקח 5",
+  "EL CHAPO": "זהב לא מפוקח 5", "ClaudeBot": "ClaudeBot 5" };
+/* הסכמה של עידן (21.8 ערב): המספר = הפלטפורמה. 4=MT4 מפוקח (FXCM), 5=MT5 (וונטאג'). */
+const V43_MAGIC_NAMES = { 770118: "זהב לא מפוקח 5", 770121: "מט\"ח לא מפוקח 5",
+  880101: "זהב מפוקח 4", 880102: "מט\"ח מפוקח 4", 880103: "ClaudeBot 4" };
 function v43BotLabel(id){
-  if (id === "gold") return "ClaudeBot";
-  if (id === "drawer") return "EL CHAPO";
-  if (/^drawer(\d)/.test(String(id))) return "EL CHAPO " + String(id).replace("drawer","");
+  if (id === "gold") return "ClaudeBot 5";
+  if (id === "drawer") return "זהב לא מפוקח 5";
+  if (/^drawer(\d)/.test(String(id))) return "זהב שרת " + String(id).replace("drawer","");
   if (id === "ladder") return "The Ladder";
   if (id === "swing") return "בוט המניות";
   return String(id||"");
@@ -6322,10 +6326,13 @@ function v43BotLabel(id){
 function v43Rename(){
   const P = PHONE; if (!P) return;
   try {
+    if (P.live && Array.isArray(P.live.bots))
+      P.live.bots = P.live.bots.filter(b => b.id !== "ladder");   // 21.8: המעתיק בגמלאות — יורד מהמסך, לא מפחיד עם באנר
     ((P.live && P.live.bots) || []).forEach(b => {
-      if (b.id === "gold"){ b.name = "ClaudeBot"; b.icon = "🤖"; }
-      else if (b.id === "drawer"){ b.name = "EL CHAPO"; }
-      else if (/^drawer\d/.test(String(b.id))){ b.name = "EL CHAPO " + String(b.id).replace("drawer",""); }
+      if (b.magic && V43_MAGIC_NAMES[b.magic]) b.name = V43_MAGIC_NAMES[b.magic];
+      else if (b.id === "gold"){ b.name = "ClaudeBot 5"; b.icon = "🤖"; }
+      else if (b.id === "drawer"){ b.name = "זהב לא מפוקח 5"; }
+      else if (/^drawer\d/.test(String(b.id))){ b.name = "זהב שרת " + String(b.id).replace("drawer",""); }
       else if (V43_NAMES[b.name]) b.name = V43_NAMES[b.name];
     });
     const f = P.fees || {};
