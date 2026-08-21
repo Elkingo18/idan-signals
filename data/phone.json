@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-21 22:53",
+  "updated_israel": "2026-08-21 22:54",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 6,
     "enabled": true,
     "note": "skip: daily loss stop",
-    "age_sec": 9.8,
+    "age_sec": 15.6,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 188201.6,
+    "age_sec": 188267.4,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -54,38 +54,38 @@
     "name": "בוט המגירה",
     "icon": "🗄️",
     "market": "XAUUSD",
-    "equity": 11219.18,
-    "balance": 11220.47,
-    "day_gross": -393.16,
+    "equity": 11222.51,
+    "balance": 11222.39,
+    "day_gross": -391.24,
     "day_open_equity": 11613.63,
-    "day_pct": -3.39,
-    "open_count": 2,
-    "open_gross": -1.29,
-    "open_lots": 0.03,
-    "legs": 2,
+    "day_pct": -3.37,
+    "open_count": 1,
+    "open_gross": 0.12,
+    "open_lots": 0.01,
+    "legs": 1,
     "max_legs": 13,
-    "vwap": 4622.49,
+    "vwap": 4621.86,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 1.1,
+    "age_sec": 2.0,
     "status": "ok",
     "symbol": "XAUUSD+",
-    "margin_free": 11191.45,
+    "margin_free": 11213.27,
     "blocked": null,
-    "note": "הרפליקה של גולדטראפ - עומק 2 מתוך 13 מותרים"
+    "note": "הרפליקה של גולדטראפ - עומק 1 מתוך 13 מותרים"
    },
    {
     "id": "swing",
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1123.63,
+    "equity": 1121.45,
     "balance": 102.08,
     "day_gross": 19.85,
     "day_open_equity": 1071.79,
     "day_pct": 1.85,
     "open_count": 3,
-    "open_gross": 17.37,
+    "open_gross": 19.28,
     "pending": 0,
     "scan": {
      "universe_json": 70,
@@ -95,8 +95,8 @@
      "file": "IBKR-swing.csv",
      "file_ok": true
     },
-    "broker_equity": 947.1,
-    "age_sec": 307.8,
+    "broker_equity": 949.01,
+    "age_sec": 73.6,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -105,17 +105,17 @@
    {
     "bot": "drawer",
     "symbol": "XAUUSD+",
-    "side": "SELL",
-    "size": 0.03,
+    "side": "BUY",
+    "size": 0.01,
     "unit": "lot",
-    "entry": 4622.49,
-    "price": 4622.92,
-    "gross": -1.29,
-    "fee_est": 0.84,
-    "notional": 13867.47,
-    "pct_pos": -0.01,
-    "pct_acct": -0.01,
-    "net_est": -2.13
+    "entry": 4621.86,
+    "price": 4621.98,
+    "gross": 0.12,
+    "fee_est": 0.28,
+    "notional": 4621.86,
+    "pct_pos": 0.0,
+    "pct_acct": 0.0,
+    "net_est": -0.16
    },
    {
     "bot": "swing",
@@ -124,13 +124,13 @@
     "size": 45,
     "unit": "share",
     "entry": 8.6622,
-    "price": 8.9261,
-    "gross": 11.88,
+    "price": 8.9538,
+    "gross": 13.12,
     "fee_est": 2.0,
     "notional": 389.8,
-    "pct_pos": 3.05,
-    "pct_acct": 1.06,
-    "net_est": 9.88
+    "pct_pos": 3.37,
+    "pct_acct": 1.17,
+    "net_est": 11.12
    },
    {
     "bot": "swing",
@@ -139,13 +139,13 @@
     "size": 17,
     "unit": "share",
     "entry": 18.7788,
-    "price": 18.6906,
-    "gross": -1.5,
+    "price": 18.73,
+    "gross": -0.83,
     "fee_est": 2.0,
     "notional": 319.24,
-    "pct_pos": -0.47,
-    "pct_acct": -0.13,
-    "net_est": -3.5
+    "pct_pos": -0.26,
+    "pct_acct": -0.07,
+    "net_est": -2.83
    },
    {
     "bot": "swing",
@@ -164,44 +164,21 @@
    }
   ],
   "totals": {
-   "open_gross": 16.08,
-   "open_fee_est": 6.84,
-   "open_net_est": 9.24,
+   "open_gross": 19.4,
+   "open_fee_est": 6.28,
+   "open_net_est": 13.12,
    "open_count": 4,
-   "day_gross": 10741.42,
+   "day_gross": 10743.34,
    "day_fee": 704.48,
-   "day_net": 10036.94,
+   "day_net": 10038.86,
    "day_pct": 32.34,
-   "equity": 32273.0,
+   "equity": 32274.15,
    "day_open_equity": 33215.53,
    "pocket_since_start": -2644.97,
    "fee_since_start": 2575.16
   }
  },
  "events": [
-  {
-   "t": "21:38",
-   "day": "2026-08-21",
-   "kind": "open",
-   "bot": "drawer",
-   "symbol": "XAUUSD+",
-   "side": "BUY",
-   "size": 0.03,
-   "unit": "lot",
-   "price": 4621.64
-  },
-  {
-   "t": "21:38",
-   "day": "2026-08-21",
-   "kind": "close",
-   "bot": "drawer",
-   "symbol": "XAUUSD+",
-   "side": "BUY",
-   "size": 0.01,
-   "unit": "lot",
-   "price": 4621.8,
-   "gross": 0.24
-  },
   {
    "t": "21:39",
    "day": "2026-08-21",
@@ -1098,14 +1075,37 @@
    "unit": "lot",
    "price": 4622.33,
    "gross": -0.66
+  },
+  {
+   "t": "22:54",
+   "day": "2026-08-21",
+   "kind": "open",
+   "bot": "drawer",
+   "symbol": "XAUUSD+",
+   "side": "BUY",
+   "size": 0.01,
+   "unit": "lot",
+   "price": 4621.86
+  },
+  {
+   "t": "22:54",
+   "day": "2026-08-21",
+   "kind": "close",
+   "bot": "drawer",
+   "symbol": "XAUUSD+",
+   "side": "SELL",
+   "size": 0.03,
+   "unit": "lot",
+   "price": 4622.92,
+   "gross": -1.29
   }
  ],
- "updated_utc": "2026-08-21T19:53:07.837946+00:00",
- "updated_israel": "2026-08-21 22:53",
+ "updated_utc": "2026-08-21T19:54:13.670035+00:00",
+ "updated_israel": "2026-08-21 22:54",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.21 22:52:58",
+  "updated": "2026.08.21 22:53:58",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1126,7 +1126,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 19.0,
+  "spread_points": 29.0,
   "position": null
  },
  "copier": {
@@ -1134,7 +1134,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 113573.4
+  "age_sec": 113639.2
  },
  "slave": {
   "ok": false,
@@ -1159,25 +1159,25 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 188201.6
+  "age_sec": 188267.4
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1787352786,
+  "t": 1787352851,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
-  "legs": 2,
+  "legs": 1,
   "max_legs": 13,
   "max_legs_ask": 13,
-  "dir": -1,
-  "lots": 0.03,
-  "vwap": 4622.49,
-  "price": 4622.92,
-  "move": -0.43,
-  "float": -1.29,
-  "day": -393.16,
+  "dir": 1,
+  "lots": 0.01,
+  "vwap": 4621.86,
+  "price": 4621.98,
+  "move": 0.12,
+  "float": 0.12,
+  "day": -391.24,
   "day_target": 1350.0,
   "day_loss_stop": 0.0,
   "day_deposits": 0.0,
@@ -1186,11 +1186,11 @@
   "mixed": false,
   "closing": false,
   "never_loss": true,
-  "balance": 11220.47,
-  "equity": 11219.18,
-  "margin_free": 11191.45,
+  "balance": 11222.39,
+  "equity": 11222.51,
+  "margin_free": 11213.27,
   "is_demo": true,
-  "age_sec": 1.1,
+  "age_sec": 2.0,
   "ok": true,
   "blocked": ""
  },
@@ -1238,10 +1238,10 @@
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 947.1,
+  "equity": 949.01,
   "realized_pnl": -70.27,
-  "open_pnl": 17.37,
-  "return_pct": -5.29
+  "open_pnl": 19.28,
+  "return_pct": -5.1
  },
  "positions": [
   {
@@ -1250,9 +1250,9 @@
    "currency": "USD",
    "qty": 45.0,
    "avg_cost": 8.6622,
-   "mark": 8.9261,
-   "value": 401.68,
-   "unrealized": 11.88,
+   "mark": 8.9538,
+   "value": 402.92,
+   "unrealized": 13.12,
    "realized": 0.0,
    "source": "engine"
   },
@@ -1262,9 +1262,9 @@
    "currency": "USD",
    "qty": 17.0,
    "avg_cost": 18.7788,
-   "mark": 18.6906,
-   "value": 317.74,
-   "unrealized": -1.5,
+   "mark": 18.73,
+   "value": 318.41,
+   "unrealized": -0.83,
    "realized": 0.0,
    "source": "engine"
   },
@@ -1285,12 +1285,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 102.08474821636854,
-  "equity": 1123.63,
+  "equity": 1121.45,
   "realized_pnl": 117.97,
-  "open_pnl": 13.15,
+  "open_pnl": 10.97,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 12.36,
+  "return_pct": 12.14,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1299,20 +1299,20 @@
    "ticker": "SAN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 14.615,
+   "price": 14.62,
    "entry": 15.0,
    "stop": 14.5009,
    "t1": 15.9982,
    "t2": 16.7469,
    "rr1": 2.0,
-   "rsi": 58.3,
-   "rvol": 0.57,
+   "rsi": 58.4,
+   "rvol": 0.58,
    "score": 83,
    "shares": 1,
    "notional": 15.0,
    "risk_dollars": 0.5,
    "room": 16.64,
-   "above_ma50_pct": 5.14,
+   "above_ma50_pct": 5.18,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -1345,23 +1345,72 @@
   },
   {
    "kind": "swing",
+   "ticker": "SRPT",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 18.67,
+   "entry": 18.73,
+   "stop": 17.2105,
+   "t1": 21.769,
+   "t2": 24.0483,
+   "rr1": 2.0,
+   "rsi": 58.4,
+   "rvol": 0.35,
+   "score": 78,
+   "shares": 1,
+   "notional": 18.73,
+   "risk_dollars": 1.52,
+   "room": 22.71,
+   "above_ma50_pct": 8.0,
+   "news": [
+    {
+     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
+     "dir": "pos",
+     "tag": "דוחות",
+     "sources": 2,
+     "title": "Sarepta (SRPT) Q2 2026 Earnings Call Transcript",
+     "src": "Motley Fool",
+     "time": "2026-08-13 00:31"
+    },
+    {
+     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": "דוחות",
+     "sources": 1,
+     "title": "Sarepta's Q2 Earnings & Sales Beat Estimates, '26 Outlook Updated",
+     "src": "Zacks",
+     "time": "2026-08-06 18:05"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Moderna's Melanoma Result Landed On A Market Positioned The Other Way",
+     "src": "Trefis",
+     "time": "2026-08-20 18:21"
+    }
+   ]
+  },
+  {
+   "kind": "swing",
    "ticker": "PRCH",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 17.11,
+   "price": 17.075,
    "entry": 17.47,
-   "stop": 16.1002,
-   "t1": 20.2097,
-   "t2": 22.2644,
+   "stop": 16.0996,
+   "t1": 20.2108,
+   "t2": 22.2664,
    "rr1": 2.0,
-   "rsi": 65.1,
-   "rvol": 0.28,
+   "rsi": 64.9,
+   "rvol": 0.29,
    "score": 70,
    "shares": 1,
    "notional": 17.47,
    "risk_dollars": 1.37,
    "room": 19.72,
-   "above_ma50_pct": 20.59,
+   "above_ma50_pct": 20.35,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
@@ -1388,20 +1437,20 @@
    "ticker": "PATH",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 16.335,
+   "price": 16.3305,
    "entry": 16.82,
    "stop": 15.4923,
    "t1": 19.4753,
    "t2": 21.4668,
    "rr1": 2.0,
-   "rsi": 69.3,
-   "rvol": 0.72,
+   "rsi": 69.2,
+   "rvol": 0.73,
    "score": 64,
    "shares": 1,
    "notional": 16.82,
    "risk_dollars": 1.33,
    "room": 23.48,
-   "above_ma50_pct": 30.98,
+   "above_ma50_pct": 30.95,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -1433,7 +1482,57 @@
    ]
   }
  ],
- "signals_day": [],
+ "signals_day": [
+  {
+   "kind": "day",
+   "ticker": "BZFD",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 1.12,
+   "entry": 1.12,
+   "stop": 1.1,
+   "t1": 1.16,
+   "t2": 1.18,
+   "rr1": 2.0,
+   "rsi": 59.1,
+   "rvol": 2.74,
+   "score": 62,
+   "shares": 24,
+   "notional": 26.88,
+   "risk_dollars": 0.48,
+   "room": null,
+   "above_ma50_pct": null,
+   "news": [
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "Sector Update: Consumer Stocks Higher Late Afternoon",
+     "src": "MT Newswires",
+     "time": "2026-07-28 19:35"
+    },
+    {
+     "summary": "דיווח ניטרלי · הוצלב ב-3 מקורות שונים",
+     "dir": "neu",
+     "tag": null,
+     "sources": 3,
+     "title": "How Byron Allen plans to turn BuzzFeed into a YouTube rival",
+     "src": "FastCompany",
+     "time": "2026-08-04 13:12"
+    },
+    {
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": "דוחות",
+     "sources": 1,
+     "title": "BuzzFeed Inc (BZFD) (Q2 2026) Earnings Call Highlights: Strategic Restructuring and Platform ...",
+     "src": "GuruFocus.com",
+     "time": "2026-08-05 05:00"
+    }
+   ]
+  }
+ ],
  "pending_entries": [],
  "scan_universe": {
   "universe_json": 70,
@@ -1453,7 +1552,13 @@
   "max_price": 130.0,
   "cash_reserve_usd": 75.0
  },
- "rejected": [],
+ "rejected": [
+  {
+   "ticker": "BZFD",
+   "kind": "day",
+   "why": "measurement_only"
+  }
+ ],
  "game": {
   "xp": 5285,
   "level": 10,
@@ -1563,10 +1668,10 @@
    "name": "👹 בוס היום",
    "target": 85.74,
    "legend": 214.36,
-   "done": 51.84,
+   "done": 49.66,
    "base": 1071.79,
-   "pct": 60,
-   "pct_legend": 24,
+   "pct": 58,
+   "pct_legend": 23,
    "beaten": false,
    "legendary": false
   },
