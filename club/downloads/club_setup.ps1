@@ -133,21 +133,23 @@ $preDir = Join-Path $Tdata 'MQL5\Presets'
 if (-not (Test-Path -LiteralPath $preDir)) { New-Item -ItemType Directory -Path $preDir -Force | Out-Null }
 #  The bot ships DISARMED in its source on purpose. Arming lives here, in one
 #  named file you can read and delete. Two numbers matter more than the rest:
-#    InpMaxLegs=8        - the deepest ladder a ~$10,000 demo can carry. The
-#                          bot this one replicates ran 13 rungs on $201,000
-#                          and lost $197,000 of it in six hours on 19.8.2026.
-#    InpWorstDayPctCap   - and if your balance cannot even carry 8, the bot
-#                          REFUSES TO START and tells you the numbers. That
-#                          refusal is the whole point of this build.
+#    InpMaxLegs=13       - the FULL 1050 ladder is the ceiling; since bot
+#                          v1.17 the machine BENDS to the deepest rung your
+#                          demo balance actually carries (the 10% worst-day
+#                          rule) and climbs by itself as the balance grows.
+#    InpWorstDayPctCap   - the brake that decides that depth. The bot this
+#                          replicates ran 13 rungs unbraked on $201,000 and
+#                          lost $197,000 in six hours on 19.8.2026 - the
+#                          brake is the difference between the two stories.
 @(
   'InpArmed=true',
   'InpDemoOnly=true',
   'InpWorstDayPctCap=10.0',
-  'InpMaxLegs=8',
-  'InpDailyTargetUsd=1200.0',
+  'InpMaxLegs=13',
+  'InpDailyTargetUsd=1350.0',
   'InpMagic=770118'
 ) | Set-Content -LiteralPath (Join-Path $preDir 'drawer.set') -Encoding ASCII
-Say '   Settings written: 8 rungs max, stops the day at +$1,200, demo only.'
+Say '   Settings written: ladder bends to your balance (ceiling 13), banks the day at +$1,350, demo only.'
 
 # compile - only needed if the ready-to-run build was unavailable
 $me = $null
