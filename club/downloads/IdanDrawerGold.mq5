@@ -126,6 +126,15 @@
 //|    day_target and day_loss_stop, so "armed but running without    |
 //|    the target" can be seen on the club screen instead of guessed. |
 //+------------------------------------------------------------------+
+//|  v1.19 - the machine learns other symbols' money: every place     |
+//|    that turned "price move x lots" into account money used the    |
+//|    CONTRACT SIZE, which is only correct when the quote currency   |
+//|    is the account currency (gold in USD).  On GBPJPY it was off   |
+//|    by the USDJPY rate (~x158), so the wallet brake would have     |
+//|    bent a pound-yen ladder to 1 rung.  Now g_unitVal =            |
+//|    tick_value/tick_size (the broker's own conversion) prices a    |
+//|    full 1.0 move per lot in ACCOUNT currency on any symbol;       |
+//|    gold keeps the exact same number (100) it always had.          |
 //|  v1.18 - Idan's 21.8 order, given with the wipe risk spelled out  |
 //|    and accepted ("אני מודע לסיכון של מחיקת החשבון"): the BASKET    |
 //|    ONLY closes in total profit.  InpNeverLoss=true removes the    |
@@ -153,7 +162,7 @@
 //+------------------------------------------------------------------+
 #property copyright "Idan Trader"
 #property link      "idan money club"
-#property version   "1.18"
+#property version   "1.19"
 #property description "Drawer replica of the copied gold bot. Disarmed until InpArmed=true."
 
 #include <Trade/Trade.mqh>
@@ -240,6 +249,7 @@ int      g_legsAsk   = 0;          // the ceiling the preset asked for
 datetime g_lastDepthChk = 0;       // hourly wallet re-fit, between baskets
 int      g_lastDir   = 1;
 double   g_contract  = 100.0;      // ounces per lot, read from the symbol
+double   g_unitVal   = 100.0;      // ACCOUNT money for a 1.0 price move on 1 lot (tick_value/tick_size)
 double   g_point     = 0.01;
 int      g_digits    = 2;
 double   g_stopsLvl  = 0.0;
@@ -314,7 +324,7 @@ int DeepestAffordable(double bal)
    {
       sum += NormalizeDouble(v, 2);
       v    = NormalizeDouble(v * InpLotMult, 2);
-      double day  = InpGiveUpUsd * NormalizeDouble(sum, 2) * g_contract * WORST_DAY_MULT;
+      double day  = InpGiveUpUsd * NormalizeDouble(sum, 2) * g_unitVal * WORST_DAY_MULT;
       double need = day * (100.0 / MathMax(InpWorstDayPctCap, 0.5));
       if(bal >= need) best = n; else break;
    }
@@ -330,7 +340,7 @@ void ApplyDepth(int cap)
    g_legsCap = cap;
    BuildLadder();
    double full   = LadderSum(g_legsCap);
-   g_worstBasket = InpGiveUpUsd * full * g_contract;
+   g_worstBasket = InpGiveUpUsd * full * g_unitVal;
    g_worstDay    = g_worstBasket * WORST_DAY_MULT;
    g_minBal      = (InpMinBalance > 0) ? InpMinBalance
                                        : g_worstDay * (100.0 / MathMax(InpWorstDayPctCap, 0.5));
@@ -581,6 +591,13 @@ int OnInit()
 
    g_contract = SymbolInfoDouble(g_sym, SYMBOL_TRADE_CONTRACT_SIZE);
    if(g_contract <= 0) g_contract = 100.0;
+   // v1.19: money per 1.0 price move per lot, in the ACCOUNT currency - the
+   // broker's own tick_value already carries the quote->account conversion.
+   // On XAUUSD/USD this is exactly the contract size; on GBPJPY it is
+   // 100,000/USDJPY.  Falls back to contract size if the broker reports 0.
+   double tv = SymbolInfoDouble(g_sym, SYMBOL_TRADE_TICK_VALUE);
+   double ts = SymbolInfoDouble(g_sym, SYMBOL_TRADE_TICK_SIZE);
+   g_unitVal = (tv > 0 && ts > 0) ? tv / ts : g_contract;
    g_point    = SymbolInfoDouble(g_sym, SYMBOL_POINT);
    if(g_point <= 0) g_point = 0.01;
    g_digits   = (int)SymbolInfoInteger(g_sym, SYMBOL_DIGITS);
@@ -647,7 +664,7 @@ int OnInit()
 
    if(g_legsCap < 8)
       Print("IdanDrawerGold: WARNING - below 8 rungs the ladder is cut so often that the bad days stack. On the master's own record 7 rungs lost $6,898 over three months and its worst day was 14.6x its worst basket, so the account-size gate understates the risk at this depth.");
-   PrintFormat("IdanDrawerGold v1.18 %s | sym=%s depth=%d/%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
+   PrintFormat("IdanDrawerGold v1.19 %s | sym=%s depth=%d/%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
                (g_ok ? "READY" : "HELD"), g_sym, g_legsCap, g_legsAsk, LadderSum(g_legsCap), LadderReach(), g_contract, g_minBal,
                (InpDailyTargetUsd > 0 ? StringFormat("+$%.0f", InpDailyTargetUsd) : "off"),
                (InpDailyStopUsd   > 0 ? StringFormat("-$%.0f", InpDailyStopUsd)   : "off"),
@@ -995,7 +1012,7 @@ void Show(int legs, int dir, double vol, double vwap, string note)
       double move = (px - vwap) * dir;
       line = StringFormat("IdanDrawerGold %s  |  %s basket  legs %d/%d  %.2f lots  avg %.2f  now %.2f  %+.2f/oz  %+.0f$",
                           head, (dir > 0 ? "LONG" : "SHORT"), legs, g_legsCap, vol, vwap, px, move,
-                          move * vol * g_contract);
+                          move * vol * g_unitVal);
    }
    else
    {
@@ -1074,14 +1091,14 @@ void Beat()
    double px = (have && QuoteOk()) ? ExitPrice(dir) : 0;
    double mv = (have && px > 0) ? (px - vwap) * dir : 0;
    string j = StringFormat(
-      "{\"bot\":\"drawer_gold\",\"v\":\"1.18\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
+      "{\"bot\":\"drawer_gold\",\"v\":\"1.19\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
       "\"symbol\":\"%s\",\"legs\":%d,\"max_legs\":%d,\"max_legs_ask\":%d,\"dir\":%d,\"lots\":%.2f,"
       "\"vwap\":%.2f,\"price\":%.2f,\"move\":%.3f,\"float\":%.2f,\"day\":%.2f,"
       "\"day_target\":%.2f,\"day_loss_stop\":%.2f,\"day_deposits\":%.2f,"
       "\"day_stop\":%s,\"day_reason\":\"%s\",\"mixed\":%s,\"closing\":%s,\"never_loss\":%s,"
       "\"balance\":%.2f,\"equity\":%.2f,\"margin_free\":%.2f,\"is_demo\":%s}",
       IntegerToString((long)TimeCurrent()), (g_ok ? "true" : "false"), g_why, g_sym,
-      legs, g_legsCap, g_legsAsk, dir, vol, vwap, px, mv, mv * vol * g_contract, DayPnl(),
+      legs, g_legsCap, g_legsAsk, dir, vol, vwap, px, mv, mv * vol * g_unitVal, DayPnl(),
       InpDailyTargetUsd, InpDailyStopUsd, g_dayDeposits,
       (g_dayStop ? "true" : "false"), g_dayWhy, (mixed ? "true" : "false"), (g_closing ? "true" : "false"),
       (InpNeverLoss ? "true" : "false"),
