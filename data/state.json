@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 536.4762967643866,
-  "equity": 1013.46,
+  "cash": 183.3384967643866,
+  "equity": 1013.23,
   "realized_pnl": 29.78,
-  "open_pnl": -13.33,
+  "open_pnl": -13.56,
   "peak_equity": 1021.75,
   "max_dd_pct": -8.47,
-  "return_pct": 1.35,
+  "return_pct": 1.32,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -76,6 +76,38 @@
    },
    "last": 19.22,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1787309041",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "long",
+   "sector": "other",
+   "qty": 1.52,
+   "qty_left": 1.52,
+   "entry": 4646.55,
+   "stop": 4638.2,
+   "orig_stop": 4638.2,
+   "t1": 4658.66,
+   "t2": 4670.92,
+   "opened": "2026-08-21T13:44:01.676592+03:00",
+   "opened_day": "2026-08-21",
+   "risk_open": 12.46,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 62,
+   "pattern": "פולבק לגל",
+   "snap": {
+    "rsi": 60.0,
+    "rvol": null,
+    "score": 62,
+    "stop_pct": 0.18,
+    "regime_ok": true,
+    "notional": 7062.53
+   },
+   "last": 4646.3999,
+   "margin": 353.14
   }
  ],
  "closed": [
@@ -1186,24 +1218,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4643.4,
-    "entry": 4643.4,
-    "stop": 4635.4,
-    "t1": 4655.34,
-    "t2": 4667.28,
+    "state": "BUY_NOW",
+    "pattern": "פולבק לגל",
+    "price": 4646.4,
+    "entry": 4646.4,
+    "stop": 4638.2,
+    "t1": 4658.66,
+    "t2": 4670.92,
     "rr1": 1.5,
-    "atr": 5.31,
-    "rsi": 56.1,
-    "vwap": 4626.18,
-    "stop_pct": 0.17,
+    "atr": 5.45,
+    "rsi": 60.0,
+    "vwap": 4626.24,
+    "stop_pct": 0.18,
     "ounces": 1.52,
-    "notional": 7057.97,
-    "margin": 352.9,
-    "risk_dollars": 12.16,
+    "notional": 7062.53,
+    "margin": 353.13,
+    "risk_dollars": 12.46,
     "shares": 1.52,
-    "score": 57,
+    "score": 62,
     "news": [],
     "regime_ok": true
    }
@@ -1482,7 +1514,7 @@
   ],
   [
    "2026-08-21",
-   1013.46
+   1013.23
   ]
  ],
  "cooldown": {},
@@ -1595,7 +1627,7 @@
    "name": "👹 בוס היום",
    "target": 79.96,
    "legend": 199.9,
-   "done": 13.98,
+   "done": 13.75,
    "base": 999.48,
    "pct": 17,
    "pct_legend": 7,
@@ -1611,10 +1643,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 31.04,
   "week_pnl": 65.15,
-  "daily_limit": -60.81,
-  "weekly_limit": -121.62
+  "daily_limit": -60.79,
+  "weekly_limit": -121.59
  },
  "log": [
+  {
+   "t": "2026-08-21 13:44",
+   "m": "OPEN GOLD XAUUSD x1.52 @ 4646.5500 stop 4638.2 T1 4658.66"
+  },
   {
    "t": "2026-08-21 10:03",
    "m": "EXIT XAUUSD x0.75 @ 4600.9600 (T2) P/L $+20.86 / +1.47R"
@@ -1919,12 +1955,12 @@
   "all_pct": 2.98
  },
  "rejected": [],
- "updated_utc": "2026-08-21T10:42:00.064082+00:00",
- "updated_israel": "2026-08-21 13:42",
+ "updated_utc": "2026-08-21T10:44:01.676592+00:00",
+ "updated_israel": "2026-08-21 13:44",
  "market": {
   "open": false,
-  "et": "06:42",
-  "il": "13:42"
+  "et": "06:44",
+  "il": "13:44"
  },
  "stats": {
   "trades": 34,
@@ -3052,12 +3088,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1183,
+   "bars": 1182,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4643.4,
+   "last_price": 4646.4,
    "signals": 1,
-   "today_trades": 0,
+   "today_trades": 1,
    "health": {
     "n": 20,
     "exp": 2.74,
@@ -3070,14 +3106,14 @@
     "trades": 2,
     "pnl": 31.04
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 2,
-   "heat": 25.51,
+   "open": 3,
+   "heat": 37.97,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3090,12 +3126,12 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 19,
    "covered": 3,
-   "updated": "2026-08-21 13:42"
+   "updated": "2026-08-21 13:44"
   }
  },
  "gold_today": {
-  "date": "2026-08-20",
-  "count": 3
+  "date": "2026-08-21",
+  "count": 1
  },
  "health": {
   "swing": {
@@ -3695,6 +3731,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-21 13:42"
+  "updated": "2026-08-21 13:44"
  }
 }
