@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-21 17:58",
+  "updated_israel": "2026-08-21 17:59",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 6,
     "enabled": true,
     "note": "skip: daily loss stop",
-    "age_sec": 16.8,
+    "age_sec": 1.8,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 170528.6,
+    "age_sec": 170593.6,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -79,7 +79,7 @@
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1144.09,
+    "equity": 1148.64,
     "balance": 102.08,
     "day_gross": 19.85,
     "day_open_equity": 1071.79,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 976.24,
-    "age_sec": 334.8,
+    "age_sec": 99.8,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -114,7 +114,7 @@
     "fee_est": 2.0,
     "notional": 389.8,
     "pct_pos": 5.01,
-    "pct_acct": 1.71,
+    "pct_acct": 1.7,
     "net_est": 17.52
    },
    {
@@ -144,7 +144,7 @@
     "fee_est": 2.0,
     "notional": 291.7,
     "pct_pos": 5.02,
-    "pct_acct": 1.28,
+    "pct_acct": 1.27,
     "net_est": 12.64
    }
   ],
@@ -157,7 +157,7 @@
    "day_fee": 704.48,
    "day_net": 9952.69,
    "day_pct": 32.08,
-   "equity": 32210.5,
+   "equity": 32215.05,
    "day_open_equity": 33215.53,
    "pocket_since_start": -2644.97,
    "fee_since_start": 2575.16
@@ -1086,12 +1086,12 @@
    "gross": -3.23
   }
  ],
- "updated_utc": "2026-08-21T14:58:34.821717+00:00",
- "updated_israel": "2026-08-21 17:58",
+ "updated_utc": "2026-08-21T14:59:39.824752+00:00",
+ "updated_israel": "2026-08-21 17:59",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.21 17:58:18",
+  "updated": "2026.08.21 17:59:38",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1112,7 +1112,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 41.0,
+  "spread_points": 39.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 95900.4
+  "age_sec": 95965.4
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1145,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 170528.6
+  "age_sec": 170593.6
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.19",
-  "t": 1787335112,
+  "t": 1787335177,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1270,12 +1270,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 102.08474821636854,
-  "equity": 1144.09,
+  "equity": 1148.64,
   "realized_pnl": 117.97,
-  "open_pnl": 33.61,
+  "open_pnl": 38.16,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 14.41,
+  "return_pct": 14.86,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1284,20 +1284,20 @@
    "ticker": "SAN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 14.605,
+   "price": 14.595,
    "entry": 15.0,
    "stop": 14.5009,
    "t1": 15.9982,
    "t2": 16.7469,
    "rr1": 2.0,
-   "rsi": 58.2,
-   "rvol": 0.26,
+   "rsi": 58.0,
+   "rvol": 0.27,
    "score": 83,
    "shares": 1,
    "notional": 15.0,
    "risk_dollars": 0.5,
    "room": 16.64,
-   "above_ma50_pct": 5.07,
+   "above_ma50_pct": 5.0,
    "news": [
     {
      "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
@@ -1327,86 +1327,55 @@
      "time": "2026-08-21 11:03"
     }
    ]
-  },
-  {
-   "kind": "swing",
-   "ticker": "AI",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 10.4316,
-   "entry": 10.73,
-   "stop": 9.9664,
-   "t1": 12.2572,
-   "t2": 13.4025,
-   "rr1": 2.0,
-   "rsi": 61.3,
-   "rvol": 0.39,
-   "score": 78,
-   "shares": 2,
-   "notional": 21.46,
-   "risk_dollars": 1.53,
-   "room": 11.949,
-   "above_ma50_pct": 9.59,
-   "news": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Palantir's Margin Expansion Signals a Structural Growth Advantage",
-     "src": "Zacks",
-     "time": "2026-08-20 17:13"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "What Is C3.ai (AI) Facing As Revenue Slips And Thomas Siebel Returns?",
-     "src": "Simply Wall St.",
-     "time": "2026-08-21 14:11"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "3 Small-Cap Stocks with Questionable Fundamentals",
-     "src": "StockStory",
-     "time": "2026-08-20 10:19"
-    }
-   ]
   }
  ],
  "signals_day": [
   {
    "kind": "day",
-   "ticker": "UIS",
+   "ticker": "LYFT",
    "side": "long",
-   "state": "WATCH_BUY",
-   "price": 2.72,
-   "entry": 2.72,
-   "stop": 2.67,
-   "t1": 2.82,
-   "t2": 2.87,
+   "state": "BUY_NOW",
+   "price": 17.535,
+   "entry": 17.535,
+   "stop": 17.29,
+   "t1": 18.025,
+   "t2": 18.27,
    "rr1": 2.0,
-   "rsi": 65.6,
-   "rvol": 3.52,
-   "score": 62,
-   "shares": 9,
-   "notional": 24.48,
-   "risk_dollars": 0.45,
+   "rsi": 53.1,
+   "rvol": 1.95,
+   "score": 67,
+   "shares": 1,
+   "notional": 17.53,
+   "risk_dollars": 0.24,
    "room": null,
    "above_ma50_pct": null,
    "news": [
     {
-     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
+     "summary": "דיווח חיובי · דיווח על רכישה — אירוע מהותי · מקור יחיד — לקחת בזהירות",
      "dir": "pos",
+     "tag": "רכישה",
+     "sources": 1,
+     "title": "Billionaire Uber Co-Founder Travis Kalanick Says He Has ‘No Regrets’ Over Uber’s Failed Lyft Acquisition: ‘We Were Very Culturally Different’",
+     "src": "Benzinga",
+     "time": "2026-08-18 23:31"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Morgan Stanley just laid out eBay's four possible paths forward",
+     "src": "TheStreet",
+     "time": "2026-08-19 21:17"
+    },
+    {
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
      "tag": "דוחות",
-     "sources": 4,
-     "title": "Unisys (UIS) Q2 2026 Earnings Call Transcript",
-     "src": "Motley Fool",
-     "time": "2026-08-08 00:31"
+     "sources": 1,
+     "title": "UBER or LYFT: Which Player Is Better-Placed Post-Q2 Earnings Results?",
+     "src": "Zacks",
+     "time": "2026-08-19 16:20"
     }
    ]
   }
@@ -1432,9 +1401,14 @@
  },
  "rejected": [
   {
-   "ticker": "UIS",
+   "ticker": "LYFT",
    "kind": "day",
    "why": "measurement_only"
+  },
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "gold_daily_cap"
   }
  ],
  "game": {
@@ -1546,10 +1520,10 @@
    "name": "👹 בוס היום",
    "target": 85.74,
    "legend": 214.36,
-   "done": 72.3,
+   "done": 76.85,
    "base": 1071.79,
-   "pct": 84,
-   "pct_legend": 34,
+   "pct": 90,
+   "pct_legend": 36,
    "beaten": false,
    "legendary": false
   },
