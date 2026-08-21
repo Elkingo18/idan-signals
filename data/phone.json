@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-21 20:39",
+  "updated_israel": "2026-08-21 20:38",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 6,
     "enabled": true,
     "note": "skip: daily loss stop",
-    "age_sec": 9.3,
+    "age_sec": 4.2,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 180181.1,
+    "age_sec": 180116.0,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,7 +67,7 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 0.6,
+    "age_sec": 0.5,
     "status": "ok",
     "symbol": "XAUUSD+",
     "margin_free": 11136.22,
@@ -79,7 +79,7 @@
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1128.81,
+    "equity": 1131.32,
     "balance": 102.08,
     "day_gross": 19.85,
     "day_open_equity": 1071.79,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 957.52,
-    "age_sec": 87.3,
+    "age_sec": 322.2,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -157,7 +157,7 @@
    "day_fee": 704.48,
    "day_net": 9952.69,
    "day_pct": 32.08,
-   "equity": 32195.22,
+   "equity": 32197.73,
    "day_open_equity": 33215.53,
    "pocket_since_start": -2644.97,
    "fee_since_start": 2575.16
@@ -1086,12 +1086,12 @@
    "gross": -3.23
   }
  ],
- "updated_utc": "2026-08-21T17:39:27.350928+00:00",
- "updated_israel": "2026-08-21 20:39",
+ "updated_utc": "2026-08-21T17:38:22.253938+00:00",
+ "updated_israel": "2026-08-21 20:38",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.21 20:39:18",
+  "updated": "2026.08.21 20:38:18",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1112,7 +1112,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 34.0,
+  "spread_points": 48.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 105552.9
+  "age_sec": 105487.8
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1145,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 180181.1
+  "age_sec": 180116.0
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1787344766,
+  "t": 1787344701,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1176,7 +1176,7 @@
   "equity": 11136.22,
   "margin_free": 11136.22,
   "is_demo": true,
-  "age_sec": 0.6,
+  "age_sec": 0.5,
   "ok": true,
   "blocked": ""
  },
@@ -1270,12 +1270,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 102.08474821636854,
-  "equity": 1128.81,
+  "equity": 1131.32,
   "realized_pnl": 117.97,
-  "open_pnl": 18.33,
+  "open_pnl": 20.84,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 12.88,
+  "return_pct": 13.13,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1284,20 +1284,20 @@
    "ticker": "PRCH",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 17.055,
+   "price": 17.05,
    "entry": 17.47,
    "stop": 16.1002,
    "t1": 20.2097,
    "t2": 22.2644,
    "rr1": 2.0,
-   "rsi": 64.7,
+   "rsi": 64.6,
    "rvol": 0.19,
    "score": 70,
    "shares": 1,
    "notional": 17.47,
    "risk_dollars": 1.37,
    "room": 19.72,
-   "above_ma50_pct": 20.21,
+   "above_ma50_pct": 20.18,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
@@ -1316,6 +1316,55 @@
      "title": "American Express, Biogen upgraded: Wall Street's top analyst calls",
      "src": "The Fly",
      "time": "2026-07-13 13:41"
+    }
+   ]
+  },
+  {
+   "kind": "swing",
+   "ticker": "PATH",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 16.355,
+   "entry": 16.82,
+   "stop": 15.4923,
+   "t1": 19.4753,
+   "t2": 21.4668,
+   "rr1": 2.0,
+   "rsi": 69.4,
+   "rvol": 0.45,
+   "score": 64,
+   "shares": 1,
+   "notional": 16.82,
+   "risk_dollars": 1.33,
+   "room": 23.48,
+   "above_ma50_pct": 31.14,
+   "news": [
+    {
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": "דוחות",
+     "sources": 1,
+     "title": "OSI Systems (OSIS) Q4 Earnings Top Estimates",
+     "src": "Zacks",
+     "time": "2026-08-20 21:10"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "UiPath CEO Daniel Dines Sells 1.4 Million Shares for $22.5 Million",
+     "src": "Motley Fool",
+     "time": "2026-08-20 17:20"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "UiPath Stock Rises 44% in 6 Months: Should You Buy, Hold or Sell?",
+     "src": "Zacks",
+     "time": "2026-08-19 17:18"
     }
    ]
   }
@@ -1450,10 +1499,10 @@
    "name": "👹 בוס היום",
    "target": 85.74,
    "legend": 214.36,
-   "done": 57.02,
+   "done": 59.53,
    "base": 1071.79,
-   "pct": 67,
-   "pct_legend": 27,
+   "pct": 69,
+   "pct_legend": 28,
    "beaten": false,
    "legendary": false
   },
