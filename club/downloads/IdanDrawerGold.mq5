@@ -126,6 +126,12 @@
 //|    day_target and day_loss_stop, so "armed but running without    |
 //|    the target" can be seen on the club screen instead of guessed. |
 //+------------------------------------------------------------------+
+//|  v1.18 - Idan's 21.8 order, given with the wipe risk spelled out  |
+//|    and accepted ("אני מודע לסיכון של מחיקת החשבון"): the BASKET    |
+//|    ONLY closes in total profit.  InpNeverLoss=true removes the    |
+//|    give-up, the hard stop, the per-leg broker stops, and a red    |
+//|    Friday flatten (a green one still flattens).  The one exit     |
+//|    left on a runaway is the broker's margin call.  Demo only.     |
 //|  v1.17 - the wallet decides the depth (Idan, 20.8: "עד 5 לוט,     |
 //|    לפי נפח הארנק").  A ceiling the balance cannot carry no longer |
 //|    refuses to arm: it BENDS to the deepest rung the balance does  |
@@ -147,7 +153,7 @@
 //+------------------------------------------------------------------+
 #property copyright "Idan Trader"
 #property link      "idan money club"
-#property version   "1.17"
+#property version   "1.18"
 #property description "Drawer replica of the copied gold bot. Disarmed until InpArmed=true."
 
 #include <Trade/Trade.mqh>
@@ -181,6 +187,7 @@ input double InpHardStopUsd    = 4.85;   // emergency: close at any depth past t
 //--- the guards (mine, not the master's) ---------------------------
 input group           "=== GUARDS (added, not copied) ==="
 input bool   InpBrokerStop     = true;   // put a real stop-loss at the emergency level on every leg
+input bool   InpNeverLoss      = false;  // 21.8: basket closes ONLY in total profit - no give-up/hard stop/broker stops; red Friday holds the weekend; margin call is the one exit left
 input double InpDailyStopUsd   = 0.0;    // stop for the day after this much realised loss (0=off)
 input double InpDailyTargetUsd = 0.0;    // bank the day and stop after this much realised PROFIT (0=off)
 input double InpMaxSpreadUsd   = 0.40;   // do not open or add on a spread wider than this
@@ -640,7 +647,7 @@ int OnInit()
 
    if(g_legsCap < 8)
       Print("IdanDrawerGold: WARNING - below 8 rungs the ladder is cut so often that the bad days stack. On the master's own record 7 rungs lost $6,898 over three months and its worst day was 14.6x its worst basket, so the account-size gate understates the risk at this depth.");
-   PrintFormat("IdanDrawerGold v1.17 %s | sym=%s depth=%d/%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
+   PrintFormat("IdanDrawerGold v1.18 %s | sym=%s depth=%d/%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
                (g_ok ? "READY" : "HELD"), g_sym, g_legsCap, g_legsAsk, LadderSum(g_legsCap), LadderReach(), g_contract, g_minBal,
                (InpDailyTargetUsd > 0 ? StringFormat("+$%.0f", InpDailyTargetUsd) : "off"),
                (InpDailyStopUsd   > 0 ? StringFormat("-$%.0f", InpDailyStopUsd)   : "off"),
@@ -715,7 +722,7 @@ double EntryPrice(int dir) { return (dir > 0) ? Ask() : Bid(); }   // a buy pays
 //+------------------------------------------------------------------+
 void SetBasketStop(int dir, double vwap)
 {
-   if(!InpBrokerStop || dir == 0) return;
+   if(!InpBrokerStop || InpNeverLoss || dir == 0) return;
    double sl  = (dir > 0) ? vwap - InpHardStopUsd : vwap + InpHardStopUsd;
    double px  = ExitPrice(dir);
    double gap = MathMax(g_stopsLvl, 2 * g_point);
@@ -848,6 +855,14 @@ string WantExit(int legs, int dir, double vwap, bool flatten, bool frozen)
 {
    double move = (ExitPrice(dir) - vwap) * dir;
    if(move >= InpTakeUsd) return "take";
+   if(InpNeverLoss)
+   {
+      // 21.8, Idan: "אין מצב בחיים שהוא יוצא בהפסד". The red exits are gone.
+      // A Friday flatten happens only if the basket is green right now; a red
+      // basket holds through the weekend - his stated, informed choice.
+      if(flatten && move > 0) return "friday";
+      return "";
+   }
    bool spreadSane = (SpreadUsd() <= InpLossExitSpread);
    if(spreadSane)
    {
@@ -1059,16 +1074,17 @@ void Beat()
    double px = (have && QuoteOk()) ? ExitPrice(dir) : 0;
    double mv = (have && px > 0) ? (px - vwap) * dir : 0;
    string j = StringFormat(
-      "{\"bot\":\"drawer_gold\",\"v\":\"1.17\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
+      "{\"bot\":\"drawer_gold\",\"v\":\"1.18\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
       "\"symbol\":\"%s\",\"legs\":%d,\"max_legs\":%d,\"max_legs_ask\":%d,\"dir\":%d,\"lots\":%.2f,"
       "\"vwap\":%.2f,\"price\":%.2f,\"move\":%.3f,\"float\":%.2f,\"day\":%.2f,"
       "\"day_target\":%.2f,\"day_loss_stop\":%.2f,\"day_deposits\":%.2f,"
-      "\"day_stop\":%s,\"day_reason\":\"%s\",\"mixed\":%s,\"closing\":%s,"
+      "\"day_stop\":%s,\"day_reason\":\"%s\",\"mixed\":%s,\"closing\":%s,\"never_loss\":%s,"
       "\"balance\":%.2f,\"equity\":%.2f,\"margin_free\":%.2f,\"is_demo\":%s}",
       IntegerToString((long)TimeCurrent()), (g_ok ? "true" : "false"), g_why, g_sym,
       legs, g_legsCap, g_legsAsk, dir, vol, vwap, px, mv, mv * vol * g_contract, DayPnl(),
       InpDailyTargetUsd, InpDailyStopUsd, g_dayDeposits,
       (g_dayStop ? "true" : "false"), g_dayWhy, (mixed ? "true" : "false"), (g_closing ? "true" : "false"),
+      (InpNeverLoss ? "true" : "false"),
       AccountInfoDouble(ACCOUNT_BALANCE), AccountInfoDouble(ACCOUNT_EQUITY),
       AccountInfoDouble(ACCOUNT_MARGIN_FREE),
       (AccountInfoInteger(ACCOUNT_TRADE_MODE) == ACCOUNT_TRADE_MODE_DEMO ? "true" : "false"));
