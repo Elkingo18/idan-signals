@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 183.3384967643866,
-  "equity": 1026.91,
-  "realized_pnl": 29.78,
-  "open_pnl": 0.12,
+  "cash": 523.5584967643865,
+  "equity": 1000.54,
+  "realized_pnl": 16.86,
+  "open_pnl": -13.33,
   "peak_equity": 1027.82,
   "max_dd_pct": -8.47,
-  "return_pct": 2.69,
+  "return_pct": 0.05,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -76,27 +76,13 @@
    },
    "last": 19.22,
    "margin": 0.0
-  },
+  }
+ ],
+ "closed": [
   {
-   "id": "XAUUSD-1787309041",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "long",
-   "sector": "other",
-   "qty": 1.52,
-   "qty_left": 1.52,
-   "entry": 4646.55,
-   "stop": 4638.2,
-   "orig_stop": 4638.2,
-   "t1": 4658.66,
-   "t2": 4670.92,
-   "opened": "2026-08-21T13:44:01.676592+03:00",
-   "opened_day": "2026-08-21",
-   "risk_open": 26.14,
-   "fees": 0.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 62,
    "pattern": "פולבק לגל",
    "snap": {
     "rsi": 60.0,
@@ -106,11 +92,22 @@
     "regime_ok": true,
     "notional": 7062.53
    },
-   "last": 4655.3999,
-   "margin": 353.14
-  }
- ],
- "closed": [
+   "stop": 4638.2,
+   "t1": 4658.66,
+   "t2": 4670.92,
+   "fees": 0.0,
+   "qty": 1.52,
+   "entry": 4646.55,
+   "exit": 4638.05,
+   "pnl": -12.92,
+   "r": -1.02,
+   "reason": "stop",
+   "opened": "2026-08-21T13:44:01.676592+03:00",
+   "closed": "2026-08-21T16:06:11.155901+03:00",
+   "day": "2026-08-21",
+   "held_days": 0,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -1112,10 +1109,10 @@
     "pivot_high": 3.42,
     "rvol": 1.34,
     "above_ma50_pct": 2.04,
-    "shares": 50,
-    "notional": 171.0,
-    "risk_dollars": 15.03,
-    "risk_pct_actual": 1.46,
+    "shares": 66,
+    "notional": 225.72,
+    "risk_dollars": 19.85,
+    "risk_pct_actual": 1.98,
     "stretch_target": 4.1,
     "score": 77,
     "news": [
@@ -1171,10 +1168,10 @@
     "pivot_high": 13.015,
     "rvol": 0.74,
     "above_ma50_pct": 1.82,
-    "shares": 13,
-    "notional": 169.2,
-    "risk_dollars": 8.02,
-    "risk_pct_actual": 0.78,
+    "shares": 26,
+    "notional": 338.39,
+    "risk_dollars": 16.04,
+    "risk_pct_actual": 1.6,
     "stretch_target": 15.62,
     "score": 77,
     "news": [
@@ -1213,41 +1210,15 @@
    }
   ],
   "day": [],
-  "gold": [
-   {
-    "kind": "gold",
-    "ticker": "XAUUSD",
-    "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4655.4,
-    "entry": 4655.4,
-    "stop": 4647.5,
-    "t1": 4667.28,
-    "t2": 4679.16,
-    "rr1": 1.5,
-    "atr": 5.28,
-    "rsi": 60.7,
-    "vwap": 4630.12,
-    "stop_pct": 0.17,
-    "ounces": 0.7,
-    "notional": 3258.78,
-    "margin": 162.94,
-    "risk_dollars": 5.53,
-    "shares": 0.7,
-    "score": 57,
-    "news": [],
-    "regime_ok": true
-   }
-  ]
+  "gold": []
  },
  "calendar": {
   "2026-08-21": {
-   "pnl": 31.04,
-   "trades": 2,
+   "pnl": 18.12,
+   "trades": 3,
    "wins": 2,
-   "losses": 0,
-   "r": 2.19,
+   "losses": 1,
+   "r": 1.17,
    "tickers": [
     "XAUUSD"
    ],
@@ -1514,12 +1485,14 @@
   ],
   [
    "2026-08-21",
-   1026.91
+   1000.54
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 3
+ },
  "game": {
-  "xp": 1415,
+  "xp": 1430,
   "level": 4,
   "streak": 4,
   "best_streak": 4,
@@ -1627,26 +1600,30 @@
    "name": "👹 בוס היום",
    "target": 79.96,
    "legend": 199.9,
-   "done": 27.43,
+   "done": 1.06,
    "base": 999.48,
-   "pct": 34,
-   "pct_legend": 14,
+   "pct": 1,
+   "pct_legend": 1,
    "beaten": false,
    "legendary": false
   },
   "level_name": "⚔️ סוחר",
-  "xp_this_level": 313,
+  "xp_this_level": 328,
   "xp_next_level": 473
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 31.04,
-  "week_pnl": 65.15,
-  "daily_limit": -61.61,
-  "weekly_limit": -123.23
+  "day_pnl": 18.12,
+  "week_pnl": 52.23,
+  "daily_limit": -60.03,
+  "weekly_limit": -120.06
  },
  "log": [
+  {
+   "t": "2026-08-21 16:06",
+   "m": "EXIT XAUUSD x1.52 @ 4638.0500 (stop) P/L $-12.92 / -1.02R"
+  },
   {
    "t": "2026-08-21 13:44",
    "m": "OPEN GOLD XAUUSD x1.52 @ 4646.5500 stop 4638.2 T1 4658.66"
@@ -1944,30 +1921,30 @@
   "spy": 762.6
  },
  "periods": {
-  "day": 31.04,
-  "week": 55.6,
-  "month": 29.78,
-  "quarter": 29.78,
-  "half": 29.78,
-  "year": 29.78,
-  "two_year": 29.78,
-  "all": 29.78,
-  "all_pct": 2.98
+  "day": 18.12,
+  "week": 42.68,
+  "month": 16.86,
+  "quarter": 16.86,
+  "half": 16.86,
+  "year": 16.86,
+  "two_year": 16.86,
+  "all": 16.86,
+  "all_pct": 1.69
  },
  "rejected": [],
- "updated_utc": "2026-08-21T12:02:29.101247+00:00",
- "updated_israel": "2026-08-21 15:02",
+ "updated_utc": "2026-08-21T13:06:11.155901+00:00",
+ "updated_israel": "2026-08-21 16:06",
  "market": {
   "open": false,
-  "et": "08:02",
-  "il": "15:02"
+  "et": "09:06",
+  "il": "16:06"
  },
  "stats": {
-  "trades": 34,
-  "win_rate": 58.8,
-  "pf": 1.19,
-  "avg_r": 0.08,
-  "expectancy": 0.88,
+  "trades": 35,
+  "win_rate": 57.1,
+  "pf": 1.1,
+  "avg_r": 0.05,
+  "expectancy": 0.48,
   "best": 25.41,
   "worst": -22.5
  },
@@ -3088,11 +3065,11 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1198,
+   "bars": 1211,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4655.4,
-   "signals": 1,
+   "last_price": 4636.5,
+   "signals": 0,
    "today_trades": 1,
    "health": {
     "n": 20,
@@ -3103,17 +3080,17 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 2,
-    "pnl": 31.04
+    "trades": 3,
+    "pnl": 18.12
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 3,
-   "heat": 51.65,
+   "open": 2,
+   "heat": 25.51,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3126,7 +3103,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 19,
    "covered": 3,
-   "updated": "2026-08-21 15:02"
+   "updated": "2026-08-21 16:06"
   }
  },
  "gold_today": {
@@ -3140,9 +3117,9 @@
   },
   "gold": {
    "n": 20,
-   "exp": 2.74,
-   "pf": 1.69,
-   "avg_r": 0.22,
+   "exp": 1.33,
+   "pf": 1.29,
+   "avg_r": 0.09,
    "status": "ok"
   },
   "day": {
@@ -3643,6 +3620,17 @@
   },
   "market": [
    {
+    "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": "דוחות",
+    "sources": 1,
+    "title": "Chamath Palihapitiya: AI Has “Literally Zero” To Do With Big Company Earnings, as Nvidia Sits On A 945% Five Year Run",
+    "url": "https://247wallst.com/investing/2026/08/21/chamath-palihapitiya-ai-has-literally-zero-to-do-with-big-company-earnings-as-nvidia-sits-on-a-945-five-year-run/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-21 12:55",
+    "about": "שוק"
+   },
+   {
     "summary": "דיווח ניטרלי · עדכון דיבידנד · מקור יחיד — לקחת בזהירות",
     "dir": "neu",
     "tag": "דיבידנד",
@@ -3676,17 +3664,6 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "How Much of Your Portfolio Should Actually Be in FTXL",
-    "url": "https://247wallst.com/investing/etf/2026/08/20/how-much-of-your-portfolio-should-actually-be-in-ftxl/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-20 21:15",
-    "about": "שוק"
-   },
-   {
     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
     "dir": "pos",
     "tag": null,
@@ -3695,6 +3672,17 @@
     "url": "https://247wallst.com/investing/2026/08/20/sk-hynix-climbs-4-on-record-buyback-micron-ticks-up-as-memory-defies-the-tech-selloff/",
     "src": "24/7 Wall St.",
     "time": "2026-08-20 18:31",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "How Much of Your Portfolio Should Actually Be in FTXL",
+    "url": "https://247wallst.com/investing/etf/2026/08/20/how-much-of-your-portfolio-should-actually-be-in-ftxl/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-20 21:15",
     "about": "שוק"
    },
    {
@@ -3718,19 +3706,8 @@
     "src": "Yahoo Personal Finance",
     "time": "2026-08-20 15:33",
     "about": "זהב"
-   },
-   {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
-    "tag": null,
-    "sources": 1,
-    "title": "Bank of America strategist warns market just flashed a 2000 dot-com bubble signal. Here’s how to protect your portfolio",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/bank-america-strategist-warns-market-101500180.html",
-    "src": "Moneywise",
-    "time": "2026-08-21 10:15",
-    "about": "זהב"
    }
   ],
-  "updated": "2026-08-21 15:02"
+  "updated": "2026-08-21 16:06"
  }
 }
