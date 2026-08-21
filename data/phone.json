@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-21 19:52",
+  "updated_israel": "2026-08-21 19:53",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 6,
     "enabled": true,
     "note": "skip: daily loss stop",
-    "age_sec": 10.1,
+    "age_sec": 14.8,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 177381.9,
+    "age_sec": 177446.6,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,7 +67,7 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 0.5,
+    "age_sec": 0.2,
     "status": "ok",
     "symbol": "XAUUSD+",
     "margin_free": 11136.22,
@@ -79,7 +79,7 @@
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1135.05,
+    "equity": 1133.16,
     "balance": 102.08,
     "day_gross": 19.85,
     "day_open_equity": 1071.79,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 960.86,
-    "age_sec": 288.1,
+    "age_sec": 52.8,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -157,7 +157,7 @@
    "day_fee": 704.48,
    "day_net": 9952.69,
    "day_pct": 32.08,
-   "equity": 32201.46,
+   "equity": 32199.57,
    "day_open_equity": 33215.53,
    "pocket_since_start": -2644.97,
    "fee_since_start": 2575.16
@@ -1086,12 +1086,12 @@
    "gross": -3.23
   }
  ],
- "updated_utc": "2026-08-21T16:52:48.117444+00:00",
- "updated_israel": "2026-08-21 19:52",
+ "updated_utc": "2026-08-21T16:53:52.854167+00:00",
+ "updated_israel": "2026-08-21 19:53",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.21 19:52:38",
+  "updated": "2026.08.21 19:53:38",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1112,7 +1112,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 41.0,
+  "spread_points": 23.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 102753.7
+  "age_sec": 102818.4
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1145,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 177381.9
+  "age_sec": 177446.6
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.19",
-  "t": 1787341967,
+  "t": 1787342032,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1176,7 +1176,7 @@
   "equity": 11136.22,
   "margin_free": 11136.22,
   "is_demo": true,
-  "age_sec": 0.5,
+  "age_sec": 0.2,
   "ok": true,
   "blocked": ""
  },
@@ -1270,12 +1270,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 102.08474821636854,
-  "equity": 1135.05,
+  "equity": 1133.16,
   "realized_pnl": 117.97,
-  "open_pnl": 24.57,
+  "open_pnl": 22.68,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 13.5,
+  "return_pct": 13.32,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1320,7 +1320,57 @@
    ]
   }
  ],
- "signals_day": [],
+ "signals_day": [
+  {
+   "kind": "day",
+   "ticker": "NIO",
+   "side": "long",
+   "state": "BUY_NOW",
+   "price": 4.635,
+   "entry": 4.635,
+   "stop": 4.575,
+   "t1": 4.755,
+   "t2": 4.815,
+   "rr1": 2.0,
+   "rsi": 56.0,
+   "rvol": 3.33,
+   "score": 77,
+   "shares": 5,
+   "notional": 23.18,
+   "risk_dollars": 0.3,
+   "room": null,
+   "above_ma50_pct": null,
+   "news": [
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "NIO Stock Braces For Another Monthly Loss As Retail Sentiment Nears Record Low: Can Q2 Profitability Turn The Tide?",
+     "src": "Stocktwits",
+     "time": "2026-08-21 06:45"
+    },
+    {
+     "summary": "דיווח חיובי · שיתוף פעולה חדש · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": "שיתוף פעולה",
+     "sources": 1,
+     "title": "What NIO (NIO)'s Chery Partnership and ET5 Touring Refresh Mean For Shareholders",
+     "src": "Simply Wall St.",
+     "time": "2026-08-20 10:09"
+    },
+    {
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": null,
+     "sources": 1,
+     "title": "Is NIO (NIO) Cheap After D.E. Shaw Cut Its Stake And ET5 News?",
+     "src": "Simply Wall St.",
+     "time": "2026-08-20 09:11"
+    }
+   ]
+  }
+ ],
  "pending_entries": [],
  "scan_universe": {
   "universe_json": 70,
@@ -1340,7 +1390,13 @@
   "max_price": 130.0,
   "cash_reserve_usd": 75.0
  },
- "rejected": [],
+ "rejected": [
+  {
+   "ticker": "NIO",
+   "kind": "day",
+   "why": "measurement_only"
+  }
+ ],
  "game": {
   "xp": 5285,
   "level": 10,
@@ -1450,10 +1506,10 @@
    "name": "👹 בוס היום",
    "target": 85.74,
    "legend": 214.36,
-   "done": 63.26,
+   "done": 61.37,
    "base": 1071.79,
-   "pct": 74,
-   "pct_legend": 30,
+   "pct": 72,
+   "pct_legend": 29,
    "beaten": false,
    "legendary": false
   },
