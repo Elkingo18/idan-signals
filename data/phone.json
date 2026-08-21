@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-21 13:05",
+  "updated_israel": "2026-08-21 13:06",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 5,
     "enabled": true,
     "note": "skip: no burst -0.16atr",
-    "age_sec": 3.0,
+    "age_sec": 12.2,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 152974.8,
+    "age_sec": 152984.0,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -54,23 +54,23 @@
     "name": "בוט המגירה",
     "icon": "🗄️",
     "market": "XAUUSD",
-    "equity": 11241.41,
+    "equity": 11241.92,
     "balance": 11242.44,
     "day_gross": -371.19,
     "day_open_equity": 11613.63,
     "day_pct": -3.2,
     "open_count": 1,
-    "open_gross": -1.03,
+    "open_gross": -0.52,
     "open_lots": 0.01,
     "legs": 1,
     "max_legs": 8,
     "vwap": 4584.55,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 4.5,
+    "age_sec": 3.7,
     "status": "ok",
     "symbol": "XAUUSD+",
-    "margin_free": 11232.24,
+    "margin_free": 11232.75,
     "blocked": null,
     "note": "הרפליקה של גולדטראפ - עומק 1 מתוך 8 מותרים"
    },
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 921.3,
-    "age_sec": 241.0,
+    "age_sec": 250.2,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -109,13 +109,13 @@
     "size": 0.01,
     "unit": "lot",
     "entry": 4584.55,
-    "price": 4583.52,
-    "gross": -1.03,
+    "price": 4584.03,
+    "gross": -0.52,
     "fee_est": 0.28,
     "notional": 4584.55,
-    "pct_pos": -0.02,
-    "pct_acct": -0.01,
-    "net_est": -1.31
+    "pct_pos": -0.01,
+    "pct_acct": -0.0,
+    "net_est": -0.8
    },
    {
     "bot": "swing",
@@ -164,15 +164,15 @@
    }
   ],
   "totals": {
-   "open_gross": -9.46,
+   "open_gross": -8.95,
    "open_fee_est": 6.28,
-   "open_net_est": -15.74,
+   "open_net_est": -15.23,
    "open_count": 4,
    "day_gross": 10879.4,
    "day_fee": 701.12,
    "day_net": 10178.28,
    "day_pct": 32.75,
-   "equity": 32379.23,
+   "equity": 32379.74,
    "day_open_equity": 33215.53,
    "pocket_since_start": -2525.33,
    "fee_since_start": 2571.8
@@ -1101,7 +1101,7 @@
    "price": 4584.55
   }
  ],
- "updated_utc": "2026-08-21T10:06:01.032649+00:00",
+ "updated_utc": "2026-08-21T10:06:10.223066+00:00",
  "updated_israel": "2026-08-21 13:06",
  "gold": {
   "schema": 1,
@@ -1135,7 +1135,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 78346.6
+  "age_sec": 78355.8
  },
  "slave": {
   "ok": false,
@@ -1160,12 +1160,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 152974.8
+  "age_sec": 152984.0
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.17",
-  "t": 1787317556,
+  "t": 1787317566,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1175,9 +1175,9 @@
   "dir": 1,
   "lots": 0.01,
   "vwap": 4584.55,
-  "price": 4583.52,
-  "move": -1.03,
-  "float": -1.03,
+  "price": 4584.03,
+  "move": -0.52,
+  "float": -0.52,
   "day": -371.19,
   "day_target": 1350.0,
   "day_loss_stop": 0.0,
@@ -1187,46 +1187,51 @@
   "mixed": false,
   "closing": false,
   "balance": 11242.44,
-  "equity": 11241.41,
-  "margin_free": 11232.24,
+  "equity": 11241.92,
+  "margin_free": 11232.75,
   "is_demo": true,
-  "age_sec": 4.5,
+  "age_sec": 3.7,
   "ok": true,
   "blocked": ""
  },
  "fees": {
+  "model": "profit_minus_fee_v2",
+  "schema": 2,
   "rate_atrade_per_oz": 0.28,
-  "rate_demo_per_oz": 0.285,
-  "day": "2026/08/21",
-  "is_today": true,
-  "rows": [
-   {
-    "name": "בוט הזהב",
-    "lots": 0.82,
-    "gross": -460.27,
-    "demo_fee": 23.37,
-    "atrade_fee": 22.96,
-    "net_atrade": -483.23,
-    "net_demo": -483.64
-   },
-   {
-    "name": "המעתיק",
-    "lots": 24.22,
-    "gross": 12404.92,
-    "demo_fee": 690.27,
-    "atrade_fee": 678.16,
-    "net_atrade": 11726.76,
-    "net_demo": 11714.65
+  "start": {
+   "gold": 10000.0,
+   "copier": 10000.0
+  },
+  "since_start": {
+   "rows": [
+    {
+     "name": "בוט הזהב",
+     "profit": -1668.18,
+     "lots": 10.33,
+     "fee": 289.24,
+     "pocket": -1957.42
+    },
+    {
+     "name": "The Ladder",
+     "profit": 1714.65,
+     "lots": 81.52,
+     "fee": 2282.56,
+     "pocket": -567.91
+    }
+   ],
+   "total": {
+    "name": "סה\"כ",
+    "profit": 46.47,
+    "lots": 91.85,
+    "fee": 2571.8,
+    "pocket": -2525.33
    }
-  ],
-  "total": {
-   "name": "סה\"כ",
-   "lots": 25.04,
-   "gross": 11944.65,
-   "demo_fee": 713.64,
-   "atrade_fee": 701.12,
-   "net_atrade": 11243.53,
-   "net_demo": 11231.01
+  },
+  "last_day": {
+   "day": "2026.08.21",
+   "is_today": false,
+   "rows": [],
+   "total": {}
   }
  },
  "shadow_wallet": {
@@ -1726,7 +1731,5 @@
   }
  },
  "tws_connected": true,
- "stocks_stale": false,
- "stocks_as_of": "2026-08-21 13:05",
- "published_by": "publish_phone.py"
+ "stocks_stale": false
 }
