@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 164.73639676438546,
-  "equity": 985.92,
+  "equity": 999.48,
   "realized_pnl": -1.26,
-  "open_pnl": -9.83,
+  "open_pnl": 3.73,
   "peak_equity": 1021.75,
   "max_dd_pct": -8.47,
-  "return_pct": -1.41,
+  "return_pct": -0.05,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -92,7 +92,7 @@
    "t2": 4601.11,
    "opened": "2026-08-20T20:42:07.288947+03:00",
    "opened_day": "2026-08-20",
-   "risk_open": 17.73,
+   "risk_open": 31.29,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -106,7 +106,7 @@
     "regime_ok": true,
     "notional": 6813.77
    },
-   "last": 4575.5,
+   "last": 4584.6001,
    "margin": 340.7
   }
  ],
@@ -1057,7 +1057,7 @@
     "shares": 45,
     "notional": 153.9,
     "risk_dollars": 13.53,
-    "risk_pct_actual": 1.37,
+    "risk_pct_actual": 1.35,
     "stretch_target": 4.1,
     "score": 77,
     "news": [
@@ -1111,24 +1111,34 @@
     "room": 13.97,
     "pivot_low": 12.06,
     "pivot_high": 13.015,
-    "rvol": 0.73,
+    "rvol": 0.74,
     "above_ma50_pct": 1.82,
     "shares": 12,
     "notional": 156.18,
     "risk_dollars": 7.4,
-    "risk_pct_actual": 0.75,
+    "risk_pct_actual": 0.74,
     "stretch_target": 15.62,
     "score": 77,
     "news": [
      {
-      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-      "dir": "pos",
+      "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+      "dir": "neg",
       "tag": null,
       "sources": 1,
-      "title": "Li Auto Inc. Sponsored ADR (LI) Stock Drops Despite Market Gains: Important Facts to Note",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/li-auto-inc-sponsored-adr-214502762.html",
+      "title": "Li Auto Inc. Sponsored ADR (LI) Advances While Market Declines: Some Information for Investors",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/li-auto-inc-sponsored-adr-214503907.html",
       "src": "Zacks",
-      "time": "2026-08-13 21:45"
+      "time": "2026-08-20 21:45"
+     },
+     {
+      "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+      "dir": "neu",
+      "tag": "דוחות",
+      "sources": 1,
+      "title": "Ahead of Xpeng Earnings, Here's What Barchart Data Says Comes Next for XPEV Stock",
+      "url": "https://www.barchart.com/story/news/3957849/ahead-of-xpeng-earnings-here-s-what-barchart-data-says-comes-next-for-xpev-stock",
+      "src": "Barchart",
+      "time": "2026-08-20 20:23"
      },
      {
       "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -1139,23 +1149,39 @@
       "url": "https://www.barchart.com/story/news/3806643/after-plunging-40-this-year-xpeng-bets-on-physical-ai-to-help-turn-the-tide",
       "src": "Barchart",
       "time": "2026-08-12 14:59"
-     },
-     {
-      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-      "dir": "neu",
-      "tag": null,
-      "sources": 1,
-      "title": "Tesla's Model Y Loses China's Top Spot to Geely",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/teslas-model-y-loses-chinas-131417175.html",
-      "src": "GuruFocus.com",
-      "time": "2026-08-12 13:14"
      }
     ],
     "regime_ok": true
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "long",
+    "state": "BUY_NOW",
+    "pattern": "פולבק לגל",
+    "price": 4584.6,
+    "entry": 4584.6,
+    "stop": 4576.1,
+    "t1": 4597.35,
+    "t2": 4610.11,
+    "rr1": 1.5,
+    "atr": 5.67,
+    "rsi": 55.4,
+    "vwap": 4556.93,
+    "stop_pct": 0.19,
+    "ounces": 0.64,
+    "notional": 2934.14,
+    "margin": 146.71,
+    "risk_dollars": 5.44,
+    "shares": 0.64,
+    "score": 62,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-08-20": {
@@ -1414,6 +1440,10 @@
   [
    "2026-08-20",
    985.92
+  ],
+  [
+   "2026-08-21",
+   999.48
   ]
  ],
  "cooldown": {},
@@ -1507,7 +1537,7 @@
    },
    {
     "t": "לסיים את היום ירוק",
-    "done": true,
+    "done": false,
     "xp": 20
    },
    {
@@ -1522,12 +1552,12 @@
    }
   ],
   "boss": {
-   "day": "2026-08-20",
+   "day": "2026-08-21",
    "name": "👹 בוס היום",
-   "target": 79.63,
-   "legend": 199.08,
-   "done": -9.5,
-   "base": 995.42,
+   "target": 79.96,
+   "legend": 199.9,
+   "done": 0.0,
+   "base": 999.48,
    "pct": 0,
    "pct_legend": 0,
    "beaten": false,
@@ -1540,10 +1570,10 @@
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 4.5,
+  "day_pnl": 0.0,
   "week_pnl": 34.11,
-  "daily_limit": -59.16,
-  "weekly_limit": -118.31
+  "daily_limit": -59.97,
+  "weekly_limit": -119.94
  },
  "log": [
   {
@@ -1827,8 +1857,8 @@
   "spy": 762.6
  },
  "periods": {
-  "day": 4.5,
-  "week": 30.15,
+  "day": 0,
+  "week": 24.56,
   "month": -1.26,
   "quarter": -1.26,
   "half": -1.26,
@@ -1837,13 +1867,19 @@
   "all": -1.26,
   "all_pct": -0.13
  },
- "rejected": [],
- "updated_utc": "2026-08-20T20:42:27.873406+00:00",
- "updated_israel": "2026-08-20 23:42",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-08-21T02:36:22.323329+00:00",
+ "updated_israel": "2026-08-21 05:36",
  "market": {
   "open": false,
-  "et": "16:42",
-  "il": "23:42"
+  "et": "22:36",
+  "il": "05:36"
  },
  "stats": {
   "trades": 32,
@@ -1859,8 +1895,8 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-08-20",
-  "equity": 995.42
+  "date": "2026-08-21",
+  "equity": 999.48
  },
  "universe_view": [
   {
@@ -1869,7 +1905,7 @@
    "px": 5.21,
    "trend": 6.9,
    "rsi": 53,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 1,
    "state": "none"
   },
@@ -1879,7 +1915,7 @@
    "px": 10.15,
    "trend": -10.9,
    "rsi": 48,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 1,
    "state": "none"
   },
@@ -1889,7 +1925,7 @@
    "px": 8.14,
    "trend": -14.2,
    "rsi": 38,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1899,7 +1935,7 @@
    "px": 10.11,
    "trend": -5.3,
    "rsi": 46,
-   "rvol": 0.4,
+   "rvol": 0.5,
    "df": 1,
    "state": "none"
   },
@@ -1909,7 +1945,7 @@
    "px": 3.51,
    "trend": -2.5,
    "rsi": 46,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1919,7 +1955,7 @@
    "px": 6.01,
    "trend": -13.6,
    "rsi": 41,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1929,7 +1965,7 @@
    "px": 11.83,
    "trend": 2.3,
    "rsi": 49,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -1979,7 +2015,7 @@
    "px": 19.22,
    "trend": 11.6,
    "rsi": 64,
-   "rvol": 0.7,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -1989,7 +2025,7 @@
    "px": 6.49,
    "trend": -19.3,
    "rsi": 37,
-   "rvol": 0.4,
+   "rvol": 0.5,
    "df": 0,
    "state": "none"
   },
@@ -1999,7 +2035,7 @@
    "px": 22.57,
    "trend": 25.9,
    "rsi": 62,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -2019,7 +2055,7 @@
    "px": 16.53,
    "trend": 17.2,
    "rsi": 62,
-   "rvol": 1.0,
+   "rvol": 1.2,
    "df": 0,
    "state": "none"
   },
@@ -2029,7 +2065,7 @@
    "px": 4.1,
    "trend": -12.4,
    "rsi": 41,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2039,7 +2075,7 @@
    "px": 17.9,
    "trend": 3.5,
    "rsi": 52,
-   "rvol": 0.5,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -2059,7 +2095,7 @@
    "px": 14.21,
    "trend": 3.9,
    "rsi": 51,
-   "rvol": 1.1,
+   "rvol": 1.2,
    "df": 1,
    "state": "none"
   },
@@ -2079,7 +2115,7 @@
    "px": 7.17,
    "trend": -10.8,
    "rsi": 29,
-   "rvol": 1.3,
+   "rvol": 1.4,
    "df": 0,
    "state": "none"
   },
@@ -2109,7 +2145,7 @@
    "px": 13.49,
    "trend": -7.1,
    "rsi": 33,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -2119,7 +2155,7 @@
    "px": 6.01,
    "trend": 12.1,
    "rsi": 67,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -2139,7 +2175,7 @@
    "px": 3.02,
    "trend": 23.7,
    "rsi": 69,
-   "rvol": 1.5,
+   "rvol": 1.7,
    "df": 0,
    "state": "none"
   },
@@ -2199,7 +2235,7 @@
    "px": 7.38,
    "trend": -22.2,
    "rsi": 37,
-   "rvol": 1.2,
+   "rvol": 1.3,
    "df": 0,
    "state": "none"
   },
@@ -2239,7 +2275,7 @@
    "px": 4.74,
    "trend": -15.3,
    "rsi": 33,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2269,7 +2305,7 @@
    "px": 18.93,
    "trend": -0.3,
    "rsi": 47,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 1,
    "state": "none"
   },
@@ -2279,7 +2315,7 @@
    "px": 17.33,
    "trend": -3.7,
    "rsi": 41,
-   "rvol": 1.6,
+   "rvol": 1.8,
    "df": 0,
    "state": "none"
   },
@@ -2289,7 +2325,7 @@
    "px": 16.0,
    "trend": -7.3,
    "rsi": 40,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -2299,7 +2335,7 @@
    "px": 16.27,
    "trend": 12.8,
    "rsi": 69,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -2329,7 +2365,7 @@
    "px": 5.3,
    "trend": -16.0,
    "rsi": 33,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2369,7 +2405,7 @@
    "px": 9.2,
    "trend": -52.9,
    "rsi": 27,
-   "rvol": 1.5,
+   "rvol": 1.6,
    "df": 0,
    "state": "none"
   },
@@ -2379,7 +2415,7 @@
    "px": 3.08,
    "trend": 3.2,
    "rsi": 53,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -2419,7 +2455,7 @@
    "px": 3.07,
    "trend": -6.9,
    "rsi": 46,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 1,
    "state": "none"
   },
@@ -2439,7 +2475,7 @@
    "px": 10.31,
    "trend": 8.2,
    "rsi": 60,
-   "rvol": 0.7,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2449,7 +2485,7 @@
    "px": 7.74,
    "trend": 3.1,
    "rsi": 49,
-   "rvol": 1.7,
+   "rvol": 1.8,
    "df": 0,
    "state": "none"
   },
@@ -2489,7 +2525,7 @@
    "px": 16.01,
    "trend": -2.2,
    "rsi": 50,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 1,
    "state": "none"
   },
@@ -2499,7 +2535,7 @@
    "px": 5.62,
    "trend": -9.9,
    "rsi": 39,
-   "rvol": 1.2,
+   "rvol": 1.5,
    "df": 1,
    "state": "none"
   },
@@ -2509,7 +2545,7 @@
    "px": 4.53,
    "trend": -6.2,
    "rsi": 42,
-   "rvol": 0.9,
+   "rvol": 1.1,
    "df": 1,
    "state": "none"
   },
@@ -2519,7 +2555,7 @@
    "px": 12.0,
    "trend": -6.8,
    "rsi": 44,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -2549,7 +2585,7 @@
    "px": 3.27,
    "trend": -35.5,
    "rsi": 34,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2559,7 +2595,7 @@
    "px": 4.46,
    "trend": -18.2,
    "rsi": 22,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "df": 0,
    "state": "none"
   },
@@ -2971,12 +3007,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1096,
+   "bars": 1155,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4575.5,
-   "signals": 0,
-   "today_trades": 3,
+   "last_price": 4584.6,
+   "signals": 1,
+   "today_trades": 0,
    "health": {
     "n": 20,
     "exp": 0.43,
@@ -2986,8 +3022,8 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 3,
-    "pnl": 4.5
+    "trades": 0,
+    "pnl": 0
    },
    "open_now": 1
   },
@@ -2996,11 +3032,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 3,
-   "heat": 43.24,
+   "heat": 56.8,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -3009,7 +3045,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 20,
    "covered": 3,
-   "updated": "2026-08-20 23:42"
+   "updated": "2026-08-21 05:36"
   }
  },
  "gold_today": {
@@ -3071,7 +3107,7 @@
    "px": 8.88,
    "trend": 0.5,
    "rsi": 51,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "near": false
   },
   {
@@ -3081,7 +3117,7 @@
    "px": 4.43,
    "trend": -2.8,
    "rsi": 47,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": false
   },
   {
@@ -3101,7 +3137,7 @@
    "px": 10.74,
    "trend": -3.6,
    "rsi": 42,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "near": false
   },
   {
@@ -3111,7 +3147,7 @@
    "px": 11.14,
    "trend": 0.6,
    "rsi": 52,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -3211,7 +3247,7 @@
    "px": 2.66,
    "trend": -22.3,
    "rsi": 33,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": false
   },
   {
@@ -3221,7 +3257,7 @@
    "px": 17.08,
    "trend": 23.7,
    "rsi": 64,
-   "rvol": 0.3,
+   "rvol": 0.4,
    "near": true
   },
   {
@@ -3261,7 +3297,7 @@
    "px": 133.32,
    "trend": 103.2,
    "rsi": 69,
-   "rvol": 4.9,
+   "rvol": 5.0,
    "near": false
   },
   {
@@ -3321,7 +3357,7 @@
    "px": 15.66,
    "trend": 4.2,
    "rsi": 47,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -3331,7 +3367,7 @@
    "px": 36.48,
    "trend": 11.9,
    "rsi": 55,
-   "rvol": 0.4,
+   "rvol": 0.6,
    "near": false
   },
   {
@@ -3341,7 +3377,7 @@
    "px": 10.03,
    "trend": -21.8,
    "rsi": 32,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": false
   },
   {
@@ -3391,7 +3427,7 @@
    "px": 2.66,
    "trend": -22.3,
    "rsi": 33,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": false
   },
   {
@@ -3401,7 +3437,7 @@
    "px": 17.08,
    "trend": 23.7,
    "rsi": 64,
-   "rvol": 0.3,
+   "rvol": 0.4,
    "near": true
   }
  ],
@@ -3493,14 +3529,24 @@
    ],
    "LI": [
     {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
      "tag": null,
      "sources": 1,
-     "title": "Li Auto Inc. Sponsored ADR (LI) Stock Drops Despite Market Gains: Important Facts to Note",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/li-auto-inc-sponsored-adr-214502762.html",
+     "title": "Li Auto Inc. Sponsored ADR (LI) Advances While Market Declines: Some Information for Investors",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/li-auto-inc-sponsored-adr-214503907.html",
      "src": "Zacks",
-     "time": "2026-08-13 21:45"
+     "time": "2026-08-20 21:45"
+    },
+    {
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": "דוחות",
+     "sources": 1,
+     "title": "Ahead of Xpeng Earnings, Here's What Barchart Data Says Comes Next for XPEV Stock",
+     "url": "https://www.barchart.com/story/news/3957849/ahead-of-xpeng-earnings-here-s-what-barchart-data-says-comes-next-for-xpev-stock",
+     "src": "Barchart",
+     "time": "2026-08-20 20:23"
     },
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -3521,16 +3567,6 @@
      "url": "https://finance.yahoo.com/markets/stocks/articles/teslas-model-y-loses-chinas-131417175.html",
      "src": "GuruFocus.com",
      "time": "2026-08-12 13:14"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 1,
-     "title": "Arteris Q2 Earnings Call Highlights",
-     "url": "https://www.marketbeat.com/instant-alerts/arteris-q2-earnings-call-highlights-2026-08-06/?utm_source=yahoofinance&utm_medium=yahoofinance",
-     "src": "MarketBeat",
-     "time": "2026-08-06 22:04"
     }
    ]
   },
@@ -3547,14 +3583,25 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Median Stock Portfolio Hits Record $350,000  — Household Share of Nation Debt Grows to $296,500",
-    "url": "https://247wallst.com/investing/2026/08/20/median-stock-portfolio-hits-record-350000-household-share-of-nation-debt-grows-to-296500/",
+    "title": "US Stock Indices End Lower As Trump’s ‘Economic Warfare’ Threats Push Yields, Oil Higher — WMT, CRWV, SBUX, DE, RKLB In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/us-stock-indices-end-lower-as-trump-s-economic-warfare-threats-push-yields-oil-higher/cZYeR5dRJZA",
+    "src": "Stocktwits",
+    "time": "2026-08-20 21:31",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "How Much of Your Portfolio Should Actually Be in FTXL",
+    "url": "https://247wallst.com/investing/etf/2026/08/20/how-much-of-your-portfolio-should-actually-be-in-ftxl/",
     "src": "24/7 Wall St.",
-    "time": "2026-08-20 16:43",
+    "time": "2026-08-20 21:15",
     "about": "שוק"
    },
    {
@@ -3569,17 +3616,6 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Ask Anything: Six Weeks of Investors Putting ETF Questions to AI",
-    "url": "http://www.etf.com/sections/news/ask-anything-six-weeks-investors-putting-etf-questions-ai?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss",
-    "src": "etf.com",
-    "time": "2026-08-20 18:01",
-    "about": "שוק"
-   },
-   {
     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
     "dir": "pos",
     "tag": null,
@@ -3591,25 +3627,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Exchange-Traded Funds Fall as US Equities Decline After Midday",
-    "url": "https://finance.yahoo.com/markets/articles/exchange-traded-funds-fall-us-171203079.html",
-    "src": "MT Newswires",
-    "time": "2026-08-20 17:12",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
-    "tag": null,
-    "sources": 1,
-    "title": "Nebius Drops 4%, Cloudflare Falls 3%, Snowflake Slips: Are Financing Concerns Sinking AI-Cloud Stocks?",
-    "url": "https://247wallst.com/investing/2026/08/20/nebius-drops-4-cloudflare-falls-3-snowflake-slips-are-financing-concerns-sinking-ai-cloud-stocks/",
+    "title": "Goldman Sachs Just Paid $2.25 Billion for the Family Behind Your 14% Income Fund",
+    "url": "https://247wallst.com/investing/2026/08/20/goldman-sachs-just-paid-2-25-billion-for-the-family-behind-your-14-income-fund/",
     "src": "24/7 Wall St.",
-    "time": "2026-08-20 17:11",
+    "time": "2026-08-20 21:05",
     "about": "שוק"
    },
    {
@@ -3622,8 +3647,19 @@
     "src": "Yahoo Personal Finance",
     "time": "2026-08-20 15:33",
     "about": "זהב"
+   },
+   {
+    "summary": "דיווח חיובי · עדכון דיבידנד · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": "דיבידנד",
+    "sources": 1,
+    "title": "Alkane Resources posts record A$228.7 million FY26 profit, launches maiden dividend and A$50 million buy-back",
+    "url": "https://www.proactiveinvestors.com/companies/news/1097377/alkane-resources-posts-record-a-228-7-million-fy26-profit-launches-maiden-dividend-and-a-50-million-buy-back-1097377.html",
+    "src": "Proactive",
+    "time": "2026-08-20 23:45",
+    "about": "זהב"
    }
   ],
-  "updated": "2026-08-20 23:42"
+  "updated": "2026-08-21 05:36"
  }
 }
