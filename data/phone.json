@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-21 22:12",
+  "updated_israel": "2026-08-21 22:14",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 6,
     "enabled": true,
     "note": "skip: daily loss stop",
-    "age_sec": 2.8,
+    "age_sec": 7.7,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 185794.6,
+    "age_sec": 185859.5,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -54,23 +54,23 @@
     "name": "בוט המגירה",
     "icon": "🗄️",
     "market": "XAUUSD",
-    "equity": 11204.15,
-    "balance": 11204.28,
-    "day_gross": -409.35,
+    "equity": 11204.69,
+    "balance": 11204.66,
+    "day_gross": -408.97,
     "day_open_equity": 11613.63,
     "day_pct": -3.52,
     "open_count": 1,
-    "open_gross": -0.13,
+    "open_gross": 0.03,
     "open_lots": 0.01,
     "legs": 1,
     "max_legs": 13,
-    "vwap": 4622.47,
+    "vwap": 4623.1,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 4.1,
+    "age_sec": 4.0,
     "status": "ok",
     "symbol": "XAUUSD+",
-    "margin_free": 11194.91,
+    "margin_free": 11195.44,
     "blocked": null,
     "note": "הרפליקה של גולדטראפ - עומק 1 מתוך 13 מותרים"
    },
@@ -79,7 +79,7 @@
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 1123.28,
+    "equity": 1124.86,
     "balance": 102.08,
     "day_gross": 19.85,
     "day_open_equity": 1071.79,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 952.72,
-    "age_sec": 300.8,
+    "age_sec": 65.7,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -108,14 +108,14 @@
     "side": "BUY",
     "size": 0.01,
     "unit": "lot",
-    "entry": 4622.47,
-    "price": 4622.34,
-    "gross": -0.13,
+    "entry": 4623.1,
+    "price": 4623.13,
+    "gross": 0.03,
     "fee_est": 0.28,
-    "notional": 4622.47,
-    "pct_pos": -0.0,
-    "pct_acct": -0.0,
-    "net_est": -0.41
+    "notional": 4623.1,
+    "pct_pos": 0.0,
+    "pct_acct": 0.0,
+    "net_est": -0.25
    },
    {
     "bot": "swing",
@@ -164,44 +164,21 @@
    }
   ],
   "totals": {
-   "open_gross": 22.86,
+   "open_gross": 23.02,
    "open_fee_est": 6.28,
-   "open_net_est": 16.58,
+   "open_net_est": 16.74,
    "open_count": 4,
-   "day_gross": 10725.23,
+   "day_gross": 10725.61,
    "day_fee": 704.48,
-   "day_net": 10020.75,
+   "day_net": 10021.13,
    "day_pct": 32.29,
-   "equity": 32257.62,
+   "equity": 32259.74,
    "day_open_equity": 33215.53,
    "pocket_since_start": -2644.97,
    "fee_since_start": 2575.16
   }
  },
  "events": [
-  {
-   "t": "21:01",
-   "day": "2026-08-21",
-   "kind": "open",
-   "bot": "drawer",
-   "symbol": "XAUUSD+",
-   "side": "SELL",
-   "size": 0.01,
-   "unit": "lot",
-   "price": 4622.47
-  },
-  {
-   "t": "21:01",
-   "day": "2026-08-21",
-   "kind": "close",
-   "bot": "drawer",
-   "symbol": "XAUUSD+",
-   "side": "BUY",
-   "size": 0.01,
-   "unit": "lot",
-   "price": 4620.88,
-   "gross": -0.41
-  },
   {
    "t": "21:03",
    "day": "2026-08-21",
@@ -1098,14 +1075,37 @@
    "unit": "lot",
    "price": 4621.6,
    "gross": -0.35
+  },
+  {
+   "t": "22:14",
+   "day": "2026-08-21",
+   "kind": "open",
+   "bot": "drawer",
+   "symbol": "XAUUSD+",
+   "side": "BUY",
+   "size": 0.01,
+   "unit": "lot",
+   "price": 4623.1
+  },
+  {
+   "t": "22:14",
+   "day": "2026-08-21",
+   "kind": "close",
+   "bot": "drawer",
+   "symbol": "XAUUSD+",
+   "side": "BUY",
+   "size": 0.01,
+   "unit": "lot",
+   "price": 4622.34,
+   "gross": -0.13
   }
  ],
- "updated_utc": "2026-08-21T19:13:00.819677+00:00",
- "updated_israel": "2026-08-21 22:12",
+ "updated_utc": "2026-08-21T19:14:05.757023+00:00",
+ "updated_israel": "2026-08-21 22:14",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.21 22:12:58",
+  "updated": "2026.08.21 22:13:58",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1126,7 +1126,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 8.0,
+  "spread_points": 20.0,
   "position": null
  },
  "copier": {
@@ -1134,7 +1134,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 111166.4
+  "age_sec": 111231.3
  },
  "slave": {
   "ok": false,
@@ -1159,12 +1159,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 185794.6
+  "age_sec": 185859.5
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1787350376,
+  "t": 1787350441,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1173,11 +1173,11 @@
   "max_legs_ask": 13,
   "dir": 1,
   "lots": 0.01,
-  "vwap": 4622.47,
-  "price": 4622.34,
-  "move": -0.13,
-  "float": -0.13,
-  "day": -409.35,
+  "vwap": 4623.1,
+  "price": 4623.13,
+  "move": 0.03,
+  "float": 0.03,
+  "day": -408.97,
   "day_target": 1350.0,
   "day_loss_stop": 0.0,
   "day_deposits": 0.0,
@@ -1186,11 +1186,11 @@
   "mixed": false,
   "closing": false,
   "never_loss": true,
-  "balance": 11204.28,
-  "equity": 11204.15,
-  "margin_free": 11194.91,
+  "balance": 11204.66,
+  "equity": 11204.69,
+  "margin_free": 11195.44,
   "is_demo": true,
-  "age_sec": 4.1,
+  "age_sec": 4.0,
   "ok": true,
   "blocked": ""
  },
@@ -1285,12 +1285,12 @@
  "engine_wallet": {
   "start": 1000.0,
   "cash": 102.08474821636854,
-  "equity": 1123.28,
+  "equity": 1124.86,
   "realized_pnl": 117.97,
-  "open_pnl": 12.8,
+  "open_pnl": 14.38,
   "peak_equity": 1187.69,
   "max_dd_pct": -12.25,
-  "return_pct": 12.33,
+  "return_pct": 12.49,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1299,20 +1299,20 @@
    "ticker": "SAN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 14.6122,
+   "price": 14.605,
    "entry": 15.0,
    "stop": 14.5009,
    "t1": 15.9982,
    "t2": 16.7469,
    "rr1": 2.0,
-   "rsi": 58.3,
-   "rvol": 0.49,
+   "rsi": 58.2,
+   "rvol": 0.5,
    "score": 83,
    "shares": 1,
    "notional": 15.0,
    "risk_dollars": 0.5,
    "room": 16.64,
-   "above_ma50_pct": 5.12,
+   "above_ma50_pct": 5.07,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -1348,20 +1348,20 @@
    "ticker": "PRCH",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 17.1,
+   "price": 17.08,
    "entry": 17.47,
    "stop": 16.1002,
    "t1": 20.2097,
    "t2": 22.2644,
    "rr1": 2.0,
-   "rsi": 65.1,
+   "rsi": 65.0,
    "rvol": 0.24,
    "score": 70,
    "shares": 1,
    "notional": 17.47,
    "risk_dollars": 1.37,
    "room": 19.72,
-   "above_ma50_pct": 20.52,
+   "above_ma50_pct": 20.38,
    "news": [
     {
      "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-4 מקורות שונים",
@@ -1384,7 +1384,57 @@
    ]
   }
  ],
- "signals_day": [],
+ "signals_day": [
+  {
+   "kind": "day",
+   "ticker": "PLUG",
+   "side": "long",
+   "state": "BUY_NOW",
+   "price": 2.31,
+   "entry": 2.31,
+   "stop": 2.21,
+   "t1": 2.51,
+   "t2": 2.61,
+   "rr1": 2.0,
+   "rsi": 57.1,
+   "rvol": 1.76,
+   "score": 86,
+   "shares": 11,
+   "notional": 25.41,
+   "risk_dollars": 1.1,
+   "room": null,
+   "above_ma50_pct": null,
+   "news": [
+    {
+     "summary": "דיווח שלילי · פיצול מניה · הוצלב ב-2 מקורות שונים",
+     "dir": "neg",
+     "tag": "פיצול",
+     "sources": 2,
+     "title": "FuelCell Energy Jumps 5%, Plug Power Climbs 4%, Bloom Energy Slips as the Hydrogen Trade Splits",
+     "src": "24/7 Wall St.",
+     "time": "2026-08-21 18:04"
+    },
+    {
+     "summary": "דיווח שלילי · עדכון תחזית מהחברה · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": "תחזית",
+     "sources": 1,
+     "title": "How Investors May Respond To Plug Power (PLUG) Raising 2026 Revenue Guidance Amid Ongoing Losses",
+     "src": "Simply Wall St.",
+     "time": "2026-08-21 13:14"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Plug Power’s (PLUG) Turnaround Math Finally Starts Adding Up",
+     "src": "Insider Monkey",
+     "time": "2026-08-20 12:58"
+    }
+   ]
+  }
+ ],
  "pending_entries": [],
  "scan_universe": {
   "universe_json": 70,
@@ -1404,7 +1454,13 @@
   "max_price": 130.0,
   "cash_reserve_usd": 75.0
  },
- "rejected": [],
+ "rejected": [
+  {
+   "ticker": "PLUG",
+   "kind": "day",
+   "why": "measurement_only"
+  }
+ ],
  "game": {
   "xp": 5285,
   "level": 10,
@@ -1514,10 +1570,10 @@
    "name": "👹 בוס היום",
    "target": 85.74,
    "legend": 214.36,
-   "done": 51.49,
+   "done": 53.07,
    "base": 1071.79,
-   "pct": 60,
-   "pct_legend": 24,
+   "pct": 62,
+   "pct_legend": 25,
    "beaten": false,
    "legendary": false
   },
