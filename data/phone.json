@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-21 20:05",
+  "updated_israel": "2026-08-21 20:06",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 6,
     "enabled": true,
     "note": "skip: daily loss stop",
-    "age_sec": 3.1,
+    "age_sec": 17.0,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 178174.9,
+    "age_sec": 178228.8,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,7 +67,7 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 3.5,
+    "age_sec": 32.4,
     "status": "ok",
     "symbol": "XAUUSD+",
     "margin_free": 11136.22,
@@ -85,7 +85,7 @@
     "day_open_equity": 1071.79,
     "day_pct": 1.85,
     "open_count": 3,
-    "open_gross": 32.91,
+    "open_gross": 31.7,
     "pending": 0,
     "scan": {
      "universe_json": 70,
@@ -95,8 +95,8 @@
      "file": "IBKR-swing.csv",
      "file_ok": true
     },
-    "broker_equity": 962.64,
-    "age_sec": 181.1,
+    "broker_equity": 961.43,
+    "age_sec": 235.0,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -109,13 +109,13 @@
     "size": 45,
     "unit": "share",
     "entry": 8.6622,
-    "price": 9.0761,
-    "gross": 18.63,
+    "price": 9.0661,
+    "gross": 18.17,
     "fee_est": 2.0,
     "notional": 389.8,
-    "pct_pos": 4.78,
-    "pct_acct": 1.64,
-    "net_est": 16.63
+    "pct_pos": 4.66,
+    "pct_acct": 1.6,
+    "net_est": 16.17
    },
    {
     "bot": "swing",
@@ -124,13 +124,13 @@
     "size": 17,
     "unit": "share",
     "entry": 18.7788,
-    "price": 19.0578,
-    "gross": 4.74,
+    "price": 19.0538,
+    "gross": 4.67,
     "fee_est": 2.0,
     "notional": 319.24,
-    "pct_pos": 1.48,
-    "pct_acct": 0.42,
-    "net_est": 2.74
+    "pct_pos": 1.46,
+    "pct_acct": 0.41,
+    "net_est": 2.67
    },
    {
     "bot": "swing",
@@ -139,19 +139,19 @@
     "size": 85,
     "unit": "share",
     "entry": 3.4318,
-    "price": 3.544,
-    "gross": 9.54,
+    "price": 3.536,
+    "gross": 8.86,
     "fee_est": 2.0,
     "notional": 291.7,
-    "pct_pos": 3.27,
-    "pct_acct": 0.84,
-    "net_est": 7.54
+    "pct_pos": 3.04,
+    "pct_acct": 0.78,
+    "net_est": 6.86
    }
   ],
   "totals": {
-   "open_gross": 32.91,
+   "open_gross": 31.7,
    "open_fee_est": 6.0,
-   "open_net_est": 26.91,
+   "open_net_est": 25.7,
    "open_count": 3,
    "day_gross": 10657.17,
    "day_fee": 704.48,
@@ -1086,12 +1086,12 @@
    "gross": -3.23
   }
  ],
- "updated_utc": "2026-08-21T17:06:01.147098+00:00",
+ "updated_utc": "2026-08-21T17:06:55.038716+00:00",
  "updated_israel": "2026-08-21 20:06",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.21 20:05:58",
+  "updated": "2026.08.21 20:06:38",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1112,7 +1112,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: daily loss stop",
-  "spread_points": 23.0,
+  "spread_points": 32.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 103546.7
+  "age_sec": 103600.6
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1145,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 178174.9
+  "age_sec": 178228.8
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.19",
-  "t": 1787342757,
+  "t": 1787342782,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1176,53 +1176,57 @@
   "equity": 11136.22,
   "margin_free": 11136.22,
   "is_demo": true,
-  "age_sec": 3.5,
+  "age_sec": 32.4,
   "ok": true,
   "blocked": ""
  },
- "drawers_extra": [],
  "fees": {
+  "model": "profit_minus_fee_v2",
+  "schema": 2,
   "rate_atrade_per_oz": 0.28,
-  "rate_demo_per_oz": 0.285,
-  "day": "2026/08/21",
-  "is_today": true,
-  "rows": [
-   {
-    "name": "בוט הזהב",
-    "lots": 0.94,
-    "gross": -573.13,
-    "demo_fee": 26.79,
-    "atrade_fee": 26.32,
-    "net_atrade": -599.45,
-    "net_demo": -599.92
-   },
-   {
-    "name": "המעתיק",
-    "lots": 24.22,
-    "gross": 12404.92,
-    "demo_fee": 690.27,
-    "atrade_fee": 678.16,
-    "net_atrade": 11726.76,
-    "net_demo": 11714.65
+  "start": {
+   "gold": 10000.0,
+   "copier": 10000.0
+  },
+  "since_start": {
+   "rows": [
+    {
+     "name": "בוט הזהב",
+     "profit": -1784.46,
+     "lots": 10.45,
+     "fee": 292.6,
+     "pocket": -2077.06
+    },
+    {
+     "name": "The Ladder",
+     "profit": 1714.65,
+     "lots": 81.52,
+     "fee": 2282.56,
+     "pocket": -567.91
+    }
+   ],
+   "total": {
+    "name": "סה\"כ",
+    "profit": -69.81,
+    "lots": 91.97,
+    "fee": 2575.16,
+    "pocket": -2644.97
    }
-  ],
-  "total": {
-   "name": "סה\"כ",
-   "lots": 25.16,
-   "gross": 11831.79,
-   "demo_fee": 717.06,
-   "atrade_fee": 704.48,
-   "net_atrade": 11127.31,
-   "net_demo": 11114.73
+  },
+  "last_day": {
+   "day": "2026.08.21",
+   "is_today": false,
+   "rows": [],
+   "total": {}
   }
  },
  "shadow_wallet": {
   "name": "UHTA",
   "start": 1000.0,
-  "equity": 962.64,
+  "equity": 961.43,
   "realized_pnl": -70.27,
-  "open_pnl": 32.91,
-  "return_pct": -3.74
+  "open_pnl": 31.7,
+  "return_pct": -3.86
  },
  "positions": [
   {
@@ -1231,9 +1235,9 @@
    "currency": "USD",
    "qty": 45.0,
    "avg_cost": 8.6622,
-   "mark": 9.0761,
-   "value": 408.43,
-   "unrealized": 18.63,
+   "mark": 9.0661,
+   "value": 407.97,
+   "unrealized": 18.17,
    "realized": 0.0,
    "source": "engine"
   },
@@ -1243,9 +1247,9 @@
    "currency": "USD",
    "qty": 17.0,
    "avg_cost": 18.7788,
-   "mark": 19.0578,
-   "value": 323.98,
-   "unrealized": 4.74,
+   "mark": 19.0538,
+   "value": 323.91,
+   "unrealized": 4.67,
    "realized": 0.0,
    "source": "engine"
   },
@@ -1255,9 +1259,9 @@
    "currency": "USD",
    "qty": 85.0,
    "avg_cost": 3.4318,
-   "mark": 3.544,
-   "value": 301.24,
-   "unrealized": 9.54,
+   "mark": 3.536,
+   "value": 300.56,
+   "unrealized": 8.86,
    "realized": 0.0,
    "source": "engine"
   }
@@ -1624,7 +1628,5 @@
   }
  },
  "tws_connected": true,
- "stocks_stale": false,
- "stocks_as_of": "2026-08-21 20:05",
- "published_by": "publish_phone.py"
+ "stocks_stale": false
 }
