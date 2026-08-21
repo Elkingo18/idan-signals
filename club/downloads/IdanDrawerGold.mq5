@@ -126,6 +126,13 @@
 //|    day_target and day_loss_stop, so "armed but running without    |
 //|    the target" can be seen on the club screen instead of guessed. |
 //+------------------------------------------------------------------+
+//|  v1.20 - one voice on the shared wire: the FIXED heartbeat file   |
+//|    (idan_drawer_gold.json) is now written ONLY by the primary     |
+//|    drawer (magic 770118). Tonight a second drawer-family bot      |
+//|    (GBPJPY on ...0413, magic 770121) comes alive on this machine, |
+//|    and two writers on one fixed name would make the club card     |
+//|    flicker between accounts. Every instance still writes its own  |
+//|    per-magic file - the mirror upgrade will read those.           |
 //|  v1.19 - the machine learns other symbols' money: every place     |
 //|    that turned "price move x lots" into account money used the    |
 //|    CONTRACT SIZE, which is only correct when the quote currency   |
@@ -162,7 +169,7 @@
 //+------------------------------------------------------------------+
 #property copyright "Idan Trader"
 #property link      "idan money club"
-#property version   "1.19"
+#property version   "1.20"
 #property description "Drawer replica of the copied gold bot. Disarmed until InpArmed=true."
 
 #include <Trade/Trade.mqh>
@@ -664,7 +671,7 @@ int OnInit()
 
    if(g_legsCap < 8)
       Print("IdanDrawerGold: WARNING - below 8 rungs the ladder is cut so often that the bad days stack. On the master's own record 7 rungs lost $6,898 over three months and its worst day was 14.6x its worst basket, so the account-size gate understates the risk at this depth.");
-   PrintFormat("IdanDrawerGold v1.19 %s | sym=%s depth=%d/%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
+   PrintFormat("IdanDrawerGold v1.20 %s | sym=%s depth=%d/%d full=%.2f lots reach=$%.2f contract=%.0f needs>=%.0f | day target %s | day loss stop %s | %s",
                (g_ok ? "READY" : "HELD"), g_sym, g_legsCap, g_legsAsk, LadderSum(g_legsCap), LadderReach(), g_contract, g_minBal,
                (InpDailyTargetUsd > 0 ? StringFormat("+$%.0f", InpDailyTargetUsd) : "off"),
                (InpDailyStopUsd   > 0 ? StringFormat("-$%.0f", InpDailyStopUsd)   : "off"),
@@ -1091,7 +1098,7 @@ void Beat()
    double px = (have && QuoteOk()) ? ExitPrice(dir) : 0;
    double mv = (have && px > 0) ? (px - vwap) * dir : 0;
    string j = StringFormat(
-      "{\"bot\":\"drawer_gold\",\"v\":\"1.19\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
+      "{\"bot\":\"drawer_gold\",\"v\":\"1.20\",\"t\":%s,\"armed\":%s,\"why\":\"%s\","
       "\"symbol\":\"%s\",\"legs\":%d,\"max_legs\":%d,\"max_legs_ask\":%d,\"dir\":%d,\"lots\":%.2f,"
       "\"vwap\":%.2f,\"price\":%.2f,\"move\":%.3f,\"float\":%.2f,\"day\":%.2f,"
       "\"day_target\":%.2f,\"day_loss_stop\":%.2f,\"day_deposits\":%.2f,"
@@ -1105,13 +1112,16 @@ void Beat()
       AccountInfoDouble(ACCOUNT_BALANCE), AccountInfoDouble(ACCOUNT_EQUITY),
       AccountInfoDouble(ACCOUNT_MARGIN_FREE),
       (AccountInfoInteger(ACCOUNT_TRADE_MODE) == ACCOUNT_TRADE_MODE_DEMO ? "true" : "false"));
-   int h = FileOpen("idan_drawer_gold.json", FILE_WRITE | FILE_TXT | FILE_ANSI | FILE_COMMON);
-   if(h != INVALID_HANDLE) { FileWriteString(h, j); FileClose(h); }
+   if(InpMagic == 770118)   // v1.20: only the primary speaks on the fixed wire
+   {
+      int h0 = FileOpen("idan_drawer_gold.json", FILE_WRITE | FILE_TXT | FILE_ANSI | FILE_COMMON);
+      if(h0 != INVALID_HANDLE) { FileWriteString(h0, j); FileClose(h0); }
+   }
    // 1.16: three drawers on one machine cannot share one heartbeat file.
    // Each instance also writes its own, keyed by the magic - the same key
    // that already separates the day files and the baskets. The fixed name
    // stays so the mirror that watches a single drawer keeps working.
-   h = FileOpen("idan_drawer_gold_" + IntegerToString((long)InpMagic) + ".json",
+   int h = FileOpen("idan_drawer_gold_" + IntegerToString((long)InpMagic) + ".json",
                 FILE_WRITE | FILE_TXT | FILE_ANSI | FILE_COMMON);
    if(h != INVALID_HANDLE) { FileWriteString(h, j); FileClose(h); }
 }
