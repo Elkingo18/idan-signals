@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-21 08:35",
+  "updated_israel": "2026-08-21 08:37",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 3,
     "enabled": true,
     "note": "take: entry",
-    "age_sec": 3.7,
+    "age_sec": 7.8,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 136775.5,
+    "age_sec": 136839.6,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,7 +67,7 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 3.5,
+    "age_sec": 2.5,
     "status": "ok",
     "symbol": "XAUUSD+",
     "margin_free": 11613.9,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 917.35,
-    "age_sec": 241.8,
+    "age_sec": 305.8,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -1086,12 +1086,12 @@
    "gross": -72.6
   }
  ],
- "updated_utc": "2026-08-21T05:36:01.793161+00:00",
- "updated_israel": "2026-08-21 08:36",
+ "updated_utc": "2026-08-21T05:37:05.797170+00:00",
+ "updated_israel": "2026-08-21 08:37",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.21 08:35:58",
+  "updated": "2026.08.21 08:36:58",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1112,7 +1112,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "take: entry",
-  "spread_points": 43.0,
+  "spread_points": 46.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 62147.3
+  "age_sec": 62211.4
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1145,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 136775.5
+  "age_sec": 136839.6
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.17",
-  "t": 1787301357,
+  "t": 1787301422,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1175,43 +1175,48 @@
   "equity": 11613.9,
   "margin_free": 11613.9,
   "is_demo": true,
-  "age_sec": 3.5,
+  "age_sec": 2.5,
   "ok": true,
   "blocked": ""
  },
  "fees": {
+  "model": "profit_minus_fee_v2",
+  "schema": 2,
   "rate_atrade_per_oz": 0.28,
-  "rate_demo_per_oz": 0.285,
-  "day": "2026/08/21",
-  "is_today": true,
-  "rows": [
-   {
-    "name": "בוט הזהב",
-    "lots": 0.57,
-    "gross": -464.32,
-    "demo_fee": 16.25,
-    "atrade_fee": 15.96,
-    "net_atrade": -480.28,
-    "net_demo": -480.57
-   },
-   {
-    "name": "המעתיק",
-    "lots": 24.22,
-    "gross": 12404.92,
-    "demo_fee": 690.27,
-    "atrade_fee": 678.16,
-    "net_atrade": 11726.76,
-    "net_demo": 11714.65
+  "start": {
+   "gold": 10000.0,
+   "copier": 10000.0
+  },
+  "since_start": {
+   "rows": [
+    {
+     "name": "בוט הזהב",
+     "profit": -1665.11,
+     "lots": 10.08,
+     "fee": 282.24,
+     "pocket": -1947.35
+    },
+    {
+     "name": "The Ladder",
+     "profit": 1714.65,
+     "lots": 81.52,
+     "fee": 2282.56,
+     "pocket": -567.91
+    }
+   ],
+   "total": {
+    "name": "סה\"כ",
+    "profit": 49.54,
+    "lots": 91.6,
+    "fee": 2564.8,
+    "pocket": -2515.26
    }
-  ],
-  "total": {
-   "name": "סה\"כ",
-   "lots": 24.79,
-   "gross": 11940.6,
-   "demo_fee": 706.52,
-   "atrade_fee": 694.12,
-   "net_atrade": 11246.48,
-   "net_demo": 11234.08
+  },
+  "last_day": {
+   "day": "2026.08.21",
+   "is_today": false,
+   "rows": [],
+   "total": {}
   }
  },
  "shadow_wallet": {
@@ -1711,7 +1716,5 @@
   }
  },
  "tws_connected": true,
- "stocks_stale": false,
- "stocks_as_of": "2026-08-21 08:35",
- "published_by": "publish_phone.py"
+ "stocks_stale": false
 }
