@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 344.12550817378224,
-  "equity": 1004.49,
+  "equity": 1004.56,
   "realized_pnl": 8.92,
-  "open_pnl": -1.45,
+  "open_pnl": -1.37,
   "peak_equity": 1021.75,
   "max_dd_pct": -8.47,
-  "return_pct": 0.45,
+  "return_pct": 0.46,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -86,7 +86,7 @@
    "qty": 1.49,
    "qty_left": 0.75,
    "entry": 4573.15,
-   "stop": 4579.45,
+   "stop": 4579.5501,
    "orig_stop": 4563.6,
    "t1": 4587.06,
    "t2": 4601.11,
@@ -106,7 +106,7 @@
     "regime_ok": true,
     "notional": 6813.77
    },
-   "last": 4589.0,
+   "last": 4589.1001,
    "margin": 340.7
   }
  ],
@@ -1189,24 +1189,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4589.0,
-    "entry": 4589.0,
-    "stop": 4581.7,
-    "t1": 4599.94,
-    "t2": 4610.87,
+    "state": "BUY_NOW",
+    "pattern": "החזרת VWAP",
+    "price": 4589.1,
+    "entry": 4589.1,
+    "stop": 4579.6,
+    "t1": 4603.4,
+    "t2": 4617.7,
     "rr1": 1.5,
-    "atr": 4.86,
-    "rsi": 53.4,
-    "vwap": 4557.87,
-    "stop_pct": 0.16,
+    "atr": 6.36,
+    "rsi": 77.9,
+    "vwap": 4561.71,
+    "stop_pct": 0.21,
     "ounces": 1.34,
-    "notional": 6149.26,
-    "margin": 307.46,
-    "risk_dollars": 9.78,
+    "notional": 6149.39,
+    "margin": 307.47,
+    "risk_dollars": 12.73,
     "shares": 1.34,
-    "score": 51,
+    "score": 55,
     "news": [],
     "regime_ok": true
    }
@@ -1485,12 +1485,10 @@
   ],
   [
    "2026-08-21",
-   1004.49
+   1004.56
   ]
  ],
- "cooldown": {
-  "XAUUSD": 1
- },
+ "cooldown": {},
  "game": {
   "xp": 1375,
   "level": 4,
@@ -1600,7 +1598,7 @@
    "name": "👹 בוס היום",
    "target": 79.96,
    "legend": 199.9,
-   "done": 5.01,
+   "done": 5.08,
    "base": 999.48,
    "pct": 6,
    "pct_legend": 3,
@@ -1617,7 +1615,7 @@
   "day_pnl": 10.18,
   "week_pnl": 44.29,
   "daily_limit": -60.27,
-  "weekly_limit": -120.54
+  "weekly_limit": -120.55
  },
  "log": [
   {
@@ -1919,13 +1917,19 @@
   "all": 8.92,
   "all_pct": 0.89
  },
- "rejected": [],
- "updated_utc": "2026-08-21T03:58:48.601977+00:00",
- "updated_israel": "2026-08-21 06:58",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-08-21T04:07:25.855499+00:00",
+ "updated_israel": "2026-08-21 07:07",
  "market": {
   "open": false,
-  "et": "23:58",
-  "il": "06:58"
+  "et": "00:07",
+  "il": "07:07"
  },
  "stats": {
   "trades": 33,
@@ -1958,10 +1962,10 @@
   {
    "t": "NOK",
    "sec": "tech",
-   "px": 10.15,
-   "trend": -10.9,
-   "rsi": 48,
-   "rvol": 0.9,
+   "px": 10.13,
+   "trend": -11.6,
+   "rsi": 47,
+   "rvol": 1.0,
    "df": 1,
    "state": "none"
   },
@@ -2088,10 +2092,10 @@
   {
    "t": "NVAX",
    "sec": "health",
-   "px": 8.42,
-   "trend": -0.4,
-   "rsi": 56,
-   "rvol": 1.6,
+   "px": 8.79,
+   "trend": 3.9,
+   "rsi": 64,
+   "rvol": 3.3,
    "df": 0,
    "state": "none"
   },
@@ -2198,10 +2202,10 @@
   {
    "t": "RIG",
    "sec": "energy",
-   "px": 6.01,
-   "trend": 12.1,
-   "rsi": 67,
-   "rvol": 0.8,
+   "px": 5.84,
+   "trend": 9.0,
+   "rsi": 63,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2781,8 +2785,8 @@
   {
    "t": "CCJ",
    "sec": "premium",
-   "px": 95.59,
-   "trend": -0.4,
+   "px": 97.98,
+   "trend": 1.9,
    "state": "premium"
   },
   {
@@ -2914,8 +2918,8 @@
   {
    "t": "TSM",
    "sec": "premium",
-   "px": 416.0,
-   "trend": -2.0,
+   "px": 412.09,
+   "trend": -2.9,
    "state": "premium"
   },
   {
@@ -2928,7 +2932,7 @@
   {
    "t": "AMD",
    "sec": "premium",
-   "px": 469.45,
+   "px": 469.46,
    "trend": -7.9,
    "state": "premium"
   },
@@ -2949,15 +2953,15 @@
   {
    "t": "ALB",
    "sec": "premium",
-   "px": 134.19,
-   "trend": 1.0,
+   "px": 134.28,
+   "trend": 0.8,
    "state": "premium"
   },
   {
    "t": "SQM",
    "sec": "premium",
-   "px": 78.45,
-   "trend": 6.8,
+   "px": 75.38,
+   "trend": 2.6,
    "state": "premium"
   },
   {
@@ -3053,17 +3057,17 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1173,
+   "bars": 828,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4589.0,
+   "last_price": 4589.1,
    "signals": 1,
    "today_trades": 0,
    "health": {
     "n": 20,
-    "exp": 0.43,
-    "pf": 1.08,
-    "avg_r": 0.09,
+    "exp": 2.06,
+    "pf": 1.52,
+    "avg_r": 0.18,
     "status": "ok"
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
@@ -3082,7 +3086,7 @@
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -3091,7 +3095,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 19,
    "covered": 3,
-   "updated": "2026-08-21 06:59"
+   "updated": "2026-08-21 07:07"
   }
  },
  "gold_today": {
@@ -3190,9 +3194,9 @@
    "t": "TRT",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 11.14,
-   "trend": 0.6,
-   "rsi": 52,
+   "px": 11.32,
+   "trend": 2.4,
+   "rsi": 53,
    "rvol": 0.7,
    "near": false
   },
@@ -3685,17 +3689,17 @@
     "about": "זהב"
    },
    {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Gold on track for third weekly gain on softer dollar, lower US yields",
-    "url": "https://sg.finance.yahoo.com/news/gold-steadies-heads-third-straight-010101745.html",
-    "src": "Reuters",
-    "time": "2026-08-21 03:11",
+    "title": "Asian Stocks Slide on Bond Stress: Will Safe Havens BTC and Gold Keep Rallying?",
+    "url": "https://beincrypto.com/asian-stocks-slide-bitcoin-gold-rally/",
+    "src": "BeInCrypto",
+    "time": "2026-08-21 03:43",
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-21 06:59"
+  "updated": "2026-08-21 07:07"
  }
 }
