@@ -1,7 +1,7 @@
-/* Idan's Money Club - service worker v4.3.0
+/* Idan's Money Club - service worker v4.3.1
    Network-first for the app itself so every publish reaches everyone
    automatically; cache fallback keeps it opening offline. */
-const VERSION = "imc-v4.3.0";
+const VERSION = "imc-v4.3.1";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 /* 18.8: addAll() is atomic - one 404 in SHELL and the whole install rejects,
