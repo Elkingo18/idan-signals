@@ -1316,7 +1316,7 @@ const OWNER_EMAIL = "idan2189@gmail.com";
    money and on who gets in. */
 const BOSS_TITLE = "The Gold Master · המנהל הראשי";
 const CONTRACT_VERSION = 2;
-const APP_VERSION = "4.3.0";
+const APP_VERSION = "4.4.0";
 const DATA_URL = "https://raw.githubusercontent.com/Elkingo18/idan-signals/main/data/phone.json";
 const APP_URL = "https://elkingo18.github.io/idan-signals/club/";
 /* 2.5.0 — personal QR: ?feed=<key> opens that member's account directly */
@@ -6493,6 +6493,189 @@ renderBotSheet = function(id){
       }).join("") : '<div class="mini">אין סגירות היום עדיין.</div>') + '</div>';
     box.insertAdjacentHTML("beforeend", html);
   } catch(e){}
+};
+</script>
+<style id="v44css">
+/* v4.4 — שרת של כולם · 21.8.2026 ערב · APP_V44 · sheret */
+#v44Wiz .wcard { border-radius:20px; border:1.5px solid rgba(243,216,120,.35); background:rgba(0,0,0,.28);
+  padding:14px; margin:10px 0; cursor:pointer; transition:transform .12s, border-color .12s; }
+#v44Wiz .wcard:active { transform:scale(.98); }
+#v44Wiz .wcard.on { border-color:#43d97b; background:rgba(67,217,123,.10); }
+#v44Wiz .wcard h4 { font-size:15px; margin:0 0 6px; color:#f3d878; }
+#v44Wiz .wcard .mini { line-height:1.55; }
+#v44Wiz .risk { border-inline-start:3px solid #ff8a97; padding:6px 10px; margin-top:8px;
+  background:rgba(255,122,138,.08); border-radius:10px; font-size:12px; color:#ffd7db; }
+#v44Wiz input { width:100%; box-sizing:border-box; margin-top:6px; background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15); color:#fff; border-radius:12px; padding:10px 12px; font-size:14px; }
+#v44Wiz .step { display:none; } #v44Wiz .step.on { display:block; animation:v42pop .25s ease; }
+.v44q { border:1px dashed rgba(243,216,120,.4); border-radius:14px; padding:10px; margin:8px 0; font-size:12.5px; }
+</style>
+<script>
+"use strict";
+/* =====================================================================
+   v4.4 — "שרת של כולם" · 21.8.2026 ערב · APP_V44 · sheret
+   הראיון: החבר בוחר ברוקר (מוסבר, כולל מינופים) → בוחר שוק (זהב/מט"ח,
+   אחד לכל בוט, עם סיכון-סיכוי מוסבר) → ברירת המחדל היא מכונת 1050
+   (לא ClaudeBot — הוראת עידן) → פותח דמו ומזין פרטי כניסה → ההקמה
+   רצה על המחשב של עידן (התור ב-👑). הסיסמא נשמרת רק למסע ההקמה.
+   ===================================================================== */
+const APP_V44 = "4.4.0";   /* sheret */
+
+const V44_BROKERS = {
+  vantage: { name: "Vantage (וונטאג')", lev: "1:500", reg: "לא מפוקח בישראל",
+    pro: "מינוף ענק — סולם 13 שלבים מלא אפשרי גם עם חשבון קטן (~$3,300 ביטחונות לזהב מלא).",
+    con: "גוף שאינו תחת רשות ניירות ערך הישראלית. פלטפורמה: MT5.",
+    open: "https://www.vantagemarkets.com/", plat: "MT5" },
+  fxcm: { name: "FXCM ישראל (Stratos)", lev: "1:100", reg: "מפוקח רשות ני\"ע ✓",
+    pro: "רגולציה ישראלית מלאה — הגנות, פיקוח, שקיפות. פלטפורמה: MT4.",
+    con: "מינוף מוגבל 1:100 — הסולם מתכופף לעומק שהחשבון נושא (זה מנגנון בטיחות, לא באג).",
+    open: "https://www.fxcm.co.il/", plat: "MT4" }
+};
+/* המספרים מהמעבדה (21.8, נתוני IBKR אמיתיים) — לא ניחושים */
+const V44_MARKETS = {
+  XAUUSD: { he: "זהב", icon: "🥇", risk: "הנכס היחיד עם ספר אמת של 46,498 סלים (69% ימים ירוקים, וההפסד הנדיר קיים — 1 מ-600 סלים נסגר אדום). ביטחונות סולם מלא: ~$11,200 ב-1:500." },
+  GBPJPY: { he: "פאונד-ין", icon: "💷", risk: "תנודתי וזול בביטחונות (~$3,300 לסולם מלא ב-1:500) — אבל במגמת ין חזקה סל נגד-המגמה מסוכן מאוד (בסימולציה: מחיקה ב-8.7). בלי מדידה חיה אין ותק." },
+  USDJPY: { he: "דולר-ין", icon: "💵", risk: "הזול ביותר בביטחונות (~$2,440) והספרד הנוח ביותר. אותה אזהרת מגמת-ין." },
+  EURJPY: { he: "אירו-ין", icon: "💶", risk: "דומה לדולר-ין (~$2,850 ביטחונות). אותה אזהרת מגמה." },
+  GBPUSD: { he: "פאונד-דולר", icon: "🇬🇧", risk: "בלי סיכון הין; ביטחונות ~$3,300. ספרד יחסי גבוה יותר (43% מהמדרגה הראשונה)." },
+  EURUSD: { he: "אירו-דולר", icon: "🇪🇺", risk: "השקט שבצמדים; ביטחונות ~$2,850. תנועות קטנות = סלים איטיים יותר." }
+};
+
+let V44 = { broker: "", market: "" };
+
+function v44Html(){
+  return '' +
+  '<div id="v44Wiz">' +
+  '<div class="step on" data-s="1"><h3 style="color:#f3d878">🤝 שלב 1 · באיזה בית הבוט שלך יגור?</h3>' +
+  '<div class="mini" style="margin:4px 0 8px">שני ברוקרים, שני עולמות — קרא את שניהם, ההבדל חשוב:</div>' +
+  Object.keys(V44_BROKERS).map(k => { const b = V44_BROKERS[k];
+    return '<div class="wcard" data-brk="' + k + '" onclick="v44PickBroker(\'' + k + '\')">' +
+      '<h4>' + b.name + ' · ' + b.lev + ' · ' + b.reg + '</h4>' +
+      '<div class="mini">✅ ' + b.pro + '</div><div class="mini">⚠️ ' + b.con + '</div></div>'; }).join("") +
+  '</div>' +
+  '<div class="step" data-s="2"><h3 style="color:#f3d878">📊 שלב 2 · על מה הבוט יסחר?</h3>' +
+  '<div class="mini" style="margin:4px 0 8px">בוחרים שוק אחד לבוט (אפשר להוסיף בוטים אחר-כך). מתחת לכל שוק — הסיכון-סיכוי בכנות, מהמדידות שלנו:</div>' +
+  Object.keys(V44_MARKETS).map(k => { const m = V44_MARKETS[k];
+    return '<div class="wcard" data-mkt="' + k + '" onclick="v44PickMarket(\'' + k + '\')">' +
+      '<h4>' + m.icon + " " + m.he + ' <span class="mini">(' + k + ')</span></h4>' +
+      '<div class="risk">' + m.risk + '</div></div>'; }).join("") +
+  '</div>' +
+  '<div class="step" data-s="3"><h3 style="color:#f3d878">🪜 שלב 3 · הבוט שלך</h3>' +
+  '<div class="v44q">כברירת מחדל תקבל את <b>מכונת 1050</b> — הסולם שהעתקנו אחד-לאחד מחשבון אמיתי עם 46,498 עסקאות מדודות, כולל מנגנוני הבטיחות שלו (הכניעות הקטנות והנדירות ששומרות על החשבון). <b>לא</b> את ClaudeBot — אותו עידן שומר למדידה אצלו. הבוט יותאם אוטומטית לשוק שבחרת.<br><br>🎯 חשוב לדעת: זו מכונה מדודה, לא הבטחת רווח. יש ימים אדומים. דמו בלבד עד שתחליט אחרת מול עידן.</div>' +
+  '<button class="btn" style="width:100%" onclick="v44Go(4)">הבנתי — ממשיכים ›</button></div>' +
+  '<div class="step" data-s="4"><h3 style="color:#f3d878">🔑 שלב 4 · פותחים דמו ומחברים</h3>' +
+  '<div class="mini" id="v44OpenLine" style="margin:6px 0"></div>' +
+  '<div class="v44q">אחרי שפתחת דמו אצל הברוקר, קיבלת במייל: <b>מספר חשבון · סיסמא · שם שרת</b>. הזן אותם כאן — הם נשמרים מוצפנים אצל עידן בלבד, ורק כדי להקים לך את הבוט על השרת שלו. אפשר לשנות סיסמא אחרי ההקמה.</div>' +
+  '<input id="v44Login" placeholder="מספר חשבון דמו" inputmode="numeric">' +
+  '<input id="v44Pass" placeholder="סיסמא" type="password">' +
+  '<input id="v44Srv" placeholder="שם השרת (מהמייל של הברוקר)">' +
+  '<button class="btn" style="width:100%;margin-top:10px" onclick="v44Submit()">🚀 שלח להקמה אצל עידן</button></div>' +
+  '<div class="step" data-s="5" style="text-align:center"><div style="font-size:52px">🏗️</div>' +
+  '<h3>הבקשה אצל עידן!</h3><div class="mini">הבוט שלך יוקם על השרת של המועדון (בדרך כלל תוך כמה שעות). תקבל אותו כאן במסך הראשי ברגע שהוא נושם. 🫡</div></div>' +
+  '</div>';
+}
+function v44Go(n){
+  const w = $("v44Wiz"); if (!w) return;
+  w.querySelectorAll(".step").forEach(s => s.classList.toggle("on", s.getAttribute("data-s") == String(n)));
+}
+function v44PickBroker(k){
+  V44.broker = k;
+  document.querySelectorAll("#v44Wiz [data-brk]").forEach(c => c.classList.toggle("on", c.getAttribute("data-brk") === k));
+  setTimeout(() => v44Go(2), 250);
+}
+function v44PickMarket(k){
+  V44.market = k;
+  document.querySelectorAll("#v44Wiz [data-mkt]").forEach(c => c.classList.toggle("on", c.getAttribute("data-mkt") === k));
+  const b = V44_BROKERS[V44.broker] || V44_BROKERS.vantage;
+  setTimeout(() => { v44Go(3);
+    const o = $("v44OpenLine");
+    if (o) o.innerHTML = 'פתיחת דמו ב-<b>' + b.name + '</b>: <a href="' + b.open + '" target="_blank" style="color:#f3d878">לחץ כאן לאתר הברוקר ›</a> (בוחרים Demo Account, ממלאים פרטים, המייל מגיע תוך דקות)';
+  }, 250);
+}
+async function v44Submit(){
+  const login = ($("v44Login").value || "").trim();
+  const pass  = ($("v44Pass").value || "").trim();
+  const srv   = ($("v44Srv").value || "").trim();
+  if (!V44.broker || !V44.market){ toast("קודם בוחרים ברוקר ושוק 🙂"); return; }
+  if (!login || !pass || !srv){ toast("חסרים פרטים — צריך חשבון, סיסמא ושרת"); return; }
+  try {
+    const u = auth.currentUser; if (!u){ toast("קודם מתחברים"); return; }
+    await db.collection("members").doc(u.uid).set({ provision: {
+      broker: V44.broker, platform: V44_BROKERS[V44.broker].plat, market: V44.market,
+      login: login, pass: pass, server: srv, status: "pending",
+      asked_at: new Date().toISOString(), name: (u.displayName || "")
+    }}, { merge: true });
+    v44Go(5); toast("🚀 נשלח! עידן יקים לך את הבוט");
+  } catch(e){ toast("לא הצליח לשלוח — נסה שוב"); }
+}
+
+/* ---- the room + nav wiring ------------------------------------------- */
+function v44InstallRoom(){
+  if ($("t-serverwiz")) return;
+  const cal = $("t-cal"); if (!cal || !cal.parentNode) return;
+  const d = document.createElement("div");
+  d.id = "t-serverwiz"; d.className = "tab hidden";
+  d.innerHTML = '<h2 style="color:#f3d878">🏗️ הבוט שלי על השרת</h2>' + v44Html();
+  cal.parentNode.appendChild(d);
+  const nav = $("mainNav");
+  if (nav && !nav.querySelector('[data-t="serverwiz"]')){
+    const b = document.createElement("button");
+    b.setAttribute("data-t", "serverwiz");
+    b.innerHTML = "🏗️ הבוט שלי על השרת";
+    b.onclick = () => goTab("serverwiz");
+    const anchor = nav.querySelector('[data-t="help"]');
+    nav.insertBefore(b, anchor || null);
+  }
+}
+
+/* ---- 👑 the provisioning queue for Idan ------------------------------- */
+async function v44Queue(){
+  const host = $("v44QueueBox"); if (!host) return;
+  try {
+    const snap = await db.collection("members").get();
+    const rows = [];
+    snap.forEach(doc => {
+      const p = (doc.data() || {}).provision;
+      if (p && p.status === "pending") rows.push({ uid: doc.id, p: p });
+    });
+    host.innerHTML = rows.length ? rows.map(r => {
+      const payload = { uid: r.uid, name: r.p.name, broker: r.p.broker, platform: r.p.platform,
+                        market: r.p.market, login: r.p.login, pass: r.p.pass, server: r.p.server };
+      const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+      const cmd = 'powershell -NoProfile -ExecutionPolicy Bypass -File "C:\\Users\\המלך\\Downloads\\IdanTrader\\bridge\\provision_friend.ps1" -B64 "' + b64 + '"';
+      return '<div class="sec2" style="margin:8px 0"><b>' + esc(r.p.name || r.uid.slice(0, 6)) + '</b> · ' +
+        esc((V44_BROKERS[r.p.broker] || {}).name || r.p.broker) + ' · ' + esc(r.p.market) +
+        '<div style="display:flex;gap:8px;margin-top:8px">' +
+        '<button class="btn" onclick="v44CopyCmd(this)" data-cmd="' + cmd.replace(/"/g, "&quot;") + '">📋 העתק פקודת הקמה</button>' +
+        '<button class="btn2" onclick="v44MarkDone(\'' + r.uid + '\')">✅ הוקם</button></div></div>';
+    }).join("") : '<div class="mini">אין בקשות הקמה ממתינות 🏝️</div>';
+  } catch(e){ host.innerHTML = '<div class="mini">שגיאה בקריאת התור</div>'; }
+}
+function v44CopyCmd(btn){
+  const t = btn.getAttribute("data-cmd").replace(/&quot;/g, '"');
+  navigator.clipboard.writeText(t).then(() => toast("📋 הועתק — הדבק בחלון PowerShell במחשב"));
+}
+async function v44MarkDone(uid){
+  try {
+    await db.collection("members").doc(uid).set({ provision: { status: "done" } }, { merge: true });
+    toast("✅ סומן כהוקם"); v44Queue();
+  } catch(e){ toast("לא הצליח לעדכן"); }
+}
+function v44InstallQueue(){
+  const own = $("t-admin"); if (!own || $("v44QueueBox")) return;
+  const d = document.createElement("div");
+  d.className = "sec2";
+  d.innerHTML = '<h3 style="font-size:14px">🏗️ תור הקמות — חברים על השרת שלך <button class="mini" style="background:none;border:none;color:#f3d878;text-decoration:underline;cursor:pointer" onclick="v44Queue()">רענן</button></h3><div id="v44QueueBox" class="mini">טוען…</div>';
+  own.insertBefore(d, own.firstChild ? own.firstChild.nextSibling : null);
+  v44Queue();
+}
+
+/* ---- wiring ----------------------------------------------------------- */
+const _enterApp44 = enterApp;
+enterApp = function(){
+  _enterApp44();
+  try { v44InstallRoom(); } catch(e){}
+  try { if (typeof IS_OWNER !== "undefined" && IS_OWNER) v44InstallQueue(); } catch(e){}
 };
 </script>
 </body>
