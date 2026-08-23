@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-24 00:35",
+  "updated_israel": "2026-08-24 00:36",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "",
-    "age_sec": 2.8,
+    "age_sec": 13.4,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 367174.6,
+    "age_sec": 367205.2,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,7 +67,7 @@
     "vwap": 0.0,
     "enabled": false,
     "day_stop": false,
-    "age_sec": 3.3,
+    "age_sec": 3.9,
     "status": "off",
     "symbol": "XAUUSD+",
     "margin_free": 11228.46,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 949.06,
-    "age_sec": 120.8,
+    "age_sec": 151.4,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -1086,12 +1086,12 @@
    "gross": -0.09
   }
  ],
- "updated_utc": "2026-08-23T21:36:00.796316+00:00",
+ "updated_utc": "2026-08-23T21:36:31.399756+00:00",
  "updated_israel": "2026-08-24 00:36",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.24 00:35:58",
+  "updated": "2026.08.24 00:36:18",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 292546.4
+  "age_sec": 292577.0
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1145,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 367174.6
+  "age_sec": 367205.2
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1787531757,
+  "t": 1787531787,
   "armed": false,
   "why": "This account is NETTING. The ladder needs a HEDGING account.",
   "symbol": "XAUUSD+",
@@ -1176,44 +1176,49 @@
   "equity": 11228.46,
   "margin_free": 11228.46,
   "is_demo": true,
-  "age_sec": 3.3,
+  "age_sec": 3.9,
   "ok": true,
   "blocked": "This account is NETTING. The ladder needs a HEDGING account."
  },
  "drawers_extra": [],
  "fees": {
+  "model": "profit_minus_fee_v2",
+  "schema": 2,
   "rate_atrade_per_oz": 0.28,
-  "rate_demo_per_oz": 0.285,
-  "day": "2026/08/21",
-  "is_today": false,
-  "rows": [
-   {
-    "name": "בוט הזהב",
-    "lots": 0.94,
-    "gross": -573.13,
-    "demo_fee": 26.79,
-    "atrade_fee": 26.32,
-    "net_atrade": -599.45,
-    "net_demo": -599.92
-   },
-   {
-    "name": "המעתיק",
-    "lots": 24.22,
-    "gross": 12404.92,
-    "demo_fee": 690.27,
-    "atrade_fee": 678.16,
-    "net_atrade": 11726.76,
-    "net_demo": 11714.65
+  "start": {
+   "gold": 10000.0,
+   "copier": 10000.0
+  },
+  "since_start": {
+   "rows": [
+    {
+     "name": "בוט הזהב",
+     "profit": -1784.46,
+     "lots": 10.45,
+     "fee": 292.6,
+     "pocket": -2077.06
+    },
+    {
+     "name": "The Ladder",
+     "profit": 1714.65,
+     "lots": 154.18,
+     "fee": 4317.04,
+     "pocket": -2602.39
+    }
+   ],
+   "total": {
+    "name": "סה\"כ",
+    "profit": -69.81,
+    "lots": 164.63,
+    "fee": 4609.64,
+    "pocket": -4679.45
    }
-  ],
-  "total": {
-   "name": "סה\"כ",
-   "lots": 25.16,
-   "gross": 11831.79,
-   "demo_fee": 717.06,
-   "atrade_fee": 704.48,
-   "net_atrade": 11127.31,
-   "net_demo": 11114.73
+  },
+  "last_day": {
+   "day": "2026.08.21",
+   "is_today": false,
+   "rows": [],
+   "total": {}
   }
  },
  "shadow_wallet": {
@@ -1743,7 +1748,5 @@
   }
  },
  "tws_connected": true,
- "stocks_stale": false,
- "stocks_as_of": "2026-08-24 00:35",
- "published_by": "publish_phone.py"
+ "stocks_stale": false
 }
