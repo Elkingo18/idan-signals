@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-24 01:15",
+  "updated_israel": "2026-08-24 01:16",
   "bots": [
    {
     "id": "gold",
@@ -17,8 +17,8 @@
     "open_gross": 0.0,
     "trades_today": 0,
     "enabled": true,
-    "note": "",
-    "age_sec": 3.2,
+    "note": "skip: no burst -0.77atr",
+    "age_sec": 7.7,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 369542.0,
+    "age_sec": 369607.5,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -54,25 +54,25 @@
     "name": "בוט המגירה",
     "icon": "🗄️",
     "market": "XAUUSD",
-    "equity": 11228.46,
-    "balance": 11228.46,
-    "day_gross": 0.0,
+    "equity": 11228.55,
+    "balance": 11228.82,
+    "day_gross": 0.36,
     "day_open_equity": 11228.46,
     "day_pct": 0.0,
-    "open_count": 0,
-    "open_gross": 0.0,
-    "open_lots": 0.0,
-    "legs": 0,
+    "open_count": 1,
+    "open_gross": -0.27,
+    "open_lots": 0.01,
+    "legs": 1,
     "max_legs": 13,
-    "vwap": 0.0,
-    "enabled": false,
+    "vwap": 4617.76,
+    "enabled": true,
     "day_stop": false,
-    "age_sec": 0.7,
-    "status": "off",
+    "age_sec": 2.6,
+    "status": "ok",
     "symbol": "XAUUSD+",
-    "margin_free": 11228.46,
-    "blocked": "This account is NETTING. The ladder needs a HEDGING account.",
-    "note": "This account is NETTING. The ladder needs a HEDGING account."
+    "margin_free": 11182.37,
+    "blocked": null,
+    "note": "הרפליקה של גולדטראפ - עומק 1 מתוך 13 מותרים"
    },
    {
     "id": "swing",
@@ -96,12 +96,27 @@
      "file_ok": true
     },
     "broker_equity": 949.06,
-    "age_sec": 88.2,
+    "age_sec": 153.7,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
   "rows": [
+   {
+    "bot": "drawer",
+    "symbol": "XAUUSD+",
+    "side": "BUY",
+    "size": 0.01,
+    "unit": "lot",
+    "entry": 4617.76,
+    "price": 4617.49,
+    "gross": -0.27,
+    "fee_est": 0.28,
+    "notional": 4617.76,
+    "pct_pos": -0.01,
+    "pct_acct": -0.0,
+    "net_est": -0.55
+   },
    {
     "bot": "swing",
     "symbol": "NVAX",
@@ -149,33 +164,21 @@
    }
   ],
   "totals": {
-   "open_gross": 19.33,
-   "open_fee_est": 6.0,
-   "open_net_est": 13.33,
-   "open_count": 3,
-   "day_gross": 11733.98,
+   "open_gross": 19.06,
+   "open_fee_est": 6.28,
+   "open_net_est": 12.78,
+   "open_count": 4,
+   "day_gross": 11734.34,
    "day_fee": 678.16,
-   "day_net": 11055.82,
+   "day_net": 11056.18,
    "day_pct": 28.51,
-   "equity": 41157.81,
+   "equity": 41157.9,
    "day_open_equity": 41157.81,
    "pocket_since_start": -4679.45,
    "fee_since_start": 4609.64
   }
  },
  "events": [
-  {
-   "t": "21:52",
-   "day": "2026-08-21",
-   "kind": "close",
-   "bot": "drawer",
-   "symbol": "XAUUSD+",
-   "side": "SELL",
-   "size": 0.06,
-   "unit": "lot",
-   "price": 4624.22,
-   "gross": -1.88
-  },
   {
    "t": "21:53",
    "day": "2026-08-21",
@@ -1084,14 +1087,25 @@
    "unit": "lot",
    "price": 4616.33,
    "gross": -0.09
+  },
+  {
+   "t": "01:16",
+   "day": "2026-08-24",
+   "kind": "open",
+   "bot": "drawer",
+   "symbol": "XAUUSD+",
+   "side": "BUY",
+   "size": 0.01,
+   "unit": "lot",
+   "price": 4617.76
   }
  ],
- "updated_utc": "2026-08-23T22:15:28.242181+00:00",
- "updated_israel": "2026-08-24 01:15",
+ "updated_utc": "2026-08-23T22:16:33.689197+00:00",
+ "updated_israel": "2026-08-24 01:16",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.24 01:15:25",
+  "updated": "2026.08.24 01:16:26",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1111,8 +1125,8 @@
   "high_water": 12392.36,
   "risk_pct": 5.0,
   "tf_minutes": 15,
-  "last_decision": "",
-  "spread_points": 0.0,
+  "last_decision": "skip: no burst -0.77atr",
+  "spread_points": 47.0,
   "position": null
  },
  "copier": {
@@ -1120,7 +1134,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 294913.8
+  "age_sec": 294979.3
  },
  "slave": {
   "ok": false,
@@ -1145,25 +1159,25 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 369542.0
+  "age_sec": 369607.5
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1787534127,
-  "armed": false,
-  "why": "This account is NETTING. The ladder needs a HEDGING account.",
+  "t": 1787534190,
+  "armed": true,
+  "why": "",
   "symbol": "XAUUSD+",
-  "legs": 0,
+  "legs": 1,
   "max_legs": 13,
   "max_legs_ask": 13,
-  "dir": 0,
-  "lots": 0.0,
-  "vwap": 0.0,
-  "price": 0.0,
-  "move": 0.0,
-  "float": 0.0,
-  "day": 0.0,
+  "dir": 1,
+  "lots": 0.01,
+  "vwap": 4617.76,
+  "price": 4617.49,
+  "move": -0.27,
+  "float": -0.27,
+  "day": 0.36,
   "day_target": 1350.0,
   "day_loss_stop": 0.0,
   "day_deposits": 0.0,
@@ -1172,13 +1186,13 @@
   "mixed": false,
   "closing": false,
   "never_loss": true,
-  "balance": 11228.46,
-  "equity": 11228.46,
-  "margin_free": 11228.46,
+  "balance": 11228.82,
+  "equity": 11228.55,
+  "margin_free": 11182.37,
   "is_demo": true,
-  "age_sec": 0.7,
+  "age_sec": 2.6,
   "ok": true,
-  "blocked": "This account is NETTING. The ladder needs a HEDGING account."
+  "blocked": ""
  },
  "drawers_extra": [],
  "fees": {
