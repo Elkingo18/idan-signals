@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-23 23:03",
+  "updated_israel": "2026-08-23 23:04",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 0,
     "enabled": true,
     "note": "",
-    "age_sec": 169402.3,
+    "age_sec": 169468.3,
     "status": "stale"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 361614.1,
+    "age_sec": 361680.1,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -67,26 +67,26 @@
     "vwap": 0.0,
     "enabled": false,
     "day_stop": false,
-    "age_sec": 3997.8,
+    "age_sec": 4063.9,
     "status": "off",
     "symbol": "XAUUSD+",
     "margin_free": 11228.46,
-    "blocked": "no heartbeat for 3998 seconds - the bot is not running",
-    "note": "no heartbeat for 3998 seconds - the bot is not running"
+    "blocked": "no heartbeat for 4064 seconds - the bot is not running",
+    "note": "no heartbeat for 4064 seconds - the bot is not running"
    },
    {
     "id": "swing",
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 10000.0,
+    "equity": 9999.16,
     "balance": 8979.93,
     "day_gross": 19.33,
     "day_open_equity": 10000.0,
     "day_pct": 0.19,
     "open_count": 3,
     "open_gross": 19.33,
-    "pending": 0,
+    "pending": 2,
     "scan": {
      "universe_json": 70,
      "ido_lists": 33,
@@ -96,8 +96,8 @@
      "file_ok": true
     },
     "broker_equity": 949.06,
-    "age_sec": 920.3,
-    "status": "stale",
+    "age_sec": 86.3,
+    "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
@@ -157,7 +157,7 @@
    "day_fee": 678.16,
    "day_net": 10670.65,
    "day_pct": 27.32,
-   "equity": 41158.65,
+   "equity": 41157.81,
    "day_open_equity": 41543.82,
    "pocket_since_start": -4001.29,
    "fee_since_start": 3931.48
@@ -1086,8 +1086,8 @@
    "gross": -0.09
   }
  ],
- "updated_utc": "2026-08-23T20:03:20.332985+00:00",
- "updated_israel": "2026-08-23 23:03",
+ "updated_utc": "2026-08-23T20:04:26.369052+00:00",
+ "updated_israel": "2026-08-23 23:04",
  "gold": {
   "schema": 1,
   "code_version": 8,
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 286985.9
+  "age_sec": 287051.9
  },
  "slave": {
   "ok": false,
@@ -1145,7 +1145,7 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 361614.1
+  "age_sec": 361680.1
  },
  "drawer": {
   "bot": "drawer_gold",
@@ -1176,9 +1176,9 @@
   "equity": 11228.46,
   "margin_free": 11228.46,
   "is_demo": true,
-  "age_sec": 3997.8,
+  "age_sec": 4063.9,
   "ok": false,
-  "blocked": "no heartbeat for 3998 seconds - the bot is not running"
+  "blocked": "no heartbeat for 4064 seconds - the bot is not running"
  },
  "drawers_extra": [],
  "fees": {
@@ -1271,12 +1271,12 @@
  "engine_wallet": {
   "start": 10000.0,
   "cash": 8979.93,
-  "equity": 10000.0,
+  "equity": 9999.16,
   "realized_pnl": 0.0,
-  "open_pnl": 0.0,
+  "open_pnl": 10.83,
   "peak_equity": 10000.0,
-  "max_dd_pct": 0.0,
-  "return_pct": 0.0,
+  "max_dd_pct": -0.01,
+  "return_pct": -0.01,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1294,9 +1294,9 @@
    "rsi": 57.9,
    "rvol": 0.99,
    "score": 83,
-   "shares": 1,
-   "notional": 15.0,
-   "risk_dollars": 0.5,
+   "shares": 233,
+   "notional": 3495.0,
+   "risk_dollars": 116.29,
    "room": 16.64,
    "above_ma50_pct": 4.96,
    "news": [
@@ -1343,9 +1343,9 @@
    "rsi": 65.0,
    "rvol": 0.42,
    "score": 70,
-   "shares": 1,
-   "notional": 17.47,
-   "risk_dollars": 1.37,
+   "shares": 200,
+   "notional": 3494.0,
+   "risk_dollars": 274.2,
    "room": 19.72,
    "above_ma50_pct": 20.45,
    "news": [
@@ -1383,9 +1383,9 @@
    "rsi": 69.6,
    "rvol": 0.8,
    "score": 64,
-   "shares": 1,
-   "notional": 16.82,
-   "risk_dollars": 1.33,
+   "shares": 208,
+   "notional": 3498.56,
+   "risk_dollars": 276.15,
    "room": 23.48,
    "above_ma50_pct": 31.41,
    "news": [
@@ -1420,7 +1420,38 @@
   }
  ],
  "signals_day": [],
- "pending_entries": [],
+ "pending_entries": [
+  {
+   "ticker": "SAN",
+   "kind": "swing",
+   "side": "long",
+   "qty": 233,
+   "entry": 15.0,
+   "stop": 14.5009,
+   "t1": 15.9982,
+   "t2": 16.7469,
+   "notional": 3495.0,
+   "score": 83,
+   "rsi": 57.9,
+   "rvol": 0.99,
+   "placed_for": "2026-08-23 22:48"
+  },
+  {
+   "ticker": "PRCH",
+   "kind": "swing",
+   "side": "long",
+   "qty": 200,
+   "entry": 17.47,
+   "stop": 16.099,
+   "t1": 20.212,
+   "t2": 22.2684,
+   "notional": 3494.0,
+   "score": 70,
+   "rsi": 65.0,
+   "rvol": 0.42,
+   "placed_for": "2026-08-23 22:48"
+  }
+ ],
  "scan_universe": {
   "universe_json": 70,
   "ido_lists": 33,
@@ -1494,22 +1525,22 @@
    {
     "id": "k1250",
     "name": "💰 $1,250",
-    "earned": false
+    "earned": true
    },
    {
     "id": "k1500",
     "name": "🏦 $1,500",
-    "earned": false
+    "earned": true
    },
    {
     "id": "k2000",
     "name": "👑 $2,000",
-    "earned": false
+    "earned": true
    },
    {
     "id": "k5000",
     "name": "🌌 $5,000 — פותח מסלול ארוך-טווח",
-    "earned": false
+    "earned": true
    },
    {
     "id": "no_rule_break",
@@ -1547,10 +1578,10 @@
   "boss": {
    "day": "2026-08-23",
    "name": "👹 בוס היום",
-   "target": 89.7,
-   "legend": 224.26,
-   "done": 0.0,
-   "base": 1121.31,
+   "target": 800.0,
+   "legend": 2000.0,
+   "done": -0.84,
+   "base": 10000.0,
    "pct": 0,
    "pct_legend": 0,
    "beaten": false,
