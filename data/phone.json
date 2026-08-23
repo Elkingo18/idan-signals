@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-23 23:59",
+  "updated_israel": "2026-08-24 00:00",
   "bots": [
    {
     "id": "gold",
@@ -18,8 +18,8 @@
     "trades_today": 0,
     "enabled": true,
     "note": "",
-    "age_sec": 172778.5,
-    "status": "stale"
+    "age_sec": 5.6,
+    "status": "ok"
    },
    {
     "id": "ladder",
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 364990.3,
+    "age_sec": 365055.4,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -56,9 +56,9 @@
     "market": "XAUUSD",
     "equity": 11228.46,
     "balance": 11228.46,
-    "day_gross": -385.17,
-    "day_open_equity": 11613.63,
-    "day_pct": -3.32,
+    "day_gross": 0.0,
+    "day_open_equity": 11228.46,
+    "day_pct": 0.0,
     "open_count": 0,
     "open_gross": 0.0,
     "open_lots": 0.0,
@@ -67,12 +67,12 @@
     "vwap": 0.0,
     "enabled": false,
     "day_stop": false,
-    "age_sec": 7374.1,
+    "age_sec": 38.8,
     "status": "off",
     "symbol": "XAUUSD+",
     "margin_free": 11228.46,
-    "blocked": "no heartbeat for 7374 seconds - the bot is not running",
-    "note": "no heartbeat for 7374 seconds - the bot is not running"
+    "blocked": "This account is NETTING. The ladder needs a HEDGING account.",
+    "note": "This account is NETTING. The ladder needs a HEDGING account."
    },
    {
     "id": "swing",
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 949.06,
-    "age_sec": 36.5,
+    "age_sec": 101.6,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -153,12 +153,12 @@
    "open_fee_est": 6.0,
    "open_net_est": 13.33,
    "open_count": 3,
-   "day_gross": 11348.81,
+   "day_gross": 11733.98,
    "day_fee": 678.16,
-   "day_net": 10670.65,
-   "day_pct": 27.32,
+   "day_net": 11055.82,
+   "day_pct": 28.51,
    "equity": 41157.81,
-   "day_open_equity": 41543.82,
+   "day_open_equity": 41158.65,
    "pocket_since_start": -4001.29,
    "fee_since_start": 3931.48
   }
@@ -1086,12 +1086,12 @@
    "gross": -0.09
   }
  ],
- "updated_utc": "2026-08-23T20:59:36.557890+00:00",
- "updated_israel": "2026-08-23 23:59",
+ "updated_utc": "2026-08-23T21:00:41.651180+00:00",
+ "updated_israel": "2026-08-24 00:00",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.21 23:59:58",
+  "updated": "2026.08.24 00:00:36",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1120,7 +1120,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 290362.1
+  "age_sec": 290427.2
  },
  "slave": {
   "ok": false,
@@ -1145,12 +1145,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 364990.3
+  "age_sec": 365055.4
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1787356619,
+  "t": 1787529600,
   "armed": false,
   "why": "This account is NETTING. The ladder needs a HEDGING account.",
   "symbol": "XAUUSD+",
@@ -1163,7 +1163,7 @@
   "price": 0.0,
   "move": 0.0,
   "float": 0.0,
-  "day": -385.17,
+  "day": 0.0,
   "day_target": 1350.0,
   "day_loss_stop": 0.0,
   "day_deposits": 0.0,
@@ -1176,9 +1176,9 @@
   "equity": 11228.46,
   "margin_free": 11228.46,
   "is_demo": true,
-  "age_sec": 7374.1,
-  "ok": false,
-  "blocked": "no heartbeat for 7374 seconds - the bot is not running"
+  "age_sec": 38.8,
+  "ok": true,
+  "blocked": "This account is NETTING. The ladder needs a HEDGING account."
  },
  "drawers_extra": [],
  "fees": {
