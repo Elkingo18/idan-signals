@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-24 06:59",
+  "updated_israel": "2026-08-24 07:00",
   "bots": [
    {
     "id": "gold",
@@ -17,8 +17,8 @@
     "open_gross": 0.0,
     "trades_today": 0,
     "enabled": true,
-    "note": "skip: atr too high",
-    "age_sec": 4.5,
+    "note": "skip: no burst -0.15atr",
+    "age_sec": 9.3,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 390162.3,
+    "age_sec": 390227.1,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -54,23 +54,23 @@
     "name": "בוט המגירה",
     "icon": "🗄️",
     "market": "XAUUSD",
-    "equity": 10867.6,
+    "equity": 10876.88,
     "balance": 10938.11,
     "day_gross": -10241.86,
     "day_open_equity": 21179.97,
     "day_pct": -48.36,
     "open_count": 6,
-    "open_gross": -70.51,
+    "open_gross": -61.23,
     "open_lots": 0.32,
     "legs": 6,
     "max_legs": 13,
     "vwap": 4643.39,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 0.3,
+    "age_sec": 0.2,
     "status": "ok",
     "symbol": "XAUUSD+",
-    "margin_free": 10570.42,
+    "margin_free": 10579.7,
     "blocked": null,
     "note": "הרפליקה של גולדטראפ - עומק 6 מתוך 13 מותרים"
    },
@@ -79,7 +79,7 @@
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 9858.43,
+    "equity": 9830.54,
     "balance": 5388.62,
     "day_gross": -141.47,
     "day_open_equity": 9999.16,
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 949.06,
-    "age_sec": 308.5,
+    "age_sec": 73.3,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -109,13 +109,13 @@
     "size": 0.32,
     "unit": "lot",
     "entry": 4643.39,
-    "price": 4641.19,
-    "gross": -70.51,
+    "price": 4641.48,
+    "gross": -61.23,
     "fee_est": 8.96,
     "notional": 148588.48,
-    "pct_pos": -0.05,
-    "pct_acct": -0.65,
-    "net_est": -79.47
+    "pct_pos": -0.04,
+    "pct_acct": -0.56,
+    "net_est": -70.19
    },
    {
     "bot": "swing",
@@ -164,15 +164,15 @@
    }
   ],
   "totals": {
-   "open_gross": -51.18,
+   "open_gross": -41.9,
    "open_fee_est": 14.96,
-   "open_net_est": -66.14,
+   "open_net_est": -56.86,
    "open_count": 4,
    "day_gross": 1331.32,
    "day_fee": 685.72,
    "day_net": 645.6,
    "day_pct": 2.61,
-   "equity": 40559.33,
+   "equity": 40540.72,
    "day_open_equity": 51012.43,
    "pocket_since_start": -1393.1,
    "fee_since_start": 1226.4
@@ -1100,12 +1100,12 @@
    "gross": -21.97
   }
  ],
- "updated_utc": "2026-08-24T03:59:08.498082+00:00",
- "updated_israel": "2026-08-24 06:59",
+ "updated_utc": "2026-08-24T04:00:13.363590+00:00",
+ "updated_israel": "2026-08-24 07:00",
  "gold": {
   "schema": 1,
   "code_version": 9,
-  "updated": "2026.08.24 06:59:04",
+  "updated": "2026.08.24 07:00:04",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1125,8 +1125,8 @@
   "high_water": 12392.36,
   "risk_pct": 5.0,
   "tf_minutes": 15,
-  "last_decision": "skip: atr too high",
-  "spread_points": 32.0,
+  "last_decision": "skip: no burst -0.15atr",
+  "spread_points": 41.0,
   "position": null
  },
  "copier": {
@@ -1134,7 +1134,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 315534.1
+  "age_sec": 315598.9
  },
  "slave": {
   "ok": false,
@@ -1159,12 +1159,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 390162.3
+  "age_sec": 390227.1
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1787554747,
+  "t": 1787554812,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1174,9 +1174,9 @@
   "dir": 1,
   "lots": 0.32,
   "vwap": 4643.39,
-  "price": 4641.19,
-  "move": -2.203,
-  "float": -70.51,
+  "price": 4641.48,
+  "move": -1.913,
+  "float": -61.23,
   "day": -10241.86,
   "day_target": 1350.0,
   "day_loss_stop": 0.0,
@@ -1187,10 +1187,10 @@
   "closing": false,
   "never_loss": true,
   "balance": 10938.11,
-  "equity": 10867.6,
-  "margin_free": 10570.42,
+  "equity": 10876.88,
+  "margin_free": 10579.7,
   "is_demo": true,
-  "age_sec": 0.3,
+  "age_sec": 0.2,
   "ok": true,
   "blocked": ""
  },
@@ -1285,12 +1285,12 @@
  "engine_wallet": {
   "start": 10000.0,
   "cash": 5388.623425000013,
-  "equity": 9858.43,
+  "equity": 9830.54,
   "realized_pnl": -141.47,
-  "open_pnl": 11.57,
+  "open_pnl": -16.32,
   "peak_equity": 10083.86,
   "max_dd_pct": -6.46,
-  "return_pct": -1.42,
+  "return_pct": -1.69,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1308,9 +1308,9 @@
    "rsi": 57.9,
    "rvol": 0.99,
    "score": 83,
-   "shares": 230,
-   "notional": 3450.0,
-   "risk_dollars": 114.8,
+   "shares": 229,
+   "notional": 3435.0,
+   "risk_dollars": 114.3,
    "room": 16.64,
    "above_ma50_pct": 4.96,
    "news": [
@@ -1357,9 +1357,9 @@
    "rsi": 65.0,
    "rvol": 0.42,
    "score": 70,
-   "shares": 197,
-   "notional": 3441.59,
-   "risk_dollars": 270.08,
+   "shares": 196,
+   "notional": 3424.12,
+   "risk_dollars": 268.71,
    "room": 19.72,
    "above_ma50_pct": 20.45,
    "news": [
@@ -1397,9 +1397,9 @@
    "rsi": 69.6,
    "rvol": 0.8,
    "score": 64,
-   "shares": 205,
-   "notional": 3448.1,
-   "risk_dollars": 272.17,
+   "shares": 204,
+   "notional": 3431.28,
+   "risk_dollars": 270.84,
    "room": 23.48,
    "above_ma50_pct": 31.41,
    "news": [
@@ -1439,16 +1439,16 @@
    "ticker": "SAN",
    "kind": "swing",
    "side": "long",
-   "qty": 230,
+   "qty": 229,
    "entry": 15.0,
    "stop": 14.5009,
    "t1": 15.9982,
    "t2": 16.7469,
-   "notional": 3450.0,
+   "notional": 3435.0,
    "score": 83,
    "rsi": 57.9,
    "rvol": 0.99,
-   "placed_for": "2026-08-24 06:49"
+   "placed_for": "2026-08-24 06:54"
   }
  ],
  "scan_universe": {
@@ -1579,7 +1579,7 @@
    "name": "👹 בוס היום",
    "target": 799.93,
    "legend": 1999.83,
-   "done": -140.73,
+   "done": -168.62,
    "base": 9999.16,
    "pct": 0,
    "pct_legend": 0,
