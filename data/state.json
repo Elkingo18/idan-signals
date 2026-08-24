@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 193.39884876438788,
-  "equity": 1037.39,
+  "equity": 1030.46,
   "realized_pnl": 48.66,
-  "open_pnl": -8.28,
+  "open_pnl": -15.21,
   "peak_equity": 1051.66,
   "max_dd_pct": -8.47,
-  "return_pct": 3.74,
+  "return_pct": 3.05,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -92,7 +92,7 @@
    "t2": 4743.9,
    "opened": "2026-08-24T07:03:10.685570+03:00",
    "opened_day": "2026-08-24",
-   "risk_open": 22.33,
+   "risk_open": 15.4,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -106,7 +106,7 @@
     "regime_ok": true,
     "notional": 7238.77
    },
-   "last": 4700.5,
+   "last": 4696.0,
    "margin": 361.95
   }
  ],
@@ -1199,10 +1199,10 @@
     "pivot_high": 15.0,
     "rvol": 0.99,
     "above_ma50_pct": 4.96,
-    "shares": 24,
-    "notional": 360.0,
-    "risk_dollars": 11.98,
-    "risk_pct_actual": 1.15,
+    "shares": 12,
+    "notional": 180.0,
+    "risk_dollars": 5.99,
+    "risk_pct_actual": 0.58,
     "stretch_target": 18.0,
     "score": 83,
     "news": [
@@ -1258,10 +1258,10 @@
     "pivot_high": 16.82,
     "rvol": 0.8,
     "above_ma50_pct": 31.41,
-    "shares": 15,
-    "notional": 252.3,
-    "risk_dollars": 19.91,
-    "risk_pct_actual": 1.92,
+    "shares": 10,
+    "notional": 168.2,
+    "risk_dollars": 13.28,
+    "risk_pct_actual": 1.29,
     "stretch_target": 20.18,
     "score": 64,
     "news": [
@@ -1307,22 +1307,22 @@
     "side": "long",
     "state": "BUY_NOW",
     "pattern": "חציית ממוצעים",
-    "price": 4700.5,
-    "entry": 4700.5,
-    "stop": 4686.0,
-    "t1": 4722.2,
-    "t2": 4743.9,
+    "price": 4696.0,
+    "entry": 4696.0,
+    "stop": 4687.6,
+    "t1": 4708.61,
+    "t2": 4721.22,
     "rr1": 1.5,
-    "atr": 9.64,
-    "rsi": 63.7,
-    "vwap": 4676.07,
-    "stop_pct": 0.31,
-    "ounces": 1.54,
-    "notional": 7238.77,
-    "margin": 361.94,
-    "risk_dollars": 22.33,
-    "shares": 1.54,
-    "score": 63,
+    "atr": 5.6,
+    "rsi": 72.4,
+    "vwap": 4668.84,
+    "stop_pct": 0.18,
+    "ounces": 0.74,
+    "notional": 3475.04,
+    "margin": 173.75,
+    "risk_dollars": 6.22,
+    "shares": 0.74,
+    "score": 57,
     "news": [],
     "regime_ok": true
    }
@@ -1605,7 +1605,7 @@
   ],
   [
    "2026-08-24",
-   1037.39
+   1030.46
   ]
  ],
  "cooldown": {},
@@ -1718,7 +1718,7 @@
    "name": "👹 בוס היום",
    "target": 83.01,
    "legend": 207.52,
-   "done": -0.23,
+   "done": -7.16,
    "base": 1037.62,
    "pct": 0,
    "pct_legend": 0,
@@ -1734,8 +1734,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 0,
-  "daily_limit": -62.24,
-  "weekly_limit": -124.49
+  "daily_limit": -61.83,
+  "weekly_limit": -123.66
  },
  "log": [
   {
@@ -2069,13 +2069,19 @@
   "all": 48.66,
   "all_pct": 4.87
  },
- "rejected": [],
- "updated_utc": "2026-08-24T04:03:10.685570+00:00",
- "updated_israel": "2026-08-24 07:03",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-08-24T04:12:08.470084+00:00",
+ "updated_israel": "2026-08-24 07:12",
  "market": {
   "open": false,
-  "et": "00:03",
-  "il": "07:03"
+  "et": "00:12",
+  "il": "07:12"
  },
  "stats": {
   "trades": 37,
@@ -3203,10 +3209,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 786,
+   "bars": 757,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4700.5,
+   "last_price": 4696.0,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -3228,11 +3234,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 3,
-   "heat": 53.13,
+   "heat": 46.2,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -3241,7 +3247,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 24,
    "covered": 4,
-   "updated": "2026-08-24 07:03"
+   "updated": "2026-08-24 07:12"
   }
  },
  "gold_today": {
@@ -3898,6 +3904,6 @@
     "about": "שוק"
    }
   ],
-  "updated": "2026-08-24 07:03"
+  "updated": "2026-08-24 07:12"
  }
 }
