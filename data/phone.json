@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "live": {
-  "updated_israel": "2026-08-24 06:04",
+  "updated_israel": "2026-08-24 06:05",
   "bots": [
    {
     "id": "gold",
@@ -18,7 +18,7 @@
     "trades_today": 2,
     "enabled": true,
     "note": "skip: atr too high",
-    "age_sec": 9.9,
+    "age_sec": 14.6,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 386909.7,
+    "age_sec": 386974.4,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -54,25 +54,25 @@
     "name": "בוט המגירה",
     "icon": "🗄️",
     "market": "XAUUSD",
-    "equity": 10857.19,
-    "balance": 10859.39,
-    "day_gross": -10320.58,
+    "equity": 10849.12,
+    "balance": 10859.15,
+    "day_gross": -10320.82,
     "day_open_equity": 21179.97,
     "day_pct": -48.73,
-    "open_count": 2,
-    "open_gross": -2.2,
-    "open_lots": 0.03,
-    "legs": 2,
+    "open_count": 4,
+    "open_gross": -10.03,
+    "open_lots": 0.11,
+    "legs": 4,
     "max_legs": 13,
-    "vwap": 4641.23,
+    "vwap": 4639.45,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 3.6,
+    "age_sec": 3.3,
     "status": "ok",
     "symbol": "XAUUSD+",
-    "margin_free": 10829.34,
+    "margin_free": 10747.05,
     "blocked": null,
-    "note": "הרפליקה של גולדטראפ - עומק 2 מתוך 13 מותרים"
+    "note": "הרפליקה של גולדטראפ - עומק 4 מתוך 13 מותרים"
    },
    {
     "id": "swing",
@@ -96,7 +96,7 @@
      "file_ok": true
     },
     "broker_equity": 949.06,
-    "age_sec": 355.9,
+    "age_sec": 120.6,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
@@ -106,16 +106,16 @@
     "bot": "drawer",
     "symbol": "XAUUSD+",
     "side": "BUY",
-    "size": 0.03,
+    "size": 0.11,
     "unit": "lot",
-    "entry": 4641.23,
-    "price": 4640.5,
-    "gross": -2.2,
-    "fee_est": 0.84,
-    "notional": 13923.69,
+    "entry": 4639.45,
+    "price": 4638.54,
+    "gross": -10.03,
+    "fee_est": 3.08,
+    "notional": 51033.95,
     "pct_pos": -0.02,
-    "pct_acct": -0.02,
-    "net_est": -3.04
+    "pct_acct": -0.09,
+    "net_est": -13.11
    },
    {
     "bot": "swing",
@@ -164,44 +164,21 @@
    }
   ],
   "totals": {
-   "open_gross": 17.13,
-   "open_fee_est": 6.84,
-   "open_net_est": 10.29,
+   "open_gross": 9.3,
+   "open_fee_est": 9.08,
+   "open_net_est": 0.22,
    "open_count": 4,
-   "day_gross": 1155.71,
+   "day_gross": 1155.47,
    "day_fee": 685.72,
-   "day_net": 469.99,
+   "day_net": 469.75,
    "day_pct": 2.26,
-   "equity": 40548.18,
+   "equity": 40540.11,
    "day_open_equity": 51109.32,
    "pocket_since_start": -1393.1,
    "fee_since_start": 1226.4
   }
  },
  "events": [
-  {
-   "t": "05:09",
-   "day": "2026-08-24",
-   "kind": "open",
-   "bot": "drawer",
-   "symbol": "XAUUSD+",
-   "side": "SELL",
-   "size": 0.19,
-   "unit": "lot",
-   "price": 4641.08
-  },
-  {
-   "t": "05:09",
-   "day": "2026-08-24",
-   "kind": "close",
-   "bot": "drawer",
-   "symbol": "XAUUSD+",
-   "side": "SELL",
-   "size": 0.03,
-   "unit": "lot",
-   "price": 4638.76,
-   "gross": -2.61
-  },
   {
    "t": "05:10",
    "day": "2026-08-24",
@@ -1098,14 +1075,37 @@
    "size": 0.03,
    "unit": "lot",
    "price": 4641.23
+  },
+  {
+   "t": "06:06",
+   "day": "2026-08-24",
+   "kind": "open",
+   "bot": "drawer",
+   "symbol": "XAUUSD+",
+   "side": "BUY",
+   "size": 0.11,
+   "unit": "lot",
+   "price": 4639.45
+  },
+  {
+   "t": "06:06",
+   "day": "2026-08-24",
+   "kind": "close",
+   "bot": "drawer",
+   "symbol": "XAUUSD+",
+   "side": "BUY",
+   "size": 0.03,
+   "unit": "lot",
+   "price": 4640.5,
+   "gross": -2.2
   }
  ],
- "updated_utc": "2026-08-24T03:04:55.884586+00:00",
- "updated_israel": "2026-08-24 06:04",
+ "updated_utc": "2026-08-24T03:06:00.590357+00:00",
+ "updated_israel": "2026-08-24 06:05",
  "gold": {
   "schema": 1,
   "code_version": 8,
-  "updated": "2026.08.24 06:04:46",
+  "updated": "2026.08.24 06:05:46",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
@@ -1126,7 +1126,7 @@
   "risk_pct": 5.0,
   "tf_minutes": 15,
   "last_decision": "skip: atr too high",
-  "spread_points": 41.0,
+  "spread_points": 44.0,
   "position": null
  },
  "copier": {
@@ -1134,7 +1134,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 312281.5
+  "age_sec": 312346.2
  },
  "slave": {
   "ok": false,
@@ -1159,25 +1159,25 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 386909.7
+  "age_sec": 386974.4
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1787551491,
+  "t": 1787551556,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
-  "legs": 2,
+  "legs": 4,
   "max_legs": 13,
   "max_legs_ask": 13,
   "dir": 1,
-  "lots": 0.03,
-  "vwap": 4641.23,
-  "price": 4640.5,
-  "move": -0.733,
-  "float": -2.2,
-  "day": -10320.58,
+  "lots": 0.11,
+  "vwap": 4639.45,
+  "price": 4638.54,
+  "move": -0.912,
+  "float": -10.03,
+  "day": -10320.82,
   "day_target": 1350.0,
   "day_loss_stop": 0.0,
   "day_deposits": 9951.51,
@@ -1186,11 +1186,11 @@
   "mixed": false,
   "closing": false,
   "never_loss": true,
-  "balance": 10859.39,
-  "equity": 10857.19,
-  "margin_free": 10829.34,
+  "balance": 10859.15,
+  "equity": 10849.12,
+  "margin_free": 10747.05,
   "is_demo": true,
-  "age_sec": 3.6,
+  "age_sec": 3.3,
   "ok": true,
   "blocked": ""
  },
@@ -1448,7 +1448,7 @@
    "score": 83,
    "rsi": 57.9,
    "rvol": 0.99,
-   "placed_for": "2026-08-24 05:54"
+   "placed_for": "2026-08-24 05:59"
   },
   {
    "ticker": "PRCH",
@@ -1463,7 +1463,7 @@
    "score": 70,
    "rsi": 65.0,
    "rvol": 0.42,
-   "placed_for": "2026-08-24 05:54"
+   "placed_for": "2026-08-24 05:59"
   }
  ],
  "scan_universe": {
