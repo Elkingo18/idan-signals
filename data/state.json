@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 479.28286691439075,
-  "equity": 1095.19,
-  "realized_pnl": 103.07,
-  "open_pnl": -4.89,
-  "peak_equity": 1106.77,
+  "cash": 686.5592366113613,
+  "equity": 1137.18,
+  "realized_pnl": 117.97,
+  "open_pnl": 22.2,
+  "peak_equity": 1137.18,
   "max_dd_pct": -8.47,
-  "return_pct": 9.52,
+  "return_pct": 13.72,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -28,7 +28,7 @@
    "t2": 4.4493,
    "opened": "2026-08-19T22:34:42.878770+03:00",
    "opened_day": "2026-08-19",
-   "risk_open": 22.77,
+   "risk_open": 24.47,
    "fees": 1.0,
    "half_done": false,
    "be_moved": false,
@@ -42,7 +42,7 @@
     "regime_ok": true,
     "notional": 233.58
    },
-   "last": 3.48,
+   "last": 3.505,
    "margin": 0.0
   },
   {
@@ -52,18 +52,18 @@
    "side": "long",
    "sector": "other",
    "qty": 1.65,
-   "qty_left": 1.65,
+   "qty_left": 0.83,
    "entry": 4692.15,
-   "stop": 4679.7,
+   "stop": 4700.8498,
    "orig_stop": 4679.7,
    "t1": 4710.47,
    "t2": 4728.93,
    "opened": "2026-08-25T17:58:34.132161+03:00",
    "opened_day": "2026-08-25",
-   "risk_open": 12.7,
+   "risk_open": 10.33,
    "fees": 0.0,
-   "half_done": false,
-   "be_moved": false,
+   "half_done": true,
+   "be_moved": true,
    "score": 63,
    "pattern": "חציית ממוצעים",
    "snap": {
@@ -74,11 +74,40 @@
     "regime_ok": true,
     "notional": 7741.8
    },
-   "last": 4687.3999,
+   "last": 4713.2998,
    "margin": 387.1
   }
  ],
  "closed": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "side": "long",
+   "pattern": "חציית ממוצעים",
+   "snap": {
+    "rsi": 59.1,
+    "rvol": null,
+    "score": 63,
+    "stop_pct": 0.26,
+    "regime_ok": true,
+    "notional": 7741.8
+   },
+   "stop": 4679.7,
+   "t1": 4710.47,
+   "t2": 4728.93,
+   "fees": 0.0,
+   "qty": 0.82,
+   "entry": 4692.15,
+   "exit": 4710.32,
+   "pnl": 14.9,
+   "r": 0.73,
+   "reason": "T1_half",
+   "opened": "2026-08-25T17:58:34.132161+03:00",
+   "closed": "2026-08-25T18:55:12.779023+03:00",
+   "day": "2026-08-25",
+   "held_days": 0,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -1356,23 +1385,23 @@
     "ticker": "SAN",
     "side": "long",
     "state": "WATCH_BUY",
-    "price": 14.645,
+    "price": 14.625,
     "entry": 15.0,
     "stop": 14.5241,
     "t1": 15.9518,
     "t2": 16.6657,
     "rr1": 2.0,
     "stop_pct": 3.17,
-    "rsi": 58.2,
+    "rsi": 57.7,
     "atr": 0.297,
     "room": 15.91,
     "pivot_low": 14.09,
     "pivot_high": 15.0,
-    "rvol": 0.27,
-    "above_ma50_pct": 4.77,
-    "shares": 25,
-    "notional": 375.0,
-    "risk_dollars": 11.9,
+    "rvol": 0.33,
+    "above_ma50_pct": 4.63,
+    "shares": 26,
+    "notional": 390.0,
+    "risk_dollars": 12.37,
     "risk_pct_actual": 1.09,
     "stretch_target": 18.0,
     "score": 83,
@@ -1392,20 +1421,20 @@
       "dir": "neu",
       "tag": null,
       "sources": 1,
-      "title": "Avantus secures $300m in tax equity for Aratina 2 solar storage project",
-      "url": "https://www.energymonitor.ai/news/avantus-secures-tax-equity-aratina-2/",
-      "src": "Energy Monitor",
-      "time": "2026-08-25 10:54"
+      "title": "Will IBKR's Daol Collaboration Expand Its Reach Across South Korea?",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/ibkrs-daol-collaboration-expand-reach-152900106.html",
+      "src": "Zacks",
+      "time": "2026-08-25 15:29"
      },
      {
       "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
       "dir": "neu",
       "tag": null,
       "sources": 1,
-      "title": "JPMorgan and Santander Lead $15 Billion Financing Push for Argentina LNG",
-      "url": "https://finance.yahoo.com/energy/articles/jpmorgan-santander-lead-15-billion-073000211.html",
-      "src": "Oilprice.com",
-      "time": "2026-08-25 07:30"
+      "title": "Avantus secures $300m in tax equity for Aratina 2 solar storage project",
+      "url": "https://www.energymonitor.ai/news/avantus-secures-tax-equity-aratina-2/",
+      "src": "Energy Monitor",
+      "time": "2026-08-25 10:54"
      }
     ],
     "regime_ok": true
@@ -1415,7 +1444,7 @@
     "ticker": "NXE",
     "side": "long",
     "state": "WATCH_BUY",
-    "price": 11.2,
+    "price": 11.191,
     "entry": 11.258,
     "stop": 10.4595,
     "t1": 12.855,
@@ -1427,11 +1456,11 @@
     "room": 12.531,
     "pivot_low": 9.985,
     "pivot_high": 11.258,
-    "rvol": 0.27,
-    "above_ma50_pct": 13.85,
-    "shares": 27,
-    "notional": 303.97,
-    "risk_dollars": 21.56,
+    "rvol": 0.31,
+    "above_ma50_pct": 13.76,
+    "shares": 28,
+    "notional": 315.22,
+    "risk_dollars": 22.36,
     "risk_pct_actual": 1.97,
     "stretch_target": 13.51,
     "score": 78,
@@ -1474,7 +1503,7 @@
     "ticker": "PATH",
     "side": "long",
     "state": "WATCH_BUY",
-    "price": 16.58,
+    "price": 16.585,
     "entry": 16.82,
     "stop": 15.5738,
     "t1": 19.3125,
@@ -1486,12 +1515,12 @@
     "room": 23.48,
     "pivot_low": 10.16,
     "pivot_high": 16.82,
-    "rvol": 0.17,
-    "above_ma50_pct": 30.43,
-    "shares": 17,
-    "notional": 285.94,
-    "risk_dollars": 21.19,
-    "risk_pct_actual": 1.93,
+    "rvol": 0.27,
+    "above_ma50_pct": 30.47,
+    "shares": 18,
+    "notional": 302.76,
+    "risk_dollars": 22.43,
+    "risk_pct_actual": 1.97,
     "stretch_target": 20.18,
     "score": 64,
     "news": [
@@ -1537,21 +1566,21 @@
     "side": "long",
     "state": "WATCH_BUY",
     "pattern": "המשך מגמה",
-    "price": 4687.4,
-    "entry": 4687.4,
-    "stop": 4676.9,
-    "t1": 4703.11,
-    "t2": 4718.83,
+    "price": 4713.3,
+    "entry": 4713.3,
+    "stop": 4702.5,
+    "t1": 4729.52,
+    "t2": 4745.75,
     "rr1": 1.5,
-    "atr": 6.98,
-    "rsi": 53.0,
-    "vwap": 4686.58,
-    "stop_pct": 0.22,
-    "ounces": 1.63,
-    "notional": 7640.46,
-    "margin": 382.02,
-    "risk_dollars": 17.11,
-    "shares": 1.63,
+    "atr": 7.21,
+    "rsi": 73.3,
+    "vwap": 4688.28,
+    "stop_pct": 0.23,
+    "ounces": 1.68,
+    "notional": 7918.34,
+    "margin": 395.92,
+    "risk_dollars": 18.14,
+    "shares": 1.68,
     "score": 51,
     "news": [],
     "regime_ok": true
@@ -1560,11 +1589,11 @@
  },
  "calendar": {
   "2026-08-25": {
-   "pnl": 43.94,
-   "trades": 4,
-   "wins": 4,
+   "pnl": 58.84,
+   "trades": 5,
+   "wins": 5,
    "losses": 0,
-   "r": 3.31,
+   "r": 4.04,
    "tickers": [
     "XAUUSD"
    ],
@@ -1866,12 +1895,14 @@
   ],
   [
    "2026-08-25",
-   1095.19
+   1137.18
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 1
+ },
  "game": {
-  "xp": 1835,
+  "xp": 1875,
   "level": 5,
   "streak": 6,
   "best_streak": 6,
@@ -1979,26 +2010,34 @@
    "name": "👹 בוס היום",
    "target": 82.65,
    "legend": 206.63,
-   "done": 62.06,
+   "done": 104.05,
    "base": 1033.13,
-   "pct": 75,
-   "pct_legend": 30,
-   "beaten": false,
+   "pct": 100,
+   "pct_legend": 50,
+   "beaten": true,
    "legendary": false
   },
   "level_name": "🛡️ סוחר בכיר",
-  "xp_this_level": 260,
+  "xp_this_level": 300,
   "xp_next_level": 534
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 43.94,
-  "week_pnl": 54.41,
-  "daily_limit": -65.71,
-  "weekly_limit": -131.42
+  "day_pnl": 58.84,
+  "week_pnl": 69.31,
+  "daily_limit": -68.23,
+  "weekly_limit": -136.46
  },
  "log": [
+  {
+   "t": "2026-08-25 18:55",
+   "m": "BE XAUUSD stop -> breakeven 4692.15"
+  },
+  {
+   "t": "2026-08-25 18:55",
+   "m": "EXIT XAUUSD x0.82 @ 4710.3200 (T1_half) P/L $+14.90 / +0.73R"
+  },
   {
    "t": "2026-08-25 17:58",
    "m": "OPEN GOLD XAUUSD x1.65 @ 4692.1500 stop 4679.7 T1 4710.47"
@@ -2310,14 +2349,6 @@
   {
    "t": "2026-08-07 23:09",
    "m": "OPEN SWING LYFT x18 @ 17.4687 stop 16.3652 T1 19.6496"
-  },
-  {
-   "t": "2026-08-05 15:28",
-   "m": "EXIT XAUUSD x1.68 @ 4218.4500 (stop) P/L $-9.91 / -1.03R"
-  },
-  {
-   "t": "2026-08-05 13:47",
-   "m": "OPEN GOLD SHORT XAUUSD x1.68 @ 4212.5500 stop 4218.3 T1 4204.3"
   }
  ],
  "month_open_equity": {
@@ -2329,33 +2360,33 @@
  },
  "regime": {
   "spy_above_ma50": true,
-  "spy": 764.8
+  "spy": 765.29
  },
  "periods": {
-  "day": 43.94,
-  "week": 148.02,
-  "month": 103.07,
-  "quarter": 103.07,
-  "half": 103.07,
-  "year": 103.07,
-  "two_year": 103.07,
-  "all": 103.07,
-  "all_pct": 10.31
+  "day": 58.84,
+  "week": 162.92,
+  "month": 117.97,
+  "quarter": 117.97,
+  "half": 117.97,
+  "year": 117.97,
+  "two_year": 117.97,
+  "all": 117.97,
+  "all_pct": 11.8
  },
  "rejected": [],
- "updated_utc": "2026-08-25T15:25:46.507991+00:00",
- "updated_israel": "2026-08-25 18:25",
+ "updated_utc": "2026-08-25T15:55:12.779023+00:00",
+ "updated_israel": "2026-08-25 18:55",
  "market": {
   "open": true,
-  "et": "11:25",
-  "il": "18:25"
+  "et": "11:55",
+  "il": "18:55"
  },
  "stats": {
-  "trades": 44,
-  "win_rate": 63.6,
-  "pf": 1.54,
-  "avg_r": 0.16,
-  "expectancy": 2.34,
+  "trades": 45,
+  "win_rate": 64.4,
+  "pf": 1.61,
+  "avg_r": 0.17,
+  "expectancy": 2.62,
   "best": 25.41,
   "worst": -22.5
  },
@@ -2371,18 +2402,18 @@
   {
    "t": "SNAP",
    "sec": "tech",
-   "px": 5.64,
-   "trend": 15.6,
-   "rsi": 63,
-   "rvol": 0.3,
+   "px": 5.72,
+   "trend": 17.1,
+   "rsi": 64,
+   "rvol": 0.4,
    "df": 1,
    "state": "none"
   },
   {
    "t": "NOK",
    "sec": "tech",
-   "px": 10.35,
-   "trend": -7.2,
+   "px": 10.3,
+   "trend": -7.6,
    "rsi": 50,
    "rvol": 0.3,
    "df": 1,
@@ -2391,8 +2422,8 @@
   {
    "t": "BB",
    "sec": "tech",
-   "px": 7.86,
-   "trend": -16.5,
+   "px": 7.84,
+   "trend": -16.7,
    "rsi": 36,
    "rvol": 0.3,
    "df": 0,
@@ -2401,8 +2432,8 @@
   {
    "t": "ERIC",
    "sec": "tech",
-   "px": 10.3,
-   "trend": -1.6,
+   "px": 10.27,
+   "trend": -1.8,
    "rsi": 52,
    "rvol": 0.1,
    "df": 1,
@@ -2422,19 +2453,19 @@
    "t": "LUMN",
    "sec": "tech",
    "px": 5.72,
-   "trend": -15.4,
+   "trend": -15.3,
    "rsi": 37,
-   "rvol": 0.1,
+   "rvol": 0.2,
    "df": 0,
    "state": "none"
   },
   {
    "t": "INFY",
    "sec": "tech",
-   "px": 11.91,
-   "trend": 3.2,
+   "px": 11.97,
+   "trend": 3.6,
    "rsi": 50,
-   "rvol": 0.1,
+   "rvol": 0.2,
    "df": 0,
    "state": "none"
   },
@@ -2442,19 +2473,19 @@
    "t": "PATH",
    "sec": "tech",
    "px": 16.58,
-   "trend": 30.4,
+   "trend": 30.5,
    "rsi": 71,
-   "rvol": 0.2,
+   "rvol": 0.3,
    "df": 0,
    "state": "watch"
   },
   {
    "t": "VTRS",
    "sec": "health",
-   "px": 16.63,
+   "px": 16.64,
    "trend": 0.1,
    "rsi": 51,
-   "rvol": 0.1,
+   "rvol": 0.2,
    "df": 0,
    "state": "none"
   },
@@ -2463,17 +2494,17 @@
    "sec": "health",
    "px": 13.74,
    "trend": 1.4,
-   "rsi": 73,
-   "rvol": 0.1,
+   "rsi": 71,
+   "rvol": 0.2,
    "df": 0,
    "state": "none"
   },
   {
    "t": "NTLA",
    "sec": "health",
-   "px": 13.6,
-   "trend": 2.1,
-   "rsi": 60,
+   "px": 13.41,
+   "trend": 0.7,
+   "rsi": 59,
    "rvol": 0.5,
    "df": 0,
    "state": "none"
@@ -2481,18 +2512,18 @@
   {
    "t": "SRPT",
    "sec": "health",
-   "px": 18.95,
-   "trend": 8.8,
-   "rsi": 59,
-   "rvol": 0.1,
+   "px": 18.83,
+   "trend": 8.1,
+   "rsi": 58,
+   "rvol": 0.2,
    "df": 0,
    "state": "none"
   },
   {
    "t": "TDOC",
    "sec": "health",
-   "px": 6.14,
-   "trend": -23.1,
+   "px": 6.16,
+   "trend": -22.9,
    "rsi": 33,
    "rvol": 0.1,
    "df": 0,
@@ -2501,8 +2532,8 @@
   {
    "t": "TNDM",
    "sec": "health",
-   "px": 21.53,
-   "trend": 18.0,
+   "px": 21.59,
+   "trend": 18.3,
    "rsi": 55,
    "rvol": 0.1,
    "df": 0,
@@ -2511,17 +2542,17 @@
   {
    "t": "NVAX",
    "sec": "health",
-   "px": 9.45,
-   "trend": 11.6,
-   "rsi": 68,
-   "rvol": 0.7,
+   "px": 9.48,
+   "trend": 12.0,
+   "rsi": 69,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
   {
    "t": "NEO",
    "sec": "health",
-   "px": 16.72,
+   "px": 16.73,
    "trend": 14.3,
    "rsi": 60,
    "rvol": 0.1,
@@ -2531,18 +2562,18 @@
   {
    "t": "CLOV",
    "sec": "health",
-   "px": 4.09,
-   "trend": -11.7,
+   "px": 4.11,
+   "trend": -11.2,
    "rsi": 42,
-   "rvol": 0.1,
+   "rvol": 0.2,
    "df": 0,
    "state": "none"
   },
   {
    "t": "AMRX",
    "sec": "health",
-   "px": 17.71,
-   "trend": 0.8,
+   "px": 17.69,
+   "trend": 0.7,
    "rsi": 49,
    "rvol": 0.1,
    "df": 0,
@@ -2551,9 +2582,9 @@
   {
    "t": "SOFI",
    "sec": "fintech",
-   "px": 18.86,
-   "trend": 6.3,
-   "rsi": 57,
+   "px": 18.81,
+   "trend": 6.0,
+   "rsi": 56,
    "rvol": 0.3,
    "df": 1,
    "state": "none"
@@ -2561,18 +2592,18 @@
   {
    "t": "NU",
    "sec": "fintech",
-   "px": 14.78,
-   "trend": 6.8,
-   "rsi": 57,
-   "rvol": 0.2,
+   "px": 14.88,
+   "trend": 7.5,
+   "rsi": 58,
+   "rvol": 0.3,
    "df": 1,
    "state": "none"
   },
   {
    "t": "SAN",
    "sec": "fintech",
-   "px": 14.65,
-   "trend": 4.8,
+   "px": 14.62,
+   "trend": 4.6,
    "rsi": 58,
    "rvol": 0.3,
    "df": 0,
@@ -2581,9 +2612,9 @@
   {
    "t": "ITUB",
    "sec": "fintech",
-   "px": 7.53,
-   "trend": -6.2,
-   "rsi": 42,
+   "px": 7.57,
+   "trend": -5.7,
+   "rsi": 44,
    "rvol": 0.2,
    "df": 0,
    "state": "none"
@@ -2591,10 +2622,10 @@
   {
    "t": "BBD",
    "sec": "fintech",
-   "px": 3.15,
-   "trend": -7.9,
-   "rsi": 39,
-   "rvol": 0.2,
+   "px": 3.17,
+   "trend": -7.5,
+   "rsi": 41,
+   "rvol": 0.3,
    "df": 0,
    "state": "none"
   },
@@ -2602,18 +2633,18 @@
    "t": "HBAN",
    "sec": "fintech",
    "px": 16.92,
-   "trend": -3.7,
+   "trend": -3.8,
    "rsi": 39,
-   "rvol": 0.2,
+   "rvol": 0.3,
    "df": 1,
    "state": "none"
   },
   {
    "t": "FLG",
    "sec": "fintech",
-   "px": 13.38,
-   "trend": -7.6,
-   "rsi": 30,
+   "px": 13.35,
+   "trend": -7.8,
+   "rsi": 29,
    "rvol": 0.2,
    "df": 0,
    "state": "none"
@@ -2621,19 +2652,19 @@
   {
    "t": "RIG",
    "sec": "energy",
-   "px": 5.81,
-   "trend": 8.6,
-   "rsi": 58,
-   "rvol": 0.2,
+   "px": 5.75,
+   "trend": 7.5,
+   "rsi": 56,
+   "rvol": 0.3,
    "df": 0,
    "state": "none"
   },
   {
    "t": "PTEN",
    "sec": "energy",
-   "px": 11.69,
-   "trend": 14.3,
-   "rsi": 59,
+   "px": 11.61,
+   "trend": 13.5,
+   "rsi": 57,
    "rvol": 0.3,
    "df": 0,
    "state": "none"
@@ -2641,19 +2672,19 @@
   {
    "t": "KOS",
    "sec": "energy",
-   "px": 2.76,
-   "trend": 13.0,
-   "rsi": 56,
-   "rvol": 0.2,
+   "px": 2.71,
+   "trend": 11.2,
+   "rsi": 54,
+   "rvol": 0.3,
    "df": 0,
    "state": "none"
   },
   {
    "t": "TALO",
    "sec": "energy",
-   "px": 16.82,
-   "trend": 14.9,
-   "rsi": 62,
+   "px": 16.69,
+   "trend": 14.0,
+   "rsi": 60,
    "rvol": 0.2,
    "df": 0,
    "state": "none"
@@ -2661,19 +2692,19 @@
   {
    "t": "RUN",
    "sec": "cleanenergy",
-   "px": 9.15,
-   "trend": -19.0,
-   "rsi": 39,
-   "rvol": 0.2,
+   "px": 9.22,
+   "trend": -18.5,
+   "rsi": 40,
+   "rvol": 0.3,
    "df": 1,
    "state": "none"
   },
   {
    "t": "FLNC",
    "sec": "cleanenergy",
-   "px": 11.3,
-   "trend": -28.2,
-   "rsi": 36,
+   "px": 11.33,
+   "trend": -28.1,
+   "rsi": 37,
    "rvol": 0.5,
    "df": 0,
    "state": "none"
@@ -2681,7 +2712,7 @@
   {
    "t": "NXE",
    "sec": "cleanenergy",
-   "px": 11.2,
+   "px": 11.19,
    "trend": 13.8,
    "rsi": 64,
    "rvol": 0.3,
@@ -2692,7 +2723,7 @@
    "t": "PLUG",
    "sec": "cleanenergy",
    "px": 2.26,
-   "trend": -2.8,
+   "trend": -2.9,
    "rsi": 51,
    "rvol": 0.4,
    "df": 1,
@@ -2701,9 +2732,9 @@
   {
    "t": "SHLS",
    "sec": "cleanenergy",
-   "px": 6.96,
-   "trend": -25.2,
-   "rsi": 35,
+   "px": 7.01,
+   "trend": -24.6,
+   "rsi": 36,
    "rvol": 0.3,
    "df": 0,
    "state": "none"
@@ -2711,8 +2742,8 @@
   {
    "t": "ARRY",
    "sec": "cleanenergy",
-   "px": 4.55,
-   "trend": -25.5,
+   "px": 4.54,
+   "trend": -25.6,
    "rsi": 33,
    "rvol": 0.2,
    "df": 0,
@@ -2721,29 +2752,29 @@
   {
    "t": "AAL",
    "sec": "travel",
-   "px": 13.62,
-   "trend": -13.3,
-   "rsi": 36,
-   "rvol": 0.3,
+   "px": 13.77,
+   "trend": -12.4,
+   "rsi": 38,
+   "rvol": 0.4,
    "df": 1,
    "state": "none"
   },
   {
    "t": "LYFT",
    "sec": "travel",
-   "px": 17.4,
-   "trend": 10.7,
-   "rsi": 59,
-   "rvol": 0.3,
+   "px": 17.58,
+   "trend": 11.8,
+   "rsi": 61,
+   "rvol": 0.4,
    "df": 1,
    "state": "none"
   },
   {
    "t": "JBLU",
    "sec": "travel",
-   "px": 4.99,
-   "trend": -10.9,
-   "rsi": 40,
+   "px": 5.05,
+   "trend": -9.9,
+   "rsi": 41,
    "rvol": 0.3,
    "df": 0,
    "state": "none"
@@ -2751,19 +2782,19 @@
   {
    "t": "ULCC",
    "sec": "travel",
-   "px": 5.86,
-   "trend": -14.1,
-   "rsi": 40,
-   "rvol": 0.2,
+   "px": 5.92,
+   "trend": -13.3,
+   "rsi": 41,
+   "rvol": 0.3,
    "df": 0,
    "state": "none"
   },
   {
    "t": "F",
    "sec": "consumer",
-   "px": 13.9,
-   "trend": -1.6,
-   "rsi": 46,
+   "px": 13.97,
+   "trend": -1.1,
+   "rsi": 47,
    "rvol": 0.2,
    "df": 1,
    "state": "none"
@@ -2771,8 +2802,8 @@
   {
    "t": "KVUE",
    "sec": "consumer",
-   "px": 19.28,
-   "trend": 1.1,
+   "px": 19.26,
+   "trend": 1.0,
    "rsi": 53,
    "rvol": 0.2,
    "df": 1,
@@ -2784,15 +2815,15 @@
    "px": 17.61,
    "trend": -3.0,
    "rsi": 44,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
   {
    "t": "AEO",
    "sec": "consumer",
-   "px": 16.74,
-   "trend": -2.6,
+   "px": 16.73,
+   "trend": -2.7,
    "rsi": 48,
    "rvol": 0.3,
    "df": 0,
@@ -2801,9 +2832,9 @@
   {
    "t": "CAG",
    "sec": "consumer",
-   "px": 16.3,
-   "trend": 11.6,
-   "rsi": 65,
+   "px": 16.19,
+   "trend": 10.9,
+   "rsi": 63,
    "rvol": 0.2,
    "df": 0,
    "state": "none"
@@ -2811,9 +2842,9 @@
   {
    "t": "WEN",
    "sec": "consumer",
-   "px": 8.95,
-   "trend": 15.3,
-   "rsi": 62,
+   "px": 9.02,
+   "trend": 16.2,
+   "rsi": 63,
    "rvol": 0.2,
    "df": 0,
    "state": "none"
@@ -2821,8 +2852,8 @@
   {
    "t": "GT",
    "sec": "consumer",
-   "px": 6.01,
-   "trend": -8.9,
+   "px": 6.03,
+   "trend": -8.5,
    "rsi": 40,
    "rvol": 0.2,
    "df": 1,
@@ -2831,9 +2862,9 @@
   {
    "t": "UAA",
    "sec": "consumer",
-   "px": 5.2,
-   "trend": -17.6,
-   "rsi": 33,
+   "px": 5.18,
+   "trend": -17.7,
+   "rsi": 32,
    "rvol": 0.2,
    "df": 0,
    "state": "none"
@@ -2841,18 +2872,18 @@
   {
    "t": "STLA",
    "sec": "consumer",
-   "px": 5.24,
-   "trend": -8.3,
-   "rsi": 41,
-   "rvol": 0.4,
+   "px": 5.26,
+   "trend": -8.0,
+   "rsi": 42,
+   "rvol": 0.5,
    "df": 0,
    "state": "none"
   },
   {
    "t": "RDW",
    "sec": "space",
-   "px": 11.52,
-   "trend": 3.5,
+   "px": 11.61,
+   "trend": 4.2,
    "rsi": 49,
    "rvol": 0.3,
    "df": 0,
@@ -2861,9 +2892,9 @@
   {
    "t": "LUNR",
    "sec": "space",
-   "px": 16.57,
-   "trend": -2.8,
-   "rsi": 48,
+   "px": 16.7,
+   "trend": -2.1,
+   "rsi": 49,
    "rvol": 0.3,
    "df": 0,
    "state": "none"
@@ -2871,18 +2902,18 @@
   {
    "t": "YSS",
    "sec": "space",
-   "px": 9.23,
-   "trend": -49.7,
+   "px": 9.18,
+   "trend": -49.9,
    "rsi": 29,
-   "rvol": 0.3,
+   "rvol": 0.4,
    "df": 0,
    "state": "none"
   },
   {
    "t": "SPCE",
    "sec": "space",
-   "px": 3.01,
-   "trend": 4.4,
+   "px": 3.02,
+   "trend": 4.7,
    "rsi": 50,
    "rvol": 0.2,
    "df": 0,
@@ -2891,19 +2922,19 @@
   {
    "t": "SATL",
    "sec": "space",
-   "px": 5.43,
-   "trend": 11.2,
+   "px": 5.41,
+   "trend": 10.7,
    "rsi": 54,
-   "rvol": 0.2,
+   "rvol": 0.3,
    "df": 0,
    "state": "none"
   },
   {
    "t": "AUR",
    "sec": "ai",
-   "px": 5.84,
-   "trend": -8.9,
-   "rsi": 40,
+   "px": 5.8,
+   "trend": -9.4,
+   "rsi": 39,
    "rvol": 0.4,
    "df": 1,
    "state": "none"
@@ -2911,8 +2942,8 @@
   {
    "t": "SOUN",
    "sec": "ai",
-   "px": 7.08,
-   "trend": 5.4,
+   "px": 7.07,
+   "trend": 5.1,
    "rsi": 52,
    "rvol": 0.2,
    "df": 1,
@@ -2922,27 +2953,27 @@
    "t": "BBAI",
    "sec": "ai",
    "px": 3.12,
-   "trend": -3.8,
+   "trend": -3.9,
    "rsi": 48,
-   "rvol": 0.2,
+   "rvol": 0.3,
    "df": 1,
    "state": "none"
   },
   {
    "t": "RXRX",
    "sec": "ai",
-   "px": 3.48,
-   "trend": 5.7,
-   "rsi": 56,
-   "rvol": 0.6,
+   "px": 3.51,
+   "trend": 6.5,
+   "rsi": 57,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
   {
    "t": "AI",
    "sec": "ai",
-   "px": 10.0,
-   "trend": 5.6,
+   "px": 10.03,
+   "trend": 5.9,
    "rsi": 54,
    "rvol": 0.2,
    "df": 0,
@@ -2951,8 +2982,8 @@
   {
    "t": "PONY",
    "sec": "ai",
-   "px": 7.49,
-   "trend": 0.0,
+   "px": 7.51,
+   "trend": 0.4,
    "rsi": 45,
    "rvol": 0.5,
    "df": 0,
@@ -2961,18 +2992,18 @@
   {
    "t": "NVTS",
    "sec": "semis",
-   "px": 12.8,
-   "trend": -11.9,
+   "px": 12.89,
+   "trend": -11.3,
    "rsi": 47,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 1,
    "state": "none"
   },
   {
    "t": "HIMX",
    "sec": "semis",
-   "px": 13.76,
-   "trend": -4.3,
+   "px": 13.77,
+   "trend": -4.2,
    "rsi": 47,
    "rvol": 0.2,
    "df": 0,
@@ -2981,8 +3012,8 @@
   {
    "t": "INDI",
    "sec": "semis",
-   "px": 3.99,
-   "trend": 1.8,
+   "px": 3.98,
+   "trend": 1.6,
    "rsi": 51,
    "rvol": 0.1,
    "df": 0,
@@ -2991,8 +3022,8 @@
   {
    "t": "RIVN",
    "sec": "ev",
-   "px": 16.75,
-   "trend": 1.8,
+   "px": 16.77,
+   "trend": 2.0,
    "rsi": 55,
    "rvol": 0.2,
    "df": 1,
@@ -3011,48 +3042,48 @@
   {
    "t": "NIO",
    "sec": "ev",
-   "px": 4.43,
-   "trend": -7.3,
+   "px": 4.45,
+   "trend": -7.0,
    "rsi": 41,
-   "rvol": 0.4,
+   "rvol": 0.5,
    "df": 1,
    "state": "none"
   },
   {
    "t": "XPEV",
    "sec": "ev",
-   "px": 11.42,
-   "trend": -10.1,
-   "rsi": 39,
-   "rvol": 0.8,
+   "px": 11.45,
+   "trend": -9.8,
+   "rsi": 40,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
   {
    "t": "QS",
    "sec": "ev",
-   "px": 5.82,
-   "trend": -7.5,
+   "px": 5.84,
+   "trend": -7.2,
    "rsi": 47,
-   "rvol": 0.2,
+   "rvol": 0.3,
    "df": 0,
    "state": "none"
   },
   {
    "t": "LI",
    "sec": "ev",
-   "px": 12.28,
-   "trend": -2.6,
+   "px": 12.31,
+   "trend": -2.4,
    "rsi": 44,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
   {
    "t": "ENVX",
    "sec": "ev",
-   "px": 3.29,
-   "trend": -32.5,
+   "px": 3.31,
+   "trend": -32.2,
    "rsi": 35,
    "rvol": 0.2,
    "df": 0,
@@ -3061,9 +3092,9 @@
   {
    "t": "SBS",
    "sec": "utilities",
-   "px": 4.71,
-   "trend": -13.0,
-   "rsi": 36,
+   "px": 4.74,
+   "trend": -12.6,
+   "rsi": 37,
    "rvol": 0.4,
    "df": 0,
    "state": "none"
@@ -3071,92 +3102,92 @@
   {
    "t": "NVDA",
    "sec": "premium",
-   "px": 210.61,
-   "trend": 1.4,
+   "px": 211.15,
+   "trend": 1.6,
    "state": "premium"
   },
   {
    "t": "MSFT",
    "sec": "premium",
-   "px": 489.07,
-   "trend": 15.4,
+   "px": 489.52,
+   "trend": 15.5,
    "state": "premium"
   },
   {
    "t": "ORCL",
    "sec": "premium",
-   "px": 145.0,
-   "trend": 0.8,
+   "px": 145.95,
+   "trend": 1.5,
    "state": "premium"
   },
   {
    "t": "PLTR",
    "sec": "premium",
-   "px": 174.28,
-   "trend": 23.8,
+   "px": 175.04,
+   "trend": 24.3,
    "state": "premium"
   },
   {
    "t": "CRWD",
    "sec": "premium",
-   "px": 188.48,
-   "trend": -2.8,
+   "px": 188.26,
+   "trend": -2.9,
    "state": "premium"
   },
   {
    "t": "LLY",
    "sec": "premium",
-   "px": 1262.45,
-   "trend": 6.6,
+   "px": 1256.59,
+   "trend": 6.2,
    "state": "premium"
   },
   {
    "t": "JNJ",
    "sec": "premium",
-   "px": 273.48,
-   "trend": 6.8,
+   "px": 272.52,
+   "trend": 6.4,
    "state": "premium"
   },
   {
    "t": "UNH",
    "sec": "premium",
-   "px": 396.5,
-   "trend": -4.1,
+   "px": 398.02,
+   "trend": -3.7,
    "state": "premium"
   },
   {
    "t": "MRK",
    "sec": "premium",
-   "px": 154.43,
-   "trend": 19.4,
+   "px": 153.54,
+   "trend": 18.8,
    "state": "premium"
   },
   {
    "t": "ABBV",
    "sec": "premium",
-   "px": 266.55,
-   "trend": 6.8,
+   "px": 266.25,
+   "trend": 6.7,
    "state": "premium"
   },
   {
    "t": "V",
    "sec": "premium",
-   "px": 382.28,
-   "trend": 7.6,
+   "px": 381.99,
+   "trend": 7.5,
    "state": "premium"
   },
   {
    "t": "MA",
    "sec": "premium",
-   "px": 597.14,
-   "trend": 10.2,
+   "px": 596.54,
+   "trend": 10.0,
    "state": "premium"
   },
   {
    "t": "JPM",
    "sec": "premium",
-   "px": 354.93,
-   "trend": 2.7,
+   "px": 355.55,
+   "trend": 2.9,
    "state": "premium"
   },
   {
@@ -3169,246 +3200,246 @@
   {
    "t": "GS",
    "sec": "premium",
-   "px": 1049.47,
-   "trend": -0.3,
+   "px": 1053.89,
+   "trend": 0.1,
    "state": "premium"
   },
   {
    "t": "XOM",
    "sec": "premium",
-   "px": 161.67,
+   "px": 161.77,
    "trend": 8.1,
    "state": "premium"
   },
   {
    "t": "CVX",
    "sec": "premium",
-   "px": 201.61,
-   "trend": 8.2,
+   "px": 201.46,
+   "trend": 8.1,
    "state": "premium"
   },
   {
    "t": "COP",
    "sec": "premium",
-   "px": 132.44,
-   "trend": 13.8,
+   "px": 131.93,
+   "trend": 13.4,
    "state": "premium"
   },
   {
    "t": "SLB",
    "sec": "premium",
-   "px": 54.08,
-   "trend": 9.1,
+   "px": 53.94,
+   "trend": 8.8,
    "state": "premium"
   },
   {
    "t": "CCJ",
    "sec": "premium",
-   "px": 106.08,
-   "trend": 10.1,
+   "px": 106.2,
+   "trend": 10.3,
    "state": "premium"
   },
   {
    "t": "CAT",
    "sec": "premium",
-   "px": 811.28,
-   "trend": -10.0,
+   "px": 811.15,
+   "trend": -10.1,
    "state": "premium"
   },
   {
    "t": "DE",
    "sec": "premium",
-   "px": 632.06,
+   "px": 632.09,
    "trend": 4.0,
    "state": "premium"
   },
   {
    "t": "LMT",
    "sec": "premium",
-   "px": 559.14,
+   "px": 559.24,
    "trend": 1.8,
    "state": "premium"
   },
   {
    "t": "BA",
    "sec": "premium",
-   "px": 211.46,
-   "trend": -4.5,
+   "px": 211.86,
+   "trend": -4.4,
    "state": "premium"
   },
   {
    "t": "RTX",
    "sec": "premium",
-   "px": 209.81,
-   "trend": 2.7,
+   "px": 209.53,
+   "trend": 2.5,
    "state": "premium"
   },
   {
    "t": "MCD",
    "sec": "premium",
-   "px": 269.66,
-   "trend": -0.9,
+   "px": 269.99,
+   "trend": -0.7,
    "state": "premium"
   },
   {
    "t": "TGT",
    "sec": "premium",
-   "px": 163.87,
-   "trend": 15.2,
+   "px": 163.51,
+   "trend": 15.0,
    "state": "premium"
   },
   {
    "t": "SBUX",
    "sec": "premium",
-   "px": 105.98,
-   "trend": 1.3,
+   "px": 105.92,
+   "trend": 1.2,
    "state": "premium"
   },
   {
    "t": "KO",
    "sec": "premium",
-   "px": 91.56,
-   "trend": 8.1,
+   "px": 91.39,
+   "trend": 7.9,
    "state": "premium"
   },
   {
    "t": "NKE",
    "sec": "premium",
-   "px": 39.67,
-   "trend": -6.2,
+   "px": 39.56,
+   "trend": -6.4,
    "state": "premium"
   },
   {
    "t": "RKLB",
    "sec": "premium",
-   "px": 67.37,
-   "trend": -16.2,
+   "px": 67.6,
+   "trend": -16.0,
    "state": "premium"
   },
   {
    "t": "ASTS",
    "sec": "premium",
-   "px": 62.02,
-   "trend": -10.7,
+   "px": 62.18,
+   "trend": -10.4,
    "state": "premium"
   },
   {
    "t": "PL",
    "sec": "premium",
-   "px": 21.49,
-   "trend": -13.8,
+   "px": 21.57,
+   "trend": -13.4,
    "state": "premium"
   },
   {
    "t": "IRDM",
    "sec": "premium",
-   "px": 47.09,
-   "trend": -2.1,
+   "px": 47.14,
+   "trend": -2.0,
    "state": "premium"
   },
   {
    "t": "KTOS",
    "sec": "premium",
-   "px": 53.22,
-   "trend": 1.0,
+   "px": 53.26,
+   "trend": 1.1,
    "state": "premium"
   },
   {
    "t": "CRWV",
    "sec": "premium",
-   "px": 88.28,
-   "trend": -1.3,
+   "px": 89.28,
+   "trend": -0.3,
    "state": "premium"
   },
   {
    "t": "NBIS",
    "sec": "premium",
-   "px": 217.69,
-   "trend": -2.2,
+   "px": 218.56,
+   "trend": -1.8,
    "state": "premium"
   },
   {
    "t": "SNOW",
    "sec": "premium",
-   "px": 317.73,
+   "px": 317.83,
    "trend": 12.7,
    "state": "premium"
   },
   {
    "t": "TSM",
    "sec": "premium",
-   "px": 415.14,
-   "trend": -2.1,
+   "px": 414.99,
+   "trend": -2.2,
    "state": "premium"
   },
   {
    "t": "AVGO",
    "sec": "premium",
-   "px": 360.05,
-   "trend": -7.1,
+   "px": 360.45,
+   "trend": -7.0,
    "state": "premium"
   },
   {
    "t": "AMD",
    "sec": "premium",
-   "px": 479.83,
-   "trend": -5.7,
+   "px": 476.57,
+   "trend": -6.4,
    "state": "premium"
   },
   {
    "t": "MU",
    "sec": "premium",
-   "px": 931.5,
-   "trend": -3.2,
+   "px": 924.91,
+   "trend": -3.8,
    "state": "premium"
   },
   {
    "t": "TSLA",
    "sec": "premium",
-   "px": 352.96,
-   "trend": -3.0,
+   "px": 353.73,
+   "trend": -2.8,
    "state": "premium"
   },
   {
    "t": "ALB",
    "sec": "premium",
-   "px": 134.95,
-   "trend": 2.5,
+   "px": 134.22,
+   "trend": 1.9,
    "state": "premium"
   },
   {
    "t": "SQM",
    "sec": "premium",
-   "px": 79.63,
-   "trend": 8.8,
+   "px": 79.15,
+   "trend": 8.2,
    "state": "premium"
   },
   {
    "t": "IIPR",
    "sec": "premium",
-   "px": 57.09,
-   "trend": -5.5,
+   "px": 57.13,
+   "trend": -5.4,
    "state": "premium"
   },
   {
    "t": "SMG",
    "sec": "premium",
-   "px": 61.24,
+   "px": 61.22,
    "trend": -6.7,
    "state": "premium"
   },
   {
    "t": "JAZZ",
    "sec": "premium",
-   "px": 262.9,
-   "trend": 7.0,
+   "px": 260.32,
+   "trend": 5.9,
    "state": "premium"
   },
   {
    "t": "AWK",
    "sec": "premium",
-   "px": 138.21,
-   "trend": 3.7,
+   "px": 137.28,
+   "trend": 3.0,
    "state": "premium"
   },
   {
@@ -3421,22 +3452,22 @@
   {
    "t": "VLTO",
    "sec": "premium",
-   "px": 98.67,
+   "px": 98.64,
    "trend": 6.1,
    "state": "premium"
   },
   {
    "t": "ECL",
    "sec": "premium",
-   "px": 287.86,
-   "trend": 3.9,
+   "px": 287.17,
+   "trend": 3.7,
    "state": "premium"
   },
   {
    "t": "WTRG",
    "sec": "premium",
-   "px": 40.85,
-   "trend": 4.2,
+   "px": 40.6,
+   "trend": 3.6,
    "state": "premium"
   }
  ],
@@ -3476,10 +3507,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 960,
+   "bars": 966,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4687.4,
+   "last_price": 4713.3,
    "signals": 1,
    "today_trades": 2,
    "health": {
@@ -3491,8 +3522,8 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 4,
-    "pnl": 43.94
+    "trades": 5,
+    "pnl": 58.84
    },
    "open_now": 1
   },
@@ -3501,7 +3532,7 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 35.47,
+   "heat": 34.8,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3514,7 +3545,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 24,
    "covered": 4,
-   "updated": "2026-08-25 18:26"
+   "updated": "2026-08-25 18:55"
   }
  },
  "gold_today": {
@@ -3528,9 +3559,9 @@
   },
   "gold": {
    "n": 20,
-   "exp": 8.84,
-   "pf": 6.4,
-   "avg_r": 0.58,
+   "exp": 9.44,
+   "pf": 6.76,
+   "avg_r": 0.6,
    "status": "ok"
   },
   "day": {
@@ -3543,8 +3574,8 @@
    "t": "CLSK",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 12.65,
-   "trend": -8.6,
+   "px": 12.72,
+   "trend": -8.1,
    "rsi": 49,
    "rvol": 0.4,
    "near": false
@@ -3553,9 +3584,9 @@
    "t": "XRX",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 2.83,
-   "trend": -4.5,
-   "rsi": 44,
+   "px": 2.84,
+   "trend": -4.2,
+   "rsi": 45,
    "rvol": 0.1,
    "near": false
   },
@@ -3563,19 +3594,19 @@
    "t": "WKEY",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 6.67,
-   "trend": -1.9,
-   "rsi": 51,
-   "rvol": 0.1,
+   "px": 6.55,
+   "trend": -3.6,
+   "rsi": 49,
+   "rvol": 0.2,
    "near": false
   },
   {
    "t": "MBLY",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 8.63,
-   "trend": -1.9,
-   "rsi": 47,
+   "px": 8.65,
+   "trend": -1.7,
+   "rsi": 48,
    "rvol": 0.2,
    "near": false
   },
@@ -3583,10 +3614,10 @@
    "t": "TLS",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 4.31,
-   "trend": -5.5,
-   "rsi": 44,
-   "rvol": 0.2,
+   "px": 4.32,
+   "trend": -5.4,
+   "rsi": 45,
+   "rvol": 0.3,
    "near": false
   },
   {
@@ -3596,15 +3627,15 @@
    "px": 2.69,
    "trend": 15.4,
    "rsi": 59,
-   "rvol": 0.3,
+   "rvol": 0.4,
    "near": false
   },
   {
    "t": "CLF",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 11.4,
-   "trend": 3.3,
+   "px": 11.36,
+   "trend": 3.1,
    "rsi": 49,
    "rvol": 0.2,
    "near": false
@@ -3613,8 +3644,8 @@
    "t": "TRT",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 10.47,
-   "trend": -5.5,
+   "px": 10.42,
+   "trend": -5.9,
    "rsi": 46,
    "rvol": 0.3,
    "near": false
@@ -3623,28 +3654,28 @@
    "t": "BZFD",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 1.1,
-   "trend": -15.0,
-   "rsi": 40,
-   "rvol": 0.1,
+   "px": 1.09,
+   "trend": -16.1,
+   "rsi": 39,
+   "rvol": 0.3,
    "near": false
   },
   {
    "t": "FABC",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 2.79,
-   "trend": -3.2,
+   "px": 2.77,
+   "trend": -4.0,
    "rsi": 49,
-   "rvol": 0.1,
+   "rvol": 0.2,
    "near": false
   },
   {
    "t": "QUIK",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 11.32,
-   "trend": -24.6,
+   "px": 11.34,
+   "trend": -24.5,
    "rsi": 35,
    "rvol": 0.2,
    "near": false
@@ -3653,9 +3684,9 @@
    "t": "ARQQ",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 20.71,
-   "trend": -2.7,
-   "rsi": 49,
+   "px": 20.95,
+   "trend": -1.6,
+   "rsi": 50,
    "rvol": 0.4,
    "near": false
   },
@@ -3666,47 +3697,47 @@
    "px": 3.12,
    "trend": -38.7,
    "rsi": 31,
-   "rvol": 0.1,
+   "rvol": 0.2,
    "near": false
   },
   {
    "t": "SLNH",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 1.26,
-   "trend": -2.7,
-   "rsi": 51,
-   "rvol": 0.6,
+   "px": 1.27,
+   "trend": -1.9,
+   "rsi": 52,
+   "rvol": 0.7,
    "near": false
   },
   {
    "t": "JOBY",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 7.23,
-   "trend": -10.8,
+   "px": 7.24,
+   "trend": -10.7,
    "rsi": 41,
-   "rvol": 0.2,
+   "rvol": 0.3,
    "near": false
   },
   {
    "t": "LYFT",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 17.4,
-   "trend": 10.7,
-   "rsi": 59,
-   "rvol": 0.3,
-   "near": false
+   "px": 17.58,
+   "trend": 11.8,
+   "rsi": 61,
+   "rvol": 0.4,
+   "near": true
   },
   {
    "t": "ADVB",
    "list": "מעניינות",
    "grp": "07/26",
-   "px": 7.96,
-   "trend": 8.2,
+   "px": 8.08,
+   "trend": 9.8,
    "rsi": 49,
-   "rvol": 1.1,
+   "rvol": 1.2,
    "near": false
   },
   {
@@ -3716,16 +3747,16 @@
    "px": 2.63,
    "trend": -21.0,
    "rsi": 35,
-   "rvol": 0.1,
+   "rvol": 0.2,
    "near": false
   },
   {
    "t": "PRCH",
    "list": "מעניינות",
    "grp": "07/26",
-   "px": 17.17,
-   "trend": 18.6,
-   "rsi": 65,
+   "px": 17.23,
+   "trend": 19.0,
+   "rsi": 66,
    "rvol": 0.1,
    "near": true
   },
@@ -3743,8 +3774,8 @@
    "t": "NB",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 4.49,
-   "trend": -4.3,
+   "px": 4.47,
+   "trend": -4.6,
    "rsi": 46,
    "rvol": 0.3,
    "near": false
@@ -3753,9 +3784,9 @@
    "t": "HIMS",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 32.06,
-   "trend": -0.4,
-   "rsi": 53,
+   "px": 32.3,
+   "trend": 0.4,
+   "rsi": 54,
    "rvol": 0.3,
    "near": false
   },
@@ -3763,19 +3794,19 @@
    "t": "MRNA",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 155.88,
-   "trend": 118.0,
+   "px": 156.85,
+   "trend": 119.3,
    "rsi": 72,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "near": false
   },
   {
    "t": "DNLI",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 25.12,
-   "trend": 2.7,
-   "rsi": 55,
+   "px": 24.99,
+   "trend": 2.2,
+   "rsi": 54,
    "rvol": 0.2,
    "near": true
   },
@@ -3783,8 +3814,8 @@
    "t": "KEEL",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 3.45,
-   "trend": -22.7,
+   "px": 3.48,
+   "trend": -22.1,
    "rsi": 45,
    "rvol": 0.3,
    "near": false
@@ -3793,9 +3824,9 @@
    "t": "ALT",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 3.19,
-   "trend": 8.1,
-   "rsi": 60,
+   "px": 3.16,
+   "trend": 7.3,
+   "rsi": 59,
    "rvol": 0.2,
    "near": true
   },
@@ -3803,9 +3834,9 @@
    "t": "WAVE",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 7.0,
-   "trend": -12.6,
-   "rsi": 44,
+   "px": 6.78,
+   "trend": -15.3,
+   "rsi": 39,
    "rvol": 0.2,
    "near": false
   },
@@ -3813,9 +3844,9 @@
    "t": "FRMM",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 6.0,
-   "trend": 4.3,
-   "rsi": 53,
+   "px": 5.95,
+   "trend": 3.5,
+   "rsi": 52,
    "rvol": 0.3,
    "near": false
   },
@@ -3823,9 +3854,9 @@
    "t": "GRND",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 15.71,
-   "trend": 1.5,
-   "rsi": 48,
+   "px": 15.57,
+   "trend": 0.7,
+   "rsi": 46,
    "rvol": 0.1,
    "near": false
   },
@@ -3833,9 +3864,9 @@
    "t": "IBTA",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 39.13,
-   "trend": 19.8,
-   "rsi": 61,
+   "px": 39.38,
+   "trend": 20.6,
+   "rsi": 62,
    "rvol": 0.2,
    "near": true
   },
@@ -3843,8 +3874,8 @@
    "t": "TRIP",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 10.08,
-   "trend": -21.5,
+   "px": 10.12,
+   "trend": -21.2,
    "rsi": 33,
    "rvol": 0.1,
    "near": false
@@ -3853,8 +3884,8 @@
    "t": "UPST",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 30.12,
-   "trend": -2.1,
+   "px": 30.16,
+   "trend": -2.0,
    "rsi": 51,
    "rvol": 0.2,
    "near": false
@@ -3863,8 +3894,8 @@
    "t": "VIVO",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 4.5,
-   "trend": -0.2,
+   "px": 4.47,
+   "trend": -0.9,
    "rsi": 54,
    "rvol": 0.3,
    "near": false
@@ -3876,18 +3907,18 @@
    "px": 2.69,
    "trend": 15.4,
    "rsi": 59,
-   "rvol": 0.3,
+   "rvol": 0.4,
    "near": false
   },
   {
    "t": "XNCR",
    "list": "לפני פריצה",
    "grp": "07/26",
-   "px": 29.76,
-   "trend": 57.9,
+   "px": 29.5,
+   "trend": 56.6,
    "rsi": 83,
    "rvol": 0.4,
-   "near": true
+   "near": false
   },
   {
    "t": "UIS",
@@ -3896,16 +3927,16 @@
    "px": 2.63,
    "trend": -21.0,
    "rsi": 35,
-   "rvol": 0.1,
+   "rvol": 0.2,
    "near": false
   },
   {
    "t": "PRCH",
    "list": "לפני פריצה",
    "grp": "07/26",
-   "px": 17.17,
-   "trend": 18.6,
-   "rsi": 65,
+   "px": 17.23,
+   "trend": 19.0,
+   "rsi": 66,
    "rvol": 0.1,
    "near": true
   }
@@ -3970,6 +4001,16 @@
      "dir": "neu",
      "tag": null,
      "sources": 1,
+     "title": "Will IBKR's Daol Collaboration Expand Its Reach Across South Korea?",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/ibkrs-daol-collaboration-expand-reach-152900106.html",
+     "src": "Zacks",
+     "time": "2026-08-25 15:29"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
      "title": "Avantus secures $300m in tax equity for Aratina 2 solar storage project",
      "url": "https://www.energymonitor.ai/news/avantus-secures-tax-equity-aratina-2/",
      "src": "Energy Monitor",
@@ -3984,16 +4025,6 @@
      "url": "https://finance.yahoo.com/energy/articles/jpmorgan-santander-lead-15-billion-073000211.html",
      "src": "Oilprice.com",
      "time": "2026-08-25 07:30"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "General Motors Company (GM) Spends $4.5B on Chips: Is Ford Motor Company (F) Betting Bigger on America?",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/general-motors-company-gm-spends-172052073.html",
-     "src": "Insider Monkey",
-     "time": "2026-08-24 17:20"
     }
    ],
    "NXE": [
@@ -4160,17 +4191,17 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Pre-Markets Up, DKS Sells Off on Q2 Miss",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/pre-markets-dks-sells-off-144000427.html",
-    "src": "Zacks",
-    "time": "2026-08-25 14:40",
+    "title": "Stock market today: Dow, S&P 500, Nasdaq hold steady as US-Canada trade tensions heat up",
+    "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-august-25-dow-sp-500-nasdaq-tariffs-oil-080527092.html",
+    "src": "Yahoo Finance",
+    "time": "2026-08-25 08:05",
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-25 18:26"
+  "updated": "2026-08-25 18:55"
  }
 }
