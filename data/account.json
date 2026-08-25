@@ -1,23 +1,32 @@
 {
  "schema": 1,
- "updated_utc": "2026-08-24T04:15:22Z",
- "updated_israel": "2026-08-24 07:15",
+ "updated_utc": "2026-08-25T01:24:58Z",
+ "updated_israel": "2026-08-25 04:24",
  "mode": "paper",
  "read_only": true,
  "broker": {
-  "net_liquidation": 1001734.11,
-  "total_cash": 998993.0,
-  "buying_power": 3995972.0,
+  "net_liquidation": 1001606.68,
+  "total_cash": 995797.39,
+  "buying_power": 3990979.04,
   "currency": "USD",
   "note": "IB paper starts around 1,000,000 virtual dollars. Ignored on purpose."
  },
  "shadow_wallet": {
   "name": "UHTA",
-  "start": 1000.0,
-  "equity": 949.06,
+  "start": 10000.0,
+  "equity": 10335.03,
+  "realized_pnl": 344.58,
+  "open_pnl": 2.13,
+  "return_pct": 3.35,
+  "source": "engine"
+ },
+ "mirror_cross_check": {
+  "note": "החישוב העצמאי של המראה. אמור לזוז יחד עם המנוע - פער מתמשך = לבדוק.",
+  "start": 10000.0,
+  "equity": 9924.48,
   "realized_pnl": -70.27,
-  "open_pnl": 19.33,
-  "return_pct": -5.09
+  "open_pnl": -5.25,
+  "delta_vs_engine": -410.55
  },
  "positions": [
   {
@@ -26,21 +35,9 @@
    "currency": "USD",
    "qty": 45.0,
    "avg_cost": 8.6622,
-   "mark": 8.97,
-   "value": 403.65,
-   "unrealized": 13.85,
-   "realized": 0.0,
-   "source": "engine"
-  },
-  {
-   "symbol": "SRPT",
-   "sec_type": "STK",
-   "currency": "USD",
-   "qty": 17.0,
-   "avg_cost": 18.7788,
-   "mark": 18.76,
-   "value": 318.92,
-   "unrealized": -0.32,
+   "mark": 8.87,
+   "value": 399.15,
+   "unrealized": 9.35,
    "realized": 0.0,
    "source": "engine"
   },
@@ -50,19 +47,32 @@
    "currency": "USD",
    "qty": 85.0,
    "avg_cost": 3.4318,
-   "mark": 3.5,
-   "value": 297.5,
-   "unrealized": 5.8,
+   "mark": 3.26,
+   "value": 277.1,
+   "unrealized": -14.6,
    "realized": 0.0,
    "source": "engine"
   }
  ],
- "manual_positions": [],
+ "manual_positions": [
+  {
+   "symbol": "PRCH",
+   "sec_type": "STK",
+   "currency": "USD",
+   "qty": 200.0,
+   "avg_cost": 17.52,
+   "mark": 17.06,
+   "value": 3412.0,
+   "unrealized": -92.0,
+   "realized": 0.0,
+   "source": "manual"
+  }
+ ],
  "open_orders": [],
  "fills_today": [],
  "counts": {
-  "engine_positions": 3,
-  "manual_positions": 0,
+  "engine_positions": 2,
+  "manual_positions": 1,
   "open_orders": 0
  }
 }
