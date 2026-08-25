@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 471.51454191439,
-  "equity": 1054.02,
+  "equity": 1061.92,
   "realized_pnl": 79.11,
-  "open_pnl": -22.1,
+  "open_pnl": -14.2,
   "peak_equity": 1075.99,
   "max_dd_pct": -8.47,
-  "return_pct": 5.4,
+  "return_pct": 6.19,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -60,7 +60,7 @@
    "t2": 4674.58,
    "opened": "2026-08-25T10:57:03.984990+03:00",
    "opened_day": "2026-08-25",
-   "risk_open": 1.74,
+   "risk_open": 9.64,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -74,7 +74,7 @@
     "regime_ok": true,
     "notional": 7418.42
    },
-   "last": 4701.0,
+   "last": 4696.0,
    "margin": 370.91
   }
  ],
@@ -1374,7 +1374,7 @@
     "shares": 16,
     "notional": 269.12,
     "risk_dollars": 20.68,
-    "risk_pct_actual": 1.96,
+    "risk_pct_actual": 1.95,
     "stretch_target": 20.18,
     "score": 64,
     "news": [
@@ -1418,23 +1418,23 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4701.0,
-    "entry": 4701.0,
-    "stop": 4694.3,
-    "t1": 4711.04,
-    "t2": 4721.07,
+    "state": "BUY_NOW",
+    "pattern": "חציית ממוצעים",
+    "price": 4696.0,
+    "entry": 4696.0,
+    "stop": 4688.4,
+    "t1": 4707.39,
+    "t2": 4718.78,
     "rr1": 1.5,
-    "atr": 4.46,
-    "rsi": 60.5,
-    "vwap": 4692.9,
-    "stop_pct": 0.14,
-    "ounces": 1.56,
-    "notional": 7333.56,
-    "margin": 366.68,
-    "risk_dollars": 10.45,
-    "shares": 1.56,
+    "atr": 5.06,
+    "rsi": 53.2,
+    "vwap": 4692.97,
+    "stop_pct": 0.16,
+    "ounces": 1.58,
+    "notional": 7419.68,
+    "margin": 370.98,
+    "risk_dollars": 12.01,
+    "shares": 1.58,
     "score": 57,
     "news": [],
     "regime_ok": true
@@ -1749,7 +1749,7 @@
   ],
   [
    "2026-08-25",
-   1054.02
+   1061.92
   ]
  ],
  "cooldown": {},
@@ -1862,10 +1862,10 @@
    "name": "👹 בוס היום",
    "target": 82.65,
    "legend": 206.63,
-   "done": 20.89,
+   "done": 28.79,
    "base": 1033.13,
-   "pct": 25,
-   "pct_legend": 10,
+   "pct": 35,
+   "pct_legend": 14,
    "beaten": false,
    "legendary": false
   },
@@ -1878,8 +1878,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 19.98,
   "week_pnl": 30.45,
-  "daily_limit": -63.24,
-  "weekly_limit": -126.48
+  "daily_limit": -63.72,
+  "weekly_limit": -127.43
  },
  "log": [
   {
@@ -2225,13 +2225,19 @@
   "all": 79.11,
   "all_pct": 7.91
  },
- "rejected": [],
- "updated_utc": "2026-08-25T11:59:07.232860+00:00",
- "updated_israel": "2026-08-25 14:59",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-08-25T13:06:54.296322+00:00",
+ "updated_israel": "2026-08-25 16:06",
  "market": {
   "open": false,
-  "et": "07:59",
-  "il": "14:59"
+  "et": "09:06",
+  "il": "16:06"
  },
  "stats": {
   "trades": 42,
@@ -3359,10 +3365,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 918,
+   "bars": 932,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4701.0,
+   "last_price": 4696.0,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -3384,11 +3390,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 8.87,
+   "heat": 16.77,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -3397,7 +3403,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 20,
    "covered": 3,
-   "updated": "2026-08-25 14:59"
+   "updated": "2026-08-25 16:07"
   }
  },
  "gold_today": {
@@ -3924,14 +3930,14 @@
   },
   "market": [
    {
-    "summary": "דיווח שלילי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
-    "tag": "דוחות",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
     "sources": 1,
-    "title": "S&P 500, Nasdaq End Lower On Chipmaker Weakness, While Traders Position For Nvidia Earnings This Week — AVGO, INTC, BE, NVDA, PSKY In Focus",
-    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-lower-on-chipmaker-weakness/cZYKu7wRJFn",
-    "src": "Stocktwits",
-    "time": "2026-08-24 21:52",
+    "title": "Falling, Falling, Falling: Why One of Wall Street’s Biggest Ratings Agencies Expects Bloom Energy to Explode 70% Higher",
+    "url": "https://247wallst.com/investing/2026/08/25/falling-falling-falling-why-one-of-wall-streets-biggest-ratings-agencies-expects-bloom-energy-to-explode-70-higher/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-25 12:41",
     "about": "שוק"
    },
    {
@@ -3972,10 +3978,32 @@
     "dir": "neg",
     "tag": "דוחות",
     "sources": 1,
+    "title": "S&P 500, Nasdaq End Lower On Chipmaker Weakness, While Traders Position For Nvidia Earnings This Week — AVGO, INTC, BE, NVDA, PSKY In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-lower-on-chipmaker-weakness/cZYKu7wRJFn",
+    "src": "Stocktwits",
+    "time": "2026-08-24 21:52",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח שלילי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+    "dir": "neg",
+    "tag": "דוחות",
+    "sources": 1,
     "title": "Marvell Falls 4% Ahead of August 27 Earnings, Broadcom Slips as Semi-Sector Positioning Shifts",
     "url": "https://247wallst.com/investing/2026/08/24/marvell-falls-4-ahead-of-august-27-earnings-broadcom-slips/",
     "src": "24/7 Wall St.",
     "time": "2026-08-24 18:01",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Stock Market Today: Dow Rises As Treasury Yields Fall; Nvidia, Micron, Sandisk Rally (Live Coverage)",
+    "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-sp500-treasury-yields-nvidia-micron-sandisk/?src=A00220&yptr=yahoo",
+    "src": "Investor's Business Daily",
+    "time": "2026-08-25 12:50",
     "about": "שוק"
    },
    {
@@ -3988,30 +4016,8 @@
     "src": "Barchart",
     "time": "2026-08-24 18:08",
     "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "AMC Entertainment Spikes 7%, Cinemark Climbs 6%: What’s Moving Cinema Stocks Today?",
-    "url": "https://247wallst.com/investing/2026/08/24/amc-entertainment-spikes-7-cinemark-climbs-6-is-this-a-short-squeeze-in-progress/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-24 17:56",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Why gold and silver prices have added $5 trillion in value",
-    "url": "https://finance.yahoo.com/markets/commodities/article/why-gold-and-silver-prices-have-added-5-trillion-in-value-092246961.html",
-    "src": "Yahoo Finance",
-    "time": "2026-08-24 09:22",
-    "about": "זהב"
    }
   ],
-  "updated": "2026-08-25 14:59"
+  "updated": "2026-08-25 16:07"
  }
 }
