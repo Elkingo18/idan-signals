@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 651.4581828176154,
-  "equity": 1071.46,
-  "realized_pnl": 71.51,
-  "open_pnl": 2.94,
+  "cash": 842.4234919143901,
+  "equity": 1063.42,
+  "realized_pnl": 79.11,
+  "open_pnl": -12.7,
   "peak_equity": 1072.16,
   "max_dd_pct": -8.47,
-  "return_pct": 7.15,
+  "return_pct": 6.34,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,27 +44,13 @@
    },
    "last": 3.25,
    "margin": 0.0
-  },
+  }
+ ],
+ "closed": [
   {
-   "id": "XAUUSD-1787591360",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "short",
-   "sector": "other",
-   "qty": 1.55,
-   "qty_left": 0.78,
-   "entry": 4701.55,
-   "stop": 4691.6501,
-   "orig_stop": 4712.6,
-   "t1": 4685.32,
-   "t2": 4668.93,
-   "opened": "2026-08-24T20:09:20.031541+03:00",
-   "opened_day": "2026-08-24",
-   "risk_open": 7.92,
-   "fees": 0.0,
-   "half_done": true,
-   "be_moved": true,
-   "score": 62,
    "pattern": "פולבק לגל ↓",
    "snap": {
     "rsi": 35.3,
@@ -74,11 +60,22 @@
     "regime_ok": true,
     "notional": 7287.64
    },
-   "last": 4681.5,
-   "margin": 364.37
-  }
- ],
- "closed": [
+   "stop": 4712.6,
+   "t1": 4685.32,
+   "t2": 4668.93,
+   "fees": 0.0,
+   "qty": 0.78,
+   "entry": 4701.55,
+   "exit": 4691.8001,
+   "pnl": 7.6,
+   "r": 0.44,
+   "reason": "stop",
+   "opened": "2026-08-24T20:09:20.031541+03:00",
+   "closed": "2026-08-25T08:45:48.583073+03:00",
+   "day": "2026-08-25",
+   "held_days": 1,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -1283,10 +1280,10 @@
     "pivot_high": 15.0,
     "rvol": 1.56,
     "above_ma50_pct": 5.57,
-    "shares": 25,
-    "notional": 375.0,
-    "risk_dollars": 12.24,
-    "risk_pct_actual": 1.14,
+    "shares": 24,
+    "notional": 360.0,
+    "risk_dollars": 11.75,
+    "risk_pct_actual": 1.1,
     "stretch_target": 18.0,
     "score": 91,
     "news": [
@@ -1345,7 +1342,7 @@
     "shares": 16,
     "notional": 269.12,
     "risk_dollars": 20.68,
-    "risk_pct_actual": 1.93,
+    "risk_pct_actual": 1.94,
     "stretch_target": 20.18,
     "score": 64,
     "news": [
@@ -1384,41 +1381,15 @@
    }
   ],
   "day": [],
-  "gold": [
-   {
-    "kind": "gold",
-    "ticker": "XAUUSD",
-    "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 4681.5,
-    "entry": 4681.5,
-    "stop": 4691.0,
-    "t1": 4667.2,
-    "t2": 4652.91,
-    "rr1": 1.5,
-    "atr": 6.35,
-    "rsi": 27.9,
-    "vwap": 4722.16,
-    "stop_pct": 0.2,
-    "ounces": 1.6,
-    "notional": 7490.4,
-    "margin": 374.52,
-    "risk_dollars": 15.2,
-    "shares": 1.6,
-    "score": 51,
-    "news": [],
-    "regime_ok": true
-   }
-  ]
+  "gold": []
  },
  "calendar": {
   "2026-08-25": {
-   "pnl": 12.38,
-   "trades": 1,
-   "wins": 1,
+   "pnl": 19.98,
+   "trades": 2,
+   "wins": 2,
    "losses": 0,
-   "r": 0.72,
+   "r": 1.16,
    "tickers": [
     "XAUUSD"
    ],
@@ -1720,12 +1691,14 @@
   ],
   [
    "2026-08-25",
-   1071.46
+   1063.42
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 1
+ },
  "game": {
-  "xp": 1715,
+  "xp": 1755,
   "level": 5,
   "streak": 6,
   "best_streak": 6,
@@ -1833,26 +1806,30 @@
    "name": "👹 בוס היום",
    "target": 82.65,
    "legend": 206.63,
-   "done": 38.33,
+   "done": 30.29,
    "base": 1033.13,
-   "pct": 46,
-   "pct_legend": 19,
+   "pct": 37,
+   "pct_legend": 15,
    "beaten": false,
    "legendary": false
   },
   "level_name": "🛡️ סוחר בכיר",
-  "xp_this_level": 140,
+  "xp_this_level": 180,
   "xp_next_level": 534
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 12.38,
-  "week_pnl": 22.85,
-  "daily_limit": -64.29,
-  "weekly_limit": -128.58
+  "day_pnl": 19.98,
+  "week_pnl": 30.45,
+  "daily_limit": -63.81,
+  "weekly_limit": -127.61
  },
  "log": [
+  {
+   "t": "2026-08-25 08:46",
+   "m": "EXIT XAUUSD x0.78 @ 4691.8001 (stop) P/L $+7.60 / +0.44R"
+  },
   {
    "t": "2026-08-25 07:51",
    "m": "BE XAUUSD stop -> breakeven 4701.55"
@@ -2168,10 +2145,6 @@
   {
    "t": "2026-08-03 15:46",
    "m": "EXIT XAUUSD x0.84 @ 4103.4001 (stop) P/L $+5.92 / +0.76R"
-  },
-  {
-   "t": "2026-08-01 01:17",
-   "m": "BE XAUUSD stop -> breakeven 4110.45"
   }
  ],
  "month_open_equity": {
@@ -2186,30 +2159,30 @@
   "spy": 763.47
  },
  "periods": {
-  "day": 12.38,
-  "week": 116.46,
-  "month": 71.51,
-  "quarter": 71.51,
-  "half": 71.51,
-  "year": 71.51,
-  "two_year": 71.51,
-  "all": 71.51,
-  "all_pct": 7.15
+  "day": 19.98,
+  "week": 124.06,
+  "month": 79.11,
+  "quarter": 79.11,
+  "half": 79.11,
+  "year": 79.11,
+  "two_year": 79.11,
+  "all": 79.11,
+  "all_pct": 7.91
  },
  "rejected": [],
- "updated_utc": "2026-08-25T05:02:01.169065+00:00",
- "updated_israel": "2026-08-25 08:02",
+ "updated_utc": "2026-08-25T05:45:48.583073+00:00",
+ "updated_israel": "2026-08-25 08:45",
  "market": {
   "open": false,
-  "et": "01:02",
-  "il": "08:02"
+  "et": "01:45",
+  "il": "08:45"
  },
  "stats": {
-  "trades": 41,
-  "win_rate": 61.0,
-  "pf": 1.37,
-  "avg_r": 0.11,
-  "expectancy": 1.74,
+  "trades": 42,
+  "win_rate": 61.9,
+  "pf": 1.41,
+  "avg_r": 0.12,
+  "expectancy": 1.88,
   "best": 25.41,
   "worst": -22.5
  },
@@ -3330,11 +3303,11 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 821,
+   "bars": 830,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4681.5,
-   "signals": 1,
+   "last_price": 4702.0,
+   "signals": 0,
    "today_trades": 0,
    "health": {
     "n": 20,
@@ -3345,17 +3318,17 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 1,
-    "pnl": 12.38
+    "trades": 2,
+    "pnl": 19.98
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 2,
-   "heat": 15.05,
+   "open": 1,
+   "heat": 7.13,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3368,7 +3341,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 20,
    "covered": 3,
-   "updated": "2026-08-25 08:02"
+   "updated": "2026-08-25 08:46"
   }
  },
  "gold_today": {
@@ -3382,9 +3355,9 @@
   },
   "gold": {
    "n": 20,
-   "exp": 6.27,
-   "pf": 3.18,
-   "avg_r": 0.39,
+   "exp": 7.21,
+   "pf": 4.12,
+   "avg_r": 0.46,
    "status": "ok"
   },
   "day": {
@@ -3917,6 +3890,17 @@
     "about": "שוק"
    },
    {
+    "summary": "דיווח ניטרלי · עדכון דיבידנד · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": "דיבידנד",
+    "sources": 1,
+    "title": "Treasuries Have Reclaimed the Yield Crown From Dividend Stocks. Here’s How Income Investors Can Adapt.",
+    "url": "https://www.barchart.com/story/news/4011483/treasuries-have-reclaimed-the-yield-crown-from-dividend-stocks-heres-how-income-investors-can-adapt",
+    "src": "Barchart",
+    "time": "2026-08-24 23:30",
+    "about": "שוק"
+   },
+   {
     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
     "dir": "neu",
     "tag": null,
@@ -3925,17 +3909,6 @@
     "url": "https://247wallst.com/investing/etf/2026/08/24/you-retired-with-two-car-payments-and-no-paycheck-these-3-etfs-cover-both-every-month/",
     "src": "24/7 Wall St.",
     "time": "2026-08-24 21:55",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Exchange-Traded Funds, Equity Futures Fall Pre-Bell Monday as Investors Await Details on US Sanctions Against Iran",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-equity-futures-131908789.html",
-    "src": "MT Newswires",
-    "time": "2026-08-24 13:19",
     "about": "שוק"
    },
    {
@@ -3972,17 +3945,17 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Bitcoin Tops $81,000 as Gold Notches Its Best Month Since 1999",
-    "url": "https://beincrypto.com/bitcoin-gold-best-month-since-1999/",
-    "src": "BeInCrypto",
-    "time": "2026-08-25 03:33",
+    "title": "Why gold and silver prices have added $5 trillion in value",
+    "url": "https://finance.yahoo.com/markets/commodities/article/why-gold-and-silver-prices-have-added-5-trillion-in-value-092246961.html",
+    "src": "Yahoo Finance",
+    "time": "2026-08-24 09:22",
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-25 08:02"
+  "updated": "2026-08-25 08:46"
  }
 }
