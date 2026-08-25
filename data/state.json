@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 471.51454191439,
-  "equity": 1071.88,
+  "equity": 1061.13,
   "realized_pnl": 79.11,
-  "open_pnl": -4.24,
+  "open_pnl": -14.99,
   "peak_equity": 1075.99,
   "max_dd_pct": -8.47,
-  "return_pct": 7.19,
+  "return_pct": 6.11,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -60,7 +60,7 @@
    "t2": 4674.58,
    "opened": "2026-08-25T10:57:03.984990+03:00",
    "opened_day": "2026-08-25",
-   "risk_open": 19.59,
+   "risk_open": 8.85,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -74,7 +74,7 @@
     "regime_ok": true,
     "notional": 7418.42
    },
-   "last": 4689.7002,
+   "last": 4696.5,
    "margin": 370.91
   }
  ],
@@ -1312,13 +1312,33 @@
     "pivot_high": 15.0,
     "rvol": 1.56,
     "above_ma50_pct": 5.57,
-    "shares": 25,
-    "notional": 375.0,
-    "risk_dollars": 12.24,
-    "risk_pct_actual": 1.14,
+    "shares": 24,
+    "notional": 360.0,
+    "risk_dollars": 11.75,
+    "risk_pct_actual": 1.11,
     "stretch_target": 18.0,
     "score": 91,
     "news": [
+     {
+      "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+      "dir": "neg",
+      "tag": null,
+      "sources": 1,
+      "title": "European Equities Traded in the US as American Depositary Receipts Track Slightly Lower in Monday Trading",
+      "url": "https://finance.yahoo.com/markets/world-indices/articles/european-equities-traded-us-american-151528588.html",
+      "src": "MT Newswires",
+      "time": "2026-08-24 15:15"
+     },
+     {
+      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+      "dir": "neu",
+      "tag": null,
+      "sources": 1,
+      "title": "Avantus secures $300m in tax equity for Aratina 2 solar storage project",
+      "url": "https://www.energymonitor.ai/news/avantus-secures-tax-equity-aratina-2/",
+      "src": "Energy Monitor",
+      "time": "2026-08-25 10:54"
+     },
      {
       "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
       "dir": "neu",
@@ -1328,26 +1348,6 @@
       "url": "https://finance.yahoo.com/energy/articles/jpmorgan-santander-lead-15-billion-073000211.html",
       "src": "Oilprice.com",
       "time": "2026-08-25 07:30"
-     },
-     {
-      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-      "dir": "neu",
-      "tag": null,
-      "sources": 1,
-      "title": "General Motors Company (GM) Spends $4.5B on Chips: Is Ford Motor Company (F) Betting Bigger on America?",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/general-motors-company-gm-spends-172052073.html",
-      "src": "Insider Monkey",
-      "time": "2026-08-24 17:20"
-     },
-     {
-      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-      "dir": "neu",
-      "tag": null,
-      "sources": 1,
-      "title": "European Equities Traded in the US as American Depositary Receipts Track Slightly Lower in Monday Trading",
-      "url": "https://finance.yahoo.com/markets/world-indices/articles/european-equities-traded-us-american-151528588.html",
-      "src": "MT Newswires",
-      "time": "2026-08-24 15:15"
      }
     ],
     "regime_ok": true
@@ -1374,7 +1374,7 @@
     "shares": 16,
     "notional": 269.12,
     "risk_dollars": 20.68,
-    "risk_pct_actual": 1.93,
+    "risk_pct_actual": 1.95,
     "stretch_target": 20.18,
     "score": 64,
     "news": [
@@ -1413,7 +1413,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "long",
+    "state": "WATCH_BUY",
+    "pattern": "המשך מגמה",
+    "price": 4696.5,
+    "entry": 4696.5,
+    "stop": 4689.7,
+    "t1": 4706.64,
+    "t2": 4716.78,
+    "rr1": 1.5,
+    "atr": 4.51,
+    "rsi": 56.3,
+    "vwap": 4692.67,
+    "stop_pct": 0.14,
+    "ounces": 1.58,
+    "notional": 7420.47,
+    "margin": 371.02,
+    "risk_dollars": 10.74,
+    "shares": 1.58,
+    "score": 57,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-08-25": {
@@ -1723,7 +1749,7 @@
   ],
   [
    "2026-08-25",
-   1071.88
+   1061.13
   ]
  ],
  "cooldown": {},
@@ -1836,10 +1862,10 @@
    "name": "👹 בוס היום",
    "target": 82.65,
    "legend": 206.63,
-   "done": 38.75,
+   "done": 28.0,
    "base": 1033.13,
-   "pct": 47,
-   "pct_legend": 19,
+   "pct": 34,
+   "pct_legend": 14,
    "beaten": false,
    "legendary": false
   },
@@ -1852,8 +1878,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 19.98,
   "week_pnl": 30.45,
-  "daily_limit": -64.31,
-  "weekly_limit": -128.63
+  "daily_limit": -63.67,
+  "weekly_limit": -127.34
  },
  "log": [
   {
@@ -2200,12 +2226,12 @@
   "all_pct": 7.91
  },
  "rejected": [],
- "updated_utc": "2026-08-25T10:46:33.374532+00:00",
- "updated_israel": "2026-08-25 13:46",
+ "updated_utc": "2026-08-25T11:38:05.334719+00:00",
+ "updated_israel": "2026-08-25 14:38",
  "market": {
   "open": false,
-  "et": "06:46",
-  "il": "13:46"
+  "et": "07:38",
+  "il": "14:38"
  },
  "stats": {
   "trades": 42,
@@ -3333,11 +3359,11 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 905,
+   "bars": 914,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4689.7,
-   "signals": 0,
+   "last_price": 4696.5,
+   "signals": 1,
    "today_trades": 1,
    "health": {
     "n": 20,
@@ -3358,7 +3384,7 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 26.72,
+   "heat": 15.98,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3371,7 +3397,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 20,
    "covered": 3,
-   "updated": "2026-08-25 13:46"
+   "updated": "2026-08-25 14:38"
   }
  },
  "gold_today": {
@@ -3813,6 +3839,26 @@
    ],
    "SAN": [
     {
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": null,
+     "sources": 1,
+     "title": "European Equities Traded in the US as American Depositary Receipts Track Slightly Lower in Monday Trading",
+     "url": "https://finance.yahoo.com/markets/world-indices/articles/european-equities-traded-us-american-151528588.html",
+     "src": "MT Newswires",
+     "time": "2026-08-24 15:15"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Avantus secures $300m in tax equity for Aratina 2 solar storage project",
+     "url": "https://www.energymonitor.ai/news/avantus-secures-tax-equity-aratina-2/",
+     "src": "Energy Monitor",
+     "time": "2026-08-25 10:54"
+    },
+    {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": null,
@@ -3831,26 +3877,6 @@
      "url": "https://finance.yahoo.com/markets/stocks/articles/general-motors-company-gm-spends-172052073.html",
      "src": "Insider Monkey",
      "time": "2026-08-24 17:20"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "European Equities Traded in the US as American Depositary Receipts Track Slightly Lower in Monday Trading",
-     "url": "https://finance.yahoo.com/markets/world-indices/articles/european-equities-traded-us-american-151528588.html",
-     "src": "MT Newswires",
-     "time": "2026-08-24 15:15"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "SAN Completes Webster Buyout: A Bold Push for Scale & Diversification",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/san-completes-webster-buyout-bold-153800699.html",
-     "src": "Zacks",
-     "time": "2026-08-21 15:38"
     }
    ],
    "PATH": [
@@ -3924,10 +3950,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "You Retired With Two Car Payments and No Paycheck. These 3 ETFs Cover Both Every Month",
-    "url": "https://247wallst.com/investing/etf/2026/08/24/you-retired-with-two-car-payments-and-no-paycheck-these-3-etfs-cover-both-every-month/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-24 21:55",
+    "title": "Nearly Two-Thirds Of The S&P 500 Already Sell Off In A Big Way",
+    "url": "https://www.investors.com/etfs-and-funds/sectors/sp500-nearly-two-thirds-of-already-sold-off-in-a-big-way/?src=A00220&yptr=yahoo",
+    "src": "Investor's Business Daily",
+    "time": "2026-08-25 11:18",
     "about": "שוק"
    },
    {
@@ -3935,10 +3961,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Exchange-Traded Funds, Equity Futures Fall Pre-Bell Monday as Investors Await Details on US Sanctions Against Iran",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-equity-futures-131908789.html",
-    "src": "MT Newswires",
-    "time": "2026-08-24 13:19",
+    "title": "You Retired With Two Car Payments and No Paycheck. These 3 ETFs Cover Both Every Month",
+    "url": "https://247wallst.com/investing/etf/2026/08/24/you-retired-with-two-car-payments-and-no-paycheck-these-3-etfs-cover-both-every-month/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-24 21:55",
     "about": "שוק"
    },
    {
@@ -3986,6 +4012,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-25 13:46"
+  "updated": "2026-08-25 14:38"
  }
 }
