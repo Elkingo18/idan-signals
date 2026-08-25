@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 458.0669699143889,
-  "equity": 1039.33,
+  "equity": 1033.13,
   "realized_pnl": 59.13,
-  "open_pnl": -16.8,
+  "open_pnl": -23.0,
   "peak_equity": 1068.65,
   "max_dd_pct": -8.47,
-  "return_pct": 3.93,
+  "return_pct": 3.31,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -60,7 +60,7 @@
    "t2": 4668.93,
    "opened": "2026-08-24T20:09:20.031541+03:00",
    "opened_day": "2026-08-24",
-   "risk_open": 13.02,
+   "risk_open": 6.82,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -74,7 +74,7 @@
     "regime_ok": true,
     "notional": 7287.64
    },
-   "last": 4704.2002,
+   "last": 4708.2002,
    "margin": 364.37
   }
  ],
@@ -1252,14 +1252,14 @@
     "room": 15.91,
     "pivot_low": 14.09,
     "pivot_high": 15.0,
-    "rvol": 1.31,
+    "rvol": 1.56,
     "above_ma50_pct": 5.57,
     "shares": 24,
     "notional": 360.0,
     "risk_dollars": 11.75,
-    "risk_pct_actual": 1.13,
+    "risk_pct_actual": 1.14,
     "stretch_target": 18.0,
-    "score": 83,
+    "score": 91,
     "news": [
      {
       "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -1311,15 +1311,25 @@
     "room": 23.48,
     "pivot_low": 10.16,
     "pivot_high": 16.82,
-    "rvol": 0.88,
+    "rvol": 0.92,
     "above_ma50_pct": 31.6,
-    "shares": 16,
-    "notional": 269.12,
-    "risk_dollars": 20.68,
-    "risk_pct_actual": 1.99,
+    "shares": 15,
+    "notional": 252.3,
+    "risk_dollars": 19.38,
+    "risk_pct_actual": 1.88,
     "stretch_target": 20.18,
     "score": 64,
     "news": [
+     {
+      "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+      "dir": "neg",
+      "tag": null,
+      "sources": 1,
+      "title": "UiPath (PATH) Ascends While Market Falls: Some Facts to Note",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/uipath-path-ascends-while-market-214503980.html",
+      "src": "Zacks",
+      "time": "2026-08-24 21:45"
+     },
      {
       "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
       "dir": "pos",
@@ -1339,23 +1349,39 @@
       "url": "https://finance.yahoo.com/technology/ai/articles/pltr-vs-path-ai-driven-180200462.html",
       "src": "Zacks",
       "time": "2026-08-24 18:02"
-     },
-     {
-      "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-      "dir": "neu",
-      "tag": "דוחות",
-      "sources": 1,
-      "title": "OSI Systems (OSIS) Q4 Earnings Top Estimates",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/osi-systems-osis-q4-earnings-211001337.html",
-      "src": "Zacks",
-      "time": "2026-08-20 21:10"
      }
     ],
     "regime_ok": true
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "short",
+    "state": "WATCH_SELL",
+    "pattern": "המשך מגמה ↓",
+    "price": 4708.2,
+    "entry": 4708.2,
+    "stop": 4720.5,
+    "t1": 4689.79,
+    "t2": 4671.38,
+    "rr1": 1.5,
+    "atr": 8.18,
+    "rsi": 37.4,
+    "vwap": 4712.24,
+    "stop_pct": 0.26,
+    "ounces": 1.53,
+    "notional": 7203.55,
+    "margin": 360.18,
+    "risk_dollars": 18.82,
+    "shares": 1.53,
+    "score": 57,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-08-24": {
@@ -1649,6 +1675,10 @@
   [
    "2026-08-24",
    1039.33
+  ],
+  [
+   "2026-08-25",
+   1033.13
   ]
  ],
  "cooldown": {},
@@ -1742,7 +1772,7 @@
    },
    {
     "t": "לסיים את היום ירוק",
-    "done": true,
+    "done": false,
     "xp": 20
    },
    {
@@ -1757,14 +1787,14 @@
    }
   ],
   "boss": {
-   "day": "2026-08-24",
+   "day": "2026-08-25",
    "name": "👹 בוס היום",
-   "target": 83.01,
-   "legend": 207.52,
-   "done": 1.71,
-   "base": 1037.62,
-   "pct": 2,
-   "pct_legend": 1,
+   "target": 82.65,
+   "legend": 206.63,
+   "done": 0.0,
+   "base": 1033.13,
+   "pct": 0,
+   "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
@@ -1775,10 +1805,10 @@
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 10.47,
+  "day_pnl": 0.0,
   "week_pnl": 10.47,
-  "daily_limit": -62.36,
-  "weekly_limit": -124.72
+  "daily_limit": -61.99,
+  "weekly_limit": -123.98
  },
  "log": [
   {
@@ -2114,8 +2144,8 @@
   "spy": 763.47
  },
  "periods": {
-  "day": 10.47,
-  "week": 94.5,
+  "day": 0,
+  "week": 104.08,
   "month": 59.13,
   "quarter": 59.13,
   "half": 59.13,
@@ -2125,12 +2155,12 @@
   "all_pct": 5.91
  },
  "rejected": [],
- "updated_utc": "2026-08-24T20:45:05.274443+00:00",
- "updated_israel": "2026-08-24 23:45",
+ "updated_utc": "2026-08-25T02:30:47.008882+00:00",
+ "updated_israel": "2026-08-25 05:30",
  "market": {
   "open": false,
-  "et": "16:45",
-  "il": "23:45"
+  "et": "22:30",
+  "il": "05:30"
  },
  "stats": {
   "trades": 40,
@@ -2146,8 +2176,8 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-08-24",
-  "equity": 1037.62
+  "date": "2026-08-25",
+  "equity": 1033.13
  },
  "universe_view": [
   {
@@ -2156,7 +2186,7 @@
    "px": 5.53,
    "trend": 13.4,
    "rsi": 60,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 1,
    "state": "none"
   },
@@ -2176,7 +2206,7 @@
    "px": 7.65,
    "trend": -18.9,
    "rsi": 32,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -2206,7 +2236,7 @@
    "px": 5.67,
    "trend": -16.8,
    "rsi": 36,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -2216,7 +2246,7 @@
    "px": 11.82,
    "trend": 2.4,
    "rsi": 48,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -2256,7 +2286,7 @@
    "px": 12.56,
    "trend": -5.5,
    "rsi": 53,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2326,7 +2356,7 @@
    "px": 17.78,
    "trend": 1.4,
    "rsi": 50,
-   "rvol": 0.6,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2356,7 +2386,7 @@
    "px": 14.72,
    "trend": 5.6,
    "rsi": 60,
-   "rvol": 1.3,
+   "rvol": 1.6,
    "df": 0,
    "state": "watch"
   },
@@ -2396,7 +2426,7 @@
    "px": 13.42,
    "trend": -7.5,
    "rsi": 30,
-   "rvol": 1.0,
+   "rvol": 1.3,
    "df": 0,
    "state": "none"
   },
@@ -2426,7 +2456,7 @@
    "px": 2.86,
    "trend": 17.2,
    "rsi": 60,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2436,7 +2466,7 @@
    "px": 16.93,
    "trend": 15.9,
    "rsi": 63,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -2456,7 +2486,7 @@
    "px": 10.86,
    "trend": -32.1,
    "rsi": 33,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2466,7 +2496,7 @@
    "px": 10.93,
    "trend": 11.4,
    "rsi": 62,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -2496,7 +2526,7 @@
    "px": 4.57,
    "trend": -25.9,
    "rsi": 33,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2546,7 +2576,7 @@
    "px": 13.93,
    "trend": -1.5,
    "rsi": 47,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "df": 1,
    "state": "none"
   },
@@ -2556,7 +2586,7 @@
    "px": 19.43,
    "trend": 2.0,
    "rsi": 56,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 1,
    "state": "none"
   },
@@ -2566,7 +2596,7 @@
    "px": 18.3,
    "trend": 0.8,
    "rsi": 49,
-   "rvol": 1.1,
+   "rvol": 1.3,
    "df": 0,
    "state": "none"
   },
@@ -2576,7 +2606,7 @@
    "px": 16.87,
    "trend": -2.1,
    "rsi": 49,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -2586,7 +2616,7 @@
    "px": 16.67,
    "trend": 14.6,
    "rsi": 72,
-   "rvol": 0.8,
+   "rvol": 1.1,
    "df": 0,
    "state": "none"
   },
@@ -2606,7 +2636,7 @@
    "px": 6.0,
    "trend": -9.2,
    "rsi": 39,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 1,
    "state": "none"
   },
@@ -2616,7 +2646,7 @@
    "px": 5.37,
    "trend": -15.0,
    "rsi": 36,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -2626,7 +2656,7 @@
    "px": 5.22,
    "trend": -9.1,
    "rsi": 41,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "df": 0,
    "state": "none"
   },
@@ -2636,7 +2666,7 @@
    "px": 11.38,
    "trend": 1.5,
    "rsi": 48,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -2656,7 +2686,7 @@
    "px": 9.76,
    "trend": -47.8,
    "rsi": 30,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -2706,7 +2736,7 @@
    "px": 3.07,
    "trend": -5.8,
    "rsi": 47,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 1,
    "state": "none"
   },
@@ -2726,7 +2756,7 @@
    "px": 10.11,
    "trend": 6.5,
    "rsi": 56,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "none"
   },
@@ -2776,7 +2806,7 @@
    "px": 16.6,
    "trend": 0.9,
    "rsi": 54,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 1,
    "state": "none"
   },
@@ -2786,7 +2816,7 @@
    "px": 5.09,
    "trend": -18.6,
    "rsi": 34,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 1,
    "state": "none"
   },
@@ -2796,7 +2826,7 @@
    "px": 4.36,
    "trend": -9.2,
    "rsi": 37,
-   "rvol": 1.8,
+   "rvol": 1.9,
    "df": 1,
    "state": "none"
   },
@@ -2806,7 +2836,7 @@
    "px": 11.15,
    "trend": -12.6,
    "rsi": 35,
-   "rvol": 3.3,
+   "rvol": 3.5,
    "df": 0,
    "state": "none"
   },
@@ -2816,7 +2846,7 @@
    "px": 5.72,
    "trend": -9.4,
    "rsi": 45,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "df": 0,
    "state": "none"
   },
@@ -3235,8 +3265,8 @@
    },
    "desc": "פריצות מעל שיא משמעותי עם ווליום, מגמה ו-RSI. סטופ = ההדוק מבין השפל ל-1.6×ATR. יעדים 2R/3.5R.",
    "today": {
-    "trades": 1,
-    "pnl": -20.14
+    "trades": 0,
+    "pnl": 0
    },
    "open_now": 1
   },
@@ -3258,12 +3288,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1025,
+   "bars": 1082,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4704.2,
-   "signals": 0,
-   "today_trades": 2,
+   "last_price": 4708.2,
+   "signals": 1,
+   "today_trades": 0,
    "health": {
     "n": 20,
     "exp": 5.22,
@@ -3273,8 +3303,8 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 2,
-    "pnl": 30.61
+    "trades": 0,
+    "pnl": 0
    },
    "open_now": 1
   },
@@ -3283,7 +3313,7 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 20.15,
+   "heat": 13.95,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3296,7 +3326,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 20,
    "covered": 3,
-   "updated": "2026-08-24 23:45"
+   "updated": "2026-08-25 05:30"
   }
  },
  "gold_today": {
@@ -3468,7 +3498,7 @@
    "px": 7.19,
    "trend": -11.7,
    "rsi": 40,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "near": false
   },
   {
@@ -3498,7 +3528,7 @@
    "px": 2.63,
    "trend": -21.8,
    "rsi": 35,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -3538,7 +3568,7 @@
    "px": 31.08,
    "trend": -3.1,
    "rsi": 51,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "near": false
   },
   {
@@ -3608,7 +3638,7 @@
    "px": 15.58,
    "trend": 1.2,
    "rsi": 46,
-   "rvol": 0.4,
+   "rvol": 0.5,
    "near": false
   },
   {
@@ -3618,7 +3648,7 @@
    "px": 38.44,
    "trend": 18.3,
    "rsi": 60,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -3638,7 +3668,7 @@
    "px": 29.89,
    "trend": -2.9,
    "rsi": 50,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -3678,7 +3708,7 @@
    "px": 2.63,
    "trend": -21.8,
    "rsi": 35,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "near": false
   },
   {
@@ -3780,6 +3810,16 @@
    ],
    "PATH": [
     {
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": null,
+     "sources": 1,
+     "title": "UiPath (PATH) Ascends While Market Falls: Some Facts to Note",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/uipath-path-ascends-while-market-214503980.html",
+     "src": "Zacks",
+     "time": "2026-08-24 21:45"
+    },
+    {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
      "dir": "pos",
      "tag": null,
@@ -3808,20 +3848,21 @@
      "url": "https://finance.yahoo.com/markets/stocks/articles/osi-systems-osis-q4-earnings-211001337.html",
      "src": "Zacks",
      "time": "2026-08-20 21:10"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "UiPath CEO Daniel Dines Sells 1.4 Million Shares for $22.5 Million",
-     "url": "https://www.fool.com/coverage/filings/2026/08/20/uipath-ceo-daniel-dines-sells-1-4-million-shares-for-usd22-5-million/",
-     "src": "Motley Fool",
-     "time": "2026-08-20 17:20"
     }
    ]
   },
   "market": [
+   {
+    "summary": "דיווח שלילי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+    "dir": "neg",
+    "tag": "דוחות",
+    "sources": 1,
+    "title": "S&P 500, Nasdaq End Lower On Chipmaker Weakness, While Traders Position For Nvidia Earnings This Week — AVGO, INTC, BE, NVDA, PSKY In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-lower-on-chipmaker-weakness/cZYKu7wRJFn",
+    "src": "Stocktwits",
+    "time": "2026-08-24 21:52",
+    "about": "שוק"
+   },
    {
     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
     "dir": "pos",
@@ -3838,32 +3879,21 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
+    "title": "You Retired With Two Car Payments and No Paycheck. These 3 ETFs Cover Both Every Month",
+    "url": "https://247wallst.com/investing/etf/2026/08/24/you-retired-with-two-car-payments-and-no-paycheck-these-3-etfs-cover-both-every-month/",
+    "src": "24/7 Wall St.",
+    "time": "2026-08-24 21:55",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
     "title": "Exchange-Traded Funds, Equity Futures Fall Pre-Bell Monday as Investors Await Details on US Sanctions Against Iran",
     "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-equity-futures-131908789.html",
     "src": "MT Newswires",
     "time": "2026-08-24 13:19",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Dollar at 3-Month Lows on Treasury Buyback Plans: ETF Strategies to Play",
-    "url": "https://finance.yahoo.com/markets/currencies/articles/dollar-3-month-lows-treasury-130000835.html",
-    "src": "Zacks",
-    "time": "2026-08-24 13:00",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "KLA Corporation: See What Wall Street Sees",
-    "url": "https://247wallst.com/investing/2026/08/24/kla-corporation-see-what-wall-street-sees/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-24 12:58",
     "about": "שוק"
    },
    {
@@ -3878,25 +3908,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Exchange-Traded Funds Fall, US Equities Mixed After Midday",
-    "url": "https://finance.yahoo.com/markets/articles/exchange-traded-funds-fall-us-171252415.html",
-    "src": "MT Newswires",
-    "time": "2026-08-24 17:12",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
-    "tag": null,
-    "sources": 1,
-    "title": "Drone Stocks Slide as Risk Appetite Fades: Unusual Machines Tumbles 9%, Red Cat Falls 7%, Ondas Declines 5%",
-    "url": "https://247wallst.com/investing/2026/08/24/drone-stocks-slide-as-risk-appetite-fades-unusual-machines-tumbles-9-red-cat-falls-7-ondas-declines-5/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-24 16:35",
+    "title": "QQQ is Still in a Negative Gamma Regime. Here’s How a ‘Put Wall’ and Fibonacci Support Could Come Into Play.",
+    "url": "https://www.barchart.com/story/news/4007153/qqq-is-still-in-a-negative-gamma-regime-heres-how-a-put-wall-and-fibonacci-support-could-come-into-play",
+    "src": "Barchart",
+    "time": "2026-08-24 18:08",
     "about": "שוק"
    },
    {
@@ -3909,8 +3928,19 @@
     "src": "24/7 Wall St.",
     "time": "2026-08-24 17:56",
     "about": "שוק"
+   },
+   {
+    "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": "דוחות",
+    "sources": 1,
+    "title": "IMPACT Silver Corp (ISVLF) (Q2 2026) Earnings Call Highlights: Revenue Surges 124% as Silver ...",
+    "url": "https://finance.yahoo.com/markets/commodities/articles/impact-silver-corp-isvlf-q2-010220554.html",
+    "src": "GuruFocus.com",
+    "time": "2026-08-25 01:02",
+    "about": "זהב"
    }
   ],
-  "updated": "2026-08-24 23:45"
+  "updated": "2026-08-25 05:30"
  }
 }
