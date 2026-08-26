@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 505.94594391439267,
-  "equity": 1149.12,
+  "equity": 1156.81,
   "realized_pnl": 143.98,
-  "open_pnl": 8.13,
-  "peak_equity": 1156.26,
+  "open_pnl": 15.82,
+  "peak_equity": 1156.81,
   "max_dd_pct": -8.47,
-  "return_pct": 14.91,
+  "return_pct": 15.68,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -60,7 +60,7 @@
    "t2": 4676.17,
    "opened": "2026-08-26T08:57:27.042934+03:00",
    "opened_day": "2026-08-26",
-   "risk_open": 10.26,
+   "risk_open": 17.96,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -74,7 +74,7 @@
     "regime_ok": true,
     "notional": 8027.25
    },
-   "last": 4694.2998,
+   "last": 4689.7998,
    "margin": 401.35
   }
  ],
@@ -1489,7 +1489,7 @@
     "shares": 26,
     "notional": 390.0,
     "risk_dollars": 12.36,
-    "risk_pct_actual": 1.08,
+    "risk_pct_actual": 1.07,
     "stretch_target": 18.0,
     "score": 83,
     "news": [
@@ -1548,7 +1548,7 @@
     "shares": 28,
     "notional": 315.22,
     "risk_dollars": 22.47,
-    "risk_pct_actual": 1.95,
+    "risk_pct_actual": 1.94,
     "stretch_target": 13.51,
     "score": 78,
     "news": [
@@ -1607,7 +1607,7 @@
     "shares": 18,
     "notional": 302.76,
     "risk_dollars": 22.51,
-    "risk_pct_actual": 1.96,
+    "risk_pct_actual": 1.95,
     "stretch_target": 20.18,
     "score": 64,
     "news": [
@@ -1653,21 +1653,21 @@
     "side": "short",
     "state": "SELL_NOW",
     "pattern": "פולבק לגל ↓",
-    "price": 4694.3,
-    "entry": 4694.3,
-    "stop": 4700.3,
-    "t1": 4685.23,
-    "t2": 4676.17,
+    "price": 4689.8,
+    "entry": 4689.8,
+    "stop": 4696.4,
+    "t1": 4679.95,
+    "t2": 4670.09,
     "rr1": 1.5,
-    "atr": 4.03,
-    "rsi": 35.3,
-    "vwap": 4699.22,
-    "stop_pct": 0.13,
-    "ounces": 1.71,
-    "notional": 8027.25,
-    "margin": 401.36,
-    "risk_dollars": 10.26,
-    "shares": 1.71,
+    "atr": 4.38,
+    "rsi": 41.0,
+    "vwap": 4694.47,
+    "stop_pct": 0.14,
+    "ounces": 1.72,
+    "notional": 8066.46,
+    "margin": 403.32,
+    "risk_dollars": 11.35,
+    "shares": 1.72,
     "score": 62,
     "news": [],
     "regime_ok": true
@@ -1999,7 +1999,7 @@
   ],
   [
    "2026-08-26",
-   1149.12
+   1156.81
   ]
  ],
  "cooldown": {},
@@ -2112,10 +2112,10 @@
    "name": "👹 בוס היום",
    "target": 92.12,
    "legend": 230.3,
-   "done": -2.36,
+   "done": 5.33,
    "base": 1151.48,
-   "pct": 0,
-   "pct_legend": 0,
+   "pct": 6,
+   "pct_legend": 2,
    "beaten": false,
    "legendary": false
   },
@@ -2128,8 +2128,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 9.28,
   "week_pnl": 95.32,
-  "daily_limit": -68.95,
-  "weekly_limit": -137.89
+  "daily_limit": -69.41,
+  "weekly_limit": -138.82
  },
  "log": [
   {
@@ -2475,13 +2475,19 @@
   "all": 143.98,
   "all_pct": 14.4
  },
- "rejected": [],
- "updated_utc": "2026-08-26T05:57:27.042934+00:00",
- "updated_israel": "2026-08-26 08:57",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-08-26T07:04:29.819328+00:00",
+ "updated_israel": "2026-08-26 10:04",
  "market": {
   "open": false,
-  "et": "01:57",
-  "il": "08:57"
+  "et": "03:04",
+  "il": "10:04"
  },
  "stats": {
   "trades": 48,
@@ -3609,10 +3615,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 841,
+   "bars": 853,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4694.3,
+   "last_price": 4689.8,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -3634,11 +3640,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 38.47,
+   "heat": 46.17,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -3647,7 +3653,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 24,
    "covered": 4,
-   "updated": "2026-08-26 08:57"
+   "updated": "2026-08-26 10:04"
   }
  },
  "gold_today": {
@@ -4293,17 +4299,17 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
+    "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": "דוחות",
     "sources": 1,
-    "title": "What drives the price of gold?",
-    "url": "https://finance.yahoo.com/personal-finance/investing/article/what-drives-gold-price-171825145.html",
-    "src": "Yahoo Personal Finance",
-    "time": "2026-07-08 17:18",
+    "title": "Perseus Mining Ltd (PMNXF) (FY 2026) Earnings Call Highlights: Record Revenue and Strategic Growth",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/perseus-mining-ltd-pmnxf-fy-070110272.html",
+    "src": "GuruFocus.com",
+    "time": "2026-08-26 07:01",
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-26 08:57"
+  "updated": "2026-08-26 10:04"
  }
 }
