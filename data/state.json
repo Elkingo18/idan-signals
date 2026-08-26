@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 930.0842439143929,
-  "equity": 1172.16,
+  "cash": 521.0611189143929,
+  "equity": 1171.9,
   "realized_pnl": 166.76,
-  "open_pnl": 8.38,
+  "open_pnl": 8.12,
   "peak_equity": 1172.16,
   "max_dd_pct": -8.47,
-  "return_pct": 17.22,
+  "return_pct": 17.19,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,6 +44,38 @@
    },
    "last": 3.56,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1787749925",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 1.75,
+   "qty_left": 1.75,
+   "entry": 4674.55,
+   "stop": 4685.4,
+   "orig_stop": 4685.4,
+   "t1": 4658.72,
+   "t2": 4642.73,
+   "opened": "2026-08-26T16:12:05.630135+03:00",
+   "opened_day": "2026-08-26",
+   "risk_open": 18.72,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 57,
+   "pattern": "חציית ממוצעים ↓",
+   "snap": {
+    "rsi": 46.1,
+    "rvol": null,
+    "score": 57,
+    "stop_pct": 0.23,
+    "regime_ok": true,
+    "notional": 8180.73
+   },
+   "last": 4674.7002,
+   "margin": 409.02
   }
  ],
  "closed": [
@@ -1677,24 +1709,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 4674.3,
-    "entry": 4674.3,
-    "stop": 4679.5,
-    "t1": 4666.43,
-    "t2": 4658.56,
+    "state": "SELL_NOW",
+    "pattern": "חציית ממוצעים ↓",
+    "price": 4674.7,
+    "entry": 4674.7,
+    "stop": 4685.4,
+    "t1": 4658.72,
+    "t2": 4642.73,
     "rr1": 1.5,
-    "atr": 3.5,
-    "rsi": 45.6,
-    "vwap": 4684.77,
-    "stop_pct": 0.11,
+    "atr": 7.1,
+    "rsi": 46.1,
+    "vwap": 4682.35,
+    "stop_pct": 0.23,
     "ounces": 1.75,
-    "notional": 8180.02,
-    "margin": 409.0,
-    "risk_dollars": 9.1,
+    "notional": 8180.73,
+    "margin": 409.04,
+    "risk_dollars": 18.72,
     "shares": 1.75,
-    "score": 51,
+    "score": 57,
     "news": [],
     "regime_ok": true
    }
@@ -2025,7 +2057,7 @@
   ],
   [
    "2026-08-26",
-   1172.16
+   1171.9
   ]
  ],
  "cooldown": {},
@@ -2138,7 +2170,7 @@
    "name": "👹 בוס היום",
    "target": 92.12,
    "legend": 230.3,
-   "done": 20.68,
+   "done": 20.42,
    "base": 1151.48,
    "pct": 22,
    "pct_legend": 9,
@@ -2154,10 +2186,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 32.06,
   "week_pnl": 118.1,
-  "daily_limit": -70.33,
-  "weekly_limit": -140.66
+  "daily_limit": -70.31,
+  "weekly_limit": -140.63
  },
  "log": [
+  {
+   "t": "2026-08-26 16:12",
+   "m": "OPEN GOLD SHORT XAUUSD x1.75 @ 4674.5500 stop 4685.4 T1 4658.72"
+  },
   {
    "t": "2026-08-26 14:41",
    "m": "EXIT XAUUSD x0.86 @ 4676.3200 (T2) P/L $+15.33 / +1.46R"
@@ -2473,10 +2509,6 @@
   {
    "t": "2026-08-12 09:06",
    "m": "EXIT XAUUSD x1.58 @ 4430.7500 (stop) P/L $-9.01 / -1.03R"
-  },
-  {
-   "t": "2026-08-12 02:24",
-   "m": "OPEN GOLD SHORT XAUUSD x1.58 @ 4425.0500 stop 4430.6 T1 4417.09"
   }
  ],
  "month_open_equity": {
@@ -2502,12 +2534,12 @@
   "all_pct": 16.68
  },
  "rejected": [],
- "updated_utc": "2026-08-26T12:00:36.163689+00:00",
- "updated_israel": "2026-08-26 15:00",
+ "updated_utc": "2026-08-26T13:12:05.630135+00:00",
+ "updated_israel": "2026-08-26 16:12",
  "market": {
   "open": false,
-  "et": "08:00",
-  "il": "15:00"
+  "et": "09:12",
+  "il": "16:12"
  },
  "stats": {
   "trades": 50,
@@ -3080,12 +3112,8 @@
   {
    "t": "BBAI",
    "sec": "ai",
-   "px": 3.09,
-   "trend": -4.6,
-   "rsi": 47,
-   "rvol": 0.5,
-   "df": 1,
-   "state": "none"
+   "state": "no_data",
+   "df": 1
   },
   {
    "t": "RXRX",
@@ -3604,7 +3632,7 @@
    "icon": "📈",
    "name": "סוכן הסווינג",
    "domain": "70 מניות ≤$20 · גרף יומי",
-   "with_data": 70,
+   "with_data": 69,
    "signals": 3,
    "health": {
     "n": 2,
@@ -3635,12 +3663,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 917,
+   "bars": 931,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4674.3,
+   "last_price": 4674.7,
    "signals": 1,
-   "today_trades": 1,
+   "today_trades": 2,
    "health": {
     "n": 20,
     "exp": 9.63,
@@ -3653,14 +3681,14 @@
     "trades": 3,
     "pnl": 32.06
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 28.21,
+   "open": 2,
+   "heat": 46.93,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3673,12 +3701,12 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 24,
    "covered": 4,
-   "updated": "2026-08-26 15:00"
+   "updated": "2026-08-26 16:12"
   }
  },
  "gold_today": {
   "date": "2026-08-26",
-  "count": 1
+  "count": 2
  },
  "health": {
   "swing": {
@@ -4242,6 +4270,17 @@
   },
   "market": [
    {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "AI At The Top, Cash At The Bottom: Is The Next Return In Between?",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/ai-top-cash-bottom-next-110046311.html",
+    "src": "Benzinga",
+    "time": "2026-08-26 11:00",
+    "about": "שוק"
+   },
+   {
     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
     "dir": "neu",
     "tag": "דוחות",
@@ -4264,36 +4303,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Jane Street turns bullish on volatile AI stock",
-    "url": "https://www.thestreet.com/investing/stocks/jane-street-bullish-sandisk-sndk-stock",
-    "src": "TheStreet",
-    "time": "2026-08-25 18:16",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Applied Digital and IREN Climb 6% as the Digital Infrastructure Bid Broadens Past Bitcoin, Core Scientific Gains 4%",
-    "url": "https://247wallst.com/investing/2026/08/25/applied-digital-and-iren-climb-6-as-the-digital-infrastructure-bid-broadens-past-bitcoin-core-scientific-gains-4/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-25 18:30",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+    "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
     "dir": "neu",
     "tag": "דוחות",
-    "sources": 1,
-    "title": "S&P 500, Dow, Nasdaq Futures Rangebound As Investors Await Nvidia Earnings, Key Inflation Reading — MRNA, SPCX, PSKY, OpenAI In Focus",
-    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-dow-nasdaq-futures-rangebound-as-investors-await-nvidia-earnings/cZYNONDRJom",
-    "src": "Stocktwits",
-    "time": "2026-08-26 00:02",
+    "sources": 2,
+    "title": "Stock Market Today: Dow Steady On Inflation Data; Nvidia Earnings Due After Close (Live Coverage)",
+    "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-inflation-data-nvidia-stock-nvda-earnings/?src=A00220&yptr=yahoo",
+    "src": "Investor's Business Daily",
+    "time": "2026-08-26 13:01",
     "about": "שוק"
    },
    {
@@ -4308,17 +4325,6 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "SoFi Rises 3% as the Stablecoin Trade Pulls Fintech Into the Crypto Bid, Coinbase Climbs 5%",
-    "url": "https://247wallst.com/investing/2026/08/25/sofi-rises-3-as-the-stablecoin-trade-pulls-fintech-into-the-crypto-bid-coinbase-climbs-5/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-25 18:27",
-    "about": "שוק"
-   },
-   {
     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
     "dir": "neg",
     "tag": null,
@@ -4328,8 +4334,30 @@
     "src": "Stocktwits",
     "time": "2026-08-26 11:44",
     "about": "זהב"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Gold price today, Wednesday, August 26, 2026: Gold pulls back from morning's high over $4,700",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-august-26-2026-gold-pulls-back-from-mornings-high-over-4700-120804724.html",
+    "src": "Yahoo Personal Finance",
+    "time": "2026-08-26 12:08",
+    "about": "זהב"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "GLD, IBIT and Other ETFs to Play Debasement Trade",
+    "url": "https://finance.yahoo.com/markets/commodities/articles/gld-ibit-other-etfs-play-122900313.html",
+    "src": "Zacks",
+    "time": "2026-08-26 12:29",
+    "about": "זהב"
    }
   ],
-  "updated": "2026-08-26 15:00"
+  "updated": "2026-08-26 16:12"
  }
 }
