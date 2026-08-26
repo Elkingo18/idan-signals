@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 700.5736009143923,
-  "equity": 1156.26,
+  "equity": 1151.48,
   "realized_pnl": 134.7,
-  "open_pnl": 24.55,
+  "open_pnl": 19.77,
   "peak_equity": 1156.26,
   "max_dd_pct": -8.47,
-  "return_pct": 15.63,
+  "return_pct": 15.15,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -60,7 +60,7 @@
    "t2": 4724.35,
    "opened": "2026-08-25T21:02:23.048167+03:00",
    "opened_day": "2026-08-25",
-   "risk_open": 6.76,
+   "risk_open": 1.97,
    "fees": 0.0,
    "half_done": true,
    "be_moved": true,
@@ -74,7 +74,7 @@
     "regime_ok": true,
     "notional": 7897.34
    },
-   "last": 4720.2002,
+   "last": 4714.5,
    "margin": 394.88
   }
  ],
@@ -1519,7 +1519,7 @@
     "shares": 28,
     "notional": 315.22,
     "risk_dollars": 22.47,
-    "risk_pct_actual": 1.94,
+    "risk_pct_actual": 1.95,
     "stretch_target": 13.51,
     "score": 78,
     "news": [
@@ -1624,21 +1624,21 @@
     "side": "long",
     "state": "WATCH_BUY",
     "pattern": "המשך מגמה",
-    "price": 4720.2,
-    "entry": 4720.2,
-    "stop": 4714.3,
-    "t1": 4729.04,
-    "t2": 4737.89,
+    "price": 4714.5,
+    "entry": 4714.5,
+    "stop": 4707.3,
+    "t1": 4725.24,
+    "t2": 4735.98,
     "rr1": 1.5,
-    "atr": 3.93,
-    "rsi": 56.9,
-    "vwap": 4692.84,
-    "stop_pct": 0.12,
-    "ounces": 1.71,
-    "notional": 8071.54,
-    "margin": 403.58,
-    "risk_dollars": 10.09,
-    "shares": 1.71,
+    "atr": 4.77,
+    "rsi": 58.8,
+    "vwap": 4694.86,
+    "stop_pct": 0.15,
+    "ounces": 1.7,
+    "notional": 8014.65,
+    "margin": 400.73,
+    "risk_dollars": 12.24,
+    "shares": 1.7,
     "score": 57,
     "news": [],
     "regime_ok": true
@@ -1954,6 +1954,10 @@
   [
    "2026-08-25",
    1156.26
+  ],
+  [
+   "2026-08-26",
+   1151.48
   ]
  ],
  "cooldown": {},
@@ -2047,7 +2051,7 @@
    },
    {
     "t": "לסיים את היום ירוק",
-    "done": true,
+    "done": false,
     "xp": 20
    },
    {
@@ -2062,15 +2066,15 @@
    }
   ],
   "boss": {
-   "day": "2026-08-25",
+   "day": "2026-08-26",
    "name": "👹 בוס היום",
-   "target": 82.65,
-   "legend": 206.63,
-   "done": 123.13,
-   "base": 1033.13,
-   "pct": 100,
-   "pct_legend": 60,
-   "beaten": true,
+   "target": 92.12,
+   "legend": 230.3,
+   "done": 0.0,
+   "base": 1151.48,
+   "pct": 0,
+   "pct_legend": 0,
+   "beaten": false,
    "legendary": false
   },
   "level_name": "🛡️ סוחר בכיר",
@@ -2080,10 +2084,10 @@
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 75.57,
+  "day_pnl": 0.0,
   "week_pnl": 86.04,
-  "daily_limit": -69.38,
-  "weekly_limit": -138.75
+  "daily_limit": -69.09,
+  "weekly_limit": -138.18
  },
  "log": [
   {
@@ -2419,8 +2423,8 @@
   "spy": 765.91
  },
  "periods": {
-  "day": 75.57,
-  "week": 179.65,
+  "day": 0,
+  "week": 147.57,
   "month": 134.7,
   "quarter": 134.7,
   "half": 134.7,
@@ -2430,12 +2434,12 @@
   "all_pct": 13.47
  },
  "rejected": [],
- "updated_utc": "2026-08-25T20:42:21.814665+00:00",
- "updated_israel": "2026-08-25 23:42",
+ "updated_utc": "2026-08-26T02:38:41.821302+00:00",
+ "updated_israel": "2026-08-26 05:38",
  "market": {
   "open": false,
-  "et": "16:42",
-  "il": "23:42"
+  "et": "22:38",
+  "il": "05:38"
  },
  "stats": {
   "trades": 47,
@@ -2451,8 +2455,8 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-08-25",
-  "equity": 1033.13
+  "date": "2026-08-26",
+  "equity": 1151.48
  },
  "universe_view": [
   {
@@ -3172,7 +3176,9 @@
   {
    "t": "ORCL",
    "sec": "premium",
-   "state": "no_data"
+   "px": 144.76,
+   "trend": 0.7,
+   "state": "premium"
   },
   {
    "t": "PLTR",
@@ -3561,12 +3567,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1023,
+   "bars": 1081,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4720.2,
+   "last_price": 4714.5,
    "signals": 1,
-   "today_trades": 3,
+   "today_trades": 0,
    "health": {
     "n": 20,
     "exp": 8.39,
@@ -3576,8 +3582,8 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 7,
-    "pnl": 75.57
+    "trades": 0,
+    "pnl": 0
    },
    "open_now": 1
   },
@@ -3586,7 +3592,7 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 34.97,
+   "heat": 30.18,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3599,7 +3605,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 24,
    "covered": 4,
-   "updated": "2026-08-25 23:42"
+   "updated": "2026-08-26 05:38"
   }
  },
  "gold_today": {
@@ -4168,14 +4174,25 @@
   },
   "market": [
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
+    "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": "דוחות",
+    "sources": 1,
+    "title": "S&P 500, Dow, Nasdaq Futures Rangebound As Investors Await Nvidia Earnings, Key Inflation Reading — MRNA, SPCX, PSKY, OpenAI In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-dow-nasdaq-futures-rangebound-as-investors-await-nvidia-earnings/cZYNONDRJom",
+    "src": "Stocktwits",
+    "time": "2026-08-26 00:02",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Johnson & Johnson Is Near a Record High. Is There Still Room to Run?",
-    "url": "https://247wallst.com/investing/2026/08/25/johnson-johnson-is-near-a-record-high-is-there-still-room-to-run/",
+    "title": "How Much Do You Need Invested at 62 to Bridge the Gap Until Social Security at 70?",
+    "url": "https://247wallst.com/personal-finance/2026/08/25/how-much-do-you-need-invested-at-62-to-bridge-the-gap-until-social-security-at-70/",
     "src": "24/7 Wall St.",
-    "time": "2026-08-25 16:00",
+    "time": "2026-08-25 21:33",
     "about": "שוק"
    },
    {
@@ -4201,17 +4218,6 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Core Compounders Should Do This With Walmart",
-    "url": "https://247wallst.com/investing/2026/08/25/core-compounders-should-do-this-with-walmart/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-25 16:03",
-    "about": "שוק"
-   },
-   {
     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
     "dir": "pos",
     "tag": null,
@@ -4220,17 +4226,6 @@
     "url": "https://247wallst.com/investing/2026/08/25/applied-digital-and-iren-climb-6-as-the-digital-infrastructure-bid-broadens-past-bitcoin-core-scientific-gains-4/",
     "src": "24/7 Wall St.",
     "time": "2026-08-25 18:30",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Carvana Jumps 5% as Risk Appetite Returns to High-Beta Names; CarMax and Lithia Motors Inch Higher",
-    "url": "https://247wallst.com/investing/2026/08/25/carvana-jumps-5-as-risk-appetite-returns-to-high-beta-names-carmax-and-lithia-motors-inch-higher/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-25 18:19",
     "about": "שוק"
    },
    {
@@ -4254,8 +4249,19 @@
     "src": "24/7 Wall St.",
     "time": "2026-08-25 18:27",
     "about": "שוק"
+   },
+   {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "Why Did RUM, MRK, NEM Stocks Jump To 52-Week Highs Today?",
+    "url": "https://stocktwits.com/news-articles/markets/equity/why-did-rum-mrk-nem-stocks-jump-to-52-week-highs-today/cZYNhKjRJo8",
+    "src": "Stocktwits",
+    "time": "2026-08-26 02:28",
+    "about": "זהב"
    }
   ],
-  "updated": "2026-08-25 23:42"
+  "updated": "2026-08-26 05:38"
  }
 }
