@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 959.4320569143938,
-  "equity": 1196.75,
+  "cash": 542.1338319143938,
+  "equity": 1196.48,
   "realized_pnl": 196.11,
-  "open_pnl": 3.62,
+  "open_pnl": 3.36,
   "peak_equity": 1207.45,
   "max_dd_pct": -8.47,
-  "return_pct": 19.68,
+  "return_pct": 19.65,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,6 +44,38 @@
    },
    "last": 3.49,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1787792047",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 1.79,
+   "qty_left": 1.79,
+   "entry": 4662.55,
+   "stop": 4669.5,
+   "orig_stop": 4669.5,
+   "t1": 4652.51,
+   "t2": 4642.31,
+   "opened": "2026-08-27T03:54:07.657425+03:00",
+   "opened_day": "2026-08-27",
+   "risk_open": 12.17,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 63,
+   "pattern": "חציית ממוצעים ↓",
+   "snap": {
+    "rsi": 39.4,
+    "rvol": null,
+    "score": 63,
+    "stop_pct": 0.15,
+    "regime_ok": true,
+    "notional": 8346.23
+   },
+   "last": 4662.7002,
+   "margin": 417.3
   }
  ],
  "closed": [
@@ -1734,25 +1766,25 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4673.6,
-    "entry": 4673.6,
-    "stop": 4667.5,
-    "t1": 4682.69,
-    "t2": 4691.77,
+    "side": "short",
+    "state": "SELL_NOW",
+    "pattern": "חציית ממוצעים ↓",
+    "price": 4662.7,
+    "entry": 4662.7,
+    "stop": 4669.5,
+    "t1": 4652.51,
+    "t2": 4642.31,
     "rr1": 1.5,
-    "atr": 4.04,
-    "rsi": 58.5,
-    "vwap": 4667.95,
-    "stop_pct": 0.13,
+    "atr": 4.53,
+    "rsi": 39.4,
+    "vwap": 4667.93,
+    "stop_pct": 0.15,
     "ounces": 1.79,
-    "notional": 8365.74,
-    "margin": 418.29,
-    "risk_dollars": 10.92,
+    "notional": 8346.23,
+    "margin": 417.31,
+    "risk_dollars": 12.17,
     "shares": 1.79,
-    "score": 57,
+    "score": 63,
     "news": [],
     "regime_ok": true
    }
@@ -2100,7 +2132,7 @@
   ],
   [
    "2026-08-27",
-   1196.75
+   1196.48
   ]
  ],
  "cooldown": {},
@@ -2213,7 +2245,7 @@
    "name": "👹 בוס היום",
    "target": 95.74,
    "legend": 239.35,
-   "done": 0.0,
+   "done": -0.27,
    "base": 1196.75,
    "pct": 0,
    "pct_legend": 0,
@@ -2229,10 +2261,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 15.71,
   "week_pnl": 147.45,
-  "daily_limit": -71.8,
-  "weekly_limit": -143.61
+  "daily_limit": -71.79,
+  "weekly_limit": -143.58
  },
  "log": [
+  {
+   "t": "2026-08-27 03:54",
+   "m": "OPEN GOLD SHORT XAUUSD x1.79 @ 4662.5500 stop 4669.5 T1 4652.51"
+  },
   {
    "t": "2026-08-27 01:29",
    "m": "EXIT XAUUSD x0.88 @ 4658.3999 (stop) P/L $+15.71 / +0.83R"
@@ -2548,10 +2584,6 @@
   {
    "t": "2026-08-13 10:48",
    "m": "EXIT XAUUSD x0.74 @ 4444.8800 (T1_half) P/L $+7.38 / +0.71R"
-  },
-  {
-   "t": "2026-08-13 08:47",
-   "m": "OPEN GOLD SHORT XAUUSD x1.49 @ 4454.8500 stop 4461.8 T1 4444.73"
   }
  ],
  "month_open_equity": {
@@ -2577,12 +2609,12 @@
   "all_pct": 19.61
  },
  "rejected": [],
- "updated_utc": "2026-08-27T00:39:47.028986+00:00",
- "updated_israel": "2026-08-27 03:39",
+ "updated_utc": "2026-08-27T00:54:07.657425+00:00",
+ "updated_israel": "2026-08-27 03:54",
  "market": {
   "open": false,
-  "et": "20:39",
-  "il": "03:39"
+  "et": "20:54",
+  "il": "03:54"
  },
  "stats": {
   "trades": 52,
@@ -3710,12 +3742,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1056,
+   "bars": 1059,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4673.6,
+   "last_price": 4662.7,
    "signals": 1,
-   "today_trades": 0,
+   "today_trades": 1,
    "health": {
     "n": 20,
     "exp": 11.23,
@@ -3728,14 +3760,14 @@
     "trades": 1,
     "pnl": 15.71
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 23.45,
+   "open": 2,
+   "heat": 35.62,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3748,12 +3780,12 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 23,
    "covered": 4,
-   "updated": "2026-08-27 03:39"
+   "updated": "2026-08-27 03:54"
   }
  },
  "gold_today": {
-  "date": "2026-08-26",
-  "count": 2
+  "date": "2026-08-27",
+  "count": 1
  },
  "health": {
   "swing": {
@@ -4388,13 +4420,13 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Greatland Resources delivers A$862 million profit in first full year of Telfer ownership",
-    "url": "https://www.proactiveinvestors.com/companies/news/1097675/greatland-resources-delivers-a-862-million-profit-in-first-full-year-of-telfer-ownership-1097675.html",
+    "title": "Horizon Gold targets resource growth at Gum Creek",
+    "url": "https://finance.yahoo.com/video/horizon-gold-targets-growth-gum-000042162.html",
     "src": "Proactive",
-    "time": "2026-08-26 23:57",
+    "time": "2026-08-27 00:00",
     "about": "זהב"
    }
   ],
-  "updated": "2026-08-27 03:39"
+  "updated": "2026-08-27 03:54"
  }
 }
