@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 559.5427319143942,
-  "equity": 1228.61,
+  "equity": 1208.18,
   "realized_pnl": 222.99,
-  "open_pnl": 8.6,
+  "open_pnl": -11.83,
   "peak_equity": 1231.92,
   "max_dd_pct": -8.47,
-  "return_pct": 22.86,
+  "return_pct": 20.82,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -60,7 +60,7 @@
    "t2": 4615.79,
    "opened": "2026-08-28T04:37:34.800397+03:00",
    "opened_day": "2026-08-28",
-   "risk_open": 22.82,
+   "risk_open": 2.39,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -74,7 +74,7 @@
     "regime_ok": true,
     "notional": 8535.76
    },
-   "last": 4634.2998,
+   "last": 4645.3999,
    "margin": 426.77
   }
  ],
@@ -1660,10 +1660,10 @@
     "pivot_high": 11.258,
     "rvol": 0.71,
     "above_ma50_pct": 13.49,
-    "shares": 32,
-    "notional": 360.26,
-    "risk_dollars": 24.29,
-    "risk_pct_actual": 1.98,
+    "shares": 31,
+    "notional": 349.0,
+    "risk_dollars": 23.53,
+    "risk_pct_actual": 1.95,
     "stretch_target": 13.51,
     "score": 78,
     "news": [
@@ -1719,10 +1719,10 @@
     "pivot_high": 7.4,
     "rvol": 0.91,
     "above_ma50_pct": 7.49,
-    "shares": 37,
-    "notional": 273.8,
-    "risk_dollars": 24.39,
-    "risk_pct_actual": 1.99,
+    "shares": 36,
+    "notional": 266.4,
+    "risk_dollars": 23.73,
+    "risk_pct_actual": 1.96,
     "stretch_target": 8.88,
     "score": 77,
     "news": [
@@ -1781,7 +1781,7 @@
     "shares": 19,
     "notional": 325.95,
     "risk_dollars": 23.56,
-    "risk_pct_actual": 1.92,
+    "risk_pct_actual": 1.95,
     "stretch_target": 20.59,
     "score": 77,
     "news": [
@@ -1840,7 +1840,7 @@
     "shares": 27,
     "notional": 338.85,
     "risk_dollars": 23.75,
-    "risk_pct_actual": 1.93,
+    "risk_pct_actual": 1.97,
     "stretch_target": 15.06,
     "score": 70,
     "news": [
@@ -1879,7 +1879,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "short",
+    "state": "SELL_NOW",
+    "pattern": "פולבק לגל ↓",
+    "price": 4645.4,
+    "entry": 4645.4,
+    "stop": 4651.7,
+    "t1": 4635.9,
+    "t2": 4626.4,
+    "rr1": 1.5,
+    "atr": 4.22,
+    "rsi": 40.2,
+    "vwap": 4650.94,
+    "stop_pct": 0.14,
+    "ounces": 1.82,
+    "notional": 8454.63,
+    "margin": 422.73,
+    "risk_dollars": 11.47,
+    "shares": 1.82,
+    "score": 62,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-08-27": {
@@ -2227,7 +2253,7 @@
   ],
   [
    "2026-08-28",
-   1228.61
+   1208.18
   ]
  ],
  "cooldown": {},
@@ -2340,10 +2366,10 @@
    "name": "👹 בוס היום",
    "target": 97.62,
    "legend": 244.05,
-   "done": 8.37,
+   "done": -12.06,
    "base": 1220.24,
-   "pct": 9,
-   "pct_legend": 3,
+   "pct": 0,
+   "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
@@ -2356,8 +2382,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 174.33,
-  "daily_limit": -73.72,
-  "weekly_limit": -147.43
+  "daily_limit": -72.49,
+  "weekly_limit": -144.98
  },
  "log": [
   {
@@ -2703,13 +2729,19 @@
   "all": 222.99,
   "all_pct": 22.3
  },
- "rejected": [],
- "updated_utc": "2026-08-28T05:29:55.331763+00:00",
- "updated_israel": "2026-08-28 08:29",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-08-28T12:44:58.088829+00:00",
+ "updated_israel": "2026-08-28 15:44",
  "market": {
   "open": false,
-  "et": "01:29",
-  "il": "08:29"
+  "et": "08:44",
+  "il": "15:44"
  },
  "stats": {
   "trades": 54,
@@ -3837,11 +3869,11 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1089,
+   "bars": 1207,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4634.3,
-   "signals": 0,
+   "last_price": 4645.4,
+   "signals": 1,
    "today_trades": 1,
    "health": {
     "n": 20,
@@ -3862,11 +3894,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 42.87,
+   "heat": 22.44,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -3875,7 +3907,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 26,
    "covered": 5,
-   "updated": "2026-08-28 08:30"
+   "updated": "2026-08-28 15:45"
   }
  },
  "gold_today": {
@@ -4383,10 +4415,10 @@
      "dir": "neu",
      "tag": null,
      "sources": 1,
-     "title": "SoundHound vs. Cerence: Which Voice AI Stock Is a Buy Now?",
-     "url": "https://finance.yahoo.com/technology/ai/articles/soundhound-vs-cerence-voice-ai-151800263.html",
-     "src": "Zacks",
-     "time": "2026-08-25 15:18"
+     "title": "SoundHound AI (SOUN) Stock Trades Up, Here Is Why",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/soundhound-ai-soun-stock-trades-060907479.html",
+     "src": "StockStory",
+     "time": "2026-08-28 06:09"
     }
    ],
    "RIVN": [
@@ -4466,6 +4498,17 @@
   },
   "market": [
    {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "Nvidia Will Be The Most Profitable Company In The U.S. Next Year",
+    "url": "https://www.investors.com/etfs-and-funds/sectors/nvidia-will-be-the-most-profitable-company-in-the-u-s-next-year/?src=A00220&yptr=yahoo",
+    "src": "Investor's Business Daily",
+    "time": "2026-08-28 11:18",
+    "about": "שוק"
+   },
+   {
     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
     "dir": "neg",
     "tag": null,
@@ -4477,25 +4520,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Webull Surges 8%, Robinhood Ticks Up as the Retail Trading Bid Extends",
-    "url": "https://247wallst.com/investing/2026/08/27/webull-surges-8-robinhood-ticks-up-as-the-retail-trading-bid-extends/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-27 18:37",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
-    "tag": null,
-    "sources": 1,
-    "title": "China E-Commerce Stocks Sink While Baidu Climbs 4%: Alibaba Falls 4%, PDD Holdings Declines 3%",
-    "url": "https://247wallst.com/investing/2026/08/27/china-e-commerce-stocks-sink-while-baidu-climbs-4-alibaba-falls-4-pdd-holdings-declines-3/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-27 18:14",
+    "title": "Why Are Nasdaq, S&P 500 Futures Slipping Premarket? NVDA, MU, MRVL, IREN, PYPL, RKLB Stocks In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/why-are-nasdaq-sp500-futures-slipping-premarket-nvda-mu-mrvl-iren-pypl-rklb-stocks-in-focus/cZYATUMRJAW",
+    "src": "Stocktwits",
+    "time": "2026-08-28 08:49",
     "about": "שוק"
    },
    {
@@ -4510,14 +4542,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Figma Spikes 12% as AI Turns From Threat to Tailwind for Design Software, Atlassian Rallies 8%",
-    "url": "https://247wallst.com/investing/2026/08/27/figma-spikes-12-as-ai-turns-from-threat-to-tailwind-for-design-software-atlassian-rallies-8/",
-    "src": "24/7 Wall St.",
-    "time": "2026-08-27 15:08",
+    "title": "Zacks Investment Ideas feature highlights: QQQ, NVIDIA, CoreWeave, Nebius, TeraWulf, Cipher and IREN",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-investment-ideas-feature-highlights-064600130.html",
+    "src": "Zacks",
+    "time": "2026-08-28 06:46",
     "about": "שוק"
    },
    {
@@ -4554,6 +4586,6 @@
     "about": "שוק"
    }
   ],
-  "updated": "2026-08-28 08:30"
+  "updated": "2026-08-28 15:45"
  }
 }
