@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 559.5427319143942,
-  "equity": 1208.18,
-  "realized_pnl": 222.99,
-  "open_pnl": -11.83,
+  "cash": 971.5927319143958,
+  "equity": 1205.51,
+  "realized_pnl": 208.27,
+  "open_pnl": 0.22,
   "peak_equity": 1231.92,
   "max_dd_pct": -8.47,
-  "return_pct": 20.82,
+  "return_pct": 20.55,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,27 +44,13 @@
    },
    "last": 3.44,
    "margin": 0.0
-  },
+  }
+ ],
+ "closed": [
   {
-   "id": "XAUUSD-1787881054",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "short",
-   "sector": "other",
-   "qty": 1.84,
-   "qty_left": 1.84,
-   "entry": 4638.85,
-   "stop": 4646.7,
-   "orig_stop": 4646.7,
-   "t1": 4627.4,
-   "t2": 4615.79,
-   "opened": "2026-08-28T04:37:34.800397+03:00",
-   "opened_day": "2026-08-28",
-   "risk_open": 2.39,
-   "fees": 0.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 62,
    "pattern": "פולבק לגל ↓",
    "snap": {
     "rsi": 37.1,
@@ -74,11 +60,22 @@
     "regime_ok": true,
     "notional": 8535.76
    },
-   "last": 4645.3999,
-   "margin": 426.77
-  }
- ],
- "closed": [
+   "stop": 4646.7,
+   "t1": 4627.4,
+   "t2": 4615.79,
+   "fees": 0.0,
+   "qty": 1.84,
+   "entry": 4638.85,
+   "exit": 4646.85,
+   "pnl": -14.72,
+   "r": -1.02,
+   "reason": "stop",
+   "opened": "2026-08-28T04:37:34.800397+03:00",
+   "closed": "2026-08-28T16:03:16.072694+03:00",
+   "day": "2026-08-28",
+   "held_days": 0,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -1722,7 +1719,7 @@
     "shares": 36,
     "notional": 266.4,
     "risk_dollars": 23.73,
-    "risk_pct_actual": 1.96,
+    "risk_pct_actual": 1.97,
     "stretch_target": 8.88,
     "score": 77,
     "news": [
@@ -1884,30 +1881,43 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "short",
-    "state": "SELL_NOW",
-    "pattern": "פולבק לגל ↓",
-    "price": 4645.4,
-    "entry": 4645.4,
-    "stop": 4651.7,
-    "t1": 4635.9,
-    "t2": 4626.4,
+    "state": "WATCH_SELL",
+    "pattern": "המשך מגמה ↓",
+    "price": 4648.5,
+    "entry": 4648.5,
+    "stop": 4655.2,
+    "t1": 4638.52,
+    "t2": 4628.54,
     "rr1": 1.5,
-    "atr": 4.22,
-    "rsi": 40.2,
-    "vwap": 4650.94,
+    "atr": 4.43,
+    "rsi": 48.4,
+    "vwap": 4650.56,
     "stop_pct": 0.14,
-    "ounces": 1.82,
-    "notional": 8454.63,
-    "margin": 422.73,
-    "risk_dollars": 11.47,
-    "shares": 1.82,
-    "score": 62,
+    "ounces": 1.81,
+    "notional": 8413.78,
+    "margin": 420.69,
+    "risk_dollars": 12.13,
+    "shares": 1.81,
+    "score": 51,
     "news": [],
     "regime_ok": true
    }
   ]
  },
  "calendar": {
+  "2026-08-28": {
+   "pnl": -14.72,
+   "trades": 1,
+   "wins": 0,
+   "losses": 1,
+   "r": -1.02,
+   "tickers": [
+    "XAUUSD"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "red"
+  },
   "2026-08-27": {
    "pnl": 42.59,
    "trades": 3,
@@ -2253,14 +2263,16 @@
   ],
   [
    "2026-08-28",
-   1208.18
+   1205.51
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 3
+ },
  "game": {
-  "xp": 2305,
+  "xp": 2335,
   "level": 6,
-  "streak": 8,
+  "streak": 0,
   "best_streak": 8,
   "badges": [
    {
@@ -2366,7 +2378,7 @@
    "name": "👹 בוס היום",
    "target": 97.62,
    "legend": 244.05,
-   "done": -12.06,
+   "done": -14.73,
    "base": 1220.24,
    "pct": 0,
    "pct_legend": 0,
@@ -2374,18 +2386,22 @@
    "legendary": false
   },
   "level_name": "🏹 צלף",
-  "xp_this_level": 196,
+  "xp_this_level": 226,
   "xp_next_level": 590
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 0.0,
-  "week_pnl": 174.33,
-  "daily_limit": -72.49,
-  "weekly_limit": -144.98
+  "day_pnl": -14.72,
+  "week_pnl": 159.61,
+  "daily_limit": -72.33,
+  "weekly_limit": -144.66
  },
  "log": [
+  {
+   "t": "2026-08-28 16:03",
+   "m": "EXIT XAUUSD x1.84 @ 4646.8500 (stop) P/L $-14.72 / -1.02R"
+  },
   {
    "t": "2026-08-28 04:37",
    "m": "OPEN GOLD SHORT XAUUSD x1.84 @ 4638.8500 stop 4646.7 T1 4627.4"
@@ -2701,10 +2717,6 @@
   {
    "t": "2026-08-14 08:45",
    "m": "OPEN GOLD SHORT XAUUSD x1.54 @ 4371.6500 stop 4377.7 T1 4362.9"
-  },
-  {
-   "t": "2026-08-13 19:07",
-   "m": "EXIT XAUUSD x1.53 @ 4431.1500 (stop) P/L $-16.98 / -1.01R"
   }
  ],
  "month_open_equity": {
@@ -2719,36 +2731,30 @@
   "spy": 771.1
  },
  "periods": {
-  "day": 0,
-  "week": 224.25,
-  "month": 222.99,
-  "quarter": 222.99,
-  "half": 222.99,
-  "year": 222.99,
-  "two_year": 222.99,
-  "all": 222.99,
-  "all_pct": 22.3
+  "day": -14.72,
+  "week": 209.53,
+  "month": 208.27,
+  "quarter": 208.27,
+  "half": 208.27,
+  "year": 208.27,
+  "two_year": 208.27,
+  "all": 208.27,
+  "all_pct": 20.83
  },
- "rejected": [
-  {
-   "ticker": "XAUUSD",
-   "kind": "gold",
-   "why": "already_open"
-  }
- ],
- "updated_utc": "2026-08-28T12:44:58.088829+00:00",
- "updated_israel": "2026-08-28 15:44",
+ "rejected": [],
+ "updated_utc": "2026-08-28T13:03:16.072694+00:00",
+ "updated_israel": "2026-08-28 16:03",
  "market": {
   "open": false,
-  "et": "08:44",
-  "il": "15:44"
+  "et": "09:03",
+  "il": "16:03"
  },
  "stats": {
-  "trades": 54,
-  "win_rate": 70.4,
-  "pf": 2.16,
-  "avg_r": 0.28,
-  "expectancy": 4.13,
+  "trades": 55,
+  "win_rate": 69.1,
+  "pf": 2.01,
+  "avg_r": 0.26,
+  "expectancy": 3.79,
   "best": 25.41,
   "worst": -22.5
  },
@@ -3869,10 +3875,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1207,
+   "bars": 1210,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4645.4,
+   "last_price": 4648.5,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -3884,21 +3890,21 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 0,
-    "pnl": 0
+    "trades": 1,
+    "pnl": -14.72
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 2,
-   "heat": 22.44,
+   "open": 1,
+   "heat": 20.05,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 1
+    "blocked": 0
    }
   },
   "news": {
@@ -3907,7 +3913,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 26,
    "covered": 5,
-   "updated": "2026-08-28 15:45"
+   "updated": "2026-08-28 16:03"
   }
  },
  "gold_today": {
@@ -3921,9 +3927,9 @@
   },
   "gold": {
    "n": 20,
-   "exp": 11.71,
-   "pf": 19.13,
-   "avg_r": 0.76,
+   "exp": 9.93,
+   "pf": 8.19,
+   "avg_r": 0.63,
    "status": "ok"
   },
   "day": {
@@ -4509,14 +4515,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "AI Bubble Could Be Ready to Pop and Jim Cramer May Be the Warning Sign",
-    "url": "https://finance.yahoo.com/technology/ai/articles/ai-bubble-could-ready-pop-220103672.html",
-    "src": "Benzinga",
-    "time": "2026-08-27 22:01",
+    "title": "Exchange-Traded Funds, Equity Futures Mixed Pre-Bell Friday Ahead of Warsh Speech",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-equity-futures-124348595.html",
+    "src": "MT Newswires",
+    "time": "2026-08-28 12:43",
     "about": "שוק"
    },
    {
@@ -4575,17 +4581,17 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Exchange-Traded Funds Rise as US Equities Advance After Midday",
-    "url": "https://finance.yahoo.com/markets/articles/exchange-traded-funds-rise-us-170923206.html",
-    "src": "MT Newswires",
-    "time": "2026-08-27 17:09",
-    "about": "שוק"
+    "title": "Gold Miner Newmont Eclipses Gold's Rally Thanks To A Dual Growth Engine",
+    "url": "https://www.investors.com/research/the-new-america/newmont-stock-nem-stock-gold-stocks/?src=A00220&yptr=yahoo",
+    "src": "Investor's Business Daily",
+    "time": "2026-08-28 12:00",
+    "about": "זהב"
    }
   ],
-  "updated": "2026-08-28 15:45"
+  "updated": "2026-08-28 16:03"
  }
 }
