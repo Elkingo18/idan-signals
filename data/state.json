@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 653.9356760808278,
-  "equity": 1210.36,
+  "equity": 1209.62,
   "realized_pnl": 208.05,
-  "open_pnl": 6.29,
+  "open_pnl": 5.55,
   "peak_equity": 1231.92,
   "max_dd_pct": -8.47,
-  "return_pct": 21.04,
+  "return_pct": 20.96,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -28,7 +28,7 @@
    "t2": 4504.27,
    "opened": "2026-08-31T22:37:17.871993+03:00",
    "opened_day": "2026-08-31",
-   "risk_open": 2.74,
+   "risk_open": 2.0,
    "fees": 0.0,
    "half_done": true,
    "be_moved": true,
@@ -42,7 +42,7 @@
     "regime_ok": true,
     "notional": 8346.94
    },
-   "last": 4494.7002,
+   "last": 4493.8999,
    "margin": 417.36
   },
   {
@@ -1809,7 +1809,7 @@
     "shares": 27,
     "notional": 341.28,
     "risk_dollars": 23.55,
-    "risk_pct_actual": 1.94,
+    "risk_pct_actual": 1.95,
     "stretch_target": 15.17,
     "score": 70,
     "news": [
@@ -2247,7 +2247,7 @@
   ],
   [
    "2026-09-01",
-   1210.36
+   1209.62
   ]
  ],
  "cooldown": {},
@@ -2360,7 +2360,7 @@
    "name": "👹 בוס היום",
    "target": 96.92,
    "legend": 242.31,
-   "done": -1.17,
+   "done": -1.91,
    "base": 1211.53,
    "pct": 0,
    "pct_legend": 0,
@@ -2376,8 +2376,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 7.47,
-  "daily_limit": -72.62,
-  "weekly_limit": -145.24
+  "daily_limit": -72.58,
+  "weekly_limit": -145.15
  },
  "log": [
   {
@@ -2723,13 +2723,19 @@
   "all": 208.05,
   "all_pct": 20.8
  },
- "rejected": [],
- "updated_utc": "2026-08-31T23:20:26.841239+00:00",
- "updated_israel": "2026-09-01 02:20",
+ "rejected": [
+  {
+   "ticker": "PTEN",
+   "kind": "swing",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-08-31T23:48:01.778758+00:00",
+ "updated_israel": "2026-09-01 02:48",
  "market": {
   "open": false,
-  "et": "19:20",
-  "il": "02:20"
+  "et": "19:48",
+  "il": "02:48"
  },
  "stats": {
   "trades": 57,
@@ -3857,10 +3863,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1045,
+   "bars": 1050,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4494.7,
+   "last_price": 4493.9,
    "signals": 0,
    "today_trades": 0,
    "health": {
@@ -3882,11 +3888,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 26.29,
+   "heat": 25.55,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -3895,7 +3901,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 16,
    "covered": 2,
-   "updated": "2026-09-01 02:20"
+   "updated": "2026-09-01 02:48"
   }
  },
  "gold_today": {
@@ -4293,48 +4299,6 @@
  ],
  "news": {
   "tickers": {
-   "NVAX": [
-    {
-     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-     "dir": "neg",
-     "tag": null,
-     "sources": 1,
-     "title": "How Expanded Nuvaxovid Royalties and Partner-led Execution Could Shape Novavax’s (NVAX) Investment Narrative",
-     "url": "https://finance.yahoo.com/healthcare/articles/expanded-nuvaxovid-royalties-partner-led-190520474.html",
-     "src": "Simply Wall St.",
-     "time": "2026-08-29 19:05"
-    },
-    {
-     "summary": "דיווח חיובי · התקבל אישור רגולטורי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": "אישור רגולטורי",
-     "sources": 1,
-     "title": "Novavax (NVDA) Following Updated Nuvaxovid Approval Faces A Wide Fair Value Debate",
-     "url": "https://finance.yahoo.com/healthcare/articles/novavax-nvda-following-updated-nuvaxovid-170451700.html",
-     "src": "Simply Wall St.",
-     "time": "2026-08-29 17:04"
-    },
-    {
-     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-     "dir": "neg",
-     "tag": null,
-     "sources": 1,
-     "title": "Has Novavax (NVAX) Fallen Far Enough To Look Cheap?",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/novavax-nvax-fallen-far-enough-130622971.html",
-     "src": "Simply Wall St.",
-     "time": "2026-08-29 13:06"
-    },
-    {
-     "summary": "דיווח חיובי · שיתוף פעולה חדש · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": "שיתוף פעולה",
-     "sources": 1,
-     "title": "NVAX Stock Climbs As Partnership Model Keeps COVID Vaccine Cash Flow Open",
-     "url": "https://stocktwits.com/news-articles/markets/equity/nvax-stock-climbs-as-partnership-model-keeps-covid-vaccine-cash-flow-open/cZYAnzkRJrG",
-     "src": "Stocktwits",
-     "time": "2026-08-28 22:34"
-    }
-   ],
    "PTEN": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -4375,6 +4339,48 @@
      "url": "https://finance.yahoo.com/markets/stocks/articles/3-russell-2000-stocks-skeptical-165147924.html",
      "src": "StockStory",
      "time": "2026-08-21 16:51"
+    }
+   ],
+   "NVAX": [
+    {
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": null,
+     "sources": 1,
+     "title": "How Expanded Nuvaxovid Royalties and Partner-led Execution Could Shape Novavax’s (NVAX) Investment Narrative",
+     "url": "https://finance.yahoo.com/healthcare/articles/expanded-nuvaxovid-royalties-partner-led-190520474.html",
+     "src": "Simply Wall St.",
+     "time": "2026-08-29 19:05"
+    },
+    {
+     "summary": "דיווח חיובי · התקבל אישור רגולטורי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": "אישור רגולטורי",
+     "sources": 1,
+     "title": "Novavax (NVDA) Following Updated Nuvaxovid Approval Faces A Wide Fair Value Debate",
+     "url": "https://finance.yahoo.com/healthcare/articles/novavax-nvda-following-updated-nuvaxovid-170451700.html",
+     "src": "Simply Wall St.",
+     "time": "2026-08-29 17:04"
+    },
+    {
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
+     "tag": null,
+     "sources": 1,
+     "title": "Has Novavax (NVAX) Fallen Far Enough To Look Cheap?",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/novavax-nvax-fallen-far-enough-130622971.html",
+     "src": "Simply Wall St.",
+     "time": "2026-08-29 13:06"
+    },
+    {
+     "summary": "דיווח חיובי · שיתוף פעולה חדש · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": "שיתוף פעולה",
+     "sources": 1,
+     "title": "NVAX Stock Climbs As Partnership Model Keeps COVID Vaccine Cash Flow Open",
+     "url": "https://stocktwits.com/news-articles/markets/equity/nvax-stock-climbs-as-partnership-model-keeps-covid-vaccine-cash-flow-open/cZYAnzkRJrG",
+     "src": "Stocktwits",
+     "time": "2026-08-28 22:34"
     }
    ]
   },
@@ -4468,6 +4474,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-09-01 02:20"
+  "updated": "2026-09-01 02:48"
  }
 }
