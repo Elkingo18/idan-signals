@@ -2,49 +2,17 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 653.9356760808278,
-  "equity": 1209.62,
-  "realized_pnl": 208.05,
-  "open_pnl": 5.55,
+  "cash": 877.8397760808285,
+  "equity": 1219.12,
+  "realized_pnl": 223.27,
+  "open_pnl": -0.17,
   "peak_equity": 1231.92,
   "max_dd_pct": -8.47,
-  "return_pct": 20.96,
+  "return_pct": 21.91,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
  "positions": [
-  {
-   "id": "XAUUSD-1788205037",
-   "kind": "gold",
-   "ticker": "XAUUSD",
-   "side": "long",
-   "sector": "other",
-   "qty": 1.86,
-   "qty_left": 0.93,
-   "entry": 4487.75,
-   "stop": 4491.75,
-   "orig_stop": 4482.0,
-   "t1": 4495.93,
-   "t2": 4504.27,
-   "opened": "2026-08-31T22:37:17.871993+03:00",
-   "opened_day": "2026-08-31",
-   "risk_open": 2.0,
-   "fees": 0.0,
-   "half_done": true,
-   "be_moved": true,
-   "score": 63,
-   "pattern": "חציית ממוצעים",
-   "snap": {
-    "rsi": 59.1,
-    "rvol": null,
-    "score": 63,
-    "stop_pct": 0.12,
-    "regime_ok": true,
-    "notional": 8346.94
-   },
-   "last": 4493.8999,
-   "margin": 417.36
-  },
   {
    "id": "PTEN-1788218426",
    "kind": "swing",
@@ -79,6 +47,35 @@
   }
  ],
  "closed": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "side": "long",
+   "pattern": "חציית ממוצעים",
+   "snap": {
+    "rsi": 59.1,
+    "rvol": null,
+    "score": 63,
+    "stop_pct": 0.12,
+    "regime_ok": true,
+    "notional": 8346.94
+   },
+   "stop": 4482.0,
+   "t1": 4495.93,
+   "t2": 4504.27,
+   "fees": 0.0,
+   "qty": 0.93,
+   "entry": 4487.75,
+   "exit": 4504.12,
+   "pnl": 15.22,
+   "r": 1.42,
+   "reason": "T2",
+   "opened": "2026-08-31T22:37:17.871993+03:00",
+   "closed": "2026-09-01T03:33:09.900049+03:00",
+   "day": "2026-09-01",
+   "held_days": 1,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -1747,10 +1744,10 @@
     "pivot_high": 9.58,
     "rvol": 1.54,
     "above_ma50_pct": 10.67,
-    "shares": 31,
-    "notional": 296.98,
-    "risk_dollars": 23.48,
-    "risk_pct_actual": 1.94,
+    "shares": 32,
+    "notional": 306.56,
+    "risk_dollars": 24.24,
+    "risk_pct_actual": 1.99,
     "stretch_target": 11.5,
     "score": 86,
     "news": [
@@ -1809,7 +1806,7 @@
     "shares": 27,
     "notional": 341.28,
     "risk_dollars": 23.55,
-    "risk_pct_actual": 1.95,
+    "risk_pct_actual": 1.93,
     "stretch_target": 15.17,
     "score": 70,
     "news": [
@@ -1848,9 +1845,48 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "long",
+    "state": "WATCH_BUY",
+    "pattern": "המשך מגמה",
+    "price": 4507.7,
+    "entry": 4507.7,
+    "stop": 4502.1,
+    "t1": 4516.07,
+    "t2": 4524.44,
+    "rr1": 1.5,
+    "atr": 3.72,
+    "rsi": 74.2,
+    "vwap": 4487.43,
+    "stop_pct": 0.12,
+    "ounces": 1.89,
+    "notional": 8519.55,
+    "margin": 425.98,
+    "risk_dollars": 10.58,
+    "shares": 1.89,
+    "score": 51,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
+  "2026-09-01": {
+   "pnl": 15.22,
+   "trades": 1,
+   "wins": 1,
+   "losses": 0,
+   "r": 1.42,
+   "tickers": [
+    "XAUUSD"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "green"
+  },
   "2026-08-31": {
    "pnl": 7.47,
    "trades": 1,
@@ -2247,14 +2283,16 @@
   ],
   [
    "2026-09-01",
-   1209.62
+   1219.12
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 1
+ },
  "game": {
-  "xp": 2440,
+  "xp": 2515,
   "level": 6,
-  "streak": 1,
+  "streak": 2,
   "best_streak": 8,
   "badges": [
    {
@@ -2341,7 +2379,7 @@
    },
    {
     "t": "לסיים את היום ירוק",
-    "done": false,
+    "done": true,
     "xp": 20
    },
    {
@@ -2360,26 +2398,30 @@
    "name": "👹 בוס היום",
    "target": 96.92,
    "legend": 242.31,
-   "done": -1.91,
+   "done": 7.59,
    "base": 1211.53,
-   "pct": 0,
-   "pct_legend": 0,
+   "pct": 8,
+   "pct_legend": 3,
    "beaten": false,
    "legendary": false
   },
   "level_name": "🏹 צלף",
-  "xp_this_level": 331,
+  "xp_this_level": 406,
   "xp_next_level": 590
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 0.0,
-  "week_pnl": 7.47,
-  "daily_limit": -72.58,
-  "weekly_limit": -145.15
+  "day_pnl": 15.22,
+  "week_pnl": 22.69,
+  "daily_limit": -73.15,
+  "weekly_limit": -146.29
  },
  "log": [
+  {
+   "t": "2026-09-01 03:33",
+   "m": "EXIT XAUUSD x0.93 @ 4504.1200 (T2) P/L $+15.22 / +1.42R"
+  },
   {
    "t": "2026-09-01 02:20",
    "m": "OPEN SWING PTEN x27 @ 12.6463 stop 11.7676 T1 14.3848"
@@ -2695,10 +2737,6 @@
   {
    "t": "2026-08-17 11:22",
    "m": "EXIT XAUUSD x0.76 @ 4457.0000 (stop) P/L $+2.70 / +0.23R"
-  },
-  {
-   "t": "2026-08-17 10:59",
-   "m": "BE XAUUSD stop -> breakeven 4453.45"
   }
  ],
  "month_open_equity": {
@@ -2713,15 +2751,15 @@
   "spy": 767.05
  },
  "periods": {
-  "day": 0,
-  "week": 148.92,
-  "month": 219.67,
-  "quarter": 208.05,
-  "half": 208.05,
-  "year": 208.05,
-  "two_year": 208.05,
-  "all": 208.05,
-  "all_pct": 20.8
+  "day": 15.22,
+  "week": 164.14,
+  "month": 234.89,
+  "quarter": 223.27,
+  "half": 223.27,
+  "year": 223.27,
+  "two_year": 223.27,
+  "all": 223.27,
+  "all_pct": 22.33
  },
  "rejected": [
   {
@@ -2730,19 +2768,19 @@
    "why": "already_open"
   }
  ],
- "updated_utc": "2026-08-31T23:48:01.778758+00:00",
- "updated_israel": "2026-09-01 02:48",
+ "updated_utc": "2026-09-01T00:33:09.900049+00:00",
+ "updated_israel": "2026-09-01 03:33",
  "market": {
   "open": false,
-  "et": "19:48",
-  "il": "02:48"
+  "et": "20:33",
+  "il": "03:33"
  },
  "stats": {
-  "trades": 57,
-  "win_rate": 68.4,
-  "pf": 1.97,
-  "avg_r": 0.26,
-  "expectancy": 3.65,
+  "trades": 58,
+  "win_rate": 69.0,
+  "pf": 2.04,
+  "avg_r": 0.28,
+  "expectancy": 3.85,
   "best": 25.41,
   "worst": -22.5
  },
@@ -3863,11 +3901,11 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1050,
+   "bars": 1059,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4493.9,
-   "signals": 0,
+   "last_price": 4507.7,
+   "signals": 1,
    "today_trades": 0,
    "health": {
     "n": 20,
@@ -3878,17 +3916,17 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 0,
-    "pnl": 0
+    "trades": 1,
+    "pnl": 15.22
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 2,
-   "heat": 25.55,
+   "open": 1,
+   "heat": 23.55,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -3901,7 +3939,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 16,
    "covered": 2,
-   "updated": "2026-09-01 02:48"
+   "updated": "2026-09-01 03:33"
   }
  },
  "gold_today": {
@@ -3915,9 +3953,9 @@
   },
   "gold": {
    "n": 20,
-   "exp": 10.95,
-   "pf": 15.88,
-   "avg_r": 0.72,
+   "exp": 11.01,
+   "pf": 15.96,
+   "avg_r": 0.75,
    "status": "ok"
   },
   "day": {
@@ -4419,14 +4457,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
+    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+    "dir": "neg",
     "tag": null,
     "sources": 1,
-    "title": "IREN Climbs 4% as Co-CEO Says Debt and Prepayments Can Fund FY27 Capex, TeraWulf Slips",
-    "url": "https://247wallst.com/investing/2026/08/31/iren-climbs-4-as-co-ceo-says-debt-and-prepayments-can-fund-fy27-capex-terawulf-slips/",
+    "title": "PG&E Sinks 18%, Edison International Tumbles 23% as California Wildfire Bill Omits Liability Cap",
+    "url": "https://247wallst.com/investing/2026/08/31/pge-sinks-18-edison-international-tumbles-23-as-california-wildfire-bill-omits-liability-cap/",
     "src": "24/7 Wall St.",
-    "time": "2026-08-31 17:47",
+    "time": "2026-08-31 16:39",
     "about": "שוק"
    },
    {
@@ -4474,6 +4512,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-09-01 02:48"
+  "updated": "2026-09-01 03:33"
  }
 }
