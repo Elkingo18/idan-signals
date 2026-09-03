@@ -8,17 +8,17 @@
     "name": "בוט הזהב",
     "icon": "🪙",
     "market": "XAUUSD",
-    "equity": 8293.95,
-    "balance": 8310.75,
-    "day_gross": 67.2,
+    "equity": 8177.75,
+    "balance": 8177.75,
+    "day_gross": -49.0,
     "day_open_equity": 8226.75,
-    "day_pct": 0.82,
-    "open_count": 1,
-    "open_gross": -16.8,
+    "day_pct": -0.6,
+    "open_count": 0,
+    "open_gross": 0.0,
     "trades_today": 2,
     "enabled": true,
-    "note": "take: entry",
-    "age_sec": 4.7,
+    "note": "skip: no burst -1.71atr",
+    "age_sec": 5.8,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 1288774.5,
+    "age_sec": 1290575.6,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -68,7 +68,7 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 0.6,
+    "age_sec": 1.7,
     "status": "ok",
     "symbol": "XAUUSD+",
     "margin_free": 1.74,
@@ -95,12 +95,12 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 739788.8,
+    "age_sec": 741589.9,
     "status": "stale",
     "symbol": "XAUUSD",
     "margin_free": 96633.91,
-    "blocked": "אין דופק כבר 739789 שניות",
-    "note": "אין דופק כבר 739789 שניות"
+    "blocked": "אין דופק כבר 741590 שניות",
+    "note": "אין דופק כבר 741590 שניות"
    },
    {
     "id": "fx5",
@@ -122,23 +122,23 @@
     "vwap": 0.0,
     "enabled": false,
     "day_stop": false,
-    "age_sec": 847707.6,
+    "age_sec": 849508.7,
     "status": "off",
     "symbol": "GBPJPY",
     "margin_free": 0.0,
-    "blocked": "אין דופק כבר 847708 שניות",
-    "note": "אין דופק כבר 847708 שניות"
+    "blocked": "אין דופק כבר 849509 שניות",
+    "note": "אין דופק כבר 849509 שניות"
    },
    {
     "id": "swing",
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 10314.53,
-    "balance": 48.15,
-    "day_gross": 12.06,
+    "equity": 10231.12,
+    "balance": 90.92,
+    "day_gross": 19.04,
     "day_open_equity": 10340.34,
-    "day_pct": 0.12,
+    "day_pct": 0.18,
     "open_count": 2,
     "open_gross": -5.25,
     "pending": 0,
@@ -151,30 +151,12 @@
      "file_ok": true
     },
     "broker_equity": 10335.03,
-    "age_sec": 180.7,
+    "age_sec": 181.8,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
   "rows": [
-   {
-    "bot": "gold",
-    "symbol": "XAUUSD",
-    "side": "BUY",
-    "size": 0.1,
-    "unit": "lot",
-    "entry": 4481.01,
-    "price": 4479.33,
-    "gross": -16.8,
-    "fee_est": 2.8,
-    "notional": 44810.1,
-    "pct_pos": -0.04,
-    "pct_acct": -0.2,
-    "net_est": -19.6,
-    "sl": 4467.71,
-    "tp": 4541.78,
-    "ticket": 10343541639
-   },
    {
     "bot": "swing",
     "symbol": "NVAX",
@@ -207,32 +189,21 @@
    }
   ],
   "totals": {
-   "open_gross": -22.05,
-   "open_fee_est": 6.8,
-   "open_net_est": -28.85,
-   "open_count": 3,
-   "day_gross": 10830.6,
-   "day_fee": 681.52,
-   "day_net": 10149.08,
-   "day_pct": 8.47,
-   "equity": 126958.78,
+   "open_gross": -5.25,
+   "open_fee_est": 4.0,
+   "open_net_est": -9.25,
+   "open_count": 2,
+   "day_gross": 10721.38,
+   "day_fee": 684.32,
+   "day_net": 10037.06,
+   "day_pct": 8.38,
+   "equity": 126759.17,
    "day_open_equity": 127880.7,
-   "pocket_since_start": -1333.72,
-   "fee_since_start": 1359.12
+   "pocket_since_start": -1469.52,
+   "fee_since_start": 1361.92
   }
  },
  "events": [
-  {
-   "t": "13:06",
-   "day": "2026-08-25",
-   "kind": "open",
-   "bot": "m770119",
-   "symbol": "XAUUSD",
-   "side": "BUY",
-   "size": 0.11,
-   "unit": "lot",
-   "price": 4635.87
-  },
   {
    "t": "13:06",
    "day": "2026-08-25",
@@ -1141,23 +1112,35 @@
    "size": 0.1,
    "unit": "lot",
    "price": 4481.01
+  },
+  {
+   "t": "17:06",
+   "day": "2026-09-03",
+   "kind": "close",
+   "bot": "gold",
+   "symbol": "XAUUSD",
+   "side": "BUY",
+   "size": 0.1,
+   "unit": "lot",
+   "price": 4479.33,
+   "gross": -16.8
   }
  ],
- "updated_utc": "2026-09-03T13:36:00.752508+00:00",
- "updated_israel": "2026-09-03 16:36",
+ "updated_utc": "2026-09-03T14:06:01.858672+00:00",
+ "updated_israel": "2026-09-03 17:06",
  "gold": {
   "schema": 1,
   "code_version": 11,
-  "updated": "2026.09.03 16:35:56",
+  "updated": "2026.09.03 17:05:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
-  "balance": 8310.75,
-  "equity": 8293.95,
+  "balance": 8177.75,
+  "equity": 8177.75,
   "day_start_equity": 8226.75,
-  "day_pnl": 67.2,
+  "day_pnl": -49.0,
   "trades_today": 2,
   "cooldown_bars": 0,
   "enabled": true,
@@ -1171,20 +1154,9 @@
   "trade_windows": "",
   "blocked_hours": "",
   "in_trade_window": true,
-  "last_decision": "take: entry",
-  "spread_points": 42.0,
-  "position": {
-   "ticket": 10343541639,
-   "side": "BUY",
-   "volume": 0.1,
-   "entry": 4481.01,
-   "sl": 4467.71,
-   "tp": 4541.78,
-   "price": 4479.33,
-   "pnl": -16.8,
-   "peak_r": 0.1,
-   "tp1_done": false
-  }
+  "last_decision": "skip: no burst -1.71atr",
+  "spread_points": 31.0,
+  "position": null
  },
  "ftmo": {
   "present": true,
@@ -1192,7 +1164,7 @@
   "daily_limit_pct": 3.0,
   "total_limit_pct": 10.0,
   "target_pct": 10.0,
-  "age_sec": 668147,
+  "age_sec": 669948,
   "stale": true,
   "account": 511383820,
   "server": "FTMO-Server",
@@ -1219,7 +1191,7 @@
   "updated": "2026.08.26 23:00:13",
   "risk_mode": 0,
   "warnings": [
-   "הנתונים בני 668147 שניות. הבוט לא משדר.",
+   "הנתונים בני 669948 שניות. הבוט לא משדר.",
    "נשאר 0.01% עד המגבלה היומית."
   ],
   "state": "מכובה"
@@ -1229,7 +1201,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 1214146.3
+  "age_sec": 1215947.4
  },
  "slave": {
   "ok": false,
@@ -1254,12 +1226,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 1288774.5
+  "age_sec": 1290575.6
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1788453359,
+  "t": 1788455159,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1285,7 +1257,7 @@
   "equity": 1.74,
   "margin_free": 1.74,
   "is_demo": true,
-  "age_sec": 0.6,
+  "age_sec": 1.7,
   "ok": true,
   "blocked": ""
  },
@@ -1319,13 +1291,13 @@
    "equity": 96633.91,
    "margin_free": 96633.91,
    "is_demo": false,
-   "age_sec": 739788.8,
+   "age_sec": 741589.9,
    "ok": false,
    "magic": 770119,
    "card_id": "m770119",
    "card_name": "בוט חבר 770119",
    "card_icon": "🪜",
-   "blocked": "אין דופק כבר 739789 שניות"
+   "blocked": "אין דופק כבר 741590 שניות"
   },
   {
    "bot": "drawer_gold",
@@ -1356,13 +1328,13 @@
    "equity": 0.0,
    "margin_free": 0.0,
    "is_demo": true,
-   "age_sec": 847707.6,
+   "age_sec": 849508.7,
    "ok": false,
    "magic": 770121,
    "card_id": "fx5",
    "card_name": "מט\"ח לא מפוקח 5",
    "card_icon": "💷",
-   "blocked": "אין דופק כבר 847708 שניות"
+   "blocked": "אין דופק כבר 849509 שניות"
   }
  ],
  "fees": {
@@ -1373,12 +1345,12 @@
   "rows": [
    {
     "name": "בוט הזהב",
-    "lots": 0.12,
-    "gross": 87.42,
-    "demo_fee": 3.42,
-    "atrade_fee": 3.36,
-    "net_atrade": 84.06,
-    "net_demo": 84.0
+    "lots": 0.22,
+    "gross": -42.73,
+    "demo_fee": 6.27,
+    "atrade_fee": 6.16,
+    "net_atrade": -48.89,
+    "net_demo": -49.0
    },
    {
     "name": "המעתיק",
@@ -1392,12 +1364,12 @@
   ],
   "total": {
    "name": "סה\"כ",
-   "lots": 24.34,
-   "gross": 12492.34,
-   "demo_fee": 693.69,
-   "atrade_fee": 681.52,
-   "net_atrade": 11810.82,
-   "net_demo": 11798.65
+   "lots": 24.44,
+   "gross": 12362.19,
+   "demo_fee": 696.54,
+   "atrade_fee": 684.32,
+   "net_atrade": 11677.87,
+   "net_demo": 11665.65
   }
  },
  "shadow_wallet": {
@@ -1438,13 +1410,13 @@
  "fills_today": [],
  "engine_wallet": {
   "start": 10000.0,
-  "cash": 48.147252363193246,
-  "equity": 10314.53,
-  "realized_pnl": 129.43,
-  "open_pnl": 204.14,
+  "cash": 90.9248007502901,
+  "equity": 10231.12,
+  "realized_pnl": 136.41,
+  "open_pnl": 113.75,
   "peak_equity": 10657.9,
   "max_dd_pct": -11.96,
-  "return_pct": 3.15,
+  "return_pct": 2.31,
   "name": "UHTA"
  },
  "signals_swing": [
@@ -1455,16 +1427,16 @@
    "state": "WATCH_BUY",
    "price": 14.91,
    "entry": 15.0,
-   "stop": 14.5598,
-   "t1": 15.8804,
-   "t2": 16.5408,
+   "stop": 14.5581,
+   "t1": 15.8839,
+   "t2": 16.5468,
    "rr1": 2.0,
    "rsi": 60.7,
-   "rvol": 0.02,
+   "rvol": 0.06,
    "score": 83,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
+   "shares": 1,
+   "notional": 15.0,
+   "risk_dollars": 0.44,
    "room": 15.91,
    "above_ma50_pct": 5.38,
    "news": [
@@ -1499,50 +1471,50 @@
   },
   {
    "kind": "swing",
-   "ticker": "KSS",
+   "ticker": "ALT",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 19.24,
-   "entry": 19.74,
-   "stop": 18.0833,
-   "t1": 23.0535,
-   "t2": 25.5386,
+   "price": 3.245,
+   "entry": 3.25,
+   "stop": 3.0136,
+   "t1": 3.7227,
+   "t2": 4.0773,
    "rr1": 2.0,
-   "rsi": 56.7,
-   "rvol": 0.02,
+   "rsi": 58.7,
+   "rvol": 0.08,
    "score": 83,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": 23.46,
-   "above_ma50_pct": 5.27,
+   "shares": 4,
+   "notional": 13.0,
+   "risk_dollars": 0.95,
+   "room": 3.66,
+   "above_ma50_pct": 7.88,
    "news": [
     {
-     "summary": "דיווח חיובי · שיתוף פעולה חדש · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": "שיתוף פעולה",
-     "sources": 1,
-     "title": "DoorDash (DASH) Could Be 8% Undervalued On New Retail And Ad Partnerships",
-     "src": "Simply Wall St.",
-     "time": "2026-09-02 17:06"
-    },
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
+     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+     "dir": "neg",
      "tag": null,
      "sources": 1,
-     "title": "Kohl’s Rallies 7% on Rotation Into Beaten-Down Retail, Macy’s Climbs 3%, Abercrombie & Fitch Slips",
-     "src": "24/7 Wall St.",
-     "time": "2026-09-02 15:00"
+     "title": "Is Altimmune Worth Buying as Cash Rises but Execution Risks Linger?",
+     "src": "Zacks",
+     "time": "2026-08-19 14:55"
     },
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": null,
      "sources": 1,
-     "title": "Pick These 5 Bargain Stocks With Exciting EV-to-EBITDA Ratios",
+     "title": "Altimmune's Phase III MASH Study Puts 2029 Data in Investor Focus",
      "src": "Zacks",
-     "time": "2026-09-02 13:04"
+     "time": "2026-08-19 14:54"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Kodiak's Q2 Loss Wider Than Expected, Pipeline Development in Focus",
+     "src": "Zacks",
+     "time": "2026-08-14 14:14"
     }
    ]
   },
@@ -1551,20 +1523,20 @@
    "ticker": "SNAP",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 5.93,
+   "price": 5.925,
    "entry": 6.0,
-   "stop": 5.5071,
-   "t1": 6.9859,
-   "t2": 7.7253,
+   "stop": 5.4945,
+   "t1": 7.011,
+   "t2": 7.7693,
    "rr1": 2.0,
-   "rsi": 62.2,
-   "rvol": 0.05,
+   "rsi": 62.1,
+   "rvol": 0.26,
    "score": 70,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
+   "shares": 2,
+   "notional": 12.0,
+   "risk_dollars": 1.01,
    "room": 6.97,
-   "above_ma50_pct": 18.99,
+   "above_ma50_pct": 18.89,
    "news": [
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
@@ -1594,55 +1566,6 @@
      "time": "2026-09-02 22:17"
     }
    ]
-  },
-  {
-   "kind": "swing",
-   "ticker": "PATH",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 18.7,
-   "entry": 18.765,
-   "stop": 17.4955,
-   "t1": 21.304,
-   "t2": 23.2083,
-   "rr1": 2.0,
-   "rsi": 73.3,
-   "rvol": 0.01,
-   "score": 64,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": 27.37,
-   "above_ma50_pct": 35.52,
-   "news": [
-    {
-     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": "דוחות",
-     "sources": 1,
-     "title": "NetApp (NTAP) Surpasses Q1 Earnings and Revenue Estimates",
-     "src": "Zacks",
-     "time": "2026-09-02 21:25"
-    },
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Samsara or UiPath: Which Stock Has a Clear Path to Profits?",
-     "src": "24/7 Wall St.",
-     "time": "2026-09-02 12:35"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Stocks Mostly Down Pre-Bell as Investors Monitor Latest Middle East Developments",
-     "src": "MT Newswires",
-     "time": "2026-09-03 11:59"
-    }
-   ]
   }
  ],
  "signals_day": [],
@@ -1667,7 +1590,7 @@
  },
  "rejected": [],
  "game": {
-  "xp": 8420,
+  "xp": 8460,
   "level": 10,
   "streak": 1,
   "best_streak": 4,
@@ -1775,7 +1698,7 @@
    "name": "👹 בוס היום",
    "target": 827.23,
    "legend": 2068.07,
-   "done": -25.81,
+   "done": -109.22,
    "base": 10340.34,
    "pct": 0,
    "pct_legend": 0,
@@ -1783,7 +1706,7 @@
    "legendary": false
   },
   "level_name": "🌌 מיתולוגי",
-  "xp_this_level": 3643,
+  "xp_this_level": 3683,
   "xp_next_level": 0
  },
  "health": {
@@ -1796,9 +1719,9 @@
   },
   "gold": {
    "n": 20,
-   "exp": 20.84,
-   "pf": 1.86,
-   "avg_r": 0.32,
+   "exp": 13.79,
+   "pf": 1.57,
+   "avg_r": 0.3,
    "status": "ok"
   },
   "day": {
@@ -1989,17 +1912,17 @@
    "pocket": -59.87
   },
   "2026-09-03": {
-   "gold_net_demo": 84.0,
-   "gold_lots": 0.12,
-   "gold_gross": 87.42,
-   "gold_net_atrade": 84.06,
-   "net_atrade": 84.06,
-   "net_demo": 84.0,
-   "gross": 87.42,
-   "fees_atrade": 3.36,
-   "lots": 0.12,
-   "fee": 3.36,
-   "pocket": 80.64
+   "gold_net_demo": -49.0,
+   "gold_lots": 0.22,
+   "gold_gross": -42.73,
+   "gold_net_atrade": -48.89,
+   "net_atrade": -48.89,
+   "net_demo": -49.0,
+   "gross": -42.73,
+   "fees_atrade": 6.16,
+   "lots": 0.22,
+   "fee": 6.16,
+   "pocket": -55.16
   },
   "2026-08-18": {
    "copier_net_demo": 980.05,
