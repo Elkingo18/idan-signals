@@ -8,17 +8,17 @@
     "name": "בוט הזהב",
     "icon": "🪙",
     "market": "XAUUSD",
-    "equity": 8310.75,
+    "equity": 8293.95,
     "balance": 8310.75,
-    "day_gross": 84.0,
+    "day_gross": 67.2,
     "day_open_equity": 8226.75,
-    "day_pct": 1.02,
-    "open_count": 0,
-    "open_gross": 0.0,
-    "trades_today": 1,
+    "day_pct": 0.82,
+    "open_count": 1,
+    "open_gross": -16.8,
+    "trades_today": 2,
     "enabled": true,
-    "note": "skip: burst exhausted 4.21atr",
-    "age_sec": 4.1,
+    "note": "take: entry",
+    "age_sec": 4.7,
     "status": "ok"
    },
    {
@@ -37,7 +37,7 @@
     "mode": "exact 1:1 v3.11 full book",
     "teacher_equity": 3861.56,
     "teacher_legs": 0,
-    "age_sec": 1286974.9,
+    "age_sec": 1288774.5,
     "status": "stale",
     "account": 25946715,
     "symbol": "XAUUSD+",
@@ -68,7 +68,7 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 1.0,
+    "age_sec": 0.6,
     "status": "ok",
     "symbol": "XAUUSD+",
     "margin_free": 1.74,
@@ -95,12 +95,12 @@
     "vwap": 0.0,
     "enabled": true,
     "day_stop": false,
-    "age_sec": 737989.2,
+    "age_sec": 739788.8,
     "status": "stale",
     "symbol": "XAUUSD",
     "margin_free": 96633.91,
-    "blocked": "אין דופק כבר 737989 שניות",
-    "note": "אין דופק כבר 737989 שניות"
+    "blocked": "אין דופק כבר 739789 שניות",
+    "note": "אין דופק כבר 739789 שניות"
    },
    {
     "id": "fx5",
@@ -122,19 +122,19 @@
     "vwap": 0.0,
     "enabled": false,
     "day_stop": false,
-    "age_sec": 845908.0,
+    "age_sec": 847707.6,
     "status": "off",
     "symbol": "GBPJPY",
     "margin_free": 0.0,
-    "blocked": "אין דופק כבר 845908 שניות",
-    "note": "אין דופק כבר 845908 שניות"
+    "blocked": "אין דופק כבר 847708 שניות",
+    "note": "אין דופק כבר 847708 שניות"
    },
    {
     "id": "swing",
     "name": "סווינג · Interactive",
     "icon": "📈",
     "market": "מניות ארה\"ב",
-    "equity": 10362.63,
+    "equity": 10314.53,
     "balance": 48.15,
     "day_gross": 12.06,
     "day_open_equity": 10340.34,
@@ -151,12 +151,30 @@
      "file_ok": true
     },
     "broker_equity": 10335.03,
-    "age_sec": 181.1,
+    "age_sec": 180.7,
     "status": "ok",
     "note": "פורץ שיאים · סטופ-קנייה מונח מראש על מועמדים"
    }
   ],
   "rows": [
+   {
+    "bot": "gold",
+    "symbol": "XAUUSD",
+    "side": "BUY",
+    "size": 0.1,
+    "unit": "lot",
+    "entry": 4481.01,
+    "price": 4479.33,
+    "gross": -16.8,
+    "fee_est": 2.8,
+    "notional": 44810.1,
+    "pct_pos": -0.04,
+    "pct_acct": -0.2,
+    "net_est": -19.6,
+    "sl": 4467.71,
+    "tp": 4541.78,
+    "ticket": 10343541639
+   },
    {
     "bot": "swing",
     "symbol": "NVAX",
@@ -189,33 +207,21 @@
    }
   ],
   "totals": {
-   "open_gross": -5.25,
-   "open_fee_est": 4.0,
-   "open_net_est": -9.25,
-   "open_count": 2,
-   "day_gross": 10847.4,
+   "open_gross": -22.05,
+   "open_fee_est": 6.8,
+   "open_net_est": -28.85,
+   "open_count": 3,
+   "day_gross": 10830.6,
    "day_fee": 681.52,
-   "day_net": 10165.88,
-   "day_pct": 8.48,
-   "equity": 127023.68,
+   "day_net": 10149.08,
+   "day_pct": 8.47,
+   "equity": 126958.78,
    "day_open_equity": 127880.7,
    "pocket_since_start": -1333.72,
    "fee_since_start": 1359.12
   }
  },
  "events": [
-  {
-   "t": "12:36",
-   "day": "2026-08-25",
-   "kind": "close",
-   "bot": "m770119",
-   "symbol": "XAUUSD",
-   "side": "SELL",
-   "size": 0.01,
-   "unit": "lot",
-   "price": 4626.77,
-   "gross": -0.32
-  },
   {
    "t": "13:06",
    "day": "2026-08-25",
@@ -1124,24 +1130,35 @@
    "unit": "lot",
    "price": 4378.64,
    "gross": -77.13
+  },
+  {
+   "t": "16:36",
+   "day": "2026-09-03",
+   "kind": "open",
+   "bot": "gold",
+   "symbol": "XAUUSD",
+   "side": "BUY",
+   "size": 0.1,
+   "unit": "lot",
+   "price": 4481.01
   }
  ],
- "updated_utc": "2026-09-03T13:06:01.174632+00:00",
- "updated_israel": "2026-09-03 16:06",
+ "updated_utc": "2026-09-03T13:36:00.752508+00:00",
+ "updated_israel": "2026-09-03 16:36",
  "gold": {
   "schema": 1,
   "code_version": 11,
-  "updated": "2026.09.03 16:05:57",
+  "updated": "2026.09.03 16:35:56",
   "symbol": "XAUUSD",
   "account": 111015188,
   "server": "MetaQuotes-Demo",
   "is_demo": true,
   "currency": "USD",
   "balance": 8310.75,
-  "equity": 8310.75,
+  "equity": 8293.95,
   "day_start_equity": 8226.75,
-  "day_pnl": 84.0,
-  "trades_today": 1,
+  "day_pnl": 67.2,
+  "trades_today": 2,
   "cooldown_bars": 0,
   "enabled": true,
   "params_version": 37,
@@ -1154,9 +1171,20 @@
   "trade_windows": "",
   "blocked_hours": "",
   "in_trade_window": true,
-  "last_decision": "skip: burst exhausted 4.21atr",
-  "spread_points": 47.0,
-  "position": null
+  "last_decision": "take: entry",
+  "spread_points": 42.0,
+  "position": {
+   "ticket": 10343541639,
+   "side": "BUY",
+   "volume": 0.1,
+   "entry": 4481.01,
+   "sl": 4467.71,
+   "tp": 4541.78,
+   "price": 4479.33,
+   "pnl": -16.8,
+   "peak_r": 0.1,
+   "tp1_done": false
+  }
  },
  "ftmo": {
   "present": true,
@@ -1164,7 +1192,7 @@
   "daily_limit_pct": 3.0,
   "total_limit_pct": 10.0,
   "target_pct": 10.0,
-  "age_sec": 666348,
+  "age_sec": 668147,
   "stale": true,
   "account": 511383820,
   "server": "FTMO-Server",
@@ -1191,7 +1219,7 @@
   "updated": "2026.08.26 23:00:13",
   "risk_mode": 0,
   "warnings": [
-   "הנתונים בני 666348 שניות. הבוט לא משדר.",
+   "הנתונים בני 668147 שניות. הבוט לא משדר.",
    "נשאר 0.01% עד המגבלה היומית."
   ],
   "state": "מכובה"
@@ -1201,7 +1229,7 @@
   "legs": [],
   "equity": 3861.56,
   "stamp": "2026.08.19 19:52:35",
-  "age_sec": 1212346.7
+  "age_sec": 1214146.3
  },
  "slave": {
   "ok": false,
@@ -1226,12 +1254,12 @@
   "server": "VantageMarkets-Demo",
   "mode": "exact 1:1 v3.11 full book",
   "stamp": "2026.08.19 18:36:24",
-  "age_sec": 1286974.9
+  "age_sec": 1288774.5
  },
  "drawer": {
   "bot": "drawer_gold",
   "v": "1.20",
-  "t": 1788451559,
+  "t": 1788453359,
   "armed": true,
   "why": "",
   "symbol": "XAUUSD+",
@@ -1257,7 +1285,7 @@
   "equity": 1.74,
   "margin_free": 1.74,
   "is_demo": true,
-  "age_sec": 1.0,
+  "age_sec": 0.6,
   "ok": true,
   "blocked": ""
  },
@@ -1291,13 +1319,13 @@
    "equity": 96633.91,
    "margin_free": 96633.91,
    "is_demo": false,
-   "age_sec": 737989.2,
+   "age_sec": 739788.8,
    "ok": false,
    "magic": 770119,
    "card_id": "m770119",
    "card_name": "בוט חבר 770119",
    "card_icon": "🪜",
-   "blocked": "אין דופק כבר 737989 שניות"
+   "blocked": "אין דופק כבר 739789 שניות"
   },
   {
    "bot": "drawer_gold",
@@ -1328,13 +1356,13 @@
    "equity": 0.0,
    "margin_free": 0.0,
    "is_demo": true,
-   "age_sec": 845908.0,
+   "age_sec": 847707.6,
    "ok": false,
    "magic": 770121,
    "card_id": "fx5",
    "card_name": "מט\"ח לא מפוקח 5",
    "card_icon": "💷",
-   "blocked": "אין דופק כבר 845908 שניות"
+   "blocked": "אין דופק כבר 847708 שניות"
   }
  ],
  "fees": {
@@ -1411,132 +1439,34 @@
  "engine_wallet": {
   "start": 10000.0,
   "cash": 48.147252363193246,
-  "equity": 10362.63,
+  "equity": 10314.53,
   "realized_pnl": 129.43,
-  "open_pnl": 252.25,
+  "open_pnl": 204.14,
   "peak_equity": 10657.9,
   "max_dd_pct": -11.96,
-  "return_pct": 3.63,
+  "return_pct": 3.15,
   "name": "UHTA"
  },
  "signals_swing": [
   {
    "kind": "swing",
-   "ticker": "ALT",
-   "side": "long",
-   "state": "BUY_NOW",
-   "price": 3.28,
-   "entry": 3.28,
-   "stop": 3.0365,
-   "t1": 3.7669,
-   "t2": 4.1322,
-   "rr1": 2.0,
-   "rsi": 60.7,
-   "rvol": 1.72,
-   "score": 86,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": 3.66,
-   "above_ma50_pct": 9.26,
-   "news": [
-    {
-     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-     "dir": "neg",
-     "tag": null,
-     "sources": 1,
-     "title": "Is Altimmune Worth Buying as Cash Rises but Execution Risks Linger?",
-     "src": "Zacks",
-     "time": "2026-08-19 14:55"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Altimmune's Phase III MASH Study Puts 2029 Data in Investor Focus",
-     "src": "Zacks",
-     "time": "2026-08-19 14:54"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Kodiak's Q2 Loss Wider Than Expected, Pipeline Development in Focus",
-     "src": "Zacks",
-     "time": "2026-08-14 14:14"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
-   "ticker": "VTRS",
-   "side": "long",
-   "state": "WATCH_BUY",
-   "price": 17.09,
-   "entry": 17.1,
-   "stop": 16.3608,
-   "t1": 18.5784,
-   "t2": 19.6871,
-   "rr1": 2.0,
-   "rsi": 58.1,
-   "rvol": 0.81,
-   "score": 83,
-   "shares": 0,
-   "notional": 0.0,
-   "risk_dollars": 0.0,
-   "room": 18.22,
-   "above_ma50_pct": 2.17,
-   "news": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Cavendish reiterates 'buy' rating on Shield Therapeutics after US deal with Viatris",
-     "src": "Proactive",
-     "time": "2026-08-28 09:15"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Billionaire Portfolios: 2 Under-$20 Healthcare Stock Picks",
-     "src": "Insider Monkey",
-     "time": "2026-09-02 13:15"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Zacks Industry Outlook Highlights Amphastar Pharmaceuticals, Sandoz and Viatris",
-     "src": "Zacks",
-     "time": "2026-08-31 15:10"
-    }
-   ]
-  },
-  {
-   "kind": "swing",
    "ticker": "SAN",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 14.75,
+   "price": 14.91,
    "entry": 15.0,
-   "stop": 14.5481,
-   "t1": 15.9039,
-   "t2": 16.5818,
+   "stop": 14.5598,
+   "t1": 15.8804,
+   "t2": 16.5408,
    "rr1": 2.0,
-   "rsi": 57.9,
-   "rvol": 0.45,
+   "rsi": 60.7,
+   "rvol": 0.02,
    "score": 83,
    "shares": 0,
    "notional": 0.0,
    "risk_dollars": 0.0,
    "room": 15.91,
-   "above_ma50_pct": 4.48,
+   "above_ma50_pct": 5.38,
    "news": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -1572,20 +1502,20 @@
    "ticker": "KSS",
    "side": "long",
    "state": "WATCH_BUY",
-   "price": 19.21,
+   "price": 19.24,
    "entry": 19.74,
-   "stop": 18.0137,
-   "t1": 23.1927,
-   "t2": 25.7822,
+   "stop": 18.0833,
+   "t1": 23.0535,
+   "t2": 25.5386,
    "rr1": 2.0,
-   "rsi": 56.5,
-   "rvol": 0.91,
+   "rsi": 56.7,
+   "rvol": 0.02,
    "score": 83,
    "shares": 0,
    "notional": 0.0,
    "risk_dollars": 0.0,
    "room": 23.46,
-   "above_ma50_pct": 5.14,
+   "above_ma50_pct": 5.27,
    "news": [
     {
      "summary": "דיווח חיובי · שיתוף פעולה חדש · מקור יחיד — לקחת בזהירות",
@@ -1618,50 +1548,99 @@
   },
   {
    "kind": "swing",
-   "ticker": "SRPT",
+   "ticker": "SNAP",
    "side": "long",
-   "state": "BUY_NOW",
-   "price": 23.21,
-   "entry": 23.21,
-   "stop": 21.1721,
-   "t1": 27.2859,
-   "t2": 30.3428,
+   "state": "WATCH_BUY",
+   "price": 5.93,
+   "entry": 6.0,
+   "stop": 5.5071,
+   "t1": 6.9859,
+   "t2": 7.7253,
    "rr1": 2.0,
-   "rsi": 73.8,
-   "rvol": 1.59,
-   "score": 72,
+   "rsi": 62.2,
+   "rvol": 0.05,
+   "score": 70,
    "shares": 0,
    "notional": 0.0,
    "risk_dollars": 0.0,
-   "room": 27.28,
-   "above_ma50_pct": 29.27,
+   "room": 6.97,
+   "above_ma50_pct": 18.99,
    "news": [
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": null,
      "sources": 1,
-     "title": "SRPT On Track For Best Week In 5 Months Ahead Of Late-2026 Clinical Data — Retail Eyes ‘Monumental Comeback’",
-     "src": "Stocktwits",
-     "time": "2026-08-27 19:00"
+     "title": "AppLovin’s Algorithmic Moat Is Vulnerable, Says Investor: Why $1.9B Quarterly Revenue Isn’t Enough to Justify a Buy",
+     "src": "24/7 Wall St.",
+     "time": "2026-09-03 12:05"
     },
     {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": null,
      "sources": 1,
-     "title": "Moderna Stock Carries A Market Value Its Revenue Does Not Support",
-     "src": "Trefis",
-     "time": "2026-08-26 15:13"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "Sarepta (SRPT) Stock Looks Fully Valued As Sales Trail Fair Value",
+     "title": "Snap (SNAP) Rolls Out Global Unified Attribution Push For Mobile Advertisers",
      "src": "Simply Wall St.",
-     "time": "2026-08-25 10:11"
+     "time": "2026-09-03 07:05"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Snap (SNAP) Moved, So Why Is It Back In Focus?",
+     "src": "Simply Wall St.",
+     "time": "2026-09-02 22:17"
+    }
+   ]
+  },
+  {
+   "kind": "swing",
+   "ticker": "PATH",
+   "side": "long",
+   "state": "WATCH_BUY",
+   "price": 18.7,
+   "entry": 18.765,
+   "stop": 17.4955,
+   "t1": 21.304,
+   "t2": 23.2083,
+   "rr1": 2.0,
+   "rsi": 73.3,
+   "rvol": 0.01,
+   "score": 64,
+   "shares": 0,
+   "notional": 0.0,
+   "risk_dollars": 0.0,
+   "room": 27.37,
+   "above_ma50_pct": 35.52,
+   "news": [
+    {
+     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": "דוחות",
+     "sources": 1,
+     "title": "NetApp (NTAP) Surpasses Q1 Earnings and Revenue Estimates",
+     "src": "Zacks",
+     "time": "2026-09-02 21:25"
+    },
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "Samsara or UiPath: Which Stock Has a Clear Path to Profits?",
+     "src": "24/7 Wall St.",
+     "time": "2026-09-02 12:35"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "Stocks Mostly Down Pre-Bell as Investors Monitor Latest Middle East Developments",
+     "src": "MT Newswires",
+     "time": "2026-09-03 11:59"
     }
    ]
   }
@@ -1686,23 +1665,7 @@
   "max_price": 130.0,
   "cash_reserve_usd": 75.0
  },
- "rejected": [
-  {
-   "ticker": "ALT",
-   "kind": "swing",
-   "why": "size_zero"
-  },
-  {
-   "ticker": "SRPT",
-   "kind": "swing",
-   "why": "size_zero"
-  },
-  {
-   "ticker": "XAUUSD",
-   "kind": "gold",
-   "why": "already_open"
-  }
- ],
+ "rejected": [],
  "game": {
   "xp": 8420,
   "level": 10,
@@ -1812,10 +1775,10 @@
    "name": "👹 בוס היום",
    "target": 827.23,
    "legend": 2068.07,
-   "done": 22.29,
+   "done": -25.81,
    "base": 10340.34,
-   "pct": 3,
-   "pct_legend": 1,
+   "pct": 0,
+   "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
