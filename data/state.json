@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 454.53587608083365,
-  "equity": 1235.21,
-  "realized_pnl": 231.61,
-  "open_pnl": 7.56,
+  "cash": 873.2648760808358,
+  "equity": 1222.37,
+  "realized_pnl": 218.68,
+  "open_pnl": 7.66,
   "peak_equity": 1269.42,
   "max_dd_pct": -8.47,
-  "return_pct": 23.52,
+  "return_pct": 22.24,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,27 +44,13 @@
    },
    "last": 12.93,
    "margin": 0.0
-  },
+  }
+ ],
+ "closed": [
   {
-   "id": "XAUUSD-1789019814",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "long",
-   "sector": "other",
-   "qty": 1.93,
-   "qty_left": 1.93,
-   "entry": 4473.15,
-   "stop": 4466.6,
-   "orig_stop": 4466.6,
-   "t1": 4482.54,
-   "t2": 4492.09,
-   "opened": "2026-09-10T08:56:54.061859+03:00",
-   "opened_day": "2026-09-10",
-   "risk_open": 12.55,
-   "fees": 0.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 56,
    "pattern": "פריצת טווח",
    "snap": {
     "rsi": 72.2,
@@ -74,11 +60,22 @@
     "regime_ok": true,
     "notional": 8632.89
    },
-   "last": 4473.1001,
-   "margin": 431.66
-  }
- ],
- "closed": [
+   "stop": 4466.6,
+   "t1": 4482.54,
+   "t2": 4492.09,
+   "fees": 0.0,
+   "qty": 1.93,
+   "entry": 4473.15,
+   "exit": 4466.45,
+   "pnl": -12.93,
+   "r": -1.02,
+   "reason": "stop",
+   "opened": "2026-09-10T08:56:54.061859+03:00",
+   "closed": "2026-09-10T14:10:46.743214+03:00",
+   "day": "2026-09-10",
+   "held_days": 0,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -1982,7 +1979,7 @@
     "shares": 23,
     "notional": 405.61,
     "risk_dollars": 23.97,
-    "risk_pct_actual": 1.94,
+    "risk_pct_actual": 1.96,
     "stretch_target": 21.16,
     "score": 78,
     "news": [
@@ -2041,7 +2038,7 @@
     "shares": 28,
     "notional": 421.4,
     "risk_dollars": 12.14,
-    "risk_pct_actual": 0.98,
+    "risk_pct_actual": 0.99,
     "stretch_target": 18.06,
     "score": 77,
     "news": [
@@ -2097,10 +2094,10 @@
     "pivot_high": 13.31,
     "rvol": 1.02,
     "above_ma50_pct": 20.43,
-    "shares": 28,
-    "notional": 372.68,
-    "risk_dollars": 24.48,
-    "risk_pct_actual": 1.98,
+    "shares": 27,
+    "notional": 359.37,
+    "risk_dollars": 23.61,
+    "risk_pct_actual": 1.93,
     "stretch_target": 15.97,
     "score": 70,
     "news": [
@@ -2143,24 +2140,24 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4473.1,
-    "entry": 4473.1,
-    "stop": 4465.9,
-    "t1": 4483.87,
-    "t2": 4494.64,
+    "side": "short",
+    "state": "WATCH_SELL",
+    "pattern": "המשך מגמה ↓",
+    "price": 4422.4,
+    "entry": 4422.4,
+    "stop": 4430.7,
+    "t1": 4409.92,
+    "t2": 4397.43,
     "rr1": 1.5,
-    "atr": 4.79,
-    "rsi": 67.9,
-    "vwap": 4465.53,
-    "stop_pct": 0.16,
-    "ounces": 1.82,
-    "notional": 8141.04,
-    "margin": 407.05,
-    "risk_dollars": 13.1,
-    "shares": 1.82,
+    "atr": 5.55,
+    "rsi": 32.6,
+    "vwap": 4450.27,
+    "stop_pct": 0.19,
+    "ounces": 1.93,
+    "notional": 8535.23,
+    "margin": 426.76,
+    "risk_dollars": 16.02,
+    "shares": 1.93,
     "score": 57,
     "news": [],
     "regime_ok": true
@@ -2168,6 +2165,19 @@
   ]
  },
  "calendar": {
+  "2026-09-10": {
+   "pnl": -12.93,
+   "trades": 1,
+   "wins": 0,
+   "losses": 1,
+   "r": -1.02,
+   "tickers": [
+    "XAUUSD"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "red"
+  },
   "2026-09-09": {
    "pnl": 5.15,
    "trades": 2,
@@ -2661,14 +2671,16 @@
   ],
   [
    "2026-09-10",
-   1235.21
+   1222.37
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 3
+ },
  "game": {
-  "xp": 2820,
+  "xp": 2850,
   "level": 7,
-  "streak": 2,
+  "streak": 0,
   "best_streak": 8,
   "badges": [
    {
@@ -2774,7 +2786,7 @@
    "name": "👹 בוס היום",
    "target": 98.82,
    "legend": 247.06,
-   "done": -0.09,
+   "done": -12.93,
    "base": 1235.3,
    "pct": 0,
    "pct_legend": 0,
@@ -2782,18 +2794,22 @@
    "legendary": false
   },
   "level_name": "🧙 מאסטר",
-  "xp_this_level": 121,
+  "xp_this_level": 151,
   "xp_next_level": 643
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 0.0,
-  "week_pnl": 13.24,
-  "daily_limit": -74.11,
-  "weekly_limit": -148.23
+  "day_pnl": -12.93,
+  "week_pnl": 0.31,
+  "daily_limit": -73.34,
+  "weekly_limit": -146.68
  },
  "log": [
+  {
+   "t": "2026-09-10 14:10",
+   "m": "EXIT XAUUSD x1.93 @ 4466.4500 (stop) P/L $-12.93 / -1.02R"
+  },
   {
    "t": "2026-09-10 08:57",
    "m": "OPEN GOLD XAUUSD x1.93 @ 4473.1500 stop 4466.6 T1 4482.54"
@@ -3109,10 +3125,6 @@
   {
    "t": "2026-08-19 10:50",
    "m": "EXIT XAUUSD x1.57 @ 4401.6500 (stop) P/L $-10.52 / -1.02R"
-  },
-  {
-   "t": "2026-08-19 08:53",
-   "m": "OPEN GOLD SHORT XAUUSD x1.57 @ 4394.9500 stop 4401.5 T1 4385.48"
   }
  ],
  "month_open_equity": {
@@ -3127,30 +3139,30 @@
   "spy": 762.4
  },
  "periods": {
-  "day": 0,
-  "week": -26.97,
-  "month": 238.51,
-  "quarter": 231.61,
-  "half": 231.61,
-  "year": 231.61,
-  "two_year": 231.61,
-  "all": 231.61,
-  "all_pct": 23.16
+  "day": -12.93,
+  "week": -39.9,
+  "month": 225.58,
+  "quarter": 218.68,
+  "half": 218.68,
+  "year": 218.68,
+  "two_year": 218.68,
+  "all": 218.68,
+  "all_pct": 21.87
  },
  "rejected": [],
- "updated_utc": "2026-09-10T06:12:03.074079+00:00",
- "updated_israel": "2026-09-10 09:12",
+ "updated_utc": "2026-09-10T11:10:46.743214+00:00",
+ "updated_israel": "2026-09-10 14:10",
  "market": {
   "open": false,
-  "et": "02:12",
-  "il": "09:12"
+  "et": "07:10",
+  "il": "14:10"
  },
  "stats": {
-  "trades": 65,
-  "win_rate": 67.7,
-  "pf": 1.87,
-  "avg_r": 0.27,
-  "expectancy": 3.56,
+  "trades": 66,
+  "win_rate": 66.7,
+  "pf": 1.78,
+  "avg_r": 0.25,
+  "expectancy": 3.31,
   "best": 25.41,
   "worst": -24.77
  },
@@ -4271,10 +4283,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 781,
+   "bars": 841,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4473.1,
+   "last_price": 4422.4,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -4286,17 +4298,17 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 0,
-    "pnl": 0
+    "trades": 1,
+    "pnl": -12.93
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 2,
-   "heat": 43.93,
+   "open": 1,
+   "heat": 31.38,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -4309,7 +4321,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 19,
    "covered": 3,
-   "updated": "2026-09-10 09:12"
+   "updated": "2026-09-10 14:10"
   }
  },
  "gold_today": {
@@ -4323,9 +4335,9 @@
   },
   "gold": {
    "n": 20,
-   "exp": 6.81,
-   "pf": 3.06,
-   "avg_r": 0.54,
+   "exp": 5.42,
+   "pf": 2.37,
+   "avg_r": 0.45,
    "status": "ok"
   },
   "day": {
@@ -4830,10 +4842,10 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Forget VUG. Vanguard’s Value Fund Is Beating Its Growth Twin by 11 Points This Year, With None of the Magnificent Seven",
-    "url": "https://247wallst.com/investing/etf/2026/09/09/forget-vug-vanguards-value-fund-is-beating-its-growth-twin-by-11-points-this-year-with-none-of-the-magnificent-seven/",
+    "title": "A 100-Year-Old Tax Rule Called “Section 351” Lets the Rich Turn a Stock Portfolio Into a Private ETF and Put Off the Capital Gains Bill Indefinitely",
+    "url": "https://247wallst.com/personal-finance/2026/09/10/a-100-year-old-tax-rule-called-section-351-lets-the-rich-turn-a-stock-portfolio-into-a-private-etf-and-put-off-the-capital-gains-bill-indefinitely/",
     "src": "24/7 Wall St.",
-    "time": "2026-09-09 22:15",
+    "time": "2026-09-10 10:48",
     "about": "שוק"
    },
    {
@@ -4841,10 +4853,10 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Pinterest Tumbles 8%, Reddit and Snap Pull Back: Is the Premium Multiple Unwinding?",
-    "url": "https://247wallst.com/investing/2026/09/09/pinterest-tumbles-8-reddit-and-snap-pull-back-is-the-premium-multiple-unwinding/",
+    "title": "Forget VUG. Vanguard’s Value Fund Is Beating Its Growth Twin by 11 Points This Year, With None of the Magnificent Seven",
+    "url": "https://247wallst.com/investing/etf/2026/09/09/forget-vug-vanguards-value-fund-is-beating-its-growth-twin-by-11-points-this-year-with-none-of-the-magnificent-seven/",
     "src": "24/7 Wall St.",
-    "time": "2026-09-09 19:01",
+    "time": "2026-09-09 22:15",
     "about": "שוק"
    },
    {
@@ -4852,10 +4864,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "S&P 500, Dow, Nasdaq End Lower As Oil Crosses $101, Yields Pop Following Bessent’s Expanded Buyback Plan — AAPL, META, AMZN, CRM In Focus",
-    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-dow-nasdaq-end-lower-as-oil-crosses-101-yields-pop/cZt71xeRJCT",
-    "src": "Stocktwits",
-    "time": "2026-09-09 22:01",
+    "title": "What You Should Do With Microsoft As The Market De-Risks From Big Tech",
+    "url": "https://247wallst.com/investing/2026/09/10/what-you-should-do-with-microsoft-as-the-market-de-risks-from-big-tech/",
+    "src": "24/7 Wall St.",
+    "time": "2026-09-10 11:00",
     "about": "שוק"
    },
    {
@@ -4863,10 +4875,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Barclays Sees S&P 500 at 7,950 in 2026: What Do Prediction Markets Say?",
-    "url": "https://www.benzinga.com/markets/prediction-markets/26/09/61697782/barclays-sp-500-target-7950?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral",
-    "src": "Benzinga Prediction Markets",
-    "time": "2026-09-09 18:41",
+    "title": "‘Conventional Wisdom Isn’t Wise’: Ramsey Tells Retirees to Dump Bonds, The Numbers Back Him Up",
+    "url": "https://247wallst.com/personal-finance/2026/09/10/conventional-wisdom-isnt-wise-ramsey-tells-retirees-to-dump-bonds-the-numbers-back-him-up/",
+    "src": "24/7 Wall St.",
+    "time": "2026-09-10 09:21",
     "about": "שוק"
    },
    {
@@ -4878,6 +4890,17 @@
     "url": "https://www.thestreet.com/investing/spmo-etf-sp-500-momentum-concentration-risk",
     "src": "TheStreet",
     "time": "2026-09-09 22:07",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "S&P 500, Dow, Nasdaq End Lower As Oil Crosses $101, Yields Pop Following Bessent’s Expanded Buyback Plan — AAPL, META, AMZN, CRM In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-dow-nasdaq-end-lower-as-oil-crosses-101-yields-pop/cZt71xeRJCT",
+    "src": "Stocktwits",
+    "time": "2026-09-09 22:01",
     "about": "שוק"
    },
    {
@@ -4901,19 +4924,8 @@
     "src": "etf.com",
     "time": "2026-09-09 19:15",
     "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Ora Banda Mining starts underground development at Waihi as high-grade Midnight drilling adds growth potential",
-    "url": "https://www.proactiveinvestors.com/companies/news/1098320/ora-banda-mining-starts-underground-development-at-waihi-as-high-grade-midnight-drilling-adds-growth-potential-1098320.html",
-    "src": "Proactive",
-    "time": "2026-09-09 23:46",
-    "about": "זהב"
    }
   ],
-  "updated": "2026-09-10 09:12"
+  "updated": "2026-09-10 14:10"
  }
 }
