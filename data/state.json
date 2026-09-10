@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 886.1948510808336,
-  "equity": 1235.3,
+  "cash": 454.53587608083365,
+  "equity": 1235.02,
   "realized_pnl": 231.61,
-  "open_pnl": 7.66,
+  "open_pnl": 7.37,
   "peak_equity": 1269.42,
   "max_dd_pct": -8.47,
-  "return_pct": 23.53,
+  "return_pct": 23.5,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,6 +44,38 @@
    },
    "last": 12.93,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1789019814",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "long",
+   "sector": "other",
+   "qty": 1.93,
+   "qty_left": 1.93,
+   "entry": 4473.15,
+   "stop": 4466.6,
+   "orig_stop": 4466.6,
+   "t1": 4482.54,
+   "t2": 4492.09,
+   "opened": "2026-09-10T08:56:54.061859+03:00",
+   "opened_day": "2026-09-10",
+   "risk_open": 12.35,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 56,
+   "pattern": "פריצת טווח",
+   "snap": {
+    "rsi": 72.2,
+    "rvol": null,
+    "score": 56,
+    "stop_pct": 0.14,
+    "regime_ok": true,
+    "notional": 8632.89
+   },
+   "last": 4473.0,
+   "margin": 431.66
   }
  ],
  "closed": [
@@ -2053,11 +2085,11 @@
     "state": "WATCH_BUY",
     "price": 12.93,
     "entry": 13.31,
-    "stop": 12.4363,
-    "t1": 15.0574,
-    "t2": 16.368,
+    "stop": 12.4357,
+    "t1": 15.0586,
+    "t2": 16.37,
     "rr1": 2.0,
-    "stop_pct": 6.56,
+    "stop_pct": 6.57,
     "rsi": 63.9,
     "atr": 0.546,
     "room": 15.58,
@@ -2067,7 +2099,7 @@
     "above_ma50_pct": 20.43,
     "shares": 28,
     "notional": 372.68,
-    "risk_dollars": 24.46,
+    "risk_dollars": 24.48,
     "risk_pct_actual": 1.98,
     "stretch_target": 15.97,
     "score": 70,
@@ -2111,25 +2143,25 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 4445.9,
-    "entry": 4445.9,
-    "stop": 4450.5,
-    "t1": 4438.96,
-    "t2": 4432.03,
+    "side": "long",
+    "state": "BUY_NOW",
+    "pattern": "פריצת טווח",
+    "price": 4473.0,
+    "entry": 4473.0,
+    "stop": 4466.6,
+    "t1": 4482.54,
+    "t2": 4492.09,
     "rr1": 1.5,
-    "atr": 3.08,
-    "rsi": 50.0,
-    "vwap": 4449.18,
-    "stop_pct": 0.1,
-    "ounces": 1.94,
-    "notional": 8625.05,
-    "margin": 431.25,
-    "risk_dollars": 8.92,
-    "shares": 1.94,
-    "score": 51,
+    "atr": 4.24,
+    "rsi": 72.2,
+    "vwap": 4461.83,
+    "stop_pct": 0.14,
+    "ounces": 1.93,
+    "notional": 8632.89,
+    "margin": 431.64,
+    "risk_dollars": 12.35,
+    "shares": 1.93,
+    "score": 56,
     "news": [],
     "regime_ok": true
    }
@@ -2629,7 +2661,7 @@
   ],
   [
    "2026-09-10",
-   1235.3
+   1235.02
   ]
  ],
  "cooldown": {},
@@ -2742,7 +2774,7 @@
    "name": "👹 בוס היום",
    "target": 98.82,
    "legend": 247.06,
-   "done": 0.0,
+   "done": -0.28,
    "base": 1235.3,
    "pct": 0,
    "pct_legend": 0,
@@ -2758,10 +2790,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 13.24,
-  "daily_limit": -74.12,
-  "weekly_limit": -148.24
+  "daily_limit": -74.1,
+  "weekly_limit": -148.2
  },
  "log": [
+  {
+   "t": "2026-09-10 08:57",
+   "m": "OPEN GOLD XAUUSD x1.93 @ 4473.1500 stop 4466.6 T1 4482.54"
+  },
   {
    "t": "2026-09-09 18:16",
    "m": "EXIT XAUUSD x1.95 @ 4441.3500 (stop) P/L $-11.31 / -1.03R"
@@ -3077,10 +3113,6 @@
   {
    "t": "2026-08-19 08:53",
    "m": "OPEN GOLD SHORT XAUUSD x1.57 @ 4394.9500 stop 4401.5 T1 4385.48"
-  },
-  {
-   "t": "2026-08-18 22:37",
-   "m": "EXIT XAUUSD x0.75 @ 4409.7700 (T2) P/L $+25.41 / +1.48R"
   }
  ],
  "month_open_equity": {
@@ -3106,12 +3138,12 @@
   "all_pct": 23.16
  },
  "rejected": [],
- "updated_utc": "2026-09-09T23:22:08.871457+00:00",
- "updated_israel": "2026-09-10 02:22",
+ "updated_utc": "2026-09-10T05:56:54.061859+00:00",
+ "updated_israel": "2026-09-10 08:56",
  "market": {
   "open": false,
-  "et": "19:22",
-  "il": "02:22"
+  "et": "01:56",
+  "il": "08:56"
  },
  "stats": {
   "trades": 65,
@@ -3197,7 +3229,7 @@
    "px": 10.93,
    "trend": -6.5,
    "rsi": 35,
-   "rvol": 1.1,
+   "rvol": 1.2,
    "df": 0,
    "state": "none"
   },
@@ -3537,7 +3569,7 @@
    "px": 17.75,
    "trend": -7.3,
    "rsi": 31,
-   "rvol": 1.1,
+   "rvol": 1.2,
    "df": 1,
    "state": "none"
   },
@@ -3557,7 +3589,7 @@
    "px": 16.89,
    "trend": -0.8,
    "rsi": 49,
-   "rvol": 2.9,
+   "rvol": 3.1,
    "df": 0,
    "state": "none"
   },
@@ -3787,7 +3819,7 @@
    "px": 10.57,
    "trend": -14.2,
    "rsi": 33,
-   "rvol": 1.4,
+   "rvol": 1.5,
    "df": 0,
    "state": "none"
   },
@@ -4114,7 +4146,7 @@
   {
    "t": "AMD",
    "sec": "premium",
-   "px": 521.09,
+   "px": 521.1,
    "trend": 4.5,
    "state": "premium"
   },
@@ -4239,12 +4271,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 976,
+   "bars": 778,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4445.9,
+   "last_price": 4473.0,
    "signals": 1,
-   "today_trades": 0,
+   "today_trades": 1,
    "health": {
     "n": 20,
     "exp": 6.81,
@@ -4257,14 +4289,14 @@
     "trades": 0,
     "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 31.38,
+   "open": 2,
+   "heat": 43.73,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -4277,11 +4309,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 19,
    "covered": 3,
-   "updated": "2026-09-10 02:22"
+   "updated": "2026-09-10 08:57"
   }
  },
  "gold_today": {
-  "date": "2026-09-09",
+  "date": "2026-09-10",
   "count": 1
  },
  "health": {
@@ -4339,7 +4371,7 @@
    "px": 8.1,
    "trend": -8.0,
    "rsi": 40,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "near": false
   },
   {
@@ -4497,7 +4529,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 0.87,
-   "trend": -35.2,
+   "trend": -35.1,
    "rsi": 28,
    "rvol": 2.4,
    "near": false
@@ -4576,7 +4608,11 @@
    "t": "FRMM",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": null
+   "px": 4.62,
+   "trend": -20.1,
+   "rsi": 34,
+   "rvol": 0.9,
+   "near": false
   },
   {
    "t": "GRND",
@@ -4605,7 +4641,7 @@
    "px": 8.82,
    "trend": -27.4,
    "rsi": 26,
-   "rvol": 2.4,
+   "rvol": 2.5,
    "near": false
   },
   {
@@ -4615,7 +4651,7 @@
    "px": 25.89,
    "trend": -13.6,
    "rsi": 35,
-   "rvol": 1.1,
+   "rvol": 1.2,
    "near": false
   },
   {
@@ -4871,13 +4907,13 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Gold Futures Edge Up Despite Higher U.S. Yields",
-    "url": "https://www.wsj.com/finance/commodities-futures/gold-slips-traders-eye-inflation-data-a5ad1d66?siteid=yhoof2&yptr=yahoo",
-    "src": "The Wall Street Journal",
-    "time": "2026-09-09 18:48",
+    "title": "Ora Banda Mining starts underground development at Waihi as high-grade Midnight drilling adds growth potential",
+    "url": "https://www.proactiveinvestors.com/companies/news/1098320/ora-banda-mining-starts-underground-development-at-waihi-as-high-grade-midnight-drilling-adds-growth-potential-1098320.html",
+    "src": "Proactive",
+    "time": "2026-09-09 23:46",
     "about": "זהב"
    }
   ],
-  "updated": "2026-09-10 02:22"
+  "updated": "2026-09-10 08:57"
  }
 }
