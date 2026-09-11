@@ -2,17 +2,50 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 1234.365065786304,
-  "equity": 1234.37,
+  "cash": 804.1597657863041,
+  "equity": 1234.08,
   "realized_pnl": 238.32,
-  "open_pnl": 0.0,
+  "open_pnl": -0.29,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 23.44,
+  "return_pct": 23.41,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [],
+ "positions": [
+  {
+   "id": "XAUUSD-1789169003",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 1.96,
+   "qty_left": 1.96,
+   "entry": 4389.85,
+   "stop": 4394.6,
+   "orig_stop": 4394.6,
+   "t1": 4383.04,
+   "t2": 4376.09,
+   "opened": "2026-09-12T02:23:23.289248+03:00",
+   "opened_day": "2026-09-12",
+   "risk_open": 9.02,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 56,
+   "pattern": "פולבק לגל ↓",
+   "snap": {
+    "rsi": 46.1,
+    "rvol": null,
+    "score": 56,
+    "stop_pct": 0.11,
+    "regime_ok": true,
+    "notional": 8604.4
+   },
+   "last": 4390.0,
+   "margin": 430.21
+  }
+ ],
  "closed": [
   {
    "ticker": "XAUUSD",
@@ -2835,12 +2868,10 @@
   ],
   [
    "2026-09-12",
-   1234.37
+   1234.08
   ]
  ],
- "cooldown": {
-  "XAUUSD": 1
- },
+ "cooldown": {},
  "game": {
   "xp": 3020,
   "level": 7,
@@ -2950,7 +2981,7 @@
    "name": "👹 בוס היום",
    "target": 98.75,
    "legend": 246.87,
-   "done": 0.0,
+   "done": -0.29,
    "base": 1234.37,
    "pct": 0,
    "pct_legend": 0,
@@ -2966,10 +2997,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 19.95,
-  "daily_limit": -74.06,
-  "weekly_limit": -148.12
+  "daily_limit": -74.04,
+  "weekly_limit": -148.09
  },
  "log": [
+  {
+   "t": "2026-09-12 02:23",
+   "m": "OPEN GOLD SHORT XAUUSD x1.96 @ 4389.8500 stop 4394.6 T1 4383.04"
+  },
   {
    "t": "2026-09-11 21:25",
    "m": "EXIT XAUUSD x2.0 @ 4409.2500 (stop) P/L $-31.40 / -1.01R"
@@ -3285,10 +3320,6 @@
   {
    "t": "2026-08-20 13:42",
    "m": "EXIT XAUUSD x1.53 @ 4548.5500 (stop) P/L $-9.33 / -1.03R"
-  },
-  {
-   "t": "2026-08-20 12:47",
-   "m": "OPEN GOLD SHORT XAUUSD x1.53 @ 4542.4500 stop 4548.4 T1 4533.91"
   }
  ],
  "month_open_equity": {
@@ -3313,19 +3344,13 @@
   "all": 238.32,
   "all_pct": 23.83
  },
- "rejected": [
-  {
-   "ticker": "XAUUSD",
-   "kind": "gold",
-   "why": "cooldown_after_loss"
-  }
- ],
- "updated_utc": "2026-09-11T23:11:29.213957+00:00",
- "updated_israel": "2026-09-12 02:11",
+ "rejected": [],
+ "updated_utc": "2026-09-11T23:23:23.289248+00:00",
+ "updated_israel": "2026-09-12 02:23",
  "market": {
   "open": false,
-  "et": "19:11",
-  "il": "02:11"
+  "et": "19:23",
+  "il": "02:23"
  },
  "stats": {
   "trades": 70,
@@ -4458,7 +4483,7 @@
    "source": "GC=F",
    "last_price": 4390.0,
    "signals": 1,
-   "today_trades": 0,
+   "today_trades": 1,
    "health": {
     "n": 20,
     "exp": 4.82,
@@ -4471,18 +4496,18 @@
     "trades": 0,
     "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 0,
-   "heat": 0,
+   "open": 1,
+   "heat": 9.02,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 1
+    "blocked": 0
    }
   },
   "news": {
@@ -4491,11 +4516,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 24,
    "covered": 4,
-   "updated": "2026-09-12 02:11"
+   "updated": "2026-09-12 02:23"
   }
  },
  "gold_today": {
-  "date": "2026-09-11",
+  "date": "2026-09-12",
   "count": 1
  },
  "health": {
@@ -5064,10 +5089,10 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "SCHD and JEPI Both Pay You to Wait, Yet Only One Raises Its Payout Every Year",
-    "url": "https://247wallst.com/investing/etf/2026/09/11/schd-and-jepi-both-pay-you-to-wait-yet-only-one-raises-its-payout-every-year/",
-    "src": "24/7 Wall St.",
-    "time": "2026-09-11 21:18",
+    "title": "S&P 500, Dow Break Past Four-Day Loss To End Higher As Investors Eye Fed Meeting Next Week — DELL, HPE, EL, WMT In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-dow-break-past-four-day-loss-to-end-higher-as-investors-eye-fed-meeting-next-week-dell-hpe-el-wmt-in-focus/cZtXyR4RBbK",
+    "src": "Stocktwits",
+    "time": "2026-09-11 23:10",
     "about": "שוק"
    },
    {
@@ -5075,10 +5100,10 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Deere and Caterpillar Are Both Up Over 40% This Year: Take Profits or Hold On for the Ride?",
-    "url": "https://247wallst.com/investing/2026/09/11/deere-and-caterpillar-are-both-up-over-40-this-year-take-profits-or-hold-on-for-the-ride/",
+    "title": "SCHD and JEPI Both Pay You to Wait, Yet Only One Raises Its Payout Every Year",
+    "url": "https://247wallst.com/investing/etf/2026/09/11/schd-and-jepi-both-pay-you-to-wait-yet-only-one-raises-its-payout-every-year/",
     "src": "24/7 Wall St.",
-    "time": "2026-09-11 19:09",
+    "time": "2026-09-11 21:18",
     "about": "שוק"
    },
    {
@@ -5101,17 +5126,6 @@
     "url": "https://247wallst.com/investing/2026/09/11/chargepoint-stock-is-up-38-in-2026-what-will-it-take-to-break-through-10/",
     "src": "24/7 Wall St.",
     "time": "2026-09-11 19:17",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Marvell Rises 5% as Piper Sandler Starts Coverage With $270 Target; Broadcom Edges Higher, NVIDIA Holds Steady",
-    "url": "https://247wallst.com/investing/2026/09/11/marvell-rises-5-as-piper-sandler-starts-coverage-with-270-target-broadcom-edges-higher-nvidia-holds-steady/",
-    "src": "24/7 Wall St.",
-    "time": "2026-09-11 16:54",
     "about": "שוק"
    },
    {
@@ -5146,8 +5160,19 @@
     "src": "MT Newswires",
     "time": "2026-09-11 17:13",
     "about": "שוק"
+   },
+   {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "Is gold really a hedge against inflation?",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/is-gold-a-hedge-against-inflation-174122603.html",
+    "src": "Yahoo Personal Finance",
+    "time": "2026-09-11 17:41",
+    "about": "זהב"
    }
   ],
-  "updated": "2026-09-12 02:11"
+  "updated": "2026-09-12 02:23"
  }
 }
