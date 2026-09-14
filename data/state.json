@@ -2,37 +2,22 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 804.1597657863041,
-  "equity": 1234.08,
-  "realized_pnl": 238.32,
-  "open_pnl": -0.29,
+  "cash": 1254.2343657863053,
+  "equity": 1254.23,
+  "realized_pnl": 258.19,
+  "open_pnl": 0.0,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 23.41,
+  "return_pct": 25.42,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [
+ "positions": [],
+ "closed": [
   {
-   "id": "XAUUSD-1789169003",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "short",
-   "sector": "other",
-   "qty": 1.96,
-   "qty_left": 1.96,
-   "entry": 4389.85,
-   "stop": 4394.6,
-   "orig_stop": 4394.6,
-   "t1": 4383.04,
-   "t2": 4376.09,
-   "opened": "2026-09-12T02:23:23.289248+03:00",
-   "opened_day": "2026-09-12",
-   "risk_open": 9.02,
-   "fees": 0.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 56,
    "pattern": "פולבק לגל ↓",
    "snap": {
     "rsi": 46.1,
@@ -42,11 +27,51 @@
     "regime_ok": true,
     "notional": 8604.4
    },
-   "last": 4390.0,
-   "margin": 430.21
-  }
- ],
- "closed": [
+   "stop": 4394.6,
+   "t1": 4383.04,
+   "t2": 4376.09,
+   "fees": 0.0,
+   "qty": 0.98,
+   "entry": 4389.85,
+   "exit": 4376.24,
+   "pnl": 13.34,
+   "r": 1.43,
+   "reason": "T2",
+   "opened": "2026-09-12T02:23:23.289248+03:00",
+   "closed": "2026-09-14T09:14:50.539336+03:00",
+   "day": "2026-09-14",
+   "held_days": 2,
+   "followed_rules": true
+  },
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "side": "short",
+   "pattern": "פולבק לגל ↓",
+   "snap": {
+    "rsi": 46.1,
+    "rvol": null,
+    "score": 56,
+    "stop_pct": 0.11,
+    "regime_ok": true,
+    "notional": 8604.4
+   },
+   "stop": 4394.6,
+   "t1": 4383.04,
+   "t2": 4376.09,
+   "fees": 0.0,
+   "qty": 0.98,
+   "entry": 4389.85,
+   "exit": 4383.19,
+   "pnl": 6.53,
+   "r": 0.7,
+   "reason": "T1_half",
+   "opened": "2026-09-12T02:23:23.289248+03:00",
+   "closed": "2026-09-14T09:14:50.539336+03:00",
+   "day": "2026-09-14",
+   "held_days": 2,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -2080,11 +2105,11 @@
     "state": "WATCH_BUY",
     "price": 10.31,
     "entry": 10.39,
-    "stop": 10.078,
-    "t1": 11.0139,
-    "t2": 11.4819,
+    "stop": 10.0775,
+    "t1": 11.0151,
+    "t2": 11.4839,
     "rr1": 2.0,
-    "stop_pct": 3.0,
+    "stop_pct": 3.01,
     "rsi": 55.6,
     "atr": 0.195,
     "room": 10.88,
@@ -2092,10 +2117,10 @@
     "pivot_high": 10.39,
     "rvol": 1.7,
     "above_ma50_pct": 1.44,
-    "shares": 41,
-    "notional": 425.99,
-    "risk_dollars": 12.79,
-    "risk_pct_actual": 1.04,
+    "shares": 42,
+    "notional": 436.38,
+    "risk_dollars": 13.13,
+    "risk_pct_actual": 1.05,
     "stretch_target": 12.47,
     "score": 91,
     "news": [
@@ -2151,10 +2176,10 @@
     "pivot_high": 15.05,
     "rvol": 0.38,
     "above_ma50_pct": 4.82,
-    "shares": 28,
-    "notional": 421.4,
-    "risk_dollars": 11.91,
-    "risk_pct_actual": 0.96,
+    "shares": 29,
+    "notional": 436.45,
+    "risk_dollars": 12.34,
+    "risk_pct_actual": 0.98,
     "stretch_target": 18.06,
     "score": 83,
     "news": [
@@ -2198,9 +2223,9 @@
     "state": "WATCH_BUY",
     "price": 8.33,
     "entry": 8.45,
-    "stop": 8.076,
-    "t1": 9.198,
-    "t2": 9.759,
+    "stop": 8.0754,
+    "t1": 9.1991,
+    "t2": 9.761,
     "rr1": 2.0,
     "stop_pct": 4.43,
     "rsi": 61.8,
@@ -2208,12 +2233,12 @@
     "room": 9.51,
     "pivot_low": 7.39,
     "pivot_high": 8.45,
-    "rvol": 1.12,
+    "rvol": 1.14,
     "above_ma50_pct": 3.87,
     "shares": 51,
     "notional": 430.95,
-    "risk_dollars": 19.07,
-    "risk_pct_actual": 1.54,
+    "risk_dollars": 19.1,
+    "risk_pct_actual": 1.52,
     "stretch_target": 10.14,
     "score": 83,
     "news": [
@@ -2257,25 +2282,35 @@
     "state": "WATCH_BUY",
     "price": 6.94,
     "entry": 7.07,
-    "stop": 6.4889,
-    "t1": 8.2322,
-    "t2": 9.1038,
+    "stop": 6.4883,
+    "t1": 8.2333,
+    "t2": 9.1058,
     "rr1": 2.0,
-    "stop_pct": 8.22,
+    "stop_pct": 8.23,
     "rsi": 59.6,
-    "atr": 0.363,
+    "atr": 0.364,
     "room": 8.49,
     "pivot_low": 5.65,
     "pivot_high": 7.07,
     "rvol": 1.39,
     "above_ma50_pct": 8.3,
-    "shares": 42,
-    "notional": 296.94,
-    "risk_dollars": 24.41,
-    "risk_pct_actual": 1.98,
+    "shares": 43,
+    "notional": 304.01,
+    "risk_dollars": 25.01,
+    "risk_pct_actual": 1.99,
     "stretch_target": 8.48,
     "score": 78,
     "news": [
+     {
+      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+      "dir": "pos",
+      "tag": null,
+      "sources": 1,
+      "title": "Corning Sees $20B Run Rate Early as Verizon Deal Fuels Data-Center Growth",
+      "url": "https://www.marketbeat.com/instant-alerts/event-corning-sees-20b-run-rate-early-as-verizon-deal-fuels-data-center-growth-2026-09-11/?utm_source=yahoofinance&utm_medium=yahoofinance",
+      "src": "MarketBeat",
+      "time": "2026-09-12 04:02"
+     },
      {
       "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
       "dir": "pos",
@@ -2295,16 +2330,6 @@
       "url": "https://www.marketbeat.com/instant-alerts/event-att-sees-fiber-spectrum-deals-fueling-accelerated-growth-and-shareholder-returns-2026-09-10/?utm_source=yahoofinance&utm_medium=yahoofinance",
       "src": "MarketBeat",
       "time": "2026-09-10 20:02"
-     },
-     {
-      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-      "dir": "pos",
-      "tag": null,
-      "sources": 1,
-      "title": "Can Corning's Long-Term Fiber Deal With Verizon Boost Its Shares?",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/cornings-long-term-fiber-deal-151200061.html",
-      "src": "Zacks",
-      "time": "2026-09-10 15:12"
      }
     ],
     "regime_ok": true
@@ -2315,31 +2340,44 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "short",
-    "state": "SELL_NOW",
-    "pattern": "פולבק לגל ↓",
-    "price": 4390.0,
-    "entry": 4390.0,
-    "stop": 4394.6,
-    "t1": 4383.04,
-    "t2": 4376.09,
+    "side": "long",
+    "state": "BUY_NOW",
+    "pattern": "חציית ממוצעים",
+    "price": 4374.9,
+    "entry": 4374.9,
+    "stop": 4366.8,
+    "t1": 4387.08,
+    "t2": 4399.27,
     "rr1": 1.5,
-    "atr": 3.09,
-    "rsi": 46.1,
-    "vwap": 4401.69,
-    "stop_pct": 0.11,
-    "ounces": 1.96,
-    "notional": 8604.4,
-    "margin": 430.22,
-    "risk_dollars": 9.02,
-    "shares": 1.96,
-    "score": 56,
+    "atr": 5.41,
+    "rsi": 53.3,
+    "vwap": 4370.46,
+    "stop_pct": 0.19,
+    "ounces": 2.0,
+    "notional": 8749.8,
+    "margin": 437.49,
+    "risk_dollars": 16.2,
+    "shares": 2.0,
+    "score": 57,
     "news": [],
     "regime_ok": true
    }
   ]
  },
  "calendar": {
+  "2026-09-14": {
+   "pnl": 19.87,
+   "trades": 2,
+   "wins": 2,
+   "losses": 0,
+   "r": 2.13,
+   "tickers": [
+    "XAUUSD"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "green"
+  },
   "2026-09-11": {
    "pnl": 19.64,
    "trades": 4,
@@ -2869,13 +2907,19 @@
   [
    "2026-09-12",
    1234.08
+  ],
+  [
+   "2026-09-14",
+   1254.23
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 1
+ },
  "game": {
-  "xp": 3020,
+  "xp": 3135,
   "level": 7,
-  "streak": 1,
+  "streak": 2,
   "best_streak": 8,
   "badges": [
    {
@@ -2962,7 +3006,7 @@
    },
    {
     "t": "לסיים את היום ירוק",
-    "done": false,
+    "done": true,
     "xp": 20
    },
    {
@@ -2977,30 +3021,42 @@
    }
   ],
   "boss": {
-   "day": "2026-09-12",
+   "day": "2026-09-14",
    "name": "👹 בוס היום",
-   "target": 98.75,
-   "legend": 246.87,
-   "done": -0.29,
-   "base": 1234.37,
+   "target": 100.34,
+   "legend": 250.85,
+   "done": 0.0,
+   "base": 1254.23,
    "pct": 0,
    "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
   "level_name": "🧙 מאסטר",
-  "xp_this_level": 321,
+  "xp_this_level": 436,
   "xp_next_level": 643
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 0.0,
-  "week_pnl": 19.95,
-  "daily_limit": -74.04,
-  "weekly_limit": -148.09
+  "day_pnl": 19.87,
+  "week_pnl": 19.87,
+  "daily_limit": -75.25,
+  "weekly_limit": -150.51
  },
  "log": [
+  {
+   "t": "2026-09-14 09:14",
+   "m": "EXIT XAUUSD x0.98 @ 4376.2400 (T2) P/L $+13.34 / +1.43R"
+  },
+  {
+   "t": "2026-09-14 09:14",
+   "m": "BE XAUUSD stop -> breakeven 4389.85"
+  },
+  {
+   "t": "2026-09-14 09:14",
+   "m": "EXIT XAUUSD x0.98 @ 4383.1900 (T1_half) P/L $+6.53 / +0.70R"
+  },
   {
    "t": "2026-09-12 02:23",
    "m": "OPEN GOLD SHORT XAUUSD x1.96 @ 4389.8500 stop 4394.6 T1 4383.04"
@@ -3308,18 +3364,6 @@
   {
    "t": "2026-08-20 14:57",
    "m": "BE XAUUSD stop -> breakeven 4542.85"
-  },
-  {
-   "t": "2026-08-20 14:57",
-   "m": "EXIT XAUUSD x0.75 @ 4533.9900 (T1_half) P/L $+6.65 / +0.70R"
-  },
-  {
-   "t": "2026-08-20 14:38",
-   "m": "OPEN GOLD SHORT XAUUSD x1.51 @ 4542.8500 stop 4549.1 T1 4533.84"
-  },
-  {
-   "t": "2026-08-20 13:42",
-   "m": "EXIT XAUUSD x1.53 @ 4548.5500 (stop) P/L $-9.33 / -1.03R"
   }
  ],
  "month_open_equity": {
@@ -3334,30 +3378,36 @@
   "spy": 764.29
  },
  "periods": {
-  "day": 0,
-  "week": 19.95,
-  "month": 269.73,
-  "quarter": 238.32,
-  "half": 238.32,
-  "year": 238.32,
-  "two_year": 238.32,
-  "all": 238.32,
-  "all_pct": 23.83
+  "day": 19.87,
+  "week": 39.82,
+  "month": 293.56,
+  "quarter": 258.19,
+  "half": 258.19,
+  "year": 258.19,
+  "two_year": 258.19,
+  "all": 258.19,
+  "all_pct": 25.82
  },
- "rejected": [],
- "updated_utc": "2026-09-11T23:23:23.289248+00:00",
- "updated_israel": "2026-09-12 02:23",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "cooldown_after_loss"
+  }
+ ],
+ "updated_utc": "2026-09-14T06:14:50.539336+00:00",
+ "updated_israel": "2026-09-14 09:14",
  "market": {
   "open": false,
-  "et": "19:23",
-  "il": "02:23"
+  "et": "02:14",
+  "il": "09:14"
  },
  "stats": {
-  "trades": 70,
-  "win_rate": 67.1,
-  "pf": 1.77,
-  "avg_r": 0.25,
-  "expectancy": 3.4,
+  "trades": 72,
+  "win_rate": 68.1,
+  "pf": 1.83,
+  "avg_r": 0.27,
+  "expectancy": 3.59,
   "best": 25.41,
   "worst": -31.4
  },
@@ -3366,8 +3416,8 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-09-12",
-  "equity": 1234.37
+  "date": "2026-09-14",
+  "equity": 1254.23
  },
  "universe_view": [
   {
@@ -3386,7 +3436,7 @@
    "px": 11.13,
    "trend": 7.5,
    "rsi": 61,
-   "rvol": 1.2,
+   "rvol": 1.3,
    "df": 1,
    "state": "none"
   },
@@ -3416,7 +3466,7 @@
    "px": 3.05,
    "trend": -14.5,
    "rsi": 30,
-   "rvol": 1.4,
+   "rvol": 1.5,
    "df": 0,
    "state": "none"
   },
@@ -3626,7 +3676,7 @@
    "px": 5.67,
    "trend": 3.4,
    "rsi": 48,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -4478,12 +4528,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1032,
+   "bars": 851,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4390.0,
+   "last_price": 4374.9,
    "signals": 1,
-   "today_trades": 1,
+   "today_trades": 0,
    "health": {
     "n": 20,
     "exp": 4.82,
@@ -4493,21 +4543,21 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 0,
-    "pnl": 0
+    "trades": 2,
+    "pnl": 19.87
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 9.02,
+   "open": 0,
+   "heat": 0,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -4516,7 +4566,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 24,
    "covered": 4,
-   "updated": "2026-09-12 02:23"
+   "updated": "2026-09-14 09:14"
   }
  },
  "gold_today": {
@@ -4530,8 +4580,8 @@
   },
   "gold": {
    "n": 20,
-   "exp": 4.82,
-   "pf": 1.87,
+   "exp": 4.67,
+   "pf": 1.85,
    "avg_r": 0.39,
    "status": "ok"
   },
@@ -4578,7 +4628,7 @@
    "px": 8.25,
    "trend": -5.7,
    "rsi": 43,
-   "rvol": 0.8,
+   "rvol": 1.0,
    "near": false
   },
   {
@@ -4618,7 +4668,7 @@
    "px": 10.1,
    "trend": -3.5,
    "rsi": 45,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "near": false
   },
   {
@@ -4688,7 +4738,7 @@
    "px": 6.39,
    "trend": -14.8,
    "rsi": 34,
-   "rvol": 1.2,
+   "rvol": 1.3,
    "near": false
   },
   {
@@ -5046,6 +5096,16 @@
      "dir": "pos",
      "tag": null,
      "sources": 1,
+     "title": "Corning Sees $20B Run Rate Early as Verizon Deal Fuels Data-Center Growth",
+     "url": "https://www.marketbeat.com/instant-alerts/event-corning-sees-20b-run-rate-early-as-verizon-deal-fuels-data-center-growth-2026-09-11/?utm_source=yahoofinance&utm_medium=yahoofinance",
+     "src": "MarketBeat",
+     "time": "2026-09-12 04:02"
+    },
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
      "title": "Lumen Technologies Maps AI Networking Growth Strategy at Citi Conference",
      "url": "https://www.marketbeat.com/instant-alerts/event-lumen-technologies-maps-ai-networking-growth-strategy-at-citi-conference-2026-09-11/?utm_source=yahoofinance&utm_medium=yahoofinance",
      "src": "MarketBeat",
@@ -5062,16 +5122,6 @@
      "time": "2026-09-10 20:02"
     },
     {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Can Corning's Long-Term Fiber Deal With Verizon Boost Its Shares?",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/cornings-long-term-fiber-deal-151200061.html",
-     "src": "Zacks",
-     "time": "2026-09-10 15:12"
-    },
-    {
      "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": null,
@@ -5085,6 +5135,50 @@
   },
   "market": [
    {
+    "summary": "דיווח שלילי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+    "dir": "neg",
+    "tag": "דוחות",
+    "sources": 1,
+    "title": "Goldman Sachs Says AI Is Driving Half of S&P 500 Earnings Growth. That Number Cuts Both Ways.",
+    "url": "https://247wallst.com/investing/2026/09/13/goldman-sachs-says-ai-is-driving-half-of-sp-500-earnings-growth-that-number-cuts-both-ways/",
+    "src": "24/7 Wall St.",
+    "time": "2026-09-13 18:00",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "Forget the S&P 500: 3 Unloved Parts of the Market Are Winning in 2026 and These Vanguard ETFs Own Them Cheap",
+    "url": "https://247wallst.com/investing/etf/2026/09/12/forget-the-sp-500-3-unloved-parts-of-the-market-are-winning-in-2026-and-these-vanguard-etfs-own-them-cheap/",
+    "src": "24/7 Wall St.",
+    "time": "2026-09-13 00:38",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "‘Sounds Like a 14 Year Old’: Dave Ramsey Rips Husband Sinking 80% of Pay Into Pokemon Cards",
+    "url": "https://247wallst.com/personal-finance/2026/09/13/sounds-like-a-14-year-old-dave-ramsey-rips-husband-sinking-80-of-pay-into-pokemon-cards/",
+    "src": "24/7 Wall St.",
+    "time": "2026-09-13 10:17",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "You Can’t Spell SPY Without AI: How the Stock Market Became a 1-Way Bet on the Future",
+    "url": "https://www.barchart.com/story/news/4576680/you-cant-spell-spy-without-ai-how-the-stock-market-became-a-1-way-bet-on-the-future",
+    "src": "Barchart",
+    "time": "2026-09-13 01:00",
+    "about": "שוק"
+   },
+   {
     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
     "dir": "pos",
     "tag": null,
@@ -5096,14 +5190,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "SCHD and JEPI Both Pay You to Wait, Yet Only One Raises Its Payout Every Year",
-    "url": "https://247wallst.com/investing/etf/2026/09/11/schd-and-jepi-both-pay-you-to-wait-yet-only-one-raises-its-payout-every-year/",
-    "src": "24/7 Wall St.",
-    "time": "2026-09-11 21:18",
+    "title": "Uber stock took a hit it didn't earn over Tesla Cybercab",
+    "url": "https://www.thestreet.com/investing/stocks/uber-stock-drop-tesla-cybercab-austin-launch",
+    "src": "TheStreet",
+    "time": "2026-09-14 02:17",
     "about": "שוק"
    },
    {
@@ -5111,21 +5205,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "A Peak Back at Future Proof Citywide with Tom Lee",
-    "url": "http://www.etf.com/sections/features/peak-back-future-proof-citywide-tom-lee?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss",
-    "src": "etf.com",
-    "time": "2026-09-11 20:21",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "ChargePoint Stock Is Up 38% in 2026: What Will It Take to Break Through $10?",
-    "url": "https://247wallst.com/investing/2026/09/11/chargepoint-stock-is-up-38-in-2026-what-will-it-take-to-break-through-10/",
-    "src": "24/7 Wall St.",
-    "time": "2026-09-11 19:17",
+    "title": "SpaceX weighting in Nasdaq 100 set to more than double - Bloomberg",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/spacex-weighting-nasdaq-100-set-003759068.html",
+    "src": "Investing.com",
+    "time": "2026-09-13 00:37",
     "about": "שוק"
    },
    {
@@ -5138,41 +5221,8 @@
     "src": "24/7 Wall St.",
     "time": "2026-09-11 21:55",
     "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "‘The Largest IPO Ever, Surpassing SpaceX’: Anthropic Is Up Next",
-    "url": "https://247wallst.com/investing/2026/09/11/the-largest-ipo-ever-surpassing-spacex-anthropic-is-up-next/",
-    "src": "24/7 Wall St.",
-    "time": "2026-09-11 17:43",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Exchange-Traded Funds, US Equities Rise After Midday",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-us-equities-171329001.html",
-    "src": "MT Newswires",
-    "time": "2026-09-11 17:13",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Is gold really a hedge against inflation?",
-    "url": "https://finance.yahoo.com/personal-finance/investing/article/is-gold-a-hedge-against-inflation-174122603.html",
-    "src": "Yahoo Personal Finance",
-    "time": "2026-09-11 17:41",
-    "about": "זהב"
    }
   ],
-  "updated": "2026-09-12 02:23"
+  "updated": "2026-09-14 09:14"
  }
 }
