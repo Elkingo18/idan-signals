@@ -2134,13 +2134,13 @@
     "state": "WATCH_BUY",
     "price": 8.23,
     "entry": 8.45,
-    "stop": 8.0702,
-    "t1": 9.2096,
-    "t2": 9.7793,
+    "stop": 8.0691,
+    "t1": 9.2119,
+    "t2": 9.7833,
     "rr1": 2.0,
-    "stop_pct": 4.49,
+    "stop_pct": 4.51,
     "rsi": 58.4,
-    "atr": 0.237,
+    "atr": 0.238,
     "room": 9.51,
     "pivot_low": 7.39,
     "pivot_high": 8.45,
@@ -2148,7 +2148,7 @@
     "above_ma50_pct": 2.59,
     "shares": 51,
     "notional": 430.95,
-    "risk_dollars": 19.37,
+    "risk_dollars": 19.43,
     "risk_pct_actual": 1.56,
     "stretch_target": 10.14,
     "score": 83,
@@ -2193,9 +2193,9 @@
     "state": "WATCH_BUY",
     "price": 14.74,
     "entry": 15.05,
-    "stop": 14.6069,
-    "t1": 15.9362,
-    "t2": 16.6008,
+    "stop": 14.607,
+    "t1": 15.936,
+    "t2": 16.6005,
     "rr1": 2.0,
     "stop_pct": 2.94,
     "rsi": 53.7,
@@ -2203,11 +2203,11 @@
     "room": 15.74,
     "pivot_low": 14.36,
     "pivot_high": 15.05,
-    "rvol": 0.53,
+    "rvol": 0.56,
     "above_ma50_pct": 3.17,
     "shares": 28,
     "notional": 421.4,
-    "risk_dollars": 12.41,
+    "risk_dollars": 12.4,
     "risk_pct_actual": 1.0,
     "stretch_target": 18.06,
     "score": 77,
@@ -2252,24 +2252,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 4330.4,
-    "entry": 4330.4,
-    "stop": 4335.6,
-    "t1": 4322.57,
-    "t2": 4314.75,
+    "state": "SELL_NOW",
+    "pattern": "פולבק לגל ↓",
+    "price": 4331.2,
+    "entry": 4331.2,
+    "stop": 4337.4,
+    "t1": 4321.97,
+    "t2": 4312.73,
     "rr1": 1.5,
-    "atr": 3.48,
-    "rsi": 36.9,
-    "vwap": 4333.29,
-    "stop_pct": 0.12,
+    "atr": 4.1,
+    "rsi": 33.0,
+    "vwap": 4340.98,
+    "stop_pct": 0.14,
     "ounces": 2.01,
-    "notional": 8704.1,
-    "margin": 435.21,
-    "risk_dollars": 10.45,
+    "notional": 8705.71,
+    "margin": 435.29,
+    "risk_dollars": 12.46,
     "shares": 2.01,
-    "score": 57,
+    "score": 62,
     "news": [],
     "regime_ok": true
    }
@@ -2842,7 +2842,7 @@
   ]
  ],
  "cooldown": {
-  "XAUUSD": 2
+  "XAUUSD": 1
  },
  "game": {
   "xp": 3165,
@@ -3316,13 +3316,19 @@
   "all": 247.89,
   "all_pct": 24.79
  },
- "rejected": [],
- "updated_utc": "2026-09-14T23:54:34.490505+00:00",
- "updated_israel": "2026-09-15 02:54",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "cooldown_after_loss"
+  }
+ ],
+ "updated_utc": "2026-09-15T06:09:21.874238+00:00",
+ "updated_israel": "2026-09-15 09:09",
  "market": {
   "open": false,
-  "et": "19:54",
-  "il": "02:54"
+  "et": "02:09",
+  "il": "09:09"
  },
  "stats": {
   "trades": 73,
@@ -3368,7 +3374,7 @@
    "px": 7.75,
    "trend": -11.8,
    "rsi": 42,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "df": 0,
    "state": "none"
   },
@@ -3548,7 +3554,7 @@
    "px": 14.74,
    "trend": 3.2,
    "rsi": 54,
-   "rvol": 0.5,
+   "rvol": 0.6,
    "df": 0,
    "state": "watch"
   },
@@ -3578,7 +3584,7 @@
    "px": 16.77,
    "trend": -3.6,
    "rsi": 44,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 1,
    "state": "none"
   },
@@ -3618,7 +3624,7 @@
    "px": 2.92,
    "trend": 12.5,
    "rsi": 57,
-   "rvol": 1.3,
+   "rvol": 1.4,
    "df": 0,
    "state": "none"
   },
@@ -4450,10 +4456,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1051,
+   "bars": 826,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4330.4,
+   "last_price": 4331.2,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -4479,7 +4485,7 @@
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -4488,7 +4494,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 16,
    "covered": 2,
-   "updated": "2026-09-15 02:54"
+   "updated": "2026-09-15 09:09"
   }
  },
  "gold_today": {
@@ -4640,7 +4646,7 @@
    "px": 2.71,
    "trend": -34.2,
    "rsi": 32,
-   "rvol": 1.0,
+   "rvol": 1.2,
    "near": false
   },
   {
@@ -4708,7 +4714,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 0.83,
-   "trend": -35.5,
+   "trend": -35.6,
    "rsi": 26,
    "rvol": 2.6,
    "near": false
@@ -4830,7 +4836,7 @@
    "px": 26.1,
    "trend": -11.2,
    "rsi": 39,
-   "rvol": 1.1,
+   "rvol": 1.2,
    "near": false
   },
   {
@@ -5028,14 +5034,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "C3.ai Jumps 7% as Software Rally Lifts Beaten-Down AI Names; UiPath Climbs 8%, SoundHound AI Gains 5%",
-    "url": "https://247wallst.com/investing/2026/09/14/c3-ai-jumps-7-as-software-rally-lifts-beaten-down-ai-names-uipath-climbs-8-soundhound-ai-gains-5/",
-    "src": "24/7 Wall St.",
-    "time": "2026-09-14 17:34",
+    "title": "Stock Market: Will S&P 500 Open Up or Down Today?",
+    "url": "https://www.benzinga.com/markets/prediction-markets/26/09/61781323/stock-market-will-sp-500-open-up-or-down-today-37?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral",
+    "src": "Benzinga Prediction Markets",
+    "time": "2026-09-15 05:58",
     "about": "שוק"
    },
    {
@@ -5054,13 +5060,13 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "TSX Closer: Index Edges Higher as Healthcare Gains Offset Base Metals Weakness; Oil Rises",
-    "url": "https://finance.yahoo.com/markets/world-indices/articles/tsx-closer-index-edges-higher-202012457.html",
-    "src": "MT Newswires",
-    "time": "2026-09-14 20:20",
+    "title": "NewPeak Metals targets higher-grade gold zone with Las Opeñas Phase 2 drilling in Argentina",
+    "url": "https://www.proactiveinvestors.com/companies/news/1098528/newpeak-metals-targets-higher-grade-gold-zone-with-las-openas-phase-2-drilling-in-argentina-1098528.html",
+    "src": "Proactive",
+    "time": "2026-09-15 01:11",
     "about": "זהב"
    }
   ],
-  "updated": "2026-09-15 02:54"
+  "updated": "2026-09-15 09:09"
  }
 }
