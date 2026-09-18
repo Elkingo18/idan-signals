@@ -2,17 +2,50 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 1243.9372157863063,
-  "equity": 1243.94,
+  "cash": 809.0941907863064,
+  "equity": 1243.64,
   "realized_pnl": 247.89,
-  "open_pnl": 0.0,
+  "open_pnl": -0.3,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 24.39,
+  "return_pct": 24.36,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [],
+ "positions": [
+  {
+   "id": "XAUUSD-1789710815",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "long",
+   "sector": "other",
+   "qty": 1.97,
+   "qty_left": 1.97,
+   "entry": 4414.65,
+   "stop": 4407.3,
+   "orig_stop": 4407.3,
+   "t1": 4425.35,
+   "t2": 4436.2,
+   "opened": "2026-09-18T08:53:35.698061+03:00",
+   "opened_day": "2026-09-18",
+   "risk_open": 14.18,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 62,
+   "pattern": "פולבק לגל",
+   "snap": {
+    "rsi": 66.9,
+    "rvol": null,
+    "score": 62,
+    "stop_pct": 0.16,
+    "regime_ok": true,
+    "notional": 8696.57
+   },
+   "last": 4414.5,
+   "margin": 434.84
+  }
+ ],
  "closed": [
   {
    "ticker": "XAUUSD",
@@ -2134,9 +2167,9 @@
     "state": "WATCH_BUY",
     "price": 17.13,
     "entry": 17.28,
-    "stop": 16.6197,
-    "t1": 18.6006,
-    "t2": 19.5911,
+    "stop": 16.6191,
+    "t1": 18.6018,
+    "t2": 19.5931,
     "rr1": 2.0,
     "stop_pct": 3.82,
     "rsi": 59.2,
@@ -2144,11 +2177,11 @@
     "room": 18.41,
     "pivot_low": 16.15,
     "pivot_high": 17.28,
-    "rvol": 0.91,
+    "rvol": 0.95,
     "above_ma50_pct": 1.97,
     "shares": 25,
     "notional": 432.0,
-    "risk_dollars": 16.51,
+    "risk_dollars": 16.52,
     "risk_pct_actual": 1.33,
     "stretch_target": 20.74,
     "score": 83,
@@ -2188,7 +2221,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "long",
+    "state": "BUY_NOW",
+    "pattern": "פולבק לגל",
+    "price": 4414.5,
+    "entry": 4414.5,
+    "stop": 4407.3,
+    "t1": 4425.35,
+    "t2": 4436.2,
+    "rr1": 1.5,
+    "atr": 4.82,
+    "rsi": 66.9,
+    "vwap": 4403.72,
+    "stop_pct": 0.16,
+    "ounces": 1.97,
+    "notional": 8696.57,
+    "margin": 434.83,
+    "risk_dollars": 14.18,
+    "shares": 1.97,
+    "score": 62,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-09-15": {
@@ -2765,7 +2824,7 @@
   ],
   [
    "2026-09-18",
-   1243.94
+   1243.64
   ]
  ],
  "cooldown": {},
@@ -2878,7 +2937,7 @@
    "name": "👹 בוס היום",
    "target": 99.52,
    "legend": 248.79,
-   "done": 0.0,
+   "done": -0.3,
    "base": 1243.94,
    "pct": 0,
    "pct_legend": 0,
@@ -2894,10 +2953,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 9.57,
-  "daily_limit": -74.64,
-  "weekly_limit": -149.27
+  "daily_limit": -74.62,
+  "weekly_limit": -149.24
  },
  "log": [
+  {
+   "t": "2026-09-18 08:53",
+   "m": "OPEN GOLD XAUUSD x1.97 @ 4414.6500 stop 4407.3 T1 4425.35"
+  },
   {
    "t": "2026-09-15 02:50",
    "m": "EXIT XAUUSD x2.02 @ 4335.0500 (stop) P/L $-10.30 / -1.03R"
@@ -3213,10 +3276,6 @@
   {
    "t": "2026-08-21 06:59",
    "m": "EXIT XAUUSD x0.74 @ 4586.9100 (T1_half) P/L $+10.18 / +0.72R"
-  },
-  {
-   "t": "2026-08-20 20:42",
-   "m": "OPEN GOLD XAUUSD x1.49 @ 4573.1500 stop 4563.6 T1 4587.06"
   }
  ],
  "month_open_equity": {
@@ -3242,12 +3301,12 @@
   "all_pct": 24.79
  },
  "rejected": [],
- "updated_utc": "2026-09-17T23:34:58.432428+00:00",
- "updated_israel": "2026-09-18 02:34",
+ "updated_utc": "2026-09-18T05:53:35.698061+00:00",
+ "updated_israel": "2026-09-18 08:53",
  "market": {
   "open": false,
-  "et": "19:34",
-  "il": "02:34"
+  "et": "01:53",
+  "il": "08:53"
  },
  "stats": {
   "trades": 73,
@@ -3283,7 +3342,7 @@
    "px": 10.6,
    "trend": 4.1,
    "rsi": 53,
-   "rvol": 1.8,
+   "rvol": 1.9,
    "df": 1,
    "state": "none"
   },
@@ -3313,7 +3372,7 @@
    "px": 2.81,
    "trend": -19.5,
    "rsi": 24,
-   "rvol": 1.1,
+   "rvol": 1.2,
    "df": 0,
    "state": "none"
   },
@@ -3353,7 +3412,7 @@
    "px": 17.13,
    "trend": 2.0,
    "rsi": 59,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 0,
    "state": "watch"
   },
@@ -3443,7 +3502,7 @@
    "px": 18.28,
    "trend": 2.7,
    "rsi": 57,
-   "rvol": 1.5,
+   "rvol": 1.6,
    "df": 0,
    "state": "none"
   },
@@ -3583,7 +3642,7 @@
    "px": 9.45,
    "trend": -4.9,
    "rsi": 39,
-   "rvol": 0.6,
+   "rvol": 0.7,
    "df": 0,
    "state": "none"
   },
@@ -3633,7 +3692,7 @@
    "px": 15.5,
    "trend": -4.8,
    "rsi": 42,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 1,
    "state": "none"
   },
@@ -3643,7 +3702,7 @@
    "px": 4.45,
    "trend": -15.1,
    "rsi": 38,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -3673,7 +3732,7 @@
    "px": 17.87,
    "trend": -5.7,
    "rsi": 35,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 1,
    "state": "none"
   },
@@ -3893,7 +3952,7 @@
    "px": 15.4,
    "trend": -5.3,
    "rsi": 44,
-   "rvol": 1.2,
+   "rvol": 1.3,
    "df": 1,
    "state": "none"
   },
@@ -4375,12 +4434,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1120,
+   "bars": 1094,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4385.5,
-   "signals": 0,
-   "today_trades": 0,
+   "last_price": 4414.5,
+   "signals": 1,
+   "today_trades": 1,
    "health": {
     "n": 20,
     "exp": 3.48,
@@ -4393,14 +4452,14 @@
     "trades": 0,
     "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 0,
-   "heat": 0,
+   "open": 1,
+   "heat": 14.18,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -4413,11 +4472,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 12,
    "covered": 1,
-   "updated": "2026-09-18 02:35"
+   "updated": "2026-09-18 08:53"
   }
  },
  "gold_today": {
-  "date": "2026-09-15",
+  "date": "2026-09-18",
   "count": 1
  },
  "health": {
@@ -4475,7 +4534,7 @@
    "px": 8.04,
    "trend": -6.7,
    "rsi": 42,
-   "rvol": 2.4,
+   "rvol": 2.5,
    "near": false
   },
   {
@@ -4565,7 +4624,7 @@
    "px": 2.83,
    "trend": -27.2,
    "rsi": 38,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "near": false
   },
   {
@@ -4595,7 +4654,7 @@
    "px": 15.5,
    "trend": -4.8,
    "rsi": 42,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "near": false
   },
   {
@@ -4856,14 +4915,14 @@
   },
   "market": [
    {
-    "summary": "דיווח חיובי · התקבל אישור רגולטורי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": "אישור רגולטורי",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
     "sources": 1,
-    "title": "Trump's Inflation Approval Slumps to 19%: What Do Prediction Markets Say About the Midterms?",
-    "url": "https://www.benzinga.com/markets/prediction-markets/26/09/61854623/trump-inflation-approval-midterms-democrats-polymarket?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral",
+    "title": "Stock Market: Will S&P 500 Open Up or Down Today?",
+    "url": "https://www.benzinga.com/markets/prediction-markets/26/09/61860116/stock-market-will-sp-500-open-up-or-down-today-40?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral",
     "src": "Benzinga Prediction Markets",
-    "time": "2026-09-17 19:18",
+    "time": "2026-09-18 05:42",
     "about": "שוק"
    },
    {
@@ -4904,10 +4963,21 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "QQQI’s $0.65 Monthly Check Hides $10.97 Per Share in Forgone Gains",
-    "url": "https://247wallst.com/investing/etf/2026/09/17/qqqis-0-65-monthly-check-hides-10-97-per-share-in-forgone-gains/",
-    "src": "24/7 Wall St.",
-    "time": "2026-09-17 22:05",
+    "title": "Prediction: The Invesco QQQ Trust Beats the S&P 500 Again Over the Next 5 Years",
+    "url": "https://www.fool.com/investing/2026/09/17/prediction-the-invesco-qqq-trust-beats-the-s-and-p-500-again-over-the-next-5-years/",
+    "src": "Motley Fool",
+    "time": "2026-09-18 00:43",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "A $100 Monthly Investment in QQQ Could Grow Into This Over 20 Years",
+    "url": "https://www.fool.com/investing/2026/09/17/100-monthly-investment-qqq-grow-20-years/",
+    "src": "Motley Fool",
+    "time": "2026-09-18 01:35",
     "about": "שוק"
    },
    {
@@ -4922,17 +4992,6 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Daily ETF Flows: QQQ Inflows Total Nearly $1B",
-    "url": "http://www.etf.com/sections/daily-etf-flows/daily-etf-flows-qqq-inflows-total-nearly-1b?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss",
-    "src": "etf.com",
-    "time": "2026-09-17 21:00",
-    "about": "שוק"
-   },
-   {
     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
     "dir": "pos",
     "tag": null,
@@ -4944,6 +5003,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-09-18 02:35"
+  "updated": "2026-09-18 08:53"
  }
 }
