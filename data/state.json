@@ -2,17 +2,50 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 1229.159190786308,
-  "equity": 1229.16,
+  "cash": 800.4133157863081,
+  "equity": 1228.87,
   "realized_pnl": 233.12,
-  "open_pnl": 0.0,
+  "open_pnl": -0.3,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 22.92,
+  "return_pct": 22.89,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [],
+ "positions": [
+  {
+   "id": "XAUUSD-1790076509",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 1.97,
+   "qty_left": 1.97,
+   "entry": 4352.75,
+   "stop": 4361.9,
+   "orig_stop": 4361.9,
+   "t1": 4339.47,
+   "t2": 4326.04,
+   "opened": "2026-09-22T14:28:29.057172+03:00",
+   "opened_day": "2026-09-22",
+   "risk_open": 17.73,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 63,
+   "pattern": "חציית ממוצעים ↓",
+   "snap": {
+    "rsi": 41.7,
+    "rvol": null,
+    "score": 63,
+    "stop_pct": 0.21,
+    "regime_ok": true,
+    "notional": 8575.21
+   },
+   "last": 4352.8999,
+   "margin": 428.75
+  }
+ ],
  "closed": [
   {
    "ticker": "XAUUSD",
@@ -2364,6 +2397,16 @@
       "dir": "pos",
       "tag": null,
       "sources": 1,
+      "title": "NeoGenomics (NEO) Expands Precision Oncology Focus, Is The Stock Fairly Valued?",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/neogenomics-neo-expands-precision-oncology-082032025.html",
+      "src": "Simply Wall St.",
+      "time": "2026-09-22 08:20"
+     },
+     {
+      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+      "dir": "pos",
+      "tag": null,
+      "sources": 1,
       "title": "NeoGenomics Highlights NGS, MRD Growth Strategy at Morgan Stanley Conference",
       "url": "https://www.marketbeat.com/instant-alerts/event-neogenomics-highlights-ngs-mrd-growth-strategy-at-morgan-stanley-conference-2026-09-20/?utm_source=yahoofinance&utm_medium=yahoofinance",
       "src": "MarketBeat",
@@ -2378,16 +2421,6 @@
       "url": "https://finance.yahoo.com/markets/stocks/articles/novavax-nvax-soars-7-0-074500823.html",
       "src": "Zacks",
       "time": "2026-09-18 07:45"
-     },
-     {
-      "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
-      "dir": "neu",
-      "tag": "דוחות",
-      "sources": 2,
-      "title": "Is NeoGenomics’ (NEO) Community NGS Push Quietly Redefining Its Core Earnings Engine?",
-      "url": "https://finance.yahoo.com/healthcare/articles/neogenomics-neo-community-ngs-push-131315832.html",
-      "src": "Simply Wall St.",
-      "time": "2026-09-21 13:13"
      }
     ],
     "regime_ok": true
@@ -2399,24 +2432,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 4356.4,
-    "entry": 4356.4,
-    "stop": 4365.2,
-    "t1": 4343.16,
-    "t2": 4329.91,
+    "state": "SELL_NOW",
+    "pattern": "חציית ממוצעים ↓",
+    "price": 4352.9,
+    "entry": 4352.9,
+    "stop": 4361.9,
+    "t1": 4339.47,
+    "t2": 4326.04,
     "rr1": 1.5,
-    "atr": 5.89,
-    "rsi": 33.9,
-    "vwap": 4366.96,
-    "stop_pct": 0.2,
+    "atr": 5.97,
+    "rsi": 41.7,
+    "vwap": 4357.03,
+    "stop_pct": 0.21,
     "ounces": 1.97,
-    "notional": 8582.11,
-    "margin": 429.11,
-    "risk_dollars": 17.34,
+    "notional": 8575.21,
+    "margin": 428.76,
+    "risk_dollars": 17.73,
     "shares": 1.97,
-    "score": 57,
+    "score": 63,
     "news": [],
     "regime_ok": true
    }
@@ -3022,7 +3055,7 @@
   ],
   [
    "2026-09-22",
-   1229.16
+   1228.87
   ]
  ],
  "cooldown": {},
@@ -3135,7 +3168,7 @@
    "name": "👹 בוס היום",
    "target": 98.33,
    "legend": 245.83,
-   "done": 0.0,
+   "done": -0.29,
    "base": 1229.16,
    "pct": 0,
    "pct_legend": 0,
@@ -3151,10 +3184,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 0,
-  "daily_limit": -73.75,
-  "weekly_limit": -147.5
+  "daily_limit": -73.73,
+  "weekly_limit": -147.46
  },
  "log": [
+  {
+   "t": "2026-09-22 14:28",
+   "m": "OPEN GOLD SHORT XAUUSD x1.97 @ 4352.7500 stop 4361.9 T1 4339.47"
+  },
   {
    "t": "2026-09-18 17:56",
    "m": "EXIT XAUUSD x1.97 @ 4407.1500 (stop) P/L $-14.77 / -1.02R"
@@ -3470,10 +3507,6 @@
   {
    "t": "2026-08-21 10:03",
    "m": "EXIT XAUUSD x0.75 @ 4600.9600 (T2) P/L $+20.86 / +1.47R"
-  },
-  {
-   "t": "2026-08-21 06:59",
-   "m": "BE XAUUSD stop -> breakeven 4573.15"
   }
  ],
  "month_open_equity": {
@@ -3499,12 +3532,12 @@
   "all_pct": 23.31
  },
  "rejected": [],
- "updated_utc": "2026-09-22T06:27:27.211567+00:00",
- "updated_israel": "2026-09-22 09:27",
+ "updated_utc": "2026-09-22T11:28:29.057172+00:00",
+ "updated_israel": "2026-09-22 14:28",
  "market": {
   "open": false,
-  "et": "02:27",
-  "il": "09:27"
+  "et": "07:28",
+  "il": "14:28"
  },
  "stats": {
   "trades": 74,
@@ -4632,12 +4665,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 838,
+   "bars": 914,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4356.4,
+   "last_price": 4352.9,
    "signals": 1,
-   "today_trades": 0,
+   "today_trades": 1,
    "health": {
     "n": 20,
     "exp": 1.95,
@@ -4650,14 +4683,14 @@
     "trades": 0,
     "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 0,
-   "heat": 0,
+   "open": 1,
+   "heat": 17.73,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -4670,11 +4703,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 24,
    "covered": 4,
-   "updated": "2026-09-22 09:27"
+   "updated": "2026-09-22 14:28"
   }
  },
  "gold_today": {
-  "date": "2026-09-18",
+  "date": "2026-09-22",
   "count": 1
  },
  "health": {
@@ -5200,6 +5233,16 @@
      "dir": "pos",
      "tag": null,
      "sources": 1,
+     "title": "NeoGenomics (NEO) Expands Precision Oncology Focus, Is The Stock Fairly Valued?",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/neogenomics-neo-expands-precision-oncology-082032025.html",
+     "src": "Simply Wall St.",
+     "time": "2026-09-22 08:20"
+    },
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
      "title": "NeoGenomics Highlights NGS, MRD Growth Strategy at Morgan Stanley Conference",
      "url": "https://www.marketbeat.com/instant-alerts/event-neogenomics-highlights-ngs-mrd-growth-strategy-at-morgan-stanley-conference-2026-09-20/?utm_source=yahoofinance&utm_medium=yahoofinance",
      "src": "MarketBeat",
@@ -5216,24 +5259,14 @@
      "time": "2026-09-18 07:45"
     },
     {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · הוצלב ב-2 מקורות שונים",
+     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
      "dir": "neu",
      "tag": "דוחות",
-     "sources": 2,
+     "sources": 1,
      "title": "Is NeoGenomics’ (NEO) Community NGS Push Quietly Redefining Its Core Earnings Engine?",
      "url": "https://finance.yahoo.com/healthcare/articles/neogenomics-neo-community-ngs-push-131315832.html",
      "src": "Simply Wall St.",
      "time": "2026-09-21 13:13"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "1 Unpopular Stock That Deserves a Second Chance and 2 We Turn Down",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/1-unpopular-stock-deserves-second-124040309.html",
-     "src": "StockStory",
-     "time": "2026-09-18 12:40"
     }
    ]
   },
@@ -5327,6 +5360,6 @@
     "about": "שוק"
    }
   ],
-  "updated": "2026-09-22 09:27"
+  "updated": "2026-09-22 14:28"
  }
 }
