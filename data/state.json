@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 800.4133157863081,
-  "equity": 1228.87,
+  "equity": 1233.79,
   "realized_pnl": 233.12,
-  "open_pnl": -0.3,
+  "open_pnl": 4.63,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 22.89,
+  "return_pct": 23.38,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -28,7 +28,7 @@
    "t2": 4326.04,
    "opened": "2026-09-22T14:28:29.057172+03:00",
    "opened_day": "2026-09-22",
-   "risk_open": 17.73,
+   "risk_open": 22.66,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -42,7 +42,7 @@
     "regime_ok": true,
     "notional": 8575.21
    },
-   "last": 4352.8999,
+   "last": 4350.3999,
    "margin": 428.75
   }
  ],
@@ -2211,7 +2211,7 @@
     "shares": 21,
     "notional": 313.32,
     "risk_dollars": 23.69,
-    "risk_pct_actual": 1.93,
+    "risk_pct_actual": 1.92,
     "stretch_target": 17.9,
     "score": 95,
     "news": [
@@ -2270,7 +2270,7 @@
     "shares": 24,
     "notional": 414.72,
     "risk_dollars": 15.73,
-    "risk_pct_actual": 1.28,
+    "risk_pct_actual": 1.27,
     "stretch_target": 20.74,
     "score": 83,
     "news": [
@@ -2326,10 +2326,10 @@
     "pivot_high": 11.17,
     "rvol": 1.05,
     "above_ma50_pct": 8.19,
-    "shares": 28,
-    "notional": 312.76,
-    "risk_dollars": 23.8,
-    "risk_pct_actual": 1.94,
+    "shares": 29,
+    "notional": 323.93,
+    "risk_dollars": 24.65,
+    "risk_pct_actual": 2.0,
     "stretch_target": 13.4,
     "score": 78,
     "news": [
@@ -2432,24 +2432,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "short",
-    "state": "SELL_NOW",
-    "pattern": "חציית ממוצעים ↓",
-    "price": 4352.9,
-    "entry": 4352.9,
-    "stop": 4361.9,
-    "t1": 4339.47,
-    "t2": 4326.04,
+    "state": "WATCH_SELL",
+    "pattern": "המשך מגמה ↓",
+    "price": 4350.4,
+    "entry": 4350.4,
+    "stop": 4359.3,
+    "t1": 4337.11,
+    "t2": 4323.81,
     "rr1": 1.5,
-    "atr": 5.97,
-    "rsi": 41.7,
-    "vwap": 4357.03,
-    "stop_pct": 0.21,
-    "ounces": 1.97,
-    "notional": 8575.21,
-    "margin": 428.76,
-    "risk_dollars": 17.73,
-    "shares": 1.97,
-    "score": 63,
+    "atr": 5.91,
+    "rsi": 39.6,
+    "vwap": 4357.0,
+    "stop_pct": 0.2,
+    "ounces": 1.98,
+    "notional": 8613.79,
+    "margin": 430.69,
+    "risk_dollars": 17.62,
+    "shares": 1.98,
+    "score": 57,
     "news": [],
     "regime_ok": true
    }
@@ -3055,7 +3055,7 @@
   ],
   [
    "2026-09-22",
-   1228.87
+   1233.79
   ]
  ],
  "cooldown": {},
@@ -3168,10 +3168,10 @@
    "name": "👹 בוס היום",
    "target": 98.33,
    "legend": 245.83,
-   "done": -0.29,
+   "done": 4.63,
    "base": 1229.16,
-   "pct": 0,
-   "pct_legend": 0,
+   "pct": 5,
+   "pct_legend": 2,
    "beaten": false,
    "legendary": false
   },
@@ -3184,8 +3184,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 0,
-  "daily_limit": -73.73,
-  "weekly_limit": -147.46
+  "daily_limit": -74.03,
+  "weekly_limit": -148.05
  },
  "log": [
   {
@@ -3532,12 +3532,12 @@
   "all_pct": 23.31
  },
  "rejected": [],
- "updated_utc": "2026-09-22T11:28:29.057172+00:00",
- "updated_israel": "2026-09-22 14:28",
+ "updated_utc": "2026-09-22T11:29:59.687739+00:00",
+ "updated_israel": "2026-09-22 14:29",
  "market": {
   "open": false,
-  "et": "07:28",
-  "il": "14:28"
+  "et": "07:29",
+  "il": "14:29"
  },
  "stats": {
   "trades": 74,
@@ -4180,12 +4180,8 @@
   {
    "t": "RIVN",
    "sec": "ev",
-   "px": 15.36,
-   "trend": -4.9,
-   "rsi": 45,
-   "rvol": 0.9,
-   "df": 1,
-   "state": "none"
+   "state": "no_data",
+   "df": 1
   },
   {
    "t": "LCID",
@@ -4634,7 +4630,7 @@
    "icon": "📈",
    "name": "סוכן הסווינג",
    "domain": "70 מניות ≤$20 · גרף יומי",
-   "with_data": 70,
+   "with_data": 69,
    "signals": 4,
    "health": {
     "n": 4,
@@ -4665,10 +4661,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 914,
+   "bars": 915,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4352.9,
+   "last_price": 4350.4,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -4690,7 +4686,7 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 1,
-   "heat": 17.73,
+   "heat": 22.66,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -4703,7 +4699,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 24,
    "covered": 4,
-   "updated": "2026-09-22 14:28"
+   "updated": "2026-09-22 14:30"
   }
  },
  "gold_today": {
@@ -5320,10 +5316,10 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Fastly Soars 14% on AI Firewall Launch; Cloudflare Climbs 7%, Datadog Rises 5%",
-    "url": "https://247wallst.com/investing/2026/09/21/fastly-soars-14-on-ai-firewall-launch-cloudflare-climbs-7-datadog-rises-5/",
-    "src": "24/7 Wall St.",
-    "time": "2026-09-21 18:04",
+    "title": "Where Will QQQ Be in 20 Years? Here's What the Nasdaq-100's Historical Growth Rate Suggests.",
+    "url": "https://www.fool.com/investing/2026/09/22/where-will-qqq-be-in-20-years-historical-growth/",
+    "src": "Motley Fool",
+    "time": "2026-09-22 11:20",
     "about": "שוק"
    },
    {
@@ -5331,10 +5327,10 @@
     "dir": "pos",
     "tag": null,
     "sources": 1,
-    "title": "Qualcomm Jumps 7% as AI Interconnect Demo Points Past Handsets; Skyworks and Qorvo Sit Out the Rally",
-    "url": "https://247wallst.com/investing/2026/09/21/qualcomm-jumps-7-as-ai-interconnect-demo-points-past-handsets-skyworks-and-qorvo-sit-out-the-rally/",
+    "title": "Fastly Soars 14% on AI Firewall Launch; Cloudflare Climbs 7%, Datadog Rises 5%",
+    "url": "https://247wallst.com/investing/2026/09/21/fastly-soars-14-on-ai-firewall-launch-cloudflare-climbs-7-datadog-rises-5/",
     "src": "24/7 Wall St.",
-    "time": "2026-09-21 16:53",
+    "time": "2026-09-21 18:04",
     "about": "שוק"
    },
    {
@@ -5360,6 +5356,6 @@
     "about": "שוק"
    }
   ],
-  "updated": "2026-09-22 14:28"
+  "updated": "2026-09-22 14:30"
  }
 }
