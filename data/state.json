@@ -2476,7 +2476,7 @@
     "shares": 18,
     "notional": 227.34,
     "risk_dollars": 23.54,
-    "risk_pct_actual": 1.94,
+    "risk_pct_actual": 1.95,
     "stretch_target": 15.16,
     "score": 64,
     "news": [
@@ -2515,7 +2515,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "long",
+    "state": "WATCH_BUY",
+    "pattern": "המשך מגמה",
+    "price": 4400.9,
+    "entry": 4400.9,
+    "stop": 4396.9,
+    "t1": 4406.84,
+    "t2": 4412.79,
+    "rr1": 1.5,
+    "atr": 2.64,
+    "rsi": 55.9,
+    "vwap": 4368.94,
+    "stop_pct": 0.09,
+    "ounces": 1.92,
+    "notional": 8449.73,
+    "margin": 422.49,
+    "risk_dollars": 7.68,
+    "shares": 1.92,
+    "score": 57,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-09-22": {
@@ -3610,13 +3636,19 @@
   "all": 214.8,
   "all_pct": 21.48
  },
- "rejected": [],
- "updated_utc": "2026-09-22T22:01:13.802214+00:00",
- "updated_israel": "2026-09-23 01:01",
+ "rejected": [
+  {
+   "ticker": "NVAX",
+   "kind": "swing",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-09-22T22:55:01.834449+00:00",
+ "updated_israel": "2026-09-23 01:55",
  "market": {
   "open": false,
-  "et": "18:01",
-  "il": "01:01"
+  "et": "18:55",
+  "il": "01:55"
  },
  "stats": {
   "trades": 75,
@@ -4744,11 +4776,11 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1030,
+   "bars": 1040,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4396.2,
-   "signals": 0,
+   "last_price": 4400.9,
+   "signals": 1,
    "today_trades": 0,
    "health": {
     "n": 20,
@@ -4773,7 +4805,7 @@
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -4782,7 +4814,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 28,
    "covered": 5,
-   "updated": "2026-09-23 01:01"
+   "updated": "2026-09-23 01:55"
   }
  },
  "gold_today": {
@@ -5180,6 +5212,48 @@
  ],
  "news": {
   "tickers": {
+   "NVAX": [
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "Novavax (NVAX) Beats Stock Market Upswing: What Investors Need to Know",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/novavax-nvax-beats-stock-market-214504647.html",
+     "src": "Zacks",
+     "time": "2026-09-18 21:45"
+    },
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "Novavax (NVAX) Soars 7.0%: Is Further Upside Left in the Stock?",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/novavax-nvax-soars-7-0-074500823.html",
+     "src": "Zacks",
+     "time": "2026-09-18 07:45"
+    },
+    {
+     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+     "dir": "pos",
+     "tag": null,
+     "sources": 1,
+     "title": "Moderna Climbs 6% as Cancer Vaccine Trade Extends a 137% Month; BioNTech and Novavax Edge Higher",
+     "url": "https://247wallst.com/investing/2026/09/17/moderna-climbs-6-as-cancer-vaccine-trade-extends-a-137-month-biontech-and-novavax-edge-higher/",
+     "src": "24/7 Wall St.",
+     "time": "2026-09-17 13:50"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
+     "title": "3 Volatile Stocks with Questionable Fundamentals",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/3-volatile-stocks-questionable-fundamentals-093425365.html",
+     "src": "StockStory",
+     "time": "2026-09-21 09:34"
+    }
+   ],
    "VTRS": [
     {
      "summary": "דיווח חיובי · התקבל אישור רגולטורי · מקור יחיד — לקחת בזהירות",
@@ -5306,48 +5380,6 @@
      "time": "2026-09-17 21:22"
     }
    ],
-   "NVAX": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Novavax (NVAX) Beats Stock Market Upswing: What Investors Need to Know",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/novavax-nvax-beats-stock-market-214504647.html",
-     "src": "Zacks",
-     "time": "2026-09-18 21:45"
-    },
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Novavax (NVAX) Soars 7.0%: Is Further Upside Left in the Stock?",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/novavax-nvax-soars-7-0-074500823.html",
-     "src": "Zacks",
-     "time": "2026-09-18 07:45"
-    },
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "Moderna Climbs 6% as Cancer Vaccine Trade Extends a 137% Month; BioNTech and Novavax Edge Higher",
-     "url": "https://247wallst.com/investing/2026/09/17/moderna-climbs-6-as-cancer-vaccine-trade-extends-a-137-month-biontech-and-novavax-edge-higher/",
-     "src": "24/7 Wall St.",
-     "time": "2026-09-17 13:50"
-    },
-    {
-     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": null,
-     "sources": 1,
-     "title": "3 Volatile Stocks with Questionable Fundamentals",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/3-volatile-stocks-questionable-fundamentals-093425365.html",
-     "src": "StockStory",
-     "time": "2026-09-21 09:34"
-    }
-   ],
    "NVTS": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -5419,10 +5451,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Adobe Is Down 32% This Year: Is ADBE Stock Dead Money or Due for a Bounce?",
-    "url": "https://247wallst.com/investing/2026/09/22/adobe-is-down-32-this-year-is-adbe-stock-dead-money-or-due-for-a-bounce/",
+    "title": "The Market Is Near Another All-Time High and You’re 66 With Cash to Invest. Buying Now Feels Like the Top. These 3 ETFs Are How You Get In Anyway",
+    "url": "https://247wallst.com/investing/etf/2026/09/22/the-market-is-near-another-all-time-high-and-youre-66-with-cash-to-invest-buying-now-feels-like-the-top-these-3-etfs-are-how-you-get-in-anyway/",
     "src": "24/7 Wall St.",
-    "time": "2026-09-22 18:59",
+    "time": "2026-09-22 22:25",
     "about": "שוק"
    },
    {
@@ -5430,10 +5462,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "ETF Zoo: 6 Pundits Walk Into a Bar",
-    "url": "http://www.etf.com/sections/podcasts/etf-zoo-6-pundits-walk-bar?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss",
-    "src": "etf.com",
-    "time": "2026-09-22 18:09",
+    "title": "VGT Holders Bought ‘Tech’ and Own No Google, Meta, or Amazon: The Sector Rule That Decides What’s Inside",
+    "url": "https://247wallst.com/investing/etf/2026/09/22/vgt-holders-bought-tech-and-own-no-google-meta-or-amazon-the-sector-rule-that-decides-whats-inside/",
+    "src": "24/7 Wall St.",
+    "time": "2026-09-22 22:15",
     "about": "שוק"
    },
    {
@@ -5481,6 +5513,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-09-23 01:01"
+  "updated": "2026-09-23 01:55"
  }
 }
