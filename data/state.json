@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 928.1215257863095,
-  "equity": 1198.78,
+  "cash": 510.38232578630937,
+  "equity": 1198.49,
   "realized_pnl": 214.8,
-  "open_pnl": -11.06,
+  "open_pnl": -11.35,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 19.88,
+  "return_pct": 19.85,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,6 +44,38 @@
    },
    "last": 10.41,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1790162805",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 1.92,
+   "qty_left": 1.92,
+   "entry": 4351.45,
+   "stop": 4356.0,
+   "orig_stop": 4356.0,
+   "t1": 4344.98,
+   "t2": 4338.37,
+   "opened": "2026-09-23T14:26:45.082924+03:00",
+   "opened_day": "2026-09-23",
+   "risk_open": 8.45,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 56,
+   "pattern": "פולבק לגל ↓",
+   "snap": {
+    "rsi": 45.2,
+    "rvol": null,
+    "score": 56,
+    "stop_pct": 0.1,
+    "regime_ok": true,
+    "notional": 8355.07
+   },
+   "last": 4351.6001,
+   "margin": 417.74
   }
  ],
  "closed": [
@@ -2446,10 +2478,10 @@
       "dir": "neu",
       "tag": null,
       "sources": 1,
-      "title": "3 Reasons NEO is Risky and 1 Stock to Buy Instead",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-neo-risky-1-162146287.html",
+      "title": "3 Healthcare Stocks We’re Skeptical Of",
+      "url": "https://finance.yahoo.com/healthcare/articles/3-healthcare-stocks-skeptical-103702242.html",
       "src": "StockStory",
-      "time": "2026-09-22 16:21"
+      "time": "2026-09-23 10:37"
      }
     ],
     "regime_ok": true
@@ -2461,24 +2493,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 4372.9,
-    "entry": 4372.9,
-    "stop": 4377.7,
-    "t1": 4365.68,
-    "t2": 4358.46,
+    "state": "SELL_NOW",
+    "pattern": "פולבק לגל ↓",
+    "price": 4351.6,
+    "entry": 4351.6,
+    "stop": 4356.0,
+    "t1": 4344.98,
+    "t2": 4338.37,
     "rr1": 1.5,
-    "atr": 3.21,
-    "rsi": 42.2,
-    "vwap": 4375.84,
-    "stop_pct": 0.11,
-    "ounces": 1.91,
-    "notional": 8352.24,
-    "margin": 417.61,
-    "risk_dollars": 9.17,
-    "shares": 1.91,
-    "score": 57,
+    "atr": 2.94,
+    "rsi": 45.2,
+    "vwap": 4361.65,
+    "stop_pct": 0.1,
+    "ounces": 1.92,
+    "notional": 8355.07,
+    "margin": 417.75,
+    "risk_dollars": 8.45,
+    "shares": 1.92,
+    "score": 56,
     "news": [],
     "regime_ok": true
    }
@@ -3101,7 +3133,7 @@
   ],
   [
    "2026-09-23",
-   1198.78
+   1198.49
   ]
  ],
  "cooldown": {},
@@ -3214,7 +3246,7 @@
    "name": "👹 בוס היום",
    "target": 96.87,
    "legend": 242.17,
-   "done": -12.06,
+   "done": -12.35,
    "base": 1210.84,
    "pct": 0,
    "pct_legend": 0,
@@ -3230,10 +3262,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": -18.32,
-  "daily_limit": -71.93,
-  "weekly_limit": -143.85
+  "daily_limit": -71.91,
+  "weekly_limit": -143.82
  },
  "log": [
+  {
+   "t": "2026-09-23 14:26",
+   "m": "OPEN GOLD SHORT XAUUSD x1.92 @ 4351.4500 stop 4356.0 T1 4344.98"
+  },
   {
    "t": "2026-09-23 01:01",
    "m": "OPEN SWING NVAX x26 @ 10.8354 stop 9.9052 T1 12.6796"
@@ -3549,10 +3585,6 @@
   {
    "t": "2026-08-21 17:17",
    "m": "OPEN GOLD XAUUSD x1.53 @ 4645.1500 stop 4632.5 T1 4663.68"
-  },
-  {
-   "t": "2026-08-21 16:06",
-   "m": "EXIT XAUUSD x1.52 @ 4638.0500 (stop) P/L $-12.92 / -1.02R"
   }
  ],
  "month_open_equity": {
@@ -3578,12 +3610,12 @@
   "all_pct": 21.48
  },
  "rejected": [],
- "updated_utc": "2026-09-23T06:11:38.606497+00:00",
- "updated_israel": "2026-09-23 09:11",
+ "updated_utc": "2026-09-23T11:26:45.082924+00:00",
+ "updated_israel": "2026-09-23 14:26",
  "market": {
   "open": false,
-  "et": "02:11",
-  "il": "09:11"
+  "et": "07:26",
+  "il": "14:26"
  },
  "stats": {
   "trades": 75,
@@ -4711,12 +4743,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 844,
+   "bars": 914,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4372.9,
+   "last_price": 4351.6,
    "signals": 1,
-   "today_trades": 0,
+   "today_trades": 1,
    "health": {
     "n": 20,
     "exp": 0.59,
@@ -4729,14 +4761,14 @@
     "trades": 0,
     "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 13.12,
+   "open": 2,
+   "heat": 21.57,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -4749,11 +4781,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 28,
    "covered": 5,
-   "updated": "2026-09-23 09:11"
+   "updated": "2026-09-23 14:26"
   }
  },
  "gold_today": {
-  "date": "2026-09-22",
+  "date": "2026-09-23",
   "count": 1
  },
  "health": {
@@ -5341,20 +5373,20 @@
      "dir": "neu",
      "tag": null,
      "sources": 1,
+     "title": "3 Healthcare Stocks We’re Skeptical Of",
+     "url": "https://finance.yahoo.com/healthcare/articles/3-healthcare-stocks-skeptical-103702242.html",
+     "src": "StockStory",
+     "time": "2026-09-23 10:37"
+    },
+    {
+     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+     "dir": "neu",
+     "tag": null,
+     "sources": 1,
      "title": "3 Reasons NEO is Risky and 1 Stock to Buy Instead",
      "url": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-neo-risky-1-162146287.html",
      "src": "StockStory",
      "time": "2026-09-22 16:21"
-    },
-    {
-     "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": "דוחות",
-     "sources": 1,
-     "title": "Is NeoGenomics’ (NEO) Community NGS Push Quietly Redefining Its Core Earnings Engine?",
-     "url": "https://finance.yahoo.com/healthcare/articles/neogenomics-neo-community-ngs-push-131315832.html",
-     "src": "Simply Wall St.",
-     "time": "2026-09-21 13:13"
     }
    ]
   },
@@ -5448,6 +5480,6 @@
     "about": "שוק"
    }
   ],
-  "updated": "2026-09-23 09:11"
+  "updated": "2026-09-23 14:26"
  }
 }
