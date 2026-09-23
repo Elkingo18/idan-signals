@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 946.6023257863102,
-  "equity": 1220.9,
+  "cash": 520.9099507863102,
+  "equity": 1220.6,
   "realized_pnl": 233.28,
-  "open_pnl": -7.42,
+  "open_pnl": -7.72,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 22.09,
+  "return_pct": 22.06,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,6 +44,38 @@
    },
    "last": 10.55,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1790207288",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 1.97,
+   "qty_left": 1.97,
+   "entry": 4321.75,
+   "stop": 4326.2,
+   "orig_stop": 4326.2,
+   "t1": 4315.5,
+   "t2": 4309.1,
+   "opened": "2026-09-24T02:48:08.499018+03:00",
+   "opened_day": "2026-09-24",
+   "risk_open": 8.47,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 57,
+   "pattern": "חציית ממוצעים ↓",
+   "snap": {
+    "rsi": 45.3,
+    "rvol": null,
+    "score": 57,
+    "stop_pct": 0.1,
+    "regime_ok": true,
+    "notional": 8514.14
+   },
+   "last": 4321.8999,
+   "margin": 425.69
   }
  ],
  "closed": [
@@ -2455,7 +2487,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "short",
+    "state": "SELL_NOW",
+    "pattern": "חציית ממוצעים ↓",
+    "price": 4321.9,
+    "entry": 4321.9,
+    "stop": 4326.2,
+    "t1": 4315.5,
+    "t2": 4309.1,
+    "rr1": 1.5,
+    "atr": 2.84,
+    "rsi": 45.3,
+    "vwap": 4335.17,
+    "stop_pct": 0.1,
+    "ounces": 1.97,
+    "notional": 8514.14,
+    "margin": 425.71,
+    "risk_dollars": 8.47,
+    "shares": 1.97,
+    "score": 57,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-09-23": {
@@ -3091,7 +3149,7 @@
   ],
   [
    "2026-09-24",
-   1220.9
+   1220.6
   ]
  ],
  "cooldown": {},
@@ -3204,7 +3262,7 @@
    "name": "👹 בוס היום",
    "target": 97.67,
    "legend": 244.18,
-   "done": 0.0,
+   "done": -0.3,
    "base": 1220.9,
    "pct": 0,
    "pct_legend": 0,
@@ -3220,10 +3278,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 0.16,
-  "daily_limit": -73.25,
-  "weekly_limit": -146.51
+  "daily_limit": -73.24,
+  "weekly_limit": -146.47
  },
  "log": [
+  {
+   "t": "2026-09-24 02:48",
+   "m": "OPEN GOLD SHORT XAUUSD x1.97 @ 4321.7500 stop 4326.2 T1 4315.5"
+  },
   {
    "t": "2026-09-23 18:34",
    "m": "EXIT XAUUSD x0.96 @ 4338.5200 (T2) P/L $+12.41 / +1.42R"
@@ -3539,10 +3601,6 @@
   {
    "t": "2026-08-24 07:03",
    "m": "OPEN GOLD XAUUSD x1.54 @ 4700.6500 stop 4686.0 T1 4722.2"
-  },
-  {
-   "t": "2026-08-21 23:56",
-   "m": "EXIT XAUUSD x0.77 @ 4668.3001 (stop) P/L $+17.83 / +0.92R"
   }
  ],
  "month_open_equity": {
@@ -3568,12 +3626,12 @@
   "all_pct": 23.33
  },
  "rejected": [],
- "updated_utc": "2026-09-23T23:36:39.488358+00:00",
- "updated_israel": "2026-09-24 02:36",
+ "updated_utc": "2026-09-23T23:48:08.499018+00:00",
+ "updated_israel": "2026-09-24 02:48",
  "market": {
   "open": false,
-  "et": "19:36",
-  "il": "02:36"
+  "et": "19:48",
+  "il": "02:48"
  },
  "stats": {
   "trades": 77,
@@ -4701,12 +4759,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1049,
+   "bars": 1051,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4324.4,
-   "signals": 0,
-   "today_trades": 0,
+   "last_price": 4321.9,
+   "signals": 1,
+   "today_trades": 1,
    "health": {
     "n": 20,
     "exp": 1.35,
@@ -4719,14 +4777,14 @@
     "trades": 0,
     "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 16.76,
+   "open": 2,
+   "heat": 25.23,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -4739,11 +4797,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 20,
    "covered": 3,
-   "updated": "2026-09-24 02:36"
+   "updated": "2026-09-24 02:48"
   }
  },
  "gold_today": {
-  "date": "2026-09-23",
+  "date": "2026-09-24",
   "count": 1
  },
  "health": {
@@ -5354,6 +5412,6 @@
     "about": "זהב"
    }
   ],
-  "updated": "2026-09-24 02:36"
+  "updated": "2026-09-24 02:48"
  }
 }
