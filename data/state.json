@@ -2488,24 +2488,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "long",
-    "state": "BUY_NOW",
-    "pattern": "פולבק לגל",
-    "price": 4308.2,
-    "entry": 4308.2,
-    "stop": 4304.0,
-    "t1": 4314.5,
-    "t2": 4320.8,
+    "state": "WATCH_BUY",
+    "pattern": "המשך מגמה",
+    "price": 4307.7,
+    "entry": 4307.7,
+    "stop": 4303.5,
+    "t1": 4313.97,
+    "t2": 4320.24,
     "rr1": 1.5,
-    "atr": 2.8,
-    "rsi": 55.4,
-    "vwap": 4302.58,
+    "atr": 2.79,
+    "rsi": 53.0,
+    "vwap": 4302.66,
     "stop_pct": 0.1,
     "ounces": 1.98,
-    "notional": 8530.24,
-    "margin": 426.51,
+    "notional": 8529.25,
+    "margin": 426.46,
     "risk_dollars": 8.32,
     "shares": 1.98,
-    "score": 62,
+    "score": 51,
     "news": [],
     "regime_ok": true
    }
@@ -3179,7 +3179,7 @@
   ]
  ],
  "cooldown": {
-  "XAUUSD": 3
+  "XAUUSD": 2
  },
  "game": {
   "xp": 3485,
@@ -3653,19 +3653,13 @@
   "all": 230.96,
   "all_pct": 23.1
  },
- "rejected": [
-  {
-   "ticker": "XAUUSD",
-   "kind": "gold",
-   "why": "cooldown_after_loss"
-  }
- ],
- "updated_utc": "2026-09-24T23:10:42.329832+00:00",
- "updated_israel": "2026-09-25 02:10",
+ "rejected": [],
+ "updated_utc": "2026-09-24T23:25:16.260217+00:00",
+ "updated_israel": "2026-09-25 02:25",
  "market": {
   "open": false,
-  "et": "19:10",
-  "il": "02:10"
+  "et": "19:25",
+  "il": "02:25"
  },
  "stats": {
   "trades": 80,
@@ -4535,7 +4529,9 @@
   {
    "t": "DE",
    "sec": "premium",
-   "state": "no_data"
+   "px": 694.94,
+   "trend": 9.1,
+   "state": "premium"
   },
   {
    "t": "LMT",
@@ -4791,18 +4787,18 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1116,
+   "bars": 1119,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4308.2,
+   "last_price": 4307.7,
    "signals": 1,
    "today_trades": 0,
    "health": {
     "n": 20,
-    "exp": 0.74,
-    "pf": 1.11,
-    "avg_r": 0.16,
-    "status": "ok"
+    "exp": -0.48,
+    "pf": 0.94,
+    "avg_r": 0.07,
+    "status": "warn"
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
@@ -4820,7 +4816,7 @@
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 1
+    "blocked": 0
    }
   },
   "news": {
@@ -4829,7 +4825,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 16,
    "covered": 2,
-   "updated": "2026-09-25 02:10"
+   "updated": "2026-09-25 02:25"
   }
  },
  "gold_today": {
@@ -5402,6 +5398,6 @@
     "about": "שוק"
    }
   ],
-  "updated": "2026-09-25 02:10"
+  "updated": "2026-09-25 02:25"
  }
 }
