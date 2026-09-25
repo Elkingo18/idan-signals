@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 516.4242017863112,
-  "equity": 1227.1,
+  "equity": 1217.99,
   "realized_pnl": 230.96,
-  "open_pnl": 1.09,
+  "open_pnl": -8.01,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 22.71,
+  "return_pct": 21.8,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -60,7 +60,7 @@
    "t2": 4351.66,
    "opened": "2026-09-25T20:05:32.484332+03:00",
    "opened_day": "2026-09-25",
-   "risk_open": 26.53,
+   "risk_open": 17.42,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -74,7 +74,7 @@
     "regime_ok": true,
     "notional": 8556.97
    },
-   "last": 4325.1001,
+   "last": 4320.5,
    "margin": 427.86
   }
  ],
@@ -2417,7 +2417,7 @@
     "shares": 23,
     "notional": 340.17,
     "risk_dollars": 23.75,
-    "risk_pct_actual": 1.94,
+    "risk_pct_actual": 1.95,
     "stretch_target": 17.75,
     "score": 77,
     "news": [
@@ -2476,7 +2476,7 @@
     "shares": 19,
     "notional": 237.88,
     "risk_dollars": 23.46,
-    "risk_pct_actual": 1.91,
+    "risk_pct_actual": 1.93,
     "stretch_target": 15.02,
     "score": 64,
     "news": [
@@ -2515,7 +2515,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "short",
+    "state": "SELL_NOW",
+    "pattern": "שבירת VWAP",
+    "price": 4320.5,
+    "entry": 4320.5,
+    "stop": 4324.4,
+    "t1": 4314.58,
+    "t2": 4308.67,
+    "rr1": 1.5,
+    "atr": 2.63,
+    "rsi": 39.7,
+    "vwap": 4320.63,
+    "stop_pct": 0.09,
+    "ounces": 1.97,
+    "notional": 8511.39,
+    "margin": 425.57,
+    "risk_dollars": 7.68,
+    "shares": 1.97,
+    "score": 61,
+    "news": [],
+    "regime_ok": true
+   }
+  ]
  },
  "calendar": {
   "2026-09-25": {
@@ -3182,6 +3208,10 @@
   [
    "2026-09-25",
    1227.1
+  ],
+  [
+   "2026-09-26",
+   1217.99
   ]
  ],
  "cooldown": {},
@@ -3290,14 +3320,14 @@
    }
   ],
   "boss": {
-   "day": "2026-09-25",
+   "day": "2026-09-26",
    "name": "👹 בוס היום",
-   "target": 97.59,
-   "legend": 243.98,
-   "done": 7.21,
-   "base": 1219.89,
-   "pct": 7,
-   "pct_legend": 3,
+   "target": 97.44,
+   "legend": 243.6,
+   "done": 0.0,
+   "base": 1217.99,
+   "pct": 0,
+   "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
@@ -3308,10 +3338,10 @@
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": -12.8,
+  "day_pnl": 0.0,
   "week_pnl": -2.16,
-  "daily_limit": -73.63,
-  "weekly_limit": -147.25
+  "daily_limit": -73.08,
+  "weekly_limit": -146.16
  },
  "log": [
   {
@@ -3647,9 +3677,9 @@
   "spy": 771.35
  },
  "periods": {
-  "day": -12.8,
-  "week": -16.93,
-  "month": 96.26,
+  "day": 0,
+  "week": -2.16,
+  "month": 50.56,
   "quarter": 230.96,
   "half": 230.96,
   "year": 230.96,
@@ -3657,13 +3687,19 @@
   "all": 230.96,
   "all_pct": 23.1
  },
- "rejected": [],
- "updated_utc": "2026-09-25T20:28:54.421853+00:00",
- "updated_israel": "2026-09-25 23:28",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-09-25T23:30:04.705185+00:00",
+ "updated_israel": "2026-09-26 02:30",
  "market": {
   "open": false,
-  "et": "16:28",
-  "il": "23:28"
+  "et": "19:30",
+  "il": "02:30"
  },
  "stats": {
   "trades": 80,
@@ -3679,8 +3715,8 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-09-25",
-  "equity": 1219.89
+  "date": "2026-09-26",
+  "equity": 1217.99
  },
  "universe_view": [
   {
@@ -3789,7 +3825,7 @@
    "px": 11.75,
    "trend": -1.6,
    "rsi": 44,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "df": 0,
    "state": "none"
   },
@@ -3809,7 +3845,7 @@
    "px": 6.09,
    "trend": -12.5,
    "rsi": 39,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -3849,7 +3885,7 @@
    "px": 4.49,
    "trend": 1.6,
    "rsi": 50,
-   "rvol": 0.8,
+   "rvol": 0.9,
    "df": 0,
    "state": "none"
   },
@@ -4089,7 +4125,7 @@
    "px": 17.8,
    "trend": -5.2,
    "rsi": 39,
-   "rvol": 0.4,
+   "rvol": 0.5,
    "df": 1,
    "state": "none"
   },
@@ -4791,12 +4827,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1301,
+   "bars": 1309,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4325.1,
-   "signals": 0,
-   "today_trades": 1,
+   "last_price": 4320.5,
+   "signals": 1,
+   "today_trades": 0,
    "health": {
     "n": 20,
     "exp": -0.48,
@@ -4806,8 +4842,8 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 1,
-    "pnl": -12.8
+    "trades": 0,
+    "pnl": 0
    },
    "open_now": 1
   },
@@ -4816,11 +4852,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 45.37,
+   "heat": 36.26,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -4829,7 +4865,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 19,
    "covered": 3,
-   "updated": "2026-09-25 23:29"
+   "updated": "2026-09-26 02:30"
   }
  },
  "gold_today": {
@@ -4941,7 +4977,7 @@
    "px": 1.04,
    "trend": -8.2,
    "rsi": 41,
-   "rvol": 0.3,
+   "rvol": 0.4,
    "near": false
   },
   {
@@ -4971,7 +5007,7 @@
    "px": 24.6,
    "trend": 20.1,
    "rsi": 62,
-   "rvol": 0.9,
+   "rvol": 1.0,
    "near": true
   },
   {
@@ -5031,7 +5067,7 @@
    "px": 2.32,
    "trend": -17.1,
    "rsi": 33,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "near": false
   },
   {
@@ -5091,7 +5127,7 @@
    "px": 20.39,
    "trend": -11.9,
    "rsi": 38,
-   "rvol": 0.7,
+   "rvol": 0.8,
    "near": false
   },
   {
@@ -5211,7 +5247,7 @@
    "px": 2.32,
    "trend": -17.1,
    "rsi": 33,
-   "rvol": 1.0,
+   "rvol": 1.1,
    "near": false
   },
   {
@@ -5346,6 +5382,17 @@
   },
   "market": [
    {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "S&P 500, Dow, Nasdaq End Week Higher On Chipmaker Strength, Easing Oil Amid Signs Of Easing US-Iran Conflict — META, COST, MSFT, CRWD, SKHY In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-dow-nasdaq-end-week-higher-on-chipmaker-strength-easing-oil-amid-signs-of-easing-us-iran-conflict-meta-cost-msft-crwd-skhy-in-focus/cZMOFkXRBOV",
+    "src": "Stocktwits",
+    "time": "2026-09-25 22:51",
+    "about": "שוק"
+   },
+   {
     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
     "dir": "neg",
     "tag": null,
@@ -5354,17 +5401,6 @@
     "url": "https://247wallst.com/investing/2026/09/25/metas-loudest-ai-bull-just-cut-his-own-stock-exposure-and-it-is-not-because-of-ai/",
     "src": "24/7 Wall St.",
     "time": "2026-09-25 19:16",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · אנליסט העלה המלצה — רוח גבית לטווח הקצר · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": "העלאת המלצה",
-    "sources": 1,
-    "title": "Humana Jumps 7% on Barclays Upgrade and $515 Target; UnitedHealth Nudges Higher",
-    "url": "https://247wallst.com/investing/2026/09/25/humana-jumps-7-on-barclays-upgrade-and-515-target-unitedhealth-nudges-higher/",
-    "src": "24/7 Wall St.",
-    "time": "2026-09-25 17:59",
     "about": "שוק"
    },
    {
@@ -5405,6 +5441,17 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
+    "title": "You’re 45, Make $150K, and Have Never Opened a Brokerage Account. These 3 ETFs Are the First Deposit",
+    "url": "https://247wallst.com/investing/etf/2026/09/25/youre-45-make-150k-and-have-never-opened-a-brokerage-account-these-3-etfs-are-the-first-deposit/",
+    "src": "24/7 Wall St.",
+    "time": "2026-09-25 21:45",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
     "title": "Apple Just Gained 10% in a Month. What Will It Take for AAPL Stock to Finally Hit $350?",
     "url": "https://247wallst.com/investing/2026/09/25/apple-just-gained-10-in-a-month-what-will-it-take-for-aapl-stock-to-finally-hit-350/",
     "src": "24/7 Wall St.",
@@ -5416,24 +5463,13 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Exchange-Traded Funds Rise US Equities Advance After Midday",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-rise-us-172055719.html",
-    "src": "MT Newswires",
-    "time": "2026-09-25 17:20",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "1911 Gold expands True North gold resource – ICYMI",
-    "url": "https://www.proactiveinvestors.com/companies/news/1099162/1911-gold-expands-true-north-gold-resource-icymi-1099162.html",
-    "src": "Proactive",
-    "time": "2026-09-25 18:40",
+    "title": "Gold price today, Friday, September 25, 2026: Gold prices hold as investors have a lot to consider",
+    "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-friday-september-25-2026-gold-prices-hold-as-investors-have-a-lot-to-consider-110139291.html",
+    "src": "Yahoo Personal Finance",
+    "time": "2026-09-25 11:01",
     "about": "זהב"
    }
   ],
-  "updated": "2026-09-25 23:29"
+  "updated": "2026-09-26 02:30"
  }
 }
