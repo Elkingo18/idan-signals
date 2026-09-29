@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 504.78565178631084,
-  "equity": 1199.96,
+  "equity": 1201.58,
   "realized_pnl": 210.57,
-  "open_pnl": -5.64,
+  "open_pnl": -4.03,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 20.0,
+  "return_pct": 20.16,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -60,7 +60,7 @@
    "t2": 4134.04,
    "opened": "2026-09-29T03:31:30.881891+03:00",
    "opened_day": "2026-09-29",
-   "risk_open": 10.5,
+   "risk_open": 12.12,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -74,7 +74,7 @@
     "regime_ok": true,
     "notional": 8382.39
    },
-   "last": 4149.7002,
+   "last": 4148.8999,
    "margin": 419.1
   }
  ],
@@ -2505,7 +2505,7 @@
     "shares": 19,
     "notional": 237.88,
     "risk_dollars": 23.47,
-    "risk_pct_actual": 1.96,
+    "risk_pct_actual": 1.95,
     "stretch_target": 15.02,
     "score": 64,
     "news": [
@@ -2550,23 +2550,23 @@
     "ticker": "XAUUSD",
     "side": "short",
     "state": "SELL_NOW",
-    "pattern": "חציית ממוצעים ↓",
-    "price": 4149.7,
-    "entry": 4149.7,
-    "stop": 4154.9,
-    "t1": 4141.87,
-    "t2": 4134.04,
+    "pattern": "פולבק לגל ↓",
+    "price": 4148.9,
+    "entry": 4148.9,
+    "stop": 4155.1,
+    "t1": 4139.53,
+    "t2": 4130.16,
     "rr1": 1.5,
-    "atr": 3.48,
-    "rsi": 36.1,
-    "vwap": 4178.1,
-    "stop_pct": 0.13,
+    "atr": 4.16,
+    "rsi": 39.3,
+    "vwap": 4177.89,
+    "stop_pct": 0.15,
     "ounces": 2.02,
-    "notional": 8382.39,
-    "margin": 419.12,
-    "risk_dollars": 10.5,
+    "notional": 8380.78,
+    "margin": 419.04,
+    "risk_dollars": 12.52,
     "shares": 2.02,
-    "score": 63,
+    "score": 62,
     "news": [],
     "regime_ok": true
    }
@@ -3261,7 +3261,7 @@
   ],
   [
    "2026-09-29",
-   1199.96
+   1201.58
   ]
  ],
  "cooldown": {},
@@ -3374,10 +3374,10 @@
    "name": "👹 בוס היום",
    "target": 96.02,
    "legend": 240.05,
-   "done": -0.31,
+   "done": 1.31,
    "base": 1200.27,
-   "pct": 0,
-   "pct_legend": 0,
+   "pct": 1,
+   "pct_legend": 1,
    "beaten": false,
    "legendary": false
   },
@@ -3390,8 +3390,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": -20.39,
-  "daily_limit": -72.0,
-  "weekly_limit": -144.0
+  "daily_limit": -72.09,
+  "weekly_limit": -144.19
  },
  "log": [
   {
@@ -3737,13 +3737,19 @@
   "all": 210.57,
   "all_pct": 21.06
  },
- "rejected": [],
- "updated_utc": "2026-09-29T00:31:30.881891+00:00",
- "updated_israel": "2026-09-29 03:31",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-09-29T00:56:54.726899+00:00",
+ "updated_israel": "2026-09-29 03:56",
  "market": {
   "open": false,
-  "et": "20:31",
-  "il": "03:31"
+  "et": "20:56",
+  "il": "03:56"
  },
  "stats": {
   "trades": 81,
@@ -4871,10 +4877,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1060,
+   "bars": 1065,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4149.7,
+   "last_price": 4148.9,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -4896,11 +4902,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 29.34,
+   "heat": 30.96,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -4909,7 +4915,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 18,
    "covered": 3,
-   "updated": "2026-09-29 03:31"
+   "updated": "2026-09-29 03:57"
   }
  },
  "gold_today": {
@@ -5493,17 +5499,17 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Agnico Eagle Mines (AEM) Suffers a Larger Drop Than the General Market: Key Insights",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/agnico-eagle-mines-aem-suffers-205004851.html",
-    "src": "Zacks",
-    "time": "2026-09-28 20:50",
+    "title": "Strategy buys $142.7M worth of bitcoin",
+    "url": "https://finance.yahoo.com/video/strategy-buys-142-7m-worth-160509834.html",
+    "src": "Yahoo Finance Video",
+    "time": "2026-09-28 16:05",
     "about": "זהב"
    }
   ],
-  "updated": "2026-09-29 03:31"
+  "updated": "2026-09-29 03:57"
  }
 }
