@@ -2716,7 +2716,33 @@
    }
   ],
   "day": [],
-  "gold": []
+  "gold": [
+   {
+    "kind": "gold",
+    "ticker": "XAUUSD",
+    "side": "short",
+    "state": "SELL_NOW",
+    "pattern": "חציית ממוצעים ↓",
+    "price": 4208.1,
+    "entry": 4208.1,
+    "stop": 4213.1,
+    "t1": 4200.57,
+    "t2": 4193.04,
+    "rr1": 1.5,
+    "atr": 3.35,
+    "rsi": 38.7,
+    "vwap": 4213.79,
+    "stop_pct": 0.12,
+    "ounces": 2.01,
+    "notional": 8458.28,
+    "margin": 422.91,
+    "risk_dollars": 10.05,
+    "shares": 2.01,
+    "score": 63,
+    "news": [],
+    "regime_ok": false
+   }
+  ]
  },
  "calendar": {
   "2026-10-01": {
@@ -3458,7 +3484,7 @@
   ]
  ],
  "cooldown": {
-  "XAUUSD": 3
+  "XAUUSD": 2
  },
  "game": {
   "xp": 3690,
@@ -3932,13 +3958,19 @@
   "all": 217.81,
   "all_pct": 21.78
  },
- "rejected": [],
- "updated_utc": "2026-10-01T07:10:16.715884+00:00",
- "updated_israel": "2026-10-01 10:10",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "cooldown_after_loss"
+  }
+ ],
+ "updated_utc": "2026-10-01T07:22:30.448209+00:00",
+ "updated_israel": "2026-10-01 10:22",
  "market": {
   "open": false,
-  "et": "03:10",
-  "il": "10:10"
+  "et": "03:22",
+  "il": "10:22"
  },
  "stats": {
   "trades": 85,
@@ -5066,17 +5098,17 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 935,
+   "bars": 937,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4212.5,
-   "signals": 0,
+   "last_price": 4208.1,
+   "signals": 1,
    "today_trades": 1,
    "health": {
     "n": 20,
-    "exp": -0.22,
-    "pf": 0.97,
-    "avg_r": 0.07,
+    "exp": -1.54,
+    "pf": 0.8,
+    "avg_r": -0.05,
     "status": "warn"
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
@@ -5095,7 +5127,7 @@
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -5104,7 +5136,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 18,
    "covered": 4,
-   "updated": "2026-10-01 10:10"
+   "updated": "2026-10-01 10:22"
   }
  },
  "gold_today": {
@@ -5363,7 +5395,11 @@
    "t": "DNLI",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": null
+   "px": 20.67,
+   "trend": -10.1,
+   "rsi": 41,
+   "rvol": 1.3,
+   "near": false
   },
   {
    "t": "KEEL",
@@ -5697,6 +5733,6 @@
     "about": "שוק"
    }
   ],
-  "updated": "2026-10-01 10:10"
+  "updated": "2026-10-01 10:22"
  }
 }
