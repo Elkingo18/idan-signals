@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 786.6966477776409,
-  "equity": 1219.6,
+  "equity": 1215.34,
   "realized_pnl": 214.72,
-  "open_pnl": 9.85,
+  "open_pnl": 5.58,
   "peak_equity": 1279.92,
   "max_dd_pct": -8.47,
-  "return_pct": 21.96,
+  "return_pct": 21.53,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -28,7 +28,7 @@
    "t2": 4142.79,
    "opened": "2026-10-05T17:27:13.411326+03:00",
    "opened_day": "2026-10-05",
-   "risk_open": 27.4,
+   "risk_open": 23.14,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -42,7 +42,7 @@
     "regime_ok": true,
     "notional": 8461.45
    },
-   "last": 4163.2002,
+   "last": 4165.2998,
    "margin": 423.06
   }
  ],
@@ -2646,7 +2646,7 @@
     "shares": 31,
     "notional": 285.82,
     "risk_dollars": 24.25,
-    "risk_pct_actual": 1.99,
+    "risk_pct_actual": 2.0,
     "stretch_target": 11.06,
     "score": 78,
     "news": [],
@@ -2658,25 +2658,25 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "short",
-    "state": "SELL_NOW",
-    "pattern": "חציית ממוצעים ↓",
-    "price": 4163.2,
-    "entry": 4163.2,
-    "stop": 4169.3,
-    "t1": 4154.11,
-    "t2": 4145.03,
+    "side": "long",
+    "state": "WATCH_BUY",
+    "pattern": "המשך מגמה",
+    "price": 4165.3,
+    "entry": 4165.3,
+    "stop": 4158.8,
+    "t1": 4175.12,
+    "t2": 4184.94,
     "rr1": 1.5,
-    "atr": 4.04,
-    "rsi": 41.5,
-    "vwap": 4174.19,
-    "stop_pct": 0.15,
-    "ounces": 2.05,
-    "notional": 8534.56,
-    "margin": 426.73,
-    "risk_dollars": 12.5,
-    "shares": 2.05,
-    "score": 63,
+    "atr": 4.36,
+    "rsi": 67.1,
+    "vwap": 4153.53,
+    "stop_pct": 0.16,
+    "ounces": 2.04,
+    "notional": 8497.21,
+    "margin": 424.86,
+    "risk_dollars": 13.26,
+    "shares": 2.04,
+    "score": 57,
     "news": [],
     "regime_ok": true
    }
@@ -3460,7 +3460,7 @@
   ],
   [
    "2026-10-06",
-   1219.6
+   1215.34
   ]
  ],
  "cooldown": {},
@@ -3573,10 +3573,10 @@
    "name": "👹 בוס היום",
    "target": 97.32,
    "legend": 243.31,
-   "done": 3.04,
+   "done": -1.22,
    "base": 1216.56,
-   "pct": 3,
-   "pct_legend": 1,
+   "pct": 0,
+   "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
@@ -3589,8 +3589,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 0,
-  "daily_limit": -73.18,
-  "weekly_limit": -146.35
+  "daily_limit": -72.92,
+  "weekly_limit": -145.84
  },
  "log": [
   {
@@ -3936,19 +3936,13 @@
   "all": 214.72,
   "all_pct": 21.47
  },
- "rejected": [
-  {
-   "ticker": "XAUUSD",
-   "kind": "gold",
-   "why": "already_open"
-  }
- ],
- "updated_utc": "2026-10-06T01:47:45.577336+00:00",
- "updated_israel": "2026-10-06 04:47",
+ "rejected": [],
+ "updated_utc": "2026-10-06T07:31:46.311948+00:00",
+ "updated_israel": "2026-10-06 10:31",
  "market": {
   "open": false,
-  "et": "21:47",
-  "il": "04:47"
+  "et": "03:31",
+  "il": "10:31"
  },
  "stats": {
   "trades": 89,
@@ -4958,9 +4952,7 @@
   {
    "t": "MU",
    "sec": "premium",
-   "px": 1063.96,
-   "trend": 11.0,
-   "state": "premium"
+   "state": "no_data"
   },
   {
    "t": "TSLA",
@@ -5076,10 +5068,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1075,
+   "bars": 868,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4163.2,
+   "last_price": 4165.3,
    "signals": 1,
    "today_trades": 0,
    "health": {
@@ -5101,11 +5093,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 1,
-   "heat": 27.4,
+   "heat": 23.14,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 1
+    "blocked": 0
    }
   },
   "news": {
@@ -5114,7 +5106,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 0,
    "covered": 0,
-   "updated": "2026-10-06 04:47"
+   "updated": "2026-10-06 10:31"
   }
  },
  "gold_today": {
@@ -5509,6 +5501,6 @@
  "news": {
   "tickers": {},
   "market": [],
-  "updated": "2026-10-06 04:47"
+  "updated": "2026-10-06 10:31"
  }
 }
