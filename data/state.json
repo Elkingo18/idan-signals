@@ -2965,10 +2965,10 @@
     "pivot_high": 18.43,
     "rvol": 1.45,
     "above_ma50_pct": 9.31,
-    "shares": 22,
-    "notional": 410.3,
-    "risk_dollars": 17.38,
-    "risk_pct_actual": 1.42,
+    "shares": 19,
+    "notional": 354.35,
+    "risk_dollars": 15.01,
+    "risk_pct_actual": 1.23,
     "stretch_target": 22.38,
     "score": 78,
     "news": [],
@@ -2981,24 +2981,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "short",
-    "state": "SELL_NOW",
-    "pattern": "חציית ממוצעים ↓",
-    "price": 4138.4,
-    "entry": 4138.4,
-    "stop": 4141.7,
-    "t1": 4133.42,
-    "t2": 4128.44,
+    "state": "WATCH_SELL",
+    "pattern": "המשך מגמה ↓",
+    "price": 4134.1,
+    "entry": 4134.1,
+    "stop": 4137.5,
+    "t1": 4129.07,
+    "t2": 4124.03,
     "rr1": 1.5,
-    "atr": 2.21,
-    "rsi": 37.9,
-    "vwap": 4146.82,
+    "atr": 2.24,
+    "rsi": 32.3,
+    "vwap": 4146.68,
     "stop_pct": 0.08,
-    "ounces": 2.06,
-    "notional": 8525.1,
-    "margin": 426.26,
-    "risk_dollars": 6.8,
-    "shares": 2.06,
-    "score": 63,
+    "ounces": 1.68,
+    "notional": 6945.29,
+    "margin": 347.26,
+    "risk_dollars": 5.71,
+    "shares": 1.68,
+    "score": 57,
     "news": [],
     "regime_ok": true
    }
@@ -4402,13 +4402,19 @@
   "all": 228.76,
   "all_pct": 22.88
  },
- "rejected": [],
- "updated_utc": "2026-10-20T23:09:14.506589+00:00",
- "updated_israel": "2026-10-21 02:09",
+ "rejected": [
+  {
+   "ticker": "VTRS",
+   "kind": "swing",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-10-20T23:47:41.803255+00:00",
+ "updated_israel": "2026-10-21 02:47",
  "market": {
   "open": false,
-  "et": "19:09",
-  "il": "02:09"
+  "et": "19:47",
+  "il": "02:47"
  },
  "stats": {
   "trades": 99,
@@ -5536,10 +5542,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1040,
+   "bars": 1048,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4138.4,
+   "last_price": 4134.1,
    "signals": 1,
    "today_trades": 0,
    "health": {
@@ -5565,7 +5571,7 @@
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -5574,7 +5580,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 0,
    "covered": 0,
-   "updated": "2026-10-21 02:09"
+   "updated": "2026-10-21 02:47"
   }
  },
  "gold_today": {
@@ -5969,6 +5975,6 @@
  "news": {
   "tickers": {},
   "market": [],
-  "updated": "2026-10-21 02:09"
+  "updated": "2026-10-21 02:47"
  }
 }
