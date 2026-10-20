@@ -71,7 +71,7 @@
    "r": -1.03,
    "reason": "stop",
    "opened": "2026-10-20T08:59:11.228872+03:00",
-   "closed": "2026-10-20T18:48:56.819109+03:00",
+   "closed": "2026-10-20T18:49:35.743523+03:00",
    "day": "2026-10-20",
    "held_days": 0,
    "followed_rules": true
@@ -2913,7 +2913,36 @@
   }
  ],
  "signals": {
-  "swing": [],
+  "swing": [
+   {
+    "kind": "swing",
+    "ticker": "VTRS",
+    "side": "long",
+    "state": "WATCH_BUY",
+    "price": 18.425,
+    "entry": 18.43,
+    "stop": 17.6509,
+    "t1": 19.9882,
+    "t2": 21.1569,
+    "rr1": 2.0,
+    "stop_pct": 4.23,
+    "rsi": 63.1,
+    "atr": 0.487,
+    "room": 19.97,
+    "pivot_low": 16.89,
+    "pivot_high": 18.43,
+    "rvol": 0.3,
+    "above_ma50_pct": 8.02,
+    "shares": 23,
+    "notional": 423.89,
+    "risk_dollars": 17.92,
+    "risk_pct_actual": 1.47,
+    "stretch_target": 22.12,
+    "score": 78,
+    "news": [],
+    "regime_ok": true
+   }
+  ],
   "day": [],
   "gold": []
  },
@@ -4300,7 +4329,7 @@
  },
  "regime": {
   "spy_above_ma50": true,
-  "spy": 769.37
+  "spy": 769.4
  },
  "periods": {
   "day": -10.06,
@@ -4314,12 +4343,12 @@
   "all_pct": 22.88
  },
  "rejected": [],
- "updated_utc": "2026-10-20T15:48:56.819109+00:00",
- "updated_israel": "2026-10-20 18:48",
+ "updated_utc": "2026-10-20T15:49:35.743523+00:00",
+ "updated_israel": "2026-10-20 18:49",
  "market": {
   "open": true,
-  "et": "11:48",
-  "il": "18:48"
+  "et": "11:49",
+  "il": "18:49"
  },
  "stats": {
   "trades": 99,
@@ -4343,7 +4372,7 @@
    "t": "SNAP",
    "sec": "tech",
    "px": 6.43,
-   "trend": 14.1,
+   "trend": 14.2,
    "rsi": 61,
    "rvol": 0.4,
    "df": 1,
@@ -4352,7 +4381,7 @@
   {
    "t": "NOK",
    "sec": "tech",
-   "px": 9.08,
+   "px": 9.07,
    "trend": -11.2,
    "rsi": 37,
    "rvol": 0.5,
@@ -4382,9 +4411,9 @@
   {
    "t": "GRAB",
    "sec": "tech",
-   "px": 2.89,
-   "trend": -10.6,
-   "rsi": 39,
+   "px": 2.88,
+   "trend": -10.9,
+   "rsi": 38,
    "rvol": 0.3,
    "df": 0,
    "state": "none"
@@ -4393,7 +4422,7 @@
    "t": "LUMN",
    "sec": "tech",
    "px": 4.45,
-   "trend": -25.7,
+   "trend": -25.8,
    "rsi": 28,
    "rvol": 0.3,
    "df": 0,
@@ -4422,12 +4451,12 @@
   {
    "t": "VTRS",
    "sec": "health",
-   "px": 18.43,
-   "trend": 8.1,
+   "px": 18.42,
+   "trend": 8.0,
    "rsi": 63,
    "rvol": 0.3,
    "df": 0,
-   "state": "none"
+   "state": "watch"
   },
   {
    "t": "OGN",
@@ -4442,8 +4471,8 @@
   {
    "t": "NTLA",
    "sec": "health",
-   "px": 11.81,
-   "trend": -3.6,
+   "px": 11.82,
+   "trend": -3.5,
    "rsi": 47,
    "rvol": 0.2,
    "df": 0,
@@ -4502,9 +4531,9 @@
   {
    "t": "CLOV",
    "sec": "health",
-   "px": 4.68,
-   "trend": 5.1,
-   "rsi": 54,
+   "px": 4.69,
+   "trend": 5.2,
+   "rsi": 55,
    "rvol": 0.2,
    "df": 0,
    "state": "none"
@@ -4532,7 +4561,7 @@
   {
    "t": "NU",
    "sec": "fintech",
-   "px": 15.28,
+   "px": 15.29,
    "trend": 5.4,
    "rsi": 56,
    "rvol": 0.4,
@@ -4542,8 +4571,8 @@
   {
    "t": "SAN",
    "sec": "fintech",
-   "px": 13.13,
-   "trend": -7.9,
+   "px": 13.14,
+   "trend": -7.8,
    "rsi": 36,
    "rvol": 0.5,
    "df": 0,
@@ -4552,7 +4581,7 @@
   {
    "t": "ITUB",
    "sec": "fintech",
-   "px": 9.75,
+   "px": 9.76,
    "trend": 16.5,
    "rsi": 63,
    "rvol": 0.4,
@@ -4572,8 +4601,8 @@
   {
    "t": "HBAN",
    "sec": "fintech",
-   "px": 15.53,
-   "trend": -4.5,
+   "px": 15.55,
+   "trend": -4.4,
    "rsi": 48,
    "rvol": 0.3,
    "df": 1,
@@ -4593,7 +4622,7 @@
    "t": "RIG",
    "sec": "energy",
    "px": 5.8,
-   "trend": 2.7,
+   "trend": 2.8,
    "rsi": 58,
    "rvol": 0.4,
    "df": 0,
@@ -4602,8 +4631,8 @@
   {
    "t": "PTEN",
    "sec": "energy",
-   "px": 11.56,
-   "trend": -2.0,
+   "px": 11.57,
+   "trend": -1.8,
    "rsi": 51,
    "rvol": 0.4,
    "df": 0,
@@ -4613,7 +4642,7 @@
    "t": "KOS",
    "sec": "energy",
    "px": 2.7,
-   "trend": -1.4,
+   "trend": -1.5,
    "rsi": 50,
    "rvol": 0.3,
    "df": 0,
@@ -4622,8 +4651,8 @@
   {
    "t": "TALO",
    "sec": "energy",
-   "px": 17.79,
-   "trend": 5.1,
+   "px": 17.81,
+   "trend": 5.2,
    "rsi": 59,
    "rvol": 0.4,
    "df": 0,
@@ -4633,7 +4662,7 @@
    "t": "RUN",
    "sec": "cleanenergy",
    "px": 7.43,
-   "trend": -12.5,
+   "trend": -12.4,
    "rsi": 43,
    "rvol": 0.6,
    "df": 1,
@@ -4662,9 +4691,9 @@
   {
    "t": "PLUG",
    "sec": "cleanenergy",
-   "px": 1.4,
-   "trend": -29.9,
-   "rsi": 24,
+   "px": 1.39,
+   "trend": -30.1,
+   "rsi": 23,
    "rvol": 0.5,
    "df": 1,
    "state": "none"
@@ -4692,8 +4721,8 @@
   {
    "t": "AAL",
    "sec": "travel",
-   "px": 12.25,
-   "trend": -7.7,
+   "px": 12.27,
+   "trend": -7.6,
    "rsi": 42,
    "rvol": 0.6,
    "df": 1,
@@ -4702,8 +4731,8 @@
   {
    "t": "LYFT",
    "sec": "travel",
-   "px": 17.3,
-   "trend": 6.2,
+   "px": 17.31,
+   "trend": 6.3,
    "rsi": 67,
    "rvol": 0.3,
    "df": 1,
@@ -4712,9 +4741,9 @@
   {
    "t": "JBLU",
    "sec": "travel",
-   "px": 3.01,
-   "trend": -31.6,
-   "rsi": 23,
+   "px": 3.02,
+   "trend": -31.5,
+   "rsi": 24,
    "rvol": 0.6,
    "df": 0,
    "state": "none"
@@ -4722,8 +4751,8 @@
   {
    "t": "ULCC",
    "sec": "travel",
-   "px": 4.91,
-   "trend": -16.2,
+   "px": 4.93,
+   "trend": -15.8,
    "rsi": 36,
    "rvol": 0.5,
    "df": 0,
@@ -4732,8 +4761,8 @@
   {
    "t": "F",
    "sec": "consumer",
-   "px": 12.08,
-   "trend": -8.8,
+   "px": 12.09,
+   "trend": -8.7,
    "rsi": 39,
    "rvol": 0.4,
    "df": 1,
@@ -4742,8 +4771,8 @@
   {
    "t": "KVUE",
    "sec": "consumer",
-   "px": 19.15,
-   "trend": 4.4,
+   "px": 19.16,
+   "trend": 4.5,
    "rsi": 70,
    "rvol": 0.2,
    "df": 1,
@@ -4762,9 +4791,9 @@
   {
    "t": "AEO",
    "sec": "consumer",
-   "px": 17.78,
-   "trend": 5.9,
-   "rsi": 55,
+   "px": 17.8,
+   "trend": 6.1,
+   "rsi": 56,
    "rvol": 0.2,
    "df": 0,
    "state": "none"
@@ -4772,7 +4801,7 @@
   {
    "t": "CAG",
    "sec": "consumer",
-   "px": 14.36,
+   "px": 14.37,
    "trend": -3.4,
    "rsi": 53,
    "rvol": 0.2,
@@ -4783,7 +4812,7 @@
    "t": "WEN",
    "sec": "consumer",
    "px": 6.64,
-   "trend": -10.0,
+   "trend": -9.9,
    "rsi": 48,
    "rvol": 0.3,
    "df": 0,
@@ -4843,7 +4872,7 @@
    "t": "YSS",
    "sec": "space",
    "px": 5.89,
-   "trend": -31.8,
+   "trend": -31.7,
    "rsi": 29,
    "rvol": 0.3,
    "df": 0,
@@ -4853,7 +4882,7 @@
    "t": "SPCE",
    "sec": "space",
    "px": 2.37,
-   "trend": -20.8,
+   "trend": -20.6,
    "rsi": 27,
    "rvol": 0.4,
    "df": 0,
@@ -4893,7 +4922,7 @@
    "t": "BBAI",
    "sec": "ai",
    "px": 2.18,
-   "trend": -22.5,
+   "trend": -22.4,
    "rsi": 33,
    "rvol": 0.4,
    "df": 1,
@@ -4902,8 +4931,8 @@
   {
    "t": "RXRX",
    "sec": "ai",
-   "px": 3.6,
-   "trend": -1.1,
+   "px": 3.61,
+   "trend": -0.9,
    "rsi": 46,
    "rvol": 0.3,
    "df": 0,
@@ -4912,8 +4941,8 @@
   {
    "t": "AI",
    "sec": "ai",
-   "px": 11.61,
-   "trend": 8.3,
+   "px": 11.63,
+   "trend": 8.4,
    "rsi": 57,
    "rvol": 0.2,
    "df": 0,
@@ -4992,7 +5021,7 @@
   {
    "t": "XPEV",
    "sec": "ev",
-   "px": 9.87,
+   "px": 9.88,
    "trend": -6.7,
    "rsi": 49,
    "rvol": 1.2,
@@ -5013,7 +5042,7 @@
    "t": "LI",
    "sec": "ev",
    "px": 11.91,
-   "trend": 0.5,
+   "trend": 0.6,
    "rsi": 56,
    "rvol": 0.8,
    "df": 0,
@@ -5042,217 +5071,217 @@
   {
    "t": "NVDA",
    "sec": "premium",
-   "px": 217.04,
+   "px": 217.05,
    "trend": -2.6,
    "state": "premium"
   },
   {
    "t": "MSFT",
    "sec": "premium",
-   "px": 531.74,
+   "px": 531.56,
    "trend": 4.9,
    "state": "premium"
   },
   {
    "t": "ORCL",
    "sec": "premium",
-   "px": 132.54,
+   "px": 132.55,
    "trend": -8.2,
    "state": "premium"
   },
   {
    "t": "PLTR",
    "sec": "premium",
-   "px": 194.85,
+   "px": 194.86,
    "trend": 6.2,
    "state": "premium"
   },
   {
    "t": "CRWD",
    "sec": "premium",
-   "px": 225.57,
+   "px": 225.53,
    "trend": -3.4,
    "state": "premium"
   },
   {
    "t": "LLY",
    "sec": "premium",
-   "px": 1301.62,
-   "trend": 10.0,
+   "px": 1299.85,
+   "trend": 9.9,
    "state": "premium"
   },
   {
    "t": "JNJ",
    "sec": "premium",
-   "px": 259.69,
-   "trend": -2.0,
+   "px": 259.52,
+   "trend": -2.1,
    "state": "premium"
   },
   {
    "t": "UNH",
    "sec": "premium",
-   "px": 420.28,
+   "px": 420.41,
    "trend": 8.5,
    "state": "premium"
   },
   {
    "t": "MRK",
    "sec": "premium",
-   "px": 148.34,
-   "trend": 1.8,
+   "px": 148.31,
+   "trend": 1.7,
    "state": "premium"
   },
   {
    "t": "ABBV",
    "sec": "premium",
-   "px": 289.26,
-   "trend": 9.6,
+   "px": 289.17,
+   "trend": 9.5,
    "state": "premium"
   },
   {
    "t": "V",
    "sec": "premium",
-   "px": 408.27,
+   "px": 408.33,
    "trend": 9.1,
    "state": "premium"
   },
   {
    "t": "MA",
    "sec": "premium",
-   "px": 623.91,
+   "px": 623.93,
    "trend": 8.0,
    "state": "premium"
   },
   {
    "t": "JPM",
    "sec": "premium",
-   "px": 336.36,
+   "px": 336.52,
    "trend": -3.1,
    "state": "premium"
   },
   {
    "t": "BAC",
    "sec": "premium",
-   "px": 50.99,
-   "trend": -12.9,
+   "px": 51.02,
+   "trend": -12.8,
    "state": "premium"
   },
   {
    "t": "GS",
    "sec": "premium",
-   "px": 885.86,
+   "px": 886.26,
    "trend": -8.5,
    "state": "premium"
   },
   {
    "t": "XOM",
    "sec": "premium",
-   "px": 175.82,
-   "trend": 6.9,
+   "px": 175.78,
+   "trend": 6.8,
    "state": "premium"
   },
   {
    "t": "CVX",
    "sec": "premium",
-   "px": 222.95,
+   "px": 222.94,
    "trend": 7.0,
    "state": "premium"
   },
   {
    "t": "COP",
    "sec": "premium",
-   "px": 144.39,
+   "px": 144.38,
    "trend": 8.8,
    "state": "premium"
   },
   {
    "t": "SLB",
    "sec": "premium",
-   "px": 49.67,
+   "px": 49.69,
    "trend": -5.5,
    "state": "premium"
   },
   {
    "t": "CCJ",
    "sec": "premium",
-   "px": 80.8,
+   "px": 80.86,
    "trend": -13.4,
    "state": "premium"
   },
   {
    "t": "CAT",
    "sec": "premium",
-   "px": 723.47,
-   "trend": -10.5,
+   "px": 723.91,
+   "trend": -10.4,
    "state": "premium"
   },
   {
    "t": "DE",
    "sec": "premium",
-   "px": 634.41,
-   "trend": -3.5,
+   "px": 635.04,
+   "trend": -3.4,
    "state": "premium"
   },
   {
    "t": "LMT",
    "sec": "premium",
-   "px": 546.49,
+   "px": 546.89,
    "trend": 1.0,
    "state": "premium"
   },
   {
    "t": "BA",
    "sec": "premium",
-   "px": 189.75,
+   "px": 189.79,
    "trend": -6.8,
    "state": "premium"
   },
   {
    "t": "RTX",
    "sec": "premium",
-   "px": 190.54,
-   "trend": -4.2,
+   "px": 190.63,
+   "trend": -4.1,
    "state": "premium"
   },
   {
    "t": "MCD",
    "sec": "premium",
-   "px": 246.7,
+   "px": 246.69,
    "trend": -1.8,
    "state": "premium"
   },
   {
    "t": "TGT",
    "sec": "premium",
-   "px": 155.02,
+   "px": 155.06,
    "trend": -1.6,
    "state": "premium"
   },
   {
    "t": "SBUX",
    "sec": "premium",
-   "px": 99.87,
-   "trend": -0.1,
+   "px": 99.91,
+   "trend": -0.0,
    "state": "premium"
   },
   {
    "t": "KO",
    "sec": "premium",
-   "px": 92.99,
-   "trend": 4.8,
+   "px": 93.01,
+   "trend": 4.9,
    "state": "premium"
   },
   {
    "t": "NKE",
    "sec": "premium",
-   "px": 37.79,
-   "trend": 1.1,
+   "px": 37.81,
+   "trend": 1.2,
    "state": "premium"
   },
   {
    "t": "RKLB",
    "sec": "premium",
-   "px": 51.43,
+   "px": 51.44,
    "trend": -24.4,
    "state": "premium"
   },
@@ -5273,15 +5302,15 @@
   {
    "t": "IRDM",
    "sec": "premium",
-   "px": 44.02,
+   "px": 44.04,
    "trend": -7.5,
    "state": "premium"
   },
   {
    "t": "KTOS",
    "sec": "premium",
-   "px": 39.21,
-   "trend": -19.4,
+   "px": 39.26,
+   "trend": -19.3,
    "state": "premium"
   },
   {
@@ -5294,50 +5323,50 @@
   {
    "t": "NBIS",
    "sec": "premium",
-   "px": 169.37,
+   "px": 169.29,
    "trend": -23.8,
    "state": "premium"
   },
   {
    "t": "SNOW",
    "sec": "premium",
-   "px": 320.47,
+   "px": 320.65,
    "trend": -3.6,
    "state": "premium"
   },
   {
    "t": "TSM",
    "sec": "premium",
-   "px": 427.19,
+   "px": 427.35,
    "trend": -1.7,
    "state": "premium"
   },
   {
    "t": "AVGO",
    "sec": "premium",
-   "px": 335.59,
+   "px": 335.54,
    "trend": -7.3,
    "state": "premium"
   },
   {
    "t": "AMD",
    "sec": "premium",
-   "px": 541.03,
+   "px": 541.14,
    "trend": 0.3,
    "state": "premium"
   },
   {
    "t": "MU",
    "sec": "premium",
-   "px": 910.85,
+   "px": 910.53,
    "trend": -7.5,
    "state": "premium"
   },
   {
    "t": "TSLA",
    "sec": "premium",
-   "px": 374.08,
-   "trend": 3.6,
+   "px": 373.88,
+   "trend": 3.5,
    "state": "premium"
   },
   {
@@ -5385,29 +5414,29 @@
   {
    "t": "XYL",
    "sec": "premium",
-   "px": 104.15,
+   "px": 104.13,
    "trend": -3.6,
    "state": "premium"
   },
   {
    "t": "VLTO",
    "sec": "premium",
-   "px": 101.97,
-   "trend": 5.0,
+   "px": 101.9,
+   "trend": 4.9,
    "state": "premium"
   },
   {
    "t": "ECL",
    "sec": "premium",
-   "px": 285.48,
-   "trend": 2.0,
+   "px": 285.52,
+   "trend": 2.1,
    "state": "premium"
   },
   {
    "t": "WTRG",
    "sec": "premium",
-   "px": 41.07,
-   "trend": 1.7,
+   "px": 41.09,
+   "trend": 1.8,
    "state": "premium"
   }
  ],
@@ -5417,7 +5446,7 @@
    "name": "סוכן הסווינג",
    "domain": "70 מניות ≤$20 · גרף יומי",
    "with_data": 70,
-   "signals": 0,
+   "signals": 1,
    "health": {
     "n": 6,
     "status": "na"
@@ -5450,7 +5479,7 @@
    "bars": 964,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4151.6,
+   "last_price": 4151.5,
    "signals": 0,
    "today_trades": 1,
    "health": {
@@ -5525,7 +5554,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 2.55,
-   "trend": -17.4,
+   "trend": -17.3,
    "rsi": 33,
    "rvol": 0.2,
    "near": false
@@ -5540,9 +5569,9 @@
    "t": "MBLY",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 7.25,
-   "trend": -9.8,
-   "rsi": 43,
+   "px": 7.26,
+   "trend": -9.7,
+   "rsi": 44,
    "rvol": 0.2,
    "near": false
   },
@@ -5560,8 +5589,8 @@
    "t": "AMC",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 3.04,
-   "trend": 11.3,
+   "px": 3.05,
+   "trend": 11.5,
    "rsi": 57,
    "rvol": 0.3,
    "near": false
@@ -5570,9 +5599,9 @@
    "t": "CLF",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 13.44,
-   "trend": 11.3,
-   "rsi": 59,
+   "px": 13.47,
+   "trend": 11.6,
+   "rsi": 60,
    "rvol": 0.9,
    "near": false
   },
@@ -5591,8 +5620,8 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 1.02,
-   "trend": -7.7,
-   "rsi": 40,
+   "trend": -7.3,
+   "rsi": 41,
    "rvol": 0.2,
    "near": false
   },
@@ -5641,7 +5670,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 0.59,
-   "trend": -46.6,
+   "trend": -46.5,
    "rsi": 19,
    "rvol": 0.7,
    "near": false
@@ -5650,8 +5679,8 @@
    "t": "JOBY",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 4.69,
-   "trend": -27.0,
+   "px": 4.68,
+   "trend": -27.1,
    "rsi": 24,
    "rvol": 0.3,
    "near": false
@@ -5660,8 +5689,8 @@
    "t": "LYFT",
    "list": "מעניינות",
    "grp": "06/26",
-   "px": 17.3,
-   "trend": 6.2,
+   "px": 17.31,
+   "trend": 6.3,
    "rsi": 67,
    "rvol": 0.3,
    "near": true
@@ -5710,9 +5739,9 @@
    "t": "NB",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 3.05,
-   "trend": -21.5,
-   "rsi": 31,
+   "px": 3.06,
+   "trend": -21.3,
+   "rsi": 32,
    "rvol": 0.4,
    "near": false
   },
@@ -5730,8 +5759,8 @@
    "t": "MRNA",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 234.0,
-   "trend": 44.6,
+   "px": 234.24,
+   "trend": 44.8,
    "rsi": 66,
    "rvol": 0.4,
    "near": false
@@ -5751,7 +5780,7 @@
    "list": "לפני פריצה",
    "grp": "06/26",
    "px": 2.39,
-   "trend": -28.8,
+   "trend": -28.7,
    "rsi": 28,
    "rvol": 0.3,
    "near": false
@@ -5810,8 +5839,8 @@
    "t": "TRIP",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 9.61,
-   "trend": 3.6,
+   "px": 9.62,
+   "trend": 3.7,
    "rsi": 61,
    "rvol": 0.3,
    "near": true
@@ -5820,7 +5849,7 @@
    "t": "UPST",
    "list": "לפני פריצה",
    "grp": "06/26",
-   "px": 24.08,
+   "px": 24.09,
    "trend": -8.5,
    "rsi": 47,
    "rvol": 0.3,
@@ -5840,8 +5869,8 @@
    "t": "AMC",
    "list": "לפני פריצה",
    "grp": "07/26",
-   "px": 3.04,
-   "trend": 11.3,
+   "px": 3.05,
+   "trend": 11.5,
    "rsi": 57,
    "rvol": 0.3,
    "near": false
