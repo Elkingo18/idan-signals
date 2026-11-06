@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 188.59398037340344,
-  "equity": 1191.71,
-  "realized_pnl": 169.2,
-  "open_pnl": 33.46,
+  "cash": 588.4439803734039,
+  "equity": 1175.2,
+  "realized_pnl": 152.39,
+  "open_pnl": 33.76,
   "peak_equity": 1279.92,
   "max_dd_pct": -12.41,
-  "return_pct": 19.17,
+  "return_pct": 17.52,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -76,27 +76,13 @@
    },
    "last": 3.48,
    "margin": 0.0
-  },
+  }
+ ],
+ "closed": [
   {
-   "id": "XAUUSD-1793952433",
-   "kind": "gold",
    "ticker": "XAUUSD",
+   "kind": "gold",
    "side": "long",
-   "sector": "other",
-   "qty": 2.05,
-   "qty_left": 2.05,
-   "entry": 4064.95,
-   "stop": 4056.9,
-   "orig_stop": 4056.9,
-   "t1": 4076.65,
-   "t2": 4088.5,
-   "opened": "2026-11-06T10:07:13.447307+02:00",
-   "opened_day": "2026-11-06",
-   "risk_open": 16.2,
-   "fees": 0.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 63,
    "pattern": "חציית ממוצעים",
    "snap": {
     "rsi": 58.1,
@@ -106,11 +92,22 @@
     "regime_ok": false,
     "notional": 8332.84
    },
-   "last": 4064.8,
-   "margin": 416.66
-  }
- ],
- "closed": [
+   "stop": 4056.9,
+   "t1": 4076.65,
+   "t2": 4088.5,
+   "fees": 0.0,
+   "qty": 2.05,
+   "entry": 4064.95,
+   "exit": 4056.75,
+   "pnl": -16.81,
+   "r": -1.02,
+   "reason": "stop",
+   "opened": "2026-11-06T10:07:13.447307+02:00",
+   "closed": "2026-11-06T16:09:33.489902+02:00",
+   "day": "2026-11-06",
+   "held_days": 0,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -3522,7 +3519,7 @@
     "shares": 34,
     "notional": 410.38,
     "risk_dollars": 20.6,
-    "risk_pct_actual": 1.73,
+    "risk_pct_actual": 1.75,
     "stretch_target": 14.48,
     "score": 71,
     "news": [
@@ -3581,7 +3578,7 @@
     "shares": 21,
     "notional": 409.71,
     "risk_dollars": 17.81,
-    "risk_pct_actual": 1.49,
+    "risk_pct_actual": 1.52,
     "stretch_target": 23.41,
     "score": 63,
     "news": [
@@ -3614,25 +3611,25 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "long",
-    "state": "BUY_NOW",
-    "pattern": "חציית ממוצעים",
-    "price": 4064.8,
-    "entry": 4064.8,
-    "stop": 4056.9,
-    "t1": 4076.65,
-    "t2": 4088.5,
+    "side": "short",
+    "state": "WATCH_SELL",
+    "pattern": "המשך מגמה ↓",
+    "price": 4053.8,
+    "entry": 4053.8,
+    "stop": 4065.1,
+    "t1": 4036.85,
+    "t2": 4019.9,
     "rr1": 1.5,
-    "atr": 5.27,
-    "rsi": 58.1,
-    "vwap": 4055.19,
-    "stop_pct": 0.19,
-    "ounces": 2.05,
-    "notional": 8332.84,
-    "margin": 416.64,
-    "risk_dollars": 16.2,
-    "shares": 2.05,
-    "score": 63,
+    "atr": 7.53,
+    "rsi": 31.8,
+    "vwap": 4066.75,
+    "stop_pct": 0.28,
+    "ounces": 2.02,
+    "notional": 8188.68,
+    "margin": 409.43,
+    "risk_dollars": 22.83,
+    "shares": 2.02,
+    "score": 51,
     "news": [],
     "regime_ok": false
    }
@@ -3640,11 +3637,11 @@
  },
  "calendar": {
   "2026-11-06": {
-   "pnl": 37.71,
-   "trades": 2,
+   "pnl": 20.9,
+   "trades": 3,
    "wins": 2,
-   "losses": 0,
-   "r": 2.19,
+   "losses": 1,
+   "r": 1.17,
    "tickers": [
     "XAUUSD"
    ],
@@ -4773,12 +4770,14 @@
   ],
   [
    "2026-11-06",
-   1191.71
+   1175.2
   ]
  ],
- "cooldown": {},
+ "cooldown": {
+  "XAUUSD": 3
+ },
  "game": {
-  "xp": 5090,
+  "xp": 5105,
   "level": 10,
   "streak": 1,
   "best_streak": 8,
@@ -4886,26 +4885,30 @@
    "name": "👹 בוס היום",
    "target": 91.9,
    "legend": 229.76,
-   "done": 42.91,
+   "done": 26.4,
    "base": 1148.8,
-   "pct": 47,
-   "pct_legend": 19,
+   "pct": 29,
+   "pct_legend": 11,
    "beaten": false,
    "legendary": false
   },
   "level_name": "🌌 מיתולוגי",
-  "xp_this_level": 313,
+  "xp_this_level": 328,
   "xp_next_level": 0
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 37.71,
-  "week_pnl": -13.5,
-  "daily_limit": -71.5,
-  "weekly_limit": -143.01
+  "day_pnl": 20.9,
+  "week_pnl": -30.31,
+  "daily_limit": -70.51,
+  "weekly_limit": -141.02
  },
  "log": [
+  {
+   "t": "2026-11-06 16:09",
+   "m": "EXIT XAUUSD x2.05 @ 4056.7500 (stop) P/L $-16.81 / -1.02R"
+  },
   {
    "t": "2026-11-06 10:07",
    "m": "OPEN GOLD XAUUSD x2.05 @ 4064.9500 stop 4056.9 T1 4076.65"
@@ -5221,10 +5224,6 @@
   {
    "t": "2026-09-24 09:21",
    "m": "EXIT XAUUSD x0.99 @ 4317.2001 (stop) P/L $+4.50 / +0.51R"
-  },
-  {
-   "t": "2026-09-24 09:09",
-   "m": "BE XAUUSD stop -> breakeven 4321.75"
   }
  ],
  "month_open_equity": {
@@ -5239,30 +5238,30 @@
   "spy": 733.0
  },
  "periods": {
-  "day": 37.71,
-  "week": 14.93,
-  "month": -27.66,
-  "quarter": 164.49,
-  "half": 169.2,
-  "year": 169.2,
-  "two_year": 169.2,
-  "all": 169.2,
-  "all_pct": 16.92
+  "day": 20.9,
+  "week": -1.88,
+  "month": -44.47,
+  "quarter": 147.68,
+  "half": 152.39,
+  "year": 152.39,
+  "two_year": 152.39,
+  "all": 152.39,
+  "all_pct": 15.24
  },
  "rejected": [],
- "updated_utc": "2026-11-06T08:07:13.447307+00:00",
- "updated_israel": "2026-11-06 10:07",
+ "updated_utc": "2026-11-06T14:09:33.489902+00:00",
+ "updated_israel": "2026-11-06 16:09",
  "market": {
   "open": false,
-  "et": "03:07",
-  "il": "10:07"
+  "et": "09:09",
+  "il": "16:09"
  },
  "stats": {
-  "trades": 117,
-  "win_rate": 61.5,
-  "pf": 1.27,
-  "avg_r": 0.15,
-  "expectancy": 1.45,
+  "trades": 118,
+  "win_rate": 61.0,
+  "pf": 1.24,
+  "avg_r": 0.14,
+  "expectancy": 1.29,
   "best": 25.41,
   "worst": -31.4
  },
@@ -6382,10 +6381,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1117,
+   "bars": 1211,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4064.8,
+   "last_price": 4053.8,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -6397,17 +6396,17 @@
    },
    "desc": "4 תבניות: חציית ממוצעים / פולבק לגל / החזרת VWAP / פריצת טווח — לשני הכיוונים. סטופ 1.5×ATR, יעדים 1.5R/3R.",
    "today": {
-    "trades": 2,
-    "pnl": 37.71
+    "trades": 3,
+    "pnl": 20.9
    },
-   "open_now": 1
+   "open_now": 0
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 3,
-   "heat": 95.65,
+   "open": 2,
+   "heat": 79.45,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -6420,7 +6419,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 22,
    "covered": 4,
-   "updated": "2026-11-06 10:07"
+   "updated": "2026-11-06 16:09"
   }
  },
  "gold_today": {
@@ -6437,9 +6436,9 @@
   },
   "gold": {
    "n": 20,
-   "exp": -0.9,
-   "pf": 0.86,
-   "avg_r": -0.02,
+   "exp": -2.15,
+   "pf": 0.7,
+   "avg_r": -0.11,
    "status": "warn"
   },
   "day": {
@@ -6964,14 +6963,69 @@
   },
   "market": [
    {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "Healthcare and Staples Hold the Line Against Tech. The Time to Be Fearful When Others Are Greedy Has Arrived.",
+    "url": "https://247wallst.com/investing/2026/11/06/healthcare-and-staples-hold-the-line-against-tech-the-time-to-be-fearful-when-others-are-greedy-has-arrived/",
+    "src": "24/7 Wall St.",
+    "time": "2026-11-06 13:02",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Stocks Just Had Their Worst Second Day After a Midterm in Nearly a Century",
+    "url": "https://247wallst.com/investing/2026/11/06/stocks-just-had-their-worst-second-day-after-a-midterm-in-nearly-a-century/",
+    "src": "24/7 Wall St.",
+    "time": "2026-11-06 13:57",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Rate Hikes Could Be Coming: History Likes These 4 Consumer Staples Stocks",
+    "url": "https://247wallst.com/investing/2026/11/06/rate-hikes-could-be-coming-history-likes-these-4-consumer-staples-stocks/",
+    "src": "24/7 Wall St.",
+    "time": "2026-11-06 13:37",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "What SPDR S&P 500 ETF (SPY) Sold: Apple Leads on Wednesday",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/spdr-p-500-etf-spy-110412129.html",
+    "src": "GuruFocus.com",
+    "time": "2026-11-06 11:04",
+    "about": "שוק"
+   },
+   {
     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
     "dir": "neg",
     "tag": null,
     "sources": 1,
-    "title": "Nvidia Is the Biggest Bet in Your Index Fund. Here’s What Its Drop Just Cost You",
-    "url": "https://247wallst.com/investing/etf/2026/11/05/nvidia-is-the-biggest-bet-in-your-index-fund-heres-what-its-drop-just-cost-you/",
+    "title": "Stock Market Today: Dow Slides 500 Points Amid Surprise Jobs Report; Nvidia Leads Tech Rebound (Live Coverage)",
+    "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-october-jobs-report-nvidia-stock-nvda/?src=A00220&yptr=yahoo",
+    "src": "Investor's Business Daily",
+    "time": "2026-11-06 13:44",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Big Investors Now Doubt Anthropic Can IPO at $1.5 Trillion After the AI Crash",
+    "url": "https://247wallst.com/investing/2026/11/06/big-investors-now-doubt-anthropic-can-ipo-at-1-5-trillion-after-the-ai-crash/",
     "src": "24/7 Wall St.",
-    "time": "2026-11-05 16:33",
+    "time": "2026-11-06 13:35",
     "about": "שוק"
    },
    {
@@ -6979,10 +7033,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Stock Market: Will S&P 500 Open Up or Down Today?",
-    "url": "https://www.benzinga.com/markets/prediction-markets/26/11/62966566/stock-market-will-sp-500-open-up-or-down-today-74?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral",
-    "src": "Benzinga Prediction Markets",
-    "time": "2026-11-06 05:56",
+    "title": "Michael Burry Dumps 25% of His Semiconductor Bet Amid Brutal Tech Selloff",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/michael-burry-dumps-25-semiconductor-131244639.html",
+    "src": "GuruFocus.com",
+    "time": "2026-11-06 13:12",
     "about": "שוק"
    },
    {
@@ -6990,68 +7044,13 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Market Jitters? How Buffer ETFs Can Help Protect Your Portfolio",
-    "url": "https://finance.yahoo.com/markets/options/articles/market-jitters-buffer-etfs-help-180400264.html",
-    "src": "Zacks",
-    "time": "2026-11-05 18:04",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Wall Street Is Already Bracing for a 2027 Debt Ceiling Fight",
-    "url": "https://247wallst.com/investing/2026/11/05/wall-street-is-already-bracing-for-a-2027-debt-ceiling-fight/",
+    "title": "Tech Stocks Just Had Their Worst Day Since 2020",
+    "url": "https://247wallst.com/investing/2026/11/06/tech-stocks-just-had-their-worst-day-since-2020/",
     "src": "24/7 Wall St.",
-    "time": "2026-11-05 16:48",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-    "dir": "neg",
-    "tag": null,
-    "sources": 1,
-    "title": "Redwire Plunges 21% as Revenue Miss Overshadows Record Margins and Backlog; Intuitive Machines Sinks 15%, Planet Labs Tumbles 12%",
-    "url": "https://247wallst.com/investing/2026/11/05/redwire-plunges-21-as-revenue-miss-overshadows-record-margins-and-backlog-intuitive-machines-sinks-15-planet-labs-tumbles-12/",
-    "src": "24/7 Wall St.",
-    "time": "2026-11-05 18:57",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "QQQ and SMH sink as chip stocks have worst day since 2020",
-    "url": "https://finance.yahoo.com/video/qqq-and-smh-sink-as-chip-stocks-have-worst-day-since-2020-215006209.html",
-    "src": "Yahoo Finance Video",
-    "time": "2026-11-05 21:50",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": "דוחות",
-    "sources": 1,
-    "title": "Open Text Q1 Earnings Call Highlights",
-    "url": "https://www.marketbeat.com/instant-alerts/transcript-open-text-q1-earnings-call-highlights-2026-11-05/?utm_source=yahoofinance&utm_medium=yahoofinance",
-    "src": "MarketBeat",
-    "time": "2026-11-05 22:14",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "dYdX Team’s Arcus Opens Stock-Token Collateral to All Perps Traders, With a $20,000 Cap",
-    "url": "https://unchainedcrypto.com/dydx-teams-arcus-opens-stock-token-collateral-to-all-perps-traders-with-a-20000-cap/",
-    "src": "Unchained",
-    "time": "2026-11-05 21:25",
+    "time": "2026-11-06 12:07",
     "about": "שוק"
    }
   ],
-  "updated": "2026-11-06 10:07"
+  "updated": "2026-11-06 16:09"
  }
 }
