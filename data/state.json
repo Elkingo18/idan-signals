@@ -2,49 +2,17 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 588.4439803734039,
-  "equity": 1179.26,
-  "realized_pnl": 152.39,
-  "open_pnl": 37.82,
+  "cash": 847.3639493682597,
+  "equity": 1178.13,
+  "realized_pnl": 184.4,
+  "open_pnl": 4.69,
   "peak_equity": 1279.92,
   "max_dd_pct": -12.41,
-  "return_pct": 17.93,
+  "return_pct": 17.81,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
  "positions": [
-  {
-   "id": "ULCC-1793315640",
-   "kind": "swing",
-   "ticker": "ULCC",
-   "side": "long",
-   "sector": "travel",
-   "qty": 35,
-   "qty_left": 35,
-   "entry": 6.4832,
-   "stop": 5.8307,
-   "orig_stop": 5.8307,
-   "t1": 7.7785,
-   "t2": 8.7525,
-   "opened": "2026-10-30T01:14:00.535161+02:00",
-   "opened_day": "2026-10-30",
-   "risk_open": 55.98,
-   "fees": 1.0,
-   "half_done": false,
-   "be_moved": false,
-   "score": 73,
-   "pattern": null,
-   "snap": {
-    "rsi": 63.5,
-    "rvol": 1.54,
-    "score": 73,
-    "stop_pct": 10.02,
-    "regime_ok": true,
-    "notional": 226.8
-   },
-   "last": 7.43,
-   "margin": 0.0
-  },
   {
    "id": "GRAB-1793865754",
    "kind": "swing",
@@ -79,6 +47,35 @@
   }
  ],
  "closed": [
+  {
+   "ticker": "ULCC",
+   "kind": "swing",
+   "side": "long",
+   "pattern": null,
+   "snap": {
+    "rsi": 63.5,
+    "rvol": 1.54,
+    "score": 73,
+    "stop_pct": 10.02,
+    "regime_ok": true,
+    "notional": 226.8
+   },
+   "stop": 5.8307,
+   "t1": 7.7785,
+   "t2": 8.7525,
+   "fees": 2.0,
+   "qty": 35,
+   "entry": 6.4832,
+   "exit": 7.4263,
+   "pnl": 32.01,
+   "r": 1.4,
+   "reason": "time_stop",
+   "opened": "2026-10-30T01:14:00.535161+02:00",
+   "closed": "2026-11-09T09:54:47.834503+02:00",
+   "day": "2026-11-09",
+   "held_days": 10,
+   "followed_rules": true
+  },
   {
    "ticker": "XAUUSD",
    "kind": "gold",
@@ -3502,31 +3499,44 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "long",
-    "state": "WATCH_BUY",
-    "pattern": "המשך מגמה",
-    "price": 4079.5,
-    "entry": 4079.5,
-    "stop": 4075.4,
-    "t1": 4085.64,
-    "t2": 4091.78,
+    "side": "short",
+    "state": "WATCH_SELL",
+    "pattern": "המשך מגמה ↓",
+    "price": 4099.5,
+    "entry": 4099.5,
+    "stop": 4106.2,
+    "t1": 4089.51,
+    "t2": 4079.53,
     "rr1": 1.5,
-    "atr": 2.73,
-    "rsi": 63.0,
-    "vwap": 4065.59,
-    "stop_pct": 0.1,
-    "ounces": 2.02,
-    "notional": 8240.59,
-    "margin": 412.03,
-    "risk_dollars": 8.28,
-    "shares": 2.02,
-    "score": 57,
+    "atr": 4.44,
+    "rsi": 23.7,
+    "vwap": 4118.67,
+    "stop_pct": 0.16,
+    "ounces": 2.01,
+    "notional": 8239.99,
+    "margin": 412.0,
+    "risk_dollars": 13.47,
+    "shares": 2.01,
+    "score": 51,
     "news": [],
     "regime_ok": false
    }
   ]
  },
  "calendar": {
+  "2026-11-09": {
+   "pnl": 32.01,
+   "trades": 1,
+   "wins": 1,
+   "losses": 0,
+   "r": 1.4,
+   "tickers": [
+    "ULCC"
+   ],
+   "breaks": 0,
+   "discipline": 100,
+   "status": "green"
+  },
   "2026-11-06": {
    "pnl": 20.9,
    "trades": 3,
@@ -4666,13 +4676,17 @@
   [
    "2026-11-07",
    1179.26
+  ],
+  [
+   "2026-11-09",
+   1178.13
   ]
  ],
  "cooldown": {},
  "game": {
-  "xp": 5105,
+  "xp": 5180,
   "level": 10,
-  "streak": 1,
+  "streak": 2,
   "best_streak": 8,
   "badges": [
    {
@@ -4759,7 +4773,7 @@
    },
    {
     "t": "לסיים את היום ירוק",
-    "done": false,
+    "done": true,
     "xp": 20
    },
    {
@@ -4774,30 +4788,34 @@
    }
   ],
   "boss": {
-   "day": "2026-11-07",
+   "day": "2026-11-09",
    "name": "👹 בוס היום",
-   "target": 94.34,
-   "legend": 235.85,
+   "target": 94.25,
+   "legend": 235.63,
    "done": 0.0,
-   "base": 1179.26,
+   "base": 1178.13,
    "pct": 0,
    "pct_legend": 0,
    "beaten": false,
    "legendary": false
   },
   "level_name": "🌌 מיתולוגי",
-  "xp_this_level": 328,
+  "xp_this_level": 403,
   "xp_next_level": 0
  },
  "halts": {
   "daily_stop_hit": false,
   "weekly_stop_hit": false,
-  "day_pnl": 0.0,
-  "week_pnl": -30.31,
-  "daily_limit": -70.76,
-  "weekly_limit": -141.51
+  "day_pnl": 32.01,
+  "week_pnl": 32.01,
+  "daily_limit": -70.69,
+  "weekly_limit": -141.38
  },
  "log": [
+  {
+   "t": "2026-11-09 09:54",
+   "m": "EXIT ULCC x35 @ 7.4263 (time_stop) P/L $+32.01 / +1.40R"
+  },
   {
    "t": "2026-11-06 16:09",
    "m": "EXIT XAUUSD x2.05 @ 4056.7500 (stop) P/L $-16.81 / -1.02R"
@@ -5113,10 +5131,6 @@
   {
    "t": "2026-09-24 23:29",
    "m": "OPEN GOLD SHORT XAUUSD x2.0 @ 4300.5500 stop 4306.8 T1 4291.52"
-  },
-  {
-   "t": "2026-09-24 09:21",
-   "m": "EXIT XAUUSD x0.99 @ 4317.2001 (stop) P/L $+4.50 / +0.51R"
   }
  ],
  "month_open_equity": {
@@ -5131,31 +5145,31 @@
   "spy": 735.29
  },
  "periods": {
-  "day": 0,
-  "week": -23.25,
-  "month": -63.71,
-  "quarter": 147.68,
-  "half": 152.39,
-  "year": 152.39,
-  "two_year": 152.39,
-  "all": 152.39,
-  "all_pct": 15.24
+  "day": 32.01,
+  "week": 1.7,
+  "month": -43.18,
+  "quarter": 179.69,
+  "half": 184.4,
+  "year": 184.4,
+  "two_year": 184.4,
+  "all": 184.4,
+  "all_pct": 18.44
  },
  "rejected": [],
- "updated_utc": "2026-11-07T00:59:26.373122+00:00",
- "updated_israel": "2026-11-07 02:59",
+ "updated_utc": "2026-11-09T07:54:47.834503+00:00",
+ "updated_israel": "2026-11-09 09:54",
  "market": {
   "open": false,
-  "et": "19:59",
-  "il": "02:59"
+  "et": "02:54",
+  "il": "09:54"
  },
  "stats": {
-  "trades": 118,
-  "win_rate": 61.0,
-  "pf": 1.24,
-  "avg_r": 0.14,
-  "expectancy": 1.29,
-  "best": 25.41,
+  "trades": 119,
+  "win_rate": 61.3,
+  "pf": 1.29,
+  "avg_r": 0.15,
+  "expectancy": 1.55,
+  "best": 32.01,
   "worst": -31.4
  },
  "control": {
@@ -5163,8 +5177,8 @@
   "close_all": false
  },
  "day_open": {
-  "date": "2026-11-07",
-  "equity": 1179.26
+  "date": "2026-11-09",
+  "equity": 1178.13
  },
  "universe_view": [
   {
@@ -5343,7 +5357,7 @@
    "px": 20.14,
    "trend": 4.2,
    "rsi": 51,
-   "rvol": 0.8,
+   "rvol": 1.0,
    "df": 0,
    "state": "none"
   },
@@ -5493,7 +5507,7 @@
    "px": 1.45,
    "trend": -18.4,
    "rsi": 44,
-   "rvol": 1.5,
+   "rvol": 1.6,
    "df": 1,
    "state": "none"
   },
@@ -6251,10 +6265,10 @@
    },
    "desc": "פריצות מעל שיא משמעותי עם ווליום, מגמה ו-RSI. סטופ = ההדוק מבין השפל ל-1.6×ATR. יעדים 2R/3.5R.",
    "today": {
-    "trades": 0,
-    "pnl": 0
+    "trades": 1,
+    "pnl": 32.01
    },
-   "open_now": 2
+   "open_now": 1
   },
   "day": {
    "icon": "⚡",
@@ -6274,10 +6288,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1308,
+   "bars": 835,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 4079.5,
+   "last_price": 4099.5,
    "signals": 1,
    "today_trades": 0,
    "health": {
@@ -6298,8 +6312,8 @@
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 2,
-   "heat": 83.51,
+   "open": 1,
+   "heat": 27.53,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -6310,9 +6324,9 @@
    "icon": "📰",
    "name": "סוכן החדשות",
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
-   "items": 16,
-   "covered": 2,
-   "updated": "2026-11-07 02:59"
+   "items": 12,
+   "covered": 1,
+   "updated": "2026-11-09 09:54"
   }
  },
  "gold_today": {
@@ -6321,10 +6335,10 @@
  },
  "health": {
   "swing": {
-   "n": 9,
-   "exp": -5.53,
-   "pf": 0.22,
-   "avg_r": -0.25,
+   "n": 10,
+   "exp": -1.78,
+   "pf": 0.72,
+   "avg_r": -0.09,
    "status": "warn"
   },
   "gold": {
@@ -6441,7 +6455,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 8.05,
-   "trend": -20.7,
+   "trend": -20.6,
    "rsi": 36,
    "rvol": 1.1,
    "near": false
@@ -6471,7 +6485,7 @@
    "list": "מעניינות",
    "grp": "06/26",
    "px": 0.52,
-   "trend": -44.7,
+   "trend": -44.4,
    "rsi": 34,
    "rvol": 0.6,
    "near": false
@@ -6619,7 +6633,7 @@
    "px": 13.54,
    "trend": -7.7,
    "rsi": 45,
-   "rvol": 1.6,
+   "rvol": 1.8,
    "near": false
   },
   {
@@ -6705,48 +6719,6 @@
  ],
  "news": {
   "tickers": {
-   "ULCC": [
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "ULCC Q3 deep dive: premium product rollouts and disciplined network drive revenue growth",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/ulcc-q3-deep-dive-premium-041336856.html",
-     "src": "StockStory",
-     "time": "2026-11-03 04:13"
-    },
-    {
-     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
-     "dir": "neg",
-     "tag": null,
-     "sources": 1,
-     "title": "3 Airline Stocks Retail Investors Are Watching As Lower Oil Reshapes Margins",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/3-airline-stocks-retail-investors-001726234.html",
-     "src": "Simply Wall St.",
-     "time": "2026-11-03 00:17"
-    },
-    {
-     "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-     "dir": "pos",
-     "tag": null,
-     "sources": 1,
-     "title": "JetBlue Soars 11%, Frontier Up 16% as Oil Slides on U.S.-Iran Peace Talk Hopes",
-     "url": "https://www.tikr.com/blog/jetblue-soars-11-frontier-up-16-as-oil-slides-on-u-s-iran-peace-talk-hopes?ref=yahoofinance&tlnk=yf-261102-3w3jvjw3",
-     "src": "TIKR",
-     "time": "2026-11-02 20:24"
-    },
-    {
-     "summary": "דיווח ניטרלי · אנליסט העלה המלצה — רוח גבית לטווח הקצר · מקור יחיד — לקחת בזהירות",
-     "dir": "neu",
-     "tag": "העלאת המלצה",
-     "sources": 1,
-     "title": "Deutsche Bank upgrades Frontier, JetBlue to Buy on improving backdrop",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/deutsche-bank-upgrades-frontier-jetblue-150425728.html",
-     "src": "Investing.com",
-     "time": "2026-11-05 15:04"
-    }
-   ],
    "GRAB": [
     {
      "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
@@ -6792,80 +6764,69 @@
   },
   "market": [
    {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Dave Ramsey Says You’ll “Never Touch” Your Retirement Principal If You Withdraw Less Than 12%. Here’s the Catch",
-    "url": "https://247wallst.com/personal-finance/2026/11/06/dave-ramsey-says-youll-never-touch-your-retirement-principal-if-you-withdraw-less-than-12-heres-the-catch/",
-    "src": "24/7 Wall St.",
-    "time": "2026-11-06 23:08",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Charlie Bilello Says “Some Sanity Has Returned to the Market.” What That Means for Your Portfolio",
-    "url": "https://247wallst.com/investing/2026/11/06/charlie-bilello-says-some-sanity-has-returned-to-the-market-what-that-means-for-your-portfolio/",
-    "src": "24/7 Wall St.",
-    "time": "2026-11-06 22:07",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "If You Invested $1,000 in PepsiCo 10 Years Ago, Here’s What You’d Have Now",
-    "url": "https://247wallst.com/investing/2026/11/06/if-you-invested-1000-in-pepsico-10-years-ago-heres-what-youd-have-now/",
-    "src": "24/7 Wall St.",
-    "time": "2026-11-06 19:17",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Jobless Claims Just Matched a 57-Year Low on the Day Stocks Crashed",
-    "url": "https://247wallst.com/investing/2026/11/06/jobless-claims-just-matched-a-57-year-low-on-the-day-stocks-crashed/",
-    "src": "24/7 Wall St.",
-    "time": "2026-11-06 15:08",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Jim Cramer Says the AI Sell-Off “Is Not Like 2000.” Here’s His Case",
-    "url": "https://247wallst.com/investing/2026/11/06/jim-cramer-says-the-ai-sell-off-is-not-like-2000-heres-his-case/",
-    "src": "24/7 Wall St.",
-    "time": "2026-11-07 00:09",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Own a Semiconductor ETF? Lam Research’s Buyback Move Affects You",
-    "url": "https://247wallst.com/investing/etf/2026/11/06/own-a-semiconductor-etf-lam-researchs-buyback-move-affects-you/",
-    "src": "24/7 Wall St.",
-    "time": "2026-11-06 20:03",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
+    "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
     "tag": "דוחות",
     "sources": 1,
-    "title": "Is Artemis Gold (TSXV:ARTG) Fully Valued After Earnings And Blackwater Progress?",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/artemis-gold-tsxv-artg-fully-001256630.html",
-    "src": "Simply Wall St.",
-    "time": "2026-11-07 00:12",
+    "title": "Biotech Beats SPY And QQQ In Market Rout — Now Hims Earnings And Summit’s FDA Test Take Center Stage ‘",
+    "url": "https://stocktwits.com/news-articles/markets/equity/biotech-beats-spy-qqq-hims-earnings-summit-fda-test-center-stage/cNGAtt7R9Iw",
+    "src": "Stocktwits",
+    "time": "2026-11-09 01:16",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "Wall Street Just Set a Record That Could Signal Trouble for the Stock Market",
+    "url": "https://247wallst.com/investing/2026/11/08/wall-street-just-set-a-record-that-could-signal-trouble-for-the-stock-market/",
+    "src": "24/7 Wall St.",
+    "time": "2026-11-08 16:47",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Intel Stock Has Gone Nowhere in 8 Years. Why This Time Could Be Different",
+    "url": "https://247wallst.com/investing/2026/11/08/intel-stock-has-gone-nowhere-in-8-years-why-this-time-could-be-different/",
+    "src": "24/7 Wall St.",
+    "time": "2026-11-08 16:29",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "The S&P 500 Just Had Its Worst Week Since the April 2025 Tariff Crash",
+    "url": "https://247wallst.com/investing/2026/11/07/the-sp-500-just-had-its-worst-week-since-the-april-2025-tariff-crash/",
+    "src": "24/7 Wall St.",
+    "time": "2026-11-07 17:33",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "If You'd Invested $5,000 in QQQ the Day It Launched, Here's What You'd Have Today",
+    "url": "https://www.fool.com/investing/2026/11/09/if-invest-5000-qqq-day-it-launched-how-much-today/",
+    "src": "Motley Fool",
+    "time": "2026-11-09 07:20",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "Bitcoin Price Stalls as Gold Surges: Is a Major Crypto Catch-Up Rally Coming?",
+    "url": "https://99bitcoins.com/news/bitcoin-btc/bitcoin-price-gold-price-rally-catch-up/",
+    "src": "99bitcoins",
+    "time": "2026-11-09 05:31",
     "about": "זהב"
    },
    {
@@ -6873,13 +6834,24 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Gold allocation shifts as you age. Here's what to consider.",
-    "url": "https://www.usatoday.com/story/money/money-management/investing/2026/11/06/how-much-gold-should-you-own-by-age/92631778007/",
-    "src": "USA TODAY",
-    "time": "2026-11-06 23:46",
+    "title": "The Reorientation of China's Sway Over Commodities",
+    "url": "https://finance.yahoo.com/markets/commodities/articles/reorientation-chinas-sway-over-commodities-070000326.html",
+    "src": "CME Group",
+    "time": "2026-11-09 07:00",
+    "about": "זהב"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Washington’s next move could determine America’s fortunes – here’s what to watch",
+    "url": "https://uk.finance.yahoo.com/news/washington-next-move-could-determine-063000387.html",
+    "src": "The Telegraph",
+    "time": "2026-11-09 06:30",
     "about": "זהב"
    }
   ],
-  "updated": "2026-11-07 02:59"
+  "updated": "2026-11-09 09:54"
  }
 }
