@@ -2,13 +2,13 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 990.6497102928613,
-  "equity": 1181.69,
+  "cash": 578.9899352928613,
+  "equity": 1181.37,
   "realized_pnl": 203.1,
-  "open_pnl": -9.46,
+  "open_pnl": -9.78,
   "peak_equity": 1279.92,
   "max_dd_pct": -12.41,
-  "return_pct": 18.17,
+  "return_pct": 18.14,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -44,6 +44,38 @@
    },
    "last": 7.96,
    "margin": 0.0
+  },
+  {
+   "id": "XAUUSD-1794907540",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "short",
+   "sector": "other",
+   "qty": 2.13,
+   "qty_left": 2.13,
+   "entry": 3865.35,
+   "stop": 3870.3,
+   "orig_stop": 3870.3,
+   "t1": 3858.36,
+   "t2": 3851.21,
+   "opened": "2026-11-17T11:25:40.208818+02:00",
+   "opened_day": "2026-11-17",
+   "risk_open": 10.22,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 62,
+   "pattern": "פולבק לגל ↓",
+   "snap": {
+    "rsi": 32.7,
+    "rvol": null,
+    "score": 62,
+    "stop_pct": 0.12,
+    "regime_ok": false,
+    "notional": 8233.51
+   },
+   "last": 3865.5,
+   "margin": 411.66
   }
  ],
  "closed": [
@@ -3763,24 +3795,24 @@
     "kind": "gold",
     "ticker": "XAUUSD",
     "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 3872.7,
-    "entry": 3872.7,
-    "stop": 3877.5,
-    "t1": 3865.49,
-    "t2": 3858.27,
+    "state": "SELL_NOW",
+    "pattern": "פולבק לגל ↓",
+    "price": 3865.5,
+    "entry": 3865.5,
+    "stop": 3870.3,
+    "t1": 3858.36,
+    "t2": 3851.21,
     "rr1": 1.5,
-    "atr": 3.21,
-    "rsi": 48.3,
-    "vwap": 3876.48,
+    "atr": 3.18,
+    "rsi": 32.7,
+    "vwap": 3876.07,
     "stop_pct": 0.12,
     "ounces": 2.13,
-    "notional": 8248.85,
-    "margin": 412.44,
+    "notional": 8233.51,
+    "margin": 411.68,
     "risk_dollars": 10.22,
     "shares": 2.13,
-    "score": 51,
+    "score": 62,
     "news": [],
     "regime_ok": false
    }
@@ -5035,12 +5067,10 @@
   ],
   [
    "2026-11-17",
-   1181.69
+   1181.37
   ]
  ],
- "cooldown": {
-  "XAUUSD": 1
- },
+ "cooldown": {},
  "game": {
   "xp": 5500,
   "level": 10,
@@ -5150,7 +5180,7 @@
    "name": "👹 בוס היום",
    "target": 95.33,
    "legend": 238.33,
-   "done": -9.94,
+   "done": -10.26,
    "base": 1191.63,
    "pct": 0,
    "pct_legend": 0,
@@ -5166,10 +5196,14 @@
   "weekly_stop_hit": false,
   "day_pnl": -9.94,
   "week_pnl": -22.9,
-  "daily_limit": -70.9,
-  "weekly_limit": -141.8
+  "daily_limit": -70.88,
+  "weekly_limit": -141.76
  },
  "log": [
+  {
+   "t": "2026-11-17 11:25",
+   "m": "OPEN GOLD SHORT XAUUSD x2.13 @ 3865.3500 stop 3870.3 T1 3858.36"
+  },
   {
    "t": "2026-11-17 05:42",
    "m": "EXIT XAUUSD x2.16 @ 3860.3500 (stop) P/L $-9.94 / -1.03R"
@@ -5485,10 +5519,6 @@
   {
    "t": "2026-10-02 21:00",
    "m": "EXIT XAUUSD x0.98 @ 4198.3900 (T1_half) P/L $+8.98 / +0.71R"
-  },
-  {
-   "t": "2026-10-02 15:25",
-   "m": "OPEN GOLD SHORT XAUUSD x1.97 @ 4207.5500 stop 4214.0 T1 4198.24"
   }
  ],
  "month_open_equity": {
@@ -5514,12 +5544,12 @@
   "all_pct": 20.31
  },
  "rejected": [],
- "updated_utc": "2026-11-17T09:10:16.354017+00:00",
- "updated_israel": "2026-11-17 11:10",
+ "updated_utc": "2026-11-17T09:25:40.208818+00:00",
+ "updated_israel": "2026-11-17 11:25",
  "market": {
   "open": false,
-  "et": "04:10",
-  "il": "11:10"
+  "et": "04:25",
+  "il": "11:25"
  },
  "stats": {
   "trades": 126,
@@ -6646,12 +6676,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 874,
+   "bars": 877,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 3872.7,
+   "last_price": 3865.5,
    "signals": 1,
-   "today_trades": 1,
+   "today_trades": 2,
    "health": {
     "n": 20,
     "exp": -0.25,
@@ -6664,14 +6694,14 @@
     "trades": 1,
     "pnl": -9.94
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 1,
-   "heat": 13.65,
+   "open": 2,
+   "heat": 23.87,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -6684,12 +6714,12 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 16,
    "covered": 2,
-   "updated": "2026-11-17 11:10"
+   "updated": "2026-11-17 11:25"
   }
  },
  "gold_today": {
   "date": "2026-11-17",
-  "count": 1
+  "count": 2
  },
  "health": {
   "swing": {
@@ -7230,6 +7260,17 @@
     "about": "שוק"
    },
    {
+    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+    "dir": "neg",
+    "tag": null,
+    "sources": 1,
+    "title": "FTSE 100 today: Stocks fall as miners slide, U.S. chip curbs outweigh UK jobs data",
+    "url": "https://finance.yahoo.com/markets/world-indices/articles/ftse-100-today-stocks-fall-085609114.html",
+    "src": "Investing.com",
+    "time": "2026-11-17 08:56",
+    "about": "זהב"
+   },
+   {
     "summary": "דיווח חיובי · פורסמו דוחות או צפי — צפויה תנודתיות סביב המניה · מקור יחיד — לקחת בזהירות",
     "dir": "pos",
     "tag": "דוחות",
@@ -7239,19 +7280,8 @@
     "src": "GuruFocus.com",
     "time": "2026-11-17 05:00",
     "about": "זהב"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Arkadian Strategic Metals pursues opportunities to recover gold and advance Clogau mine",
-    "url": "https://www.proactiveinvestors.com/companies/news/1101895/arkadian-strategic-metals-pursues-opportunities-to-recover-gold-and-advance-clogau-mine-1101895.html",
-    "src": "Proactive",
-    "time": "2026-11-17 07:58",
-    "about": "זהב"
    }
   ],
-  "updated": "2026-11-17 11:10"
+  "updated": "2026-11-17 11:25"
  }
 }
