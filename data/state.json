@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 569.9886602928606,
-  "equity": 1175.42,
+  "equity": 1189.0,
   "realized_pnl": 192.24,
-  "open_pnl": -4.87,
+  "open_pnl": 8.71,
   "peak_equity": 1279.92,
   "max_dd_pct": -12.41,
-  "return_pct": 17.54,
+  "return_pct": 18.9,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -60,7 +60,7 @@
    "t2": 3719.0,
    "opened": "2026-11-19T04:40:39.554261+02:00",
    "opened_day": "2026-11-19",
-   "risk_open": 17.3,
+   "risk_open": 30.88,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -74,7 +74,7 @@
     "regime_ok": false,
     "notional": 8196.29
    },
-   "last": 3742.6001,
+   "last": 3736.3999,
    "margin": 409.8
   }
  ],
@@ -3763,25 +3763,25 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "short",
-    "state": "SELL_NOW",
-    "pattern": "חציית ממוצעים ↓",
-    "price": 3742.6,
-    "entry": 3742.6,
-    "stop": 3750.5,
-    "t1": 3730.8,
-    "t2": 3719.0,
+    "side": "long",
+    "state": "BUY_NOW",
+    "pattern": "החזרת VWAP",
+    "price": 3736.4,
+    "entry": 3736.4,
+    "stop": 3729.2,
+    "t1": 3747.23,
+    "t2": 3758.06,
     "rr1": 1.5,
-    "atr": 5.25,
-    "rsi": 43.0,
-    "vwap": 3760.67,
-    "stop_pct": 0.21,
-    "ounces": 2.19,
-    "notional": 8196.29,
-    "margin": 409.81,
-    "risk_dollars": 17.3,
-    "shares": 2.19,
-    "score": 63,
+    "atr": 4.81,
+    "rsi": 50.2,
+    "vwap": 3736.4,
+    "stop_pct": 0.19,
+    "ounces": 2.22,
+    "notional": 8294.81,
+    "margin": 414.74,
+    "risk_dollars": 15.98,
+    "shares": 2.22,
+    "score": 55,
     "news": [],
     "regime_ok": false
    }
@@ -5044,7 +5044,7 @@
   ],
   [
    "2026-11-19",
-   1175.42
+   1189.0
   ]
  ],
  "cooldown": {},
@@ -5157,10 +5157,10 @@
    "name": "👹 בוס היום",
    "target": 94.06,
    "legend": 235.15,
-   "done": -0.33,
+   "done": 13.25,
    "base": 1175.75,
-   "pct": 0,
-   "pct_legend": 0,
+   "pct": 14,
+   "pct_legend": 6,
    "beaten": false,
    "legendary": false
   },
@@ -5173,8 +5173,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": -33.76,
-  "daily_limit": -70.53,
-  "weekly_limit": -141.05
+  "daily_limit": -71.34,
+  "weekly_limit": -142.68
  },
  "log": [
   {
@@ -5520,13 +5520,19 @@
   "all": 192.24,
   "all_pct": 19.22
  },
- "rejected": [],
- "updated_utc": "2026-11-19T02:40:39.554261+00:00",
- "updated_israel": "2026-11-19 04:40",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-11-19T08:44:36.540900+00:00",
+ "updated_israel": "2026-11-19 10:44",
  "market": {
   "open": false,
-  "et": "21:40",
-  "il": "04:40"
+  "et": "03:44",
+  "il": "10:44"
  },
  "stats": {
   "trades": 127,
@@ -5619,8 +5625,12 @@
   {
    "t": "PATH",
    "sec": "tech",
-   "state": "no_data",
-   "df": 0
+   "px": 11.73,
+   "trend": -11.8,
+   "rsi": 31,
+   "rvol": 1.7,
+   "df": 0,
+   "state": "none"
   },
   {
    "t": "VTRS",
@@ -6615,7 +6625,7 @@
    "icon": "📈",
    "name": "סוכן הסווינג",
    "domain": "70 מניות ≤$20 · גרף יומי",
-   "with_data": 68,
+   "with_data": 69,
    "signals": 0,
    "health": {
     "n": 11,
@@ -6649,10 +6659,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 1073,
+   "bars": 940,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 3742.6,
+   "last_price": 3736.4,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -6674,11 +6684,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 2,
-   "heat": 35.87,
+   "heat": 49.45,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -6687,7 +6697,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 12,
    "covered": 1,
-   "updated": "2026-11-19 04:40"
+   "updated": "2026-11-19 10:44"
   }
  },
  "gold_today": {
@@ -7136,14 +7146,14 @@
     "about": "שוק"
    },
    {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "ARKK Is Down, But These 10 Cathie Wood Stocks Have Soared Up to 285% in 2026",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/arkk-down-10-cathie-wood-173103158.html",
-    "src": "Insider Monkey",
-    "time": "2026-11-18 17:31",
+    "title": "Stock Market: Will S&P 500 Open Up or Down Today?",
+    "url": "https://www.benzinga.com/markets/prediction-markets/26/11/63418031/stock-market-will-sp-500-open-up-or-down-today-81?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral",
+    "src": "Benzinga Prediction Markets",
+    "time": "2026-11-19 06:10",
     "about": "שוק"
    },
    {
@@ -7184,21 +7194,21 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "I Used This Options Strategy to Profit from the Post-IPO Plunge in SpaceX. Now I’ll Use It Again on ANT Stock After Anthropic Starts Trading.",
-    "url": "https://www.barchart.com/story/news/8903468/i-used-this-options-strategy-to-profit-from-the-post-ipo-plunge-in-spacex-now-ill-use-it-again-on-ant-stock-after-anthropic-starts-trading",
+    "title": "The Downside Risk in Stocks Is Still High, According to My 'Short List'",
+    "url": "https://www.barchart.com/story/news/8905547/the-downside-risk-in-stocks-is-still-high-according-to-my-short-list",
     "src": "Barchart",
-    "time": "2026-11-18 20:01",
+    "time": "2026-11-18 22:04",
     "about": "שוק"
    },
    {
-    "summary": "דיווח שלילי · הוצלב ב-2 מקורות שונים",
-    "dir": "neg",
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
     "tag": null,
-    "sources": 2,
-    "title": "Gold rebounds from 14-month low as bargain hunters emerge despite Fed hike risks",
-    "url": "https://finance.yahoo.com/markets/commodities/articles/gold-rebounds-14-month-low-020048872.html",
-    "src": "Investing.com",
-    "time": "2026-11-19 02:00",
+    "sources": 1,
+    "title": "Nasdaq, Dow, S&P 500 Futures Climb Ahead Of Anthropic’s Record Debut: SLS, GLD, TTWO, UNH In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/nasdaq-dow-s-and-p-500-futures-climb-ahead-of-anthropic-s-record-debut-sls-gld-ttwo-unh-in-focus/cNbLDbCR9iW",
+    "src": "Stocktwits",
+    "time": "2026-11-19 04:15",
     "about": "זהב"
    },
    {
@@ -7206,13 +7216,13 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Stock Market Today, Nov. 18: S&P 500 Breaks Key Support as Fed Minutes Signal More Rate Hikes Ahead",
-    "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-today-nov-18-s-and-p-500-breaks-key-support-as-fed-minutes-signal-more-rate-hikes-ahead/",
-    "src": "Motley Fool",
-    "time": "2026-11-18 23:00",
+    "title": "S&P Keeps Tether at Weakest Stability Score as Riskier Reserves Grow",
+    "url": "https://www.ccn.com/news/crypto/sp-tether-usdt-stability-score-reserve-risk/",
+    "src": "CCN",
+    "time": "2026-11-19 08:07",
     "about": "זהב"
    }
   ],
-  "updated": "2026-11-19 04:40"
+  "updated": "2026-11-19 10:44"
  }
 }
