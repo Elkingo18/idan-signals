@@ -3,12 +3,12 @@
  "wallet": {
   "start": 1000.0,
   "cash": 811.7964816654642,
-  "equity": 1246.25,
+  "equity": 1258.01,
   "realized_pnl": 258.55,
-  "open_pnl": -0.36,
+  "open_pnl": 11.4,
   "peak_equity": 1279.92,
   "max_dd_pct": -12.41,
-  "return_pct": 24.62,
+  "return_pct": 25.8,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
@@ -28,7 +28,7 @@
    "t2": 3644.99,
    "opened": "2026-11-24T12:53:15.136785+02:00",
    "opened_day": "2026-11-24",
-   "risk_open": 17.28,
+   "risk_open": 29.04,
    "fees": 0.0,
    "half_done": false,
    "be_moved": false,
@@ -42,7 +42,7 @@
     "regime_ok": false,
     "notional": 8695.92
    },
-   "last": 3623.3,
+   "last": 3628.2,
    "margin": 434.81
   }
  ],
@@ -3879,22 +3879,22 @@
     "side": "long",
     "state": "BUY_NOW",
     "pattern": "פולבק לגל",
-    "price": 3623.3,
-    "entry": 3623.3,
-    "stop": 3616.1,
-    "t1": 3634.14,
-    "t2": 3644.99,
+    "price": 3628.2,
+    "entry": 3628.2,
+    "stop": 3621.3,
+    "t1": 3638.54,
+    "t2": 3648.89,
     "rr1": 1.5,
-    "atr": 4.82,
-    "rsi": 53.6,
-    "vwap": 3622.17,
-    "stop_pct": 0.2,
-    "ounces": 2.4,
-    "notional": 8695.92,
-    "margin": 434.8,
-    "risk_dollars": 17.28,
-    "shares": 2.4,
-    "score": 56,
+    "atr": 4.6,
+    "rsi": 59.5,
+    "vwap": 3622.31,
+    "stop_pct": 0.19,
+    "ounces": 2.42,
+    "notional": 8780.24,
+    "margin": 439.01,
+    "risk_dollars": 16.7,
+    "shares": 2.42,
+    "score": 62,
     "news": [],
     "regime_ok": false
    }
@@ -5225,7 +5225,7 @@
   ],
   [
    "2026-11-24",
-   1246.25
+   1258.01
   ]
  ],
  "cooldown": {},
@@ -5338,10 +5338,10 @@
    "name": "👹 בוס היום",
    "target": 99.73,
    "legend": 249.32,
-   "done": -0.36,
+   "done": 11.4,
    "base": 1246.61,
-   "pct": 0,
-   "pct_legend": 0,
+   "pct": 11,
+   "pct_legend": 5,
    "beaten": false,
    "legendary": false
   },
@@ -5354,8 +5354,8 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 15.87,
-  "daily_limit": -74.77,
-  "weekly_limit": -149.55
+  "daily_limit": -75.48,
+  "weekly_limit": -150.96
  },
  "log": [
   {
@@ -5701,13 +5701,19 @@
   "all": 258.55,
   "all_pct": 25.86
  },
- "rejected": [],
- "updated_utc": "2026-11-24T10:53:15.136785+00:00",
- "updated_israel": "2026-11-24 12:53",
+ "rejected": [
+  {
+   "ticker": "XAUUSD",
+   "kind": "gold",
+   "why": "already_open"
+  }
+ ],
+ "updated_utc": "2026-11-24T11:14:58.618761+00:00",
+ "updated_israel": "2026-11-24 13:14",
  "market": {
   "open": false,
-  "et": "05:53",
-  "il": "12:53"
+  "et": "06:14",
+  "il": "13:14"
  },
  "stats": {
   "trades": 132,
@@ -6030,12 +6036,8 @@
   {
    "t": "FLNC",
    "sec": "cleanenergy",
-   "px": 3.8,
-   "trend": -39.4,
-   "rsi": 31,
-   "rvol": 1.4,
-   "df": 0,
-   "state": "none"
+   "state": "no_data",
+   "df": 0
   },
   {
    "t": "NXE",
@@ -6800,7 +6802,7 @@
    "icon": "📈",
    "name": "סוכן הסווינג",
    "domain": "70 מניות ≤$20 · גרף יומי",
-   "with_data": 69,
+   "with_data": 68,
    "signals": 0,
    "health": {
     "n": 12,
@@ -6834,10 +6836,10 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 894,
+   "bars": 899,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 3623.3,
+   "last_price": 3628.2,
    "signals": 1,
    "today_trades": 1,
    "health": {
@@ -6859,11 +6861,11 @@
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
    "open": 1,
-   "heat": 17.28,
+   "heat": 29.04,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
-    "blocked": 0
+    "blocked": 1
    }
   },
   "news": {
@@ -6872,7 +6874,7 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 8,
    "covered": 0,
-   "updated": "2026-11-24 12:53"
+   "updated": "2026-11-24 13:15"
   }
  },
  "gold_today": {
@@ -7282,10 +7284,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Stock Market: Will S&P 500 Open Up or Down Today?",
-    "url": "https://www.benzinga.com/markets/prediction-markets/26/11/63568369/stock-market-will-sp-500-open-up-or-down-today-84?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral",
-    "src": "Benzinga Prediction Markets",
-    "time": "2026-11-24 06:10",
+    "title": "ETFs Bought $393.8 Million of Broadcom (AVGO) on Nov. 20",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/etfs-bought-393-8-million-110109208.html",
+    "src": "GuruFocus.com",
+    "time": "2026-11-24 11:01",
     "about": "שוק"
    },
    {
@@ -7293,10 +7295,10 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "The 10-Year Topped 5% For The First Time Since 2007. What Happened Next?",
-    "url": "https://www.trefis.com/stock/spy/articles/627401/the-10-year-topped-5-for-the-first-time-since-2007-what-happened-next/2026-11-23",
-    "src": "Trefis",
-    "time": "2026-11-24 05:06",
+    "title": "47 ETFs Add to Tesla (TSLA) Holdings on Nov. 20",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/47-etfs-add-tesla-tsla-110102533.html",
+    "src": "GuruFocus.com",
+    "time": "2026-11-24 11:01",
     "about": "שוק"
    },
    {
@@ -7304,57 +7306,57 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Stocks Opened Up, Then Fell 3% By The Close. What Happened The Last 45 Times?",
-    "url": "https://www.trefis.com/stock/spy/articles/627441/stocks-opened-up-then-fell-3-by-the-close-what-happened-the-last-45-times/2026-11-23",
-    "src": "Trefis",
-    "time": "2026-11-24 05:06",
+    "title": "Alphabet (GOOG) Sees $310.5 Million in Net ETF Buying on Nov. 20",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-goog-sees-310-5-110112722.html",
+    "src": "GuruFocus.com",
+    "time": "2026-11-24 11:01",
     "about": "שוק"
+   },
+   {
+    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
+    "dir": "pos",
+    "tag": null,
+    "sources": 1,
+    "title": "Estrella Resources CEO targets manganese and copper-gold growth in Timor-Leste",
+    "url": "https://finance.yahoo.com/video/estrella-resources-ceo-targets-manganese-102609092.html",
+    "src": "Proactive",
+    "time": "2026-11-24 10:26",
+    "about": "זהב"
    },
    {
     "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
     "dir": "neg",
     "tag": null,
     "sources": 1,
-    "title": "ANT Stock Drops Further Despite Tech Rally — Why This Analyst Thinks Jensen Huang’s Return As Nvidia CEO Is A ‘Threat To Anthropic’",
-    "url": "https://stocktwits.com/news-articles/markets/equity/ant-stock-drops-further-despite-tech-rally-why-this-analyst-thinks-jensen-huang-s-return-as-nvidia-ceo-is-a-threat-to-anthropic/cNbsciDR9ka",
-    "src": "Stocktwits",
-    "time": "2026-11-24 09:03",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · עדכון דיבידנד · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": "דיבידנד",
-    "sources": 1,
-    "title": "QQQ Paid a $300,000 Holder $1,524 in Dividends Over the Past Year While VYM Paid $7,164",
-    "url": "https://247wallst.com/investing/etf/2026/11/23/qqq-paid-a-300000-holder-1524-in-dividends-over-the-past-year-while-vym-paid-7164/",
-    "src": "24/7 Wall St.",
-    "time": "2026-11-24 02:03",
-    "about": "שוק"
+    "title": "Gold Falls Ahead of Key U.S. Inflation Data",
+    "url": "https://www.wsj.com/finance/commodities-futures/gold-rises-amid-risk-on-sentiment-across-markets-ae66946a?siteid=yhoof2&yptr=yahoo",
+    "src": "The Wall Street Journal",
+    "time": "2026-11-24 08:37",
+    "about": "זהב"
    },
    {
     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "QQQ Is Almost Half In 10 Stocks. This Nasdaq ETF Caps Every One at 1%",
-    "url": "https://247wallst.com/investing/etf/2026/11/23/qqq-is-almost-half-in-10-stocks-this-nasdaq-etf-caps-every-one-at-1/",
-    "src": "24/7 Wall St.",
-    "time": "2026-11-24 02:01",
-    "about": "שוק"
+    "title": "Gold Prices Edge Lower Following Sharp Recovery as Federal Reserve Rate Expectations Weigh on Demand",
+    "url": "https://investorshub.advfn.com/market-news/article/40581/gold-prices-edge-lower-following-sharp-recovery-as-federal-reserve-rate-expectations-weigh-on-demand",
+    "src": "InvestorsHub",
+    "time": "2026-11-24 10:21",
+    "about": "זהב"
    },
    {
     "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "S&P 500, Nasdaq End Best Session Since April Last Year On Optimism Led By Jensen Huang’s Reinstatement — NVDA, NASA, TTWO, AMZN In Focus",
-    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-best-session-since-april-on-optimism-led-by-jensen-huang-s-reinstatement-nvda-nasa-ttwo-amzn-in-focus/cNbpKSnR9jY",
-    "src": "Stocktwits",
-    "time": "2026-11-23 23:33",
-    "about": "שוק"
+    "title": "US Dollar Hits 20-Month High Before Wednesday's Big Inflation Test",
+    "url": "https://beincrypto.com/us-dollar-20-month-high-pce-inflation/",
+    "src": "BeInCrypto",
+    "time": "2026-11-24 08:35",
+    "about": "זהב"
    }
   ],
-  "updated": "2026-11-24 12:53"
+  "updated": "2026-11-24 13:15"
  }
 }
