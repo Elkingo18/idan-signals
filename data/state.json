@@ -2,17 +2,50 @@
  "version": "4.2",
  "wallet": {
   "start": 1000.0,
-  "cash": 1246.6104816654642,
-  "equity": 1246.61,
+  "cash": 811.7964816654642,
+  "equity": 1246.25,
   "realized_pnl": 258.55,
-  "open_pnl": 0.0,
+  "open_pnl": -0.36,
   "peak_equity": 1279.92,
   "max_dd_pct": -12.41,
-  "return_pct": 24.66,
+  "return_pct": 24.62,
   "name": "UHTA"
  },
  "risk_pct": 0.04,
- "positions": [],
+ "positions": [
+  {
+   "id": "XAUUSD-1795517595",
+   "kind": "gold",
+   "ticker": "XAUUSD",
+   "side": "long",
+   "sector": "other",
+   "qty": 2.4,
+   "qty_left": 2.4,
+   "entry": 3623.45,
+   "stop": 3616.1,
+   "orig_stop": 3616.1,
+   "t1": 3634.14,
+   "t2": 3644.99,
+   "opened": "2026-11-24T12:53:15.136785+02:00",
+   "opened_day": "2026-11-24",
+   "risk_open": 17.28,
+   "fees": 0.0,
+   "half_done": false,
+   "be_moved": false,
+   "score": 56,
+   "pattern": "פולבק לגל",
+   "snap": {
+    "rsi": 53.6,
+    "rvol": null,
+    "score": 56,
+    "stop_pct": 0.2,
+    "regime_ok": false,
+    "notional": 8695.92
+   },
+   "last": 3623.3,
+   "margin": 434.81
+  }
+ ],
  "closed": [
   {
    "ticker": "XAUUSD",
@@ -3843,25 +3876,25 @@
    {
     "kind": "gold",
     "ticker": "XAUUSD",
-    "side": "short",
-    "state": "WATCH_SELL",
-    "pattern": "המשך מגמה ↓",
-    "price": 3634.4,
-    "entry": 3634.4,
-    "stop": 3642.6,
-    "t1": 3622.11,
-    "t2": 3609.83,
+    "side": "long",
+    "state": "BUY_NOW",
+    "pattern": "פולבק לגל",
+    "price": 3623.3,
+    "entry": 3623.3,
+    "stop": 3616.1,
+    "t1": 3634.14,
+    "t2": 3644.99,
     "rr1": 1.5,
-    "atr": 5.46,
-    "rsi": 46.0,
-    "vwap": 3645.98,
-    "stop_pct": 0.23,
+    "atr": 4.82,
+    "rsi": 53.6,
+    "vwap": 3622.17,
+    "stop_pct": 0.2,
     "ounces": 2.4,
-    "notional": 8722.56,
-    "margin": 436.13,
-    "risk_dollars": 19.68,
+    "notional": 8695.92,
+    "margin": 434.8,
+    "risk_dollars": 17.28,
     "shares": 2.4,
-    "score": 51,
+    "score": 56,
     "news": [],
     "regime_ok": false
    }
@@ -5192,7 +5225,7 @@
   ],
   [
    "2026-11-24",
-   1246.61
+   1246.25
   ]
  ],
  "cooldown": {},
@@ -5305,7 +5338,7 @@
    "name": "👹 בוס היום",
    "target": 99.73,
    "legend": 249.32,
-   "done": 0.0,
+   "done": -0.36,
    "base": 1246.61,
    "pct": 0,
    "pct_legend": 0,
@@ -5321,10 +5354,14 @@
   "weekly_stop_hit": false,
   "day_pnl": 0.0,
   "week_pnl": 15.87,
-  "daily_limit": -74.8,
-  "weekly_limit": -149.59
+  "daily_limit": -74.77,
+  "weekly_limit": -149.55
  },
  "log": [
+  {
+   "t": "2026-11-24 12:53",
+   "m": "OPEN GOLD XAUUSD x2.4 @ 3623.4500 stop 3616.1 T1 3634.14"
+  },
   {
    "t": "2026-11-23 10:58",
    "m": "EXIT XAUUSD x1.18 @ 3552.7000 (stop) P/L $+15.87 / +0.50R"
@@ -5640,10 +5677,6 @@
   {
    "t": "2026-10-08 02:47",
    "m": "EXIT XAUUSD x2.05 @ 4137.9500 (stop) P/L $-13.12 / -1.02R"
-  },
-  {
-   "t": "2026-10-07 22:19",
-   "m": "OPEN GOLD SHORT XAUUSD x2.05 @ 4131.5500 stop 4137.8 T1 4122.52"
   }
  ],
  "month_open_equity": {
@@ -5669,12 +5702,12 @@
   "all_pct": 25.86
  },
  "rejected": [],
- "updated_utc": "2026-11-24T05:22:55.200767+00:00",
- "updated_israel": "2026-11-24 07:22",
+ "updated_utc": "2026-11-24T10:53:15.136785+00:00",
+ "updated_israel": "2026-11-24 12:53",
  "market": {
   "open": false,
-  "et": "00:22",
-  "il": "07:22"
+  "et": "05:53",
+  "il": "12:53"
  },
  "stats": {
   "trades": 132,
@@ -6428,7 +6461,9 @@
   {
    "t": "LLY",
    "sec": "premium",
-   "state": "no_data"
+   "px": 1364.6,
+   "trend": 7.3,
+   "state": "premium"
   },
   {
    "t": "JNJ",
@@ -6799,12 +6834,12 @@
    "icon": "🪙",
    "name": "סוכן הזהב",
    "domain": "XAUUSD · 5 דק' · קנייה+מכירה · עד 8/יום",
-   "bars": 820,
+   "bars": 894,
    "scanned": true,
    "source": "GC=F",
-   "last_price": 3634.4,
+   "last_price": 3623.3,
    "signals": 1,
-   "today_trades": 0,
+   "today_trades": 1,
    "health": {
     "n": 20,
     "exp": 3.99,
@@ -6817,14 +6852,14 @@
     "trades": 0,
     "pnl": 0
    },
-   "open_now": 0
+   "open_now": 1
   },
   "guard": {
    "icon": "🛡️",
    "name": "שומר הסיכון",
    "domain": "כל עסקה עוברת דרכו",
-   "open": 0,
-   "heat": 0,
+   "open": 1,
+   "heat": 17.28,
    "halt": false,
    "desc": "תקרות: 4 פוזיציות מניות (זהב נספר בנפרד), עד 2 לסקטור, heat 14%, עצירה יומית/שבועית, R:R≥1.5, מכסת זהב יומית.",
    "today": {
@@ -6837,11 +6872,11 @@
    "domain": "יאהו פייננס · איתותים + פוזיציות + שוק · כל סריקה",
    "items": 8,
    "covered": 0,
-   "updated": "2026-11-24 07:23"
+   "updated": "2026-11-24 12:53"
   }
  },
  "gold_today": {
-  "date": "2026-11-20",
+  "date": "2026-11-24",
   "count": 1
  },
  "health": {
@@ -7247,32 +7282,43 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "S&P 500, Nasdaq End Best Session Since April Last Year On Optimism Led By Jensen Huang’s Reinstatement — NVDA, NASA, TTWO, AMZN In Focus",
-    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-best-session-since-april-on-optimism-led-by-jensen-huang-s-reinstatement-nvda-nasa-ttwo-amzn-in-focus/cNbpKSnR9jY",
+    "title": "Stock Market: Will S&P 500 Open Up or Down Today?",
+    "url": "https://www.benzinga.com/markets/prediction-markets/26/11/63568369/stock-market-will-sp-500-open-up-or-down-today-84?utm_source=yahooFinance&utm_campaign=partner_feed&utm_medium=referral",
+    "src": "Benzinga Prediction Markets",
+    "time": "2026-11-24 06:10",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "The 10-Year Topped 5% For The First Time Since 2007. What Happened Next?",
+    "url": "https://www.trefis.com/stock/spy/articles/627401/the-10-year-topped-5-for-the-first-time-since-2007-what-happened-next/2026-11-23",
+    "src": "Trefis",
+    "time": "2026-11-24 05:06",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
+    "dir": "neu",
+    "tag": null,
+    "sources": 1,
+    "title": "Stocks Opened Up, Then Fell 3% By The Close. What Happened The Last 45 Times?",
+    "url": "https://www.trefis.com/stock/spy/articles/627441/stocks-opened-up-then-fell-3-by-the-close-what-happened-the-last-45-times/2026-11-23",
+    "src": "Trefis",
+    "time": "2026-11-24 05:06",
+    "about": "שוק"
+   },
+   {
+    "summary": "דיווח שלילי · מקור יחיד — לקחת בזהירות",
+    "dir": "neg",
+    "tag": null,
+    "sources": 1,
+    "title": "ANT Stock Drops Further Despite Tech Rally — Why This Analyst Thinks Jensen Huang’s Return As Nvidia CEO Is A ‘Threat To Anthropic’",
+    "url": "https://stocktwits.com/news-articles/markets/equity/ant-stock-drops-further-despite-tech-rally-why-this-analyst-thinks-jensen-huang-s-return-as-nvidia-ceo-is-a-threat-to-anthropic/cNbsciDR9ka",
     "src": "Stocktwits",
-    "time": "2026-11-23 23:33",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "EEM Now Moves Like A Chip Fund",
-    "url": "https://www.trefis.com/stock/eem/articles/627624/eem-near-54-now-moves-like-a-chip-fund/2026-11-23",
-    "src": "Trefis",
-    "time": "2026-11-23 22:43",
-    "about": "שוק"
-   },
-   {
-    "summary": "דיווח ניטרלי · מקור יחיד — לקחת בזהירות",
-    "dir": "neu",
-    "tag": null,
-    "sources": 1,
-    "title": "Own Gold As A Hedge? BND Rose More Often",
-    "url": "https://www.trefis.com/stock/bnd/articles/627661/own-gold-as-a-hedge-bnd-rose-more-often/2026-11-23",
-    "src": "Trefis",
-    "time": "2026-11-23 22:38",
+    "time": "2026-11-24 09:03",
     "about": "שוק"
    },
    {
@@ -7302,24 +7348,13 @@
     "dir": "neu",
     "tag": null,
     "sources": 1,
-    "title": "Retiring On $2 Million? Sell BND Before SCHD",
-    "url": "https://www.trefis.com/stock/voo/articles/627666/retiring-on-2-million-sell-bnd-before-schd/2026-11-23",
-    "src": "Trefis",
-    "time": "2026-11-23 22:14",
+    "title": "S&P 500, Nasdaq End Best Session Since April Last Year On Optimism Led By Jensen Huang’s Reinstatement — NVDA, NASA, TTWO, AMZN In Focus",
+    "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-best-session-since-april-on-optimism-led-by-jensen-huang-s-reinstatement-nvda-nasa-ttwo-amzn-in-focus/cNbpKSnR9jY",
+    "src": "Stocktwits",
+    "time": "2026-11-23 23:33",
     "about": "שוק"
-   },
-   {
-    "summary": "דיווח חיובי · מקור יחיד — לקחת בזהירות",
-    "dir": "pos",
-    "tag": null,
-    "sources": 1,
-    "title": "Alamos Gold (TSX:AGI) Stock Trades Below Fair Value Following Its 297% Run",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/alamos-gold-tsx-agi-stock-043036611.html",
-    "src": "Simply Wall St.",
-    "time": "2026-11-24 04:30",
-    "about": "זהב"
    }
   ],
-  "updated": "2026-11-24 07:23"
+  "updated": "2026-11-24 12:53"
  }
 }
